@@ -213,7 +213,7 @@ class GameViewController: UIViewController {
         scene = SCNScene()
         scnView.scene = scene
         let particlesNode = SCNNode()
-        starfield = SCNParticleSystem(named: "StarRaiders", inDirectory: "")
+        starfield = SCNParticleSystem(named: "starField", inDirectory: "")
         starfield.speedFactor = CGFloat(2)
         
         particlesNode.addParticleSystem(starfield!)

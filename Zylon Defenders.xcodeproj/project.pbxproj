@@ -12,6 +12,7 @@
 		E151DA2E1E17926900A70B45 /* HUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = E151DA2D1E17926900A70B45 /* HUD.swift */; };
 		E15520321DCFE776001651EB /* starField.scnp in Resources */ = {isa = PBXBuildFile; fileRef = E15520311DCFE776001651EB /* starField.scnp */; };
 		E16AB6241E1DD1F800E3D8C2 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = E16AB6231E1DD1F800E3D8C2 /* spark.png */; };
+		E16AB6261E1DD5CD00E3D8C2 /* fire.png in Resources */ = {isa = PBXBuildFile; fileRef = E16AB6251E1DD5CD00E3D8C2 /* fire.png */; };
 		E174FDC41E1A3B0C00A7CC73 /* firePressed.png in Resources */ = {isa = PBXBuildFile; fileRef = E174FDC31E1A3B0C00A7CC73 /* firePressed.png */; };
 		E174FDC71E1A424500A7CC73 /* Torpedo.scnp in Resources */ = {isa = PBXBuildFile; fileRef = E174FDC51E1A424500A7CC73 /* Torpedo.scnp */; };
 		E174FDC81E1A424500A7CC73 /* bokeh.png in Resources */ = {isa = PBXBuildFile; fileRef = E174FDC61E1A424500A7CC73 /* bokeh.png */; };
@@ -35,6 +36,7 @@
 		E151DA2D1E17926900A70B45 /* HUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HUD.swift; sourceTree = "<group>"; };
 		E15520311DCFE776001651EB /* starField.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = starField.scnp; sourceTree = "<group>"; };
 		E16AB6231E1DD1F800E3D8C2 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
+		E16AB6251E1DD5CD00E3D8C2 /* fire.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = fire.png; path = art.scnassets/fire.png; sourceTree = "<group>"; };
 		E174FDC31E1A3B0C00A7CC73 /* firePressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = firePressed.png; path = art.scnassets/firePressed.png; sourceTree = "<group>"; };
 		E174FDC51E1A424500A7CC73 /* Torpedo.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = Torpedo.scnp; sourceTree = "<group>"; };
 		E174FDC61E1A424500A7CC73 /* bokeh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bokeh.png; sourceTree = "<group>"; };
@@ -76,6 +78,7 @@
 				E174FDC51E1A424500A7CC73 /* Torpedo.scnp */,
 				E109EB5F1E1BB938003DAB0F /* 40069.ttf */,
 				E1F43D631DD115E900CC8988 /* star.png */,
+				E16AB6251E1DD5CD00E3D8C2 /* fire.png */,
 				E174FDC31E1A3B0C00A7CC73 /* firePressed.png */,
 				E174FDC61E1A424500A7CC73 /* bokeh.png */,
 				FC9F9CF41E1AFC9A00907E04 /* Sounds */,
@@ -207,6 +210,7 @@
 				E1A57AD01E1D8CCA009F2CA6 /* beep.mp3 in Resources */,
 				E1D8BD591DCFCD1A00C863DF /* Main.storyboard in Resources */,
 				E174FDC81E1A424500A7CC73 /* bokeh.png in Resources */,
+				E16AB6261E1DD5CD00E3D8C2 /* fire.png in Resources */,
 				E15520321DCFE776001651EB /* starField.scnp in Resources */,
 				E174FDC41E1A3B0C00A7CC73 /* firePressed.png in Resources */,
 				E1F43D641DD115E900CC8988 /* star.png in Resources */,
