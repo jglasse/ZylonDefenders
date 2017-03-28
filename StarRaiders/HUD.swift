@@ -1,6 +1,6 @@
 //
 //  HUD.swift
-//  StarRaiders
+//  Zylon Defenders
 //
 //  Created by Jeffery Glasse on 12/30/16.
 //  Copyright © 2016 Jeffery Glasse. All rights reserved.
@@ -15,6 +15,7 @@ class HUD: SKScene
 {
     var shields:SKShapeNode!
     var crosshairs:SKSpriteNode!
+    var joystick:AnalogJoystick!
     
     override init(size: CGSize)
     {
@@ -33,6 +34,12 @@ class HUD: SKScene
         crosshairs=SKSpriteNode(imageNamed:"xenonHUD")
         crosshairs.position = CGPoint(x:self.frame.midX, y: self.frame.midY)
         self.addChild(crosshairs)
+        let joystick = AnalogJoystick(diameters: (80, 40), colors: (UIColor.blue, UIColor.yellow))
+    
+        joystick.position = CGPoint(x: self.frame.midX/4, y: self.frame.midY - 90.0)
+   //     self.addChild(joystick)
+
+        
 
 
     }

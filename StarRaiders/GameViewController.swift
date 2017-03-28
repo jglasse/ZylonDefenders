@@ -1,6 +1,6 @@
 //
 //  GameViewController.swift
-//  StarRaiders
+//  Zylon Defenders
 //
 //  Created by Jeffery Glasse on 11/6/16.
 //  Copyright © 2016 Jeffery Glasse. All rights reserved.
@@ -194,7 +194,7 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
 
         
         enemyDrone?.scale = SCNVector3Make(0.25,0.25,0.25)
-        print("enemyDrone scale: \(enemyDrone?.scale)")
+        print("enemyDrone scale: \(String(describing: enemyDrone?.scale))")
         enemyDrone?.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
         enemyDrone?.physicsBody?.isAffectedByGravity = false
         enemyDrone?.physicsBody?.categoryBitMask = 0b00000010
@@ -340,7 +340,7 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
       motionManager.startGyroUpdates(to: OperationQueue.current!, withHandler: { (gyroData: CMGyroData?, NSError) -> Void in
             self.checkMotion(gyro: gyroData!.rotationRate)
             if (NSError != nil){
-                print("\(NSError)")
+                print("\(String(describing: NSError))")
             }
             
             
@@ -449,9 +449,9 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
             {
                 explosionNode.position = contact.nodeB.position
             }
-            print("contact.nodeA.name: \(contact.nodeA.name)")
+            print("contact.nodeA.name: \(String(describing: contact.nodeA.name))")
             print("contact.nodeA.position: \(contact.nodeA.position)")
-            print("contact.nodeB.name: \(contact.nodeB.name)")
+            print("contact.nodeB.name: \(String(describing: contact.nodeB.name))")
             print("contact.nodeB.position: \(contact.nodeB.position)")
 
             scene.rootNode.addChildNode(explosionNode)

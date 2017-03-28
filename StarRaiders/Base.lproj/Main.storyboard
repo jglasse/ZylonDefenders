@@ -121,34 +121,6 @@
                                     <action selector="spawnShip:" destination="BV1-FR-VrT" eventType="touchUpInside" id="pcc-aG-RdF"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IeS-Uw-d9L">
-                                <rect key="frame" x="103" y="180" width="30" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="UP"/>
-                                <connections>
-                                    <action selector="Up:" destination="BV1-FR-VrT" eventType="touchDragEnter" id="2Fb-Bo-Udp"/>
-                                    <action selector="Up:" destination="BV1-FR-VrT" eventType="touchDown" id="R0i-QK-G1w"/>
-                                    <action selector="Up:" destination="BV1-FR-VrT" eventType="touchDownRepeat" id="khP-M5-Onu"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e5Y-M1-H8v">
-                                <rect key="frame" x="95" y="254" width="47" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="DOWN"/>
-                                <connections>
-                                    <action selector="Down:" destination="BV1-FR-VrT" eventType="touchDown" id="cFN-f1-9mS"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NGU-7r-1VN">
-                                <rect key="frame" x="157" y="219" width="45" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="RIGHT"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yi2-td-r1U">
-                                <rect key="frame" x="40" y="219" width="35" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="LEFT"/>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iII-jG-TtQ">
                                 <rect key="frame" x="156" y="20" width="48" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>

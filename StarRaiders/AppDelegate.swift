@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  StarRaiders
+//  Zylon Defenders
 //
 //  Created by Jeffery Glasse on 11/6/16.
 //  Copyright © 2016 Jeffery Glasse. All rights reserved.
