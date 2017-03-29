@@ -29,8 +29,6 @@ class MCController: NSObject, MCSessionDelegate, MCNearbyServiceBrowserDelegate,
     
     static var sharedInstance = MCController()
     
-    
-    
     func sendCommand(text: String) {
         
         let string = text
@@ -53,6 +51,7 @@ class MCController: NSObject, MCSessionDelegate, MCNearbyServiceBrowserDelegate,
             advertiser.startAdvertisingPeer()
             browser.startBrowsingForPeers()
             print("MC Services Running")
+            self.myCommandDelegate = self
         }
         else
         {
@@ -68,13 +67,21 @@ class MCController: NSObject, MCSessionDelegate, MCNearbyServiceBrowserDelegate,
     
     }
     
+    
+    func setup() {
+            self.advertiser = MCNearbyServiceAdvertiser(peer: myPeerID, discoveryInfo: nil, serviceType: kServiceType)
+            self.browser = MCNearbyServiceBrowser(peer: myPeerID, serviceType: kServiceType)
+            self.advertiser.delegate = self
+            self.browser.delegate = self
+            self.toggleService()
+    }
+    
     // MARK: - Advertiser Delegate
     public func advertiser(_ advertiser: MCNearbyServiceAdvertiser, didReceiveInvitationFromPeer peerID: MCPeerID, withContext context: Data?, invitationHandler: @escaping (Bool, MCSession?) -> Void) {
         invitationHandler(true, self.session)
         
     }
 
-    
     
     // MARK: - Browser Delegate
     func browser(_ browser: MCNearbyServiceBrowser, foundPeer peerID: MCPeerID, withDiscoveryInfo info: [String : String]?)

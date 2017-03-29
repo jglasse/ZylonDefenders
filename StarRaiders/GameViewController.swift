@@ -12,6 +12,7 @@ import SceneKit
 import SpriteKit
 import AVFoundation
 import CoreMotion
+import MultipeerConnectivity
 
 
 class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRendererDelegate {
@@ -47,25 +48,25 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
     
     
     var motionManager: CMMotionManager!
-    
-
-
     var currentPhoton = 0
-    
     var currentMaxRotX: Double = 0.0
     var currentMaxRotY: Double = 0.0
     var currentMaxRotZ: Double = 0.0
     
     private var timeFiring = 0.0
     private var timeLastFired = 0.0
+
     
-    
+    var myMCController = MCController.sharedInstance
+
     
     @IBOutlet weak var currentSpeed: UILabel!
-    @IBOutlet weak var rotx: UILabel!
-    @IBOutlet weak var roty: UILabel!
-    @IBOutlet weak var rotz: UILabel!
 
+
+    
+
+    
+    
     
     func environmentSound(_ soundString: String)
     {
@@ -93,15 +94,20 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
     @IBAction func speedChanged(_ sender: UIStepper)
     {
         computerBeepSound("beep")
+        let targetSpeed = sender.value
+        setSpeed(Float(targetSpeed))
         
-        
-        let displaySpeed = Int(sender.value)
+    }
+    
+    func setSpeed(_ value: Float)
+    {
+        let displaySpeed = Int(value)
         currentSpeed.text = "\(displaySpeed)"
-        starfield.speedFactor = CGFloat(0.4 * sender.value)
+        starfield.speedFactor = CGFloat(0.4 * value)
         
-        if (sender.value == 0)
+        if (value == 0)
         {
-         //   SCNTransaction.animationDuration = 0.5
+               SCNTransaction.animationDuration = 0.5
             starfield.speedFactor = CGFloat(0)
             if #available(iOS 10.0, *) {
                 engineSound.setVolume(0, fadeDuration: 1.0)
@@ -111,7 +117,7 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
             
         }
         
-        if (sender.value == 1)
+        if (value == 1)
         {
             SCNTransaction.animationDuration = 1.0
             starfield.speedFactor = CGFloat(1)
@@ -122,8 +128,13 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
             }
         }
         
-        
+
+    
     }
+    
+    
+    
+    
     
     @IBAction func fireTorpedo(_ sender: UIButton)
     {
@@ -219,6 +230,12 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
         
     }
     
+    func toggleShields()
+    {
+        shipHud.toggleShields()
+        computerBeepSound("shields")
+    }
+    
     
     
     override func viewDidLoad()
@@ -229,15 +246,13 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
         setupScene()
         setupCamera()
         
-        // show statistics such as fps and timing information
         scnView.showsStatistics = false
         
-        // configure the view
         scnView.backgroundColor = UIColor.black
         
-        // add a tap gesture recognizer
-        //  let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
-        //  scnView.addGestureRecognizer(tapGesture)
+        self.myMCController.setup()
+        self.myMCController.myCommandDelegate = self
+
     }
     
     
@@ -353,10 +368,6 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
     {
         
         
-        rotx?.text = " \(gyro.x)"
-        roty?.text = " \(gyro.y)"
-        rotz?.text = " \(gyro.z)"
-        
         self.starfield.acceleration = SCNVector3(x: Float(gyro.x * -5), y:Float(gyro.y * -5), z: 0)
 
         
@@ -429,11 +440,6 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
     
     
     }
-
-    
-   
-   
-
     
     func physicsWorld(_ world: SCNPhysicsWorld, didBegin contact: SCNPhysicsContact)
     {
@@ -488,6 +494,36 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
         super.didReceiveMemoryWarning()
         // Release any cached data, images, etc that aren't in use.
     }
+
+}
+
+extension GameViewController: CommandDelegate {
+
+    func execute(command: String) {
+        print ("executing Command!")
+        switch command {
+        
+        case "Shields":
+            toggleShields()
+        case "Computer Status":
+            enterSector()
+
+        case "Warp 9":
+            setSpeed(9)
+        case "Warp 3":
+            setSpeed(3)
+
+        case "Full Stop":
+            setSpeed(0)
+            
+        case "Fire Photons!":
+            fireTorpedo(UIButton())
+        default:
+            break
+        
+        }
+    }
+
 
 }
 
