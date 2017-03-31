@@ -81,7 +81,7 @@
 		E1BD14AE1E24280C002E49A5 /* two.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = two.m4a; sourceTree = "<group>"; };
 		E1BD14AF1E24280C002E49A5 /* zero.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = zero.m4a; sourceTree = "<group>"; };
 		E1D8BD4E1DCFCD1A00C863DF /* Zylon Defenders.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Zylon Defenders.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		E1D8BD511DCFCD1A00C863DF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		E1D8BD511DCFCD1A00C863DF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = ../zylons/AppDelegate.swift; sourceTree = "<group>"; };
 		E1D8BD531DCFCD1A00C863DF /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
 		E1D8BD551DCFCD1A00C863DF /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		E1D8BD581DCFCD1A00C863DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -146,7 +146,7 @@
 				E1D8BD531DCFCD1A00C863DF /* art.scnassets */,
 			);
 			name = assets;
-			path = StarRaiders;
+			path = zylons;
 			sourceTree = "<group>";
 		};
 		E1A58DC11E1DD03600DCA24F /* Storyboards */ = {
@@ -188,7 +188,7 @@
 				E1D8BD5F1DCFCD1A00C863DF /* Info.plist */,
 			);
 			name = Code;
-			path = StarRaiders;
+			path = zylons;
 			sourceTree = "<group>";
 		};
 		E1F8BB041E3FD26300460FC9 /* sector_announcement */ = {
