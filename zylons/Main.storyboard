@@ -64,7 +64,7 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZGc-WM-dzj">
                                 <rect key="frame" x="24" y="20" width="83" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Y14.5M" family="Y14.5M" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="Y14.5M" family="Y14.5M" pointSize="15"/>
                                 <state key="normal" title="SHIELDS"/>
                                 <connections>
                                     <action selector="Shields:" destination="BV1-FR-VrT" eventType="touchUpInside" id="U1d-WX-1sb"/>
@@ -73,7 +73,7 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wpd-Z6-Jo1">
                                 <rect key="frame" x="490" y="21" width="136" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Y14.5M" family="Y14.5M" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="Y14.5M" family="Y14.5M" pointSize="15"/>
                                 <state key="normal" title="TARGET DRONE"/>
                                 <connections>
                                     <action selector="spawnShip:" destination="BV1-FR-VrT" eventType="touchUpInside" id="pcc-aG-RdF"/>
@@ -82,10 +82,19 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iII-jG-TtQ">
                                 <rect key="frame" x="156" y="20" width="48" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Y14.5M" family="Y14.5M" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="Y14.5M" family="Y14.5M" pointSize="15"/>
                                 <state key="normal" title="WARP"/>
                                 <connections>
                                     <action selector="gridWarp:" destination="BV1-FR-VrT" eventType="touchUpInside" id="1vV-Fg-K9M"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2sP-pn-M7j">
+                                <rect key="frame" x="240" y="20" width="48" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Y14.5M" family="Y14.5M" pointSize="15"/>
+                                <state key="normal" title="AFT"/>
+                                <connections>
+                                    <action selector="toggleView:" destination="BV1-FR-VrT" eventType="touchUpInside" id="vMe-A4-X6C"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -105,6 +114,7 @@
                     </view>
                     <connections>
                         <outlet property="currentSpeed" destination="UfY-Ip-g2Z" id="LEQ-gZ-JxL"/>
+                        <outlet property="viewButton" destination="2sP-pn-M7j" id="JVW-mq-nch"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>

@@ -27,7 +27,8 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
 
     var scene:SCNScene!
     var scnView:SCNView!
-    var cameraNode: SCNNode!
+    var cameraNode = SCNNode()
+    var rearCameraNode = SCNNode()
     var starfield: SCNParticleSystem!
     var shipHud: HUD!
     var enemyDrone:SCNNode!
@@ -61,10 +62,6 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
     
     @IBOutlet weak var currentSpeed: UILabel!
 
-
-    
-
-    
     
     
     func environmentSound(_ soundString: String)
@@ -73,8 +70,6 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
         try! environmentSound = AVAudioPlayer(contentsOf: soundURL!)
         environmentSound.volume = 0.5
         environmentSound.play()
-
-    
     }
     
     func computerBeepSound(_ soundString: String)
@@ -83,8 +78,7 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
        try! beepsound = AVAudioPlayer(contentsOf: soundURL!)
         beepsound.volume = 0.5
         beepsound.play()
-        
-    
+
     }
     
     @IBAction func gridWarp(_ sender: UIButton) {
@@ -137,7 +131,6 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
     
     @IBAction func fireTorpedo(_ sender: UIButton)
     {
-        
         if (numberofShotsOnscreen() < Constants.maxTorpedoes)
         {
         let torpedoNode = SCNNode(geometry: SCNSphere(radius: 0.25))
@@ -167,8 +160,6 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
             numberofNodes = numberofNodes + 1
         }
         print("number of live nodes:\(numberofNodes)")
-        
-        
            }
         
         else
@@ -195,9 +186,7 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
     
     @IBAction func spawnShip(_ sender: UIButton) {
         
-        
         let modelScene = SCNScene(named: "TIE-fighter.scn", inDirectory: "")
-        
         let enemyDrone = modelScene!.rootNode.childNode(withName: "tieFighter", recursively: true)
 
         
@@ -220,11 +209,31 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
     }
     
     
+    @IBOutlet weak var viewButton: UIButton!
+    @IBAction func toggleView(_ sender: UIButton) {
+        
+        computerBeepSound("beep")
+        if sender.currentTitle == "AFT"
+        {
+            print("Aft Cam")
+            sender.setTitle("FORE", for: .normal)
+            scnView.pointOfView = rearCameraNode
+        }
+        
+        else
+        {
+        print("Forward Cam")
+
+            sender.setTitle("AFT", for: .normal)
+        scnView.pointOfView = cameraNode
+
+        }
+        
+    }
     
     @IBAction func Shields(_ sender: UIButton)
     {
         shipHud.toggleShields()
- 
         computerBeepSound("shields")
         
     }
@@ -317,18 +326,24 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
     func setupCamera()
         
     {
-        // 1
-        
-        cameraNode = SCNNode()
-        // 2
+
+ 
         cameraNode.camera = SCNCamera()
-        // 3
         cameraNode.position = SCNVector3(x: 0, y: 0, z: 4)
+        print(cameraNode.rotation)
         cameraNode.name = "camera"
-        // 4
         cameraNode.camera?.zFar = 260
-       // scene.rootNode.addChildNode(cameraNode)
-        scene.rootNode.childNode(withName: "starfield", recursively: true)?.addChildNode(cameraNode)
+        scene.rootNode.addChildNode(cameraNode)
+        //scene.rootNode.childNode(withName: "starfield", recursively: true)?.addChildNode(cameraNode)
+        
+        rearCameraNode.camera=SCNCamera()
+        rearCameraNode.position = SCNVector3(x: 0, y: 0, z: 4)
+        rearCameraNode.rotation = SCNVector4(x: 1.0, y: 0.0, z: 0.0, w: Float.pi)
+        rearCameraNode.name = "rearCamera"
+        rearCameraNode.camera?.zFar = 260
+        scene.rootNode.addChildNode(rearCameraNode)
+
+        
         
         
       
@@ -498,6 +513,8 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
 
 extension GameViewController: CommandDelegate {
 
+ // receive commands from iOS remote controller 
+    
     func execute(command: String) {
         print ("executing Command!")
         switch command {
