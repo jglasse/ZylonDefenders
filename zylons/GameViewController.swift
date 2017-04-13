@@ -24,6 +24,11 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
     
     let numberstrings:[String] = ["zero", "one", "two", "three","four","five","six","seven","eight","nine"]
     
+    
+    // drone model
+    var modelScene:SCNScene!
+    var droneModel: SCNNode!
+    
 
     var scene:SCNScene!
     var scnView:SCNView!
@@ -186,9 +191,6 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
     
     @IBAction func spawnShip(_ sender: UIButton) {
         
-        let modelScene = SCNScene(named: "TIE-fighter.scn", inDirectory: "")
-        let enemyDrone = modelScene!.rootNode.childNode(withName: "tieFighter", recursively: true)
-
         
 
         
@@ -199,12 +201,11 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
         enemyDrone?.physicsBody?.categoryBitMask = 0b00000010
         enemyDrone?.physicsBody?.contactTestBitMask = 0b00000010
         enemyDrone?.name = "drone"
-        enemyDrone?.position = SCNVector3Make(0, 0, -86)
-        enemyDrone?.physicsBody?.applyTorque(SCNVector4Make(1,0.0,1,50), asImpulse: true)
+        enemyDrone?.position = SCNVector3Make(0, 0, -50)
+    //    enemyDrone?.physicsBody?.applyTorque(SCNVector4Make(1,0.0,1,50), asImpulse: true)
         scene.rootNode.addChildNode(enemyDrone!)
+        enemyDrone?.position = SCNVector3Make(0, 0, -50)
         enemyDrone?.scale = SCNVector3Make(0.25,0.25,0.25)
-        enemyDrone?.position = SCNVector3Make(0, 0, -86)
-        enemyDrone?.pivot = SCNMatrix4MakeTranslation(0.5, 0.5, 0.5)
 
     }
     
@@ -245,6 +246,7 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
     }
     
     
+    //MARK: SETUP
     
     override func viewDidLoad()
     {
@@ -319,6 +321,12 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
         try! photonSound4 = AVAudioPlayer(contentsOf: soundURL!)
         
         
+        modelScene = SCNScene(named: "TIE-fighter.scn")!
+        enemyDrone = modelScene.rootNode.childNode(withName: "tieFighter", recursively: true)
+        enemyDrone.pivot = SCNMatrix4MakeTranslation(0.5, 0.5, 0.5)
+       
+
+        
         
         
     }
@@ -382,7 +390,7 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
     {
         
         
-        self.starfield.acceleration = SCNVector3(x: Float(gyro.x * -5), y:Float(gyro.y * -5), z: 0)
+        self.starfield.acceleration = SCNVector3(x: Float(gyro.x * -3), y:Float(gyro.y * -3), z: 0)
 
         
         
@@ -524,12 +532,27 @@ extension GameViewController: CommandDelegate {
         case "Computer Status":
             enterSector()
 
-        case "Warp 9":
+        case "Speed 9":
             setSpeed(9)
-        case "Warp 3":
+        case "Speed 8":
+            setSpeed(8)
+        case "Speed 7":
+            setSpeed(7)
+        case "Speed 6":
+            setSpeed(6)
+        case "Speed 5":
+            setSpeed(5)
+        case "Speed 4":
+            setSpeed(4)
+        case "Speed 3":
             setSpeed(3)
+        case "Speed 2":
+            setSpeed(2)
+        case "Speed 1":
+            setSpeed(1)
+            
 
-        case "Full Stop":
+        case "Speed 0":
             setSpeed(0)
             
         case "Fire Photons!":

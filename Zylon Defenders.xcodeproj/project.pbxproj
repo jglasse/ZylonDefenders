@@ -17,7 +17,6 @@
 		E16A3BD81E70BAE600FE53C1 /* AnalogJoystick.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16A3BD71E70BAE600FE53C1 /* AnalogJoystick.swift */; };
 		E16AB6241E1DD1F800E3D8C2 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = E16AB6231E1DD1F800E3D8C2 /* spark.png */; };
 		E16AB6261E1DD5CD00E3D8C2 /* fire.png in Resources */ = {isa = PBXBuildFile; fileRef = E16AB6251E1DD5CD00E3D8C2 /* fire.png */; };
-		E16AB6281E1DD93300E3D8C2 /* ship.dae in Resources */ = {isa = PBXBuildFile; fileRef = E16AB6271E1DD93300E3D8C2 /* ship.dae */; };
 		E16AB62A1E1F120400E3D8C2 /* torpedo_fail.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E16AB6291E1F120400E3D8C2 /* torpedo_fail.mp3 */; };
 		E16B66881E8B09F800F28144 /* MCController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16B66871E8B09F800F28144 /* MCController.swift */; };
 		E174FDC41E1A3B0C00A7CC73 /* firePressed.png in Resources */ = {isa = PBXBuildFile; fileRef = E174FDC31E1A3B0C00A7CC73 /* firePressed.png */; };
@@ -62,7 +61,6 @@
 		E16A3BD71E70BAE600FE53C1 /* AnalogJoystick.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalogJoystick.swift; sourceTree = "<group>"; };
 		E16AB6231E1DD1F800E3D8C2 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
 		E16AB6251E1DD5CD00E3D8C2 /* fire.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = fire.png; path = art.scnassets/fire.png; sourceTree = "<group>"; };
-		E16AB6271E1DD93300E3D8C2 /* ship.dae */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml.dae; path = ship.dae; sourceTree = "<group>"; };
 		E16AB6291E1F120400E3D8C2 /* torpedo_fail.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = torpedo_fail.mp3; sourceTree = "<group>"; };
 		E16B66871E8B09F800F28144 /* MCController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MCController.swift; sourceTree = "<group>"; };
 		E174FDC31E1A3B0C00A7CC73 /* firePressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = firePressed.png; path = art.scnassets/firePressed.png; sourceTree = "<group>"; };
@@ -132,7 +130,6 @@
 			children = (
 				E1F8BB051E3FD36800460FC9 /* defenders.png */,
 				E165672A1E3205C100293285 /* fonts */,
-				E16AB6271E1DD93300E3D8C2 /* ship.dae */,
 				E16AB6231E1DD1F800E3D8C2 /* spark.png */,
 				E19B4E771E4080EC00BAFA62 /* TIE-fighter.scn */,
 				FC9F9CEE1E1AF97500907E04 /* xenonHUD.png */,
@@ -316,7 +313,6 @@
 				E1A57AD01E1D8CCA009F2CA6 /* beep.mp3 in Resources */,
 				E1BD14BA1E24280C002E49A5 /* zero.m4a in Resources */,
 				E174FDC81E1A424500A7CC73 /* bokeh.png in Resources */,
-				E16AB6281E1DD93300E3D8C2 /* ship.dae in Resources */,
 				E16AB6261E1DD5CD00E3D8C2 /* fire.png in Resources */,
 				E1F8BB0B1E3FF4E100460FC9 /* explosion.m4a in Resources */,
 				E165672D1E3205EE00293285 /* Texas Instruments2.ttf in Resources */,

@@ -1,0 +1,545 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		112F74A31D2D16CA004F1242 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 112F74A11D2D16CA004F1242 /* Main.storyboard */; };
+		E13951861E9E97C900D02269 /* AnalogJoystick.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13951851E9E97C900D02269 /* AnalogJoystick.swift */; };
+		E13FE0CB1E8ACFBB00CA54A9 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E13FE0CA1E8ACFBB00CA54A9 /* Default-568h@2x.png */; };
+		E1456DEB1E8A7C31009BF5BD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1456DEA1E8A7C31009BF5BD /* AppDelegate.swift */; };
+		E1456DED1E8A7C42009BF5BD /* MCTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1456DEC1E8A7C42009BF5BD /* MCTestViewController.swift */; };
+		E1456DEF1E8A7C6A009BF5BD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E1456DEE1E8A7C6A009BF5BD /* Assets.xcassets */; };
+		E1456DF21E8A7CBB009BF5BD /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E1456DF11E8A7CBB009BF5BD /* Info.plist */; };
+		E16B668B1E8B5C4D00F28144 /* MCController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16B668A1E8B5C4D00F28144 /* MCController.swift */; };
+		E1737F801E9F00DF00ED4EB5 /* Erasdemi.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E1737F7F1E9F00DF00ED4EB5 /* Erasdemi.ttf */; };
+		E1737F841E9F2D5700ED4EB5 /* button_blue.png in Resources */ = {isa = PBXBuildFile; fileRef = E1737F811E9F2D5700ED4EB5 /* button_blue.png */; };
+		E1737F851E9F2D5700ED4EB5 /* button_green.png in Resources */ = {isa = PBXBuildFile; fileRef = E1737F821E9F2D5700ED4EB5 /* button_green.png */; };
+		E1737F861E9F2D5700ED4EB5 /* button_red.png in Resources */ = {isa = PBXBuildFile; fileRef = E1737F831E9F2D5700ED4EB5 /* button_red.png */; };
+		E1A7FCE21E9EFF8A00C74681 /* helm_5200.png in Resources */ = {isa = PBXBuildFile; fileRef = E1A7FCE11E9EFF8A00C74681 /* helm_5200.png */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		112F74AF1D2D16CA004F1242 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 112F74921D2D16CA004F1242 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 112F74991D2D16CA004F1242;
+			remoteInfo = BluComm;
+		};
+		112F74BA1D2D16CA004F1242 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 112F74921D2D16CA004F1242 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 112F74991D2D16CA004F1242;
+			remoteInfo = BluComm;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		112F749A1D2D16CA004F1242 /* Helm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Helm.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		112F74A21D2D16CA004F1242 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		112F74AE1D2D16CA004F1242 /* HelmTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HelmTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		112F74B91D2D16CA004F1242 /* HelmUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HelmUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E13951851E9E97C900D02269 /* AnalogJoystick.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AnalogJoystick.swift; path = ../../../../Documents/_Zylons/zylons/AnalogJoystick.swift; sourceTree = "<group>"; };
+		E13FE0CA1E8ACFBB00CA54A9 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		E1456DEA1E8A7C31009BF5BD /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Helm/AppDelegate.swift; sourceTree = SOURCE_ROOT; };
+		E1456DEC1E8A7C42009BF5BD /* MCTestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MCTestViewController.swift; path = Helm/MCTestViewController.swift; sourceTree = SOURCE_ROOT; };
+		E1456DEE1E8A7C6A009BF5BD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Helm/Assets.xcassets; sourceTree = SOURCE_ROOT; };
+		E1456DF11E8A7CBB009BF5BD /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Helm/Info.plist; sourceTree = SOURCE_ROOT; };
+		E1456DF31E8AC16D009BF5BD /* Helm.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; name = Helm.entitlements; path = Helm/Helm.entitlements; sourceTree = SOURCE_ROOT; };
+		E16B668A1E8B5C4D00F28144 /* MCController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MCController.swift; sourceTree = SOURCE_ROOT; };
+		E1737F7F1E9F00DF00ED4EB5 /* Erasdemi.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Erasdemi.ttf; path = ../../../../Downloads/Erasdemi.ttf; sourceTree = "<group>"; };
+		E1737F811E9F2D5700ED4EB5 /* button_blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = button_blue.png; path = Helm/button_blue.png; sourceTree = SOURCE_ROOT; };
+		E1737F821E9F2D5700ED4EB5 /* button_green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = button_green.png; path = Helm/button_green.png; sourceTree = SOURCE_ROOT; };
+		E1737F831E9F2D5700ED4EB5 /* button_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = button_red.png; path = Helm/button_red.png; sourceTree = SOURCE_ROOT; };
+		E1A7FCE11E9EFF8A00C74681 /* helm_5200.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = helm_5200.png; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		112F74971D2D16CA004F1242 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		112F74AB1D2D16CA004F1242 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		112F74B61D2D16CA004F1242 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		112F74911D2D16CA004F1242 = {
+			isa = PBXGroup;
+			children = (
+				E13FE0CA1E8ACFBB00CA54A9 /* Default-568h@2x.png */,
+				112F749C1D2D16CA004F1242 /* Helm */,
+				112F749B1D2D16CA004F1242 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		112F749B1D2D16CA004F1242 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				112F749A1D2D16CA004F1242 /* Helm.app */,
+				112F74AE1D2D16CA004F1242 /* HelmTests.xctest */,
+				112F74B91D2D16CA004F1242 /* HelmUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		112F749C1D2D16CA004F1242 /* Helm */ = {
+			isa = PBXGroup;
+			children = (
+				E1456DEA1E8A7C31009BF5BD /* AppDelegate.swift */,
+				E1456DEC1E8A7C42009BF5BD /* MCTestViewController.swift */,
+				112F74A11D2D16CA004F1242 /* Main.storyboard */,
+				E16B668A1E8B5C4D00F28144 /* MCController.swift */,
+				E1737F7F1E9F00DF00ED4EB5 /* Erasdemi.ttf */,
+				E13951851E9E97C900D02269 /* AnalogJoystick.swift */,
+				E1456DF31E8AC16D009BF5BD /* Helm.entitlements */,
+				E1456DEE1E8A7C6A009BF5BD /* Assets.xcassets */,
+				E1737F811E9F2D5700ED4EB5 /* button_blue.png */,
+				E1737F821E9F2D5700ED4EB5 /* button_green.png */,
+				E1737F831E9F2D5700ED4EB5 /* button_red.png */,
+				E1A7FCE11E9EFF8A00C74681 /* helm_5200.png */,
+				E1456DF11E8A7CBB009BF5BD /* Info.plist */,
+			);
+			name = Helm;
+			path = BluComm;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		112F74991D2D16CA004F1242 /* Helm */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 112F74C21D2D16CA004F1242 /* Build configuration list for PBXNativeTarget "Helm" */;
+			buildPhases = (
+				112F74961D2D16CA004F1242 /* Sources */,
+				112F74971D2D16CA004F1242 /* Frameworks */,
+				112F74981D2D16CA004F1242 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Helm;
+			productName = BluComm;
+			productReference = 112F749A1D2D16CA004F1242 /* Helm.app */;
+			productType = "com.apple.product-type.application";
+		};
+		112F74AD1D2D16CA004F1242 /* HelmTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 112F74C51D2D16CA004F1242 /* Build configuration list for PBXNativeTarget "HelmTests" */;
+			buildPhases = (
+				112F74AA1D2D16CA004F1242 /* Sources */,
+				112F74AB1D2D16CA004F1242 /* Frameworks */,
+				112F74AC1D2D16CA004F1242 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				112F74B01D2D16CA004F1242 /* PBXTargetDependency */,
+			);
+			name = HelmTests;
+			productName = BluCommTests;
+			productReference = 112F74AE1D2D16CA004F1242 /* HelmTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		112F74B81D2D16CA004F1242 /* HelmUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 112F74C81D2D16CA004F1242 /* Build configuration list for PBXNativeTarget "HelmUITests" */;
+			buildPhases = (
+				112F74B51D2D16CA004F1242 /* Sources */,
+				112F74B61D2D16CA004F1242 /* Frameworks */,
+				112F74B71D2D16CA004F1242 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				112F74BB1D2D16CA004F1242 /* PBXTargetDependency */,
+			);
+			name = HelmUITests;
+			productName = BluCommUITests;
+			productReference = 112F74B91D2D16CA004F1242 /* HelmUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		112F74921D2D16CA004F1242 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0800;
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = "Clarence Ji";
+				TargetAttributes = {
+					112F74991D2D16CA004F1242 = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = WPGAGSXUST;
+						DevelopmentTeamName = "Clarence Ji";
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
+					};
+					112F74AD1D2D16CA004F1242 = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = G6TTA6H999;
+						DevelopmentTeamName = "Clarence Ji";
+						ProvisioningStyle = Automatic;
+						TestTargetID = 112F74991D2D16CA004F1242;
+					};
+					112F74B81D2D16CA004F1242 = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = G6TTA6H999;
+						DevelopmentTeamName = "Clarence Ji";
+						ProvisioningStyle = Automatic;
+						TestTargetID = 112F74991D2D16CA004F1242;
+					};
+				};
+			};
+			buildConfigurationList = 112F74951D2D16CA004F1242 /* Build configuration list for PBXProject "Helm" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 112F74911D2D16CA004F1242;
+			productRefGroup = 112F749B1D2D16CA004F1242 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				112F74991D2D16CA004F1242 /* Helm */,
+				112F74AD1D2D16CA004F1242 /* HelmTests */,
+				112F74B81D2D16CA004F1242 /* HelmUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		112F74981D2D16CA004F1242 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E1456DEF1E8A7C6A009BF5BD /* Assets.xcassets in Resources */,
+				E1A7FCE21E9EFF8A00C74681 /* helm_5200.png in Resources */,
+				E1737F801E9F00DF00ED4EB5 /* Erasdemi.ttf in Resources */,
+				E1737F841E9F2D5700ED4EB5 /* button_blue.png in Resources */,
+				E13FE0CB1E8ACFBB00CA54A9 /* Default-568h@2x.png in Resources */,
+				E1456DF21E8A7CBB009BF5BD /* Info.plist in Resources */,
+				112F74A31D2D16CA004F1242 /* Main.storyboard in Resources */,
+				E1737F861E9F2D5700ED4EB5 /* button_red.png in Resources */,
+				E1737F851E9F2D5700ED4EB5 /* button_green.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		112F74AC1D2D16CA004F1242 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		112F74B71D2D16CA004F1242 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		112F74961D2D16CA004F1242 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E1456DED1E8A7C42009BF5BD /* MCTestViewController.swift in Sources */,
+				E13951861E9E97C900D02269 /* AnalogJoystick.swift in Sources */,
+				E16B668B1E8B5C4D00F28144 /* MCController.swift in Sources */,
+				E1456DEB1E8A7C31009BF5BD /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		112F74AA1D2D16CA004F1242 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		112F74B51D2D16CA004F1242 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		112F74B01D2D16CA004F1242 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 112F74991D2D16CA004F1242 /* Helm */;
+			targetProxy = 112F74AF1D2D16CA004F1242 /* PBXContainerItemProxy */;
+		};
+		112F74BB1D2D16CA004F1242 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 112F74991D2D16CA004F1242 /* Helm */;
+			targetProxy = 112F74BA1D2D16CA004F1242 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		112F74A11D2D16CA004F1242 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				112F74A21D2D16CA004F1242 /* Base */,
+			);
+			name = Main.storyboard;
+			path = Helm;
+			sourceTree = SOURCE_ROOT;
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		112F74C01D2D16CA004F1242 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = Helm.entitlements;
+				"CODE_SIGN_ENTITLEMENTS[sdk=*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		112F74C11D2D16CA004F1242 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = Helm.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		112F74C31D2D16CA004F1242 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Helm.entitlements;
+				DEVELOPMENT_TEAM = WPGAGSXUST;
+				INFOPLIST_FILE = Helm/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.jeffglasse;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		112F74C41D2D16CA004F1242 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Helm.entitlements;
+				DEVELOPMENT_TEAM = WPGAGSXUST;
+				INFOPLIST_FILE = Helm/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.jeffglasse;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		112F74C61D2D16CA004F1242 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = BluCommTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.cjlondon.BluCommTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Helm.app/Helm";
+			};
+			name = Debug;
+		};
+		112F74C71D2D16CA004F1242 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = BluCommTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.cjlondon.BluCommTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Helm.app/Helm";
+			};
+			name = Release;
+		};
+		112F74C91D2D16CA004F1242 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = BluCommUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.cjlondon.BluCommUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = BluComm;
+			};
+			name = Debug;
+		};
+		112F74CA1D2D16CA004F1242 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = BluCommUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.cjlondon.BluCommUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = BluComm;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		112F74951D2D16CA004F1242 /* Build configuration list for PBXProject "Helm" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				112F74C01D2D16CA004F1242 /* Debug */,
+				112F74C11D2D16CA004F1242 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		112F74C21D2D16CA004F1242 /* Build configuration list for PBXNativeTarget "Helm" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				112F74C31D2D16CA004F1242 /* Debug */,
+				112F74C41D2D16CA004F1242 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		112F74C51D2D16CA004F1242 /* Build configuration list for PBXNativeTarget "HelmTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				112F74C61D2D16CA004F1242 /* Debug */,
+				112F74C71D2D16CA004F1242 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		112F74C81D2D16CA004F1242 /* Build configuration list for PBXNativeTarget "HelmUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				112F74C91D2D16CA004F1242 /* Debug */,
+				112F74CA1D2D16CA004F1242 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 112F74921D2D16CA004F1242 /* Project object */;
+}

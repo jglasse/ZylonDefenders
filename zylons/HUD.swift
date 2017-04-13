@@ -32,7 +32,7 @@ class HUD: SKScene
         
         
         crosshairs=SKSpriteNode(imageNamed:"xenonHUD")
-        crosshairs.position = CGPoint(x:self.frame.midX, y: self.frame.midY)
+        crosshairs.position = CGPoint(x:self.frame.midX, y: self.frame.midY+10)
         self.addChild(crosshairs)
         let joystick = AnalogJoystick(diameters: (70, 30), colors: (UIColor.green, UIColor.init(red: 0, green: 0, blue: 200, alpha: 100)))
     

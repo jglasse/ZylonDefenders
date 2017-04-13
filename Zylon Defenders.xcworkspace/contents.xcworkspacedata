@@ -2,9 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:Zylon Defenders.xcodeproj">
+      location = "group:helm/Helm.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:Helm/Helm.xcodeproj">
+      location = "group:Zylon Defenders.xcodeproj">
    </FileRef>
 </Workspace>
