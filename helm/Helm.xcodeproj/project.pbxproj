@@ -19,6 +19,7 @@
 		E1737F841E9F2D5700ED4EB5 /* button_blue.png in Resources */ = {isa = PBXBuildFile; fileRef = E1737F811E9F2D5700ED4EB5 /* button_blue.png */; };
 		E1737F851E9F2D5700ED4EB5 /* button_green.png in Resources */ = {isa = PBXBuildFile; fileRef = E1737F821E9F2D5700ED4EB5 /* button_green.png */; };
 		E1737F861E9F2D5700ED4EB5 /* button_red.png in Resources */ = {isa = PBXBuildFile; fileRef = E1737F831E9F2D5700ED4EB5 /* button_red.png */; };
+		E1737F881E9F4CFF00ED4EB5 /* Zylon Helm SCREEN2.png in Resources */ = {isa = PBXBuildFile; fileRef = E1737F871E9F4CFF00ED4EB5 /* Zylon Helm SCREEN2.png */; };
 		E1A7FCE21E9EFF8A00C74681 /* helm_5200.png in Resources */ = {isa = PBXBuildFile; fileRef = E1A7FCE11E9EFF8A00C74681 /* helm_5200.png */; };
 /* End PBXBuildFile section */
 
@@ -56,6 +57,7 @@
 		E1737F811E9F2D5700ED4EB5 /* button_blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = button_blue.png; path = Helm/button_blue.png; sourceTree = SOURCE_ROOT; };
 		E1737F821E9F2D5700ED4EB5 /* button_green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = button_green.png; path = Helm/button_green.png; sourceTree = SOURCE_ROOT; };
 		E1737F831E9F2D5700ED4EB5 /* button_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = button_red.png; path = Helm/button_red.png; sourceTree = SOURCE_ROOT; };
+		E1737F871E9F4CFF00ED4EB5 /* Zylon Helm SCREEN2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Zylon Helm SCREEN2.png"; path = "Helm/Zylon Helm SCREEN2.png"; sourceTree = SOURCE_ROOT; };
 		E1A7FCE11E9EFF8A00C74681 /* helm_5200.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = helm_5200.png; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -118,6 +120,7 @@
 				E1737F821E9F2D5700ED4EB5 /* button_green.png */,
 				E1737F831E9F2D5700ED4EB5 /* button_red.png */,
 				E1A7FCE11E9EFF8A00C74681 /* helm_5200.png */,
+				E1737F871E9F4CFF00ED4EB5 /* Zylon Helm SCREEN2.png */,
 				E1456DF11E8A7CBB009BF5BD /* Info.plist */,
 			);
 			name = Helm;
@@ -247,6 +250,7 @@
 				E1737F801E9F00DF00ED4EB5 /* Erasdemi.ttf in Resources */,
 				E1737F841E9F2D5700ED4EB5 /* button_blue.png in Resources */,
 				E13FE0CB1E8ACFBB00CA54A9 /* Default-568h@2x.png in Resources */,
+				E1737F881E9F4CFF00ED4EB5 /* Zylon Helm SCREEN2.png in Resources */,
 				E1456DF21E8A7CBB009BF5BD /* Info.plist in Resources */,
 				112F74A31D2D16CA004F1242 /* Main.storyboard in Resources */,
 				E1737F861E9F2D5700ED4EB5 /* button_red.png in Resources */,
