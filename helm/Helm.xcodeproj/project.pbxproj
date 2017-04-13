@@ -8,19 +8,19 @@
 
 /* Begin PBXBuildFile section */
 		112F74A31D2D16CA004F1242 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 112F74A11D2D16CA004F1242 /* Main.storyboard */; };
-		E13951861E9E97C900D02269 /* AnalogJoystick.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13951851E9E97C900D02269 /* AnalogJoystick.swift */; };
 		E13FE0CB1E8ACFBB00CA54A9 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E13FE0CA1E8ACFBB00CA54A9 /* Default-568h@2x.png */; };
 		E1456DEB1E8A7C31009BF5BD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1456DEA1E8A7C31009BF5BD /* AppDelegate.swift */; };
 		E1456DED1E8A7C42009BF5BD /* MCTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1456DEC1E8A7C42009BF5BD /* MCTestViewController.swift */; };
 		E1456DEF1E8A7C6A009BF5BD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E1456DEE1E8A7C6A009BF5BD /* Assets.xcassets */; };
 		E1456DF21E8A7CBB009BF5BD /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E1456DF11E8A7CBB009BF5BD /* Info.plist */; };
 		E16B668B1E8B5C4D00F28144 /* MCController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16B668A1E8B5C4D00F28144 /* MCController.swift */; };
-		E1737F801E9F00DF00ED4EB5 /* Erasdemi.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E1737F7F1E9F00DF00ED4EB5 /* Erasdemi.ttf */; };
 		E1737F841E9F2D5700ED4EB5 /* button_blue.png in Resources */ = {isa = PBXBuildFile; fileRef = E1737F811E9F2D5700ED4EB5 /* button_blue.png */; };
 		E1737F851E9F2D5700ED4EB5 /* button_green.png in Resources */ = {isa = PBXBuildFile; fileRef = E1737F821E9F2D5700ED4EB5 /* button_green.png */; };
 		E1737F861E9F2D5700ED4EB5 /* button_red.png in Resources */ = {isa = PBXBuildFile; fileRef = E1737F831E9F2D5700ED4EB5 /* button_red.png */; };
 		E1737F881E9F4CFF00ED4EB5 /* Zylon Helm SCREEN2.png in Resources */ = {isa = PBXBuildFile; fileRef = E1737F871E9F4CFF00ED4EB5 /* Zylon Helm SCREEN2.png */; };
-		E1A7FCE21E9EFF8A00C74681 /* helm_5200.png in Resources */ = {isa = PBXBuildFile; fileRef = E1A7FCE11E9EFF8A00C74681 /* helm_5200.png */; };
+		E1737F8E1E9F54B800ED4EB5 /* AnalogJoystick.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1737F8D1E9F54B800ED4EB5 /* AnalogJoystick.swift */; };
+		E1737F921E9F550300ED4EB5 /* Erasdemi.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E1737F911E9F550300ED4EB5 /* Erasdemi.ttf */; };
+		E1737F941E9F5A0400ED4EB5 /* helm_5200.png in Resources */ = {isa = PBXBuildFile; fileRef = E1737F931E9F5A0400ED4EB5 /* helm_5200.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,7 +45,6 @@
 		112F74A21D2D16CA004F1242 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		112F74AE1D2D16CA004F1242 /* HelmTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HelmTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		112F74B91D2D16CA004F1242 /* HelmUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HelmUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		E13951851E9E97C900D02269 /* AnalogJoystick.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AnalogJoystick.swift; path = ../../../../Documents/_Zylons/zylons/AnalogJoystick.swift; sourceTree = "<group>"; };
 		E13FE0CA1E8ACFBB00CA54A9 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		E1456DEA1E8A7C31009BF5BD /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Helm/AppDelegate.swift; sourceTree = SOURCE_ROOT; };
 		E1456DEC1E8A7C42009BF5BD /* MCTestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MCTestViewController.swift; path = Helm/MCTestViewController.swift; sourceTree = SOURCE_ROOT; };
@@ -53,12 +52,13 @@
 		E1456DF11E8A7CBB009BF5BD /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Helm/Info.plist; sourceTree = SOURCE_ROOT; };
 		E1456DF31E8AC16D009BF5BD /* Helm.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; name = Helm.entitlements; path = Helm/Helm.entitlements; sourceTree = SOURCE_ROOT; };
 		E16B668A1E8B5C4D00F28144 /* MCController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MCController.swift; sourceTree = SOURCE_ROOT; };
-		E1737F7F1E9F00DF00ED4EB5 /* Erasdemi.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Erasdemi.ttf; path = ../../../../Downloads/Erasdemi.ttf; sourceTree = "<group>"; };
 		E1737F811E9F2D5700ED4EB5 /* button_blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = button_blue.png; path = Helm/button_blue.png; sourceTree = SOURCE_ROOT; };
 		E1737F821E9F2D5700ED4EB5 /* button_green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = button_green.png; path = Helm/button_green.png; sourceTree = SOURCE_ROOT; };
 		E1737F831E9F2D5700ED4EB5 /* button_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = button_red.png; path = Helm/button_red.png; sourceTree = SOURCE_ROOT; };
 		E1737F871E9F4CFF00ED4EB5 /* Zylon Helm SCREEN2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Zylon Helm SCREEN2.png"; path = "Helm/Zylon Helm SCREEN2.png"; sourceTree = SOURCE_ROOT; };
-		E1A7FCE11E9EFF8A00C74681 /* helm_5200.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = helm_5200.png; sourceTree = SOURCE_ROOT; };
+		E1737F8D1E9F54B800ED4EB5 /* AnalogJoystick.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AnalogJoystick.swift; path = Helm/AnalogJoystick.swift; sourceTree = SOURCE_ROOT; };
+		E1737F911E9F550300ED4EB5 /* Erasdemi.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Erasdemi.ttf; path = Helm/Erasdemi.ttf; sourceTree = SOURCE_ROOT; };
+		E1737F931E9F5A0400ED4EB5 /* helm_5200.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = helm_5200.png; path = Helm/helm_5200.png; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,18 +108,18 @@
 		112F749C1D2D16CA004F1242 /* Helm */ = {
 			isa = PBXGroup;
 			children = (
+				E1737F8D1E9F54B800ED4EB5 /* AnalogJoystick.swift */,
 				E1456DEA1E8A7C31009BF5BD /* AppDelegate.swift */,
 				E1456DEC1E8A7C42009BF5BD /* MCTestViewController.swift */,
 				112F74A11D2D16CA004F1242 /* Main.storyboard */,
+				E1737F911E9F550300ED4EB5 /* Erasdemi.ttf */,
 				E16B668A1E8B5C4D00F28144 /* MCController.swift */,
-				E1737F7F1E9F00DF00ED4EB5 /* Erasdemi.ttf */,
-				E13951851E9E97C900D02269 /* AnalogJoystick.swift */,
 				E1456DF31E8AC16D009BF5BD /* Helm.entitlements */,
 				E1456DEE1E8A7C6A009BF5BD /* Assets.xcassets */,
 				E1737F811E9F2D5700ED4EB5 /* button_blue.png */,
 				E1737F821E9F2D5700ED4EB5 /* button_green.png */,
 				E1737F831E9F2D5700ED4EB5 /* button_red.png */,
-				E1A7FCE11E9EFF8A00C74681 /* helm_5200.png */,
+				E1737F931E9F5A0400ED4EB5 /* helm_5200.png */,
 				E1737F871E9F4CFF00ED4EB5 /* Zylon Helm SCREEN2.png */,
 				E1456DF11E8A7CBB009BF5BD /* Info.plist */,
 			);
@@ -246,12 +246,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				E1456DEF1E8A7C6A009BF5BD /* Assets.xcassets in Resources */,
-				E1A7FCE21E9EFF8A00C74681 /* helm_5200.png in Resources */,
-				E1737F801E9F00DF00ED4EB5 /* Erasdemi.ttf in Resources */,
+				E1737F941E9F5A0400ED4EB5 /* helm_5200.png in Resources */,
 				E1737F841E9F2D5700ED4EB5 /* button_blue.png in Resources */,
 				E13FE0CB1E8ACFBB00CA54A9 /* Default-568h@2x.png in Resources */,
 				E1737F881E9F4CFF00ED4EB5 /* Zylon Helm SCREEN2.png in Resources */,
 				E1456DF21E8A7CBB009BF5BD /* Info.plist in Resources */,
+				E1737F921E9F550300ED4EB5 /* Erasdemi.ttf in Resources */,
 				112F74A31D2D16CA004F1242 /* Main.storyboard in Resources */,
 				E1737F861E9F2D5700ED4EB5 /* button_red.png in Resources */,
 				E1737F851E9F2D5700ED4EB5 /* button_green.png in Resources */,
@@ -280,7 +280,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E1456DED1E8A7C42009BF5BD /* MCTestViewController.swift in Sources */,
-				E13951861E9E97C900D02269 /* AnalogJoystick.swift in Sources */,
+				E1737F8E1E9F54B800ED4EB5 /* AnalogJoystick.swift in Sources */,
 				E16B668B1E8B5C4D00F28144 /* MCController.swift in Sources */,
 				E1456DEB1E8A7C31009BF5BD /* AppDelegate.swift in Sources */,
 			);

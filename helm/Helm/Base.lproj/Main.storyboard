@@ -26,9 +26,6 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="fQD-ZG-RYM">
-                                <rect key="frame" x="119" y="511" width="110" height="36"/>
-                            </stackView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N8c-ET-GcT" userLabel="9">
                                 <rect key="frame" x="249" y="171" width="67" height="39"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -134,10 +131,10 @@
                                 <state key="normal" title="SPEED" image="button_blue.png"/>
                                 <state key="highlighted" image="button_red.png"/>
                                 <connections>
-                                    <action selector="sendCommand:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hU9-jk-ZlI"/>
+                                    <action selector="showMode" destination="BYZ-38-t0r" eventType="touchUpInside" id="WXZ-TF-7TR"/>
                                 </connections>
                             </button>
-                            <view opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8wK-kU-Zfu" userLabel="COM View">
+                            <view hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8wK-kU-Zfu" userLabel="COM View">
                                 <rect key="frame" x="0.0" y="70" width="375" height="667"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
@@ -145,7 +142,7 @@
                                         <rect key="frame" x="0.0" y="-72" width="375" height="671"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d1D-tT-Pjn" userLabel="8">
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d1D-tT-Pjn" userLabel="TRACKING">
                                         <rect key="frame" x="153" y="194" width="67" height="39"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="TRACKING" image="button_green.png"/>
@@ -154,7 +151,7 @@
                                             <action selector="sendCommand:" destination="BYZ-38-t0r" eventType="touchUpInside" id="q5d-ki-Y96"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bLi-sS-Szv" userLabel="7">
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bLi-sS-Szv" userLabel="AFT">
                                         <rect key="frame" x="153" y="101" width="67" height="39"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="AFT" image="button_green.png"/>
@@ -205,6 +202,7 @@
                                         <state key="normal" title="MODE" image="button_green.png"/>
                                         <state key="highlighted" image="button_red.png"/>
                                         <connections>
+                                            <action selector="hideMode" destination="BYZ-38-t0r" eventType="touchUpInside" id="EL6-n9-rmu"/>
                                             <action selector="sendCommand:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ogd-7e-tCS"/>
                                         </connections>
                                     </button>
@@ -217,7 +215,7 @@
                                             <action selector="sendCommand:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ZAM-5R-gAO"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aIA-Xk-XFe" userLabel="MODE">
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aIA-Xk-XFe" userLabel="FIRE">
                                         <rect key="frame" x="249" y="379" width="67" height="39"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="FIRE" image="button_green.png"/>
@@ -281,11 +279,12 @@
                             <constraint firstAttribute="trailingMargin" secondItem="Tbf-KA-So9" secondAttribute="trailing" constant="-16" id="9V7-zf-eJy"/>
                             <constraint firstItem="Tbf-KA-So9" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="aZc-tE-ohB"/>
                             <constraint firstAttribute="leadingMargin" secondItem="Tbf-KA-So9" secondAttribute="leading" constant="16" id="hkc-Dl-a0W"/>
-                            <constraint firstItem="fQD-ZG-RYM" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-48.5" id="spa-BH-dzp"/>
-                            <constraint firstItem="fQD-ZG-RYM" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="-2" id="xCW-vU-Rab"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="MCTest" id="zXX-TN-vtt"/>
+                    <connections>
+                        <outlet property="comView" destination="8wK-kU-Zfu" id="Yxe-we-Ejc"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

@@ -14,6 +14,7 @@ class MCTestViewController: UIViewController, UITextFieldDelegate {
     override var prefersStatusBarHidden: Bool { return true}
     let apDel = UIApplication.shared.delegate as! AppDelegate
     
+    @IBOutlet weak var comView: UIView!
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -30,7 +31,14 @@ class MCTestViewController: UIViewController, UITextFieldDelegate {
         
     }
     
+    @IBAction func showMode() {
+        self.comView.isHidden = false
+    }
     
+    @IBAction func hideMode() {
+        self.comView.isHidden = true
+
+    }
     
     
     
