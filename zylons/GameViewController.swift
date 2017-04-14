@@ -97,6 +97,12 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
         
     }
     
+    func notYetImplemented(_ command: String) {
+        
+        print("\(command) not yet implemented")
+        
+    }
+
     func setSpeed(_ value: Float)
     {
         let displaySpeed = Int(value)
@@ -129,7 +135,6 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
 
     
     }
-    
     
     
     
@@ -230,6 +235,18 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
 
         }
         
+    }
+    
+    func aftView() {
+        scnView.pointOfView = rearCameraNode
+        computerBeepSound("beep")
+        
+    }
+    
+    func foreView() {
+        scnView.pointOfView = cameraNode
+        computerBeepSound("beep")
+
     }
     
     @IBAction func Shields(_ sender: UIButton)
@@ -523,14 +540,11 @@ extension GameViewController: CommandDelegate {
 
  // receive commands from iOS remote controller 
     
+
     func execute(command: String) {
         print ("executing Command!")
         switch command {
         
-        case "Shields":
-            toggleShields()
-        case "Computer Status":
-            enterSector()
 
         case "Speed 9":
             setSpeed(9)
@@ -550,12 +564,28 @@ extension GameViewController: CommandDelegate {
             setSpeed(2)
         case "Speed 1":
             setSpeed(1)
-            
 
         case "Speed 0":
             setSpeed(0)
+        case "ABORT":
+            notYetImplemented(command)
+        case "GRID":
+            enterSector()
+        case "ATTACK":
+            notYetImplemented(command)
+        case "FORE":
+            foreView()
+        case "AFT":
+            aftView()
+        case "TAC":
+            notYetImplemented(command)
+        case "SHIELDS":
+            toggleShields()
+        case "TAC":
+            notYetImplemented(command)
             
-        case "Fire Photons!":
+            
+        case "FIRE":
             fireTorpedo(UIButton())
         default:
             break

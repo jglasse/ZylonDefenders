@@ -107,10 +107,10 @@
                                     <action selector="sendCommand:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dYT-gu-LzB"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JH1-mb-Rn8" userLabel="COM">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JH1-mb-Rn8" userLabel="FIRE">
                                 <rect key="frame" x="249" y="449" width="67" height="39"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="COMMAND" image="button_blue.png"/>
+                                <state key="normal" title="FIRE" image="button_blue.png"/>
                                 <state key="highlighted" image="button_red.png"/>
                                 <connections>
                                     <action selector="sendCommand:" destination="BYZ-38-t0r" eventType="touchUpInside" id="aPA-nA-mRM"/>
