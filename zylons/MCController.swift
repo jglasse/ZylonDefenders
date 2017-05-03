@@ -15,6 +15,7 @@ protocol CommandDelegate: class {
 
 class MCController: NSObject, MCSessionDelegate, MCNearbyServiceBrowserDelegate, MCNearbyServiceAdvertiserDelegate  {
     
+    static var sharedInstance = MCController()
     let kServiceType = "zylons"
     let myPeerID: MCPeerID = MCPeerID(displayName: UIDevice.current.name)
     var advertiser: MCNearbyServiceAdvertiser!
@@ -24,15 +25,22 @@ class MCController: NSObject, MCSessionDelegate, MCNearbyServiceBrowserDelegate,
         session.delegate = self
         return session
     }()
+    
+    
     var serviceStarted = false
     weak var myCommandDelegate: CommandDelegate?
     
-    static var sharedInstance = MCController()
+    func setup() {
+        self.advertiser = MCNearbyServiceAdvertiser(peer: myPeerID, discoveryInfo: nil, serviceType: kServiceType)
+        self.browser = MCNearbyServiceBrowser(peer: myPeerID, serviceType: kServiceType)
+        self.advertiser.delegate = self
+        self.browser.delegate = self
+        self.toggleService()
+    }
     
     func sendCommand(text: String) {
         
-        let string = text
-        let data = string.data(using: .utf8)!
+        let data = text.data(using: .utf8)!
         
         do {
             try session.send(data, toPeers: self.session.connectedPeers, with: .reliable)            
@@ -42,6 +50,8 @@ class MCController: NSObject, MCSessionDelegate, MCNearbyServiceBrowserDelegate,
         }
         
     }
+   
+    
 
     func toggleService(){
         
@@ -59,22 +69,11 @@ class MCController: NSObject, MCSessionDelegate, MCNearbyServiceBrowserDelegate,
             session.disconnect()
             advertiser.stopAdvertisingPeer()
             browser.stopBrowsingForPeers()
+            print("stoppedBrowsing")
         }
-
-    
-    
-    
-    
     }
     
     
-    func setup() {
-            self.advertiser = MCNearbyServiceAdvertiser(peer: myPeerID, discoveryInfo: nil, serviceType: kServiceType)
-            self.browser = MCNearbyServiceBrowser(peer: myPeerID, serviceType: kServiceType)
-            self.advertiser.delegate = self
-            self.browser.delegate = self
-            self.toggleService()
-    }
     
     // MARK: - Advertiser Delegate
     public func advertiser(_ advertiser: MCNearbyServiceAdvertiser, didReceiveInvitationFromPeer peerID: MCPeerID, withContext context: Data?, invitationHandler: @escaping (Bool, MCSession?) -> Void) {
@@ -86,11 +85,8 @@ class MCController: NSObject, MCSessionDelegate, MCNearbyServiceBrowserDelegate,
     // MARK: - Browser Delegate
     func browser(_ browser: MCNearbyServiceBrowser, foundPeer peerID: MCPeerID, withDiscoveryInfo info: [String : String]?)
     {
-        
         print("Found Peer: \(peerID.displayName)")
         browser.invitePeer(peerID, to: self.session, withContext: nil, timeout: 10)
-        
-        
     }
     
     func browser(_ browser: MCNearbyServiceBrowser, lostPeer peerID: MCPeerID)
@@ -106,7 +102,7 @@ class MCController: NSObject, MCSessionDelegate, MCNearbyServiceBrowserDelegate,
     func session(_ session: MCSession, peer peerID: MCPeerID, didChange state: MCSessionState)
     {
         print("Peer \(peerID.displayName) status changed: \(state.rawValue)")
-        if state.rawValue == 2
+        if state == .connected
         {
             // Connected
             print("Connected!")

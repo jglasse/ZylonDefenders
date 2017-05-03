@@ -16,15 +16,22 @@ import MultipeerConnectivity
 
 class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRendererDelegate {
 
+    // MARK: -
+    // MARK: Constants
     struct Constants {
         static let maxTorpedoes = 5
         static let shotDelay = 1
-        static let thrustAmount: Float = 5.0
+        static let thrustAmount: Float = 15.0
         }
     
-    let numberstrings:[String] = ["zero", "one", "two", "three","four","five","six","seven","eight","nine"]
+        let numberstrings:[String] = ["zero", "one", "two", "three","four","five","six","seven","eight","nine"]
     
     
+    var myMCController = MCController.sharedInstance
+
+    
+    // MARK: -
+    // MARK: Vars
     // drone model
     var modelScene:SCNScene!
     var droneModel: SCNNode!
@@ -60,14 +67,137 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
     
     private var timeFiring = 0.0
     private var timeLastFired = 0.0
-
     
-    var myMCController = MCController.sharedInstance
+    
+
+
+    // MARK:  - IBOutlets and Actions
+    
 
     
     @IBOutlet weak var currentSpeed: UILabel!
 
+    @IBOutlet weak var joystickSettings: UILabel!
     
+    @IBOutlet weak var viewButton: UIButton!
+    
+    
+    @IBAction func toggleView(_ sender: UIButton) {
+        
+        if sender.currentTitle == "FORE"
+        {
+            print("Aft Cam")
+            sender.setTitle("AFT", for: .normal)
+            scnView.pointOfView = rearCameraNode
+        }
+            
+        else
+        {
+            print("Forward Cam")
+            
+            sender.setTitle("FORE", for: .normal)
+            scnView.pointOfView = cameraNode
+            
+        }
+        computerBeepSound("beep")
+
+        
+    }
+    @IBAction func fireTorpedo(_ sender: UIButton)
+    {
+        if (numberofShotsOnscreen() < Constants.maxTorpedoes)
+        {
+            let torpedoNode = SCNNode(geometry: SCNSphere(radius: 0.25))
+            torpedoNode.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
+            torpedoNode.physicsBody?.isAffectedByGravity = false
+            torpedoNode.name = "torpedo"
+            torpedoNode.physicsBody?.categoryBitMask = 0b00000010
+            torpedoNode.physicsBody?.contactTestBitMask = 0b00000010
+            
+            let torpedoSparkle = SCNParticleSystem(named: "Torpedo", inDirectory: "")
+            torpedoNode.addParticleSystem(torpedoSparkle!)
+            scene.rootNode.addChildNode(torpedoNode)
+            torpedoNode.position = SCNVector3Make(0, -2, 0)
+            torpedoNode.physicsBody?.applyForce(SCNVector3Make(0,3,-75), asImpulse: true)
+            
+            let photonSoundArray = [photonSound1,photonSound2,photonSound3,photonSound4]
+            let currentplayer = photonSoundArray[currentPhoton]
+            
+            currentplayer?.play()
+            currentPhoton = currentPhoton+1
+            if currentPhoton>(photonSoundArray.count - 1) {currentPhoton = 0}
+            
+            cleanScene()
+          countNodes()
+        }
+            
+        else
+        {
+            computerBeepSound("torpedo_fail")
+            
+        }
+    }
+    
+ 
+    
+    @IBAction func Up(_ sender: UIButton) {
+        self.cameraNode.rotation.x += 5
+        print(self.cameraNode.rotation.x);
+        print(" self.starfield.acceleration.y:\(self.starfield.acceleration.y)")
+        
+    }
+    
+    @IBAction func Down(_ sender: Any) {
+        self.starfield.acceleration.y -= Constants.thrustAmount
+        
+    }
+    
+    @IBAction func Right(_ sender: UIButton) {
+    }
+    
+    @IBAction func Left(_ sender: UIButton) {
+    }
+    
+    
+    
+    
+    
+    @IBAction func spawnShip(_ sender: UIButton) {
+        
+        
+        let pyramid = SCNPyramid(width: 9.0, height: 9.0, length: 9.0)
+        enemyDrone = SCNNode()
+        enemyDrone.geometry  = pyramid
+        enemyDrone.geometry?.firstMaterial = SCNMaterial()
+        enemyDrone.geometry?.firstMaterial?.diffuse.contents = UIColor.red
+        enemyDrone?.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
+        enemyDrone?.physicsBody?.isAffectedByGravity = false
+        enemyDrone?.physicsBody?.categoryBitMask = 0b00000010
+        enemyDrone?.physicsBody?.contactTestBitMask = 0b00000010
+        enemyDrone?.name = "drone"
+        enemyDrone?.physicsBody?.applyTorque(SCNVector4Make(1,0.0,1,10), asImpulse: true)
+        enemyDrone?.pivot = SCNMatrix4MakeTranslation(0.5, 0.5, 0.5)
+        scene.rootNode.addChildNode(enemyDrone!)
+        enemyDrone?.position = SCNVector3Make(0, 0, -40)
+        enemyDrone?.scale = SCNVector3Make(1,1,1)
+        
+    }
+    
+    
+    
+    @IBAction func gridWarp(_ sender: UIButton) {
+        enterSector()
+    }
+    @IBAction func speedChanged(_ sender: UIStepper)
+    {
+        computerBeepSound("beep")
+        let targetSpeed = sender.value
+        setSpeed(Float(targetSpeed))
+        
+    }
+    
+ 
+     // MARK:  - Sound Functions
     
     func environmentSound(_ soundString: String)
     {
@@ -86,17 +216,7 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
 
     }
     
-    @IBAction func gridWarp(_ sender: UIButton) {
-        enterSector()
-    }
-    @IBAction func speedChanged(_ sender: UIStepper)
-    {
-        computerBeepSound("beep")
-        let targetSpeed = sender.value
-        setSpeed(Float(targetSpeed))
-        
-    }
-    
+   
     func notYetImplemented(_ command: String) {
         
         print("\(command) not yet implemented")
@@ -111,8 +231,16 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
         
         if (value == 0)
         {
-               SCNTransaction.animationDuration = 0.5
-            starfield.speedFactor = CGFloat(0)
+            SCNTransaction.animationDuration = 0.5
+            
+            let gradualFullStop = CABasicAnimation(keyPath: "fullStop")
+            gradualFullStop.fromValue = 1.0
+            gradualFullStop.toValue = 1.0
+            gradualFullStop.duration = 0.5
+            
+            starfield.addAnimation(gradualFullStop, forKey: "speedFactor")
+            
+           // starfield.speedFactor = CGFloat(0)
             if #available(iOS 10.0, *) {
                 engineSound.setVolume(0, fadeDuration: 1.0)
             } else {
@@ -131,111 +259,10 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
                 // Fallback on earlier versions
             }
         }
-        
-
-    
     }
     
     
-    
-    
-    @IBAction func fireTorpedo(_ sender: UIButton)
-    {
-        if (numberofShotsOnscreen() < Constants.maxTorpedoes)
-        {
-        let torpedoNode = SCNNode(geometry: SCNSphere(radius: 0.25))
-        torpedoNode.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
-        torpedoNode.physicsBody?.isAffectedByGravity = false
-        torpedoNode.name = "torpedo"
-        torpedoNode.physicsBody?.categoryBitMask = 0b00000010
-        torpedoNode.physicsBody?.contactTestBitMask = 0b00000010
-        
-        
-        let torpedoSparkle = SCNParticleSystem(named: "Torpedo", inDirectory: "")
-        torpedoNode.addParticleSystem(torpedoSparkle!)
-        scene.rootNode.addChildNode(torpedoNode)
-        torpedoNode.position = SCNVector3Make(0, -6, 0)
-        torpedoNode.physicsBody?.applyForce(SCNVector3Make(0,3,-75), asImpulse: true)
-        
-        let photonSoundArray = [photonSound1,photonSound2,photonSound3,photonSound4]
-        let currentplayer = photonSoundArray[currentPhoton]
-            
-        currentplayer?.play()
-        currentPhoton = currentPhoton+1
-        if currentPhoton>(photonSoundArray.count - 1) {currentPhoton = 0}
-        
-        cleanScene()
-        var numberofNodes = 0
-        scene.rootNode.enumerateChildNodes { (node, stop) -> Void in
-            numberofNodes = numberofNodes + 1
-        }
-        print("number of live nodes:\(numberofNodes)")
-           }
-        
-        else
-        {
-            computerBeepSound("torpedo_fail")
-           
-        }
-    }
-    
-
-    @IBAction func Up(_ sender: UIButton) {
-        self.starfield.acceleration.y += Constants.thrustAmount
-
-    }
-
-    @IBAction func Down(_ sender: Any) {
-        self.starfield.acceleration.y -= Constants.thrustAmount
-
-    }
-    
-    
-    
-    
-    
-    @IBAction func spawnShip(_ sender: UIButton) {
-        
-        
-
-        
-        enemyDrone?.scale = SCNVector3Make(0.25,0.25,0.25)
-        print("enemyDrone scale: \(String(describing: enemyDrone?.scale))")
-        enemyDrone?.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
-        enemyDrone?.physicsBody?.isAffectedByGravity = false
-        enemyDrone?.physicsBody?.categoryBitMask = 0b00000010
-        enemyDrone?.physicsBody?.contactTestBitMask = 0b00000010
-        enemyDrone?.name = "drone"
-        enemyDrone?.position = SCNVector3Make(0, 0, -50)
-    //    enemyDrone?.physicsBody?.applyTorque(SCNVector4Make(1,0.0,1,50), asImpulse: true)
-        scene.rootNode.addChildNode(enemyDrone!)
-        enemyDrone?.position = SCNVector3Make(0, 0, -50)
-        enemyDrone?.scale = SCNVector3Make(0.25,0.25,0.25)
-
-    }
-    
-    
-    @IBOutlet weak var viewButton: UIButton!
-    @IBAction func toggleView(_ sender: UIButton) {
-        
-        computerBeepSound("beep")
-        if sender.currentTitle == "AFT"
-        {
-            print("Aft Cam")
-            sender.setTitle("FORE", for: .normal)
-            scnView.pointOfView = rearCameraNode
-        }
-        
-        else
-        {
-        print("Forward Cam")
-
-            sender.setTitle("AFT", for: .normal)
-        scnView.pointOfView = cameraNode
-
-        }
-        
-    }
+  
     
     func aftView() {
         scnView.pointOfView = rearCameraNode
@@ -263,7 +290,7 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
     }
     
     
-    //MARK: SETUP
+    //MARK: -  SETUP
     
     override func viewDidLoad()
     {
@@ -272,13 +299,9 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
         setupMotion()
         setupScene()
         setupCamera()
-        
-        scnView.showsStatistics = false
-        
-        scnView.backgroundColor = UIColor.black
-        
-        self.myMCController.setup()
-        self.myMCController.myCommandDelegate = self
+        myMCController.setup()
+        myMCController.myCommandDelegate = self
+        shipHud.myscene = self
 
     }
     
@@ -289,17 +312,13 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
     {
         scnView = self.view as! SCNView
         
-        // 1
         scnView.showsStatistics = false
-        // 2
         scnView.allowsCameraControl = false
-        // 3
         scnView.autoenablesDefaultLighting = true
-        
-        
         scnView.isPlaying = true
         
-        
+        scnView.backgroundColor = UIColor.black
+
         
     }
     
@@ -307,8 +326,6 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
     {
         scene = SCNScene()
         scnView.scene = scene
-        
-        
         
         let particlesNode = SCNNode()
         starfield = SCNParticleSystem(named: "starField", inDirectory: "")
@@ -336,15 +353,6 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
         try! photonSound2 = AVAudioPlayer(contentsOf: soundURL!)
         try! photonSound3 = AVAudioPlayer(contentsOf: soundURL!)
         try! photonSound4 = AVAudioPlayer(contentsOf: soundURL!)
-        
-        
-        modelScene = SCNScene(named: "TIE-fighter.scn")!
-        enemyDrone = modelScene.rootNode.childNode(withName: "tieFighter", recursively: true)
-        enemyDrone.pivot = SCNMatrix4MakeTranslation(0.5, 0.5, 0.5)
-       
-
-        
-        
         
     }
     
@@ -382,13 +390,13 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
       motionManager.accelerometerUpdateInterval = 0.3
         
         
-      motionManager.startAccelerometerUpdates(to: OperationQueue.current!) { (accelerometerData, error) in
+      // motionManager.startAccelerometerUpdates(to: OperationQueue.current!) { (accelerometerData, error) in
           //  let acceleration = accelerometerData?.acceleration
         
          //   let accelX = Float(4.8 * (acceleration?.y)!)
          //   let accelY = Float(4.8 * (acceleration?.x)!)
         
-        }
+       //  }
 
 
       motionManager.startGyroUpdates(to: OperationQueue.current!, withHandler: { (gyroData: CMGyroData?, NSError) -> Void in
@@ -403,13 +411,25 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
         
         
     }
+    
+    //MARK: -  Utility functions
+
+    
     func checkMotion(gyro: CMRotationRate)
     {
         
         
         self.starfield.acceleration = SCNVector3(x: Float(gyro.x * -3), y:Float(gyro.y * -3), z: 0)
-
         
+        
+        self.cameraNode.rotation.x = self.cameraNode.rotation.x + Float(gyro.x)
+        self.cameraNode.rotation.y = self.cameraNode.rotation.y + Float(gyro.y)
+
+        if let tempDrone = self.enemyDrone {
+        tempDrone.position.x = self.enemyDrone.position.x - 0.08 * Float(gyro.x)
+        tempDrone.position.y = self.enemyDrone.position.y - 0.08 * Float(gyro.y)
+
+        }
         
     }
     
@@ -422,7 +442,7 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
             {
                 thisNode.removeFromParentNode()
             }
-            
+
             if (thisNode.name == "explosionNode")
             {
                 thisNode.removeFromParentNode()
@@ -432,7 +452,16 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
         
     }
     
-    
+    func countNodes(){
+        var numberofNodes = 0
+        
+        scene.rootNode.enumerateChildNodes { (node, stop) -> Void in
+            numberofNodes = numberofNodes + 1
+        }
+        print("number of live nodes:\(numberofNodes)")
+        
+        
+    }
     func enterSector()
     {
         
@@ -489,6 +518,7 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
          if (contact.nodeA.name != "torpedo")
             {
                 explosionNode.position = contact.nodeA.position
+    
             }
         else
             {
@@ -512,7 +542,7 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
     }
     
     override var shouldAutorotate: Bool {
-        return true
+        return false
     }
     
     override var prefersStatusBarHidden: Bool {
@@ -532,6 +562,12 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Release any cached data, images, etc that aren't in use.
+    }
+
+    
+    
+    func distanceBetweenPoints(first: CGPoint,  second: CGPoint) -> CGFloat {
+        return CGFloat(hypotf(Float(second.x - first.x), Float(second.y - first.y)))
     }
 
 }

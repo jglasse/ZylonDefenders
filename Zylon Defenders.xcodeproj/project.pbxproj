@@ -26,6 +26,7 @@
 		E1A57ACC1E1C309A009F2CA6 /* ship_hum.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E1A57ACB1E1C309A009F2CA6 /* ship_hum.mp3 */; };
 		E1A57AD01E1D8CCA009F2CA6 /* beep.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E1A57ACF1E1D8CCA009F2CA6 /* beep.mp3 */; };
 		E1A58DC31E1DD07E00DCA24F /* Explosion.scnp in Resources */ = {isa = PBXBuildFile; fileRef = E1A58DC21E1DD07E00DCA24F /* Explosion.scnp */; };
+		E1A5BE261EA860D100E094CD /* Zylon Defender Title.png in Resources */ = {isa = PBXBuildFile; fileRef = E1A5BE251EA860D100E094CD /* Zylon Defender Title.png */; };
 		E1A89EA81E9867F600EA8BC4 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E1A89EA71E9867F600EA8BC4 /* Default-568h@2x.png */; };
 		E1BD14B01E24280C002E49A5 /* eight.m4a in Resources */ = {isa = PBXBuildFile; fileRef = E1BD14A51E24280C002E49A5 /* eight.m4a */; };
 		E1BD14B11E24280C002E49A5 /* entering_sector.m4a in Resources */ = {isa = PBXBuildFile; fileRef = E1BD14A61E24280C002E49A5 /* entering_sector.m4a */; };
@@ -70,6 +71,7 @@
 		E1A57ACB1E1C309A009F2CA6 /* ship_hum.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = ship_hum.mp3; sourceTree = "<group>"; };
 		E1A57ACF1E1D8CCA009F2CA6 /* beep.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = beep.mp3; sourceTree = "<group>"; };
 		E1A58DC21E1DD07E00DCA24F /* Explosion.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = Explosion.scnp; sourceTree = "<group>"; };
+		E1A5BE251EA860D100E094CD /* Zylon Defender Title.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Zylon Defender Title.png"; sourceTree = "<group>"; };
 		E1A89EA71E9867F600EA8BC4 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		E1BD14A51E24280C002E49A5 /* eight.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = eight.m4a; sourceTree = "<group>"; };
 		E1BD14A61E24280C002E49A5 /* entering_sector.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = entering_sector.m4a; sourceTree = "<group>"; };
@@ -83,7 +85,7 @@
 		E1BD14AE1E24280C002E49A5 /* two.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = two.m4a; sourceTree = "<group>"; };
 		E1BD14AF1E24280C002E49A5 /* zero.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = zero.m4a; sourceTree = "<group>"; };
 		E1D8BD4E1DCFCD1A00C863DF /* Zylon Defenders.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Zylon Defenders.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		E1D8BD511DCFCD1A00C863DF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = ../zylons/AppDelegate.swift; sourceTree = "<group>"; };
+		E1D8BD511DCFCD1A00C863DF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E1D8BD531DCFCD1A00C863DF /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
 		E1D8BD551DCFCD1A00C863DF /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		E1D8BD5A1DCFCD1A00C863DF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -129,6 +131,7 @@
 			isa = PBXGroup;
 			children = (
 				E1F8BB051E3FD36800460FC9 /* defenders.png */,
+				E1A5BE251EA860D100E094CD /* Zylon Defender Title.png */,
 				E165672A1E3205C100293285 /* fonts */,
 				E16AB6231E1DD1F800E3D8C2 /* spark.png */,
 				E19B4E771E4080EC00BAFA62 /* TIE-fighter.scn */,
@@ -180,15 +183,23 @@
 		E1D8BD501DCFCD1A00C863DF /* Code */ = {
 			isa = PBXGroup;
 			children = (
-				E1D8BD511DCFCD1A00C863DF /* AppDelegate.swift */,
 				E1D8BD551DCFCD1A00C863DF /* GameViewController.swift */,
-				E16B66871E8B09F800F28144 /* MCController.swift */,
 				E151DA2D1E17926900A70B45 /* HUD.swift */,
-				E16A3BD71E70BAE600FE53C1 /* AnalogJoystick.swift */,
+				E1DC3F911EB9A2C200B98829 /* Frameworks&Libraries */,
 				E1D8BD5F1DCFCD1A00C863DF /* Info.plist */,
 			);
 			name = Code;
 			path = zylons;
+			sourceTree = "<group>";
+		};
+		E1DC3F911EB9A2C200B98829 /* Frameworks&Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				E16B66871E8B09F800F28144 /* MCController.swift */,
+				E16A3BD71E70BAE600FE53C1 /* AnalogJoystick.swift */,
+				E1D8BD511DCFCD1A00C863DF /* AppDelegate.swift */,
+			);
+			name = "Frameworks&Libraries";
 			sourceTree = "<group>";
 		};
 		E1F8BB041E3FD26300460FC9 /* sector_announcement */ = {
@@ -291,6 +302,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E1A5BE261EA860D100E094CD /* Zylon Defender Title.png in Resources */,
 				E1BD14B91E24280C002E49A5 /* two.m4a in Resources */,
 				E1F8BB0D1E402A0400460FC9 /* Zylon_defenders.scn in Resources */,
 				E109EB601E1BB938003DAB0F /* 40069.ttf in Resources */,

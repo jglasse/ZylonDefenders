@@ -18,7 +18,7 @@ protocol CommandDelegate: class{
 class MCController:NSObject, MCNearbyServiceBrowserDelegate, MCNearbyServiceAdvertiserDelegate, MCSessionDelegate, CommandDelegate
 {
     static var sharedInstance =  MCController()
-    
+    let kServiceType = "zylons"
     let myPeerID: MCPeerID = MCPeerID(displayName: UIDevice.current.name)
     var advertiser: MCNearbyServiceAdvertiser!
     var browser: MCNearbyServiceBrowser!
@@ -29,7 +29,6 @@ class MCController:NSObject, MCNearbyServiceBrowserDelegate, MCNearbyServiceAdve
     }()
     
     
-    let kServiceType = "zylons"
     var serviceStarted = false
     weak var myCommandDelegate: CommandDelegate?
     
@@ -84,7 +83,6 @@ class MCController:NSObject, MCNearbyServiceBrowserDelegate, MCNearbyServiceAdve
 
     
     // MARK: - Browser Delegate
-    // MARK: - Browser Delegate
     func browser(_ browser: MCNearbyServiceBrowser, foundPeer peerID: MCPeerID, withDiscoveryInfo info: [String : String]?)
     {
         
@@ -119,7 +117,7 @@ class MCController:NSObject, MCNearbyServiceBrowserDelegate, MCNearbyServiceAdve
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID)
     {
         let receivedCommand = String(data: data, encoding: .utf8)
-       // self.myCommandDelegate?.execute(command: receivedCommand!)
+        self.myCommandDelegate?.execute(command: receivedCommand!)
     }
     
     
