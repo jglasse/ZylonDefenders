@@ -44,7 +44,7 @@ class HUD: SKScene
         computerStatus.fontName = "Y14.5M 17.0"
         computerStatus.fontSize = 9
         computerStatus.fontColor = UIColor.red
-        computerStatus.position = CGPoint(x: self.frame.midX/4, y: self.frame.midY + 110.0)
+        computerStatus.position = CGPoint(x: self.frame.midX - computerStatus.frame.midX, y: self.frame.maxX-40)
         computerStatus.text = "GRIDWARP ENGINES OFFLINE"
         
 
@@ -60,14 +60,6 @@ class HUD: SKScene
         self.addChild(joystick)
         self.addChild(computerStatus)
         self.scheduleTimer()
-        
-        
-        
-      
-            
-        
-        
-     
       
     }
     

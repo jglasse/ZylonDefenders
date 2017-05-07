@@ -26,14 +26,13 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
     
         let numberstrings:[String] = ["zero", "one", "two", "three","four","five","six","seven","eight","nine"]
     
-    
+    // add multipeer Connectivity
     var myMCController = MCController.sharedInstance
 
     
     // MARK: -
     // MARK: Vars
     // drone model
-    var modelScene:SCNScene!
     var droneModel: SCNNode!
     
 
@@ -172,13 +171,14 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
         enemyDrone.geometry?.firstMaterial?.diffuse.contents = UIColor.red
         enemyDrone?.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
         enemyDrone?.physicsBody?.isAffectedByGravity = false
+        enemyDrone?.physicsBody?.friction = 0
         enemyDrone?.physicsBody?.categoryBitMask = 0b00000010
         enemyDrone?.physicsBody?.contactTestBitMask = 0b00000010
         enemyDrone?.name = "drone"
         enemyDrone?.physicsBody?.applyTorque(SCNVector4Make(1,0.0,1,10), asImpulse: true)
         enemyDrone?.pivot = SCNMatrix4MakeTranslation(0.5, 0.5, 0.5)
         scene.rootNode.addChildNode(enemyDrone!)
-        enemyDrone?.position = SCNVector3Make(0, 0, -40)
+        enemyDrone?.position = SCNVector3Make(0, 0, -50)
         enemyDrone?.scale = SCNVector3Make(1,1,1)
         
     }
@@ -186,6 +186,7 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
     
     
     @IBAction func gridWarp(_ sender: UIButton) {
+        performWarp()
         enterSector()
     }
     @IBAction func speedChanged(_ sender: UIStepper)
@@ -195,6 +196,7 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
         setSpeed(Float(targetSpeed))
         
     }
+    
     
  
      // MARK:  - Sound Functions
@@ -232,19 +234,15 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
         if (value == 0)
         {
             SCNTransaction.animationDuration = 0.5
-            
-            let gradualFullStop = CABasicAnimation(keyPath: "fullStop")
-            gradualFullStop.fromValue = 1.0
-            gradualFullStop.toValue = 1.0
-            gradualFullStop.duration = 0.5
-            
-            starfield.addAnimation(gradualFullStop, forKey: "speedFactor")
-            
-           // starfield.speedFactor = CGFloat(0)
+            SCNTransaction.begin()
+            starfield.speedFactor = 0
+            SCNTransaction.commit()
+            SCNTransaction.animationDuration = 0.0
+
             if #available(iOS 10.0, *) {
                 engineSound.setVolume(0, fadeDuration: 1.0)
             } else {
-                // Fallback on earlier versions
+                engineSound.volume = 0
             }
             
         }
@@ -333,6 +331,7 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
         particlesNode.name = "starfield"
         particlesNode.addParticleSystem(starfield!)
         scene.rootNode.addChildNode(particlesNode)
+        particlesNode.renderingOrder = -1
         shipHud = HUD(size: self.view.bounds.size)
         scnView.overlaySKScene = shipHud
         scene.physicsWorld.contactDelegate = self
@@ -438,7 +437,7 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
     {
         scene.rootNode.enumerateChildNodes({thisNode,_ in
             
-            if ((thisNode.presentation.position.z < -200) && (thisNode.name == "torpedo"))
+            if ((thisNode.presentation.position.z < -300) && (thisNode.name == "torpedo"))
             {
                 thisNode.removeFromParentNode()
             }
@@ -461,6 +460,44 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
         print("number of live nodes:\(numberofNodes)")
         
         
+    }
+    
+    
+    func performWarp() {
+        let warpGridEntryShape = SCNTube(innerRadius: 4, outerRadius: 4, height: 25)
+        let  warpGrid = SCNNode()
+        warpGrid.geometry  = warpGridEntryShape
+        
+        warpGrid.geometry?.firstMaterial = SCNMaterial()
+        let innerTube = SCNMaterial()
+        innerTube.diffuse.contents =  UIColor.black
+        innerTube.emission.contents =  UIImage(named:"grid.png")
+
+        let outerTube = SCNMaterial()
+        outerTube.emission.contents =  UIImage(named:"grid.png")
+        outerTube.diffuse.contents = UIColor.black
+        let endOne = SCNMaterial()
+        endOne.diffuse.contents =  UIColor.blue
+        let endTwo = SCNMaterial()
+        endTwo.diffuse.contents =  UIColor.purple
+
+
+        warpGrid.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
+        warpGrid.physicsBody?.isAffectedByGravity = false
+        warpGrid.physicsBody?.applyForce(SCNVector3Make(0,0,75), asImpulse: true)
+        warpGrid.physicsBody?.friction = 0
+        warpGrid.physicsBody?.categoryBitMask = 0b00000010
+        warpGrid.physicsBody?.contactTestBitMask = 0b00000010
+        warpGrid.name = "warpgrid"
+        warpGrid.geometry?.firstMaterial?.isDoubleSided = true
+        warpGrid.geometry?.materials = [outerTube,innerTube,endOne,endTwo]
+       // warpGrid.pivot = SCNMatrix4MakeTranslation(0.5, 0.5, 0.5)
+        warpGrid.rotation = SCNVector4(x: 1, y: 0, z: 0, w: Float(Double.pi / 2))
+        scene.rootNode.addChildNode(warpGrid)
+        warpGrid.position = SCNVector3Make(0, 0, -60)
+        warpGrid.scale = SCNVector3Make(1,1,1)
+    
+    
     }
     func enterSector()
     {
