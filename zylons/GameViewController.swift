@@ -219,12 +219,7 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
     }
     
    
-    func notYetImplemented(_ command: String) {
-        
-        print("\(command) not yet implemented")
-        
-    }
-
+  
     func setSpeed(_ value: Float)
     {
         let displaySpeed = Int(value)
@@ -325,15 +320,13 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
         scene = SCNScene()
         scnView.scene = scene
         
-        let particlesNode = SCNNode()
-        starfield = SCNParticleSystem(named: "starField", inDirectory: "")
-        starfield.speedFactor = CGFloat(2)
-        particlesNode.name = "starfield"
-        particlesNode.addParticleSystem(starfield!)
-        scene.rootNode.addChildNode(particlesNode)
-        particlesNode.renderingOrder = -1
+        
+        
+        // setup HUD
         shipHud = HUD(size: self.view.bounds.size)
         scnView.overlaySKScene = shipHud
+        
+        
         scene.physicsWorld.contactDelegate = self
         scnView.delegate = self
 
@@ -361,22 +354,30 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
 
  
         cameraNode.camera = SCNCamera()
-        cameraNode.position = SCNVector3(x: 0, y: 0, z: 4)
+        cameraNode.position = SCNVector3(x: 0, y: 0, z: 0)
         print(cameraNode.rotation)
         cameraNode.name = "camera"
         cameraNode.camera?.zFar = 260
         scene.rootNode.addChildNode(cameraNode)
-        //scene.rootNode.childNode(withName: "starfield", recursively: true)?.addChildNode(cameraNode)
         
         rearCameraNode.camera=SCNCamera()
-        rearCameraNode.position = SCNVector3(x: 0, y: 0, z: 4)
+        rearCameraNode.position = SCNVector3(x: 0, y: 0, z: 0)
         rearCameraNode.rotation = SCNVector4(x: 1.0, y: 0.0, z: 0.0, w: Float.pi)
         rearCameraNode.name = "rearCamera"
         rearCameraNode.camera?.zFar = 260
         scene.rootNode.addChildNode(rearCameraNode)
 
         
+        let particlesNode = SCNNode()
+        starfield = SCNParticleSystem(named: "starField", inDirectory: "")
+        starfield.speedFactor = CGFloat(2)
+        particlesNode.name = "starfield"
+        particlesNode.addParticleSystem(starfield!)
+        particlesNode.position = SCNVector3(x: 0, y: 0, z: -4)
         
+        cameraNode.addChildNode(particlesNode)
+        particlesNode.renderingOrder = -1
+
         
       
     }
@@ -411,16 +412,89 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
         
     }
     
-    //MARK: -  Utility functions
+    //MARK: -  Game Event functions
+    func performWarp() {
+        let warpGridEntryShape = SCNTube(innerRadius: 2, outerRadius: 2, height: 70)
+        let  warpGrid = SCNNode()
+        warpGrid.geometry  = warpGridEntryShape
+        
+        warpGrid.geometry?.firstMaterial = SCNMaterial()
+        let innerTube = SCNMaterial()
+        innerTube.diffuse.contents =  UIColor.black
+        innerTube.emission.contents =  UIImage(named:"smallestGrid.png")
+        
+        let outerTube = SCNMaterial()
+        outerTube.emission.contents =  UIImage(named:"smallestGrid.png")
+        outerTube.diffuse.contents = UIColor.black
+        let endOne = SCNMaterial()
+        endOne.diffuse.contents =  UIColor.blue
+        let endTwo = SCNMaterial()
+        endTwo.diffuse.contents =  UIColor.purple
+        
+        
+        warpGrid.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
+        warpGrid.physicsBody?.isAffectedByGravity = false
+        warpGrid.physicsBody?.applyForce(SCNVector3Make(0,0,35), asImpulse: true)
+        warpGrid.physicsBody?.friction = 0
+        warpGrid.physicsBody?.categoryBitMask = 0b00000010
+        warpGrid.physicsBody?.contactTestBitMask = 0b00000010
+        warpGrid.name = "warpGrid"
+        warpGrid.geometry?.firstMaterial?.isDoubleSided = true
+        warpGrid.geometry?.materials = [outerTube,innerTube,endOne,endTwo]
+        // warpGrid.pivot = SCNMatrix4MakeTranslation(0.5, 0.5, 0.5)
+        warpGrid.rotation = SCNVector4(x: 1, y: 0, z: 0, w: Float(Double.pi / 2))
+        scene.rootNode.addChildNode(warpGrid)
+        warpGrid.position = SCNVector3Make(0, 0, -130)
+        warpGrid.scale = SCNVector3Make(1,1,1)
+        
+        
+    }
+    func enterSector()
+    {
+        var audioItems: [AVPlayerItem] = []
+        let soundURL = Bundle.main.url(forResource: "entering_sector", withExtension:"m4a")
+        let sector = AVPlayerItem(url: soundURL!)
+        audioItems.append(sector)
+        
+        
+        print("Entering sector:", terminator:"")
+        for i in 1...4
+        {
+            let randomIndex = Int(arc4random_uniform(UInt32(self.numberstrings.count)))
+            let numString = numberstrings[randomIndex]
+            if i < 4
+            {print(numString + "-", terminator:"")}
+            else
+            {print(numString)}
+            let soundURL = Bundle.main.url(forResource: numString, withExtension:"m4a")
+            let item = AVPlayerItem(url: soundURL!)
+            audioItems.append(item)
+            
+        }
+        
+        computerVoice = AVQueuePlayer(items: audioItems)
+        computerVoice.volume = 1
+        computerVoice.play()
+        
+        
+    }
 
     
+    
+    
+    //MARK: -  Utility functions
+
+    func notYetImplemented(_ command: String) {
+        
+        print("\(command) not yet implemented")
+        
+    }
+
     func checkMotion(gyro: CMRotationRate)
     {
         
-        
         self.starfield.acceleration = SCNVector3(x: Float(gyro.x * -3), y:Float(gyro.y * -3), z: 0)
-        
-        
+
         self.cameraNode.rotation.x = self.cameraNode.rotation.x + Float(gyro.x)
         self.cameraNode.rotation.y = self.cameraNode.rotation.y + Float(gyro.y)
 
@@ -447,6 +521,13 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
                 thisNode.removeFromParentNode()
                 
             }
+            
+            if ((thisNode.presentation.position.z > 100) && (thisNode.name == "warpGrid"))
+            {
+                thisNode.removeFromParentNode()
+            }
+        
+            
         })
         
     }
@@ -461,75 +542,6 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
         
         
     }
-    
-    
-    func performWarp() {
-        let warpGridEntryShape = SCNTube(innerRadius: 4, outerRadius: 4, height: 25)
-        let  warpGrid = SCNNode()
-        warpGrid.geometry  = warpGridEntryShape
-        
-        warpGrid.geometry?.firstMaterial = SCNMaterial()
-        let innerTube = SCNMaterial()
-        innerTube.diffuse.contents =  UIColor.black
-        innerTube.emission.contents =  UIImage(named:"grid.png")
-
-        let outerTube = SCNMaterial()
-        outerTube.emission.contents =  UIImage(named:"grid.png")
-        outerTube.diffuse.contents = UIColor.black
-        let endOne = SCNMaterial()
-        endOne.diffuse.contents =  UIColor.blue
-        let endTwo = SCNMaterial()
-        endTwo.diffuse.contents =  UIColor.purple
-
-
-        warpGrid.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
-        warpGrid.physicsBody?.isAffectedByGravity = false
-        warpGrid.physicsBody?.applyForce(SCNVector3Make(0,0,75), asImpulse: true)
-        warpGrid.physicsBody?.friction = 0
-        warpGrid.physicsBody?.categoryBitMask = 0b00000010
-        warpGrid.physicsBody?.contactTestBitMask = 0b00000010
-        warpGrid.name = "warpgrid"
-        warpGrid.geometry?.firstMaterial?.isDoubleSided = true
-        warpGrid.geometry?.materials = [outerTube,innerTube,endOne,endTwo]
-       // warpGrid.pivot = SCNMatrix4MakeTranslation(0.5, 0.5, 0.5)
-        warpGrid.rotation = SCNVector4(x: 1, y: 0, z: 0, w: Float(Double.pi / 2))
-        scene.rootNode.addChildNode(warpGrid)
-        warpGrid.position = SCNVector3Make(0, 0, -60)
-        warpGrid.scale = SCNVector3Make(1,1,1)
-    
-    
-    }
-    func enterSector()
-    {
-        
-        var audioItems: [AVPlayerItem] = []
-        let soundURL = Bundle.main.url(forResource: "entering_sector", withExtension:"m4a")
-        let sector = AVPlayerItem(url: soundURL!)
-        audioItems.append(sector)
-        
-        
-        print("Entering sector:", terminator:"")
-        for i in 1...4
-        {
-            let randomIndex = Int(arc4random_uniform(UInt32(self.numberstrings.count)))
-            let numString = numberstrings[randomIndex]
-            if i < 4
-            {print(numString + "-", terminator:"")}
-            else
-                {print(numString)}
-            let soundURL = Bundle.main.url(forResource: numString, withExtension:"m4a")
-            let item = AVPlayerItem(url: soundURL!)
-            audioItems.append(item)
-            
-        }
-        
-        computerVoice = AVQueuePlayer(items: audioItems)
-        computerVoice.volume = 1
-        computerVoice.play()
-
-    
-    }
-
     
     
     func numberofShotsOnscreen() -> Int
@@ -585,23 +597,6 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
     override var prefersStatusBarHidden: Bool {
         return true
     }
-    
-    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        if UIDevice.current.userInterfaceIdiom == .phone {
-            return .allButUpsideDown
-        } else {
-            return .all
-        }
-    }
-    
-    
-   
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Release any cached data, images, etc that aren't in use.
-    }
-
-    
     
     func distanceBetweenPoints(first: CGPoint,  second: CGPoint) -> CGFloat {
         return CGFloat(hypotf(Float(second.x - first.x), Float(second.y - first.y)))
