@@ -13,6 +13,7 @@
 		E10EFCBD1EC0E9B300CC872E /* wave.fsh in Resources */ = {isa = PBXBuildFile; fileRef = E10EFCBC1EC0E9B300CC872E /* wave.fsh */; };
 		E10EFCBF1EC0EE8400CC872E /* smallestGridLessDense.png in Resources */ = {isa = PBXBuildFile; fileRef = E10EFCBE1EC0EE8400CC872E /* smallestGridLessDense.png */; };
 		E10EFCC11EC0EE9400CC872E /* smallestGrid.png in Resources */ = {isa = PBXBuildFile; fileRef = E10EFCC01EC0EE9400CC872E /* smallestGrid.png */; };
+		E10EFCC41EC18F1D00CC872E /* tosWarpSound.m4a in Resources */ = {isa = PBXBuildFile; fileRef = E10EFCC31EC18F1D00CC872E /* tosWarpSound.m4a */; };
 		E11A73821E986DE4001CCAC8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E11A73801E986DE4001CCAC8 /* LaunchScreen.storyboard */; };
 		E11A73831E986DE4001CCAC8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E11A73811E986DE4001CCAC8 /* Main.storyboard */; };
 		E151DA2E1E17926900A70B45 /* HUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = E151DA2D1E17926900A70B45 /* HUD.swift */; };
@@ -20,11 +21,9 @@
 		E165672D1E3205EE00293285 /* Texas Instruments2.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E165672B1E3205EE00293285 /* Texas Instruments2.ttf */; };
 		E16A3BD81E70BAE600FE53C1 /* AnalogJoystick.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16A3BD71E70BAE600FE53C1 /* AnalogJoystick.swift */; };
 		E16AB6241E1DD1F800E3D8C2 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = E16AB6231E1DD1F800E3D8C2 /* spark.png */; };
-		E16AB6261E1DD5CD00E3D8C2 /* fire.png in Resources */ = {isa = PBXBuildFile; fileRef = E16AB6251E1DD5CD00E3D8C2 /* fire.png */; };
 		E16AB62A1E1F120400E3D8C2 /* torpedo_fail.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E16AB6291E1F120400E3D8C2 /* torpedo_fail.mp3 */; };
 		E16B66881E8B09F800F28144 /* MCController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16B66871E8B09F800F28144 /* MCController.swift */; };
 		E17282A51EBEA144003C1955 /* grid.png in Resources */ = {isa = PBXBuildFile; fileRef = E17282A41EBEA144003C1955 /* grid.png */; };
-		E174FDC41E1A3B0C00A7CC73 /* firePressed.png in Resources */ = {isa = PBXBuildFile; fileRef = E174FDC31E1A3B0C00A7CC73 /* firePressed.png */; };
 		E174FDC71E1A424500A7CC73 /* Torpedo.scnp in Resources */ = {isa = PBXBuildFile; fileRef = E174FDC51E1A424500A7CC73 /* Torpedo.scnp */; };
 		E174FDC81E1A424500A7CC73 /* bokeh.png in Resources */ = {isa = PBXBuildFile; fileRef = E174FDC61E1A424500A7CC73 /* bokeh.png */; };
 		E19B4E781E4080EC00BAFA62 /* TIE-fighter.scn in Resources */ = {isa = PBXBuildFile; fileRef = E19B4E771E4080EC00BAFA62 /* TIE-fighter.scn */; };
@@ -49,7 +48,12 @@
 		E1D8BD561DCFCD1A00C863DF /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D8BD551DCFCD1A00C863DF /* GameViewController.swift */; };
 		E1D8BD5B1DCFCD1A00C863DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E1D8BD5A1DCFCD1A00C863DF /* Assets.xcassets */; };
 		E1DC3F931EB9C3ED00B98829 /* Explosion2.scnp in Resources */ = {isa = PBXBuildFile; fileRef = E1DC3F921EB9C3ED00B98829 /* Explosion2.scnp */; };
-		E1DC3F951EBA34E100B98829 /* ship.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DC3F941EBA34E100B98829 /* ship.swift */; };
+		E1DC3F951EBA34E100B98829 /* Ship.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DC3F941EBA34E100B98829 /* Ship.swift */; };
+		E1E381E01EC4B79A000CC31C /* button_dir_down_0.png in Resources */ = {isa = PBXBuildFile; fileRef = E1E381DC1EC4B79A000CC31C /* button_dir_down_0.png */; };
+		E1E381E11EC4B79A000CC31C /* button_dir_right_0.png in Resources */ = {isa = PBXBuildFile; fileRef = E1E381DD1EC4B79A000CC31C /* button_dir_right_0.png */; };
+		E1E381E21EC4B79A000CC31C /* button_dir_up_0.png in Resources */ = {isa = PBXBuildFile; fileRef = E1E381DE1EC4B79A000CC31C /* button_dir_up_0.png */; };
+		E1E381E31EC4B79A000CC31C /* button_dir_left_0.png in Resources */ = {isa = PBXBuildFile; fileRef = E1E381DF1EC4B79A000CC31C /* button_dir_left_0.png */; };
+		E1E381E81EC4DC26000CC31C /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E381E71EC4DC26000CC31C /* Reachability.swift */; };
 		E1F43D641DD115E900CC8988 /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = E1F43D631DD115E900CC8988 /* star.png */; };
 		E1F8BB0B1E3FF4E100460FC9 /* explosion.m4a in Resources */ = {isa = PBXBuildFile; fileRef = E1F8BB0A1E3FF4E100460FC9 /* explosion.m4a */; };
 		E1F8BB0D1E402A0400460FC9 /* Zylon_defenders.scn in Resources */ = {isa = PBXBuildFile; fileRef = E1F8BB0C1E402A0400460FC9 /* Zylon_defenders.scn */; };
@@ -64,6 +68,7 @@
 		E10EFCBC1EC0E9B300CC872E /* wave.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = wave.fsh; sourceTree = "<group>"; };
 		E10EFCBE1EC0EE8400CC872E /* smallestGridLessDense.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smallestGridLessDense.png; sourceTree = "<group>"; };
 		E10EFCC01EC0EE9400CC872E /* smallestGrid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smallestGrid.png; sourceTree = "<group>"; };
+		E10EFCC31EC18F1D00CC872E /* tosWarpSound.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = tosWarpSound.m4a; sourceTree = "<group>"; };
 		E11A73801E986DE4001CCAC8 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = zylons/LaunchScreen.storyboard; sourceTree = SOURCE_ROOT; };
 		E11A73811E986DE4001CCAC8 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = zylons/Main.storyboard; sourceTree = SOURCE_ROOT; };
 		E151DA2D1E17926900A70B45 /* HUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HUD.swift; sourceTree = "<group>"; };
@@ -71,11 +76,9 @@
 		E165672B1E3205EE00293285 /* Texas Instruments2.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Texas Instruments2.ttf"; sourceTree = "<group>"; };
 		E16A3BD71E70BAE600FE53C1 /* AnalogJoystick.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalogJoystick.swift; sourceTree = "<group>"; };
 		E16AB6231E1DD1F800E3D8C2 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
-		E16AB6251E1DD5CD00E3D8C2 /* fire.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = fire.png; path = art.scnassets/fire.png; sourceTree = "<group>"; };
 		E16AB6291E1F120400E3D8C2 /* torpedo_fail.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = torpedo_fail.mp3; sourceTree = "<group>"; };
 		E16B66871E8B09F800F28144 /* MCController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MCController.swift; sourceTree = "<group>"; };
 		E17282A41EBEA144003C1955 /* grid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grid.png; sourceTree = "<group>"; };
-		E174FDC31E1A3B0C00A7CC73 /* firePressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = firePressed.png; path = art.scnassets/firePressed.png; sourceTree = "<group>"; };
 		E174FDC51E1A424500A7CC73 /* Torpedo.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = Torpedo.scnp; sourceTree = "<group>"; };
 		E174FDC61E1A424500A7CC73 /* bokeh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bokeh.png; sourceTree = "<group>"; };
 		E19B4E771E4080EC00BAFA62 /* TIE-fighter.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = "TIE-fighter.scn"; sourceTree = "<group>"; };
@@ -102,7 +105,12 @@
 		E1D8BD5A1DCFCD1A00C863DF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E1D8BD5F1DCFCD1A00C863DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E1DC3F921EB9C3ED00B98829 /* Explosion2.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = Explosion2.scnp; sourceTree = "<group>"; };
-		E1DC3F941EBA34E100B98829 /* ship.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ship.swift; sourceTree = "<group>"; };
+		E1DC3F941EBA34E100B98829 /* Ship.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ship.swift; sourceTree = "<group>"; };
+		E1E381DC1EC4B79A000CC31C /* button_dir_down_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_dir_down_0.png; sourceTree = "<group>"; };
+		E1E381DD1EC4B79A000CC31C /* button_dir_right_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_dir_right_0.png; sourceTree = "<group>"; };
+		E1E381DE1EC4B79A000CC31C /* button_dir_up_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_dir_up_0.png; sourceTree = "<group>"; };
+		E1E381DF1EC4B79A000CC31C /* button_dir_left_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_dir_left_0.png; sourceTree = "<group>"; };
+		E1E381E71EC4DC26000CC31C /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		E1F43D631DD115E900CC8988 /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
 		E1F8BB0A1E3FF4E100460FC9 /* explosion.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = explosion.m4a; sourceTree = "<group>"; };
 		E1F8BB0C1E402A0400460FC9 /* Zylon_defenders.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = Zylon_defenders.scn; sourceTree = "<group>"; };
@@ -121,17 +129,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		E165672A1E3205C100293285 /* fonts */ = {
+		E165672A1E3205C100293285 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				E109EB5F1E1BB938003DAB0F /* 40069.ttf */,
 				E165672B1E3205EE00293285 /* Texas Instruments2.ttf */,
 			);
-			name = fonts;
+			name = Fonts;
 			sourceTree = "<group>";
 		};
 		E19B4E761E40776300BAFA62 /* particle_sytems */ = {
 			isa = PBXGroup;
 			children = (
+				E174FDC61E1A424500A7CC73 /* bokeh.png */,
+				E1F43D631DD115E900CC8988 /* star.png */,
+				E16AB6231E1DD1F800E3D8C2 /* spark.png */,
 				E1DC3F921EB9C3ED00B98829 /* Explosion2.scnp */,
 				E15520311DCFE776001651EB /* starField.scnp */,
 				E1A58DC21E1DD07E00DCA24F /* Explosion.scnp */,
@@ -143,23 +155,15 @@
 		E1A58DC01E1DCF9B00DCA24F /* assets */ = {
 			isa = PBXGroup;
 			children = (
-				E10EFCC01EC0EE9400CC872E /* smallestGrid.png */,
-				E17282A41EBEA144003C1955 /* grid.png */,
-				E10EFCBE1EC0EE8400CC872E /* smallestGridLessDense.png */,
-				E10EFCB81EBFBDA500CC872E /* tinyGrid.png */,
+				E1E381E41EC4B7A3000CC31C /* Buttons */,
+				E1E381E51EC4B7AA000CC31C /* Grids */,
 				E1A5BE251EA860D100E094CD /* Zylon Defender Title.png */,
-				E165672A1E3205C100293285 /* fonts */,
-				E16AB6231E1DD1F800E3D8C2 /* spark.png */,
+				E165672A1E3205C100293285 /* Fonts */,
 				E19B4E771E4080EC00BAFA62 /* TIE-fighter.scn */,
 				FC9F9CEE1E1AF97500907E04 /* xenonHUD.png */,
 				E1D8BD5A1DCFCD1A00C863DF /* Assets.xcassets */,
 				E19B4E761E40776300BAFA62 /* particle_sytems */,
-				E109EB5F1E1BB938003DAB0F /* 40069.ttf */,
-				E1F43D631DD115E900CC8988 /* star.png */,
-				E16AB6251E1DD5CD00E3D8C2 /* fire.png */,
 				E1F8BB0C1E402A0400460FC9 /* Zylon_defenders.scn */,
-				E174FDC31E1A3B0C00A7CC73 /* firePressed.png */,
-				E174FDC61E1A424500A7CC73 /* bokeh.png */,
 				FC9F9CF41E1AFC9A00907E04 /* sounds */,
 				E1D8BD531DCFCD1A00C863DF /* art.scnassets */,
 			);
@@ -201,8 +205,9 @@
 			isa = PBXGroup;
 			children = (
 				E1D8BD551DCFCD1A00C863DF /* GameViewController.swift */,
+				E1E381E71EC4DC26000CC31C /* Reachability.swift */,
 				E151DA2D1E17926900A70B45 /* HUD.swift */,
-				E1DC3F941EBA34E100B98829 /* ship.swift */,
+				E1DC3F941EBA34E100B98829 /* Ship.swift */,
 				E1DC3F911EB9A2C200B98829 /* Frameworks&Libraries */,
 				E1D8BD5F1DCFCD1A00C863DF /* Info.plist */,
 			);
@@ -218,6 +223,28 @@
 				E1D8BD511DCFCD1A00C863DF /* AppDelegate.swift */,
 			);
 			name = "Frameworks&Libraries";
+			sourceTree = "<group>";
+		};
+		E1E381E41EC4B7A3000CC31C /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				E1E381DC1EC4B79A000CC31C /* button_dir_down_0.png */,
+				E1E381DD1EC4B79A000CC31C /* button_dir_right_0.png */,
+				E1E381DE1EC4B79A000CC31C /* button_dir_up_0.png */,
+				E1E381DF1EC4B79A000CC31C /* button_dir_left_0.png */,
+			);
+			name = Buttons;
+			sourceTree = "<group>";
+		};
+		E1E381E51EC4B7AA000CC31C /* Grids */ = {
+			isa = PBXGroup;
+			children = (
+				E10EFCC01EC0EE9400CC872E /* smallestGrid.png */,
+				E17282A41EBEA144003C1955 /* grid.png */,
+				E10EFCBE1EC0EE8400CC872E /* smallestGridLessDense.png */,
+				E10EFCB81EBFBDA500CC872E /* tinyGrid.png */,
+			);
+			name = Grids;
 			sourceTree = "<group>";
 		};
 		E1F8BB041E3FD26300460FC9 /* sector_announcement */ = {
@@ -241,6 +268,7 @@
 		E1F8BB071E3FD56C00460FC9 /* event_sounds */ = {
 			isa = PBXGroup;
 			children = (
+				E10EFCC31EC18F1D00CC872E /* tosWarpSound.m4a */,
 				E1F8BB0A1E3FF4E100460FC9 /* explosion.m4a */,
 				E16AB6291E1F120400E3D8C2 /* torpedo_fail.mp3 */,
 				E1A57ACF1E1D8CCA009F2CA6 /* beep.mp3 */,
@@ -323,14 +351,17 @@
 				E1A5BE261EA860D100E094CD /* Zylon Defender Title.png in Resources */,
 				E1BD14B91E24280C002E49A5 /* two.m4a in Resources */,
 				E1F8BB0D1E402A0400460FC9 /* Zylon_defenders.scn in Resources */,
+				E1E381E21EC4B79A000CC31C /* button_dir_up_0.png in Resources */,
 				E109EB601E1BB938003DAB0F /* 40069.ttf in Resources */,
 				E1A89EA81E9867F600EA8BC4 /* Default-568h@2x.png in Resources */,
 				E1A58DC31E1DD07E00DCA24F /* Explosion.scnp in Resources */,
 				E16AB62A1E1F120400E3D8C2 /* torpedo_fail.mp3 in Resources */,
 				E11A73831E986DE4001CCAC8 /* Main.storyboard in Resources */,
+				E1E381E31EC4B79A000CC31C /* button_dir_left_0.png in Resources */,
 				E10EFCB91EBFBDA500CC872E /* tinyGrid.png in Resources */,
 				FC9F9CF61E1B071100907E04 /* photon_sound.mp3 in Resources */,
 				E1BD14B61E24280C002E49A5 /* seven.m4a in Resources */,
+				E10EFCC41EC18F1D00CC872E /* tosWarpSound.m4a in Resources */,
 				E1D8BD541DCFCD1A00C863DF /* art.scnassets in Resources */,
 				E11A73821E986DE4001CCAC8 /* LaunchScreen.storyboard in Resources */,
 				E1BD14B51E24280C002E49A5 /* one.m4a in Resources */,
@@ -346,12 +377,12 @@
 				E1BD14BA1E24280C002E49A5 /* zero.m4a in Resources */,
 				E174FDC81E1A424500A7CC73 /* bokeh.png in Resources */,
 				E17282A51EBEA144003C1955 /* grid.png in Resources */,
-				E16AB6261E1DD5CD00E3D8C2 /* fire.png in Resources */,
+				E1E381E11EC4B79A000CC31C /* button_dir_right_0.png in Resources */,
 				E1F8BB0B1E3FF4E100460FC9 /* explosion.m4a in Resources */,
+				E1E381E01EC4B79A000CC31C /* button_dir_down_0.png in Resources */,
 				E165672D1E3205EE00293285 /* Texas Instruments2.ttf in Resources */,
 				E19B4E781E4080EC00BAFA62 /* TIE-fighter.scn in Resources */,
 				E15520321DCFE776001651EB /* starField.scnp in Resources */,
-				E174FDC41E1A3B0C00A7CC73 /* firePressed.png in Resources */,
 				E1BD14B11E24280C002E49A5 /* entering_sector.m4a in Resources */,
 				E1DC3F931EB9C3ED00B98829 /* Explosion2.scnp in Resources */,
 				E1F43D641DD115E900CC8988 /* star.png in Resources */,
@@ -372,10 +403,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E1E381E81EC4DC26000CC31C /* Reachability.swift in Sources */,
 				E16B66881E8B09F800F28144 /* MCController.swift in Sources */,
 				E16A3BD81E70BAE600FE53C1 /* AnalogJoystick.swift in Sources */,
 				E151DA2E1E17926900A70B45 /* HUD.swift in Sources */,
-				E1DC3F951EBA34E100B98829 /* ship.swift in Sources */,
+				E1DC3F951EBA34E100B98829 /* Ship.swift in Sources */,
 				E1D8BD561DCFCD1A00C863DF /* GameViewController.swift in Sources */,
 				E1D8BD521DCFCD1A00C863DF /* AppDelegate.swift in Sources */,
 			);

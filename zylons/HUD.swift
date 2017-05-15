@@ -20,15 +20,13 @@ class HUD: SKScene
     var computerStatus = SKLabelNode()
     public var joystick:AnalogJoystick!
     var timer: Timer?
-    
-    
-    
+    var currentComputerStatusColor = UIColor.clear
     
     func updateComputerDisplay() {
-        if computerStatus.fontColor == UIColor.red
+        if computerStatus.fontColor == currentComputerStatusColor
         {computerStatus.fontColor = UIColor.clear}
             else
-        {computerStatus.fontColor = UIColor.red}
+        {computerStatus.fontColor = currentComputerStatusColor}
     
     
     }
@@ -44,7 +42,7 @@ class HUD: SKScene
         computerStatus.fontName = "Y14.5M 17.0"
         computerStatus.fontSize = 9
         computerStatus.fontColor = UIColor.red
-        computerStatus.position = CGPoint(x: self.frame.midX - computerStatus.frame.midX, y: self.frame.maxX-40)
+        computerStatus.position = CGPoint(x: self.frame.midX, y: self.frame.maxY-40)
         computerStatus.text = "GRIDWARP ENGINES OFFLINE"
         
 
@@ -57,10 +55,12 @@ class HUD: SKScene
         let joystick = AnalogJoystick(diameters: (70, 30), colors: (UIColor.green, UIColor.init(red: 0, green: 0, blue: 200, alpha: 100)))
     
         joystick.position = CGPoint(x: self.frame.midX/4, y: self.frame.midY - 70.0)
-        self.addChild(joystick)
+     //   self.addChild(joystick)
         self.addChild(computerStatus)
         self.scheduleTimer()
+        
       
+
     }
     
     required init?(coder aDecoder: NSCoder)

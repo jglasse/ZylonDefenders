@@ -140,21 +140,23 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
  
     
     @IBAction func Up(_ sender: UIButton) {
-        self.cameraNode.rotation.x += 5
-        print(self.cameraNode.rotation.x);
-        print(" self.starfield.acceleration.y:\(self.starfield.acceleration.y)")
+        self.cameraNode.eulerAngles.x += 0.1
         
     }
     
     @IBAction func Down(_ sender: Any) {
-        self.starfield.acceleration.y -= Constants.thrustAmount
+        self.cameraNode.eulerAngles.x -= 0.1
         
     }
     
     @IBAction func Right(_ sender: UIButton) {
+        self.cameraNode.eulerAngles.y -= 0.1
+
     }
     
     @IBAction func Left(_ sender: UIButton) {
+        self.cameraNode.eulerAngles.y += 0.1
+
     }
     
     
@@ -224,15 +226,19 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
     {
         let displaySpeed = Int(value)
         currentSpeed.text = "\(displaySpeed)"
-        starfield.speedFactor = CGFloat(0.4 * value)
+        SCNTransaction.begin()
+        let speedChange = abs(value - Float(starfield.speedFactor))
         
+        SCNTransaction.animationDuration = 0.5 * Double(speedChange)
+
+        starfield.speedFactor = CGFloat(0.4 * value)
+        SCNTransaction.commit()
         if (value == 0)
         {
-            SCNTransaction.animationDuration = 0.5
             SCNTransaction.begin()
+            SCNTransaction.animationDuration = 0.5
             starfield.speedFactor = 0
             SCNTransaction.commit()
-            SCNTransaction.animationDuration = 0.0
 
             if #available(iOS 10.0, *) {
                 engineSound.setVolume(0, fadeDuration: 1.0)
@@ -386,43 +392,47 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
     
     func setupMotion()
     {
-      motionManager = CMMotionManager()
-      motionManager.accelerometerUpdateInterval = 0.3
+//      motionManager = CMMotionManager()
+//      motionManager.accelerometerUpdateInterval = 0.3
+//        
+//        
+//      // motionManager.startAccelerometerUpdates(to: OperationQueue.current!) { (accelerometerData, error) in
+//          //  let acceleration = accelerometerData?.acceleration
+//        
+//         //   let accelX = Float(4.8 * (acceleration?.y)!)
+//         //   let accelY = Float(4.8 * (acceleration?.x)!)
+//        
+//       //  }
+//
+//
+//      motionManager.startGyroUpdates(to: OperationQueue.current!, withHandler: { (gyroData: CMGyroData?, NSError) -> Void in
+//            self.checkMotion(gyro: gyroData!.rotationRate)
+//            if (NSError != nil){
+//                print("\(String(describing: NSError))")
+//            }
         
-        
-      // motionManager.startAccelerometerUpdates(to: OperationQueue.current!) { (accelerometerData, error) in
-          //  let acceleration = accelerometerData?.acceleration
-        
-         //   let accelX = Float(4.8 * (acceleration?.y)!)
-         //   let accelY = Float(4.8 * (acceleration?.x)!)
-        
-       //  }
-
-
-      motionManager.startGyroUpdates(to: OperationQueue.current!, withHandler: { (gyroData: CMGyroData?, NSError) -> Void in
-            self.checkMotion(gyro: gyroData!.rotationRate)
-            if (NSError != nil){
-                print("\(String(describing: NSError))")
-            }
             
-            
-        })
-      
+//        })
+//      
         
         
     }
     
     //MARK: -  Game Event functions
     func performWarp() {
-        let warpGridEntryShape = SCNTube(innerRadius: 2, outerRadius: 2, height: 70)
+        setSpeed(9)
+        let warpGridEntryShape = SCNTube(innerRadius: 2, outerRadius: 2, height: 100)
+        
         let  warpGrid = SCNNode()
         warpGrid.geometry  = warpGridEntryShape
+        
         
         warpGrid.geometry?.firstMaterial = SCNMaterial()
         let innerTube = SCNMaterial()
         innerTube.diffuse.contents =  UIColor.black
         innerTube.emission.contents =  UIImage(named:"smallestGrid.png")
         
+        warpGrid.opacity = 0.25
         let outerTube = SCNMaterial()
         outerTube.emission.contents =  UIImage(named:"smallestGrid.png")
         outerTube.diffuse.contents = UIColor.black
@@ -437,9 +447,9 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
         warpGrid.physicsBody?.applyForce(SCNVector3Make(0,0,35), asImpulse: true)
         warpGrid.physicsBody?.friction = 0
         warpGrid.physicsBody?.categoryBitMask = 0b00000010
-        warpGrid.physicsBody?.contactTestBitMask = 0b00000010
+        warpGrid.physicsBody?.contactTestBitMask = 0b00000000
         warpGrid.name = "warpGrid"
-        warpGrid.geometry?.firstMaterial?.isDoubleSided = true
+       // warpGrid.geometry?.firstMaterial?.isDoubleSided = true
         warpGrid.geometry?.materials = [outerTube,innerTube,endOne,endTwo]
         // warpGrid.pivot = SCNMatrix4MakeTranslation(0.5, 0.5, 0.5)
         warpGrid.rotation = SCNVector4(x: 1, y: 0, z: 0, w: Float(Double.pi / 2))
@@ -447,6 +457,37 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
         warpGrid.position = SCNVector3Make(0, 0, -130)
         warpGrid.scale = SCNVector3Make(1,1,1)
         
+        // Speed boost!
+        SCNTransaction.begin()
+        SCNTransaction.animationDuration = 1.0
+        
+        let pov = scnView.pointOfView!
+        cameraNode.camera?.xFov = 100.0
+        
+        if #available(iOS 10.0, *) {
+                pov.camera?.motionBlurIntensity = 1.0
+        } else {
+            // no motionCameraBlur
+        }
+        
+        let adjustCamera = SCNAction.run { _ in
+            SCNTransaction.begin()
+            SCNTransaction.animationDuration = 1.0
+            warpGrid.physicsBody?.applyForce(SCNVector3Make(0,0,45), asImpulse: true)
+            self.cameraNode.camera?.xFov = 70
+            if #available(iOS 10.0, *) {
+                pov.camera?.motionBlurIntensity = 0.0
+            } else {
+                // Fallback on earlier versions
+            }
+            self.enterSector()
+            SCNTransaction.commit()
+        }
+        
+        pov.runAction(.sequence([.wait(duration: 2.0), adjustCamera]))
+        
+        SCNTransaction.commit()
+
         
     }
     func enterSector()
@@ -475,7 +516,6 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
         computerVoice = AVQueuePlayer(items: audioItems)
         computerVoice.volume = 1
         computerVoice.play()
-        
         
     }
 

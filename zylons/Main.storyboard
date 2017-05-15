@@ -90,6 +90,28 @@
                                     <action selector="toggleView:" destination="BV1-FR-VrT" eventType="touchUpInside" id="vMe-A4-X6C"/>
                                 </connections>
                             </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="80" translatesAutoresizingMaskIntoConstraints="NO" id="oM1-qu-uVV" userLabel="LeftRight">
+                                <rect key="frame" x="20" y="219" width="146" height="30"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Ps-Ib-BCy">
+                                        <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
+                                        <state key="normal" title="Left"/>
+                                        <connections>
+                                            <action selector="Left:" destination="BV1-FR-VrT" eventType="touchDown" id="1AP-Ne-6rp"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9OF-Ka-cPQ">
+                                        <rect key="frame" x="110" y="0.0" width="36" height="30"/>
+                                        <state key="normal" title="Right"/>
+                                        <connections>
+                                            <action selector="Right:" destination="BV1-FR-VrT" eventType="touchDown" id="xJx-uE-hOg"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="cPG-5Q-eqi"/>
+                                </constraints>
+                            </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UfY-Ip-g2Z">
                                 <rect key="frame" x="126" y="323.5" width="30" height="18.5"/>
                                 <constraints>
@@ -99,6 +121,33 @@
                                 <color key="textColor" red="0.0053549790754914284" green="0.41515737771987915" blue="0.86551386117935181" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="80" translatesAutoresizingMaskIntoConstraints="NO" id="x7E-zj-YIL" userLabel="UpDown">
+                                <rect key="frame" x="74" y="184" width="39" height="100"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FVa-VX-zOc">
+                                        <rect key="frame" x="0.0" y="0.0" width="39" height="0.0"/>
+                                        <gestureRecognizers/>
+                                        <state key="normal" title="Up"/>
+                                        <connections>
+                                            <action selector="Up:" destination="BV1-FR-VrT" eventType="touchDown" id="J6n-JW-ZrP"/>
+                                            <action selector="Up:" destination="BV1-FR-VrT" eventType="touchDownRepeat" id="kHZ-Aw-lQT"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7g7-Pe-2X3">
+                                        <rect key="frame" x="0.0" y="80" width="39" height="20"/>
+                                        <gestureRecognizers/>
+                                        <state key="normal" title="Down"/>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="6gR-sg-tcW" appends="YES" id="JJM-PW-ysH"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="39" id="pZC-EZ-WbW"/>
+                                    <constraint firstAttribute="height" constant="100" id="qHS-z7-3EI"/>
+                                </constraints>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -106,12 +155,16 @@
                             <constraint firstItem="iII-jG-TtQ" firstAttribute="centerY" secondItem="to0-eG-n4V" secondAttribute="centerY" id="4Me-Yu-yzB"/>
                             <constraint firstItem="UfY-Ip-g2Z" firstAttribute="leading" secondItem="to0-eG-n4V" secondAttribute="trailing" constant="12" id="9ec-U8-1c4"/>
                             <constraint firstItem="rab-IC-0Oq" firstAttribute="leading" secondItem="2sP-pn-M7j" secondAttribute="trailing" constant="45" id="Q3r-5A-xFy"/>
+                            <constraint firstItem="to0-eG-n4V" firstAttribute="top" secondItem="oM1-qu-uVV" secondAttribute="bottom" constant="69" id="SQh-pq-d6T"/>
                             <constraint firstAttribute="trailingMargin" secondItem="rab-IC-0Oq" secondAttribute="trailing" constant="22" id="V5t-k1-CAN"/>
                             <constraint firstItem="iII-jG-TtQ" firstAttribute="leading" secondItem="ZGc-WM-dzj" secondAttribute="trailing" constant="46" id="Ydf-S8-dxK"/>
                             <constraint firstItem="2sP-pn-M7j" firstAttribute="leading" secondItem="iII-jG-TtQ" secondAttribute="trailing" constant="45" id="deM-sv-rTT"/>
+                            <constraint firstItem="x7E-zj-YIL" firstAttribute="leading" secondItem="TBr-jy-nsA" secondAttribute="leadingMargin" constant="54" id="e9w-oy-wTV"/>
                             <constraint firstItem="to0-eG-n4V" firstAttribute="leading" secondItem="TBr-jy-nsA" secondAttribute="leadingMargin" id="ePT-Sv-woy"/>
                             <constraint firstItem="ZGc-WM-dzj" firstAttribute="leading" secondItem="Wpd-Z6-Jo1" secondAttribute="trailing" constant="49" id="mhQ-p8-A29"/>
                             <constraint firstItem="Wpd-Z6-Jo1" firstAttribute="centerY" secondItem="to0-eG-n4V" secondAttribute="centerY" id="msM-d7-KT2"/>
+                            <constraint firstItem="oM1-qu-uVV" firstAttribute="leading" secondItem="TBr-jy-nsA" secondAttribute="leading" constant="20" id="q7L-aE-9cJ"/>
+                            <constraint firstItem="to0-eG-n4V" firstAttribute="top" secondItem="x7E-zj-YIL" secondAttribute="bottom" constant="34" id="r7a-qZ-zO1"/>
                             <constraint firstItem="rab-IC-0Oq" firstAttribute="centerY" secondItem="to0-eG-n4V" secondAttribute="centerY" id="tVb-Je-jvy"/>
                             <constraint firstItem="L0B-TD-jaq" firstAttribute="top" secondItem="rab-IC-0Oq" secondAttribute="bottom" constant="29" id="xXu-WV-DQh"/>
                             <constraint firstItem="2sP-pn-M7j" firstAttribute="centerY" secondItem="to0-eG-n4V" secondAttribute="centerY" id="y50-qr-M3c"/>
@@ -151,6 +204,7 @@
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="6gR-sg-tcW"/>
             </objects>
             <point key="canvasLocation" x="31.934032983508249" y="37.600000000000001"/>
         </scene>
