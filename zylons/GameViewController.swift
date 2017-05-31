@@ -46,6 +46,7 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
     
     
     var engineSound: AVAudioPlayer!
+	var warpEngineSound: AVQueuePlayer!
     var shieldSound: AVAudioPlayer!
     var photonSound1: AVAudioPlayer!
     var photonSound2: AVAudioPlayer!
@@ -185,11 +186,16 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
         
     }
     
-    
+	
     
     @IBAction func gridWarp(_ sender: UIButton) {
         performWarp()
-        enterSector()
+		let deadlineTime = DispatchTime.now() + .seconds(7)
+		DispatchQueue.main.asyncAfter(deadline: deadlineTime)
+		{
+			self.enterSector()
+			self.setSpeed(1.0)
+		}
     }
     @IBAction func speedChanged(_ sender: UIStepper)
     {
@@ -320,7 +326,7 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
 
         
     }
-    
+	
     func setupScene()
     {
         scene = SCNScene()
@@ -337,25 +343,32 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
         scnView.delegate = self
 
         
-        var soundURL:URL?
-        soundURL = Bundle.main.url(forResource: "ship_hum", withExtension:"mp3")
-        try! engineSound = AVAudioPlayer(contentsOf: soundURL!)
-        engineSound.numberOfLoops = -1
-        engineSound.volume = 1
-        engineSound.play()
-        
-        
-        currentPhoton = 0
-        soundURL = Bundle.main.url(forResource: "photon_sound", withExtension:"mp3")
-        try! photonSound1 = AVAudioPlayer(contentsOf: soundURL!)
-        try! photonSound2 = AVAudioPlayer(contentsOf: soundURL!)
-        try! photonSound3 = AVAudioPlayer(contentsOf: soundURL!)
-        try! photonSound4 = AVAudioPlayer(contentsOf: soundURL!)
-        
+		playEngineSound(volume:1)
+		
+		setupPhotonSounds()
     }
-    
+	
+	func playEngineSound(volume: Float){
+		var soundURL:URL?
+		soundURL = Bundle.main.url(forResource: "ship_hum", withExtension:"mp3")
+		try! engineSound = AVAudioPlayer(contentsOf: soundURL!)
+		engineSound.numberOfLoops = -1
+		engineSound.volume = volume
+		engineSound.play()
+	}
+	
+	func setupPhotonSounds()
+	{
+		var soundURL:URL?
+		currentPhoton = 0
+		soundURL = Bundle.main.url(forResource: "photon_sound", withExtension:"mp3")
+		try! photonSound1 = AVAudioPlayer(contentsOf: soundURL!)
+		try! photonSound2 = AVAudioPlayer(contentsOf: soundURL!)
+		try! photonSound3 = AVAudioPlayer(contentsOf: soundURL!)
+		try! photonSound4 = AVAudioPlayer(contentsOf: soundURL!)
+}
+	
     func setupCamera()
-        
     {
 
  
@@ -420,8 +433,25 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
     
     //MARK: -  Game Event functions
     func performWarp() {
-        setSpeed(9)
-        let warpGridEntryShape = SCNTube(innerRadius: 2, outerRadius: 2, height: 100)
+		
+		
+		
+		var audioItems: [AVPlayerItem] = []
+		let soundURL = Bundle.main.url(forResource: "warpStart", withExtension:"aif")
+		let engineStart = AVPlayerItem(url: soundURL!)
+		let soundURL2 = Bundle.main.url(forResource: "warpEnd", withExtension:"aif")
+		let engineEnd = AVPlayerItem(url: soundURL2!)
+
+
+		audioItems.append(engineStart)
+		audioItems.append(engineEnd)
+		warpEngineSound = AVQueuePlayer(items: audioItems)
+		warpEngineSound.volume = 1
+		warpEngineSound.play()
+
+		
+		
+        let warpGridEntryShape = SCNTube(innerRadius: 2, outerRadius: 2, height: 200)
         
         let  warpGrid = SCNNode()
         warpGrid.geometry  = warpGridEntryShape
@@ -441,7 +471,7 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
         let endTwo = SCNMaterial()
         endTwo.diffuse.contents =  UIColor.purple
         
-        
+		
         warpGrid.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
         warpGrid.physicsBody?.isAffectedByGravity = false
         warpGrid.physicsBody?.applyForce(SCNVector3Make(0,0,35), asImpulse: true)
@@ -453,26 +483,25 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
         warpGrid.geometry?.materials = [outerTube,innerTube,endOne,endTwo]
         // warpGrid.pivot = SCNMatrix4MakeTranslation(0.5, 0.5, 0.5)
         warpGrid.rotation = SCNVector4(x: 1, y: 0, z: 0, w: Float(Double.pi / 2))
-        scene.rootNode.addChildNode(warpGrid)
-        warpGrid.position = SCNVector3Make(0, 0, -130)
-        warpGrid.scale = SCNVector3Make(1,1,1)
-        
+        warpGrid.position = SCNVector3Make(0, 0, -260)
+		warpGrid.scale = SCNVector3Make(1,1,1)
+		scene.rootNode.addChildNode(warpGrid)
+		
         // Speed boost!
-        SCNTransaction.begin()
-        SCNTransaction.animationDuration = 1.0
-        
+		
         let pov = scnView.pointOfView!
-        cameraNode.camera?.xFov = 100.0
+        //cameraNode.camera?.xFov = 100.0
         
         if #available(iOS 10.0, *) {
                 pov.camera?.motionBlurIntensity = 1.0
         } else {
             // no motionCameraBlur
         }
-        
+		
+		
         let adjustCamera = SCNAction.run { _ in
-            SCNTransaction.begin()
-            SCNTransaction.animationDuration = 1.0
+			self.setSpeed(9)
+            SCNTransaction.animationDuration = 5.0
             warpGrid.physicsBody?.applyForce(SCNVector3Make(0,0,45), asImpulse: true)
             self.cameraNode.camera?.xFov = 70
             if #available(iOS 10.0, *) {
@@ -480,11 +509,10 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
             } else {
                 // Fallback on earlier versions
             }
-            self.enterSector()
             SCNTransaction.commit()
         }
         
-        pov.runAction(.sequence([.wait(duration: 2.0), adjustCamera]))
+        pov.runAction(.sequence([.wait(duration: 0.0), adjustCamera]))
         
         SCNTransaction.commit()
 
@@ -603,6 +631,8 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
             let particleSystem = SCNParticleSystem(named: "Explosion", inDirectory: nil)
             let explosionNode = SCNNode()
             explosionNode.name = "explosionNode"
+			explosionNode.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
+			explosionNode.physicsBody?.applyForce(SCNVector3Make(0,0,35), asImpulse: true)
             explosionNode.addParticleSystem(particleSystem!)
          if (contact.nodeA.name != "torpedo")
             {
