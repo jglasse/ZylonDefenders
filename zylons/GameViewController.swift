@@ -41,9 +41,12 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
     var cameraNode = SCNNode()
     var rearCameraNode = SCNNode()
     var starfield: SCNParticleSystem!
-    var shipHud: HUD!
     var enemyDrone:SCNNode!
-    
+	
+	var ship = Ship()
+	var shipHud: HUD!
+
+	
     
     var engineSound: AVAudioPlayer!
 	var warpEngineSound: AVQueuePlayer!
@@ -84,20 +87,16 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
     
     @IBAction func toggleView(_ sender: UIButton) {
         
-        if sender.currentTitle == "FORE"
+		if scnView.pointOfView == cameraNode
         {
-            print("Aft Cam")
-            sender.setTitle("AFT", for: .normal)
-            scnView.pointOfView = rearCameraNode
+			sender.setTitle("AFT", for: .normal)
+            aftView()
         }
             
         else
         {
-            print("Forward Cam")
-            
-            sender.setTitle("FORE", for: .normal)
-            scnView.pointOfView = cameraNode
-            
+			sender.setTitle("FORE", for: .normal)
+            foreView()
         }
         computerBeepSound("beep")
 
@@ -116,13 +115,31 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
             
             let torpedoSparkle = SCNParticleSystem(named: "Torpedo", inDirectory: "")
             torpedoNode.addParticleSystem(torpedoSparkle!)
-            scene.rootNode.addChildNode(torpedoNode)
-            torpedoNode.position = SCNVector3Make(0, -2, 0)
-            torpedoNode.physicsBody?.applyForce(SCNVector3Make(0,3,-75), asImpulse: true)
-            
-            let photonSoundArray = [photonSound1,photonSound2,photonSound3,photonSound4]
-            let currentplayer = photonSoundArray[currentPhoton]
-            
+			let photonSoundArray = [photonSound1,photonSound2,photonSound3,photonSound4]
+			let currentplayer = photonSoundArray[currentPhoton]
+			
+			scene.rootNode.addChildNode(torpedoNode)
+			let driftAmount: Float = 2
+			let offset: Float = 5
+			let forceAmount: Float = -95
+			if ship.currentTorpedoBay == 1
+			{
+			ship.currentTorpedoBay = 2
+            torpedoNode.position = SCNVector3Make(offset, -2, 0)
+            torpedoNode.physicsBody?.applyForce(SCNVector3Make(-driftAmount,1.7,forceAmount), asImpulse: true)
+            }
+			
+			else
+			{
+				ship.currentTorpedoBay = 1
+
+				torpedoNode.position = SCNVector3Make(-offset, -2, 0)
+				torpedoNode.physicsBody?.applyForce(SCNVector3Make(driftAmount,1.7,forceAmount), asImpulse: true)
+				
+			}
+			
+			
+			
             currentplayer?.play()
             currentPhoton = currentPhoton+1
             if currentPhoton>(photonSoundArray.count - 1) {currentPhoton = 0}
@@ -181,7 +198,7 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
         enemyDrone?.physicsBody?.applyTorque(SCNVector4Make(1,0.0,1,10), asImpulse: true)
         enemyDrone?.pivot = SCNMatrix4MakeTranslation(0.5, 0.5, 0.5)
         scene.rootNode.addChildNode(enemyDrone!)
-        enemyDrone?.position = SCNVector3Make(0, 0, -50)
+        enemyDrone?.position = SCNVector3Make(0, 0, -70)
         enemyDrone?.scale = SCNVector3Make(1,1,1)
         
     }
@@ -232,10 +249,11 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
     {
         let displaySpeed = Int(value)
         currentSpeed.text = "\(displaySpeed)"
-        SCNTransaction.begin()
+		
         let speedChange = abs(value - Float(starfield.speedFactor))
         
         SCNTransaction.animationDuration = 0.5 * Double(speedChange)
+		SCNTransaction.begin()
 
         starfield.speedFactor = CGFloat(0.4 * value)
         SCNTransaction.commit()
@@ -251,6 +269,7 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
             } else {
                 engineSound.volume = 0
             }
+			 SCNTransaction.animationDuration = 0.0
             
         }
         
@@ -270,14 +289,14 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
   
     
     func aftView() {
+		SCNTransaction.animationDuration = 0.0
         scnView.pointOfView = rearCameraNode
-        computerBeepSound("beep")
-        
+		
     }
     
     func foreView() {
+		SCNTransaction.animationDuration = 0.0
         scnView.pointOfView = cameraNode
-        computerBeepSound("beep")
 
     }
     
@@ -303,7 +322,7 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
         setupView()
         setupMotion()
         setupScene()
-        setupCamera()
+        setupShip()
         myMCController.setup()
         myMCController.myCommandDelegate = self
         shipHud.myscene = self
@@ -346,6 +365,8 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
 		playEngineSound(volume:1)
 		
 		setupPhotonSounds()
+		
+		
     }
 	
 	func playEngineSound(volume: Float){
@@ -368,25 +389,26 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
 		try! photonSound4 = AVAudioPlayer(contentsOf: soundURL!)
 }
 	
-    func setupCamera()
+    func setupShip()
     {
 
- 
+		scene.rootNode.addChildNode(self.ship)
+		self.ship.position = SCNVector3(x: 0, y: 0, z: 0)
         cameraNode.camera = SCNCamera()
         cameraNode.position = SCNVector3(x: 0, y: 0, z: 0)
         print(cameraNode.rotation)
         cameraNode.name = "camera"
         cameraNode.camera?.zFar = 260
-        scene.rootNode.addChildNode(cameraNode)
+		
+		self.ship.addChildNode(cameraNode)
         
         rearCameraNode.camera=SCNCamera()
         rearCameraNode.position = SCNVector3(x: 0, y: 0, z: 0)
         rearCameraNode.rotation = SCNVector4(x: 1.0, y: 0.0, z: 0.0, w: Float.pi)
         rearCameraNode.name = "rearCamera"
         rearCameraNode.camera?.zFar = 260
-        scene.rootNode.addChildNode(rearCameraNode)
+        self.ship.addChildNode(rearCameraNode)
 
-        
         let particlesNode = SCNNode()
         starfield = SCNParticleSystem(named: "starField", inDirectory: "")
         starfield.speedFactor = CGFloat(2)
@@ -632,7 +654,7 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
             let explosionNode = SCNNode()
             explosionNode.name = "explosionNode"
 			explosionNode.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
-			explosionNode.physicsBody?.applyForce(SCNVector3Make(0,0,35), asImpulse: true)
+			explosionNode.physicsBody?.applyForce(SCNVector3Make(0,0,75), asImpulse: true)
             explosionNode.addParticleSystem(particleSystem!)
          if (contact.nodeA.name != "torpedo")
             {

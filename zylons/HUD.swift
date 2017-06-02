@@ -17,12 +17,12 @@ class HUD: SKScene
     var shields:SKShapeNode!
     var crosshairs:SKSpriteNode!
     var myscene: GameViewController?
-    var computerStatus = SKLabelNode()
+    public var computerStatus = SKLabelNode()
     public var joystick:AnalogJoystick!
     var timer: Timer?
     var currentComputerStatusColor = UIColor.clear
     
-    func updateComputerDisplay() {
+    func blinkComputerDisplay() {
         if computerStatus.fontColor == currentComputerStatusColor
         {computerStatus.fontColor = UIColor.clear}
             else
@@ -50,7 +50,7 @@ class HUD: SKScene
         
         
         crosshairs=SKSpriteNode(imageNamed:"xenonHUD")
-        crosshairs.position = CGPoint(x:self.frame.midX, y: self.frame.midY+10)
+        crosshairs.position = CGPoint(x:self.frame.midX, y: self.frame.midY)
         self.addChild(crosshairs)
         let joystick = AnalogJoystick(diameters: (70, 30), colors: (UIColor.green, UIColor.init(red: 0, green: 0, blue: 200, alpha: 100)))
     
@@ -72,7 +72,7 @@ class HUD: SKScene
     func scheduleTimer() {
         DispatchQueue.main.async {
             self.timer = Timer.scheduledTimer(timeInterval: 1, target: self,
-                                              selector: #selector(self.updateComputerDisplay), userInfo: nil, repeats: true)
+                                              selector: #selector(self.blinkComputerDisplay), userInfo: nil, repeats: true)
         }
     }
     
