@@ -20,6 +20,10 @@ struct galaxyMap {
 }
 class Ship: SCNNode {
 	
+	var currentSpeed = 0
+	var shields =  false
+	
+	
 	var currentSector = Sector()
 	var engineHealth = 100
 	var shieldStrength = 100
