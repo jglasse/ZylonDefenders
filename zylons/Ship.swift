@@ -15,19 +15,22 @@ struct Sector {
 	var z = 0
 }
 
-struct galaxyMap {
 
-}
-class Ship: SCNNode {
-	
+class ZylonShip: SCNNode {
+	var shields = false
 	var currentSpeed = 0
-	var shields =  false
-	
-	
 	var currentSector = Sector()
 	var engineHealth = 100
 	var shieldStrength = 100
 	var energyStore = 10000
-	var shieldsUp = false
 	var currentTorpedoBay = 1
+	
+	// orintation angles
+	var theta = 0.0
+	var phi = 0.0
+	
+	
+	var range = [Float]()
+	
+	
 }

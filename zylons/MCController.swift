@@ -50,11 +50,8 @@ class MCController: NSObject, MCSessionDelegate, MCNearbyServiceBrowserDelegate,
         }
         
     }
-   
-    
 
     func toggleService(){
-        
         if !serviceStarted
         {
             serviceStarted = true
@@ -72,16 +69,13 @@ class MCController: NSObject, MCSessionDelegate, MCNearbyServiceBrowserDelegate,
             print("stoppedBrowsing")
         }
     }
-    
-    
-    
+	
     // MARK: - Advertiser Delegate
     public func advertiser(_ advertiser: MCNearbyServiceAdvertiser, didReceiveInvitationFromPeer peerID: MCPeerID, withContext context: Data?, invitationHandler: @escaping (Bool, MCSession?) -> Void) {
         invitationHandler(true, self.session)
         
     }
-
-    
+	
     // MARK: - Browser Delegate
     func browser(_ browser: MCNearbyServiceBrowser, foundPeer peerID: MCPeerID, withDiscoveryInfo info: [String : String]?)
     {
@@ -95,7 +89,6 @@ class MCController: NSObject, MCSessionDelegate, MCNearbyServiceBrowserDelegate,
         print("Lost Peer: \(peerID.displayName)")
 
     }
-
     
     // MARK: - Session Delegate
     
@@ -108,7 +101,6 @@ class MCController: NSObject, MCSessionDelegate, MCNearbyServiceBrowserDelegate,
             print("Connected!")
         }
     }
-
     
     // Received data from remote peer.
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID)
@@ -116,8 +108,6 @@ class MCController: NSObject, MCSessionDelegate, MCNearbyServiceBrowserDelegate,
         let receivedCommand = String(data: data, encoding: .utf8)
         self.myCommandDelegate?.execute(command: receivedCommand!)
     }
-    
-    
     
     // Received byte stream from remote peer.
     func session(_ session: MCSession, didReceive stream: InputStream, withName streamName: String, fromPeer peerID: MCPeerID) {}
@@ -128,13 +118,12 @@ class MCController: NSObject, MCSessionDelegate, MCNearbyServiceBrowserDelegate,
     
     
     // Finished receiving a resource
-    func session(_ session: MCSession, didFinishReceivingResourceWithName resourceName: String, fromPeer peerID: MCPeerID, at localURL: URL, withError error: Error?) {}
+	func session(_ session: MCSession, didFinishReceivingResourceWithName resourceName: String, fromPeer peerID: MCPeerID, at localURL: URL?, withError error: Error?) {}
     
 }
 
 extension MCController: CommandDelegate
 {
-
     func execute(command:String){
         print("Received command: \(command)")
     }

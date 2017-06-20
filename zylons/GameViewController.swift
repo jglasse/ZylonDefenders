@@ -41,8 +41,8 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
     var rearCameraNode = SCNNode()
 	var particlesNode = SCNNode()
 
-    var starfield: SCNParticleSystem!
 	var starSprites = [SCNNode]()
+	let sectorObjectsNode = SCNNode()
 	
 	
     var enemyDrone:SCNNode!
@@ -83,16 +83,22 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
     // MARK:  - IBOutlets and Actions
     
 
-    
-    @IBOutlet weak var currentSpeed: UILabel!
-
+	@IBOutlet weak var tacticalDisplay: UIView!
+	
+	@IBAction func showTactical(_ sender: Any) {
+			tacticalDisplay.isHidden = !tacticalDisplay.isHidden
+		
+	}
+	
     @IBOutlet weak var joystickSettings: UILabel!
     
-    @IBOutlet weak var viewButton: UIButton!
+	@IBOutlet weak var currentSpeed: UILabel!
+	@IBOutlet weak var viewButton: UIButton!
     
     
     @IBAction func toggleView(_ sender: UIButton) {
-        
+		SCNTransaction.animationDuration = 0.4
+
 		if scnView.pointOfView == cameraNode
         {
 			sender.setTitle("AFT", for: .normal)
@@ -105,6 +111,8 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
             foreView()
         }
         computerBeepSound("beep")
+		SCNTransaction.animationDuration = 0.0
+
 
         
     }
@@ -163,22 +171,22 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
 	let rotateAmount: Float = 0.5
 	
     @IBAction func Up(_ sender: UIButton) {
-        particlesNode.eulerAngles.x += rotateAmount
-        
+//        particlesNode.eulerAngles.x += rotateAmount
+		
     }
     
     @IBAction func Down(_ sender: Any) {
-        self.particlesNode.eulerAngles.x -= rotateAmount
-        
+//        self.particlesNode.eulerAngles.x -= rotateAmount
+		
     }
     
     @IBAction func Right(_ sender: UIButton) {
-        self.particlesNode.eulerAngles.y -= rotateAmount
+//        self.particlesNode.eulerAngles.y -= rotateAmount
 
     }
     
     @IBAction func Left(_ sender: UIButton) {
-        self.particlesNode.eulerAngles.y += rotateAmount
+//        self.particlesNode.eulerAngles.y += rotateAmount
 
     }
     
@@ -202,29 +210,32 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
         enemyDrone?.name = "drone"
         enemyDrone?.physicsBody?.applyTorque(SCNVector4Make(1,0.0,1,10), asImpulse: true)
         enemyDrone?.pivot = SCNMatrix4MakeTranslation(0.5, 0.5, 0.5)
-        scene.rootNode.addChildNode(enemyDrone!)
+        sectorObjectsNode.addChildNode(enemyDrone!)
         enemyDrone?.position = SCNVector3Make(0, 0, -70)
         enemyDrone?.scale = SCNVector3Make(1,1,1)
         
     }
     
 	
-    
-    @IBAction func gridWarp(_ sender: UIButton) {
+	
+	@IBOutlet weak var stepperSpeed: UIStepper!
+	@IBAction func gridWarp(_ sender: UIButton) {
         performWarp()
 		let deadlineTime = DispatchTime.now() + .seconds(6)
 		DispatchQueue.main.asyncAfter(deadline: deadlineTime)
 		{
 			self.enterSector()
-			self.setSpeed(1.0)
+			self.setSpeed(1)
 		}
     }
+	
+	
     @IBAction func speedChanged(_ sender: UIStepper)
     {
         computerBeepSound("beep")
         let targetSpeed = sender.value
 		
-        setSpeed(Float(targetSpeed))
+        setSpeed(Int(targetSpeed))
         
     }
     
@@ -250,58 +261,34 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
     }
     
    
-    func setSpeed(_ value: Float)
+    func setSpeed(_ newSpeed: Int)
     {
-		ship.currentSpeed =  Int(value)
-        let displaySpeed = Int(value)
-        currentSpeed.text = "\(displaySpeed)"
-		
-        let speedChange = abs(value - Float(starfield.speedFactor))
-        
-        SCNTransaction.animationDuration = 0.5 * Double(speedChange)
+		let speedChange = abs(newSpeed - ship.currentSpeed)
+        SCNTransaction.animationDuration = 2.0 * Double(speedChange)
 		SCNTransaction.begin()
-
-        starfield.speedFactor = CGFloat(0.4 * value)
+		ship.currentSpeed = newSpeed
+		currentSpeed.text = "\(ship.currentSpeed)"
         SCNTransaction.commit()
-        if (value == 0)
+        if (newSpeed == 0)
         {
-            SCNTransaction.begin()
-            SCNTransaction.animationDuration = 0.5
-            starfield.speedFactor = 0
-            SCNTransaction.commit()
-
-            if #available(iOS 10.0, *) {
-                engineSound.setVolume(0, fadeDuration: 1.0)
-            } else {
-                engineSound.volume = 0
-            }
-			 SCNTransaction.animationDuration = 0.0
-            
+			engineSound.setVolume(0, fadeDuration: 1.0)
         }
-        
-        if (value == 1)
+        if (newSpeed == 1)
         {
-            SCNTransaction.animationDuration = 1.0
-            starfield.speedFactor = CGFloat(1)
-            if #available(iOS 10.0, *) {
-                engineSound.setVolume(1, fadeDuration: 1.0)
-            } else {
-                // Fallback on earlier versions
-            }
-        }
+			engineSound.setVolume(1, fadeDuration: 1.0)
+		}
+		
     }
     
     
   
     
     func aftView() {
-		SCNTransaction.animationDuration = 0.4
         scnView.pointOfView = rearCameraNode
 		
     }
     
     func foreView() {
-		SCNTransaction.animationDuration = 0.4
         scnView.pointOfView = cameraNode
 
     }
@@ -313,8 +300,9 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
         
     }
     
-    func toggleShields()
+	func toggleShields()
     {
+		
         shipHud.toggleShields()
         computerBeepSound("shields")
     }
@@ -395,12 +383,13 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
 	
 	func updateStars(){
 		for star in self.starSprites{
+			// TODO: refactor to calculate ship vector on all three axes
 		star.position.z += Float(ship.currentSpeed)
 				if star.position.z > 400
 				{
 					star.position.z = randRange(lower: -400, upper: -200)
-					star.position.x = randRange(lower: -200, upper: 200)
-					star.position.y = randRange(lower: -200, upper: 200)
+					star.position.x = randRange(lower: -100, upper: 100)
+					star.position.y = randRange(lower: -100, upper: 100)
 				}
 			}
 
@@ -410,15 +399,14 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
 	
 	func createStars()
 	{
-		let starSpritesNode = SCNNode()
-		starSpritesNode.name = "starSpritesNode"
-		scene.rootNode.addChildNode(starSpritesNode)
-		for _ in 1...600{
-			let x = randRange(lower: -200, upper: 200)
-			let y = randRange(lower: -200, upper: 200)
+		sectorObjectsNode.name = "sectorObjectsNode"
+		
+		scene.rootNode.addChildNode(sectorObjectsNode)
+		for _ in 1...300{
+			let x = randRange(lower: -50, upper: 50)
+			let y = randRange(lower: -50, upper: 50)
 			let z = randRange(lower: -400, upper: 400)
-
-			let sphere = SCNSphere(radius: 0.5)
+			let sphere = SCNSphere(radius: 0.25)
 			let starSprite = SCNNode()
 			starSprite.geometry  = sphere
 			starSprite.position.x = x
@@ -428,7 +416,9 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
 			starSprite.geometry?.firstMaterial?.diffuse.contents = UIColor.white
 			starSprite.name = "star"
 			starSprites.append(starSprite)
-			scene.rootNode.addChildNode(starSprite)
+			sectorObjectsNode.addChildNode(starSprite)
+			sectorObjectsNode.renderingOrder = -1
+
 		}
 	
 	
@@ -437,14 +427,16 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
 	
     func setupShip()
     {
-
 		scene.rootNode.addChildNode(self.ship)
 		self.ship.position = SCNVector3(x: 0, y: 0, z: 0)
         cameraNode.camera = SCNCamera()
+		cameraNode.camera?.focalSize = 700
         cameraNode.position = SCNVector3(x: 0, y: 0, z: 0)
         print(cameraNode.rotation)
         cameraNode.name = "camera"
         cameraNode.camera?.zFar = 500
+		//cameraNode.camera?.fieldOfView = 120
+		
 		
 		self.ship.addChildNode(cameraNode)
         
@@ -453,16 +445,11 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
         rearCameraNode.rotation = SCNVector4(x: 1.0, y: 0.0, z: 0.0, w: Float.pi)
         rearCameraNode.name = "rearCamera"
         rearCameraNode.camera?.zFar = 400
+		
         self.ship.addChildNode(rearCameraNode)
-
-        starfield = SCNParticleSystem(named: "starField", inDirectory: "")
-        starfield.speedFactor = CGFloat(2)
-        particlesNode.name = "starfield"
-        particlesNode.addParticleSystem(starfield!)
-        particlesNode.position = SCNVector3(x: 0, y: 0, z: -4)
-        
+		ship.currentSpeed = 5
+		
        // cameraNode.addChildNode(particlesNode)
-       // particlesNode.renderingOrder = -1
 
         
       
@@ -515,32 +502,32 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
         warpGrid.physicsBody?.categoryBitMask = 0b00000010
         warpGrid.physicsBody?.contactTestBitMask = 0b00000000
         warpGrid.name = "warpGrid"
+		
        // warpGrid.geometry?.firstMaterial?.isDoubleSided = true
         warpGrid.geometry?.materials = [outerTube,innerTube,endOne,endTwo]
         // warpGrid.pivot = SCNMatrix4MakeTranslation(0.5, 0.5, 0.5)
         warpGrid.rotation = SCNVector4(x: 1, y: 0, z: 0, w: Float(Double.pi / 2))
         warpGrid.position = SCNVector3Make(0, 0, -300)
 		warpGrid.scale = SCNVector3Make(1,1,1)
+		warpGrid.opacity = 0
 		scene.rootNode.addChildNode(warpGrid)
 		
-        // Speed boost!
-		
+        // WARP!
         let pov = scnView.pointOfView!
-        //cameraNode.camera?.xFov = 100.0
-        
-		pov.camera?.motionBlurIntensity = 1.0
-		
 		
         let adjustCamera = SCNAction.run { _ in
-			self.setSpeed(9)
-            SCNTransaction.animationDuration = 4.0
+			
+			self.setSpeed(20)
+			self.stepperSpeed.value = 20
+			warpGrid.opacity = 1
             warpGrid.physicsBody?.applyForce(SCNVector3Make(0,0,55), asImpulse: true)
             self.cameraNode.camera?.xFov = 70
 			pov.camera?.motionBlurIntensity = 0.0
-            SCNTransaction.commit()
         }
-        
-        pov.runAction(.sequence([.wait(duration: 0.0), adjustCamera]))
+		
+		SCNTransaction.begin()
+		SCNTransaction.animationDuration = 4.0
+        pov.runAction(adjustCamera)
         
         SCNTransaction.commit()
 
@@ -568,38 +555,26 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
             audioItems.append(item)
             
         }
-        
         computerVoice = AVQueuePlayer(items: audioItems)
         computerVoice.volume = 1
         computerVoice.play()
-        
     }
-
-    
-    
-    
+	
     //MARK: -  Utility functions
 
     func notYetImplemented(_ command: String) {
-        
         print("\(command) not yet implemented")
-        
     }
 
     func checkMotion(gyro: CMRotationRate)
     {
-        
-        self.starfield.acceleration = SCNVector3(x: Float(gyro.x * -3), y:Float(gyro.y * -3), z: 0)
-
         self.cameraNode.rotation.x = self.cameraNode.rotation.x + Float(gyro.x)
         self.cameraNode.rotation.y = self.cameraNode.rotation.y + Float(gyro.y)
-
         if let tempDrone = self.enemyDrone {
         tempDrone.position.x = self.enemyDrone.position.x - 0.08 * Float(gyro.x)
         tempDrone.position.y = self.enemyDrone.position.y - 0.08 * Float(gyro.y)
 
         }
-        
     }
     
     func cleanScene()
