@@ -1,4 +1,5 @@
-# Zylon Defenders
+![alt text](https://github.com/jglasse/ZylonDefenders/blob/master/zylons/ZylonDefenderTitle.png)
+
 An homage to Star Raiders played from the vantage point of the Zylons.
 
 This is a personal project which serves as a tribute to the greatest game ever written, Star Raiders. 
