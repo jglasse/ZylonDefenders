@@ -47,7 +47,7 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
 	
     var enemyDrone:SCNNode!
 	
-	var ship = Ship()
+	var ship = ZylonShip()
 	var shipHud: HUD!
 
 	
