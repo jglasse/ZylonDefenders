@@ -4,7 +4,7 @@ An homage to Star Raiders played from the vantage point of the Zylons.
 
 This is a personal project which serves as a tribute to the greatest game ever written, Star Raiders. While the first-person space combat simlulator space has seen many impressive efforts (Elite, Wing Commander, Freespace, Star Citizen)  since Doug Neubauer first single-handedly created it in 1979, few have been able to duplicate the perfect balance of strategy and twitch gaming fun that made the original so much fun, and such an impressive work of art. This project attempts to address that, using modern technology to provide a new generation of gamers a glimpse into what made Star Raiders such an important part of videogame history. 
 
-Special thanks  
+Special thanks to Lorenz Wiest for reverse-engineering and commenting the original Star Raiders sourcecode, without whose efforts I would have been unlikely to duplicate the swarming behavior of Zylon (in my case, Humon) ships. 
 
   
 This is also a project I use to explore interesting iOS frameworks, technologies, or programming techniques. The latest
