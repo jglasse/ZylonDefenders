@@ -387,15 +387,16 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
             
             //if star distance is greater than 400 total
             var starScenePosition: SCNVector3
-            starScenePosition = scene.rootNode.convertPosition(star.position, to: nil)
+            starScenePosition = scene.rootNode.convertPosition(star.position, from: sectorObjectsNode)
             starScenePosition.z += Float(ship.currentSpeed)
-            star.position.z += Float(ship.currentSpeed)
-            if star.position.z > 400
+        
+            if starScenePosition.z > 400
             {
-					star.position.z = randRange(lower: -400, upper: -200)
-					star.position.x = randRange(lower: -100, upper: 100)
-					star.position.y = randRange(lower: -100, upper: 100)
+					starScenePosition.z = randRange(lower: -400, upper: -200)
+					starScenePosition.x = randRange(lower: -100, upper: 100)
+					starScenePosition.y = randRange(lower: -100, upper: 100)
             }
+            star.position = scene.rootNode.convertPosition(starScenePosition, to: sectorObjectsNode)
         }
 
 		}
@@ -406,16 +407,14 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
 	{
 		sectorObjectsNode.name = "sectorObjectsNode"
 		scene.rootNode.addChildNode(sectorObjectsNode)
-		for _ in 1...300{
+		for _ in 1...200{
 			let x = randRange(lower: -50, upper: 50)
 			let y = randRange(lower: -50, upper: 50)
 			let z = randRange(lower: -400, upper: 400)
 			let sphere = SCNSphere(radius: 0.25)
 			let starSprite = SCNNode()
 			starSprite.geometry  = sphere
-			starSprite.position.x = x
-			starSprite.position.y = y
-			starSprite.position.z = z
+			starSprite.position = SCNVector3Make(x, y, z)
 			starSprite.geometry?.firstMaterial = SCNMaterial()
 			starSprite.geometry?.firstMaterial?.diffuse.contents = UIColor.white
 			starSprite.name = "star"
@@ -473,7 +472,6 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
 		warpEngineSound.volume = 0.9
 		warpEngineSound.play()
 
-		
         let warpGridEntryShape = SCNTube(innerRadius: 2, outerRadius: 2, height: 220)
 		
         
@@ -523,6 +521,7 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
 			warpGrid.opacity = 1
             warpGrid.physicsBody?.applyForce(SCNVector3Make(0,0,55), asImpulse: true)
             self.cameraNode.camera?.xFov = 70
+            self.cameraNode.camera?.motionBlurIntensity = 1
 			pov.camera?.motionBlurIntensity = 0.0
         }
 		
@@ -585,7 +584,7 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
 			
 			// remove torpedoes - refactor to be time since torpedo launched
 
-            if ((thisNode.presentation.position.z < -300) && (thisNode.name == "torpedo"))
+            if ((thisNode.presentation.position.z < -200) && (thisNode.name == "torpedo"))
             {
                 thisNode.removeFromParentNode()
             }

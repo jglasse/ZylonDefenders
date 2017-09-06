@@ -173,7 +173,7 @@ open class AnalogJoystick: SKNode {
         super.init(coder: aDecoder)
     }
     
-    func listen() {
+    @objc func listen() {
         if tracking {
             trackingHandler?(data)
         }

@@ -25,7 +25,7 @@ class HUD: SKScene
 	
 	var tacticalDisplay = [SKSpriteNode]()
 	
-    func blinkComputerDisplay() {
+    @objc func blinkComputerDisplay() {
         if computerStatus.fontColor == currentComputerStatusColor
         {computerStatus.fontColor = UIColor.clear}
             else
