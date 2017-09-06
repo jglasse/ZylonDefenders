@@ -13,7 +13,7 @@ Despite the reversal of perspective, Zylon Raiders aims to evoke the gameplay st
 This is also a project I use to explore interesting iOS frameworks, technologies, or programming techniques. The latest
 of these is MultiPeer Connectivity, which allows a second iOS device to control the Zylon ship, and introduce gameplay elements to challenge the primary player in much the same way a dungeonmaster might throw challenges at his adventurers.
 
-![alt text](https://github.com/jglasse/ZylonDefenders/blob/master/zylons/Helm1.png)
+![alt text](https://github.com/jglasse/ZylonDefenders/blob/master/zylons/helm1.png)
 
 Others include SceneKit (used for the lion's share of game mechanics) and Spritekit (used for "HUD" display and other interactive 2D graphic elements). Persistent store for the gamestate will be managed by Coredata.
 
