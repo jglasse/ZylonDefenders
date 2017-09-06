@@ -23,7 +23,7 @@ of these is MultiPeer Connectivity, which allows a second iOS device to remotely
 
 Others include SceneKit (used for the lion's share of game mechanics) and Spritekit (used for "HUD" display and other interactive 2D graphic elements). Persistent store for the gamestate will be managed by Coredata.
 
-Special thanks to Lorenz Wiest for reverse-engineering and commenting the original Star Raiders sourcecode, without whose efforts I would have been unlikely to duplicate the "steer your torpedoes into the enemy ship" behavior that made the original so much fun, as well as the swarming behavior of Zylon (in my case, Humon) ships. 
+Special thanks to Lorenz Wiest for reverse-engineering and commenting the original Star Raiders sourcecode, without whose efforts I would have been unlikely to duplicate the "steer your torpedoes into the enemy ship" behavior that made the original so much fun, as well as the swarming behavior of Zylon (in my case, Humon) ships. git 
   
 
 

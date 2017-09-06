@@ -594,6 +594,7 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
 
             if (thisNode.name == "explosionNode")
             {
+                thisNode.presentation.position.z += Float(ship.currentSpeed)*3
 				explosionDuration += 1
 				if explosionDuration > 10
 				{

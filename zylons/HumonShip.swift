@@ -10,7 +10,7 @@ import Foundation
 import SceneKit
 
 class HumonShip: SCNNode {
-	var currentSpeed = 0
+	var currentSpeed = 0.0
 	var shieldStrength = 100
 	var weaponType = 0
 	// orintation angles
