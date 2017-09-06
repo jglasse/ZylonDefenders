@@ -29,6 +29,9 @@ enum ComputerDamage {
 	case autoPilotInoperative
 	case shortRangeScannerInoperative
 	case longRangeScannerInoperative
+    case empathyCircuitFailure
+    
+    
 
 }
 enum ShipDamage {
@@ -36,7 +39,6 @@ enum ShipDamage {
 	case hullBreach
 	case computerDamaged
 	case shipDestroyed
-
 	
 }
 
@@ -55,14 +57,15 @@ class ZylonShip: SCNNode {
 	var shieldStrength = 100
 	var energyStore = 10000
 	var currentTorpedoBay = 1
-	
-	
+    var sectorLocation = locationInSector(x: 500, y: 500, z: 500)
+    var sector = currentSector(sectorX: 30, sectorY: 30, sectorZ: 30)
 	
 	struct locationInSector{
 		var x = 0
 		var y = 0
 		var z = 0
 	}
+    
 	struct currentSector{
 		var sectorX = 0
 		var sectorY = 0
@@ -73,7 +76,6 @@ class ZylonShip: SCNNode {
 		var theta = 0.0
 		var phi = 0.0
 	}
-	
 	
 	
 	struct shipSystems {

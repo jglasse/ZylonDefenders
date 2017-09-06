@@ -384,14 +384,19 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
 	func updateStars(){
 		for star in self.starSprites{
 			// TODO: refactor to calculate ship vector on all three axes
-		star.position.z += Float(ship.currentSpeed)
-				if star.position.z > 400
-				{
+            
+            //if star distance is greater than 400 total
+            var starScenePosition: SCNVector3
+            starScenePosition = scene.rootNode.convertPosition(star.position, to: nil)
+            starScenePosition.z += Float(ship.currentSpeed)
+            star.position.z += Float(ship.currentSpeed)
+            if star.position.z > 400
+            {
 					star.position.z = randRange(lower: -400, upper: -200)
 					star.position.x = randRange(lower: -100, upper: 100)
 					star.position.y = randRange(lower: -100, upper: 100)
-				}
-			}
+            }
+        }
 
 		}
 	
@@ -400,7 +405,6 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
 	func createStars()
 	{
 		sectorObjectsNode.name = "sectorObjectsNode"
-		
 		scene.rootNode.addChildNode(sectorObjectsNode)
 		for _ in 1...300{
 			let x = randRange(lower: -50, upper: 50)
@@ -411,7 +415,7 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
 			starSprite.geometry  = sphere
 			starSprite.position.x = x
 			starSprite.position.y = y
-			starSprite.position.z = -z
+			starSprite.position.z = z
 			starSprite.geometry?.firstMaterial = SCNMaterial()
 			starSprite.geometry?.firstMaterial?.diffuse.contents = UIColor.white
 			starSprite.name = "star"
@@ -420,9 +424,6 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
 			sectorObjectsNode.renderingOrder = -1
 
 		}
-	
-	
-	
 	}
 	
     func setupShip()
