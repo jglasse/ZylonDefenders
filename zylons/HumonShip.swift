@@ -28,11 +28,6 @@ class HumonShip: SCNNode {
 	func newTargetSpeedVector() {
 	}
 	
-	func adjustCourse() {
-	
-	
-	
-	}
 	
 	
 	

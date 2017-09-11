@@ -89,7 +89,7 @@
 			isa = PBXGroup;
 			children = (
 				E13FE0CA1E8ACFBB00CA54A9 /* Default-568h@2x.png */,
-				112F749C1D2D16CA004F1242 /* NewHelm */,
+				112F749C1D2D16CA004F1242 /* Helm */,
 				112F749B1D2D16CA004F1242 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -104,7 +104,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		112F749C1D2D16CA004F1242 /* NewHelm */ = {
+		112F749C1D2D16CA004F1242 /* Helm */ = {
 			isa = PBXGroup;
 			children = (
 				E16B668A1E8B5C4D00F28144 /* MCController.swift */,
@@ -122,8 +122,7 @@
 				E1737F871E9F4CFF00ED4EB5 /* Zylon Helm SCREEN2.png */,
 				E1456DF11E8A7CBB009BF5BD /* Info.plist */,
 			);
-			name = NewHelm;
-			path = BluComm;
+			path = Helm;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

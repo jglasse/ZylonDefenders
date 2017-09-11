@@ -18,7 +18,6 @@ class HUD: SKScene
     var crosshairs:SKSpriteNode!
     var myscene: GameViewController?
     public var computerStatus = SKLabelNode()
-    public var joystick:AnalogJoystick!
     var timer: Timer?
     var currentComputerStatusColor = UIColor.red
 	
@@ -62,48 +61,12 @@ class HUD: SKScene
         crosshairs=SKSpriteNode(imageNamed:"xenonHUD")
         crosshairs.position = CGPoint(x:self.frame.midX, y: self.frame.midY)
         self.addChild(crosshairs)
-        let joystick = AnalogJoystick(diameters: (70, 30), colors: (UIColor.green, UIColor.init(red: 0, green: 0, blue: 200, alpha: 100)))
     
-        joystick.position = CGPoint(x: self.frame.midX/4, y: 120.0)
-        self.addChild(joystick)
         self.addChild(computerStatus)
         self.scheduleTimer()
 		
-		//MARK: -  joystick Handlers
-		
-		func joystickHandler(jData: AnalogJoystickData) {
-			
-			let angleMultiplyer:Float = 0.01
-			if jData.angular > 0.75 && jData.angular < 2.5
-			{
+	
 				
-				self.myscene?.sectorObjectsNode.eulerAngles.y -= Float(jData.angular) * angleMultiplyer
-			}
-			
-			if jData.angular < -0.75 && jData.angular > -2.5
-			{
-				self.myscene?.sectorObjectsNode.eulerAngles.y -= Float(jData.angular) * angleMultiplyer
-			}
-			
-			if jData.angular < 0.75 && jData.angular > -0.75
-			{
-				
-				self.myscene?.sectorObjectsNode.eulerAngles.x -= Float(jData.angular) * angleMultiplyer*5
-			}
-			
-			if (jData.angular > 2.75) || (jData.angular < -2.75)
-			{
-				
-				self.myscene?.sectorObjectsNode.eulerAngles.x -= Float(jData.angular) * angleMultiplyer
-			}
-			print(jData.angular)
-			print("Universe Orientation: \(String(describing: self.myscene?.sectorObjectsNode.eulerAngles))")
-			
-			
-		}
-		
-		joystick.trackingHandler =  joystickHandler
-		
 
 
     }

@@ -1,5 +1,5 @@
 //
-//  Ship.swift
+//  ZylonShip.swift
 //  Zylon Defenders
 //
 //  Created by Jeff Glasse on 5/31/17.
@@ -9,6 +9,13 @@
 import UIKit
 import SceneKit
 
+enum ShipStickPosition {
+    case up
+    case down
+    case left
+    case right
+    case zeroed
+}
 
 enum ImpulseEngineDamage {
 	case noDamage
@@ -51,6 +58,7 @@ struct Sector {
 
 class ZylonShip: SCNNode {
 	var shields = false
+    var shipYolk = ShipStickPosition.zeroed
 	var currentSpeed = 0
 	var currentSector = Sector()
 	var engineHealth = 100

@@ -10,7 +10,7 @@ This project attempts to address that vaccum, using a modern mobile platform to 
 
 Despite the reversal of perspective, Zylon Raiders aims to evoke the gameplay style of a bygone era, taking advantage of modern computing power and addressable memory to allow the sorts of bells and whistles which would have been impossible on an 8-bit platform with 8K of RAM. Amongst these is your artificially intelligent copilot, Kohai, providing spoken commentary throughout the game, truly 3-D enemy ships and galactic map, and HUD graphics inspired by the greatest scifi films and games of the 80s and 90s.
 
-For more information on design influences on Zylon Defenders, see here:
+For more information on design influences for Zylon Defenders, see here:
 
 https://docs.google.com/document/d/1DWboo3A6dUsAj6cX4qb_FdGhXjEqxFH2TOk_diGrsWg/edit?usp=sharing 
 
