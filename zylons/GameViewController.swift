@@ -99,6 +99,10 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
         tacticalDisplay.isHidden = !tacticalDisplay.isHidden
         
     }
+    @IBAction func showShortRangeScan(_ sender: Any) {
+        sectorScan()
+        
+    }
     @IBAction func toggleView(_ sender: UIButton) {
 		SCNTransaction.animationDuration = 0.4
 
@@ -188,9 +192,8 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
     }
 
     func up() {
-        print("up! (with node correction)")
-        let xTorque = SCNVector4Make(1, 0, 0, 0.5)
-         self.sectorObjectsNode.physicsBody?.applyTorque(xTorque, asImpulse: true)
+        print("up!")
+     self.sectorObjectsNode.eulerAngles.x = sectorObjectsNode.eulerAngles.x + Constants.rotateAmount
         }
     
     func down() {
@@ -368,6 +371,17 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
         rearCameraNode.camera?.zFar = 400
         
         self.ship.addChildNode(rearCameraNode)
+        
+        
+        
+        sectorScanCameraNode.camera = SCNCamera()
+        sectorScanCameraNode.position = SCNVector3(x: 0, y: 100, z: 0)
+        let cameraconstraint = SCNLookAtConstraint(target: self.ship)
+        sectorScanCameraNode.constraints?.append(cameraconstraint)
+        sectorScanCameraNode.name = "SectorScanCamera"
+        self.ship.addChildNode(sectorScanCameraNode)
+        
+        
         ship.currentSpeed = 5
     }
     
@@ -439,8 +453,7 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
     }
     
     func sectorScan(){
-        SCNTransaction.animationDuration = 0
-        scnView.pointOfView = sectorScanCameraNode
+    scnView.pointOfView = sectorScanCameraNode
         
         
         
