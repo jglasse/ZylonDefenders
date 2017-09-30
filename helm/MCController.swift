@@ -138,7 +138,7 @@ class MCController:NSObject, MCNearbyServiceBrowserDelegate, MCNearbyServiceAdve
 extension MCController  {
 
     func execute(command: String){
-    print("Received command: \(command)")
+    print("Executing Prefix Code command: \(command)")
 
     }
 

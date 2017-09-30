@@ -32,7 +32,7 @@ extension GameViewController: CommandDelegate {
     
     // receive commands from iOS remote controller
     func execute(command: String) {
-        print ("executing Command!")
+        print ("Executing remote command: \(command)")
         switch command {
             
         case "Speed 9":

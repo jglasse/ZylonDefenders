@@ -26,8 +26,6 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
 
         }
     
-      
-    
     // add multipeer Connectivity
     var myMCController = MCController.sharedInstance
 
@@ -47,7 +45,7 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
     var sectorScanCameraNode = SCNNode()
     let warpGrid = SCNNode()
 
-
+    var currentExplosionParticleSystem: SCNParticleSystem?
 	var starSprites = [SCNNode]()
 	
     var enemyDrone:SCNNode!
@@ -86,11 +84,11 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
     
     @IBOutlet weak var joystickControl: JoyStickView!
     @IBOutlet weak var tacticalDisplay: UIView!
-
-    @IBOutlet weak var helmDisplay: UILabel!
     
 	@IBOutlet weak var currentSpeedDisplay: UILabel!
 	@IBOutlet weak var viewButton: UIButton!
+    @IBOutlet weak var phiDisplay: UILabel!
+    @IBOutlet weak var thetaDisplay: UILabel!
     
     
     // MARK:  - IBActions
@@ -104,7 +102,7 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
         
     }
     @IBAction func toggleView(_ sender: UIButton) {
-		SCNTransaction.animationDuration = 0.4
+		SCNTransaction.animationDuration = 0.3
 
 		if scnView.pointOfView == cameraNode
         {
@@ -173,7 +171,7 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
     
     func helm(_ angle: CGFloat, _ displacement: CGFloat)
     {
-        self.helmDisplay.text = "HELM angle: \(angle), displacement: \(displacement)"
+
         if displacement > 0.3
         {
             if angle > 340 || angle < 20
@@ -270,7 +268,7 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
         setupShip()
         myMCController.setup()
         myMCController.myCommandDelegate = self
-        shipHud.myscene = self
+        shipHud.parentScene = self
     }
     
     func setupView()
@@ -305,7 +303,7 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
         self.sectorObjectsNode.physicsBody = SCNPhysicsBody(type: .dynamic, shape: SCNPhysicsShape(geometry: SCNSphere(), options: nil))
         sectorObjectsNode.physicsBody?.isAffectedByGravity = false
         sectorObjectsNode.physicsBody?.friction = 0
-        sectorObjectsNode.physicsBody?.categoryBitMask = 0b00000010
+        sectorObjectsNode.physicsBody?.categoryBitMask = 0000000000
         sectorObjectsNode.physicsBody?.contactTestBitMask = 0000000000
         sectorObjectsNode.physicsBody?.angularDamping = 0.99
 
@@ -356,7 +354,6 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
         cameraNode.camera = SCNCamera()
         cameraNode.camera?.focalSize = 700
         cameraNode.position = SCNVector3(x: 0, y: 0, z: 0)
-        print(cameraNode.rotation)
         cameraNode.name = "camera"
         cameraNode.camera?.zFar = 500
         //cameraNode.camera?.fieldOfView = 120
@@ -375,9 +372,9 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
         
         
         sectorScanCameraNode.camera = SCNCamera()
-        sectorScanCameraNode.position = SCNVector3(x: 0, y: 100, z: 0)
-        let cameraconstraint = SCNLookAtConstraint(target: self.ship)
-        sectorScanCameraNode.constraints?.append(cameraconstraint)
+        sectorScanCameraNode.position = SCNVector3(x: 0, y: 200, z: 0)
+        let cameraconstraint = SCNLookAtConstraint(target: self.ship.childNode(withName: "camera", recursively: true))
+        sectorScanCameraNode.constraints = [cameraconstraint]
         sectorScanCameraNode.name = "SectorScanCamera"
         self.ship.addChildNode(sectorScanCameraNode)
         
@@ -485,6 +482,11 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
     //MARK: -  Game Event functions
     
     func updateStars(){
+        
+        self.thetaDisplay.text = "THETA: \(self.sectorObjectsNode.rotation.x)"
+        self.phiDisplay.text = "PHI: \(self.sectorObjectsNode.rotation.y)"
+        
+        
         for star in self.starSprites{
             // TODO: refactor to calculate ship vector on all three axes
             
@@ -570,7 +572,7 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
         
     }
     
-    func applyThrusters()
+    func turnShip()
     {
         switch ship.shipYolk
         {
@@ -637,9 +639,10 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
 
             if (thisNode.name == "explosionNode")
             {
-                thisNode.presentation.position.z += Float(ship.currentSpeed)*3
+                thisNode.position.z += Float(ship.currentSpeed)/10
 				explosionDuration += 1
-				if explosionDuration > 10
+                
+				if explosionDuration > 200
 				{
 					thisNode.removeFromParentNode()
 					explosionDuration = 0
@@ -685,6 +688,7 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
     func physicsWorld(_ world: SCNPhysicsWorld, didBegin contact: SCNPhysicsContact)
     {
             let particleSystem = SCNParticleSystem(named: "Explosion", inDirectory: nil)
+            particleSystem?.emissionDuration = 0.2
             let explosionNode = SCNNode()
             explosionNode.name = "explosionNode"
 			explosionNode.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
@@ -711,7 +715,13 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
             contact.nodeB.removeFromParentNode()
     }
     
+    func renderer(_ renderer: SCNSceneRenderer, didSimulatePhysicsAtTime time: TimeInterval) {
+        self.thetaDisplay.text = "\(self.sectorObjectsNode.eulerAngles.x)"
+        self.phiDisplay.text = "\(self.sectorObjectsNode.eulerAngles.y)"
+        
+    }
     
+
     
     func renderer(_ renderer: SCNSceneRenderer, didRenderScene scene: SCNScene, atTime time: TimeInterval) {
         
@@ -719,9 +729,8 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
             {drone.position = self.droneModel.presentation.position}
 		updateStars()
 		cleanScene()
-        applyThrusters()
+        turnShip()
     }
-    
     
     // MARK: - Generic iOS Setup
     
@@ -733,8 +742,13 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
         return true
     }
     
-    func distanceBetweenPoints(first: CGPoint,  second: CGPoint) -> CGFloat {
-        return CGFloat(hypotf(Float(second.x - first.x), Float(second.y - first.y)))
+    func distanceBetweenPoints(first: SCNVector3,  second: SCNVector3) -> Float {
+        let xDistance: Float = first.x-second.x
+        let yDistance: Float = first.y-second.y
+        let zDistance: Float = first.z-second.z
+        let sum = xDistance * xDistance + yDistance * yDistance + zDistance * zDistance
+        let result = sqrt(sum)
+        return result
     }
 
 }

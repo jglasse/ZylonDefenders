@@ -16,7 +16,7 @@ class HUD: SKScene
 {
     var shields:SKShapeNode!
     var crosshairs:SKSpriteNode!
-    var myscene: GameViewController?
+    var parentScene: GameViewController?
     public var computerStatus = SKLabelNode()
     var timer: Timer?
     var currentComputerStatusColor = UIColor.red
@@ -87,15 +87,15 @@ class HUD: SKScene
 	func toggleShields(){
 		
         
-        if (myscene?.ship.shields)!
+        if (parentScene?.ship.shields)!
         {
 			shields.alpha = 0
-			myscene?.ship.shields = false
+			parentScene?.ship.shields = false
         }
         else
         {
 			shields.alpha = 0.2
-			myscene?.ship.shields = true
+			parentScene?.ship.shields = true
 		}
         
         

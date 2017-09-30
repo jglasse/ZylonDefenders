@@ -29,7 +29,6 @@
 		E17282A51EBEA144003C1955 /* grid.png in Resources */ = {isa = PBXBuildFile; fileRef = E17282A41EBEA144003C1955 /* grid.png */; };
 		E174FDC71E1A424500A7CC73 /* Torpedo.scnp in Resources */ = {isa = PBXBuildFile; fileRef = E174FDC51E1A424500A7CC73 /* Torpedo.scnp */; };
 		E174FDC81E1A424500A7CC73 /* bokeh.png in Resources */ = {isa = PBXBuildFile; fileRef = E174FDC61E1A424500A7CC73 /* bokeh.png */; };
-		E19B4E781E4080EC00BAFA62 /* TIE-fighter.scn in Resources */ = {isa = PBXBuildFile; fileRef = E19B4E771E4080EC00BAFA62 /* TIE-fighter.scn */; };
 		E19BFF3F1EDFDEED00FCC5EE /* ZylonShip.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19BFF3E1EDFDEED00FCC5EE /* ZylonShip.swift */; };
 		E19F3F2F1F64629E00F612A7 /* AnimatedIntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19F3F2E1F64629E00F612A7 /* AnimatedIntroViewController.swift */; };
 		E19F3F311F64647600F612A7 /* UtilityFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19F3F301F64647600F612A7 /* UtilityFunctions.swift */; };
@@ -55,7 +54,6 @@
 		E1D8BD541DCFCD1A00C863DF /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = E1D8BD531DCFCD1A00C863DF /* art.scnassets */; };
 		E1D8BD561DCFCD1A00C863DF /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D8BD551DCFCD1A00C863DF /* GameViewController.swift */; };
 		E1D8BD5B1DCFCD1A00C863DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E1D8BD5A1DCFCD1A00C863DF /* Assets.xcassets */; };
-		E1DC3F931EB9C3ED00B98829 /* Explosion2.scnp in Resources */ = {isa = PBXBuildFile; fileRef = E1DC3F921EB9C3ED00B98829 /* Explosion2.scnp */; };
 		E1E381E01EC4B79A000CC31C /* button_dir_down_0.png in Resources */ = {isa = PBXBuildFile; fileRef = E1E381DC1EC4B79A000CC31C /* button_dir_down_0.png */; };
 		E1E381E11EC4B79A000CC31C /* button_dir_right_0.png in Resources */ = {isa = PBXBuildFile; fileRef = E1E381DD1EC4B79A000CC31C /* button_dir_right_0.png */; };
 		E1E381E21EC4B79A000CC31C /* button_dir_up_0.png in Resources */ = {isa = PBXBuildFile; fileRef = E1E381DE1EC4B79A000CC31C /* button_dir_up_0.png */; };
@@ -77,11 +75,11 @@
 		E10EFCC31EC18F1D00CC872E /* tosWarpSound.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = tosWarpSound.m4a; sourceTree = "<group>"; };
 		E11A73811E986DE4001CCAC8 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Storyboards/Main.storyboard; sourceTree = SOURCE_ROOT; };
 		E1272AB51F64EE4800A66358 /* Humon.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = Humon.scn; sourceTree = "<group>"; };
-		E1272AB61F64F0E500A66358 /* ZylonShip.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; name = ZylonShip.scn; path = /Users/jglasse/Documents/ZylonDefenders/ZylonShip.scn; sourceTree = "<absolute>"; };
 		E1272AB71F64FBCE00A66358 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E141B9AC1ED77A5700AB2A8C /* warpStart.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = warpStart.aif; sourceTree = "<group>"; };
 		E141B9AD1ED77A5700AB2A8C /* warpStartStop.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = warpStartStop.aif; sourceTree = "<group>"; };
 		E141B9B01ED77A6D00AB2A8C /* warpEnd.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = warpEnd.aif; sourceTree = "<group>"; };
+		E14673E21F6BB08200017927 /* 40069.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = 40069.ttf; path = zylons/40069.ttf; sourceTree = "<group>"; };
 		E151DA2D1E17926900A70B45 /* HUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HUD.swift; sourceTree = "<group>"; };
 		E15520311DCFE776001651EB /* starField.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = starField.scnp; sourceTree = "<group>"; };
 		E165672B1E3205EE00293285 /* Texas Instruments2.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Texas Instruments2.ttf"; sourceTree = "<group>"; };
@@ -92,7 +90,6 @@
 		E17282A41EBEA144003C1955 /* grid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grid.png; sourceTree = "<group>"; };
 		E174FDC51E1A424500A7CC73 /* Torpedo.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = Torpedo.scnp; sourceTree = "<group>"; };
 		E174FDC61E1A424500A7CC73 /* bokeh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bokeh.png; sourceTree = "<group>"; };
-		E19B4E771E4080EC00BAFA62 /* TIE-fighter.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = "TIE-fighter.scn"; sourceTree = "<group>"; };
 		E19BFF3E1EDFDEED00FCC5EE /* ZylonShip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZylonShip.swift; sourceTree = "<group>"; };
 		E19F3F2E1F64629E00F612A7 /* AnimatedIntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AnimatedIntroViewController.swift; path = zylons/AnimatedIntroViewController.swift; sourceTree = SOURCE_ROOT; };
 		E19F3F301F64647600F612A7 /* UtilityFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilityFunctions.swift; sourceTree = "<group>"; };
@@ -133,7 +130,6 @@
 		E1D8BD551DCFCD1A00C863DF /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		E1D8BD5A1DCFCD1A00C863DF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E1D8BD5F1DCFCD1A00C863DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E1DC3F921EB9C3ED00B98829 /* Explosion2.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = Explosion2.scnp; sourceTree = "<group>"; };
 		E1E381DC1EC4B79A000CC31C /* button_dir_down_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_dir_down_0.png; sourceTree = "<group>"; };
 		E1E381DD1EC4B79A000CC31C /* button_dir_right_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_dir_right_0.png; sourceTree = "<group>"; };
 		E1E381DE1EC4B79A000CC31C /* button_dir_up_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_dir_up_0.png; sourceTree = "<group>"; };
@@ -171,7 +167,6 @@
 				E174FDC61E1A424500A7CC73 /* bokeh.png */,
 				E1F43D631DD115E900CC8988 /* star.png */,
 				E16AB6231E1DD1F800E3D8C2 /* spark.png */,
-				E1DC3F921EB9C3ED00B98829 /* Explosion2.scnp */,
 				E15520311DCFE776001651EB /* starField.scnp */,
 				E1A58DC21E1DD07E00DCA24F /* Explosion.scnp */,
 				E174FDC51E1A424500A7CC73 /* Torpedo.scnp */,
@@ -195,7 +190,6 @@
 				E1E381E51EC4B7AA000CC31C /* Grids */,
 				E1A5BE251EA860D100E094CD /* ZylonDefenderTitle.png */,
 				E165672A1E3205C100293285 /* Fonts */,
-				E19B4E771E4080EC00BAFA62 /* TIE-fighter.scn */,
 				FC9F9CEE1E1AF97500907E04 /* xenonHUD.png */,
 				E1D8BD5A1DCFCD1A00C863DF /* Assets.xcassets */,
 				E1272AB51F64EE4800A66358 /* Humon.scn */,
@@ -223,7 +217,7 @@
 		E1D8BD451DCFCD1A00C863DF = {
 			isa = PBXGroup;
 			children = (
-				E1272AB61F64F0E500A66358 /* ZylonShip.scn */,
+				E14673E21F6BB08200017927 /* 40069.ttf */,
 				E10EFCBC1EC0E9B300CC872E /* wave.fsh */,
 				E1A89EA71E9867F600EA8BC4 /* Default-568h@2x.png */,
 				E19F3F2D1F6461DC00F612A7 /* Storyboards */,
@@ -430,10 +424,8 @@
 				E1F8BB0B1E3FF4E100460FC9 /* explosion.m4a in Resources */,
 				E1E381E01EC4B79A000CC31C /* button_dir_down_0.png in Resources */,
 				E165672D1E3205EE00293285 /* Texas Instruments2.ttf in Resources */,
-				E19B4E781E4080EC00BAFA62 /* TIE-fighter.scn in Resources */,
 				E15520321DCFE776001651EB /* starField.scnp in Resources */,
 				E1BD14B11E24280C002E49A5 /* entering_sector.m4a in Resources */,
-				E1DC3F931EB9C3ED00B98829 /* Explosion2.scnp in Resources */,
 				E1F43D641DD115E900CC8988 /* star.png in Resources */,
 				E174FDC71E1A424500A7CC73 /* Torpedo.scnp in Resources */,
 				E10EFCBF1EC0EE8400CC872E /* smallestGridLessDense.png in Resources */,

@@ -221,7 +221,7 @@ open class AnalogJoystick: SKNode {
     // private methods
     private func resetStick() {
         tracking = false
-        let moveToBack = SKAction.move(to: CGPoint.zero, duration: TimeInterval(0.1))
+        let moveToBack = SKAction.move(to: CGPoint.zero, duration: TimeInterval(0))
         moveToBack.timingMode = .easeOut
         stick.run(moveToBack)
         data.reset()
