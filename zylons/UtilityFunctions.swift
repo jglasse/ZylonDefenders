@@ -73,7 +73,6 @@ extension GameViewController: CommandDelegate {
         case "TAC":
             notYetImplemented(command)
             
-            
         case "FIRE":
             fireTorpedo(UIButton())
         default:

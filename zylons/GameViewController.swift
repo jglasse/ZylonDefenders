@@ -89,6 +89,8 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
 	@IBOutlet weak var viewButton: UIButton!
     @IBOutlet weak var phiDisplay: UILabel!
     @IBOutlet weak var thetaDisplay: UILabel!
+    @IBOutlet weak var velocityDisplay: UILabel!
+    @IBOutlet weak var targetDistanceDisplay: UILabel!
     
     
     // MARK:  - IBActions
@@ -102,7 +104,7 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
         
     }
     @IBAction func toggleView(_ sender: UIButton) {
-		SCNTransaction.animationDuration = 0.3
+		SCNTransaction.animationDuration = 0.0
 
 		if scnView.pointOfView == cameraNode
         {
@@ -434,7 +436,7 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
     func setSpeed(_ newSpeed: Int)
     {
 		let speedChange = abs(newSpeed - ship.currentSpeed)
-        SCNTransaction.animationDuration = 2.0 * Double(speedChange)
+        SCNTransaction.animationDuration = 0
 		SCNTransaction.begin()
 		ship.currentSpeed = newSpeed
 		currentSpeedDisplay.text = "\(ship.currentSpeed)"
@@ -482,10 +484,6 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
     //MARK: -  Game Event functions
     
     func updateStars(){
-        
-        self.thetaDisplay.text = "THETA: \(self.sectorObjectsNode.rotation.x)"
-        self.phiDisplay.text = "PHI: \(self.sectorObjectsNode.rotation.y)"
-        
         
         for star in self.starSprites{
             // TODO: refactor to calculate ship vector on all three axes
@@ -564,7 +562,7 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
         }
 		
 		SCNTransaction.begin()
-		SCNTransaction.animationDuration = 4.0
+		SCNTransaction.animationDuration = 0.0
         pov.runAction(adjustCamera)
         
         SCNTransaction.commit()
@@ -642,7 +640,7 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
                 thisNode.position.z += Float(ship.currentSpeed)/10
 				explosionDuration += 1
                 
-				if explosionDuration > 200
+				if explosionDuration > 300
 				{
 					thisNode.removeFromParentNode()
 					explosionDuration = 0
@@ -652,7 +650,7 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
 			// remove warpgrid - refactor to be time since warpgrid
             if ((thisNode.presentation.position.z > 110) && (thisNode.name == "warpGrid"))
             {
-				SCNTransaction.animationDuration = 1
+				SCNTransaction.animationDuration = 0
 				SCNTransaction.begin()
 				thisNode.opacity = 0
 				SCNTransaction.commit()
@@ -724,9 +722,15 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
 
     
     func renderer(_ renderer: SCNSceneRenderer, didRenderScene scene: SCNScene, atTime time: TimeInterval) {
-        
-        if let drone = self.droneModel
-            {drone.position = self.droneModel.presentation.position}
+        print(self.sectorObjectsNode.rotation.x)
+        print(self.sectorObjectsNode.rotation.y)
+        print("SHIP VELOCITY - \(self.ship.currentSpeed) Metrons/Centon")
+        self.thetaDisplay.text = "THETA: \(self.sectorObjectsNode.rotation.x)"
+        self.phiDisplay.text = "PHI: \(self.sectorObjectsNode.rotation.y)"
+        self.velocityDisplay.text = "SHIP VELOCITY - \(self.ship.currentSpeed) Metrons/Centon"
+
+//        if let drone = self.droneModel
+//            {drone.position = self.droneModel.presentation.position}
 		updateStars()
 		cleanScene()
         turnShip()
