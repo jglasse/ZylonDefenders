@@ -22,7 +22,7 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
         static let shotDelay = 1
         static let thrustAmount: Float = 15.0
         static let numberOfStars = 100
-        static let rotateAmount: Float = 0.015
+        static let rotateAmount: Float = 0.010
 
         }
     
@@ -191,27 +191,54 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
 
     }
 
+    
+    func rotate(_ node: SCNNode, around axis: SCNVector3, by angle: CGFloat, duration: TimeInterval, completionBlock: (()->())?) {
+        let rotation = SCNMatrix4MakeRotation(Float(angle), axis.x, axis.y, axis.z)
+        let newTransform = SCNMatrix4Mult(node.worldTransform, rotation)
+        
+        // Animate the transaction
+        SCNTransaction.begin()
+        // Set the duration and the completion block
+        SCNTransaction.animationDuration = duration
+        SCNTransaction.completionBlock = completionBlock
+        
+        
+        // Set the new transform
+        if let parent = node.parent {
+            node.transform = parent.convertTransform(newTransform, from: nil)
+        } else {
+            node.transform = newTransform
+        }
+        SCNTransaction.commit()
+    }
+    
     func up() {
         print("up!")
-     self.sectorObjectsNode.eulerAngles.x = sectorObjectsNode.eulerAngles.x + Constants.rotateAmount
+  //   self.sectorObjectsNode.eulerAngles.x = sectorObjectsNode.eulerAngles.x + Constants.rotateAmount
+        rotate(self.sectorObjectsNode, around: SCNVector3Make(1, 0, 0), by: CGFloat(Constants.rotateAmount), duration: 0.01, completionBlock: nil)
         }
     
     func down() {
         print("down!")
 
-        self.sectorObjectsNode.eulerAngles.x = sectorObjectsNode.eulerAngles.x - Constants.rotateAmount
+       // self.sectorObjectsNode.eulerAngles.x = sectorObjectsNode.eulerAngles.x - Constants.rotateAmount
+        rotate(self.sectorObjectsNode, around: SCNVector3Make(1, 0, 0), by: -CGFloat(Constants.rotateAmount), duration: 0.01, completionBlock: nil)
 
     }
     
     func right() {
         print("right!")
 
-        self.sectorObjectsNode.eulerAngles.y += Constants.rotateAmount
+       // self.sectorObjectsNode.eulerAngles.y += Constants.rotateAmount
+        rotate(self.sectorObjectsNode, around: SCNVector3Make(0, 1, 0), by: CGFloat(Constants.rotateAmount), duration: 0.01, completionBlock: nil)
+
     }
     
     func left() {
         print("left!")
-        self.sectorObjectsNode.eulerAngles.y -= Constants.rotateAmount
+        // self.sectorObjectsNode.eulerAngles.y -= Constants.rotateAmount
+        rotate(self.sectorObjectsNode, around: SCNVector3Make(0, 1, 0), by: -CGFloat(Constants.rotateAmount), duration: 0.01, completionBlock: nil)
+
     }
     func zeroed() {
         
@@ -720,20 +747,20 @@ class GameViewController: UIViewController,SCNPhysicsContactDelegate, SCNSceneRe
     }
     
 
-    
-    func renderer(_ renderer: SCNSceneRenderer, didRenderScene scene: SCNScene, atTime time: TimeInterval) {
-        print(self.sectorObjectsNode.rotation.x)
-        print(self.sectorObjectsNode.rotation.y)
-        print("SHIP VELOCITY - \(self.ship.currentSpeed) Metrons/Centon")
+    func renderer(_ renderer: SCNSceneRenderer, willRenderScene scene: SCNScene, atTime time: TimeInterval) {
         self.thetaDisplay.text = "THETA: \(self.sectorObjectsNode.rotation.x)"
         self.phiDisplay.text = "PHI: \(self.sectorObjectsNode.rotation.y)"
         self.velocityDisplay.text = "SHIP VELOCITY - \(self.ship.currentSpeed) Metrons/Centon"
-
-//        if let drone = self.droneModel
-//            {drone.position = self.droneModel.presentation.position}
-		updateStars()
-		cleanScene()
+        tacticalDisplay.setNeedsDisplay()
+        print(self.sectorObjectsNode.rotation.x)
+        print(self.sectorObjectsNode.rotation.y)
+        print("SHIP VELOCITY - \(self.ship.currentSpeed) Metrons/Centon")
+        
+    }
+    func renderer(_ renderer: SCNSceneRenderer, didRenderScene scene: SCNScene, atTime time: TimeInterval) {
         turnShip()
+        updateStars()
+		cleanScene()
     }
     
     // MARK: - Generic iOS Setup
