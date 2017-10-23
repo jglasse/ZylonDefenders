@@ -10,7 +10,7 @@ import MultipeerConnectivity
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-    
+
     var window: UIWindow?
     var mcController = MCController.sharedInstance
 
@@ -19,9 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Variables storing Multipeer Connectivity managers
     var backgroundTask: UIBackgroundTaskIdentifier!
 
-    
     var serviceStarted = false
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {  return true }
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]? = nil) -> Bool {  return true }
 
     func applicationWillResignActive(_ application: UIApplication) { }
 
@@ -34,6 +33,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidBecomeActive(_ application: UIApplication) { }
 
     func applicationWillTerminate(_ application: UIApplication) { }
-    
 
 }

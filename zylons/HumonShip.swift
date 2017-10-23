@@ -19,18 +19,12 @@ class HumonShip: SCNNode {
 	// current speed and target speed
 	var speedVector =  vector3(0.0, 0.0, 0.0)
 	var targetspeedVector = vector3(0.0, 0.0, 1.0)
-	
+
 	var zylonTargetPosition = vector3(10.0, 0.0, 0.0)
-	
+
 	var range = [Float]()
-	
-	
+
 	func newTargetSpeedVector() {
 	}
-	
-	
-	
-	
-	
-}
 
+}

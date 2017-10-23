@@ -16,6 +16,7 @@
 		E10EFCC41EC18F1D00CC872E /* tosWarpSound.m4a in Resources */ = {isa = PBXBuildFile; fileRef = E10EFCC31EC18F1D00CC872E /* tosWarpSound.m4a */; };
 		E11A73831E986DE4001CCAC8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E11A73811E986DE4001CCAC8 /* Main.storyboard */; };
 		E1272AB81F65244500A66358 /* Humon.scn in Resources */ = {isa = PBXBuildFile; fileRef = E1272AB51F64EE4800A66358 /* Humon.scn */; };
+		E12948751F9D715200DA0E0F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1272AB71F64FBCE00A66358 /* LaunchScreen.storyboard */; };
 		E141B9AE1ED77A5700AB2A8C /* warpStart.aif in Resources */ = {isa = PBXBuildFile; fileRef = E141B9AC1ED77A5700AB2A8C /* warpStart.aif */; };
 		E141B9AF1ED77A5700AB2A8C /* warpStartStop.aif in Resources */ = {isa = PBXBuildFile; fileRef = E141B9AD1ED77A5700AB2A8C /* warpStartStop.aif */; };
 		E141B9B11ED77A6D00AB2A8C /* warpEnd.aif in Resources */ = {isa = PBXBuildFile; fileRef = E141B9B01ED77A6D00AB2A8C /* warpEnd.aif */; };
@@ -29,14 +30,12 @@
 		E174FDC71E1A424500A7CC73 /* Torpedo.scnp in Resources */ = {isa = PBXBuildFile; fileRef = E174FDC51E1A424500A7CC73 /* Torpedo.scnp */; };
 		E174FDC81E1A424500A7CC73 /* bokeh.png in Resources */ = {isa = PBXBuildFile; fileRef = E174FDC61E1A424500A7CC73 /* bokeh.png */; };
 		E19BFF3F1EDFDEED00FCC5EE /* ZylonShip.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19BFF3E1EDFDEED00FCC5EE /* ZylonShip.swift */; };
-		E19F3F2F1F64629E00F612A7 /* AnimatedIntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19F3F2E1F64629E00F612A7 /* AnimatedIntroViewController.swift */; };
 		E19F3F311F64647600F612A7 /* UtilityFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19F3F301F64647600F612A7 /* UtilityFunctions.swift */; };
 		E19F3F331F6494AB00F612A7 /* JoyStickView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19F3F321F6494AB00F612A7 /* JoyStickView.swift */; };
 		E19F3F3B1F64962100F612A7 /* CoreGraphics+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19F3F3A1F64962100F612A7 /* CoreGraphics+Additions.swift */; };
 		E1A57ACC1E1C309A009F2CA6 /* ship_hum.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E1A57ACB1E1C309A009F2CA6 /* ship_hum.mp3 */; };
 		E1A57AD01E1D8CCA009F2CA6 /* beep.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E1A57ACF1E1D8CCA009F2CA6 /* beep.mp3 */; };
 		E1A58DC31E1DD07E00DCA24F /* Explosion.scnp in Resources */ = {isa = PBXBuildFile; fileRef = E1A58DC21E1DD07E00DCA24F /* Explosion.scnp */; };
-		E1A5BE261EA860D100E094CD /* ZylonDefenderTitle.png in Resources */ = {isa = PBXBuildFile; fileRef = E1A5BE251EA860D100E094CD /* ZylonDefenderTitle.png */; };
 		E1A89EA81E9867F600EA8BC4 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E1A89EA71E9867F600EA8BC4 /* Default-568h@2x.png */; };
 		E1BD14B01E24280C002E49A5 /* eight.m4a in Resources */ = {isa = PBXBuildFile; fileRef = E1BD14A51E24280C002E49A5 /* eight.m4a */; };
 		E1BD14B11E24280C002E49A5 /* entering_sector.m4a in Resources */ = {isa = PBXBuildFile; fileRef = E1BD14A61E24280C002E49A5 /* entering_sector.m4a */; };
@@ -60,7 +59,6 @@
 		E1F43D641DD115E900CC8988 /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = E1F43D631DD115E900CC8988 /* star.png */; };
 		E1F8BB0B1E3FF4E100460FC9 /* explosion.m4a in Resources */ = {isa = PBXBuildFile; fileRef = E1F8BB0A1E3FF4E100460FC9 /* explosion.m4a */; };
 		E1FD2A0C1EF7390B0096CB72 /* HumonShip.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FD2A0B1EF7390B0096CB72 /* HumonShip.swift */; };
-		FC9F9CEF1E1AF97500907E04 /* xenonHUD.png in Resources */ = {isa = PBXBuildFile; fileRef = FC9F9CEE1E1AF97500907E04 /* xenonHUD.png */; };
 		FC9F9CF61E1B071100907E04 /* photon_sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FC9F9CF51E1B071100907E04 /* photon_sound.mp3 */; };
 /* End PBXBuildFile section */
 
@@ -89,17 +87,9 @@
 		E174FDC51E1A424500A7CC73 /* Torpedo.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = Torpedo.scnp; sourceTree = "<group>"; };
 		E174FDC61E1A424500A7CC73 /* bokeh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bokeh.png; sourceTree = "<group>"; };
 		E19BFF3E1EDFDEED00FCC5EE /* ZylonShip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZylonShip.swift; sourceTree = "<group>"; };
-		E19F3F2E1F64629E00F612A7 /* AnimatedIntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AnimatedIntroViewController.swift; path = zylons/AnimatedIntroViewController.swift; sourceTree = SOURCE_ROOT; };
 		E19F3F301F64647600F612A7 /* UtilityFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilityFunctions.swift; sourceTree = "<group>"; };
 		E19F3F321F6494AB00F612A7 /* JoyStickView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoyStickView.swift; sourceTree = "<group>"; };
-		E19F3F341F64956A00F612A7 /* JoyStickHandle@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "JoyStickHandle@3x.png"; sourceTree = "<group>"; };
-		E19F3F351F64956B00F612A7 /* JoyStickBase@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "JoyStickBase@3x.png"; sourceTree = "<group>"; };
-		E19F3F361F64956B00F612A7 /* JoyStickHandle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "JoyStickHandle@2x.png"; sourceTree = "<group>"; };
-		E19F3F371F64956B00F612A7 /* JoyStickBase@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "JoyStickBase@1x.png"; sourceTree = "<group>"; };
-		E19F3F381F64956B00F612A7 /* JoyStickBase@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "JoyStickBase@2x.png"; sourceTree = "<group>"; };
-		E19F3F391F64956B00F612A7 /* JoyStickHandle@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "JoyStickHandle@1x.png"; sourceTree = "<group>"; };
 		E19F3F3A1F64962100F612A7 /* CoreGraphics+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreGraphics+Additions.swift"; sourceTree = "<group>"; };
-		E19F3F3C1F64EC4D00F612A7 /* READ THIS.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "READ THIS.txt"; sourceTree = "<group>"; };
 		E19F3F3D1F64EC4D00F612A7 /* hard normal map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hard normal map.png"; sourceTree = "<group>"; };
 		E19F3F3E1F64EC4E00F612A7 /* diffuse2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = diffuse2.png; sourceTree = "<group>"; };
 		E19F3F3F1F64EC4E00F612A7 /* diffuse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = diffuse.png; sourceTree = "<group>"; };
@@ -109,7 +99,6 @@
 		E1A57ACB1E1C309A009F2CA6 /* ship_hum.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = ship_hum.mp3; sourceTree = "<group>"; };
 		E1A57ACF1E1D8CCA009F2CA6 /* beep.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = beep.mp3; sourceTree = "<group>"; };
 		E1A58DC21E1DD07E00DCA24F /* Explosion.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = Explosion.scnp; sourceTree = "<group>"; };
-		E1A5BE251EA860D100E094CD /* ZylonDefenderTitle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ZylonDefenderTitle.png; sourceTree = "<group>"; };
 		E1A89EA71E9867F600EA8BC4 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		E1BD14A51E24280C002E49A5 /* eight.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = eight.m4a; sourceTree = "<group>"; };
 		E1BD14A61E24280C002E49A5 /* entering_sector.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = entering_sector.m4a; sourceTree = "<group>"; };
@@ -135,7 +124,6 @@
 		E1F43D631DD115E900CC8988 /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
 		E1F8BB0A1E3FF4E100460FC9 /* explosion.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = explosion.m4a; sourceTree = "<group>"; };
 		E1FD2A0B1EF7390B0096CB72 /* HumonShip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HumonShip.swift; sourceTree = "<group>"; };
-		FC9F9CEE1E1AF97500907E04 /* xenonHUD.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xenonHUD.png; sourceTree = "<group>"; };
 		FC9F9CF51E1B071100907E04 /* photon_sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = photon_sound.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -186,22 +174,13 @@
 			children = (
 				E1E381E41EC4B7A3000CC31C /* Buttons */,
 				E1E381E51EC4B7AA000CC31C /* Grids */,
-				E1A5BE251EA860D100E094CD /* ZylonDefenderTitle.png */,
 				E165672A1E3205C100293285 /* Fonts */,
-				FC9F9CEE1E1AF97500907E04 /* xenonHUD.png */,
 				E1D8BD5A1DCFCD1A00C863DF /* Assets.xcassets */,
 				E1272AB51F64EE4800A66358 /* Humon.scn */,
-				E19F3F371F64956B00F612A7 /* JoyStickBase@1x.png */,
-				E19F3F381F64956B00F612A7 /* JoyStickBase@2x.png */,
-				E19F3F351F64956B00F612A7 /* JoyStickBase@3x.png */,
-				E19F3F391F64956B00F612A7 /* JoyStickHandle@1x.png */,
-				E19F3F361F64956B00F612A7 /* JoyStickHandle@2x.png */,
-				E19F3F341F64956A00F612A7 /* JoyStickHandle@3x.png */,
 				E19B4E761E40776300BAFA62 /* particle_sytems */,
 				E19F3F3F1F64EC4E00F612A7 /* diffuse.png */,
 				E19F3F3E1F64EC4E00F612A7 /* diffuse2.png */,
 				E19F3F3D1F64EC4D00F612A7 /* hard normal map.png */,
-				E19F3F3C1F64EC4D00F612A7 /* READ THIS.txt */,
 				E19F3F421F64EC4E00F612A7 /* soft normal map.png */,
 				E19F3F401F64EC4E00F612A7 /* specular.png */,
 				E19F3F411F64EC4E00F612A7 /* specular2.png */,
@@ -218,9 +197,9 @@
 				E14673E21F6BB08200017927 /* 40069.ttf */,
 				E10EFCBC1EC0E9B300CC872E /* wave.fsh */,
 				E1A89EA71E9867F600EA8BC4 /* Default-568h@2x.png */,
+				E1D8BD501DCFCD1A00C863DF /* Code */,
 				E19F3F2D1F6461DC00F612A7 /* Storyboards */,
 				E1A58DC01E1DCF9B00DCA24F /* assets */,
-				E1D8BD501DCFCD1A00C863DF /* Code */,
 				E1D8BD4F1DCFCD1A00C863DF /* Products */,
 			);
 			sourceTree = "<group>";
@@ -236,7 +215,6 @@
 		E1D8BD501DCFCD1A00C863DF /* Code */ = {
 			isa = PBXGroup;
 			children = (
-				E19F3F2E1F64629E00F612A7 /* AnimatedIntroViewController.swift */,
 				E1D8BD551DCFCD1A00C863DF /* GameViewController.swift */,
 				E19F3F301F64647600F612A7 /* UtilityFunctions.swift */,
 				E19F3F3A1F64962100F612A7 /* CoreGraphics+Additions.swift */,
@@ -336,6 +314,7 @@
 				E1D8BD4A1DCFCD1A00C863DF /* Sources */,
 				E1D8BD4B1DCFCD1A00C863DF /* Frameworks */,
 				E1D8BD4C1DCFCD1A00C863DF /* Resources */,
+				E13F7FF21F97EFD6006242F1 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -387,7 +366,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E1A5BE261EA860D100E094CD /* ZylonDefenderTitle.png in Resources */,
 				E1BD14B91E24280C002E49A5 /* two.m4a in Resources */,
 				E1E381E21EC4B79A000CC31C /* button_dir_up_0.png in Resources */,
 				E109EB601E1BB938003DAB0F /* 40069.ttf in Resources */,
@@ -397,6 +375,7 @@
 				E11A73831E986DE4001CCAC8 /* Main.storyboard in Resources */,
 				E1E381E31EC4B79A000CC31C /* button_dir_left_0.png in Resources */,
 				E10EFCB91EBFBDA500CC872E /* tinyGrid.png in Resources */,
+				E12948751F9D715200DA0E0F /* LaunchScreen.storyboard in Resources */,
 				FC9F9CF61E1B071100907E04 /* photon_sound.mp3 in Resources */,
 				E1BD14B61E24280C002E49A5 /* seven.m4a in Resources */,
 				E10EFCC41EC18F1D00CC872E /* tosWarpSound.m4a in Resources */,
@@ -410,7 +389,6 @@
 				E1D8BD5B1DCFCD1A00C863DF /* Assets.xcassets in Resources */,
 				E1272AB81F65244500A66358 /* Humon.scn in Resources */,
 				E10EFCBD1EC0E9B300CC872E /* wave.fsh in Resources */,
-				FC9F9CEF1E1AF97500907E04 /* xenonHUD.png in Resources */,
 				E10EFCC11EC0EE9400CC872E /* smallestGrid.png in Resources */,
 				E1BD14B81E24280C002E49A5 /* three.m4a in Resources */,
 				E1A57AD01E1D8CCA009F2CA6 /* beep.mp3 in Resources */,
@@ -437,6 +415,22 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		E13F7FF21F97EFD6006242F1 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\nswiftlint autocorrect\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		E1D8BD4A1DCFCD1A00C863DF /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -450,7 +444,6 @@
 				E1D8BD561DCFCD1A00C863DF /* GameViewController.swift in Sources */,
 				E19F3F331F6494AB00F612A7 /* JoyStickView.swift in Sources */,
 				E19BFF3F1EDFDEED00FCC5EE /* ZylonShip.swift in Sources */,
-				E19F3F2F1F64629E00F612A7 /* AnimatedIntroViewController.swift in Sources */,
 				E1D8BD521DCFCD1A00C863DF /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

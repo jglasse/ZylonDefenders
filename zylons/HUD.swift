@@ -12,37 +12,33 @@ import SpriteKit
 import AVFoundation
 import SceneKit
 
-class HUD: SKScene
-{
-    var shields:SKShapeNode!
-    var crosshairs:SKSpriteNode!
+class HUD: SKScene {
+    var shields: SKShapeNode!
+    var crosshairs: SKSpriteNode!
+    var aftcrosshairs: SKSpriteNode!
     var parentScene: GameViewController?
     public var computerStatus = SKLabelNode()
+    private let aftHairs = SKSpriteNode(imageNamed: "xenonHUDAFT")
+    private let foreHairs = SKSpriteNode(imageNamed: "xenonHUD")
+
     var timer: Timer?
     var currentComputerStatusColor = UIColor.red
-	
-	
+
 	var tacticalDisplay = [SKSpriteNode]()
-	
+
     @objc func blinkComputerDisplay() {
-        if computerStatus.fontColor == currentComputerStatusColor
-        {computerStatus.fontColor = UIColor.clear}
-            else
-        {computerStatus.fontColor = currentComputerStatusColor}
-    
-    
+        if computerStatus.fontColor == currentComputerStatusColor {computerStatus.fontColor = UIColor.clear} else {computerStatus.fontColor = currentComputerStatusColor}
+
     }
-	
-	func defineTacticalDisplay()
-	{
-		
+
+	func defineTacticalDisplay() {
+
 	}
-    override init(size: CGSize)
-    {
+    override init(size: CGSize) {
         super.init(size: size)
         self.backgroundColor = UIColor.clear
         shields = SKShapeNode(rectOf: size)
-        shields.position = CGPoint(x:self.frame.midX, y: self.frame.midY)
+        shields.position = CGPoint(x: self.frame.midX, y: self.frame.midY)
         shields.alpha = 0.0
         shields.fillColor = SKColor.blue
         shields.strokeColor =  UIColor.clear
@@ -51,55 +47,49 @@ class HUD: SKScene
         computerStatus.fontColor = UIColor.red
         computerStatus.position = CGPoint(x: self.frame.midX, y: self.frame.maxY-40)
         computerStatus.text = "GRIDWARP ENGINES OFFLINE"
-		
-		
+
 		defineTacticalDisplay()
 
         self.addChild(shields)
-        
-        
-        crosshairs=SKSpriteNode(imageNamed:"xenonHUD")
-        crosshairs.position = CGPoint(x:self.frame.midX, y: self.frame.midY)
-        self.addChild(crosshairs)
-    
-        self.addChild(computerStatus)
-        self.scheduleTimer()
-		
-	
-				
 
+        crosshairs = foreHairs
+        crosshairs.position = CGPoint(x: self.frame.midX, y: self.frame.midY)
+        self.addChild(crosshairs)
+
+        self.addChild(computerStatus)
+        //self.activateAlert()
 
     }
-    
-    required init?(coder aDecoder: NSCoder)
-    {
+
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
 
     }
-    
-    func scheduleTimer() {
+
+    func foreView() {
+        crosshairs=foreHairs
+    }
+
+    func aftView() {
+        crosshairs=aftHairs
+    }
+    func activateAlert() {
         DispatchQueue.main.async {
             self.timer = Timer.scheduledTimer(timeInterval: 1, target: self,
                                               selector: #selector(self.blinkComputerDisplay), userInfo: nil, repeats: true)
         }
     }
-    
-	func toggleShields(){
-		
-        
-        if (parentScene?.ship.shields)!
-        {
+
+	func toggleShields() {
+
+        if (parentScene?.ship.shields)! {
 			shields.alpha = 0
 			parentScene?.ship.shields = false
-        }
-        else
-        {
+        } else {
 			shields.alpha = 0.2
 			parentScene?.ship.shields = true
 		}
-        
-        
-    
+
     }
-    
+
 }

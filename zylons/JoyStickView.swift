@@ -9,7 +9,7 @@ import CoreGraphics
  - parameter displacement: how far from the view center the joystick is moved in the above direction. Unitless but
  is the ratio of distance moved from center over the radius of the joystick base. Always in range 0.0-1.0
  */
-public typealias JoyStickViewMonitor = (_ angle: CGFloat, _ displacement: CGFloat) -> ()
+public typealias JoyStickViewMonitor = (_ angle: CGFloat, _ displacement: CGFloat) -> Void
 
 /**
  A simple implementation of a joystick interface like those found on classic arcade games. This implementation detects
@@ -33,7 +33,7 @@ public final class JoyStickView: UIView {
     // override class var requiresConstraintBasedLayout: Bool { return true }
 
     /// Holds a function to call when joystick orientation changes
-    public var monitor: JoyStickViewMonitor? = nil
+    public var monitor: JoyStickViewMonitor?
 
     /// If `true` the joystick will move around in the parant's view so that the joystick handle is always at a
     /// displacement of 1.0. This is the default mode of operation. Setting to `false` will keep the view fixed.
@@ -138,7 +138,7 @@ public final class JoyStickView: UIView {
             fatalError("failed to create input CIImage")
         }
 
-        let filterConfig: [String:Any] = [kCIInputIntensityKey: 1.0,
+        let filterConfig: [String: Any] = [kCIInputIntensityKey: 1.0,
                                           kCIInputColorKey: CIColor(color: handleTintColor!),
                                           kCIInputImageKey: inputImage]
         guard let filter = CIFilter(name: "CIColorMonochrome", withInputParameters: filterConfig) else {
@@ -194,7 +194,7 @@ public final class JoyStickView: UIView {
     /**
      Reset our position.
      */
-    public func resetFrame() {
+    @objc public func resetFrame() {
         if displacement < 0.5 && originalCenter != nil {
             center = originalCenter!
             originalCenter = nil
@@ -257,8 +257,7 @@ public final class JoyStickView: UIView {
                 if movableBounds != nil {
                     frame.origin = CGPoint(x: min(max(origin.x, movableBounds!.minX), movableBounds!.maxX - frame.width),
                                            y: min(max(origin.y, movableBounds!.minY), movableBounds!.maxY - frame.height))
-                }
-                else {
+                } else {
                     frame.origin = origin
                 }
             }
@@ -266,8 +265,7 @@ public final class JoyStickView: UIView {
             // Update location of handle
             //
             handleImageView.center = bounds.mid + delta
-        }
-        else {
+        } else {
 
             // Update location of handle
             //
@@ -279,8 +277,7 @@ public final class JoyStickView: UIView {
                 let y = CGFloat(cosf(newAngleRadians)) * radius
                 handleImageView.frame.origin = CGPoint(x: x + bounds.midX - handleImageView.bounds.size.width / 2.0,
                                                        y: y + bounds.midY - handleImageView.bounds.size.height / 2.0)
-            }
-            else {
+            } else {
                 handleImageView.center = bounds.mid + delta
             }
         }
@@ -311,9 +308,9 @@ public func LiangBarsky(rect: CGRect, p0: CGPoint, p1: CGPoint) -> (p0: CGPoint,
     let xd = p1.x - p0.x
     let yd = p1.y - p0.y
     let cases = [(-xd, -(edgeLeft -   p0.x)),
-                 ( xd,   edgeRight -  p0.x),
+                 ( xd, edgeRight -  p0.x),
                  (-yd, -(edgeBottom - p0.y)),
-                 ( yd,   edgeTop -    p0.y)]
+                 ( yd, edgeTop -    p0.y)]
 
     // Check edges against the appropriate coordinate delta
     //
@@ -330,8 +327,7 @@ public func LiangBarsky(rect: CGRect, p0: CGPoint, p1: CGPoint) -> (p0: CGPoint,
                 //
                 return (p0: p0, p1: p1, inRect: false)
             }
-        }
-        else {
+        } else {
 
             // Safe to do since 'p' is not zero here. However, maybe we should do better since very small 'p' will lead
             // to a very large 'r'. We can do 'q > t1 * p' for instance in the condition below, but we then need to
@@ -341,16 +337,13 @@ public func LiangBarsky(rect: CGRect, p0: CGPoint, p1: CGPoint) -> (p0: CGPoint,
             if p < 0.0 {
                 if r > t1 {
                     return (p0: p0, p1: p1, inRect: false)
-                }
-                else if r > t0 {
+                } else if r > t0 {
                     t0 = r
                 }
-            }
-            else if p > 0.0 {
+            } else if p > 0.0 {
                 if r < t0 {
                     return (p0: p0, p1: p1, inRect: false)
-                }
-                else if r < t1 {
+                } else if r < t1 {
                     t1 = r
                 }
             }
@@ -361,4 +354,3 @@ public func LiangBarsky(rect: CGRect, p0: CGPoint, p1: CGPoint) -> (p0: CGPoint,
             p1: CGPoint(x: p0.x + t1 * xd, y: p0.y + t1 * yd),
             inRect: true)
 }
-
