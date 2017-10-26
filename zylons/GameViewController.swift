@@ -25,6 +25,11 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate, SCNSceneR
         static let xAxis = SCNVector3Make(1, 0, 0)
         static let yAxis = SCNVector3Make(0, 1, 0)
         static let zAxis = SCNVector3Make(0, 0, 1)
+        static let starBoundsX = 200
+        static let starBoundsY = 500
+        static let starBoundsZ = 500
+        static let cameraFalloff = 500.0
+
         }
 
     // add multipeer Connectivity
@@ -156,32 +161,24 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate, SCNSceneR
         }
     }
 
-    func rotate(_ node: SCNNode, around axis: SCNVector3, by angle: CGFloat, duration: TimeInterval, completionBlock: (() -> Void)?) {
+    func rotate(_ node: SCNNode, around axis: SCNVector3, by angle: CGFloat) {
         let rotation = SCNMatrix4MakeRotation(Float(angle), axis.x, axis.y, axis.z)
         let newTransform = SCNMatrix4Mult(node.worldTransform, rotation)
-
-        // Animate the transaction
-        SCNTransaction.begin()
-        // Set the duration and the completion block
-        SCNTransaction.animationDuration = duration
-        SCNTransaction.completionBlock = completionBlock
-
-        // Set the new transform
         if let parent = node.parent {
             node.transform = parent.convertTransform(newTransform, from: nil)
         } else {
             node.transform = newTransform
         }
-        SCNTransaction.commit()
     }
 
     @IBAction func spawnDrone(_ sender: UIButton) {
-        DispatchQueue.main.async {
 
         let humonshipScene = SCNScene(named: "Humon.scn")
         let humonShip = humonshipScene?.rootNode.childNodes[0]
         self.enemyDrone = humonShip
-        self.enemyDrone?.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
+        let droneShape = SCNBox(width: 10, height: 5, length: 5, chamferRadius: 0)
+        let dronePhysicsShape = SCNPhysicsShape(geometry: droneShape, options: nil)
+        self.enemyDrone?.physicsBody = SCNPhysicsBody(type: .kinematic, shape: dronePhysicsShape)
         self.enemyDrone?.physicsBody?.isAffectedByGravity = false
         self.enemyDrone?.physicsBody?.friction = 0
         self.enemyDrone?.physicsBody?.categoryBitMask = 0b00000010
@@ -190,11 +187,9 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate, SCNSceneR
         self.enemyDrone?.pivot = SCNMatrix4MakeTranslation(0.5, 0.5, 0.5)
         self.enemyDrone?.position = SCNVector3Make(0, 0, -30)
         self.enemyDrone?.scale = SCNVector3Make(1, 1, 1)
-
-            let actualPosition = self.scene.rootNode.convertPosition((self.enemyDrone?.position)!, from: self.enemyDrone)
-            self.enemyDrone?.position = self.scene.rootNode.convertPosition(actualPosition, to: self.sectorObjectsNode)
+        let actualPosition = self.scene.rootNode.convertPosition((self.enemyDrone?.position)!, from: self.enemyDrone)
+        self.enemyDrone?.position = self.scene.rootNode.convertPosition(actualPosition, to: self.sectorObjectsNode)
         self.sectorObjectsNode.addChildNode(self.enemyDrone!)
-        }
     }
 
 	@IBOutlet weak var stepperSpeed: UIStepper!
@@ -233,6 +228,8 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate, SCNSceneR
         scnView.showsStatistics = false
         scnView.allowsCameraControl = false
         scnView.autoenablesDefaultLighting = true
+
+        //scnView.debugOptions = .showPhysicsShapes
         scnView.isPlaying = true
         scnView.backgroundColor = UIColor.black
         joystickControl.movable = false
@@ -250,14 +247,6 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate, SCNSceneR
         setupPhotonSounds()
         prepWarpEngines()
         playEngineSound(volume: 1)
-
-        self.sectorObjectsNode.physicsBody = SCNPhysicsBody(type: .dynamic, shape: SCNPhysicsShape(geometry: SCNSphere(), options: nil))
-        sectorObjectsNode.physicsBody?.isAffectedByGravity = false
-        sectorObjectsNode.physicsBody?.friction = 0
-        sectorObjectsNode.physicsBody?.categoryBitMask = 0000000000
-        sectorObjectsNode.physicsBody?.contactTestBitMask = 0000000000
-        sectorObjectsNode.physicsBody?.angularDamping = 0.99
-
     }
 
     func setupPhotonSounds() {
@@ -276,7 +265,7 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate, SCNSceneR
         for _ in 1...Constants.numberOfStars {
             let x = randRange(lower: -50, upper: 50)
             let y = randRange(lower: -50, upper: 50)
-            let z = randRange(lower: -400, upper: 400)
+            let z = randRange(lower: -700, upper: 700)
             let sphere = SCNSphere(radius: 0.25)
             let starSprite = SCNNode()
             starSprite.geometry  = sphere
@@ -294,10 +283,11 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate, SCNSceneR
         scene.rootNode.addChildNode(self.ship)
         self.ship.position = SCNVector3(x: 0, y: 0, z: 0)
         cameraNode.camera = SCNCamera()
-        cameraNode.camera?.focalSize = 700
+        cameraNode.camera?.focalSize = 10
+        cameraNode.camera?.focalBlurRadius = 100
         cameraNode.position = SCNVector3(x: 0, y: 0, z: 0)
         cameraNode.name = "camera"
-        cameraNode.camera?.zFar = 500
+        cameraNode.camera?.zFar = Constants.cameraFalloff
         //cameraNode.camera?.fieldOfView = 120
 
         self.ship.addChildNode(cameraNode)
@@ -449,7 +439,7 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate, SCNSceneR
         warpGrid.physicsBody?.contactTestBitMask = 0b00000000
         warpGrid.name = "warpGrid"
 
-        // warpGrid.geometry?.firstMaterial?.isDoubleSided = true
+        //warpGrid.geometry?.firstMaterial?.isDoubleSided = true
         warpGrid.geometry?.materials = [outerTube, innerTube, endOne, endTwo]
         // warpGrid.pivot = SCNMatrix4MakeTranslation(0.5, 0.5, 0.5)
         warpGrid.rotation = SCNVector4(x: 1, y: 0, z: 0, w: Float(Double.pi / 2))
@@ -470,7 +460,9 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate, SCNSceneR
         let adjustCamera = SCNAction.run { _ in
 
 			self.setSpeed(30)
+            DispatchQueue.main.async {
 			self.stepperSpeed.value = 9
+            }
 			self.warpGrid.opacity = 1
             self.warpGrid.physicsBody?.applyForce(SCNVector3Make(0, 0, 55), asImpulse: true)
             self.cameraNode.camera?.xFov = 70
@@ -487,21 +479,8 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate, SCNSceneR
     }
 
     func turnShip() {
-        self.rotate(self.sectorObjectsNode, around: SCNVector3Make(1, 0, 0), by: CGFloat(self.yThrust), duration: 0.001, completionBlock: nil)
-        self.rotate(self.sectorObjectsNode, around: SCNVector3Make(0, 1, 0), by: CGFloat(self.xThrust), duration: 0.001, completionBlock: nil)
-
-//        switch ship.shipYolk {
-//        case .down:
-//            down()
-//        case .up:
-//            up()
-//        case .left:
-//            left()
-//        case.right:
-//            right()
-//        case .zeroed:
-//            zeroed()
-//        }
+        self.rotate(self.sectorObjectsNode, around: SCNVector3Make(1, 0, 0), by: CGFloat(self.yThrust))
+        self.rotate(self.sectorObjectsNode, around: SCNVector3Make(0, 1, 0), by: CGFloat(self.xThrust))
 
     }
     func enterSector() {
@@ -534,11 +513,7 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate, SCNSceneR
 
     func cleanSceneAndUpdateSectorNodeObjects() {
         scene.rootNode.enumerateChildNodes({thisNode, _ in
-            //set enemy's physical position to its apparent position
 
-            if thisNode.name == "drone" {
-                thisNode.position = thisNode.presentation.position
-            }
 			// remove torpedoes - refactor to be time since torpedo launched
 
             if ((thisNode.presentation.position.z < -200) && (thisNode.name == "torpedo")) {
@@ -593,13 +568,11 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate, SCNSceneR
 
     func physicsWorld(_ world: SCNPhysicsWorld, didBegin contact: SCNPhysicsContact) {
         DispatchQueue.main.async {
-
-            let particleSystem = SCNParticleSystem(named: "Explosion", inDirectory: nil)
-            particleSystem?.emissionDuration = 0.2
+            let explosionParticles = SCNParticleSystem(named: "Explosion", inDirectory: nil)
+            explosionParticles?.emissionDuration = 0.3
             let explosionNode = SCNNode()
             explosionNode.name = "explosionNode"
-			explosionNode.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
-            explosionNode.addParticleSystem(particleSystem!)
+            explosionNode.addParticleSystem(explosionParticles!)
          if (contact.nodeA.name != "torpedo") {
                 explosionNode.position = contact.nodeA.presentation.position
 
@@ -634,9 +607,11 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate, SCNSceneR
         }
 
     }
-    func renderer(_ renderer: SCNSceneRenderer, didSimulatePhysicsAtTime time: TimeInterval) {
-    }
 
+    func renderer(_ renderer: SCNSceneRenderer, didApplyAnimationsAtTime time: TimeInterval) {
+     }
+    func renderer(_ renderer: SCNSceneRenderer, didSimulatePhysicsAtTime time: TimeInterval) {
+        }
     func renderer(_ renderer: SCNSceneRenderer, willRenderScene scene: SCNScene, atTime time: TimeInterval) {
 
     }
