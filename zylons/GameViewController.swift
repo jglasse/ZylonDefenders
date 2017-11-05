@@ -187,6 +187,10 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate, SCNSceneR
         self.enemyDrone?.pivot = SCNMatrix4MakeTranslation(0.5, 0.5, 0.5)
         self.enemyDrone?.position = SCNVector3Make(0, 0, -30)
         self.enemyDrone?.scale = SCNVector3Make(1, 1, 1)
+        let constraint = SCNLookAtConstraint(target: scene.rootNode)
+        constraint.isGimbalLockEnabled = true
+        self.enemyDrone?.constraints = [constraint]
+
         let actualPosition = self.scene.rootNode.convertPosition((self.enemyDrone?.position)!, from: self.enemyDrone)
         self.enemyDrone?.position = self.scene.rootNode.convertPosition(actualPosition, to: self.sectorObjectsNode)
         self.sectorObjectsNode.addChildNode(self.enemyDrone!)
