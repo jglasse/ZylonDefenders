@@ -13,24 +13,27 @@ import AVFoundation
 import CoreMotion
 import MultipeerConnectivity
 
+struct Constants {
+    static let maxTorpedoes = 5
+    static let torpedoLifespan = 90
+    static let shotDelay = 1
+    static let thrustAmount: Float = 5.0
+    static let numberOfStars = 110
+    static let xAxis = SCNVector3Make(1, 0, 0)
+    static let yAxis = SCNVector3Make(0, 1, 0)
+    static let zAxis = SCNVector3Make(0, 0, 1)
+    static let starBoundsX = 200
+    static let starBoundsY = 500
+    static let starBoundsZ = 500
+    static let cameraFalloff = 500.0
+
+}
+
+@available(iOS 11.0, *)
 class GameViewController: UIViewController, SCNPhysicsContactDelegate, SCNSceneRendererDelegate {
 
     // MARK: -
     // MARK: Constants
-    struct Constants {
-        static let maxTorpedoes = 5
-        static let shotDelay = 1
-        static let thrustAmount: Float = 5.0
-        static let numberOfStars = 110
-        static let xAxis = SCNVector3Make(1, 0, 0)
-        static let yAxis = SCNVector3Make(0, 1, 0)
-        static let zAxis = SCNVector3Make(0, 0, 1)
-        static let starBoundsX = 200
-        static let starBoundsY = 500
-        static let starBoundsZ = 500
-        static let cameraFalloff = 500.0
-
-        }
 
     // add multipeer Connectivity
     var myMCController = MCController.sharedInstance
@@ -125,15 +128,8 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate, SCNSceneR
     }
     @IBAction func fireTorpedo(_ sender: UIButton) {
         if (numberofShotsOnscreen() < Constants.maxTorpedoes) {
-            let torpedoNode = SCNNode(geometry: SCNSphere(radius: 0.25))
-            torpedoNode.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
-            torpedoNode.physicsBody?.isAffectedByGravity = false
-            torpedoNode.name = "torpedo"
-            torpedoNode.physicsBody?.categoryBitMask = 0b00000010
-            torpedoNode.physicsBody?.contactTestBitMask = 0b00000010
+            let torpedoNode = Torpedo()
 
-            let torpedoSparkle = SCNParticleSystem(named: "Torpedo", inDirectory: "")
-            torpedoNode.addParticleSystem(torpedoSparkle!)
 			let photonSoundArray = [photonSound1, photonSound2, photonSound3, photonSound4]
 			let currentplayer = photonSoundArray[currentPhoton]
 
@@ -173,25 +169,32 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate, SCNSceneR
 
     @IBAction func spawnDrone(_ sender: UIButton) {
 
-        let humonshipScene = SCNScene(named: "Humon.scn")
-        let humonShip = humonshipScene?.rootNode.childNodes[0]
-        self.enemyDrone = humonShip
-        let droneShape = SCNBox(width: 10, height: 5, length: 5, chamferRadius: 0)
-        let dronePhysicsShape = SCNPhysicsShape(geometry: droneShape, options: nil)
-        self.enemyDrone?.physicsBody = SCNPhysicsBody(type: .kinematic, shape: dronePhysicsShape)
-        self.enemyDrone?.physicsBody?.isAffectedByGravity = false
-        self.enemyDrone?.physicsBody?.friction = 0
-        self.enemyDrone?.physicsBody?.categoryBitMask = 0b00000010
-        self.enemyDrone?.physicsBody?.contactTestBitMask = 0b00000010
-        self.enemyDrone?.name = "drone"
-        self.enemyDrone?.pivot = SCNMatrix4MakeTranslation(0.5, 0.5, 0.5)
-        self.enemyDrone?.position = SCNVector3Make(0, 0, -30)
-        self.enemyDrone?.scale = SCNVector3Make(1, 1, 1)
+//        let humonshipScene = SCNScene(named: "Humon.scn")
+//        let humonShip = humonshipScene?.rootNode.childNodes[0]
+//        self.enemyDrone = humonShip
+
+        self.enemyDrone = HumonShip()
+
+//        let droneShape = SCNBox(width: 10, height: 5, length: 5, chamferRadius: 0)
+//        let dronePhysicsShape = SCNPhysicsShape(geometry: droneShape, options: nil)
+//        self.enemyDrone?.physicsBody = SCNPhysicsBody(type: .kinematic, shape: dronePhysicsShape)
+//        self.enemyDrone?.physicsBody?.isAffectedByGravity = false
+//        self.enemyDrone?.physicsBody?.friction = 0
+//        self.enemyDrone?.physicsBody?.categoryBitMask = 0b00000010
+//        self.enemyDrone?.physicsBody?.contactTestBitMask = 0b00000010
+//        self.enemyDrone?.name = "drone"
+//        self.enemyDrone?.pivot = SCNMatrix4MakeTranslation(0.5, 0.5, 0.5)
+//        self.enemyDrone?.position = SCNVector3Make(0, 0, -30)
+//        self.enemyDrone?.scale = SCNVector3Make(1, 1, 1)
         let constraint = SCNLookAtConstraint(target: scene.rootNode)
         constraint.isGimbalLockEnabled = true
         self.enemyDrone?.constraints = [constraint]
 
         let actualPosition = self.scene.rootNode.convertPosition((self.enemyDrone?.position)!, from: self.enemyDrone)
+        let seccondActualPosition = self.enemyDrone?.worldPosition
+        print("actualPosition:\(actualPosition)")
+        print("seccondActualPosition:\(seccondActualPosition)")
+
         self.enemyDrone?.position = self.scene.rootNode.convertPosition(actualPosition, to: self.sectorObjectsNode)
         self.sectorObjectsNode.addChildNode(self.enemyDrone!)
     }
@@ -306,7 +309,8 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate, SCNSceneR
 
         sectorScanCameraNode.camera = SCNCamera()
         sectorScanCameraNode.position = SCNVector3(x: 0, y: 200, z: 0)
-        let cameraconstraint = SCNLookAtConstraint(target: self.ship.childNode(withName: "camera", recursively: true))
+        let cameraconstraint = SCNLookAtConstraint(target: scene.rootNode)
+        cameraconstraint.isEnabled = true
         sectorScanCameraNode.constraints = [cameraconstraint]
         sectorScanCameraNode.name = "SectorScanCamera"
         self.ship.addChildNode(sectorScanCameraNode)
@@ -469,8 +473,6 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate, SCNSceneR
             }
 			self.warpGrid.opacity = 1
             self.warpGrid.physicsBody?.applyForce(SCNVector3Make(0, 0, 55), asImpulse: true)
-            self.cameraNode.camera?.xFov = 70
-            self.cameraNode.camera?.focalBlurRadius = 10
 			//pov.camera?.motionBlurIntensity = 1.0
         }
 
@@ -520,20 +522,21 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate, SCNSceneR
 
 			// remove torpedoes - refactor to be time since torpedo launched
 
-            if ((thisNode.presentation.position.z < -200) && (thisNode.name == "torpedo")) {
-                thisNode.removeFromParentNode()
+            if (thisNode.name == "torpedo") {
+                let thisTorp = thisNode as! Torpedo
+                thisTorp.decay()
             }
-
 			// remove explosions - refactor to provide timer for each explosion
 
             if (thisNode.name == "explosionNode") {
+                let thisExplosion = thisNode as! ShipExplosion
                 var actualExplosionPosition = scene.rootNode.convertPosition(thisNode.position, from: sectorObjectsNode)
                 actualExplosionPosition.z += Float(ship.currentSpeed)/10
-                thisNode.position = sectorObjectsNode.convertPosition(actualExplosionPosition, from: scene.rootNode)
+                thisExplosion.position = sectorObjectsNode.convertPosition(actualExplosionPosition, from: scene.rootNode)
 
-				explosionDuration += 1
+                thisExplosion.update()
 
-				if explosionDuration > 300 {
+				if thisExplosion.age > 300 {
 					thisNode.removeFromParentNode()
 					explosionDuration = 0
 				}
@@ -572,11 +575,11 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate, SCNSceneR
 
     func physicsWorld(_ world: SCNPhysicsWorld, didBegin contact: SCNPhysicsContact) {
         DispatchQueue.main.async {
-            let explosionParticles = SCNParticleSystem(named: "Explosion", inDirectory: nil)
-            explosionParticles?.emissionDuration = 0.3
-            let explosionNode = SCNNode()
-            explosionNode.name = "explosionNode"
-            explosionNode.addParticleSystem(explosionParticles!)
+//            let explosionParticles = SCNParticleSystem(named: "Explosion", inDirectory: nil)
+//            explosionParticles?.emissionDuration = 0.3
+            let explosionNode = ShipExplosion()
+//            explosionNode.name = "explosionNode"
+//            explosionNode.addParticleSystem(explosionParticles!)
          if (contact.nodeA.name != "torpedo") {
                 explosionNode.position = contact.nodeA.presentation.position
 
