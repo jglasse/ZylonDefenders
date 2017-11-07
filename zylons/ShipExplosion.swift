@@ -22,7 +22,6 @@ public var age = 0
         explosionParticles?.emissionDuration = 0.3
         self.name = "explosionNode"
         self.addParticleSystem(explosionParticles!)
-
     }
 
     required init?(coder aDecoder: NSCoder) {

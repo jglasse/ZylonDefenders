@@ -6,20 +6,52 @@
 //  Copyright © 2017 Jeffery Glasse. All rights reserved.
 //
 
+import UIKit
 import SceneKit
 
 class Torpedo: SCNNode {
-    public var age = 0
+    enum TorpType {
+        case humon
+        case zylon
+    }
 
+    public var age = 0
+    public var torpType: TorpType = .zylon
+
+    init(designatedTorpType: TorpType) {
+        super.init()
+        torpType = designatedTorpType
+        self.geometry = SCNSphere(radius: 0.25)
+        self.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
+        self.physicsBody?.isAffectedByGravity = false
+        self.name = "torpedo"
+
+        if torpType == .humon  //create humon torpedo
+        {
+        self.physicsBody?.categoryBitMask = 0000000000
+        self.physicsBody?.contactTestBitMask = 0000000000
+        let torpedoSparkle = SCNParticleSystem(named: "HumonTorpedo", inDirectory: "")
+            self.addParticleSystem(torpedoSparkle!)
+
+        } else // create zylon torpedo
+        {
+            self.physicsBody?.categoryBitMask = 0b00000010
+            self.physicsBody?.contactTestBitMask = 0b00000010
+            let torpedoSparkle = SCNParticleSystem(named: "Torpedo", inDirectory: "")
+            self.addParticleSystem(torpedoSparkle!)
+
+        }
+    }
     override init() {
     super.init()
+    let torpedoSparkle = SCNParticleSystem(named: "Torpedo", inDirectory: "")
     self.geometry = SCNSphere(radius: 0.25)
     self.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
     self.physicsBody?.isAffectedByGravity = false
-    self.name = "torpedo"
     self.physicsBody?.categoryBitMask = 0b00000010
     self.physicsBody?.contactTestBitMask = 0b00000010
-    let torpedoSparkle = SCNParticleSystem(named: "Torpedo", inDirectory: "")
+
+    self.name = "torpedo"
     self.addParticleSystem(torpedoSparkle!)
     }
 

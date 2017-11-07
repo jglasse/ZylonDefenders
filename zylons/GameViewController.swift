@@ -26,6 +26,8 @@ struct Constants {
     static let starBoundsY = 500
     static let starBoundsZ = 500
     static let cameraFalloff = 500.0
+    static let minHumonTorpedoCycles: Float = 45
+    static let maxHumonTorpedoCycles: Float = 300
 
 }
 
@@ -126,6 +128,16 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate, SCNSceneR
 		SCNTransaction.animationDuration = 0.0
 
     }
+
+    func fireHumonTorpedo(fromShip: HumonShip) {
+        let torpedoNode = Torpedo(designatedTorpType: .humon)
+        scene.rootNode.addChildNode(torpedoNode)
+        let driftAmount: Float = 2
+        let forceAmount: Float = 95
+            torpedoNode.worldPosition = fromShip.worldPosition
+            torpedoNode.physicsBody?.applyForce(SCNVector3Make(-driftAmount, 1.7, forceAmount), asImpulse: true)
+    }
+
     @IBAction func fireTorpedo(_ sender: UIButton) {
         if (numberofShotsOnscreen() < Constants.maxTorpedoes) {
             let torpedoNode = Torpedo()
@@ -169,23 +181,8 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate, SCNSceneR
 
     @IBAction func spawnDrone(_ sender: UIButton) {
 
-//        let humonshipScene = SCNScene(named: "Humon.scn")
-//        let humonShip = humonshipScene?.rootNode.childNodes[0]
-//        self.enemyDrone = humonShip
-
         self.enemyDrone = HumonShip()
 
-//        let droneShape = SCNBox(width: 10, height: 5, length: 5, chamferRadius: 0)
-//        let dronePhysicsShape = SCNPhysicsShape(geometry: droneShape, options: nil)
-//        self.enemyDrone?.physicsBody = SCNPhysicsBody(type: .kinematic, shape: dronePhysicsShape)
-//        self.enemyDrone?.physicsBody?.isAffectedByGravity = false
-//        self.enemyDrone?.physicsBody?.friction = 0
-//        self.enemyDrone?.physicsBody?.categoryBitMask = 0b00000010
-//        self.enemyDrone?.physicsBody?.contactTestBitMask = 0b00000010
-//        self.enemyDrone?.name = "drone"
-//        self.enemyDrone?.pivot = SCNMatrix4MakeTranslation(0.5, 0.5, 0.5)
-//        self.enemyDrone?.position = SCNVector3Make(0, 0, -30)
-//        self.enemyDrone?.scale = SCNVector3Make(1, 1, 1)
         let constraint = SCNLookAtConstraint(target: scene.rootNode)
         constraint.isGimbalLockEnabled = true
         self.enemyDrone?.constraints = [constraint]
@@ -541,6 +538,10 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate, SCNSceneR
 					explosionDuration = 0
 				}
             }
+            if (thisNode.name == "drone") {
+                let thisDrone = thisNode as! HumonShip
+                thisDrone.maneuver()
+            }
 
 			// remove warpgrid - refactor to be time since warpgrid
             if ((thisNode.presentation.position.z > 110) && (thisNode.name == "warpGrid")) {
@@ -575,11 +576,8 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate, SCNSceneR
 
     func physicsWorld(_ world: SCNPhysicsWorld, didBegin contact: SCNPhysicsContact) {
         DispatchQueue.main.async {
-//            let explosionParticles = SCNParticleSystem(named: "Explosion", inDirectory: nil)
-//            explosionParticles?.emissionDuration = 0.3
+
             let explosionNode = ShipExplosion()
-//            explosionNode.name = "explosionNode"
-//            explosionNode.addParticleSystem(explosionParticles!)
          if (contact.nodeA.name != "torpedo") {
                 explosionNode.position = contact.nodeA.presentation.position
 
@@ -587,9 +585,9 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate, SCNSceneR
                 explosionNode.position = contact.nodeB.presentation.position
             }
             print("contact.nodeA.name: \(String(describing: contact.nodeA.name))")
-            print("contact.nodeA.position: \(contact.nodeA.position)")
+            print("contact.nodeA.position: \(contact.nodeA.worldPosition)")
             print("contact.nodeB.name: \(String(describing: contact.nodeB.name))")
-            print("contact.nodeB.position: \(contact.nodeB.position)")
+            print("contact.nodeB.position: \(contact.nodeB.worldPosition)")
 
             //scene.rootNode.addChildNode(explosionNode)
             self.sectorObjectsNode.addChildNode(explosionNode)

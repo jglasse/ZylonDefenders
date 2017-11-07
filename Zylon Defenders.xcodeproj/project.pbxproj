@@ -31,6 +31,7 @@
 		E174FDC81E1A424500A7CC73 /* bokeh.png in Resources */ = {isa = PBXBuildFile; fileRef = E174FDC61E1A424500A7CC73 /* bokeh.png */; };
 		E187F56D1FB0275A0036B3FE /* Torpedo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E187F56C1FB0275A0036B3FE /* Torpedo.swift */; };
 		E187F5701FB028910036B3FE /* ShipExplosion.swift in Sources */ = {isa = PBXBuildFile; fileRef = E187F56F1FB028910036B3FE /* ShipExplosion.swift */; };
+		E187F5721FB04B140036B3FE /* HumonTorpedo.scnp in Resources */ = {isa = PBXBuildFile; fileRef = E187F5711FB04B140036B3FE /* HumonTorpedo.scnp */; };
 		E19BFF3F1EDFDEED00FCC5EE /* ZylonShip.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19BFF3E1EDFDEED00FCC5EE /* ZylonShip.swift */; };
 		E19F3F311F64647600F612A7 /* UtilityFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19F3F301F64647600F612A7 /* UtilityFunctions.swift */; };
 		E19F3F331F6494AB00F612A7 /* JoyStickView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19F3F321F6494AB00F612A7 /* JoyStickView.swift */; };
@@ -90,6 +91,7 @@
 		E174FDC61E1A424500A7CC73 /* bokeh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bokeh.png; sourceTree = "<group>"; };
 		E187F56C1FB0275A0036B3FE /* Torpedo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Torpedo.swift; sourceTree = "<group>"; };
 		E187F56F1FB028910036B3FE /* ShipExplosion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShipExplosion.swift; sourceTree = "<group>"; };
+		E187F5711FB04B140036B3FE /* HumonTorpedo.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = HumonTorpedo.scnp; sourceTree = "<group>"; };
 		E19BFF3E1EDFDEED00FCC5EE /* ZylonShip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZylonShip.swift; sourceTree = "<group>"; };
 		E19F3F301F64647600F612A7 /* UtilityFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilityFunctions.swift; sourceTree = "<group>"; };
 		E19F3F321F6494AB00F612A7 /* JoyStickView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoyStickView.swift; sourceTree = "<group>"; };
@@ -171,6 +173,7 @@
 				E16AB6231E1DD1F800E3D8C2 /* spark.png */,
 				E15520311DCFE776001651EB /* starField.scnp */,
 				E1A58DC21E1DD07E00DCA24F /* Explosion.scnp */,
+				E187F5711FB04B140036B3FE /* HumonTorpedo.scnp */,
 				E174FDC51E1A424500A7CC73 /* Torpedo.scnp */,
 			);
 			name = particle_sytems;
@@ -382,6 +385,7 @@
 			files = (
 				E1BD14B91E24280C002E49A5 /* two.m4a in Resources */,
 				E1E381E21EC4B79A000CC31C /* button_dir_up_0.png in Resources */,
+				E187F5721FB04B140036B3FE /* HumonTorpedo.scnp in Resources */,
 				E109EB601E1BB938003DAB0F /* 40069.ttf in Resources */,
 				E1A89EA81E9867F600EA8BC4 /* Default-568h@2x.png in Resources */,
 				E1A58DC31E1DD07E00DCA24F /* Explosion.scnp in Resources */,
@@ -587,7 +591,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
@@ -605,7 +609,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
