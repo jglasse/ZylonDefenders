@@ -24,10 +24,10 @@ class Torpedo: SCNNode {
         self.geometry = SCNSphere(radius: 0.25)
         self.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
         self.physicsBody?.isAffectedByGravity = false
-        self.name = "torpedo"
 
         if torpType == .humon  //create humon torpedo
         {
+        self.name = "Humon torpedo"
         self.physicsBody?.categoryBitMask = 0000000000
         self.physicsBody?.contactTestBitMask = 0000000000
         let torpedoSparkle = SCNParticleSystem(named: "HumonTorpedo", inDirectory: "")
@@ -35,6 +35,8 @@ class Torpedo: SCNNode {
 
         } else // create zylon torpedo
         {
+            self.name = "torpedo"
+
             self.physicsBody?.categoryBitMask = 0b00000010
             self.physicsBody?.contactTestBitMask = 0b00000010
             let torpedoSparkle = SCNParticleSystem(named: "Torpedo", inDirectory: "")

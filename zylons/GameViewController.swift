@@ -26,8 +26,8 @@ struct Constants {
     static let starBoundsY = 500
     static let starBoundsZ = 500
     static let cameraFalloff = 500.0
-    static let minHumonTorpedoCycles: Float = 45
-    static let maxHumonTorpedoCycles: Float = 300
+    static let minHumanShootInterval: Float = 45
+    static let maxHumanShootInterval: Float = 300
 
 }
 
@@ -287,8 +287,8 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate, SCNSceneR
         scene.rootNode.addChildNode(self.ship)
         self.ship.position = SCNVector3(x: 0, y: 0, z: 0)
         cameraNode.camera = SCNCamera()
-        cameraNode.camera?.focalSize = 10
-        cameraNode.camera?.focalBlurRadius = 100
+        //cameraNode.camera?.focalSize = 10
+        //cameraNode.camera?.focalBlurRadius = 100
         cameraNode.position = SCNVector3(x: 0, y: 0, z: 0)
         cameraNode.name = "camera"
         cameraNode.camera?.zFar = Constants.cameraFalloff
@@ -519,7 +519,7 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate, SCNSceneR
 
 			// remove torpedoes - refactor to be time since torpedo launched
 
-            if (thisNode.name == "torpedo") {
+            if  thisNode.name?.range(of: "torpedo") != nil {
                 let thisTorp = thisNode as! Torpedo
                 thisTorp.decay()
             }

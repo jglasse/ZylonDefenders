@@ -42,7 +42,6 @@ class HumonShip: SCNNode {
         let torpedoNode = Torpedo(designatedTorpType: .humon)
         let parentNode = self.parent!
         let driftAmount: Float = 2
-        let offset: Float = 4
         let forceAmount: Float = 55
      //   torpedoNode.worldPosition.z += offset // place the torpedo in front of the ship
         parentNode.addChildNode(torpedoNode)
@@ -57,38 +56,47 @@ class HumonShip: SCNNode {
 
         if currentManeuverType == .fullstop {
 
-         let maneuverDuration = TimeInterval(randRange(lower: 1.0, upper: 3.0))
+         let maneuverDuration = TimeInterval(randRange(lower: 1, upper: 3))
          var currentManeuver: SCNAction
-         let randomYDelta = randRange(lower: -10, upper: 10)
-         let randomXDelta = randRange(lower: 0, upper: 10)
+         let yDelta: Float = randRange(lower: -30, upper: 30)
+         var xDelta: Float
+         var zDelta: Float = 0
+            print("drone position: \(self.worldPosition)")
+        if self.worldPosition.z  < -20 {
+          zDelta = randRange(lower: -1, upper: 45)
+            } else {
+            zDelta = randRange(lower: -25, upper: 20)
+            }
+         xDelta = 0
          if self.worldPosition.x < 0 {
             self.currentManeuverType = .zig
-            currentManeuver = SCNAction.move(by: SCNVector3(30.0 + randomXDelta, randomYDelta, 0), duration: maneuverDuration)
-            } else {
+            xDelta = randRange(lower: 20, upper: 40)
+         } else {
             self.currentManeuverType = .zag
-            currentManeuver = SCNAction.move(by: SCNVector3(-30.0, randomYDelta, 0), duration: maneuverDuration)
+            xDelta = randRange(lower: -40, upper: -20)
+
         }
             let fullStop = { () -> Void in
                 self.currentManeuverType = .fullstop
                 self.inCurrentManeuver = false
 
             }
+            let targetWorldVector = SCNVector3(x: self.worldPosition.x+xDelta, y: self.worldPosition.y+yDelta, z: self.worldPosition.z+zDelta)
+            let targetObjectsNodeVector = self.parent?.convertPosition(targetWorldVector, from: self.parent?.parent)
+
+            currentManeuver = SCNAction.move(to: targetObjectsNodeVector!, duration: maneuverDuration)
+           // currentManeuver = SCNAction.move(by: SCNVector3(xDelta, yDelta, zDelta), duration: maneuverDuration)
             self.inCurrentManeuver = true
             currentManeuver.timingMode = .easeInEaseOut
             self.runAction(currentManeuver, completionHandler: fullStop)
 
-        } else
-            if self.inCurrentManeuver {
-                cyclesUntilNextImpulseTurn  -= 1
         }
 
         //FIRE TORPEDO LOGIC
         //if I'm not currently counting down to fire, start a new counter, with a random value between minShootInterval and maxShootInterval
-        print("cyclesUntilFireTorpedo: \(cyclesUntilFireTorpedo)")
         if cyclesUntilFireTorpedo  == 0 {
             self.fireTorpedo()
-
-            cyclesUntilFireTorpedo = randRange(lower: Constants.minHumonTorpedoCycles, upper: Constants.maxHumonTorpedoCycles)
+            cyclesUntilFireTorpedo = randRange(lower: Constants.minHumanShootInterval, upper: Constants.maxHumanShootInterval)
         } else {
             cyclesUntilFireTorpedo  -= 1
         }
