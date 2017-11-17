@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:zylonprologue/zylonprologue.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:helm/Helm.xcodeproj">
    </FileRef>
    <FileRef
