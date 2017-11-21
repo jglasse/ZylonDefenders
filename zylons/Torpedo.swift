@@ -28,17 +28,17 @@ class Torpedo: SCNNode {
         if torpType == .humon  //create humon torpedo
         {
         self.name = "Humon torpedo"
-        self.physicsBody?.categoryBitMask = 0000000000
-        self.physicsBody?.contactTestBitMask = 0000000000
-        let torpedoSparkle = SCNParticleSystem(named: "HumonTorpedo", inDirectory: "")
+            self.physicsBody?.categoryBitMask = objectCategories.enemyFire
+            self.physicsBody?.contactTestBitMask = objectCategories.enemyFire | objectCategories.zylonShip
+            let torpedoSparkle = SCNParticleSystem(named: "HumonTorpedo", inDirectory: "")
             self.addParticleSystem(torpedoSparkle!)
 
         } else // create zylon torpedo
         {
             self.name = "torpedo"
 
-            self.physicsBody?.categoryBitMask = 0b00000010
-            self.physicsBody?.contactTestBitMask = 0b00000010
+            self.physicsBody?.categoryBitMask = objectCategories.zylonFire
+            self.physicsBody?.contactTestBitMask = objectCategories.zylonFire | objectCategories.enemyShip
             let torpedoSparkle = SCNParticleSystem(named: "Torpedo", inDirectory: "")
             self.addParticleSystem(torpedoSparkle!)
 

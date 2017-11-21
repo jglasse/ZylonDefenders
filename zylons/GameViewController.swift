@@ -28,7 +28,16 @@ struct Constants {
     static let cameraFalloff = 500.0
     static let minHumanShootInterval: Float = 45
     static let maxHumanShootInterval: Float = 300
+}
 
+struct objectCategories {
+    static let zylonShip = 0b00000001
+    static let zylonFire = 0b00000010
+    static let enemyShip = 0b00000100
+    static let enemyFire = 0b00001000
+    static let starBases = 0b00010000
+    static let asteroids = 0b00100000
+    static let warpgrids = 0b01000000
 }
 
 @available(iOS 11.0, *)
@@ -50,7 +59,7 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate, SCNSceneR
     var scnView: SCNView!
     let sectorObjectsNode = SCNNode()
 
-    var cameraNode = SCNNode()
+    var forwardCameraNode = SCNNode()
     var rearCameraNode = SCNNode()
     var sectorScanCameraNode = SCNNode()
     let warpGrid = SCNNode()
@@ -110,14 +119,13 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate, SCNSceneR
 
     }
     @IBAction func showShortRangeScan(_ sender: Any) {
-        //sectorScan()
-        computerBeepSound("torpedo_fail")
+        sectorScan()
 
     }
     @IBAction func toggleView(_ sender: UIButton) {
 		SCNTransaction.animationDuration = 0.0
 
-		if scnView.pointOfView == cameraNode {
+		if scnView.pointOfView == forwardCameraNode {
 			sender.setTitle("AFT", for: .normal)
             aftView()
         } else {
@@ -140,8 +148,7 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate, SCNSceneR
 
     @IBAction func fireTorpedo(_ sender: UIButton) {
         if (numberofShotsOnscreen() < Constants.maxTorpedoes) {
-            let torpedoNode = Torpedo()
-
+            let torpedoNode = Torpedo(designatedTorpType: .zylon)
 			let photonSoundArray = [photonSound1, photonSound2, photonSound3, photonSound4]
 			let currentplayer = photonSoundArray[currentPhoton]
 
@@ -188,9 +195,6 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate, SCNSceneR
         self.enemyDrone?.constraints = [constraint]
 
         let actualPosition = self.scene.rootNode.convertPosition((self.enemyDrone?.position)!, from: self.enemyDrone)
-        let seccondActualPosition = self.enemyDrone?.worldPosition
-        print("actualPosition:\(actualPosition)")
-        print("seccondActualPosition:\(seccondActualPosition)")
 
         self.enemyDrone?.position = self.scene.rootNode.convertPosition(actualPosition, to: self.sectorObjectsNode)
         self.sectorObjectsNode.addChildNode(self.enemyDrone!)
@@ -222,8 +226,8 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate, SCNSceneR
         setupScene()
         createStars()
         setupShip()
-        myMCController.setup()
-        myMCController.myCommandDelegate = self
+       // myMCController.setup()
+       // myMCController.myCommandDelegate = self
         shipHud.parentScene = self
     }
 
@@ -286,15 +290,12 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate, SCNSceneR
     func setupShip() {
         scene.rootNode.addChildNode(self.ship)
         self.ship.position = SCNVector3(x: 0, y: 0, z: 0)
-        cameraNode.camera = SCNCamera()
-        //cameraNode.camera?.focalSize = 10
-        //cameraNode.camera?.focalBlurRadius = 100
-        cameraNode.position = SCNVector3(x: 0, y: 0, z: 0)
-        cameraNode.name = "camera"
-        cameraNode.camera?.zFar = Constants.cameraFalloff
-        //cameraNode.camera?.fieldOfView = 120
+        forwardCameraNode.camera = SCNCamera()
+        forwardCameraNode.position = SCNVector3(x: 0, y: 0, z: 0)
+        forwardCameraNode.name = "camera"
+        forwardCameraNode.camera?.zFar = Constants.cameraFalloff
 
-        self.ship.addChildNode(cameraNode)
+        self.ship.addChildNode(forwardCameraNode)
 
         rearCameraNode.camera=SCNCamera()
         rearCameraNode.position = SCNVector3(x: 0, y: 0, z: 0)
@@ -375,7 +376,9 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate, SCNSceneR
     }
 
     func sectorScan() {
-    scnView.pointOfView = sectorScanCameraNode
+        if scnView.pointOfView != sectorScanCameraNode {scnView.pointOfView = sectorScanCameraNode } else {
+            scnView.pointOfView = forwardCameraNode
+        }
 
     }
     func aftView() {
@@ -384,7 +387,7 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate, SCNSceneR
     }
 
     func foreView() {
-        scnView.pointOfView = cameraNode
+        scnView.pointOfView = forwardCameraNode
         shipHud.foreView()
 
     }
@@ -413,8 +416,8 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate, SCNSceneR
 
             if starScenePosition.z > 300 || starScenePosition.y > 150 || starScenePosition.y < -150 {
                 starScenePosition.z = randRange(lower: -400, upper: -200)
-                starScenePosition.x = randRange(lower: -100, upper: 100)
-                starScenePosition.y = randRange(lower: -100, upper: 100)
+                starScenePosition.x = randRange(lower: -200, upper: 200)
+                starScenePosition.y = randRange(lower: -200, upper: 200)
             }
             star.position = scene.rootNode.convertPosition(starScenePosition, to: sectorObjectsNode)
         }
@@ -440,8 +443,8 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate, SCNSceneR
         warpGrid.physicsBody?.isAffectedByGravity = false
         warpGrid.physicsBody?.applyForce(SCNVector3Make(0, 0, 35), asImpulse: true)
         warpGrid.physicsBody?.friction = 0
-        warpGrid.physicsBody?.categoryBitMask = 0b00000010
-        warpGrid.physicsBody?.contactTestBitMask = 0b00000000
+        warpGrid.physicsBody?.categoryBitMask = objectCategories.warpgrids
+        warpGrid.physicsBody?.contactTestBitMask = objectCategories.warpgrids | objectCategories.asteroids | objectCategories.enemyShip
         warpGrid.name = "warpGrid"
 
         //warpGrid.geometry?.firstMaterial?.isDoubleSided = true
@@ -468,7 +471,7 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate, SCNSceneR
             DispatchQueue.main.async {
 			self.stepperSpeed.value = 9
             }
-			self.warpGrid.opacity = 1
+			self.warpGrid.opacity = 0.5
             self.warpGrid.physicsBody?.applyForce(SCNVector3Make(0, 0, 55), asImpulse: true)
 			//pov.camera?.motionBlurIntensity = 1.0
         }
@@ -607,7 +610,7 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate, SCNSceneR
             self.xThrustLabel.text = "X Thrust - \(x)"
             self.yThrustLabel.text = "Y Thrust - \(y)"
             if let drone = self.enemyDrone {
-                self.targetDistanceDisplay.text = "DISTANCE TO TARGET - \(self.distanceBetweenPoints(first: drone.position, second: self.cameraNode.position))"
+                self.targetDistanceDisplay.text = "DISTANCE TO TARGET - \(self.distanceBetweenPoints(first: drone.position, second: self.forwardCameraNode.position))"
             }
         }
 

@@ -10,6 +10,7 @@ import Foundation
 import SceneKit
 
 class HumonShip: SCNNode {
+
     enum ManeuverType {
         case zig
         case zag
@@ -43,7 +44,6 @@ class HumonShip: SCNNode {
         let parentNode = self.parent!
         let driftAmount: Float = 2
         let forceAmount: Float = 55
-     //   torpedoNode.worldPosition.z += offset // place the torpedo in front of the ship
         parentNode.addChildNode(torpedoNode)
         torpedoNode.worldPosition = self.worldPosition
         torpedoNode.physicsBody?.applyForce(SCNVector3Make(-driftAmount, 1.7, forceAmount), asImpulse: true)
@@ -63,9 +63,9 @@ class HumonShip: SCNNode {
          var zDelta: Float = 0
             print("drone position: \(self.worldPosition)")
         if self.worldPosition.z  < -20 {
-          zDelta = randRange(lower: -1, upper: 45)
+          zDelta = randRange(lower: 5, upper: 10)
             } else {
-            zDelta = randRange(lower: -25, upper: 20)
+            zDelta = randRange(lower: -25, upper: self.worldPosition.z-10)
             }
          xDelta = 0
          if self.worldPosition.x < 0 {

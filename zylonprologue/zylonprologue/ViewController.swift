@@ -57,22 +57,37 @@ DEFEND THE EMPIRE. DRIVE BACK THE HUMONS. SAVE THE ZYLON RACE.
     @IBOutlet weak var transmissionView: UILabel!
 
     override func viewDidLoad() {
-        super.viewDidLoad()
-        messageArray = [(message1, 1), (message2, 1), (message3, 1), (message4, 0)]
-       // var gameView =  SKView(frame: self.view.frame)
-        let gameScene = SKScene()
-        let messageLabel = SKLabelNode(fontNamed: "ArialMT")
-        messageLabel.position = CGPoint(x: self.view.frame.midX, y: self.view.frame.minY + 100)
-        gameScene.addChild(messageLabel)
-       // gameView.presentScene(gameScene)
-        receiveNewTelemetry(message: message1)
-        do {
-        telemetryPlayer = try AVAudioPlayer(contentsOf: soundURL!, fileTypeHint: AVFileType.aiff.rawValue)
-        telemetryPlayer?.delegate = self
 
-        } catch let error {
-            print(error.localizedDescription)
-        }
+        super.viewDidLoad()
+        // setup Background Image
+        let spaceBackground = SKSpriteNode(imageNamed: "Starfield 2048x1024B")
+        spaceBackground.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        let gameView =  SKView(frame: self.view.frame)
+        self.view = gameView
+        let gameScene = SKScene(size: gameView.bounds.size)
+        spaceBackground.position = CGPoint(x: self.view.frame.midX, y: self.view.frame.midY)
+        spaceBackground.size = gameScene.size
+
+        gameScene.addChild(spaceBackground)
+
+        messageArray = [(message1, 1), (message2, 1), (message3, 1), (message4, 0)]
+
+        let messageLabel = SKLabelNode()
+        messageLabel.text = message1
+
+        messageLabel.position = CGPoint(x: self.view.frame.midX, y: self.view.frame.midY)
+        messageLabel.fontSize = 10
+        gameScene.addChild(messageLabel)
+        gameView.presentScene(gameScene)
+
+       // receiveNewTelemetry(message: message1)
+//        do {
+//        telemetryPlayer = try AVAudioPlayer(contentsOf: soundURL!, fileTypeHint: AVFileType.aiff.rawValue)
+//        telemetryPlayer?.delegate = self
+//
+//        } catch let error {
+//            print(error.localizedDescription)
+//        }
 
     }
 
@@ -102,9 +117,9 @@ DEFEND THE EMPIRE. DRIVE BACK THE HUMONS. SAVE THE ZYLON RACE.
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        self.transmissionView.text = ""
+  //      self.transmissionView.text = ""
         self.currentMessageIndex = 0
-        telemetryPlayer?.play()
+  //      telemetryPlayer?.play()
         self.receiveNewTelemetry(message: message1)
     }
 

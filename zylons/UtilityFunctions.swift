@@ -24,7 +24,8 @@ extension FloatingPoint {
     var radiansToDegrees: Self { return self * 180 / .pi }
 }
 func randRange (lower: Float, upper: Float) -> Float {
-    return lower + Float(arc4random_uniform(UInt32(upper - lower + 1)))
+    let difference = upper - lower
+    return lower + Float(arc4random_uniform(UInt32(difference)))
 }
 
 // MARK - Extensions
