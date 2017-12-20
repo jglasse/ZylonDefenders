@@ -57,73 +57,58 @@ DEFEND THE EMPIRE. DRIVE BACK THE HUMONS. SAVE THE ZYLON RACE.
     @IBOutlet weak var transmissionView: UILabel!
 
     override func viewDidLoad() {
-
         super.viewDidLoad()
-        // setup Background Image
-        let spaceBackground = SKSpriteNode(imageNamed: "Starfield 2048x1024B")
-        spaceBackground.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-        let gameView =  SKView(frame: self.view.frame)
-        self.view = gameView
-        let gameScene = SKScene(size: gameView.bounds.size)
-        spaceBackground.position = CGPoint(x: self.view.frame.midX, y: self.view.frame.midY)
-        spaceBackground.size = gameScene.size
-
-        gameScene.addChild(spaceBackground)
-
-        messageArray = [(message1, 1), (message2, 1), (message3, 1), (message4, 0)]
-
-        let messageLabel = SKLabelNode()
-        messageLabel.text = message1
-
-        messageLabel.position = CGPoint(x: self.view.frame.midX, y: self.view.frame.midY)
-        messageLabel.fontSize = 10
-        gameScene.addChild(messageLabel)
-        gameView.presentScene(gameScene)
-
-       // receiveNewTelemetry(message: message1)
-//        do {
-//        telemetryPlayer = try AVAudioPlayer(contentsOf: soundURL!, fileTypeHint: AVFileType.aiff.rawValue)
-//        telemetryPlayer?.delegate = self
-//
-//        } catch let error {
-//            print(error.localizedDescription)
-//        }
-
     }
 
-    func receiveNewTelemetry(message: String) {
-        self.currentLetter = ""
-        self.existingTelemetry = ""
-        self.currentLetterIndex = 0
-        self.currentMessage = self.messageArray[currentMessageIndex].message
-    }
-
-    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
-        telemetryPlayer?.play()
-        let index = self.currentMessage.index(self.currentMessage.startIndex, offsetBy: self.currentLetterIndex)
-        self.currentLetter = String(self.currentMessage[index])
-        self.existingTelemetry.append(currentLetter)
-        self.transmissionView.text = existingTelemetry
-        self.transmissionView.setNeedsDisplay()
-        if self.currentLetterIndex < self.currentMessage.count-1 {
-            self.currentLetterIndex += 1
-        } else {
-            self.currentLetterIndex = 0
-            self.currentMessageIndex += 1
-            telemetryPlayer?.stop()
-
-        }
-
-    }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-  //      self.transmissionView.text = ""
+        var receiving = false
+        messageArray = [(message1, 1), (message2, 1), (message3, 1), (message4, 0)]
+        let telemetryTimer = Timer(timeInterval: 0.1, target: self, selector: (#selector(self.advanceTelemetry)), userInfo: nil, repeats: true)
         self.currentMessageIndex = 0
-  //      telemetryPlayer?.play()
+        self.currentLetterIndex = 0
         self.receiveNewTelemetry(message: message1)
     }
 
-}
+    func telemetrySound() {
+        if (self.telemetryPlayer?.isPlaying)! {
+            return
+        } else {
+            self.telemetryPlayer?.play()
+        }
+
+    }
+
+    @objc func advanceTelemetry() {
+
+    }
+    func receiveNewTelemetry(message: String) {
+        let backgroundQ = DispatchQueue(label: "bgQ", qos: .userInitiated, attributes: .concurrent, autoreleaseFrequency: .workItem, target: nil)
+        self.currentLetterIndex = 0
+        do {
+            self.telemetryPlayer = try AVAudioPlayer(contentsOf: soundURL!, fileTypeHint: AVFileType.aiff.rawValue)
+            self.telemetryPlayer?.delegate = self
+        } catch let error {
+            print(error.localizedDescription)
+        }
+        self.telemetryPlayer?.prepareToPlay()
+        let mainQ = DispatchQueue.main
+        let sleepamount = DispatchTime.now() + 1
+        backgroundQ.async {
+        for letter in message {
+            self.existingTelemetry += String(letter)
+            self.currentLetterIndex += 1
+
+            mainQ.asyncAfter(deadline: sleepamount, execute: {
+                self.transmissionView.text = self.existingTelemetry
+
+            if self.currentLetterIndex < self.message1.count-1 {
+                    self.telemetrySound()
+            }
+            })
+            self.telemetryPlayer?.stop()
+        }
+        }}}
 
 extension String {
     subscript (bounds: CountableClosedRange<Int>) -> String {

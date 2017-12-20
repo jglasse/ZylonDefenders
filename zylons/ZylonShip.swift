@@ -63,6 +63,16 @@ class ZylonShip: SCNNode {
 	var currentTorpedoBay = 1
     var sectorLocation = locationInSector(x: 500, y: 500, z: 500)
     var sector = currentSector(sectorX: 30, sectorY: 30, sectorZ: 30)
+    override init() {
+        super.init()
+        self.geometry = SCNSphere(radius: 0.25)
+      //  self.physicsBody = SCNPhysicsBody(type: .kinematic, shape: nil)
+
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
 	struct locationInSector {
 		var x = 0
@@ -92,4 +102,7 @@ class ZylonShip: SCNNode {
 
 	var range = [Float]()
 
+    func updateSector() {
+        self.currentSector.z+=1
+    }
 }

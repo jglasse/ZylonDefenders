@@ -29,7 +29,7 @@ class Torpedo: SCNNode {
         {
         self.name = "Humon torpedo"
             self.physicsBody?.categoryBitMask = objectCategories.enemyFire
-            self.physicsBody?.contactTestBitMask = objectCategories.enemyFire | objectCategories.zylonShip
+            self.physicsBody?.contactTestBitMask = objectCategories.enemyFire | objectCategories.zylonShip | objectCategories.zylonShip
             let torpedoSparkle = SCNParticleSystem(named: "HumonTorpedo", inDirectory: "")
             self.addParticleSystem(torpedoSparkle!)
 

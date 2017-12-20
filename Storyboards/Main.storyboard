@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BV1-FR-VrT">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="5DR-Qy-GgG">
     <device id="retina4_7" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -17,10 +17,70 @@
         </array>
     </customFonts>
     <scenes>
-        <!--Game View Controller-->
+        <!--View Controller-->
+        <scene sceneID="2f1-As-zml">
+            <objects>
+                <viewController id="5DR-Qy-GgG" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="RKZ-W3-1R4"/>
+                        <viewControllerLayoutGuide type="bottom" id="f7I-6l-bMV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="nfN-3V-G5x">
+                        <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bUR-Pk-TVp">
+                                <rect key="frame" x="20" y="32" width="639" height="335"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <mutableString key="text">WELCOME TO THE ZYLON DEFENDER BETA!
+Build 8 notes
+
+This version has basic controls, firing and warp enabled, and spawns a random set of new enemies each time you warp into a sector - so you can start to get a basic feel of how the actual game will play. It also fixes a nasty crashing bug.  
+
+There's still much that's not here, most importantly:
+
+1) Collision detection with your ship (Humon fire will not affect you)
+2) Galactic map (currently, warp takes you from sector 0.0.0 to 0.0.1, 0.0.2, and so forth)
+3) Advanced enemy ship AI and different ship models and attack styles
+4) Sector scan is currently disabled
+
+As always, feel free to email notes, thoughts, comments or threats to jglasse@gmail.com</mutableString>
+                                <color key="textColor" red="0.0018759364314704374" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wgi-zc-LlL">
+                                <rect key="frame" x="280" y="325" width="107" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="YRB-LB-NW9"/>
+                                    <constraint firstAttribute="width" constant="107" id="hzf-vg-TZa"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Y14.5M" family="Y14.5M" pointSize="20"/>
+                                <state key="normal" title="BEGIN"/>
+                                <connections>
+                                    <segue destination="BV1-FR-VrT" kind="show" id="U3V-5S-Kxc"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="wgi-zc-LlL" firstAttribute="centerX" secondItem="nfN-3V-G5x" secondAttribute="centerX" id="16E-PL-cBz"/>
+                            <constraint firstItem="bUR-Pk-TVp" firstAttribute="top" secondItem="RKZ-W3-1R4" secondAttribute="bottom" constant="32" id="RcW-UC-aPm"/>
+                            <constraint firstItem="f7I-6l-bMV" firstAttribute="top" secondItem="bUR-Pk-TVp" secondAttribute="bottom" constant="8" id="Tdl-nm-yDc"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="bUR-Pk-TVp" secondAttribute="leading" id="bQf-mq-kda"/>
+                            <constraint firstAttribute="trailing" secondItem="bUR-Pk-TVp" secondAttribute="trailing" constant="8" id="oNE-bE-Sbe"/>
+                            <constraint firstItem="f7I-6l-bMV" firstAttribute="top" secondItem="wgi-zc-LlL" secondAttribute="bottom" constant="20" id="xI4-oT-MIX"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Tmw-tX-wDj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-693.10344827586209" y="37.600000000000001"/>
+        </scene>
+        <!--Zylon Game View Controller-->
         <scene sceneID="tXr-a1-R10">
             <objects>
-                <viewController id="BV1-FR-VrT" customClass="GameViewController" customModule="Zylon_Defenders" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BV1-FR-VrT" customClass="ZylonGameViewController" customModule="Zylon_Defenders" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="cOD-NV-RaV"/>
                         <viewControllerLayoutGuide type="bottom" id="L0B-TD-jaq"/>
@@ -39,7 +99,7 @@
                                 <gestureRecognizers/>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="PoQ-ji-oep" userLabel="Command Stack">
-                                <rect key="frame" x="195" y="308" width="442" height="50"/>
+                                <rect key="frame" x="205" y="308" width="432" height="50"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b5j-bO-0M6">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
@@ -102,7 +162,7 @@
                                         </connections>
                                     </button>
                                     <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rab-IC-0Oq">
-                                        <rect key="frame" x="400" y="0.0" width="42" height="50"/>
+                                        <rect key="frame" x="400" y="0.0" width="32" height="50"/>
                                         <fontDescription key="fontDescription" name="Y14.5M" family="Y14.5M" pointSize="15"/>
                                         <state key="normal" title="FIRE"/>
                                         <connections>

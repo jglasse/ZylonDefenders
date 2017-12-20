@@ -53,12 +53,13 @@
 		E1BD14BA1E24280C002E49A5 /* zero.m4a in Resources */ = {isa = PBXBuildFile; fileRef = E1BD14AF1E24280C002E49A5 /* zero.m4a */; };
 		E1D8BD521DCFCD1A00C863DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D8BD511DCFCD1A00C863DF /* AppDelegate.swift */; };
 		E1D8BD541DCFCD1A00C863DF /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = E1D8BD531DCFCD1A00C863DF /* art.scnassets */; };
-		E1D8BD561DCFCD1A00C863DF /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D8BD551DCFCD1A00C863DF /* GameViewController.swift */; };
+		E1D8BD561DCFCD1A00C863DF /* ZylonGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D8BD551DCFCD1A00C863DF /* ZylonGameViewController.swift */; };
 		E1D8BD5B1DCFCD1A00C863DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E1D8BD5A1DCFCD1A00C863DF /* Assets.xcassets */; };
 		E1E381E01EC4B79A000CC31C /* button_dir_down_0.png in Resources */ = {isa = PBXBuildFile; fileRef = E1E381DC1EC4B79A000CC31C /* button_dir_down_0.png */; };
 		E1E381E11EC4B79A000CC31C /* button_dir_right_0.png in Resources */ = {isa = PBXBuildFile; fileRef = E1E381DD1EC4B79A000CC31C /* button_dir_right_0.png */; };
 		E1E381E21EC4B79A000CC31C /* button_dir_up_0.png in Resources */ = {isa = PBXBuildFile; fileRef = E1E381DE1EC4B79A000CC31C /* button_dir_up_0.png */; };
 		E1E381E31EC4B79A000CC31C /* button_dir_left_0.png in Resources */ = {isa = PBXBuildFile; fileRef = E1E381DF1EC4B79A000CC31C /* button_dir_left_0.png */; };
+		E1EA0D6E1FE9C59A002BFB0F /* Glass_TTY_VT220.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E1EA0D6D1FE9C59A002BFB0F /* Glass_TTY_VT220.ttf */; };
 		E1F43D641DD115E900CC8988 /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = E1F43D631DD115E900CC8988 /* star.png */; };
 		E1F8BB0B1E3FF4E100460FC9 /* explosion.m4a in Resources */ = {isa = PBXBuildFile; fileRef = E1F8BB0A1E3FF4E100460FC9 /* explosion.m4a */; };
 		E1FD2A0C1EF7390B0096CB72 /* HumonShip.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FD2A0B1EF7390B0096CB72 /* HumonShip.swift */; };
@@ -120,13 +121,14 @@
 		E1D8BD4E1DCFCD1A00C863DF /* Zylon Defenders.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Zylon Defenders.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1D8BD511DCFCD1A00C863DF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E1D8BD531DCFCD1A00C863DF /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
-		E1D8BD551DCFCD1A00C863DF /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		E1D8BD551DCFCD1A00C863DF /* ZylonGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZylonGameViewController.swift; sourceTree = "<group>"; };
 		E1D8BD5A1DCFCD1A00C863DF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E1D8BD5F1DCFCD1A00C863DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E1E381DC1EC4B79A000CC31C /* button_dir_down_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_dir_down_0.png; sourceTree = "<group>"; };
 		E1E381DD1EC4B79A000CC31C /* button_dir_right_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_dir_right_0.png; sourceTree = "<group>"; };
 		E1E381DE1EC4B79A000CC31C /* button_dir_up_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_dir_up_0.png; sourceTree = "<group>"; };
 		E1E381DF1EC4B79A000CC31C /* button_dir_left_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_dir_left_0.png; sourceTree = "<group>"; };
+		E1EA0D6D1FE9C59A002BFB0F /* Glass_TTY_VT220.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Glass_TTY_VT220.ttf; path = zylonprologue/zylonprologue/Glass_TTY_VT220.ttf; sourceTree = "<group>"; };
 		E1F43D631DD115E900CC8988 /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
 		E1F8BB0A1E3FF4E100460FC9 /* explosion.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = explosion.m4a; sourceTree = "<group>"; };
 		E1FD2A0B1EF7390B0096CB72 /* HumonShip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HumonShip.swift; sourceTree = "<group>"; };
@@ -213,6 +215,7 @@
 		E1D8BD451DCFCD1A00C863DF = {
 			isa = PBXGroup;
 			children = (
+				E1EA0D6D1FE9C59A002BFB0F /* Glass_TTY_VT220.ttf */,
 				E14673E21F6BB08200017927 /* 40069.ttf */,
 				E10EFCBC1EC0E9B300CC872E /* wave.fsh */,
 				E1A89EA71E9867F600EA8BC4 /* Default-568h@2x.png */,
@@ -234,7 +237,7 @@
 		E1D8BD501DCFCD1A00C863DF /* Code */ = {
 			isa = PBXGroup;
 			children = (
-				E1D8BD551DCFCD1A00C863DF /* GameViewController.swift */,
+				E1D8BD551DCFCD1A00C863DF /* ZylonGameViewController.swift */,
 				E19F3F301F64647600F612A7 /* UtilityFunctions.swift */,
 				E19F3F3A1F64962100F612A7 /* CoreGraphics+Additions.swift */,
 				E187F56E1FB0276E0036B3FE /* Objects */,
@@ -383,6 +386,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E1EA0D6E1FE9C59A002BFB0F /* Glass_TTY_VT220.ttf in Resources */,
 				E1BD14B91E24280C002E49A5 /* two.m4a in Resources */,
 				E1E381E21EC4B79A000CC31C /* button_dir_up_0.png in Resources */,
 				E187F5721FB04B140036B3FE /* HumonTorpedo.scnp in Resources */,
@@ -459,7 +463,7 @@
 				E16B66881E8B09F800F28144 /* MCController.swift in Sources */,
 				E1FD2A0C1EF7390B0096CB72 /* HumonShip.swift in Sources */,
 				E151DA2E1E17926900A70B45 /* HUD.swift in Sources */,
-				E1D8BD561DCFCD1A00C863DF /* GameViewController.swift in Sources */,
+				E1D8BD561DCFCD1A00C863DF /* ZylonGameViewController.swift in Sources */,
 				E19F3F331F6494AB00F612A7 /* JoyStickView.swift in Sources */,
 				E19BFF3F1EDFDEED00FCC5EE /* ZylonShip.swift in Sources */,
 				E187F5701FB028910036B3FE /* ShipExplosion.swift in Sources */,

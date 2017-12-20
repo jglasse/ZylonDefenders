@@ -16,8 +16,9 @@ class HUD: SKScene {
     var shields: SKShapeNode!
     var crosshairs: SKSpriteNode!
     var aftcrosshairs: SKSpriteNode!
-    var parentScene: GameViewController?
+    var parentScene: ZylonGameViewController?
     public var computerStatus = SKLabelNode()
+    public var enemyIndicator = SKLabelNode()
     private let aftHairs = SKSpriteNode(imageNamed: "xenonHUDAFT")
     private let foreHairs = SKSpriteNode(imageNamed: "xenonHUD")
 
@@ -28,12 +29,8 @@ class HUD: SKScene {
 
     @objc func blinkComputerDisplay() {
         if computerStatus.fontColor == currentComputerStatusColor {computerStatus.fontColor = UIColor.clear} else {computerStatus.fontColor = currentComputerStatusColor}
-
     }
 
-	func defineTacticalDisplay() {
-
-	}
     override init(size: CGSize) {
         super.init(size: size)
         self.backgroundColor = UIColor.clear
@@ -43,12 +40,16 @@ class HUD: SKScene {
         shields.fillColor = SKColor.blue
         shields.strokeColor =  UIColor.clear
         computerStatus.fontName = "Y14.5M 17.0"
-        computerStatus.fontSize = 9
+        computerStatus.fontSize = 10
         computerStatus.fontColor = UIColor.red
         computerStatus.position = CGPoint(x: self.frame.midX, y: self.frame.maxY-40)
-        computerStatus.text = "GRIDWARP ENGINES OFFLINE"
 
-		defineTacticalDisplay()
+        enemyIndicator.fontName = "Y14.5M 17.0"
+        enemyIndicator.fontSize = 10
+        enemyIndicator.fontColor = UIColor.red
+        computerStatus.position = CGPoint(x: self.frame.midX, y: self.frame.maxY-54)
+
+        updateHUD()
 
         self.addChild(shields)
 
@@ -65,12 +66,20 @@ class HUD: SKScene {
         super.init(coder: aDecoder)
 
     }
-
-    func foreView() {
+     public func foreView() {
         crosshairs=foreHairs
     }
 
-    func aftView() {
+    func updateHUD() {
+        if let myScene = self.parentScene {
+            let myX = myScene.ship.currentSector.x
+            let myY = myScene.ship.currentSector.y
+            let myZ = myScene.ship.currentSector.z
+            computerStatus.text = "CURRENT SECTOR: \(myX).\(myY).\(myZ)"
+        }
+    }
+
+    public func aftView() {
         crosshairs=aftHairs
     }
     func activateAlert() {
@@ -79,17 +88,15 @@ class HUD: SKScene {
                                               selector: #selector(self.blinkComputerDisplay), userInfo: nil, repeats: true)
         }
     }
-
-	func toggleShields() {
+    func toggleShields() {
 
         if (parentScene?.ship.shields)! {
-			shields.alpha = 0
-			parentScene?.ship.shields = false
+            shields.alpha = 0
+            parentScene?.ship.shields = false
         } else {
-			shields.alpha = 0.2
-			parentScene?.ship.shields = true
-		}
-
+            shields.alpha = 0.2
+            parentScene?.ship.shields = true
+        }
     }
 
 }

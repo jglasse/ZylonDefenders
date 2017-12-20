@@ -14,18 +14,20 @@ import CoreMotion
 import MultipeerConnectivity
 
 struct Constants {
-    static let maxTorpedoes = 5
-    static let torpedoLifespan = 90
+    static let starMoveDivider: Float = 0.4
+    static let maxTorpedoes = 4
+    static let maxEnemyShips = 5
+    static let torpedoLifespan = 80
     static let shotDelay = 1
     static let thrustAmount: Float = 5.0
-    static let numberOfStars = 110
+    static let numberOfStars = 100
     static let xAxis = SCNVector3Make(1, 0, 0)
     static let yAxis = SCNVector3Make(0, 1, 0)
     static let zAxis = SCNVector3Make(0, 0, 1)
     static let starBoundsX = 200
     static let starBoundsY = 500
     static let starBoundsZ = 500
-    static let cameraFalloff = 500.0
+    static let cameraFalloff = 1200.0
     static let minHumanShootInterval: Float = 45
     static let maxHumanShootInterval: Float = 300
 }
@@ -41,7 +43,7 @@ struct objectCategories {
 }
 
 @available(iOS 11.0, *)
-class GameViewController: UIViewController, SCNPhysicsContactDelegate, SCNSceneRendererDelegate {
+class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNSceneRendererDelegate {
 
     // MARK: -
     // MARK: Constants
@@ -91,12 +93,6 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate, SCNSceneR
 
     var motionManager: CMMotionManager!
     var currentPhoton = 0
-//    var currentMaxRotX: Double = 0.0
-//    var currentMaxRotY: Double = 0.0
-//    var currentMaxRotZ: Double = 0.0
-//
-    private var timeFiring = 0.0
-    private var timeLastFired = 0.0
 
     // MARK: - IBOutlets
 
@@ -187,17 +183,23 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate, SCNSceneR
     }
 
     @IBAction func spawnDrone(_ sender: UIButton) {
+        spawnDrone()
+    }
 
+    func spawnDrone() {
         self.enemyDrone = HumonShip()
-
         let constraint = SCNLookAtConstraint(target: scene.rootNode)
         constraint.isGimbalLockEnabled = true
         self.enemyDrone?.constraints = [constraint]
-
         let actualPosition = self.scene.rootNode.convertPosition((self.enemyDrone?.position)!, from: self.enemyDrone)
-
-        self.enemyDrone?.position = self.scene.rootNode.convertPosition(actualPosition, to: self.sectorObjectsNode)
+        self.enemyDrone?.position = self.scene.rootNode.convertPosition((self.enemyDrone?.worldPosition)!, to: self.sectorObjectsNode)
         self.sectorObjectsNode.addChildNode(self.enemyDrone!)
+    }
+
+    func spawnDrones(number: Int) {
+        for _ in 1...number {
+            spawnDrone()
+        }
     }
 
 	@IBOutlet weak var stepperSpeed: UIStepper!
@@ -206,8 +208,14 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate, SCNSceneR
 		let deadlineTime = DispatchTime.now() + .seconds(6)
 		DispatchQueue.main.asyncAfter(deadline: deadlineTime) {
 			self.enterSector()
-			self.setSpeed(1)
+			self.setSpeed(3)
 		}
+        let spawnDeadline = DispatchTime.now() + .seconds(8)
+        DispatchQueue.main.asyncAfter(deadline: spawnDeadline) {
+            self.warpGrid.removeFromParentNode()
+            self.spawnDrones(number: Int(randRange(lower: 2, upper: 6)))
+        }
+
     }
 
     @IBAction func speedChanged(_ sender: UIStepper) {
@@ -226,6 +234,7 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate, SCNSceneR
         setupScene()
         createStars()
         setupShip()
+        spawnDrones(number: 3)
        // myMCController.setup()
        // myMCController.myCommandDelegate = self
         shipHud.parentScene = self
@@ -246,6 +255,8 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate, SCNSceneR
     func setupScene() {
         scene = SCNScene()
         scnView.scene = scene
+
+        //prepare game elements for later display
 
         // setup HUD
         shipHud = HUD(size: self.view.bounds.size)
@@ -365,6 +376,8 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate, SCNSceneR
         DispatchQueue.main.async {
 
 		self.currentSpeedDisplay.text = "\(self.ship.currentSpeed)"
+            self.stepperSpeed.value = Double(newSpeed)
+
         }
         SCNTransaction.commit()
         if (newSpeed == 0) {
@@ -376,9 +389,10 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate, SCNSceneR
     }
 
     func sectorScan() {
-        if scnView.pointOfView != sectorScanCameraNode {scnView.pointOfView = sectorScanCameraNode } else {
-            scnView.pointOfView = forwardCameraNode
-        }
+//        if scnView.pointOfView != sectorScanCameraNode {scnView.pointOfView = sectorScanCameraNode } else {
+//            scnView.pointOfView = forwardCameraNode
+//        }
+        self.notYetImplemented("sectorScan")
 
     }
     func aftView() {
@@ -407,12 +421,11 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate, SCNSceneR
     func updateStars() {
 
         for star in self.starSprites {
-            // TODO: refactor to calculate ship vector on all three axes
 
             //if star distance is greater than 400 total
             var starScenePosition: SCNVector3
             starScenePosition = scene.rootNode.convertPosition(star.position, from: sectorObjectsNode)
-            starScenePosition.z += Float(ship.currentSpeed)
+            starScenePosition.z += Float(ship.currentSpeed) * Constants.starMoveDivider
 
             if starScenePosition.z > 300 || starScenePosition.y > 150 || starScenePosition.y < -150 {
                 starScenePosition.z = randRange(lower: -400, upper: -200)
@@ -425,13 +438,13 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate, SCNSceneR
     }
 
     func generateWarpGrid() {
-        let warpGridEntryShape = SCNTube(innerRadius: 2, outerRadius: 2, height: 220)
+        let warpGridEntryShape = SCNTube(innerRadius: 2, outerRadius: 2, height: 260)
         warpGrid.geometry  = warpGridEntryShape
         warpGrid.geometry?.firstMaterial = SCNMaterial()
         let innerTube = SCNMaterial()
         innerTube.diffuse.contents =  UIColor.black
         innerTube.emission.contents =  UIImage(named: "smallestGrid.png")
-        warpGrid.opacity = 0.25
+        warpGrid.opacity = 0.35
         let outerTube = SCNMaterial()
         outerTube.emission.contents =  UIImage(named: "smallestGrid.png")
         outerTube.diffuse.contents = UIColor.black
@@ -441,46 +454,35 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate, SCNSceneR
         endTwo.diffuse.contents =  UIColor.purple
         warpGrid.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
         warpGrid.physicsBody?.isAffectedByGravity = false
-        warpGrid.physicsBody?.applyForce(SCNVector3Make(0, 0, 35), asImpulse: true)
+        warpGrid.physicsBody?.applyForce(SCNVector3Make(0, 0, 95), asImpulse: true)
         warpGrid.physicsBody?.friction = 0
         warpGrid.physicsBody?.categoryBitMask = objectCategories.warpgrids
         warpGrid.physicsBody?.contactTestBitMask = objectCategories.warpgrids | objectCategories.asteroids | objectCategories.enemyShip
         warpGrid.name = "warpGrid"
-
-        //warpGrid.geometry?.firstMaterial?.isDoubleSided = true
         warpGrid.geometry?.materials = [outerTube, innerTube, endOne, endTwo]
         // warpGrid.pivot = SCNMatrix4MakeTranslation(0.5, 0.5, 0.5)
         warpGrid.rotation = SCNVector4(x: 1, y: 0, z: 0, w: Float(Double.pi / 2))
-        warpGrid.position = SCNVector3Make(0, 0, -300)
+        warpGrid.worldPosition = SCNVector3Make(0, 0, -300)
         warpGrid.scale = SCNVector3Make(1, 1, 1)
-        warpGrid.opacity = 0
-        scene.rootNode.addChildNode(warpGrid)
-
     }
     func performWarp() {
+        generateWarpGrid()
         prepWarpEngines()
 		warpEngineSound.play()
-        generateWarpGrid()
+        self.sectorObjectsNode.addChildNode(self.warpGrid)
 
         // WARP!
-        let pov = scnView.pointOfView!
-
-        let adjustCamera = SCNAction.run { _ in
-
+        SCNTransaction.begin()
+        SCNTransaction.animationDuration = 1.5
 			self.setSpeed(30)
             DispatchQueue.main.async {
 			self.stepperSpeed.value = 9
             }
-			self.warpGrid.opacity = 0.5
-            self.warpGrid.physicsBody?.applyForce(SCNVector3Make(0, 0, 55), asImpulse: true)
-			//pov.camera?.motionBlurIntensity = 1.0
-        }
-
+        SCNTransaction.commit()
 		SCNTransaction.begin()
 		SCNTransaction.animationDuration = 0.0
-        pov.runAction(adjustCamera)
-
         SCNTransaction.commit()
+        ship.updateSector()
 
     }
 
@@ -489,7 +491,34 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate, SCNSceneR
         self.rotate(self.sectorObjectsNode, around: SCNVector3Make(0, 1, 0), by: CGFloat(self.xThrust))
 
     }
+
     func enterSector() {
+        print("Entering sector:", self.ship.currentSector)
+        var audioItems: [AVPlayerItem] = []
+        var soundURL = Bundle.main.url(forResource: "entering_sector", withExtension: "m4a")
+        let sector = AVPlayerItem(url: soundURL!)
+        audioItems.append(sector)
+            var numString = numberstrings[ship.currentSector.x]
+             soundURL = Bundle.main.url(forResource: numString, withExtension: "m4a")
+            var item = AVPlayerItem(url: soundURL!)
+            audioItems.append(item)
+
+             numString = numberstrings[ship.currentSector.y]
+             soundURL = Bundle.main.url(forResource: numString, withExtension: "m4a")
+             item = AVPlayerItem(url: soundURL!)
+            audioItems.append(item)
+
+            numString = numberstrings[ship.currentSector.z]
+            soundURL = Bundle.main.url(forResource: numString, withExtension: "m4a")
+            item = AVPlayerItem(url: soundURL!)
+            audioItems.append(item)
+        computerVoice = AVQueuePlayer(items: audioItems)
+        computerVoice.volume = 1
+        computerVoice.play()
+        shipHud.updateHUD()
+    }
+
+    func enterRandomSector() {
         var audioItems: [AVPlayerItem] = []
         let soundURL = Bundle.main.url(forResource: "entering_sector", withExtension: "m4a")
         let sector = AVPlayerItem(url: soundURL!)
@@ -512,9 +541,11 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate, SCNSceneR
 
     // MARK: - Utility functions
 
+    // MARK: - Utility functions
+
     func notYetImplemented(_ command: String) {
         print("\(command) not yet implemented")
-
+        computerBeepSound("torpedo_fail")
     }
 
     func cleanSceneAndUpdateSectorNodeObjects() {
@@ -569,7 +600,6 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate, SCNSceneR
 
     func numberofShotsOnscreen() -> Int {
     var numberOfShots = 0
-
         scene.rootNode.enumerateChildNodes({ (child, _) in
             if (child.name == "torpedo") {  numberOfShots = numberOfShots+1}
             })

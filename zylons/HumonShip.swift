@@ -35,7 +35,7 @@ class HumonShip: SCNNode {
     var currentlyShooting = false
     var cyclesUntilFireTorpedo: Float = 30.0
 
-	var zylonTargetPosition = vector3(10.0, 0.0, 0.0)
+	var zylonTargetPosition = vector3(0.0, 0.0, 0.0)
 
 	var range = [Float]()
 
@@ -43,7 +43,7 @@ class HumonShip: SCNNode {
         let torpedoNode = Torpedo(designatedTorpType: .humon)
         let parentNode = self.parent!
         let driftAmount: Float = 2
-        let forceAmount: Float = 55
+        let forceAmount: Float = 75
         parentNode.addChildNode(torpedoNode)
         torpedoNode.worldPosition = self.worldPosition
         torpedoNode.physicsBody?.applyForce(SCNVector3Make(-driftAmount, 1.7, forceAmount), asImpulse: true)
@@ -53,15 +53,12 @@ class HumonShip: SCNNode {
 
         //MOVE SHIP LOGIC
         //if not currently maneuvering, begin executing maneuver. When maneuver is complete, create new maneuver with a random duration between minManeuverInterval and maxManeuverInterval
-
         if currentManeuverType == .fullstop {
-
          let maneuverDuration = TimeInterval(randRange(lower: 1, upper: 3))
          var currentManeuver: SCNAction
          let yDelta: Float = randRange(lower: -30, upper: 30)
          var xDelta: Float
          var zDelta: Float = 0
-            print("drone position: \(self.worldPosition)")
         if self.worldPosition.z  < -20 {
           zDelta = randRange(lower: 5, upper: 10)
             } else {
@@ -113,12 +110,12 @@ class HumonShip: SCNNode {
         self.physicsBody = SCNPhysicsBody(type: .kinematic, shape: dronePhysicsShape)
         self.physicsBody?.isAffectedByGravity = false
         self.physicsBody?.friction = 0
-        self.physicsBody?.categoryBitMask = 0b00000010
-        self.physicsBody?.contactTestBitMask = 0b00000010
+        self.physicsBody?.categoryBitMask = objectCategories.enemyShip
+        self.physicsBody?.contactTestBitMask = objectCategories.enemyShip | objectCategories.zylonFire
         self.name = "drone"
-        self.worldOrientation = SCNVector4(0, 0, 1, 0)
+        self.worldOrientation = SCNVector4(0, 0, 1, Float.pi)
         self.pivot = SCNMatrix4MakeTranslation(0.5, 0.5, 0.5)
-        self.position = SCNVector3Make(0, 0, -30)
+        self.worldPosition = SCNVector3Make(randRange(lower: -10, upper: 10), randRange(lower: -12, upper: 12), randRange(lower: -60, upper: -40))
         self.scale = SCNVector3Make(1, 1, 1)
 
     }
