@@ -27,7 +27,7 @@
                                     <fragment content="Now is the time for all good men">
                                         <attributes>
                                             <color key="NSColor" red="0.044755672178457662" green="1" blue="0.84656679527594658" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                            <font key="NSFont" size="20" name="SFMono-Regular"/>
+                                            <font key="NSFont" size="20" name="Glass_TTY_VT220"/>
                                             <font key="NSOriginalFont" size="20" name="STIXSizeFourSym-Regular"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="justified" lineBreakMode="truncatingTail" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>

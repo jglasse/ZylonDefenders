@@ -31,6 +31,19 @@ class HUD: SKScene {
         if computerStatus.fontColor == currentComputerStatusColor {computerStatus.fontColor = UIColor.clear} else {computerStatus.fontColor = currentComputerStatusColor}
     }
 
+    public func foreView() {
+        print("fore View")
+
+        crosshairs=foreHairs
+    }
+
+    public func aftView() {
+        print("aft View")
+        DispatchQueue.main.async {
+            self.crosshairs=self.aftHairs
+        }
+    }
+
     override init(size: CGSize) {
         super.init(size: size)
         self.backgroundColor = UIColor.clear
@@ -66,22 +79,26 @@ class HUD: SKScene {
         super.init(coder: aDecoder)
 
     }
-     public func foreView() {
-        crosshairs=foreHairs
-    }
 
-    func updateHUD() {
+     func updateHUD() {
         if let myScene = self.parentScene {
             let myX = myScene.ship.currentSector.x
             let myY = myScene.ship.currentSector.y
             let myZ = myScene.ship.currentSector.z
             computerStatus.text = "CURRENT SECTOR: \(myX).\(myY).\(myZ)"
+            if myScene.ship.enemyShipsInSector>0 {
+                enemyIndicator.color = UIColor.red
+                enemyIndicator.text = "ENEMIES IN RANGE: \(myScene.ship.enemyShipsInSector)"
+                computerBeepSound("enemyAlert")
+
+            } else {
+                enemyIndicator.color = UIColor.green
+                enemyIndicator.text = "SECTOR CLEARED"
+                computerBeepSound("sectorCleared")
+            }
         }
     }
 
-    public func aftView() {
-        crosshairs=aftHairs
-    }
     func activateAlert() {
         DispatchQueue.main.async {
             self.timer = Timer.scheduledTimer(timeInterval: 1, target: self,

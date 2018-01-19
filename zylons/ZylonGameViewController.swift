@@ -209,6 +209,8 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 		DispatchQueue.main.asyncAfter(deadline: deadlineTime) {
 			self.enterSector()
 			self.setSpeed(3)
+            self.forwardCameraNode.camera?.motionBlurIntensity = 0
+
 		}
         let spawnDeadline = DispatchTime.now() + .seconds(8)
         DispatchQueue.main.asyncAfter(deadline: spawnDeadline) {
@@ -359,13 +361,6 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         environmentSound.play()
     }
 
-    func computerBeepSound(_ soundString: String) {
-       let soundURL = Bundle.main.url(forResource: soundString, withExtension: "mp3")
-       try! beepsound = AVAudioPlayer(contentsOf: soundURL!)
-        beepsound.volume = 0.5
-        beepsound.play()
-    }
-
     // MARK: - Ship Functions
 
     func setSpeed(_ newSpeed: Int) {
@@ -463,6 +458,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         // warpGrid.pivot = SCNMatrix4MakeTranslation(0.5, 0.5, 0.5)
         warpGrid.rotation = SCNVector4(x: 1, y: 0, z: 0, w: Float(Double.pi / 2))
         warpGrid.worldPosition = SCNVector3Make(0, 0, -300)
+
         warpGrid.scale = SCNVector3Make(1, 1, 1)
     }
     func performWarp() {
@@ -470,6 +466,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         prepWarpEngines()
 		warpEngineSound.play()
         self.sectorObjectsNode.addChildNode(self.warpGrid)
+        self.forwardCameraNode.camera?.motionBlurIntensity = 1.0
 
         // WARP!
         SCNTransaction.begin()
@@ -538,8 +535,6 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         computerVoice.volume = 1
         computerVoice.play()
     }
-
-    // MARK: - Utility functions
 
     // MARK: - Utility functions
 

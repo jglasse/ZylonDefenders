@@ -63,7 +63,6 @@ class Torpedo: SCNNode {
         self.opacity = 0
         SCNTransaction.commit()
         SCNTransaction.animationDuration = 0.0
-
     }
 
     func decay() {

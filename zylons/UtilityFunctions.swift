@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import AVFoundation
 
 let numberstrings = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"]
 
@@ -17,6 +18,13 @@ let numberstrings = ["zero", "one", "two", "three", "four", "five", "six", "seve
 func distanceFromZylonShip(x: Float, y: Float, z: Float) -> Float {
     let distance = sqrt(x*x + y*y + z*z)
     return distance
+}
+
+func computerBeepSound(_ soundString: String) {
+    let soundURL = Bundle.main.url(forResource: soundString, withExtension: "mp3")
+    let beepsound =  try! AVAudioPlayer(contentsOf: soundURL!)
+    beepsound.volume = 0.5
+    beepsound.play()
 }
 
 extension FloatingPoint {

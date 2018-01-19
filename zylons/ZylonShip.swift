@@ -57,6 +57,7 @@ class ZylonShip: SCNNode {
 	var shields = false
 	var currentSpeed = 0
 	var currentSector = Sector()
+    var enemyShipsInSector = 0
 	var engineHealth = 100
 	var shieldStrength = 100
 	var energyStore = 10000
