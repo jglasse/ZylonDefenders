@@ -18,8 +18,8 @@ struct Constants {
     static let maxTorpedoes = 4
     static let maxEnemyShips = 5
     static let torpedoLifespan = 80
-    static let torpedoSpeed = 5
-    static let torpedoCorrectionSpeedDivider = 13
+    static let torpedoSpeed = 0.6
+    static let torpedoCorrectionSpeedDivider: Float = 13
     static let shotDelay = 1
     static let thrustAmount: Float = 5.0
     static let numberOfStars = 100
@@ -193,7 +193,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         let constraint = SCNLookAtConstraint(target: scene.rootNode)
         constraint.isGimbalLockEnabled = true
         self.enemyDrone?.constraints = [constraint]
-        let actualPosition = self.scene.rootNode.convertPosition((self.enemyDrone?.position)!, from: self.enemyDrone)
+        //let actualPosition = self.scene.rootNode.convertPosition((self.enemyDrone?.position)!, from: self.enemyDrone)
         self.enemyDrone?.position = self.scene.rootNode.convertPosition((self.enemyDrone?.worldPosition)!, to: self.sectorObjectsNode)
         self.sectorObjectsNode.addChildNode(self.enemyDrone!)
     }
