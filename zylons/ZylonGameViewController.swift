@@ -18,6 +18,8 @@ struct Constants {
     static let maxTorpedoes = 4
     static let maxEnemyShips = 5
     static let torpedoLifespan = 80
+    static let torpedoSpeed = 5
+    static let torpedoCorrectionSpeedDivider = 13
     static let shotDelay = 1
     static let thrustAmount: Float = 5.0
     static let numberOfStars = 100
@@ -135,11 +137,11 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 
     func fireHumonTorpedo(fromShip: HumonShip) {
         let torpedoNode = Torpedo(designatedTorpType: .humon)
-        scene.rootNode.addChildNode(torpedoNode)
-        let driftAmount: Float = 2
-        let forceAmount: Float = 95
+        sectorObjectsNode.addChildNode(torpedoNode)
+      //  let driftAmount: Float = 2
+      //  let forceAmount: Float = 195
             torpedoNode.worldPosition = fromShip.worldPosition
-            torpedoNode.physicsBody?.applyForce(SCNVector3Make(-driftAmount, 1.7, forceAmount), asImpulse: true)
+            //torpedoNode.physicsBody?.applyForce(SCNVector3Make(-driftAmount, 1.7, forceAmount), asImpulse: true)
     }
 
     @IBAction func fireTorpedo(_ sender: UIButton) {
@@ -223,9 +225,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     @IBAction func speedChanged(_ sender: UIStepper) {
         computerBeepSound("beep")
         let targetSpeed = sender.value
-
         setSpeed(Int(targetSpeed))
-
     }
 
     // MARK: - SETUP
@@ -465,7 +465,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         generateWarpGrid()
         prepWarpEngines()
 		warpEngineSound.play()
-        self.sectorObjectsNode.addChildNode(self.warpGrid)
+        scene.rootNode.addChildNode(self.warpGrid)
         self.forwardCameraNode.camera?.motionBlurIntensity = 1.0
 
         // WARP!
@@ -546,11 +546,17 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     func cleanSceneAndUpdateSectorNodeObjects() {
         scene.rootNode.enumerateChildNodes({thisNode, _ in
 
-			// remove torpedoes - refactor to be time since torpedo launched
-
+			// if this is a torpedo, increment decay and move
             if  thisNode.name?.range(of: "torpedo") != nil {
                 let thisTorp = thisNode as! Torpedo
                 thisTorp.decay()
+                if thisTorp.torpType == TorpType.humon {
+                    thisTorp.worldPosition.z += Float(Constants.torpedoSpeed)
+                    thisTorp.worldPosition.y -= thisTorp.worldPosition.y/Constants.torpedoCorrectionSpeedDivider
+                    thisTorp.worldPosition.x -= thisTorp.worldPosition.x/Constants.torpedoCorrectionSpeedDivider
+
+                }
+
             }
 			// remove explosions - refactor to provide timer for each explosion
 

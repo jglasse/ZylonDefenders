@@ -12,6 +12,7 @@ import SpriteKit
 
 class MyViewController: UIViewController, AVAudioPlayerDelegate {
     let writeInterval = 0.040
+    let telemetryTimer = Timer(timeInterval: writeInterval, target: self, selector: (#selector(self.advanceTelemetry)), userInfo: nil, repeats: true)
 
     var messageArray = [(message: String, delay: Float)]()
     let soundURL = Bundle.main.url(forResource: "telemetry2", withExtension: "aiff")
@@ -23,11 +24,11 @@ class MyViewController: UIViewController, AVAudioPlayerDelegate {
 
     var currentLetter = ""
     var existingTelemetry = ""
-    var currentMessage = ""
+    var currentMessage: String?
 
     let message1 = """
-Over forty centons ago, they came -  spreading relentlessly
-across peaceful zylon systems like an unstoppable virus.
+Forty centons ago, they came -  spreading relentlessly
+across peaceful Zylon systems like an unstoppable virus.
 
 The STAR RAIDERS.
 """
@@ -53,13 +54,12 @@ DEFEND THE EMPIRE. DRIVE BACK THE HUMONS. SAVE THE ZYLON RACE.
 [TRANSMISSION 40AFFE TERMINATED]
 """
 
-//      let telemetryTimer = Timer(timeInterval: 0.1, target: self, selector: (#selector(self.advanceTelemetry)), userInfo: nil, repeats: true)
-
     @IBOutlet weak var starFieldView: UIImageView!
     @IBOutlet weak var transmissionView: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupTelemetryAudioPlayer()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -83,9 +83,8 @@ DEFEND THE EMPIRE. DRIVE BACK THE HUMONS. SAVE THE ZYLON RACE.
     @objc func advanceTelemetry() {
 
     }
-    func receiveNewTelemetry(message: String) {
-        let backgroundQ = DispatchQueue(label: "bgQ", qos: .userInitiated, attributes: .concurrent, autoreleaseFrequency: .workItem, target: nil)
-        self.currentLetterIndex = 0
+
+    func setupTelemetryAudioPlayer() {
         do {
             let soundURL = Bundle.main.url(forResource: "telemetry2", withExtension: "aiff")
 
@@ -95,16 +94,19 @@ DEFEND THE EMPIRE. DRIVE BACK THE HUMONS. SAVE THE ZYLON RACE.
             print(error.localizedDescription)
         }
         self.telemetryPlayer?.prepareToPlay()
+    }
+
+    func receiveNewTelemetry(message: String) {
+        self.currentLetterIndex = 0
+
         let mainQ = DispatchQueue.main
         let sleepamount = DispatchTime.now() + 1
         backgroundQ.async {
         for letter in message {
             self.existingTelemetry += String(letter)
             self.currentLetterIndex += 1
-
             mainQ.asyncAfter(deadline: sleepamount, execute: {
                 self.transmissionView.text = self.existingTelemetry
-
             if self.currentLetterIndex < self.message1.count-1 {
                     self.playTelemetrySound()
             }

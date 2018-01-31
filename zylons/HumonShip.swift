@@ -43,7 +43,7 @@ class HumonShip: SCNNode {
         let torpedoNode = Torpedo(designatedTorpType: .humon)
         let parentNode = self.parent!
         let driftAmount: Float = 2
-        let forceAmount: Float = 75
+        let forceAmount: Float = 175
         parentNode.addChildNode(torpedoNode)
         torpedoNode.worldPosition = self.worldPosition
         torpedoNode.physicsBody?.applyForce(SCNVector3Make(-driftAmount, 1.7, forceAmount), asImpulse: true)

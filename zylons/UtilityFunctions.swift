@@ -40,12 +40,10 @@ func randRange (lower: Float, upper: Float) -> Float {
 // Extensions to game classes which are not part of their core functionality
 
 extension ZylonGameViewController: CommandDelegate {
-
     // receive commands from iOS remote controller
     func execute(command: String) {
         print ("Executing remote command: \(command)")
         switch command {
-
         case "Speed 9":
             setSpeed(9)
         case "Speed 8":
@@ -64,7 +62,6 @@ extension ZylonGameViewController: CommandDelegate {
             setSpeed(2)
         case "Speed 1":
             setSpeed(1)
-
         case "Speed 0":
             setSpeed(0)
         case "ABORT":
