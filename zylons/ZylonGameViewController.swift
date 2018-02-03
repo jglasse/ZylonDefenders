@@ -69,11 +69,13 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     let warpGrid = SCNNode()
 
     var currentExplosionParticleSystem: SCNParticleSystem?
-	var starSprites = [SCNNode]()
+	var starSprites = [SCNNode]() // array of stars to make updating them each frame easy
 
     var enemyDrone: SCNNode?
 
 	var ship = ZylonShip()
+    var zylonShields = SCNNode()
+
 	var shipHud: HUD!
 
     let divider: Float = 100.0
@@ -205,6 +207,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     }
 
 	@IBOutlet weak var stepperSpeed: UIStepper!
+
 	@IBAction func gridWarp(_ sender: UIButton) {
         performWarp()
 		let deadlineTime = DispatchTime.now() + .seconds(6)
@@ -309,6 +312,19 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         forwardCameraNode.camera?.zFar = Constants.cameraFalloff
 
         self.ship.addChildNode(forwardCameraNode)
+
+        //add shields
+        scene.rootNode.addChildNode(zylonShields)
+        let sphere = SCNSphere(radius: 180.0)
+        self.zylonShields.geometry  = sphere
+        zylonShields.opacity = 1
+        self.zylonShields.worldPosition = SCNVector3(x: 0, y: 0, z: 0)
+        self.zylonShields.name = "zylonShields"
+        self.zylonShields.physicsBody = SCNPhysicsBody(type: .kinematic, shape: nil)
+        let shieldMaterial = SCNMaterial()
+        shieldMaterial.diffuse.contents =  UIColor.green
+        shieldMaterial.emission.contents =  UIImage(named: "smallestGrid.png")
+        self.zylonShields.geometry?.materials = [shieldMaterial, shieldMaterial]
 
         rearCameraNode.camera=SCNCamera()
         rearCameraNode.position = SCNVector3(x: 0, y: 0, z: 0)
@@ -435,7 +451,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     func generateWarpGrid() {
         let warpGridEntryShape = SCNTube(innerRadius: 2, outerRadius: 2, height: 260)
         warpGrid.geometry  = warpGridEntryShape
-        warpGrid.geometry?.firstMaterial = SCNMaterial()
+        //warpGrid.geometry?.firstMaterial = SCNMaterial()
         let innerTube = SCNMaterial()
         innerTube.diffuse.contents =  UIColor.black
         innerTube.emission.contents =  UIImage(named: "smallestGrid.png")
