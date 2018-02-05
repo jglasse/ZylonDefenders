@@ -12,6 +12,9 @@
         <array key="40069.ttf">
             <string>Y14.5M</string>
         </array>
+        <array key="Glass_TTY_VT220.ttf">
+            <string>Glass_TTY_VT220</string>
+        </array>
         <array key="Menlo.ttc">
             <string>Menlo-Regular</string>
         </array>
@@ -29,26 +32,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bUR-Pk-TVp">
-                                <rect key="frame" x="20" y="32" width="639" height="335"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <mutableString key="text">WELCOME TO THE ZYLON DEFENDER BETA!
-Build 8 notes
-
-This version has basic controls, firing and warp enabled, and spawns a random set of new enemies each time you warp into a sector - so you can start to get a basic feel of how the actual game will play. It also fixes a nasty crashing bug.  
-
-There's still much that's not here, most importantly:
-
-1) Collision detection with your ship (Humon fire will not affect you)
-2) Galactic map (currently, warp takes you from sector 0.0.0 to 0.0.1, 0.0.2, and so forth)
-3) Advanced enemy ship AI and different ship models and attack styles
-4) Sector scan is currently disabled
-
-As always, feel free to email notes, thoughts, comments or threats to jglasse@gmail.com</mutableString>
-                                <color key="textColor" red="0.0018759364314704374" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wgi-zc-LlL">
                                 <rect key="frame" x="280" y="325" width="107" height="30"/>
                                 <constraints>
@@ -61,12 +44,31 @@ As always, feel free to email notes, thoughts, comments or threats to jglasse@gm
                                     <segue destination="BV1-FR-VrT" kind="show" id="U3V-5S-Kxc"/>
                                 </connections>
                             </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bUR-Pk-TVp">
+                                <rect key="frame" x="20" y="15" width="639" height="335"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <mutableString key="text">WELCOME TO THE ZYLON DEFENDER BETA -Build 8
+
+This version has basic controls, firing and warp enabled, and spawns a random set of new enemies each time you warp into a sector - so you can start to get a basic feel for how the actual game will play. It also fixes a nasty crashing bug or two (not all, sadly - keep those bug reports coming!).  
+
+There's still much that's not here, most importantly:
+
+1) Collision detection with your ship (Humon fire will not affect you)
+2) Galactic map (currently, warp takes you from sector 0.0.0 to 0.0.1, 0.0.2, and so forth)
+3) Advanced enemy ship AI and different ship models and attack styles
+4) Tactical Display currently does not display enemies
+
+As always, feel free to email notes, thoughts, comments or threats to jglasse@gmail.com</mutableString>
+                                <color key="textColor" red="0.0018759364314704374" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <fontDescription key="fontDescription" name="Glass_TTY_VT220" family="Glass TTY VT220" pointSize="16"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="wgi-zc-LlL" firstAttribute="centerX" secondItem="nfN-3V-G5x" secondAttribute="centerX" id="16E-PL-cBz"/>
-                            <constraint firstItem="bUR-Pk-TVp" firstAttribute="top" secondItem="RKZ-W3-1R4" secondAttribute="bottom" constant="32" id="RcW-UC-aPm"/>
-                            <constraint firstItem="f7I-6l-bMV" firstAttribute="top" secondItem="bUR-Pk-TVp" secondAttribute="bottom" constant="8" id="Tdl-nm-yDc"/>
+                            <constraint firstItem="bUR-Pk-TVp" firstAttribute="top" secondItem="RKZ-W3-1R4" secondAttribute="bottom" constant="15" id="RcW-UC-aPm"/>
+                            <constraint firstItem="f7I-6l-bMV" firstAttribute="top" secondItem="bUR-Pk-TVp" secondAttribute="bottom" constant="25" id="Tdl-nm-yDc"/>
                             <constraint firstAttribute="leadingMargin" secondItem="bUR-Pk-TVp" secondAttribute="leading" id="bQf-mq-kda"/>
                             <constraint firstAttribute="trailing" secondItem="bUR-Pk-TVp" secondAttribute="trailing" constant="8" id="oNE-bE-Sbe"/>
                             <constraint firstItem="f7I-6l-bMV" firstAttribute="top" secondItem="wgi-zc-LlL" secondAttribute="bottom" constant="20" id="xI4-oT-MIX"/>
@@ -99,7 +101,7 @@ As always, feel free to email notes, thoughts, comments or threats to jglasse@gm
                                 <gestureRecognizers/>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="PoQ-ji-oep" userLabel="Command Stack">
-                                <rect key="frame" x="205" y="308" width="432" height="50"/>
+                                <rect key="frame" x="195" y="308" width="442" height="50"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b5j-bO-0M6">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
@@ -162,7 +164,7 @@ As always, feel free to email notes, thoughts, comments or threats to jglasse@gm
                                         </connections>
                                     </button>
                                     <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rab-IC-0Oq">
-                                        <rect key="frame" x="400" y="0.0" width="32" height="50"/>
+                                        <rect key="frame" x="400" y="0.0" width="42" height="50"/>
                                         <fontDescription key="fontDescription" name="Y14.5M" family="Y14.5M" pointSize="15"/>
                                         <state key="normal" title="FIRE"/>
                                         <connections>
@@ -264,7 +266,7 @@ As always, feel free to email notes, thoughts, comments or threats to jglasse@gm
                                         <color key="textColor" red="0.1351349449" green="0.89412647639999998" blue="0.38302047340000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="X Thrust:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WVN-hE-EnE">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Enemies In Sector:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WVN-hE-EnE">
                                         <rect key="frame" x="8" y="111" width="200" height="20"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="10"/>
@@ -277,13 +279,6 @@ As always, feel free to email notes, thoughts, comments or threats to jglasse@gm
                                             <constraint firstAttribute="height" constant="20" id="Kmd-xh-6rj"/>
                                             <constraint firstAttribute="width" constant="200" id="jJ6-zq-kne"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="10"/>
-                                        <color key="textColor" red="0.1351349449" green="0.89412647639999998" blue="0.38302047340000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Y Thrust:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="beD-7f-MNN">
-                                        <rect key="frame" x="7" y="127" width="200" height="20"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="10"/>
                                         <color key="textColor" red="0.1351349449" green="0.89412647639999998" blue="0.38302047340000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <nil key="highlightedColor"/>
@@ -320,6 +315,7 @@ As always, feel free to email notes, thoughts, comments or threats to jglasse@gm
                     </view>
                     <connections>
                         <outlet property="currentSpeedDisplay" destination="UfY-Ip-g2Z" id="rA9-h2-Alq"/>
+                        <outlet property="enemiesInSectorDisplay" destination="WVN-hE-EnE" id="wft-GI-LFO"/>
                         <outlet property="joystickControl" destination="z62-zF-Ty3" id="Nhc-qM-bbn"/>
                         <outlet property="phiDisplay" destination="AcU-BV-dAF" id="Aho-Bo-R46"/>
                         <outlet property="stepperSpeed" destination="to0-eG-n4V" id="wL0-jY-7T4"/>
@@ -328,8 +324,6 @@ As always, feel free to email notes, thoughts, comments or threats to jglasse@gm
                         <outlet property="thetaDisplay" destination="MQV-Cf-PFY" id="TZY-Ll-wjW"/>
                         <outlet property="velocityDisplay" destination="D9P-ac-v2s" id="qZ5-8z-bGa"/>
                         <outlet property="viewButton" destination="2sP-pn-M7j" id="JVW-mq-nch"/>
-                        <outlet property="xThrustLabel" destination="WVN-hE-EnE" id="ocu-rY-bM1"/>
-                        <outlet property="yThrustLabel" destination="beD-7f-MNN" id="Pyt-7B-sv9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>

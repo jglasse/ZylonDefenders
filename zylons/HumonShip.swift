@@ -33,7 +33,7 @@ class HumonShip: SCNNode {
     var targetspeedVector = vector3(0.0, 0.0, 1.0)
 
     var currentlyShooting = false
-    var cyclesUntilFireTorpedo: Float = 30.0
+    var cyclesUntilFireTorpedo: Float = 130.0
 
 	var zylonTargetPosition = vector3(0.0, 0.0, 0.0)
 
@@ -60,6 +60,7 @@ class HumonShip: SCNNode {
          var xDelta: Float
          var zDelta: Float = 0
         if self.worldPosition.z  < -20 {
+            print("maneuvering! ship: \(self.description) worldposition: \(self.worldPosition)")
           zDelta = randRange(lower: 5, upper: 10)
             } else {
             zDelta = randRange(lower: -25, upper: self.worldPosition.z-10)
@@ -111,12 +112,13 @@ class HumonShip: SCNNode {
         self.physicsBody?.isAffectedByGravity = false
         self.physicsBody?.friction = 0
         self.physicsBody?.categoryBitMask = objectCategories.enemyShip
-        self.physicsBody?.contactTestBitMask = objectCategories.enemyShip | objectCategories.zylonFire
+        self.physicsBody?.contactTestBitMask = objectCategories.zylonFire
         self.name = "drone"
         self.worldOrientation = SCNVector4(0, 0, 1, Float.pi)
         self.pivot = SCNMatrix4MakeTranslation(0.5, 0.5, 0.5)
-        self.worldPosition = SCNVector3Make(randRange(lower: -10, upper: 10), randRange(lower: -12, upper: 12), randRange(lower: -60, upper: -40))
+        self.worldPosition = SCNVector3Make(randRange(lower: -10, upper: 10), randRange(lower: -12, upper: 12), randRange(lower: -80, upper: -60))
         self.scale = SCNVector3Make(1, 1, 1)
+        self.cyclesUntilFireTorpedo = randRange(lower: 30, upper: 340)
 
     }
 

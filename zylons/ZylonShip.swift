@@ -9,14 +9,6 @@
 import UIKit
 import SceneKit
 
-enum ShipStickPosition {
-    case up
-    case down
-    case left
-    case right
-    case zeroed
-}
-
 enum ImpulseEngineDamage {
 	case noDamage
 	case plasmaManifoldFailure

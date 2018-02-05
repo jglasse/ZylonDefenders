@@ -20,20 +20,17 @@ func distanceFromZylonShip(x: Float, y: Float, z: Float) -> Float {
     return distance
 }
 
-func computerBeepSound(_ soundString: String) {
-    let soundURL = Bundle.main.url(forResource: soundString, withExtension: "mp3")
-    let beepsound =  try! AVAudioPlayer(contentsOf: soundURL!)
-    beepsound.volume = 0.5
-    beepsound.play()
-}
-
 extension FloatingPoint {
     var degreesToRadians: Self { return self * .pi / 180 }
     var radiansToDegrees: Self { return self * 180 / .pi }
 }
 func randRange (lower: Float, upper: Float) -> Float {
-    let difference = abs(upper - lower)
-    return lower + Float(arc4random_uniform(UInt32(difference)))
+    if upper > lower {
+        let difference = abs(upper - lower)
+        return lower + Float(arc4random_uniform(UInt32(difference)))
+    } else {
+        return lower
+    }
 }
 
 // MARK - Extensions
