@@ -8,9 +8,14 @@
 
 import Foundation
 import SceneKit
+class Blip: SCNNode {
 
+}
 class Scanner: SCNNode {
-    var numberOfSectorEnemies = 0
+    var scannerTargets: [SCNNode]
+    var numberOfSectorEnemies: Int {
+        return scannerTargets.count
+    }
     var scanBeam: SCNNode
     var sectorField: SCNNode
 
@@ -18,6 +23,7 @@ class Scanner: SCNNode {
         let scannerScene = SCNScene(named: "Scanner.scn")
         sectorField = (scannerScene?.rootNode.childNodes[0])!
         scanBeam = (scannerScene?.rootNode.childNodes[1])!
+        scannerTargets = [SCNNode]()
         super.init()
         self.addChildNode(sectorField)
         self.addChildNode(scanBeam)
@@ -32,4 +38,18 @@ class Scanner: SCNNode {
         fatalError("init(coder:) has not been implemented")
     }
 
+    func updateScanner(with sectorTargets: [SCNNode]) {
+        scannerTargets.removeAll()
+        for target in sectorTargets {
+                let blip = SCNPyramid(width: 0.25, height: 0.25, length: 0.25)
+                let blipSprite = Blip()
+                blipSprite.geometry  = blip
+                blipSprite.position = SCNVector3(target.worldPosition.x/500, target.worldPosition.x/500, target.worldPosition.x/500)
+                blipSprite.geometry?.firstMaterial = SCNMaterial()
+                blipSprite.geometry?.firstMaterial?.diffuse.contents = UIColor.red
+                blipSprite.name = "star"
+                scannerTargets.append(blipSprite)
+
+        }
+    }
 }

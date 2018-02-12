@@ -32,6 +32,7 @@ struct Constants {
     static let cameraFalloff = 1200.0
     static let minHumanShootInterval: Float = 85
     static let maxHumanShootInterval: Float = 800
+    static let sectorBreadth = 500
 }
 
 struct objectCategories {
@@ -74,7 +75,9 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     var enemyDrone: SCNNode?  // this should be removed in favor of enemyShipsInSector
 
     var enemyShipsInSector = [HumonShip]()
-    var enemyShipCountInSector = 0
+    var enemyShipCountInSector: Int {
+        return enemyShipsInSector.count
+    }
 
 	var ship = ZylonShip()
     var zylonShields = SCNNode()
@@ -322,6 +325,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 
         // add forward and rear cameras
         forwardCameraNode.camera = SCNCamera()
+        forwardCameraNode.camera?.wantsHDR = false
         forwardCameraNode.position = SCNVector3(x: 0, y: 0, z: 0)
         forwardCameraNode.name = "camera"
         forwardCameraNode.camera?.zFar = Constants.cameraFalloff
@@ -336,7 +340,6 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         self.ship.addChildNode(rearCameraNode)
 
         //add shields
-        scene.rootNode.addChildNode(zylonShields)
         let sphere = SCNSphere(radius: 180.0)
         self.zylonShields.geometry  = sphere
         zylonShields.opacity = 1
@@ -347,6 +350,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         shieldMaterial.diffuse.contents =  UIColor.green
         shieldMaterial.emission.contents =  UIColor.green
         self.zylonShields.geometry?.materials = [shieldMaterial, shieldMaterial]
+        self.ship.addChildNode(zylonShields)
 
         sectorScanCameraNode.camera = SCNCamera()
         sectorScanCameraNode.position = SCNVector3(x: 0, y: 200, z: 0)
@@ -579,7 +583,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     }
 
     func cleanSceneAndUpdateSectorNodeObjects() {
-        var thisLoopsEnemyCount = 0
+        enemyShipsInSector.removeAll()
         scene.rootNode.enumerateChildNodes({thisNode, _ in
 
 			// if this is a torpedo, increment decay and, if a humon torpedo, move it!
@@ -617,7 +621,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
             }
             if (thisNode.name == "drone") {
                 let thisDrone = thisNode as! HumonShip
-                thisLoopsEnemyCount += 1
+                enemyShipsInSector.append(thisDrone)
                 thisDrone.maneuver()
             }
 
@@ -628,8 +632,6 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 				thisNode.opacity = 0
 				SCNTransaction.commit()
             }
-
-            self.enemyShipCountInSector = thisLoopsEnemyCount
        })
 
 }
@@ -699,6 +701,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     func renderer(_ renderer: SCNSceneRenderer, didRenderScene scene: SCNScene, atTime time: TimeInterval) {
         turnShip()
         zylonScanner.rotation = sectorObjectsNode.rotation
+        zylonScanner.updateScanner(with: self.enemyShipsInSector)
         updateStars()
 		cleanSceneAndUpdateSectorNodeObjects()
         updateTactical()
