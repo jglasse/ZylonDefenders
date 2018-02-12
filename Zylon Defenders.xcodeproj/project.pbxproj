@@ -52,6 +52,8 @@
 		E1BD14B81E24280C002E49A5 /* three.m4a in Resources */ = {isa = PBXBuildFile; fileRef = E1BD14AD1E24280C002E49A5 /* three.m4a */; };
 		E1BD14B91E24280C002E49A5 /* two.m4a in Resources */ = {isa = PBXBuildFile; fileRef = E1BD14AE1E24280C002E49A5 /* two.m4a */; };
 		E1BD14BA1E24280C002E49A5 /* zero.m4a in Resources */ = {isa = PBXBuildFile; fileRef = E1BD14AF1E24280C002E49A5 /* zero.m4a */; };
+		E1C0E6AB2031679A0079B8B4 /* GalacticMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C0E6AA2031679A0079B8B4 /* GalacticMap.swift */; };
+		E1C0E6AD203168670079B8B4 /* galaxy.scn in Resources */ = {isa = PBXBuildFile; fileRef = E1C0E6AC203168670079B8B4 /* galaxy.scn */; };
 		E1D1EA0D20267A7D00DB2984 /* Scanner.scn in Resources */ = {isa = PBXBuildFile; fileRef = E1D1EA0C20267A7D00DB2984 /* Scanner.scn */; };
 		E1D36D611FEA5764001F3E25 /* enemyAlert.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E1D36D5F1FEA5764001F3E25 /* enemyAlert.mp3 */; };
 		E1D36D621FEA5764001F3E25 /* sectorCleared.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E1D36D601FEA5764001F3E25 /* sectorCleared.mp3 */; };
@@ -123,6 +125,8 @@
 		E1BD14AD1E24280C002E49A5 /* three.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = three.m4a; sourceTree = "<group>"; };
 		E1BD14AE1E24280C002E49A5 /* two.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = two.m4a; sourceTree = "<group>"; };
 		E1BD14AF1E24280C002E49A5 /* zero.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = zero.m4a; sourceTree = "<group>"; };
+		E1C0E6AA2031679A0079B8B4 /* GalacticMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalacticMap.swift; sourceTree = "<group>"; };
+		E1C0E6AC203168670079B8B4 /* galaxy.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = galaxy.scn; sourceTree = "<group>"; };
 		E1D1EA0C20267A7D00DB2984 /* Scanner.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = Scanner.scn; sourceTree = "<group>"; };
 		E1D36D5F1FEA5764001F3E25 /* enemyAlert.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = enemyAlert.mp3; sourceTree = "<group>"; };
 		E1D36D601FEA5764001F3E25 /* sectorCleared.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = sectorCleared.mp3; sourceTree = "<group>"; };
@@ -169,6 +173,7 @@
 				E19BFF3E1EDFDEED00FCC5EE /* ZylonShip.swift */,
 				E1FD2A0B1EF7390B0096CB72 /* HumonShip.swift */,
 				E1B12C2920267EC70071F9A1 /* Scanner.swift */,
+				E1C0E6AA2031679A0079B8B4 /* GalacticMap.swift */,
 				E187F56C1FB0275A0036B3FE /* Torpedo.swift */,
 				E187F56F1FB028910036B3FE /* ShipExplosion.swift */,
 				E151DA2D1E17926900A70B45 /* HUD.swift */,
@@ -223,6 +228,7 @@
 			children = (
 				E1272AB51F64EE4800A66358 /* Humon.scn */,
 				E1D1EA0C20267A7D00DB2984 /* Scanner.scn */,
+				E1C0E6AC203168670079B8B4 /* galaxy.scn */,
 			);
 			name = "Scenekit Models";
 			sourceTree = "<group>";
@@ -450,6 +456,7 @@
 				E10EFCBD1EC0E9B300CC872E /* wave.fsh in Resources */,
 				E10EFCC11EC0EE9400CC872E /* smallestGrid.png in Resources */,
 				E1BD14B81E24280C002E49A5 /* three.m4a in Resources */,
+				E1C0E6AD203168670079B8B4 /* galaxy.scn in Resources */,
 				E1A57AD01E1D8CCA009F2CA6 /* beep.mp3 in Resources */,
 				E1D36D611FEA5764001F3E25 /* enemyAlert.mp3 in Resources */,
 				E1BD14BA1E24280C002E49A5 /* zero.m4a in Resources */,
@@ -504,6 +511,7 @@
 				E151DA2E1E17926900A70B45 /* HUD.swift in Sources */,
 				E1D8BD561DCFCD1A00C863DF /* ZylonGameViewController.swift in Sources */,
 				E19F3F331F6494AB00F612A7 /* JoyStickView.swift in Sources */,
+				E1C0E6AB2031679A0079B8B4 /* GalacticMap.swift in Sources */,
 				E19BFF3F1EDFDEED00FCC5EE /* ZylonShip.swift in Sources */,
 				E187F5701FB028910036B3FE /* ShipExplosion.swift in Sources */,
 				E1D8BD521DCFCD1A00C863DF /* AppDelegate.swift in Sources */,

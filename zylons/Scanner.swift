@@ -40,14 +40,20 @@ class Scanner: SCNNode {
 
     func updateScanner(with sectorTargets: [SCNNode]) {
         scannerTargets.removeAll()
+        for oldtarget in sectorField.childNodes {
+            if oldtarget.name == "blip" {
+            oldtarget.removeFromParentNode()
+            }
+        }
         for target in sectorTargets {
-                let blip = SCNPyramid(width: 0.25, height: 0.25, length: 0.25)
-                let blipSprite = Blip()
+                let blip = SCNPyramid(width: 0.15, height: 0.15, length: 0.15)
+                let blipSprite = SCNNode()
                 blipSprite.geometry  = blip
-                blipSprite.position = SCNVector3(target.worldPosition.x/500, target.worldPosition.x/500, target.worldPosition.x/500)
+                blipSprite.position = SCNVector3(target.worldPosition.x/100, target.worldPosition.y/90, target.worldPosition.z/90)
                 blipSprite.geometry?.firstMaterial = SCNMaterial()
                 blipSprite.geometry?.firstMaterial?.diffuse.contents = UIColor.red
-                blipSprite.name = "star"
+                blipSprite.name = "blip"
+                sectorField.addChildNode(blipSprite)
                 scannerTargets.append(blipSprite)
 
         }

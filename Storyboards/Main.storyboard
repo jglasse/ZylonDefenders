@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="5DR-Qy-GgG">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BV1-FR-VrT">
     <device id="retina4_7" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
@@ -47,7 +47,7 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bUR-Pk-TVp">
                                 <rect key="frame" x="20" y="15" width="639" height="335"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <mutableString key="text">WELCOME TO THE ZYLON DEFENDER BETA -Build 8
+                                <string key="text">WELCOME TO THE ZYLON DEFENDER BETA -Build 8
 
 This version has basic controls, firing and warp enabled, and spawns a random set of new enemies each time you warp into a sector - so you can start to get a basic feel for how the actual game will play. It also fixes a nasty crashing bug or two (not all, sadly - keep those bug reports coming!).  
 
@@ -58,7 +58,7 @@ There's still much that's not here, most importantly:
 3) Advanced enemy ship AI and different ship models and attack styles
 4) Tactical Display currently does not display enemies
 
-As always, feel free to email notes, thoughts, comments or threats to jglasse@gmail.com</mutableString>
+As always, feel free to email notes, thoughts, comments or threats to jglasse@gmail.com</string>
                                 <color key="textColor" red="0.0018759364314704374" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <fontDescription key="fontDescription" name="Glass_TTY_VT220" family="Glass TTY VT220" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -103,8 +103,20 @@ As always, feel free to email notes, thoughts, comments or threats to jglasse@gm
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="PoQ-ji-oep" userLabel="Command Stack">
                                 <rect key="frame" x="195" y="308" width="442" height="50"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b5j-bO-0M6">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PFE-MW-5wO">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="50" id="XDq-WA-ErG"/>
+                                            <constraint firstAttribute="height" constant="50" id="gtl-S4-ebJ"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Y14.5M" family="Y14.5M" pointSize="15"/>
+                                        <state key="normal" title="MAP"/>
+                                        <connections>
+                                            <action selector="showShortRangeScan:" destination="BV1-FR-VrT" eventType="touchUpInside" id="sy9-tY-c0W"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b5j-bO-0M6">
+                                        <rect key="frame" x="80" y="0.0" width="50" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="7Eg-lZ-mFr"/>
                                             <constraint firstAttribute="width" constant="50" id="uCi-8e-ohS"/>
@@ -113,18 +125,6 @@ As always, feel free to email notes, thoughts, comments or threats to jglasse@gm
                                         <state key="normal" title="TACT"/>
                                         <connections>
                                             <action selector="showTactical:" destination="BV1-FR-VrT" eventType="touchUpInside" id="TJ7-ne-dI6"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PFE-MW-5wO">
-                                        <rect key="frame" x="80" y="0.0" width="50" height="50"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="50" id="XDq-WA-ErG"/>
-                                            <constraint firstAttribute="height" constant="50" id="gtl-S4-ebJ"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="Y14.5M" family="Y14.5M" pointSize="15"/>
-                                        <state key="normal" title="SCAN"/>
-                                        <connections>
-                                            <action selector="showShortRangeScan:" destination="BV1-FR-VrT" eventType="touchUpInside" id="sy9-tY-c0W"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZGc-WM-dzj">
@@ -236,65 +236,40 @@ As always, feel free to email notes, thoughts, comments or threats to jglasse@gm
                             <view hidden="YES" opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="czd-od-uDT" userLabel="Tactical">
                                 <rect key="frame" x="20" y="108" width="617" height="189"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="THETA: --" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MQV-Cf-PFY">
-                                        <rect key="frame" x="10" y="12" width="200" height="20"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="20" id="Fp4-O3-ZfO"/>
-                                            <constraint firstAttribute="width" constant="200" id="dsA-BK-3WK"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="10"/>
-                                        <color key="textColor" red="0.0" green="1" blue="0.031326614117045626" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PHI: --" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AcU-BV-dAF">
-                                        <rect key="frame" x="10" y="30" width="200" height="20"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="20" id="5C0-m7-a9h"/>
-                                            <constraint firstAttribute="width" constant="200" id="UfJ-9K-tb1"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="10"/>
-                                        <color key="textColor" red="0.13513494490617137" green="0.89412647640149212" blue="0.38302047336299633" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SHIP VELOCITY - 5 Metrons/Centon" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D9P-ac-v2s">
-                                        <rect key="frame" x="8" y="58" width="200" height="20"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="200" id="EnD-wj-Jqs"/>
-                                            <constraint firstAttribute="height" constant="20" id="hhk-1f-2l1"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="10"/>
-                                        <color key="textColor" red="0.1351349449" green="0.89412647639999998" blue="0.38302047340000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Enemies In Sector:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WVN-hE-EnE">
-                                        <rect key="frame" x="8" y="111" width="200" height="20"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="6Sn-Ch-wiN">
+                                        <rect key="frame" x="10" y="12" width="138.5" height="78"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="10"/>
-                                        <color key="textColor" red="0.1351349449" green="0.89412647639999998" blue="0.38302047340000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DISTANCE TO TARGET - ||" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uyd-8R-ulf">
-                                        <rect key="frame" x="7" y="86" width="200" height="20"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="20" id="Kmd-xh-6rj"/>
-                                            <constraint firstAttribute="width" constant="200" id="jJ6-zq-kne"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="10"/>
-                                        <color key="textColor" red="0.1351349449" green="0.89412647639999998" blue="0.38302047340000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="THETA: --" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MQV-Cf-PFY">
+                                                <rect key="frame" x="0.0" y="0.0" width="138.5" height="12"/>
+                                                <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="10"/>
+                                                <color key="textColor" red="0.0" green="1" blue="0.031326614117045626" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="PHI: --" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AcU-BV-dAF">
+                                                <rect key="frame" x="0.0" y="22" width="138.5" height="12"/>
+                                                <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="10"/>
+                                                <color key="textColor" red="0.13513494490617137" green="0.89412647640149212" blue="0.38302047336299633" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="DISTANCE TO TARGET - ||" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uyd-8R-ulf">
+                                                <rect key="frame" x="0.0" y="44" width="138.5" height="12"/>
+                                                <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="10"/>
+                                                <color key="textColor" red="0.1351349449" green="0.89412647639999998" blue="0.38302047340000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Enemies In Sector:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WVN-hE-EnE">
+                                                <rect key="frame" x="0.0" y="66" width="138.5" height="12"/>
+                                                <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="10"/>
+                                                <color key="textColor" red="0.1351349449" green="0.89412647639999998" blue="0.38302047340000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="MQV-Cf-PFY" firstAttribute="leading" secondItem="czd-od-uDT" secondAttribute="leading" constant="10" id="1jK-Gk-PqC"/>
-                                    <constraint firstItem="uyd-8R-ulf" firstAttribute="top" secondItem="D9P-ac-v2s" secondAttribute="bottom" constant="8" id="9f8-Uf-Jxa"/>
-                                    <constraint firstItem="uyd-8R-ulf" firstAttribute="leading" secondItem="czd-od-uDT" secondAttribute="leading" constant="7" id="F53-IS-MoS"/>
                                     <constraint firstAttribute="height" constant="189" id="J9D-zh-xCb"/>
-                                    <constraint firstItem="AcU-BV-dAF" firstAttribute="leading" secondItem="czd-od-uDT" secondAttribute="leading" constant="10" id="Q7B-cI-FZp"/>
-                                    <constraint firstItem="MQV-Cf-PFY" firstAttribute="top" secondItem="czd-od-uDT" secondAttribute="top" constant="12" id="hWc-BN-luG"/>
-                                    <constraint firstItem="D9P-ac-v2s" firstAttribute="leading" secondItem="czd-od-uDT" secondAttribute="leading" constant="8" id="jub-ib-aij"/>
-                                    <constraint firstItem="D9P-ac-v2s" firstAttribute="top" secondItem="AcU-BV-dAF" secondAttribute="bottom" constant="8" id="rg4-27-ZHL"/>
-                                    <constraint firstItem="AcU-BV-dAF" firstAttribute="top" secondItem="czd-od-uDT" secondAttribute="top" constant="30" id="uKz-6H-F4s"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -322,7 +297,6 @@ As always, feel free to email notes, thoughts, comments or threats to jglasse@gm
                         <outlet property="tacticalDisplay" destination="czd-od-uDT" id="3J2-t4-b6N"/>
                         <outlet property="targetDistanceDisplay" destination="uyd-8R-ulf" id="eMt-pP-PIG"/>
                         <outlet property="thetaDisplay" destination="MQV-Cf-PFY" id="TZY-Ll-wjW"/>
-                        <outlet property="velocityDisplay" destination="D9P-ac-v2s" id="qZ5-8z-bGa"/>
                         <outlet property="viewButton" destination="2sP-pn-M7j" id="JVW-mq-nch"/>
                     </connections>
                 </viewController>

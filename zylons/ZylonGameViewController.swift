@@ -267,7 +267,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         //scnView.debugOptions = .showPhysicsShapes
         scnView.isPlaying = true
         scnView.backgroundColor = UIColor.black
-        joystickControl.movable = false
+        joystickControl.movable = true
     }
 
     func setupScene() {
@@ -682,8 +682,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
             self.thetaDisplay.text = "THETA: \(self.sectorObjectsNode.rotation.x)"
             self.phiDisplay.text = "PHI: \(self.sectorObjectsNode.rotation.y)"
             self.enemiesInSectorDisplay.text = "Enemies In Sector: \(self.enemyShipCountInSector)"
-            self.velocityDisplay.text = "SHIP VELOCITY - \(self.ship.currentSpeed) Metrons/Centon"
-            if self.enemyShipsInSector.count > 0 {
+            if self.enemyShipCountInSector > 0 {
             let drone = self.enemyShipsInSector[0]
             self.targetDistanceDisplay.text = "DISTANCE TO TARGET - \(self.distanceBetweenPoints(first: drone.position, second: self.forwardCameraNode.position))"
             }
