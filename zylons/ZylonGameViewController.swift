@@ -29,8 +29,8 @@ struct Constants {
     static let starBoundsX = 200
     static let starBoundsY = 500
     static let starBoundsZ = 500
-    static let cameraFalloff = 1200.0
-    static let minHumanShootInterval: Float = 85
+    static let cameraFalloff = 1500.0
+    static let minHumanShootInterval: Float = 185
     static let maxHumanShootInterval: Float = 800
     static let sectorBreadth = 500
 }
@@ -63,6 +63,8 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     var scene: SCNScene!
     var scnView: SCNView!
     let sectorObjectsNode = SCNNode()
+
+    let galacticMap = SCNScene(named: "art.scnassets/galaxy.scn")
 
     var forwardCameraNode = SCNNode()
     var rearCameraNode = SCNNode()
@@ -104,7 +106,11 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 	var explosionDuration = 0
 
     var motionManager: CMMotionManager!
+
+    // Misc Variables
     var currentPhoton = 0
+    var numberOfZylonShotsOnscreen = 0
+    var numberOfHumanShotsOnscreen = 0
 
     // MARK: - IBOutlets
 
@@ -162,7 +168,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     }
 
     @IBAction func fireTorpedo(_ sender: UIButton) {
-        if (numberofShotsOnscreen() < Constants.maxTorpedoes) {
+        if numberOfZylonShotsOnscreen < Constants.maxTorpedoes {
             let torpedoNode = Torpedo(designatedTorpType: .zylon)
 			let photonSoundArray = [photonSound1, photonSound2, photonSound3, photonSound4]
 			let currentplayer = photonSoundArray[currentPhoton]
@@ -185,7 +191,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
             currentplayer?.play()
             currentPhoton = currentPhoton+1
             if currentPhoton>(photonSoundArray.count - 1) {currentPhoton = 0}
-          countNodes()
+          //countNodes()
         } else {
             computerBeepSound("torpedo_fail")
         }
@@ -267,7 +273,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         //scnView.debugOptions = .showPhysicsShapes
         scnView.isPlaying = true
         scnView.backgroundColor = UIColor.black
-        joystickControl.movable = true
+        joystickControl.movable = false
     }
 
     func setupScene() {
@@ -375,7 +381,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         warpEngineSound.volume = 0.9
     }
     func addScanner() {
-        zylonScanner.position = SCNVector3Make(0, -2, -8)
+        zylonScanner.position = SCNVector3Make(-3.7, -1.7, -8)
         scene.rootNode.addChildNode(zylonScanner)
         zylonScanner.isHidden = true
         // start scanBeam
@@ -505,6 +511,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         prepWarpEngines()
 		warpEngineSound.play()
         scene.rootNode.addChildNode(self.warpGrid)
+        self.forwardCameraNode.camera?.wantsHDR = false
         self.forwardCameraNode.camera?.motionBlurIntensity = 1.0
 
         // WARP!
@@ -583,20 +590,28 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     }
 
     func cleanSceneAndUpdateSectorNodeObjects() {
+
+        var localNumberOfZylonShotsOnscreen = 0
+        var localNumberOfHumonShotsOnscreen = 0
         enemyShipsInSector.removeAll()
         scene.rootNode.enumerateChildNodes({thisNode, _ in
 
 			// if this is a torpedo, increment decay and, if a humon torpedo, move it!
             if  thisNode.name?.range(of: "torpedo") != nil {
                 let thisTorp = thisNode as! Torpedo
-                if thisTorp.opacity == 0 {
+                if thisTorp.presentation.opacity == 0 {
+                    DispatchQueue.main.async {
                     thisTorp.removeFromParentNode()
+                    }
                 }
 
                  if thisTorp.torpType == TorpType.humon {
+                    localNumberOfHumonShotsOnscreen += 1
                     thisTorp.worldPosition.z += Float(Constants.torpedoSpeed)
                     thisTorp.worldPosition.y -= thisTorp.worldPosition.y/Constants.torpedoCorrectionSpeedDivider
                     thisTorp.worldPosition.x -= thisTorp.worldPosition.x/Constants.torpedoCorrectionSpeedDivider
+                } else {
+                    localNumberOfZylonShotsOnscreen += 1
                 }
                 thisTorp.decay()
                 if thisTorp.age == Constants.torpedoLifespan {
@@ -632,16 +647,19 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 				thisNode.opacity = 0
 				SCNTransaction.commit()
             }
+            self.numberOfHumanShotsOnscreen = localNumberOfHumonShotsOnscreen
+            self.numberOfZylonShotsOnscreen = localNumberOfZylonShotsOnscreen
+
        })
 
 }
 
     func countNodes() {
-        var numberofNodes = 0
-        scene.rootNode.enumerateChildNodes { (_, _) -> Void in
-            numberofNodes = numberofNodes + 1
-        }
-        print("number of live nodes:\(numberofNodes)")
+//        var numberofNodes = 0
+//        scene.rootNode.enumerateChildNodes { (_, _) -> Void in
+//            numberofNodes = numberofNodes + 1
+//        }
+//        print("number of live nodes:\(numberofNodes)")
 
     }
 
