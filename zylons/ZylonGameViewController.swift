@@ -291,6 +291,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         prepWarpEngines()
         playEngineSound(volume: 1)
         createStars()
+        generateWarpGrid()
         addScanner()
 
     }
@@ -379,6 +380,8 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         audioItems.append(engineEnd)
         warpEngineSound = AVQueuePlayer(items: audioItems)
         warpEngineSound.volume = 0.9
+        warpEngineSound.play()
+
     }
     func addScanner() {
         zylonScanner.position = SCNVector3Make(-3.7, -1.7, -8)
@@ -478,6 +481,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     }
 
     func generateWarpGrid() {
+
         let warpGridEntryShape = SCNTube(innerRadius: 2, outerRadius: 2, height: 260)
         warpGrid.geometry  = warpGridEntryShape
         //warpGrid.geometry?.firstMaterial = SCNMaterial()
@@ -489,28 +493,34 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         outerTube.emission.contents =  UIImage(named: "smallestGrid.png")
         outerTube.diffuse.contents = UIColor.black
         let endOne = SCNMaterial()
-        endOne.diffuse.contents =  UIColor.blue
+        //endOne.diffuse.contents =  UIColor.blue
         let endTwo = SCNMaterial()
-        endTwo.diffuse.contents =  UIColor.purple
+        //endTwo.diffuse.contents =  UIColor.purple
         warpGrid.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
         warpGrid.physicsBody?.isAffectedByGravity = false
-        warpGrid.physicsBody?.applyForce(SCNVector3Make(0, 0, 95), asImpulse: true)
         warpGrid.physicsBody?.friction = 0
         warpGrid.physicsBody?.categoryBitMask = objectCategories.warpgrids
-        warpGrid.physicsBody?.contactTestBitMask = objectCategories.warpgrids | objectCategories.asteroids | objectCategories.enemyShip
+        warpGrid.physicsBody?.contactTestBitMask  = 0
         warpGrid.name = "warpGrid"
         warpGrid.geometry?.materials = [outerTube, innerTube, endOne, endTwo]
         // warpGrid.pivot = SCNMatrix4MakeTranslation(0.5, 0.5, 0.5)
         warpGrid.rotation = SCNVector4(x: 1, y: 0, z: 0, w: Float(Double.pi / 2))
         warpGrid.worldPosition = SCNVector3Make(0, 0, -300)
-
         warpGrid.scale = SCNVector3Make(1, 1, 1)
+        warpGrid.opacity = 0.0
+
+        scene.rootNode.addChildNode(self.warpGrid)
+    }
+
+    func resetWarpgrid() {
+        warpGrid.opacity = 1.0
+        warpGrid.rotation = SCNVector4(x: 1, y: 0, z: 0, w: Float(Double.pi / 2))
+        warpGrid.worldPosition = SCNVector3Make(0, 0, -300)
+        warpGrid.physicsBody?.applyForce(SCNVector3Make(0, 0, 95), asImpulse: true)
     }
     func performWarp() {
-        generateWarpGrid()
         prepWarpEngines()
-		warpEngineSound.play()
-        scene.rootNode.addChildNode(self.warpGrid)
+        resetWarpgrid()
         self.forwardCameraNode.camera?.wantsHDR = false
         self.forwardCameraNode.camera?.motionBlurIntensity = 1.0
 
