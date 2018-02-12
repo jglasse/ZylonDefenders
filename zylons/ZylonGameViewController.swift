@@ -13,53 +13,13 @@ import AVFoundation
 import CoreMotion
 import MultipeerConnectivity
 
-struct Constants {
-    static let starMoveDivider: Float = 0.4
-    static let maxTorpedoes = 4
-    static let maxEnemyShips = 5
-    static let torpedoLifespan = 80
-    static let torpedoSpeed = 0.6
-    static let torpedoCorrectionSpeedDivider: Float = 13
-    static let shotDelay = 1
-    static let thrustAmount: Float = 5.0
-    static let numberOfStars = 100
-    static let xAxis = SCNVector3Make(1, 0, 0)
-    static let yAxis = SCNVector3Make(0, 1, 0)
-    static let zAxis = SCNVector3Make(0, 0, 1)
-    static let starBoundsX = 200
-    static let starBoundsY = 500
-    static let starBoundsZ = 500
-    static let cameraFalloff = 1500.0
-    static let minHumanShootInterval: Float = 185
-    static let maxHumanShootInterval: Float = 800
-    static let sectorBreadth = 500
-}
-
-struct objectCategories {
-    static let zylonShip = 0b00000001
-    static let zylonFire = 0b00000010
-    static let enemyShip = 0b00000100
-    static let enemyFire = 0b00001000
-    static let starBases = 0b00010000
-    static let asteroids = 0b00100000
-    static let warpgrids = 0b01000000
-}
-
-@available(iOS 11.0, *)
 class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNSceneRendererDelegate {
 
-    // MARK: -
-    // MARK: Constants
-
-    // add multipeer Connectivity
+    // MARK: - Multipeer
     var myMCController = MCController.sharedInstance
 
-    // MARK: -
-    // MARK: Vars
-    // drone model
-    var droneModel: SCNNode!
+    // MARK: - Scenes, Views and Nodes
 
-    // Scenes, Views and Nodes
     var scene: SCNScene!
     var scnView: SCNView!
     let sectorObjectsNode = SCNNode()
@@ -125,11 +85,20 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     @IBOutlet weak var targetDistanceDisplay: UILabel!
     @IBOutlet weak var enemiesInSectorDisplay: UILabel!
 
+    @IBOutlet weak var galacticMapView: UIView!
+    @IBOutlet weak var actualMapSCNView: SCNView!
+
     // MARK: - IBActions
+
+    @IBAction func showMap(_ sender: Any) {
+        galacticMapView.isHidden = !galacticMapView.isHidden
+        actualMapSCNView.isPlaying = galacticMapView.isHidden
+
+    }
 
     @IBAction func showTactical(_ sender: Any) {
         tacticalDisplay.isHidden = !tacticalDisplay.isHidden
-        zylonScanner.isHidden = !zylonScanner.isHidden
+        zylonScanner.isHidden = tacticalDisplay.isHidden
 
     }
     @IBAction func showShortRangeScan(_ sender: Any) {
@@ -281,18 +250,23 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         scnView.scene = scene
 
         //prepare game elements for later display
+        createStars()
+        generateWarpGrid()
 
         // setup HUD
         shipHud = HUD(size: self.view.bounds.size)
         scnView.overlaySKScene = shipHud
         scene.physicsWorld.contactDelegate = self
         scnView.delegate = self
-        setupPhotonSounds()
-        prepWarpEngines()
-        playEngineSound(volume: 1)
-        createStars()
-        generateWarpGrid()
+
+        // setup scanner viewa
+        setupGalacticMapView()
         addScanner()
+
+        // prepare sounds
+        setupPhotonSounds()
+        setupGridWarpEngineSounds()
+        playEngineSound(volume: 1)
 
     }
 
@@ -370,7 +344,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         ship.currentSpeed = 5
     }
 
-    func prepWarpEngines() {
+    func setupGridWarpEngineSounds() {
         var audioItems: [AVPlayerItem] = []
         let soundURL = Bundle.main.url(forResource: "warpStart", withExtension: "aif")
         let engineStart = AVPlayerItem(url: soundURL!)
@@ -380,7 +354,6 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         audioItems.append(engineEnd)
         warpEngineSound = AVQueuePlayer(items: audioItems)
         warpEngineSound.volume = 0.9
-        warpEngineSound.play()
 
     }
     func addScanner() {
@@ -391,6 +364,27 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         let rotateAction = SCNAction.rotateBy(x: 0, y: CGFloat(2*Float.pi), z: 0, duration: 1.5)
         let perpetualRotation = SCNAction.repeatForever(rotateAction)
         zylonScanner.scanBeam.runAction(perpetualRotation)
+    }
+
+    func setupGalacticMapView() {
+
+         // create and add a camera to the scene
+        let cameraNode = SCNNode()
+        cameraNode.camera = SCNCamera()
+        galacticMap?.rootNode.addChildNode(cameraNode)
+
+        let camConstraint = SCNLookAtConstraint(target: scene.rootNode)
+        camConstraint.isGimbalLockEnabled = true
+        cameraNode.constraints = [camConstraint]
+
+        // place the camera
+        cameraNode.position = SCNVector3(x: 0, y: 0, z: 85)
+
+        actualMapSCNView.showsStatistics = false
+        actualMapSCNView.allowsCameraControl = true
+        actualMapSCNView.scene = galacticMap
+        actualMapSCNView.isPlaying = true
+        actualMapSCNView.isHidden = true
 
     }
      // MARK: - Sound Functions
@@ -519,7 +513,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         warpGrid.physicsBody?.applyForce(SCNVector3Make(0, 0, 95), asImpulse: true)
     }
     func performWarp() {
-        prepWarpEngines()
+        warpEngineSound.play()
         resetWarpgrid()
         self.forwardCameraNode.camera?.wantsHDR = false
         self.forwardCameraNode.camera?.motionBlurIntensity = 1.0
