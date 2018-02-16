@@ -8,13 +8,14 @@
 
 import Foundation
 import UIKit
+import AVFoundation
 
-let numberstrings: [String] = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"]
+let numberstrings = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"]
 
 // MARK - Utility Functions
 // These are globally available, and should be unit tested
 
-func distanceInSpace(x: Float, y: Float, z: Float) -> Float {
+func distanceFromZylonShip(x: Float, y: Float, z: Float) -> Float {
     let distance = sqrt(x*x + y*y + z*z)
     return distance
 }
@@ -24,20 +25,22 @@ extension FloatingPoint {
     var radiansToDegrees: Self { return self * 180 / .pi }
 }
 func randRange (lower: Float, upper: Float) -> Float {
-    let difference = upper - lower
-    return lower + Float(arc4random_uniform(UInt32(difference)))
+    if upper > lower {
+        let difference = abs(upper - lower)
+        return lower + Float(arc4random_uniform(UInt32(difference)))
+    } else {
+        return lower
+    }
 }
 
 // MARK - Extensions
 // Extensions to game classes which are not part of their core functionality
 
-extension GameViewController: CommandDelegate {
-
+extension ZylonGameViewController: CommandDelegate {
     // receive commands from iOS remote controller
     func execute(command: String) {
         print ("Executing remote command: \(command)")
         switch command {
-
         case "Speed 9":
             setSpeed(9)
         case "Speed 8":
@@ -56,7 +59,6 @@ extension GameViewController: CommandDelegate {
             setSpeed(2)
         case "Speed 1":
             setSpeed(1)
-
         case "Speed 0":
             setSpeed(0)
         case "ABORT":

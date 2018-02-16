@@ -9,14 +9,6 @@
 import UIKit
 import SceneKit
 
-enum ShipStickPosition {
-    case up
-    case down
-    case left
-    case right
-    case zeroed
-}
-
 enum ImpulseEngineDamage {
 	case noDamage
 	case plasmaManifoldFailure
@@ -57,12 +49,23 @@ class ZylonShip: SCNNode {
 	var shields = false
 	var currentSpeed = 0
 	var currentSector = Sector()
+    var enemyShipsInSector = 0
 	var engineHealth = 100
 	var shieldStrength = 100
 	var energyStore = 10000
 	var currentTorpedoBay = 1
     var sectorLocation = locationInSector(x: 500, y: 500, z: 500)
     var sector = currentSector(sectorX: 30, sectorY: 30, sectorZ: 30)
+    override init() {
+        super.init()
+        self.geometry = SCNSphere(radius: 0.25)
+      //  self.physicsBody = SCNPhysicsBody(type: .kinematic, shape: nil)
+
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
 	struct locationInSector {
 		var x = 0
@@ -92,4 +95,7 @@ class ZylonShip: SCNNode {
 
 	var range = [Float]()
 
+    func updateSector() {
+        self.currentSector.z+=1
+    }
 }

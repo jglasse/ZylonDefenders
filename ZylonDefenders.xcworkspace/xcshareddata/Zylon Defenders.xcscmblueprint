@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "50935DDF4B238EECCB6F5733A7571482367481EA",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "50935DDF4B238EECCB6F5733A7571482367481EA" : 9223372036854775807,
+    "3EE8C9D711F76FC88FC42CCE1868647B4FEF4BF1" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "11244FA5-E9CF-44F6-BB93-31E3FC7838F4",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "50935DDF4B238EECCB6F5733A7571482367481EA" : "_Zylons\/",
+    "3EE8C9D711F76FC88FC42CCE1868647B4FEF4BF1" : "..\/Desktop\/DT\/Helm%20Coding%20Exercise"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "Zylon Defenders",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Zylon Defenders.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/jglasse\/helmDemo.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "3EE8C9D711F76FC88FC42CCE1868647B4FEF4BF1"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/jglasse\/ZylonDefenders.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "50935DDF4B238EECCB6F5733A7571482367481EA"
+    }
+  ]
+}

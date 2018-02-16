@@ -8,12 +8,12 @@
 
 import UIKit
 import SceneKit
+enum TorpType {
+    case humon
+    case zylon
+}
 
 class Torpedo: SCNNode {
-    enum TorpType {
-        case humon
-        case zylon
-    }
 
     public var age = 0
     public var torpType: TorpType = .zylon
@@ -24,37 +24,22 @@ class Torpedo: SCNNode {
         self.geometry = SCNSphere(radius: 0.25)
         self.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
         self.physicsBody?.isAffectedByGravity = false
-
         if torpType == .humon  //create humon torpedo
         {
         self.name = "Humon torpedo"
             self.physicsBody?.categoryBitMask = objectCategories.enemyFire
-            self.physicsBody?.contactTestBitMask = objectCategories.enemyFire | objectCategories.zylonShip
+            self.physicsBody?.contactTestBitMask =  objectCategories.zylonShip
             let torpedoSparkle = SCNParticleSystem(named: "HumonTorpedo", inDirectory: "")
             self.addParticleSystem(torpedoSparkle!)
 
         } else // create zylon torpedo
         {
             self.name = "torpedo"
-
             self.physicsBody?.categoryBitMask = objectCategories.zylonFire
-            self.physicsBody?.contactTestBitMask = objectCategories.zylonFire | objectCategories.enemyShip
+            self.physicsBody?.contactTestBitMask =  objectCategories.enemyShip
             let torpedoSparkle = SCNParticleSystem(named: "Torpedo", inDirectory: "")
             self.addParticleSystem(torpedoSparkle!)
-
         }
-    }
-    override init() {
-    super.init()
-    let torpedoSparkle = SCNParticleSystem(named: "Torpedo", inDirectory: "")
-    self.geometry = SCNSphere(radius: 0.25)
-    self.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
-    self.physicsBody?.isAffectedByGravity = false
-    self.physicsBody?.categoryBitMask = 0b00000010
-    self.physicsBody?.contactTestBitMask = 0b00000010
-
-    self.name = "torpedo"
-    self.addParticleSystem(torpedoSparkle!)
     }
 
     func fade() {
@@ -63,19 +48,10 @@ class Torpedo: SCNNode {
         self.opacity = 0
         SCNTransaction.commit()
         SCNTransaction.animationDuration = 0.0
-
     }
 
     func decay() {
         self.age += 1
-        if age > Constants.torpedoLifespan {
-            self.fade()
-            let deadlineTime = DispatchTime.now() + .seconds(1)
-            DispatchQueue.main.asyncAfter(deadline: deadlineTime) {
-            self.removeFromParentNode()
-            }
-        }
-
     }
 
     required init?(coder aDecoder: NSCoder) {

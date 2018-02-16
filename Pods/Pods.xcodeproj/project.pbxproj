@@ -1,0 +1,563 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		03F68A194851C07F0C787C7C9FCF76A6 /* JBKenBurnsView.h in Headers */ = {isa = PBXBuildFile; fileRef = BCA3B2042759ADD17622C60254A23780 /* JBKenBurnsView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		09BA9452FAE5DE6ADE0447FEF74F5025 /* JBKenBurnsView-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 5C3A046E6A4999419839BC0281D92980 /* JBKenBurnsView-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		46E31A2D19BCB5DC6A18E7A0C95DFB12 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC2770B482BFE91273C8560623F1422C /* QuartzCore.framework */; };
+		5D2106FE260BA1D12491D3DB80F27600 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54F9A0E952988935C32EDDB1429D7133 /* Foundation.framework */; };
+		9ADDCA4843A6B6C3882B651111FE6B06 /* Pods-Zylon Defenders-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A9883DB88C17111D36A48AB1FE14F66 /* Pods-Zylon Defenders-dummy.m */; };
+		B7A22B8C7206C5B9DD10688D54AEA597 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54F9A0E952988935C32EDDB1429D7133 /* Foundation.framework */; };
+		D4745217F0A5521EC3BE215364948736 /* JBKenBurnsView-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 44CAE9CC6EF218CC977A2525DF3C59C4 /* JBKenBurnsView-dummy.m */; };
+		D98A6E490BBACED3271665F46B250568 /* JBKenBurnsView.m in Sources */ = {isa = PBXBuildFile; fileRef = D679E3A42D498D0AE217DAF9C31F2DBD /* JBKenBurnsView.m */; };
+		E6A4C8211A2E34C9DBBE978B85AF41E9 /* Pods-Zylon Defenders-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CE2EBF97E71C9385A010DBA5B9C0700 /* Pods-Zylon Defenders-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		9A4A14BF983E3374816AE665BCF4A542 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FF58104C43E46545381C8491DA277D05;
+			remoteInfo = JBKenBurnsView;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		1C23DC28A7DCF5BFD662ED15EAA1B394 /* JBKenBurnsView.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = JBKenBurnsView.modulemap; sourceTree = "<group>"; };
+		204B42F38E56FA71F09C7CF7FD2295B4 /* Pods-Zylon Defenders-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Zylon Defenders-acknowledgements.markdown"; sourceTree = "<group>"; };
+		2A9883DB88C17111D36A48AB1FE14F66 /* Pods-Zylon Defenders-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Zylon Defenders-dummy.m"; sourceTree = "<group>"; };
+		2CE2EBF97E71C9385A010DBA5B9C0700 /* Pods-Zylon Defenders-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Zylon Defenders-umbrella.h"; sourceTree = "<group>"; };
+		36727FC9C8A8094A2284107F3CFB3B54 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3C1D7106850F651C2C65EA72FA957773 /* Pods-Zylon Defenders.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Zylon Defenders.release.xcconfig"; sourceTree = "<group>"; };
+		44CAE9CC6EF218CC977A2525DF3C59C4 /* JBKenBurnsView-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "JBKenBurnsView-dummy.m"; sourceTree = "<group>"; };
+		539D1249513E2F7F14E90CAD0CCBD9DE /* JBKenBurnsView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = JBKenBurnsView.framework; path = JBKenBurnsView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		54F9A0E952988935C32EDDB1429D7133 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		5B94851EC999BA255995F8CD700FA011 /* JBKenBurnsView-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "JBKenBurnsView-prefix.pch"; sourceTree = "<group>"; };
+		5C3A046E6A4999419839BC0281D92980 /* JBKenBurnsView-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "JBKenBurnsView-umbrella.h"; sourceTree = "<group>"; };
+		9144E053C33B6C13FD6E96E41F131AAD /* Pods-Zylon Defenders.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Zylon Defenders.debug.xcconfig"; sourceTree = "<group>"; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		995305BF8A27AE27D58A7D731EDA8DDD /* Pods_Zylon_Defenders.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Zylon_Defenders.framework; path = "Pods-Zylon Defenders.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		99FC4392D4D0E1B27AA588DFA3916BF6 /* Pods-Zylon Defenders-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Zylon Defenders-acknowledgements.plist"; sourceTree = "<group>"; };
+		9B45453497A2DD0BCA91942B14153517 /* JBKenBurnsView.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = JBKenBurnsView.xcconfig; sourceTree = "<group>"; };
+		A1F4F0260647ECCCCDE0C1DCF6D506F4 /* Pods-Zylon Defenders.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-Zylon Defenders.modulemap"; sourceTree = "<group>"; };
+		B015D025E92DAF3C884B3FF1C2B3A2CB /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BCA3B2042759ADD17622C60254A23780 /* JBKenBurnsView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JBKenBurnsView.h; path = KenBurns/JBKenBurnsView.h; sourceTree = "<group>"; };
+		D21F5322237D58093168A79D0AC8E557 /* Pods-Zylon Defenders-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Zylon Defenders-frameworks.sh"; sourceTree = "<group>"; };
+		D679E3A42D498D0AE217DAF9C31F2DBD /* JBKenBurnsView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JBKenBurnsView.m; path = KenBurns/JBKenBurnsView.m; sourceTree = "<group>"; };
+		E9BE5C69CC64370958C8D41879C205C0 /* Pods-Zylon Defenders-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Zylon Defenders-resources.sh"; sourceTree = "<group>"; };
+		FC2770B482BFE91273C8560623F1422C /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		0FD2CB752E533BF7FF774DEB8228A451 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B7A22B8C7206C5B9DD10688D54AEA597 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AA536D30737DB064D820980C36D75FAB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5D2106FE260BA1D12491D3DB80F27600 /* Foundation.framework in Frameworks */,
+				46E31A2D19BCB5DC6A18E7A0C95DFB12 /* QuartzCore.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		176890629E66CAF96A2E48F373CDD935 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				B015D025E92DAF3C884B3FF1C2B3A2CB /* Info.plist */,
+				1C23DC28A7DCF5BFD662ED15EAA1B394 /* JBKenBurnsView.modulemap */,
+				9B45453497A2DD0BCA91942B14153517 /* JBKenBurnsView.xcconfig */,
+				44CAE9CC6EF218CC977A2525DF3C59C4 /* JBKenBurnsView-dummy.m */,
+				5B94851EC999BA255995F8CD700FA011 /* JBKenBurnsView-prefix.pch */,
+				5C3A046E6A4999419839BC0281D92980 /* JBKenBurnsView-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/JBKenBurnsView";
+			sourceTree = "<group>";
+		};
+		433CD3331B6C3787F473C941B61FC68F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				978007DCB56F415BE390E0F949D4D4E5 /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7DB346D0F39D3F0E887471402A8071AB = {
+			isa = PBXGroup;
+			children = (
+				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
+				433CD3331B6C3787F473C941B61FC68F /* Frameworks */,
+				8D79DCCF668C9918C614BDD89D9F7279 /* Pods */,
+				AF49BAD3EA4346D1CBF50AADDA0F9743 /* Products */,
+				B50B707C67B8B08D32F4540A98386F2A /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		8D79DCCF668C9918C614BDD89D9F7279 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A2FD51E3CB44118C08324279CCC3EFFF /* JBKenBurnsView */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		978007DCB56F415BE390E0F949D4D4E5 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				54F9A0E952988935C32EDDB1429D7133 /* Foundation.framework */,
+				FC2770B482BFE91273C8560623F1422C /* QuartzCore.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		97FAF4BE1C807D1F6FFC303C9D332D54 /* Pods-Zylon Defenders */ = {
+			isa = PBXGroup;
+			children = (
+				36727FC9C8A8094A2284107F3CFB3B54 /* Info.plist */,
+				A1F4F0260647ECCCCDE0C1DCF6D506F4 /* Pods-Zylon Defenders.modulemap */,
+				204B42F38E56FA71F09C7CF7FD2295B4 /* Pods-Zylon Defenders-acknowledgements.markdown */,
+				99FC4392D4D0E1B27AA588DFA3916BF6 /* Pods-Zylon Defenders-acknowledgements.plist */,
+				2A9883DB88C17111D36A48AB1FE14F66 /* Pods-Zylon Defenders-dummy.m */,
+				D21F5322237D58093168A79D0AC8E557 /* Pods-Zylon Defenders-frameworks.sh */,
+				E9BE5C69CC64370958C8D41879C205C0 /* Pods-Zylon Defenders-resources.sh */,
+				2CE2EBF97E71C9385A010DBA5B9C0700 /* Pods-Zylon Defenders-umbrella.h */,
+				9144E053C33B6C13FD6E96E41F131AAD /* Pods-Zylon Defenders.debug.xcconfig */,
+				3C1D7106850F651C2C65EA72FA957773 /* Pods-Zylon Defenders.release.xcconfig */,
+			);
+			name = "Pods-Zylon Defenders";
+			path = "Target Support Files/Pods-Zylon Defenders";
+			sourceTree = "<group>";
+		};
+		A2FD51E3CB44118C08324279CCC3EFFF /* JBKenBurnsView */ = {
+			isa = PBXGroup;
+			children = (
+				BCA3B2042759ADD17622C60254A23780 /* JBKenBurnsView.h */,
+				D679E3A42D498D0AE217DAF9C31F2DBD /* JBKenBurnsView.m */,
+				176890629E66CAF96A2E48F373CDD935 /* Support Files */,
+			);
+			name = JBKenBurnsView;
+			path = JBKenBurnsView;
+			sourceTree = "<group>";
+		};
+		AF49BAD3EA4346D1CBF50AADDA0F9743 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				539D1249513E2F7F14E90CAD0CCBD9DE /* JBKenBurnsView.framework */,
+				995305BF8A27AE27D58A7D731EDA8DDD /* Pods_Zylon_Defenders.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B50B707C67B8B08D32F4540A98386F2A /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				97FAF4BE1C807D1F6FFC303C9D332D54 /* Pods-Zylon Defenders */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		036BDB8098D9ABB84011DCBC76399E3C /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E6A4C8211A2E34C9DBBE978B85AF41E9 /* Pods-Zylon Defenders-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E8542B1B00E5F416536CA6B7D6D093E9 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				09BA9452FAE5DE6ADE0447FEF74F5025 /* JBKenBurnsView-umbrella.h in Headers */,
+				03F68A194851C07F0C787C7C9FCF76A6 /* JBKenBurnsView.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		B5674EA10AF0C38E2E9442DF66AFBDF8 /* Pods-Zylon Defenders */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AD3C2FAE07E18962EC1797D6058A38F7 /* Build configuration list for PBXNativeTarget "Pods-Zylon Defenders" */;
+			buildPhases = (
+				7C6C3583E20E054CCB9A4A7E9A6AAF51 /* Sources */,
+				0FD2CB752E533BF7FF774DEB8228A451 /* Frameworks */,
+				036BDB8098D9ABB84011DCBC76399E3C /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FC546782E1FE4EDDFA1822271DA2DE0B /* PBXTargetDependency */,
+			);
+			name = "Pods-Zylon Defenders";
+			productName = "Pods-Zylon Defenders";
+			productReference = 995305BF8A27AE27D58A7D731EDA8DDD /* Pods_Zylon_Defenders.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		FF58104C43E46545381C8491DA277D05 /* JBKenBurnsView */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D918F430238283F3B389FEC4EF0786AC /* Build configuration list for PBXNativeTarget "JBKenBurnsView" */;
+			buildPhases = (
+				60497B1F07CAB6B7F2CCE96BC2CB8611 /* Sources */,
+				AA536D30737DB064D820980C36D75FAB /* Frameworks */,
+				E8542B1B00E5F416536CA6B7D6D093E9 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = JBKenBurnsView;
+			productName = JBKenBurnsView;
+			productReference = 539D1249513E2F7F14E90CAD0CCBD9DE /* JBKenBurnsView.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D41D8CD98F00B204E9800998ECF8427E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0830;
+				LastUpgradeCheck = 0700;
+			};
+			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
+			productRefGroup = AF49BAD3EA4346D1CBF50AADDA0F9743 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				FF58104C43E46545381C8491DA277D05 /* JBKenBurnsView */,
+				B5674EA10AF0C38E2E9442DF66AFBDF8 /* Pods-Zylon Defenders */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		60497B1F07CAB6B7F2CCE96BC2CB8611 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D4745217F0A5521EC3BE215364948736 /* JBKenBurnsView-dummy.m in Sources */,
+				D98A6E490BBACED3271665F46B250568 /* JBKenBurnsView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7C6C3583E20E054CCB9A4A7E9A6AAF51 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9ADDCA4843A6B6C3882B651111FE6B06 /* Pods-Zylon Defenders-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		FC546782E1FE4EDDFA1822271DA2DE0B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = JBKenBurnsView;
+			target = FF58104C43E46545381C8491DA277D05 /* JBKenBurnsView */;
+			targetProxy = 9A4A14BF983E3374816AE665BCF4A542 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		12C4B864767C59600DBFA238F1E2F8BC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Release;
+		};
+		40EB9C3C6F3542378448657E3D10D667 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3C1D7106850F651C2C65EA72FA957773 /* Pods-Zylon Defenders.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-Zylon Defenders/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-Zylon Defenders/Pods-Zylon Defenders.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_Zylon_Defenders;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		59F0302F2371FCC6B73EF0A418D40734 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		676BE559BC2356C8632F60F5254113A2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9144E053C33B6C13FD6E96E41F131AAD /* Pods-Zylon Defenders.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-Zylon Defenders/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-Zylon Defenders/Pods-Zylon Defenders.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_Zylon_Defenders;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		81B39C44F54D01C55EBB1E73DAA5EF1E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9B45453497A2DD0BCA91942B14153517 /* JBKenBurnsView.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/JBKenBurnsView/JBKenBurnsView-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/JBKenBurnsView/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/JBKenBurnsView/JBKenBurnsView.modulemap";
+				PRODUCT_NAME = JBKenBurnsView;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		B0EBB3CEF06669E6A02C4B14D5BF24A2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9B45453497A2DD0BCA91942B14153517 /* JBKenBurnsView.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/JBKenBurnsView/JBKenBurnsView-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/JBKenBurnsView/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/JBKenBurnsView/JBKenBurnsView.modulemap";
+				PRODUCT_NAME = JBKenBurnsView;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				59F0302F2371FCC6B73EF0A418D40734 /* Debug */,
+				12C4B864767C59600DBFA238F1E2F8BC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AD3C2FAE07E18962EC1797D6058A38F7 /* Build configuration list for PBXNativeTarget "Pods-Zylon Defenders" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				676BE559BC2356C8632F60F5254113A2 /* Debug */,
+				40EB9C3C6F3542378448657E3D10D667 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D918F430238283F3B389FEC4EF0786AC /* Build configuration list for PBXNativeTarget "JBKenBurnsView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				81B39C44F54D01C55EBB1E73DAA5EF1E /* Debug */,
+				B0EBB3CEF06669E6A02C4B14D5BF24A2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+}

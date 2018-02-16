@@ -12,9 +12,10 @@ import SpriteKit
 
 class MyViewController: UIViewController, AVAudioPlayerDelegate {
     let writeInterval = 0.040
+    let telemetryTimer = Timer(timeInterval: writeInterval, target: self, selector: (#selector(self.advanceTelemetry)), userInfo: nil, repeats: true)
 
     var messageArray = [(message: String, delay: Float)]()
-    let soundURL = Bundle.main.url(forResource: "wopr", withExtension: "aiff")
+    let soundURL = Bundle.main.url(forResource: "telemetry2", withExtension: "aiff")
 
     var telemetryPlayer: AVAudioPlayer?
 
@@ -23,11 +24,11 @@ class MyViewController: UIViewController, AVAudioPlayerDelegate {
 
     var currentLetter = ""
     var existingTelemetry = ""
-    var currentMessage = ""
+    var currentMessage: String?
 
     let message1 = """
-They came without warning -  spreading relentlessly across
-peaceful federation systems like an unstoppable virus.
+Forty centons ago, they came -  spreading relentlessly
+across peaceful Zylon systems like an unstoppable virus.
 
 The STAR RAIDERS.
 """
@@ -50,80 +51,69 @@ You will pilot that starship.
 
 DEFEND THE EMPIRE. DRIVE BACK THE HUMONS. SAVE THE ZYLON RACE.
 
-[END TRANSMISSION]
+[TRANSMISSION 40AFFE TERMINATED]
 """
 
     @IBOutlet weak var starFieldView: UIImageView!
     @IBOutlet weak var transmissionView: UILabel!
 
     override func viewDidLoad() {
-
         super.viewDidLoad()
-        // setup Background Image
-        let spaceBackground = SKSpriteNode(imageNamed: "Starfield 2048x1024B")
-        spaceBackground.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-        let gameView =  SKView(frame: self.view.frame)
-        self.view = gameView
-        let gameScene = SKScene(size: gameView.bounds.size)
-        spaceBackground.position = CGPoint(x: self.view.frame.midX, y: self.view.frame.midY)
-        spaceBackground.size = gameScene.size
-
-        gameScene.addChild(spaceBackground)
-
-        messageArray = [(message1, 1), (message2, 1), (message3, 1), (message4, 0)]
-
-        let messageLabel = SKLabelNode()
-        messageLabel.text = message1
-
-        messageLabel.position = CGPoint(x: self.view.frame.midX, y: self.view.frame.midY)
-        messageLabel.fontSize = 10
-        gameScene.addChild(messageLabel)
-        gameView.presentScene(gameScene)
-
-       // receiveNewTelemetry(message: message1)
-//        do {
-//        telemetryPlayer = try AVAudioPlayer(contentsOf: soundURL!, fileTypeHint: AVFileType.aiff.rawValue)
-//        telemetryPlayer?.delegate = self
-//
-//        } catch let error {
-//            print(error.localizedDescription)
-//        }
-
+        setupTelemetryAudioPlayer()
     }
 
-    func receiveNewTelemetry(message: String) {
-        self.currentLetter = ""
-        self.existingTelemetry = ""
-        self.currentLetterIndex = 0
-        self.currentMessage = self.messageArray[currentMessageIndex].message
-    }
-
-    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
-        telemetryPlayer?.play()
-        let index = self.currentMessage.index(self.currentMessage.startIndex, offsetBy: self.currentLetterIndex)
-        self.currentLetter = String(self.currentMessage[index])
-        self.existingTelemetry.append(currentLetter)
-        self.transmissionView.text = existingTelemetry
-        self.transmissionView.setNeedsDisplay()
-        if self.currentLetterIndex < self.currentMessage.count-1 {
-            self.currentLetterIndex += 1
-        } else {
-            self.currentLetterIndex = 0
-            self.currentMessageIndex += 1
-            telemetryPlayer?.stop()
-
-        }
-
-    }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-  //      self.transmissionView.text = ""
+        messageArray = [(message1, 1), (message2, 1), (message3, 1), (message4, 0)]
+
         self.currentMessageIndex = 0
-  //      telemetryPlayer?.play()
+        self.currentLetterIndex = 0
         self.receiveNewTelemetry(message: message1)
     }
 
-}
+    func playTelemetrySound() {
+        if (self.telemetryPlayer?.isPlaying)! {
+            return
+        } else {
+            self.telemetryPlayer?.play()
+        }
+
+    }
+
+    @objc func advanceTelemetry() {
+
+    }
+
+    func setupTelemetryAudioPlayer() {
+        do {
+            let soundURL = Bundle.main.url(forResource: "telemetry2", withExtension: "aiff")
+
+            self.telemetryPlayer = try AVAudioPlayer(contentsOf: soundURL!, fileTypeHint: AVFileType.aiff.rawValue)
+            self.telemetryPlayer?.delegate = self
+        } catch let error {
+            print(error.localizedDescription)
+        }
+        self.telemetryPlayer?.prepareToPlay()
+    }
+
+    func receiveNewTelemetry(message: String) {
+        self.currentLetterIndex = 0
+
+        let mainQ = DispatchQueue.main
+        let sleepamount = DispatchTime.now() + 1
+        backgroundQ.async {
+        for letter in message {
+            self.existingTelemetry += String(letter)
+            self.currentLetterIndex += 1
+            mainQ.asyncAfter(deadline: sleepamount, execute: {
+                self.transmissionView.text = self.existingTelemetry
+            if self.currentLetterIndex < self.message1.count-1 {
+                    self.playTelemetrySound()
+            }
+            })
+            self.telemetryPlayer?.stop()
+        }
+        }}}
 
 extension String {
     subscript (bounds: CountableClosedRange<Int>) -> String {
