@@ -6,6 +6,7 @@
 //  Copyright © 2016 Jeffery Glasse. All rights reserved.
 //
 
+import Foundation
 import UIKit
 import SceneKit
 import SpriteKit
@@ -20,11 +21,11 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 
     // MARK: - Scenes, Views and Nodes
 
-    var scene: SCNScene!
+    var mainGameScene = SCNScene()
     var scnView: SCNView!
     let sectorObjectsNode = SCNNode()
 
-    let galacticMap = SCNScene(named: "art.scnassets/galaxy.scn")
+    let galacticMap = SCNScene(named: "art.scnassets/galacticmap.dae")
 
     var forwardCameraNode = SCNNode()
     var rearCameraNode = SCNNode()
@@ -76,7 +77,6 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 
     @IBOutlet weak var joystickControl: JoyStickView!
     @IBOutlet weak var tacticalDisplay: UIView!
-
 	@IBOutlet weak var currentSpeedDisplay: UILabel!
 	@IBOutlet weak var viewButton: UIButton!
     @IBOutlet weak var phiDisplay: UILabel!
@@ -85,14 +85,19 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     @IBOutlet weak var targetDistanceDisplay: UILabel!
     @IBOutlet weak var enemiesInSectorDisplay: UILabel!
 
-    @IBOutlet weak var galacticMapView: UIView!
-    @IBOutlet weak var actualMapSCNView: SCNView!
-
     // MARK: - IBActions
 
     @IBAction func showMap(_ sender: Any) {
-        galacticMapView.isHidden = !galacticMapView.isHidden
-        actualMapSCNView.isPlaying = galacticMapView.isHidden
+
+        if scnView.scene   == galacticMap {
+            scnView.scene = mainGameScene
+            scnView.allowsCameraControl = false
+
+        } else {
+            scnView.scene = galacticMap
+            scnView.allowsCameraControl = true
+
+        }
 
     }
 
@@ -142,7 +147,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 			let photonSoundArray = [photonSound1, photonSound2, photonSound3, photonSound4]
 			let currentplayer = photonSoundArray[currentPhoton]
 
-			scene.rootNode.addChildNode(torpedoNode)
+			mainGameScene.rootNode.addChildNode(torpedoNode)
 			let driftAmount: Float = 2
 			let offset: Float = 4
 			let forceAmount: Float = -95
@@ -182,10 +187,10 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 
     func spawnDrone() {
         let enemyDrone = HumonShip()
-        let constraint = SCNLookAtConstraint(target: scene.rootNode)
+        let constraint = SCNLookAtConstraint(target: mainGameScene.rootNode)
         constraint.isGimbalLockEnabled = true
         enemyDrone.constraints = [constraint]
-        enemyDrone.position = self.scene.rootNode.convertPosition((enemyDrone.worldPosition), to: self.sectorObjectsNode)
+        enemyDrone.position = self.mainGameScene.rootNode.convertPosition((enemyDrone.worldPosition), to: self.sectorObjectsNode)
         self.sectorObjectsNode.addChildNode(enemyDrone)
     }
 
@@ -246,8 +251,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     }
 
     func setupScene() {
-        scene = SCNScene()
-        scnView.scene = scene
+        scnView.scene = mainGameScene
 
         //prepare game elements for later display
         createStars()
@@ -256,11 +260,11 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         // setup HUD
         shipHud = HUD(size: self.view.bounds.size)
         scnView.overlaySKScene = shipHud
-        scene.physicsWorld.contactDelegate = self
+        mainGameScene.physicsWorld.contactDelegate = self
         scnView.delegate = self
 
         // setup scanner viewa
-        setupGalacticMapView()
+        setupGalacticMap()
         addScanner()
 
         // prepare sounds
@@ -282,7 +286,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 
     func createStars() {
         sectorObjectsNode.name = "sectorObjectsNode"
-        scene.rootNode.addChildNode(sectorObjectsNode)
+        mainGameScene.rootNode.addChildNode(sectorObjectsNode)
         for _ in 1...Constants.numberOfStars {
             let x = randRange(lower: -50, upper: 50)
             let y = randRange(lower: -50, upper: 50)
@@ -301,7 +305,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     }
 
     func setupShip() {
-        scene.rootNode.addChildNode(self.ship)
+        mainGameScene.rootNode.addChildNode(self.ship)
         self.ship.position = SCNVector3(x: 0, y: 0, z: 0)
 
         // add forward and rear cameras
@@ -335,7 +339,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 
         sectorScanCameraNode.camera = SCNCamera()
         sectorScanCameraNode.position = SCNVector3(x: 0, y: 200, z: 0)
-        let cameraconstraint = SCNLookAtConstraint(target: scene.rootNode)
+        let cameraconstraint = SCNLookAtConstraint(target: mainGameScene.rootNode)
         cameraconstraint.isEnabled = true
         sectorScanCameraNode.constraints = [cameraconstraint]
         sectorScanCameraNode.name = "SectorScanCamera"
@@ -358,7 +362,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     }
     func addScanner() {
         zylonScanner.position = SCNVector3Make(-3.7, -1.7, -8)
-        scene.rootNode.addChildNode(zylonScanner)
+        mainGameScene.rootNode.addChildNode(zylonScanner)
         zylonScanner.isHidden = true
         // start scanBeam
         let rotateAction = SCNAction.rotateBy(x: 0, y: CGFloat(2*Float.pi), z: 0, duration: 1.5)
@@ -366,25 +370,19 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         zylonScanner.scanBeam.runAction(perpetualRotation)
     }
 
-    func setupGalacticMapView() {
+    func setupGalacticMap() {
 
          // create and add a camera to the scene
         let cameraNode = SCNNode()
         cameraNode.camera = SCNCamera()
         galacticMap?.rootNode.addChildNode(cameraNode)
 
-        let camConstraint = SCNLookAtConstraint(target: scene.rootNode)
+        let camConstraint = SCNLookAtConstraint(target: galacticMap?.rootNode)
         camConstraint.isGimbalLockEnabled = true
         cameraNode.constraints = [camConstraint]
 
         // place the camera
-        cameraNode.position = SCNVector3(x: 0, y: 0, z: 85)
-
-        actualMapSCNView.showsStatistics = false
-        actualMapSCNView.allowsCameraControl = true
-        actualMapSCNView.scene = galacticMap
-        actualMapSCNView.isPlaying = true
-        actualMapSCNView.isHidden = true
+        cameraNode.position = SCNVector3(x: 0, y: 0, z: 10)
 
     }
      // MARK: - Sound Functions
@@ -461,7 +459,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         for star in self.starSprites {
             //if star distance is greater than 400 total
             var starScenePosition: SCNVector3
-            starScenePosition = scene.rootNode.convertPosition(star.position, from: sectorObjectsNode)
+            starScenePosition = mainGameScene.rootNode.convertPosition(star.position, from: sectorObjectsNode)
             starScenePosition.z += Float(ship.currentSpeed) * Constants.starMoveDivider
 
             if starScenePosition.z > 300 || starScenePosition.y > 150 || starScenePosition.y < -150 {
@@ -469,7 +467,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
                 starScenePosition.x = randRange(lower: -200, upper: 200)
                 starScenePosition.y = randRange(lower: -200, upper: 200)
             }
-            star.position = scene.rootNode.convertPosition(starScenePosition, to: sectorObjectsNode)
+            star.position = mainGameScene.rootNode.convertPosition(starScenePosition, to: sectorObjectsNode)
         }
 
     }
@@ -503,7 +501,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         warpGrid.scale = SCNVector3Make(1, 1, 1)
         warpGrid.opacity = 0.0
 
-        scene.rootNode.addChildNode(self.warpGrid)
+        mainGameScene.rootNode.addChildNode(self.warpGrid)
     }
 
     func resetWarpgrid() {
@@ -598,7 +596,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         var localNumberOfZylonShotsOnscreen = 0
         var localNumberOfHumonShotsOnscreen = 0
         enemyShipsInSector.removeAll()
-        scene.rootNode.enumerateChildNodes({thisNode, _ in
+        mainGameScene.rootNode.enumerateChildNodes({thisNode, _ in
 
 			// if this is a torpedo, increment decay and, if a humon torpedo, move it!
             if  thisNode.name?.range(of: "torpedo") != nil {
@@ -627,9 +625,9 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 			// remove explosions - refactor to provide timer for each explosion
             if (thisNode.name == "explosionNode") {
                 let thisExplosion = thisNode as! ShipExplosion
-                var actualExplosionPosition = scene.rootNode.convertPosition(thisNode.position, from: sectorObjectsNode)
+                var actualExplosionPosition = mainGameScene.rootNode.convertPosition(thisNode.position, from: sectorObjectsNode)
                 actualExplosionPosition.z += Float(ship.currentSpeed)/10
-                thisExplosion.position = sectorObjectsNode.convertPosition(actualExplosionPosition, from: scene.rootNode)
+                thisExplosion.position = sectorObjectsNode.convertPosition(actualExplosionPosition, from: mainGameScene.rootNode)
 
                 thisExplosion.update()
 
@@ -669,7 +667,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 
     func numberofShotsOnscreen() -> Int {
     var numberOfShots = 0
-        scene.rootNode.enumerateChildNodes({ (child, _) in
+        mainGameScene.rootNode.enumerateChildNodes({ (child, _) in
             if (child.name == "torpedo") {  numberOfShots = numberOfShots+1}
             })
 
@@ -701,9 +699,15 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 
     func updateTactical() {
         DispatchQueue.main.async {
-            self.thetaDisplay.text = "THETA: \(self.sectorObjectsNode.rotation.x)"
-            self.phiDisplay.text = "PHI: \(self.sectorObjectsNode.rotation.y)"
-            self.enemiesInSectorDisplay.text = "Enemies In Sector: \(self.enemyShipCountInSector)"
+            var rotx = self.sectorObjectsNode.rotation.x.radiansToDegrees
+            if rotx < 0 || rotx > 360 {
+                rotx = rotx.truncatingRemainder(dividingBy: 360)
+            }
+
+            self.thetaDisplay.text = "THETA: \(rotx)º"
+            self.phiDisplay.text = "PHI: \(self.sectorObjectsNode.rotation.y.radiansToDegrees)"
+            self.ship.enemyShipsInSector = self.enemyShipsInSector.count
+            self.enemiesInSectorDisplay.text = "Enemies In Sector: \(self.ship.enemyShipsInSector)"
             if self.enemyShipCountInSector > 0 {
             let drone = self.enemyShipsInSector[0]
             self.targetDistanceDisplay.text = "DISTANCE TO TARGET - \(self.distanceBetweenPoints(first: drone.position, second: self.forwardCameraNode.position))"

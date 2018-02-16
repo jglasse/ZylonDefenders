@@ -39,6 +39,7 @@
 		E1A57ACC1E1C309A009F2CA6 /* ship_hum.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E1A57ACB1E1C309A009F2CA6 /* ship_hum.mp3 */; };
 		E1A57AD01E1D8CCA009F2CA6 /* beep.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E1A57ACF1E1D8CCA009F2CA6 /* beep.mp3 */; };
 		E1A58DC31E1DD07E00DCA24F /* Explosion.scnp in Resources */ = {isa = PBXBuildFile; fileRef = E1A58DC21E1DD07E00DCA24F /* Explosion.scnp */; };
+		E1A6F8F72032A021004389CE /* galacticmap.dae in Resources */ = {isa = PBXBuildFile; fileRef = E1A6F8F62032A020004389CE /* galacticmap.dae */; };
 		E1A89EA81E9867F600EA8BC4 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E1A89EA71E9867F600EA8BC4 /* Default-568h@2x.png */; };
 		E1B12C2A20267EC70071F9A1 /* Scanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B12C2920267EC70071F9A1 /* Scanner.swift */; };
 		E1BD14B01E24280C002E49A5 /* eight.m4a in Resources */ = {isa = PBXBuildFile; fileRef = E1BD14A51E24280C002E49A5 /* eight.m4a */; };
@@ -111,6 +112,7 @@
 		E1A57ACB1E1C309A009F2CA6 /* ship_hum.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = ship_hum.mp3; sourceTree = "<group>"; };
 		E1A57ACF1E1D8CCA009F2CA6 /* beep.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = beep.mp3; sourceTree = "<group>"; };
 		E1A58DC21E1DD07E00DCA24F /* Explosion.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = Explosion.scnp; sourceTree = "<group>"; };
+		E1A6F8F62032A020004389CE /* galacticmap.dae */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml.dae; path = galacticmap.dae; sourceTree = "<group>"; };
 		E1A89EA71E9867F600EA8BC4 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		E1B12C2920267EC70071F9A1 /* Scanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scanner.swift; sourceTree = "<group>"; };
 		E1BD14A51E24280C002E49A5 /* eight.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = eight.m4a; sourceTree = "<group>"; };
@@ -223,6 +225,7 @@
 		E1B12C2B2027D3FD0071F9A1 /* Scenekit Models */ = {
 			isa = PBXGroup;
 			children = (
+				E1A6F8F62032A020004389CE /* galacticmap.dae */,
 				E1272AB51F64EE4800A66358 /* Humon.scn */,
 				E1D1EA0C20267A7D00DB2984 /* Scanner.scn */,
 				E1C0E6AC203168670079B8B4 /* galaxy.scn */,
@@ -468,6 +471,7 @@
 				E1F43D641DD115E900CC8988 /* star.png in Resources */,
 				E174FDC71E1A424500A7CC73 /* Torpedo.scnp in Resources */,
 				E10EFCBF1EC0EE8400CC872E /* smallestGridLessDense.png in Resources */,
+				E1A6F8F72032A021004389CE /* galacticmap.dae in Resources */,
 				E1BD14B71E24280C002E49A5 /* six.m4a in Resources */,
 				E1BD14B21E24280C002E49A5 /* five.m4a in Resources */,
 				E141B9AE1ED77A5700AB2A8C /* warpStart.aif in Resources */,

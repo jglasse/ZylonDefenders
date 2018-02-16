@@ -252,44 +252,22 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</stri
                                     <constraint firstAttribute="width" constant="193" id="dwg-0e-2zG"/>
                                 </constraints>
                             </stackView>
-                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gET-ij-g8k" userLabel="GalacticMapView">
-                                <rect key="frame" x="0.0" y="0.0" width="667" height="300"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8hy-w2-kHe" userLabel="Map" customClass="SCNView">
-                                        <rect key="frame" x="0.0" y="0.0" width="667" height="300"/>
-                                        <color key="backgroundColor" red="0.0018759364309999999" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                    </view>
-                                </subviews>
-                                <color key="backgroundColor" red="0.61806148289999996" green="0.1885129213" blue="0.16853749749999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <constraints>
-                                    <constraint firstItem="8hy-w2-kHe" firstAttribute="height" secondItem="gET-ij-g8k" secondAttribute="height" id="Gyb-v7-whe"/>
-                                    <constraint firstItem="8hy-w2-kHe" firstAttribute="centerX" secondItem="gET-ij-g8k" secondAttribute="centerX" id="Tib-hL-mlc"/>
-                                    <constraint firstItem="8hy-w2-kHe" firstAttribute="centerY" secondItem="gET-ij-g8k" secondAttribute="centerY" id="sM0-hT-YuT"/>
-                                    <constraint firstItem="8hy-w2-kHe" firstAttribute="width" secondItem="gET-ij-g8k" secondAttribute="width" id="yuY-J4-emA"/>
-                                </constraints>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="PoQ-ji-oep" firstAttribute="top" secondItem="6Sn-Ch-wiN" secondAttribute="bottom" constant="50" id="3BY-b0-dVM"/>
-                            <constraint firstItem="gET-ij-g8k" firstAttribute="leading" secondItem="TBr-jy-nsA" secondAttribute="leading" id="717-F1-vgk"/>
                             <constraint firstItem="L0B-TD-jaq" firstAttribute="top" secondItem="wgh-g3-0pN" secondAttribute="bottom" constant="27" id="9KH-t4-4yZ"/>
                             <constraint firstItem="wgh-g3-0pN" firstAttribute="leading" secondItem="TBr-jy-nsA" secondAttribute="leadingMargin" id="FPN-AY-kBf"/>
                             <constraint firstAttribute="trailingMargin" secondItem="PoQ-ji-oep" secondAttribute="trailing" constant="10" id="L7B-J5-Gtn"/>
-                            <constraint firstItem="gET-ij-g8k" firstAttribute="top" secondItem="cOD-NV-RaV" secondAttribute="bottom" id="QNO-kO-4NE"/>
                             <constraint firstItem="z62-zF-Ty3" firstAttribute="top" secondItem="cOD-NV-RaV" secondAttribute="bottom" constant="20" id="Up0-Ew-Y3W"/>
-                            <constraint firstItem="PoQ-ji-oep" firstAttribute="top" secondItem="gET-ij-g8k" secondAttribute="bottom" constant="8" id="Zi6-5W-ZCw"/>
-                            <constraint firstAttribute="trailing" secondItem="gET-ij-g8k" secondAttribute="trailing" id="bJS-ZC-Nht"/>
                             <constraint firstItem="6Sn-Ch-wiN" firstAttribute="leading" secondItem="TBr-jy-nsA" secondAttribute="leadingMargin" id="e5h-2P-yQh"/>
                             <constraint firstItem="z62-zF-Ty3" firstAttribute="leading" secondItem="TBr-jy-nsA" secondAttribute="leadingMargin" id="prt-qj-69b"/>
                             <constraint firstItem="L0B-TD-jaq" firstAttribute="top" secondItem="PoQ-ji-oep" secondAttribute="bottom" constant="17" id="rrG-ZO-3Np"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="actualMapSCNView" destination="8hy-w2-kHe" id="9en-5y-AjU"/>
                         <outlet property="currentSpeedDisplay" destination="UfY-Ip-g2Z" id="rA9-h2-Alq"/>
                         <outlet property="enemiesInSectorDisplay" destination="WVN-hE-EnE" id="wft-GI-LFO"/>
-                        <outlet property="galacticMapView" destination="gET-ij-g8k" id="SUn-14-IEP"/>
                         <outlet property="joystickControl" destination="z62-zF-Ty3" id="Nhc-qM-bbn"/>
                         <outlet property="phiDisplay" destination="AcU-BV-dAF" id="Aho-Bo-R46"/>
                         <outlet property="stepperSpeed" destination="to0-eG-n4V" id="wL0-jY-7T4"/>

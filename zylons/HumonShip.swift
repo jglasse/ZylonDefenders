@@ -60,7 +60,7 @@ class HumonShip: SCNNode {
          var xDelta: Float
          var zDelta: Float = 0
         if self.worldPosition.z  < -20 {
-            print("maneuvering! ship: \(self.description) worldposition: \(self.worldPosition)")
+//            print("maneuvering! ship: \(self.description) worldposition: \(self.worldPosition)")
           zDelta = randRange(lower: 5, upper: 10)
             } else {
             zDelta = randRange(lower: -25, upper: -10)
