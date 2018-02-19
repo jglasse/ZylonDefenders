@@ -335,7 +335,10 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         self.zylonShields.opacity = 0.02
         self.zylonShields.worldPosition = SCNVector3(x: 0, y: 0, z: 0)
         self.zylonShields.name = "zylonShields"
-   //     self.zylonShields.physicsBody = SCNPhysicsBody(type: .kinematic, shape: nil)
+        self.zylonShields.physicsBody = SCNPhysicsBody(type: .kinematic, shape: nil)
+        self.zylonShields.physicsBody?.isAffectedByGravity = false
+        self.zylonShields.physicsBody?.contactTestBitMask =  objectCategories.zylonShip
+
         let shieldMaterial = SCNMaterial()
         shieldMaterial.diffuse.contents =  UIColor.green
         shieldMaterial.isDoubleSided = true
@@ -491,7 +494,8 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         outerTube.emission.contents =  UIImage(named: "smallestGrid.png")
         outerTube.diffuse.contents = UIColor.black
         let endOne = SCNMaterial()
-        //endOne.diffuse.contents =  UIColor.blue
+        endOne.diffuse.contents =  UIColor.blue
+        endOne.isDoubleSided = true
         let endTwo = SCNMaterial()
         //endTwo.diffuse.contents =  UIColor.purple
         warpGrid.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
@@ -501,7 +505,6 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         warpGrid.physicsBody?.contactTestBitMask  = 0
         warpGrid.name = "warpGrid"
         warpGrid.geometry?.materials = [outerTube, innerTube, endOne, endTwo]
-        // warpGrid.pivot = SCNMatrix4MakeTranslation(0.5, 0.5, 0.5)
         warpGrid.rotation = SCNVector4(x: 1, y: 0, z: 0, w: Float(Double.pi / 2))
         warpGrid.worldPosition = SCNVector3Make(0, 0, -300)
         warpGrid.scale = SCNVector3Make(1, 1, 1)
@@ -680,6 +683,17 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     }
 
     func physicsWorld(_ world: SCNPhysicsWorld, didBegin contact: SCNPhysicsContact) {
+        if (contact.nodeA.name == "zylonShields") {
+            self.environmentSound("forcefieldHit")
+            contact.nodeB.removeFromParentNode()
+            return
+        } else {
+        if (contact.nodeB.name == "zylonShields") {
+            self.environmentSound("forcefieldHit")
+           contact.nodeA.removeFromParentNode()
+            return
+        } else {
+
         DispatchQueue.main.async {
             let explosionNode = ShipExplosion()
          if (contact.nodeA.name != "torpedo") {
@@ -699,14 +713,14 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
             self.explosionSound()
             contact.nodeA.removeFromParentNode()
             contact.nodeB.removeFromParentNode()
-
+            }
+        }
         }
     }
     func explosionSound() {
         let explosionArray = ["explosion", "explosion2", "explosion3"]
         let explosionString = explosionArray[randIntRange(lower: 0, upper: 2)]
         self.environmentSound(explosionString)
-
     }
     func updateTactical() {
         DispatchQueue.main.async {
