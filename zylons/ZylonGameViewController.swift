@@ -332,7 +332,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         //add shields
         let sphere = SCNSphere(radius: 3.0)
         self.zylonShields.geometry  = sphere
-        self.zylonShields.opacity = 0.02
+        self.zylonShields.opacity = 0.0064
         self.zylonShields.worldPosition = SCNVector3(x: 0, y: 0, z: 0)
         self.zylonShields.name = "zylonShields"
         self.zylonShields.physicsBody = SCNPhysicsBody(type: .kinematic, shape: nil)
@@ -452,13 +452,9 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 
     }
 
-    @IBAction func Shields(_ sender: UIButton) {
-        shipHud.toggleShields()
-        computerBeepSound("shields")
-    }
-
-	func toggleShields() {
-        shipHud.toggleShields()
+    @IBAction func toggleShields(_ sender: UIButton) {
+        //shipHud.toggleShields()
+        self.zylonShields.isHidden = !self.zylonShields.isHidden
         computerBeepSound("shields")
     }
 

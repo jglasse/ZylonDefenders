@@ -136,7 +136,7 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</stri
                                         <fontDescription key="fontDescription" name="Y14.5M" family="Y14.5M" pointSize="15"/>
                                         <state key="normal" title="SHLD"/>
                                         <connections>
-                                            <action selector="Shields:" destination="BV1-FR-VrT" eventType="touchUpInside" id="U1d-WX-1sb"/>
+                                            <action selector="toggleShields:" destination="BV1-FR-VrT" eventType="touchUpInside" id="U1d-WX-1sb"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iII-jG-TtQ">

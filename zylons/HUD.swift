@@ -20,7 +20,7 @@ class HUD: SKScene {
     public var computerStatus = SKLabelNode()
     public var enemyIndicator = SKLabelNode()
     private let aftHairs = SKSpriteNode(imageNamed: "xenonHUDAFT")
-    private let foreHairs = SKSpriteNode(imageNamed: "xenonHUD")
+    private let foreHairs = SKSpriteNode(imageNamed: "xenonHUDAFT")
 
     var timer: Timer?
     var currentComputerStatusColor = UIColor.red
@@ -103,16 +103,6 @@ class HUD: SKScene {
         DispatchQueue.main.async {
             self.timer = Timer.scheduledTimer(timeInterval: 1, target: self,
                                               selector: #selector(self.blinkComputerDisplay), userInfo: nil, repeats: true)
-        }
-    }
-    func toggleShields() {
-
-        if (parentScene?.ship.shields)! {
-            shields.alpha = 0
-            parentScene?.ship.shields = false
-        } else {
-            shields.alpha = 0.2
-            parentScene?.ship.shields = true
         }
     }
 

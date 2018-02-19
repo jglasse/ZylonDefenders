@@ -78,7 +78,7 @@ extension ZylonGameViewController: CommandDelegate {
         case "TAC":
             notYetImplemented(command)
         case "SHIELDS":
-            toggleShields()
+            toggleShields(UIButton())
         case "TAC":
             notYetImplemented(command)
 
