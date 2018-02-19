@@ -87,7 +87,12 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 
     // MARK: - IBActions
 
+    @IBAction func sliderUpdate(_ sender: UISlider) {
+        self.zylonShields.position.z = -sender.value
+    }
+
     @IBAction func showMap(_ sender: Any) {
+        computerBeepSound("beep")
 
         if scnView.scene   == galacticMap {
             scnView.scene = mainGameScene
@@ -263,7 +268,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         mainGameScene.physicsWorld.contactDelegate = self
         scnView.delegate = self
 
-        // setup scanner viewa
+        // setup scanner & galactic map views
         setupGalacticMap()
         addScanner()
 
@@ -325,17 +330,18 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         self.ship.addChildNode(rearCameraNode)
 
         //add shields
-        let sphere = SCNSphere(radius: 180.0)
+        let sphere = SCNSphere(radius: 3.0)
         self.zylonShields.geometry  = sphere
-        zylonShields.opacity = 1
+        self.zylonShields.opacity = 0.02
         self.zylonShields.worldPosition = SCNVector3(x: 0, y: 0, z: 0)
         self.zylonShields.name = "zylonShields"
-        self.zylonShields.physicsBody = SCNPhysicsBody(type: .kinematic, shape: nil)
+   //     self.zylonShields.physicsBody = SCNPhysicsBody(type: .kinematic, shape: nil)
         let shieldMaterial = SCNMaterial()
         shieldMaterial.diffuse.contents =  UIColor.green
+        shieldMaterial.isDoubleSided = true
         shieldMaterial.emission.contents =  UIColor.green
         self.zylonShields.geometry?.materials = [shieldMaterial, shieldMaterial]
-        self.ship.addChildNode(zylonShields)
+        mainGameScene.rootNode.addChildNode(zylonShields)
 
         sectorScanCameraNode.camera = SCNCamera()
         sectorScanCameraNode.position = SCNVector3(x: 0, y: 200, z: 0)
@@ -399,7 +405,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     func environmentSound(_ soundString: String) {
         let soundURL = Bundle.main.url(forResource: soundString, withExtension: "m4a")
         try! environmentSound = AVAudioPlayer(contentsOf: soundURL!)
-        environmentSound.volume = 0.5
+        environmentSound.volume = 0.6
         environmentSound.play()
     }
 
@@ -617,7 +623,6 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
                 }
                 thisTorp.decay()
                 if thisTorp.age == Constants.torpedoLifespan {
-                    print("fading torpedo!")
                     thisTorp.fade()
                 }
             }
@@ -690,13 +695,19 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 
             //scene.rootNode.addChildNode(explosionNode)
             self.sectorObjectsNode.addChildNode(explosionNode)
-            self.environmentSound("explosion")
+
+            self.explosionSound()
             contact.nodeA.removeFromParentNode()
             contact.nodeB.removeFromParentNode()
 
         }
     }
+    func explosionSound() {
+        let explosionArray = ["explosion", "explosion2", "explosion3"]
+        let explosionString = explosionArray[randIntRange(lower: 0, upper: 2)]
+        self.environmentSound(explosionString)
 
+    }
     func updateTactical() {
         DispatchQueue.main.async {
             var rotx = self.sectorObjectsNode.rotation.x.radiansToDegrees
