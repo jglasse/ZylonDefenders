@@ -15,6 +15,7 @@
 		E10EFCC41EC18F1D00CC872E /* tosWarpSound.m4a in Resources */ = {isa = PBXBuildFile; fileRef = E10EFCC31EC18F1D00CC872E /* tosWarpSound.m4a */; };
 		E11978EF2031A358002214DB /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11978EE2031A358002214DB /* Constants.swift */; };
 		E11A73831E986DE4001CCAC8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E11A73811E986DE4001CCAC8 /* Main.storyboard */; };
+		E126D43E203AABD7006AB0E1 /* explosion4.m4a in Resources */ = {isa = PBXBuildFile; fileRef = E126D43D203AABD7006AB0E1 /* explosion4.m4a */; };
 		E1272AB81F65244500A66358 /* Humon.scn in Resources */ = {isa = PBXBuildFile; fileRef = E1272AB51F64EE4800A66358 /* Humon.scn */; };
 		E1284C4D203914080022AE83 /* explosion2.m4a in Resources */ = {isa = PBXBuildFile; fileRef = E1284C4B203914080022AE83 /* explosion2.m4a */; };
 		E1284C4E203914090022AE83 /* explosion3.m4a in Resources */ = {isa = PBXBuildFile; fileRef = E1284C4C203914080022AE83 /* explosion3.m4a */; };
@@ -26,6 +27,7 @@
 		E151DA2E1E17926900A70B45 /* HUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = E151DA2D1E17926900A70B45 /* HUD.swift */; };
 		E15520321DCFE776001651EB /* starField.scnp in Resources */ = {isa = PBXBuildFile; fileRef = E15520311DCFE776001651EB /* starField.scnp */; };
 		E165672D1E3205EE00293285 /* Texas Instruments2.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E165672B1E3205EE00293285 /* Texas Instruments2.ttf */; };
+		E168B77020468A69001061FE /* shipHullHit.m4a in Resources */ = {isa = PBXBuildFile; fileRef = E168B76F20468A69001061FE /* shipHullHit.m4a */; };
 		E16AB6241E1DD1F800E3D8C2 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = E16AB6231E1DD1F800E3D8C2 /* spark.png */; };
 		E16AB62A1E1F120400E3D8C2 /* torpedo_fail.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E16AB6291E1F120400E3D8C2 /* torpedo_fail.mp3 */; };
 		E16B66881E8B09F800F28144 /* MCController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16B66871E8B09F800F28144 /* MCController.swift */; };
@@ -42,9 +44,13 @@
 		E1A57ACC1E1C309A009F2CA6 /* ship_hum.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E1A57ACB1E1C309A009F2CA6 /* ship_hum.mp3 */; };
 		E1A57AD01E1D8CCA009F2CA6 /* beep.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E1A57ACF1E1D8CCA009F2CA6 /* beep.mp3 */; };
 		E1A58DC31E1DD07E00DCA24F /* Explosion.scnp in Resources */ = {isa = PBXBuildFile; fileRef = E1A58DC21E1DD07E00DCA24F /* Explosion.scnp */; };
-		E1A6F8F72032A021004389CE /* galacticmap.dae in Resources */ = {isa = PBXBuildFile; fileRef = E1A6F8F62032A020004389CE /* galacticmap.dae */; };
 		E1A89EA81E9867F600EA8BC4 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E1A89EA71E9867F600EA8BC4 /* Default-568h@2x.png */; };
+		E1A9787D203D492B005C9C10 /* SpaceStation1.dae in Resources */ = {isa = PBXBuildFile; fileRef = E1A9787C203D492B005C9C10 /* SpaceStation1.dae */; };
 		E1B12C2A20267EC70071F9A1 /* Scanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B12C2920267EC70071F9A1 /* Scanner.swift */; };
+		E1BBE5A7205496D000A5C571 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1BBE5A6205496D000A5C571 /* AppDelegate.swift */; };
+		E1BBE5A9205496D000A5C571 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1BBE5A8205496D000A5C571 /* ViewController.swift */; };
+		E1BBE5AC205496D000A5C571 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1BBE5AA205496D000A5C571 /* Main.storyboard */; };
+		E1BBE5AE205496D000A5C571 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E1BBE5AD205496D000A5C571 /* Assets.xcassets */; };
 		E1BD14B01E24280C002E49A5 /* eight.m4a in Resources */ = {isa = PBXBuildFile; fileRef = E1BD14A51E24280C002E49A5 /* eight.m4a */; };
 		E1BD14B11E24280C002E49A5 /* entering_sector.m4a in Resources */ = {isa = PBXBuildFile; fileRef = E1BD14A61E24280C002E49A5 /* entering_sector.m4a */; };
 		E1BD14B21E24280C002E49A5 /* five.m4a in Resources */ = {isa = PBXBuildFile; fileRef = E1BD14A71E24280C002E49A5 /* five.m4a */; };
@@ -84,6 +90,8 @@
 		E10EFCC31EC18F1D00CC872E /* tosWarpSound.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = tosWarpSound.m4a; sourceTree = "<group>"; };
 		E11978EE2031A358002214DB /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		E11A73811E986DE4001CCAC8 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Storyboards/Main.storyboard; sourceTree = SOURCE_ROOT; };
+		E126D43C203AA0D7006AB0E1 /* galacticmap.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = galacticmap.scn; sourceTree = "<group>"; };
+		E126D43D203AABD7006AB0E1 /* explosion4.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = explosion4.m4a; sourceTree = "<group>"; };
 		E1272AB51F64EE4800A66358 /* Humon.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = Humon.scn; sourceTree = "<group>"; };
 		E1272AB71F64FBCE00A66358 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E1284C4B203914080022AE83 /* explosion2.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = explosion2.m4a; sourceTree = "<group>"; };
@@ -96,6 +104,7 @@
 		E151DA2D1E17926900A70B45 /* HUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HUD.swift; sourceTree = "<group>"; };
 		E15520311DCFE776001651EB /* starField.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = starField.scnp; sourceTree = "<group>"; };
 		E165672B1E3205EE00293285 /* Texas Instruments2.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Texas Instruments2.ttf"; sourceTree = "<group>"; };
+		E168B76F20468A69001061FE /* shipHullHit.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = shipHullHit.m4a; sourceTree = "<group>"; };
 		E16AB6231E1DD1F800E3D8C2 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
 		E16AB6291E1F120400E3D8C2 /* torpedo_fail.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = torpedo_fail.mp3; sourceTree = "<group>"; };
 		E16B66871E8B09F800F28144 /* MCController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MCController.swift; sourceTree = "<group>"; };
@@ -118,9 +127,15 @@
 		E1A57ACB1E1C309A009F2CA6 /* ship_hum.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = ship_hum.mp3; sourceTree = "<group>"; };
 		E1A57ACF1E1D8CCA009F2CA6 /* beep.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = beep.mp3; sourceTree = "<group>"; };
 		E1A58DC21E1DD07E00DCA24F /* Explosion.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = Explosion.scnp; sourceTree = "<group>"; };
-		E1A6F8F62032A020004389CE /* galacticmap.dae */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml.dae; path = galacticmap.dae; sourceTree = "<group>"; };
 		E1A89EA71E9867F600EA8BC4 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		E1A9787C203D492B005C9C10 /* SpaceStation1.dae */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml.dae; path = SpaceStation1.dae; sourceTree = "<group>"; };
 		E1B12C2920267EC70071F9A1 /* Scanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scanner.swift; sourceTree = "<group>"; };
+		E1BBE5A4205496D000A5C571 /* ZTV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZTV.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E1BBE5A6205496D000A5C571 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		E1BBE5A8205496D000A5C571 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		E1BBE5AB205496D000A5C571 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		E1BBE5AD205496D000A5C571 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E1BBE5AF205496D000A5C571 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E1BD14A51E24280C002E49A5 /* eight.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = eight.m4a; sourceTree = "<group>"; };
 		E1BD14A61E24280C002E49A5 /* entering_sector.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = entering_sector.m4a; sourceTree = "<group>"; };
 		E1BD14A71E24280C002E49A5 /* five.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = five.m4a; sourceTree = "<group>"; };
@@ -154,6 +169,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		E1BBE5A1205496D000A5C571 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E1D8BD4B1DCFCD1A00C863DF /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -231,7 +253,8 @@
 		E1B12C2B2027D3FD0071F9A1 /* Scenekit Models */ = {
 			isa = PBXGroup;
 			children = (
-				E1A6F8F62032A020004389CE /* galacticmap.dae */,
+				E1A9787C203D492B005C9C10 /* SpaceStation1.dae */,
+				E126D43C203AA0D7006AB0E1 /* galacticmap.scn */,
 				E1272AB51F64EE4800A66358 /* Humon.scn */,
 				E1D1EA0C20267A7D00DB2984 /* Scanner.scn */,
 				E1C0E6AC203168670079B8B4 /* galaxy.scn */,
@@ -253,6 +276,18 @@
 			name = PNG;
 			sourceTree = "<group>";
 		};
+		E1BBE5A5205496D000A5C571 /* ZTV */ = {
+			isa = PBXGroup;
+			children = (
+				E1BBE5A6205496D000A5C571 /* AppDelegate.swift */,
+				E1BBE5A8205496D000A5C571 /* ViewController.swift */,
+				E1BBE5AA205496D000A5C571 /* Main.storyboard */,
+				E1BBE5AD205496D000A5C571 /* Assets.xcassets */,
+				E1BBE5AF205496D000A5C571 /* Info.plist */,
+			);
+			path = ZTV;
+			sourceTree = "<group>";
+		};
 		E1D36D5E1FEA53D0001F3E25 /* beeps */ = {
 			isa = PBXGroup;
 			children = (
@@ -268,9 +303,11 @@
 		E1D8BD451DCFCD1A00C863DF = {
 			isa = PBXGroup;
 			children = (
+				E1D8BD551DCFCD1A00C863DF /* ZylonGameViewController.swift */,
 				E1D8BD501DCFCD1A00C863DF /* Code */,
 				E19F3F2D1F6461DC00F612A7 /* Storyboards */,
 				E1A58DC01E1DCF9B00DCA24F /* assets */,
+				E1BBE5A5205496D000A5C571 /* ZTV */,
 				E1D8BD4F1DCFCD1A00C863DF /* Products */,
 			);
 			sourceTree = "<group>";
@@ -279,6 +316,7 @@
 			isa = PBXGroup;
 			children = (
 				E1D8BD4E1DCFCD1A00C863DF /* Zylon Defenders.app */,
+				E1BBE5A4205496D000A5C571 /* ZTV.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -287,7 +325,6 @@
 			isa = PBXGroup;
 			children = (
 				E11978EE2031A358002214DB /* Constants.swift */,
-				E1D8BD551DCFCD1A00C863DF /* ZylonGameViewController.swift */,
 				E19F3F301F64647600F612A7 /* UtilityFunctions.swift */,
 				E19F3F3A1F64962100F612A7 /* CoreGraphics+Additions.swift */,
 				E187F56E1FB0276E0036B3FE /* Objects */,
@@ -352,6 +389,7 @@
 			isa = PBXGroup;
 			children = (
 				E1284C4F203A58940022AE83 /* forcefieldHit.m4a */,
+				E168B76F20468A69001061FE /* shipHullHit.m4a */,
 				E141B9B01ED77A6D00AB2A8C /* warpEnd.aif */,
 				E141B9AC1ED77A5700AB2A8C /* warpStart.aif */,
 				E141B9AD1ED77A5700AB2A8C /* warpStartStop.aif */,
@@ -359,6 +397,7 @@
 				E1F8BB0A1E3FF4E100460FC9 /* explosion.m4a */,
 				E1284C4B203914080022AE83 /* explosion2.m4a */,
 				E1284C4C203914080022AE83 /* explosion3.m4a */,
+				E126D43D203AABD7006AB0E1 /* explosion4.m4a */,
 				E1A57ACB1E1C309A009F2CA6 /* ship_hum.mp3 */,
 				FC9F9CF51E1B071100907E04 /* photon_sound.mp3 */,
 			);
@@ -378,6 +417,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		E1BBE5A3205496D000A5C571 /* ZTV */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E1BBE5B0205496D000A5C571 /* Build configuration list for PBXNativeTarget "ZTV" */;
+			buildPhases = (
+				E1BBE5A0205496D000A5C571 /* Sources */,
+				E1BBE5A1205496D000A5C571 /* Frameworks */,
+				E1BBE5A2205496D000A5C571 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ZTV;
+			productName = ZTV;
+			productReference = E1BBE5A4205496D000A5C571 /* ZTV.app */;
+			productType = "com.apple.product-type.application";
+		};
 		E1D8BD4D1DCFCD1A00C863DF /* Zylon Defenders */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = E1D8BD781DCFCD1A00C863DF /* Build configuration list for PBXNativeTarget "Zylon Defenders" */;
@@ -402,10 +458,15 @@
 		E1D8BD461DCFCD1A00C863DF /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0810;
+				LastSwiftUpdateCheck = 0920;
 				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = "Jeffery Glasse";
 				TargetAttributes = {
+					E1BBE5A3205496D000A5C571 = {
+						CreatedOnToolsVersion = 9.2;
+						DevelopmentTeam = VY4VB4U858;
+						ProvisioningStyle = Automatic;
+					};
 					E1D8BD4D1DCFCD1A00C863DF = {
 						CreatedOnToolsVersion = 8.1;
 						DevelopmentTeam = WPGAGSXUST;
@@ -428,11 +489,21 @@
 			projectRoot = "";
 			targets = (
 				E1D8BD4D1DCFCD1A00C863DF /* Zylon Defenders */,
+				E1BBE5A3205496D000A5C571 /* ZTV */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		E1BBE5A2205496D000A5C571 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E1BBE5AE205496D000A5C571 /* Assets.xcassets in Resources */,
+				E1BBE5AC205496D000A5C571 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E1D8BD4C1DCFCD1A00C863DF /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -443,6 +514,7 @@
 				E187F5721FB04B140036B3FE /* HumonTorpedo.scnp in Resources */,
 				E109EB601E1BB938003DAB0F /* 40069.ttf in Resources */,
 				E1A89EA81E9867F600EA8BC4 /* Default-568h@2x.png in Resources */,
+				E1A9787D203D492B005C9C10 /* SpaceStation1.dae in Resources */,
 				E1A58DC31E1DD07E00DCA24F /* Explosion.scnp in Resources */,
 				E16AB62A1E1F120400E3D8C2 /* torpedo_fail.mp3 in Resources */,
 				E11A73831E986DE4001CCAC8 /* Main.storyboard in Resources */,
@@ -458,12 +530,14 @@
 				E141B9B11ED77A6D00AB2A8C /* warpEnd.aif in Resources */,
 				E141B9AF1ED77A5700AB2A8C /* warpStartStop.aif in Resources */,
 				E1D1EA0D20267A7D00DB2984 /* Scanner.scn in Resources */,
+				E168B77020468A69001061FE /* shipHullHit.m4a in Resources */,
 				E109EB5E1E1B3F7F003DAB0F /* shields.mp3 in Resources */,
 				E1BD14B41E24280C002E49A5 /* nine.m4a in Resources */,
 				E1BD14B01E24280C002E49A5 /* eight.m4a in Resources */,
 				E1D8BD5B1DCFCD1A00C863DF /* Assets.xcassets in Resources */,
 				E1272AB81F65244500A66358 /* Humon.scn in Resources */,
 				E10EFCC11EC0EE9400CC872E /* smallestGrid.png in Resources */,
+				E126D43E203AABD7006AB0E1 /* explosion4.m4a in Resources */,
 				E1BD14B81E24280C002E49A5 /* three.m4a in Resources */,
 				E1C0E6AD203168670079B8B4 /* galaxy.scn in Resources */,
 				E1A57AD01E1D8CCA009F2CA6 /* beep.mp3 in Resources */,
@@ -483,7 +557,6 @@
 				E1F43D641DD115E900CC8988 /* star.png in Resources */,
 				E174FDC71E1A424500A7CC73 /* Torpedo.scnp in Resources */,
 				E10EFCBF1EC0EE8400CC872E /* smallestGridLessDense.png in Resources */,
-				E1A6F8F72032A021004389CE /* galacticmap.dae in Resources */,
 				E1BD14B71E24280C002E49A5 /* six.m4a in Resources */,
 				E1BD14B21E24280C002E49A5 /* five.m4a in Resources */,
 				E141B9AE1ED77A5700AB2A8C /* warpStart.aif in Resources */,
@@ -512,6 +585,15 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		E1BBE5A0205496D000A5C571 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E1BBE5A9205496D000A5C571 /* ViewController.swift in Sources */,
+				E1BBE5A7205496D000A5C571 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E1D8BD4A1DCFCD1A00C863DF /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -534,7 +616,62 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXVariantGroup section */
+		E1BBE5AA205496D000A5C571 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E1BBE5AB205496D000A5C571 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
+		E1BBE5B1205496D000A5C571 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = VY4VB4U858;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = ZTV/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.appetize.mobileSDK.ZTV;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 11.2;
+			};
+			name = Debug;
+		};
+		E1BBE5B2205496D000A5C571 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = VY4VB4U858;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = ZTV/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.appetize.mobileSDK.ZTV;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 11.2;
+			};
+			name = Release;
+		};
 		E1D8BD761DCFCD1A00C863DF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -681,6 +818,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		E1BBE5B0205496D000A5C571 /* Build configuration list for PBXNativeTarget "ZTV" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E1BBE5B1205496D000A5C571 /* Debug */,
+				E1BBE5B2205496D000A5C571 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		E1D8BD491DCFCD1A00C863DF /* Build configuration list for PBXProject "Zylon Defenders" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
