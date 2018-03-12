@@ -661,9 +661,7 @@ fireTorp()
             ship.shields = true
             envSound("shieldsUp")
 
-        }
-        self.zylonShields.isHidden = !ship.shields
-    }
+        }    }
 
     // MARK: - Game Event functions
 
@@ -918,6 +916,11 @@ fireTorp()
 				thisNode.opacity = 0
 				SCNTransaction.commit()
             }
+
+            if thisNode.name == "zylonShields" {
+            thisNode.isHidden = !self.ship.shields
+            }
+
             self.numberOfHumanShotsOnscreen = localNumberOfHumonShotsOnscreen
             self.numberOfZylonShotsOnscreen = localNumberOfZylonShotsOnscreen
 
