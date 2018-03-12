@@ -49,7 +49,6 @@ class ZylonShip: SCNNode {
 	var shields = false
 	var currentSpeed = 0
 	var currentSector = Sector()
-    var enemyShipsInSector = 0
 	var engineHealth = 100
 	var shieldStrength = 100
 	var energyStore = 10000
@@ -83,6 +82,20 @@ class ZylonShip: SCNNode {
 		var theta = 0.0
 		var phi = 0.0
 	}
+
+    enum DamageAmount: Int {
+        case functional = 0
+        case damaged = 1
+        case destroyed = 2
+    }
+
+    struct damage {
+        var babelfishCircuit = DamageAmount.functional
+        var genderIdentityCircuit = DamageAmount.functional
+        var outerHull = DamageAmount.functional
+        var innerHull = DamageAmount.functional
+        var shieldIntegrity = DamageAmount.functional
+    }
 
 	struct shipSystems {
 		var shieldStrength = 0

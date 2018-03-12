@@ -86,9 +86,9 @@ class HUD: SKScene {
             let myY = myScene.ship.currentSector.y
             let myZ = myScene.ship.currentSector.z
             computerStatus.text = "CURRENT SECTOR: \(myX).\(myY).\(myZ)"
-            if myScene.ship.enemyShipsInSector>0 {
+            if myScene.enemyShipsInSector.count>0 {
                 enemyIndicator.color = UIColor.red
-                enemyIndicator.text = "ENEMIES IN RANGE: \(myScene.ship.enemyShipsInSector)"
+                enemyIndicator.text = "ENEMIES IN RANGE: \(myScene.enemyShipsInSector.count)"
                 myScene.computerBeepSound("enemyAlert")
 
             } else {

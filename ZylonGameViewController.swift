@@ -89,7 +89,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 	@IBOutlet weak var viewButton: UIButton!
     @IBOutlet weak var phiDisplay: UILabel!
     @IBOutlet weak var thetaDisplay: UILabel!
-    @IBOutlet weak var velocityDisplay: UILabel!
+    @IBOutlet weak var shieldsDisplay: UILabel!
     @IBOutlet weak var targetDistanceDisplay: UILabel!
     @IBOutlet weak var enemiesInSectorDisplay: UILabel!
 
@@ -138,6 +138,12 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         beepsound.play()
     }
 
+    func envSound(_ soundString: String) {
+        let soundURL = Bundle.main.url(forResource: soundString, withExtension: "m4a")
+        beepsound =  try! AVAudioPlayer(contentsOf: soundURL!)
+        beepsound.volume = 0.5
+        beepsound.play()
+    }
     func fireHumonTorpedo(fromShip: HumonShip) {
         let torpedoNode = Torpedo(designatedTorpType: .humon)
         sectorObjectsNode.addChildNode(torpedoNode)
@@ -410,7 +416,6 @@ fireTorp()
                                                selector: #selector(self.controllerWasDisconnected),
                                                name: NSNotification.Name.GCControllerDidDisconnect,
                                                object: nil)
-
         setupView()
         setupScene()
         setupShip()
@@ -429,7 +434,7 @@ fireTorp()
         //scnView.debugOptions = .showPhysicsShapes
         scnView.isPlaying = true
         scnView.backgroundColor = UIColor.black
-        joystickControl.movable = true
+        joystickControl.movable = false
     }
 
     func setupScene() {
@@ -463,7 +468,7 @@ fireTorp()
     func setupPhotonSounds() {
         var soundURL: URL?
         currentPhoton = 0
-        soundURL = Bundle.main.url(forResource: "photon_sound", withExtension: "mp3")
+        soundURL = Bundle.main.url(forResource: "photon_sound", withExtension: "m4a")
         try! photonSound1 = AVAudioPlayer(contentsOf: soundURL!)
         try! photonSound2 = AVAudioPlayer(contentsOf: soundURL!)
         try! photonSound3 = AVAudioPlayer(contentsOf: soundURL!)
@@ -514,14 +519,21 @@ fireTorp()
         let sphere = SCNSphere(radius: 3.0)
         self.zylonShields.geometry  = sphere
         self.zylonShields.opacity = 0.0064
+        self.zylonShields.isHidden = true
         self.zylonShields.worldPosition = SCNVector3(x: 0, y: 0, z: 0)
         self.zylonShields.name = "zylonShields"
         self.zylonShields.physicsBody = SCNPhysicsBody(type: .kinematic, shape: nil)
         self.zylonShields.physicsBody?.isAffectedByGravity = false
         self.zylonShields.physicsBody?.contactTestBitMask =  objectCategories.zylonShip
         self.zylonShields.physicsBody?.categoryBitMask =  objectCategories.zylonShip
-        let smallerSphere = SCNSphere(radius: 2.5)
+        let shieldMaterial = SCNMaterial()
+        shieldMaterial.diffuse.contents =  UIColor.green
+        shieldMaterial.isDoubleSided = true
+        shieldMaterial.emission.contents =  UIColor.green
+        self.zylonShields.geometry?.materials = [shieldMaterial, shieldMaterial]
 
+        // add hull
+        let smallerSphere = SCNSphere(radius: 2.25)
         let zylonHull = SCNNode()
         zylonHull.geometry  = smallerSphere
         zylonHull.opacity = 0
@@ -532,11 +544,6 @@ fireTorp()
         zylonHull.physicsBody?.contactTestBitMask =  objectCategories.zylonShip
         zylonHull.physicsBody?.categoryBitMask =  objectCategories.zylonShip
 
-        let shieldMaterial = SCNMaterial()
-        shieldMaterial.diffuse.contents =  UIColor.green
-        shieldMaterial.isDoubleSided = true
-        shieldMaterial.emission.contents =  UIColor.green
-        self.zylonShields.geometry?.materials = [shieldMaterial, shieldMaterial]
         mainGameScene.rootNode.addChildNode(zylonShields)
         mainGameScene.rootNode.addChildNode(zylonHull)
 
@@ -607,6 +614,12 @@ fireTorp()
         environmentSound.play()
     }
 
+    func explosionSound() {
+        let explosionArray = ["explosion", "explosion2", "explosion3", "explosion4"]
+        let explosionString = explosionArray[randIntRange(lower: 0, upper: 3)]
+        self.environmentSound(explosionString)
+    }
+
     // MARK: - Ship Functions
 
     func setSpeed(_ newSpeed: Int) {
@@ -641,8 +654,15 @@ fireTorp()
     }
 
     @IBAction func toggleShields(_ sender: UIButton) {
-        self.zylonShields.isHidden = !self.zylonShields.isHidden
-        computerBeepSound("shields")
+        if ship.shields {
+            ship.shields = false
+            envSound("shieldsDown")
+        } else {
+            ship.shields = true
+            envSound("shieldsUp")
+
+        }
+        self.zylonShields.isHidden = !ship.shields
     }
 
     // MARK: - Game Event functions
@@ -672,14 +692,15 @@ fireTorp()
         let innerTube = SCNMaterial()
         innerTube.diffuse.contents =  UIColor.black
         innerTube.emission.contents =  UIImage(named: "smallestGrid.png")
-        warpGrid.opacity = 0.35
+        warpGrid.opacity = 1
         let outerTube = SCNMaterial()
         outerTube.emission.contents =  UIImage(named: "smallestGrid.png")
         outerTube.diffuse.contents = UIColor.black
         let endOne = SCNMaterial()
         endOne.diffuse.contents =  UIColor.blue
+        endOne.emission.contents = UIColor.blue
         endOne.isDoubleSided = true
-        let endTwo = SCNMaterial()
+      //  let endTwo = SCNMaterial()
         //endTwo.diffuse.contents =  UIColor.purple
         warpGrid.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
         warpGrid.physicsBody?.isAffectedByGravity = false
@@ -688,12 +709,16 @@ fireTorp()
         warpGrid.physicsBody?.collisionBitMask = 0
         warpGrid.physicsBody?.contactTestBitMask  = 0
         warpGrid.name = "warpGrid"
-        warpGrid.geometry?.materials = [outerTube, innerTube, endOne, endTwo]
+        warpGrid.geometry?.materials = [outerTube, innerTube, endOne, endOne]
         warpGrid.rotation = SCNVector4(x: 1, y: 0, z: 0, w: Float(Double.pi / 2))
         warpGrid.worldPosition = SCNVector3Make(0, 0, -300)
         warpGrid.scale = SCNVector3Make(1, 1, 1)
         warpGrid.opacity = 0.0
+        warpGrid.physicsBody?.applyTorque(SCNVector4Make(0, 0, 1, 10), asImpulse: true)
+    //    let rotForever = SCNAction.repeatForever(SCNAction.rotateBy(x: 0, y: 0, z: 3, duration: 0.5))
+     //   warpGrid.runAction(rotForever)
         mainGameScene.rootNode.addChildNode(self.warpGrid)
+
     }
 
     func resetWarpgrid() {
@@ -704,9 +729,10 @@ fireTorp()
         warpGrid.rotation = SCNVector4(x: 1, y: 0, z: 0, w: Float(Double.pi / 2))
         warpGrid.worldPosition = SCNVector3Make(0, 0, -300)
         warpGrid.physicsBody?.applyForce(SCNVector3Make(0, 0, 125), asImpulse: true)
+        warpGrid.physicsBody?.applyTorque(SCNVector4Make(0, 0, 1, 10), asImpulse: true)
+        warpEngineSound.play()
     }
     func performWarp() {
-        warpEngineSound.play()
         resetWarpgrid()
         self.forwardCameraNode.camera?.wantsHDR = false
         self.forwardCameraNode.camera?.motionBlurIntensity = 1.0
@@ -745,7 +771,6 @@ fireTorp()
     }
 
     func enterSector() {
-
         print("Entering sector:", self.ship.currentSector)
         var audioItems: [AVPlayerItem] = []
         var soundURL = Bundle.main.url(forResource: "entering_sector", withExtension: "m4a")
@@ -838,7 +863,6 @@ fireTorp()
     }
 
     func cleanSceneAndUpdateSectorNodeObjects() {
-
         var localNumberOfZylonShotsOnscreen = 0
         var localNumberOfHumonShotsOnscreen = 0
         enemyShipsInSector.removeAll()
@@ -867,7 +891,7 @@ fireTorp()
                 }
             }
 
-			// remove explosions - refactor to provide timer for each explosion
+			// if this node is an explosion, update it's position (because it's not in sectorObjectsNode) and update it for decay
             if (thisNode.name == "explosionNode") {
                 let thisExplosion = thisNode as! ShipExplosion
                 var actualExplosionPosition = mainGameScene.rootNode.convertPosition(thisNode.position, from: sectorObjectsNode)
@@ -875,16 +899,16 @@ fireTorp()
                 thisExplosion.position = sectorObjectsNode.convertPosition(actualExplosionPosition, from: mainGameScene.rootNode)
 
                 thisExplosion.update()
-
+                // if the explosion is old enough, remove it.
 				if thisExplosion.age > 300 {
 					thisNode.removeFromParentNode()
 					explosionDuration = 0
 				}
             }
-            if (thisNode.name == "drone") {
-                let thisDrone = thisNode as! HumonShip
-                enemyShipsInSector.append(thisDrone)
-                thisDrone.maneuver()
+            if (thisNode.name == "humonShip") {
+                let thisHumonShip = thisNode as! HumonShip
+                enemyShipsInSector.append(thisHumonShip)
+                thisHumonShip.maneuver()
             }
 
 			// remove warpgrid - refactor to be time since warpgrid
@@ -901,15 +925,6 @@ fireTorp()
 
 }
 
-    func countNodes() {
-//        var numberofNodes = 0
-//        scene.rootNode.enumerateChildNodes { (_, _) -> Void in
-//            numberofNodes = numberofNodes + 1
-//        }
-//        print("number of live nodes:\(numberofNodes)")
-
-    }
-
     func numberofShotsOnscreen() -> Int {
     var numberOfShots = 0
         mainGameScene.rootNode.enumerateChildNodes({ (child, _) in
@@ -918,6 +933,8 @@ fireTorp()
 
     return numberOfShots
     }
+
+    // MARK: - Collision Code
 
     func physicsWorld(_ world: SCNPhysicsWorld, didBegin contact: SCNPhysicsContact) {
         if (contact.nodeA.name == "zylonShields") {
@@ -965,11 +982,7 @@ fireTorp()
         }
         }
     }
-    func explosionSound() {
-        let explosionArray = ["explosion", "explosion2", "explosion3", "explosion4"]
-        let explosionString = explosionArray[randIntRange(lower: 0, upper: 3)]
-        self.environmentSound(explosionString)
-    }
+
     func updateTactical() {
         DispatchQueue.main.async {
             var rotx = self.sectorObjectsNode.eulerAngles.x.radiansToDegrees
@@ -980,16 +993,23 @@ fireTorp()
             if roty < 0 || rotx > 360 {
                 roty = abs(rotx.truncatingRemainder(dividingBy: 360))
             }
+
+            if self.ship.shields {
+                self.shieldsDisplay.text = "Shields: UP"
+            } else {
+                self.shieldsDisplay.text = "Shields: DOWN"
+
+            }
+
             self.thetaDisplay.text = "THETA: \(rotx)"
             self.phiDisplay.text = "PHI: \(roty)"
-            self.ship.enemyShipsInSector = self.enemyShipsInSector.count
-            self.enemiesInSectorDisplay.text = "Enemies In Sector: \(self.ship.enemyShipsInSector)"
+           // self.ship.enemyShipsInSector = self.enemyShipsInSector.count
+            self.enemiesInSectorDisplay.text = "Enemies In Sector: \(self.enemyShipsInSector.count)"
             if self.enemyShipCountInSector > 0 {
             let drone = self.enemyShipsInSector[0]
             self.targetDistanceDisplay.text = "DISTANCE TO TARGET - \(self.distanceBetweenPoints(first: drone.position, second: self.forwardCameraNode.position))"
             }
         }
-
     }
 
     func renderer(_ renderer: SCNSceneRenderer, didApplyAnimationsAtTime time: TimeInterval) {
