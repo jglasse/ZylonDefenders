@@ -54,7 +54,7 @@ class HumonShip: SCNNode {
         //MOVE SHIP LOGIC
         //if not currently maneuvering, begin executing maneuver. When maneuver is complete, create new maneuver with a random duration between minManeuverInterval and maxManeuverInterval
         if currentManeuverType == .fullstop {
-         let maneuverDuration = TimeInterval(randRange(lower: 1, upper: 3))
+         let maneuverDuration = TimeInterval(randRange(lower: 1, upper: 4))
          var currentManeuver: SCNAction
          let yDelta: Float = randRange(lower: -30, upper: 30)
          var xDelta: Float
@@ -77,13 +77,11 @@ class HumonShip: SCNNode {
             let fullStop = { () -> Void in
                 self.currentManeuverType = .fullstop
                 self.inCurrentManeuver = false
-
             }
             let targetWorldVector = SCNVector3(x: self.worldPosition.x+xDelta, y: self.worldPosition.y+yDelta, z: self.worldPosition.z+zDelta)
             let targetObjectsNodeVector = self.parent?.convertPosition(targetWorldVector, from: self.parent?.parent)
 
             currentManeuver = SCNAction.move(to: targetObjectsNodeVector!, duration: maneuverDuration)
-           // currentManeuver = SCNAction.move(by: SCNVector3(xDelta, yDelta, zDelta), duration: maneuverDuration)
             self.inCurrentManeuver = true
             currentManeuver.timingMode = .easeInEaseOut
             self.runAction(currentManeuver, completionHandler: fullStop)

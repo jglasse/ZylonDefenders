@@ -11,7 +11,7 @@ import UIKit
 import SceneKit
 import SpriteKit
 import AVFoundation
-import CoreMotion
+//import CoreMotion
 import MultipeerConnectivity
 import GameController
 
@@ -19,7 +19,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     // MARK: - Multipeer
     var myMCController = MCController.sharedInstance
 
-    // MARK: - Game Controller
+    // MARK: - Mfi Game Controller vars
     var mainController: GCController?
     var aButtonJustPressed = false
     var bButtonJustPressed = false
@@ -43,7 +43,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     var currentExplosionParticleSystem: SCNParticleSystem?
 	var starSprites = [SCNNode]() // array of stars to make updating them each frame easy
 
-    var enemyDrone: SCNNode?  // this should be removed in favor of enemyShipsInSector
+   // var enemyDrone: SCNNode?  // this should be removed in favor of enemyShipsInSector
 
     var enemyShipsInSector = [HumonShip]()
     var enemyShipCountInSector: Int {
@@ -74,7 +74,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     var environmentSound: AVAudioPlayer!
 	var explosionDuration = 0
 
-    var motionManager: CMMotionManager!
+    //var motionManager: CMMotionManager!
 
     // Misc Variables
     var currentPhoton = 0
@@ -89,22 +89,25 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 	@IBOutlet weak var viewButton: UIButton!
     @IBOutlet weak var phiDisplay: UILabel!
     @IBOutlet weak var thetaDisplay: UILabel!
-    @IBOutlet weak var shieldsDisplay: UILabel!
-    @IBOutlet weak var targetDistanceDisplay: UILabel!
     @IBOutlet weak var enemiesInSectorDisplay: UILabel!
+    @IBOutlet weak var targetDistanceDisplay: UILabel!
+    @IBOutlet weak var shieldsDisplay: UILabel!
+    @IBOutlet weak var shieldStrengthDisplay: UILabel!
 
     // MARK: - IBActions
 
-    @IBAction func showMap(_ sender: Any) {
+    @IBAction func toggleGalacticMap(_ sender: Any) {
         computerBeepSound("beep")
-
-        if scnView.scene   == galacticMap {
-            scnView.scene = mainGameScene
-            scnView.allowsCameraControl = false
+        let transition = SKTransition.fade(withDuration: 0.25)
+        if scnView.scene  == galacticMap {
+            scnView.present(mainGameScene, with: transition, incomingPointOfView: mainGameScene.rootNode.childNode(withName: "camera", recursively: true), completionHandler: {
+                self.scnView.allowsCameraControl = false
+            })
 
         } else {
-            scnView.scene = galacticMap
-            scnView.allowsCameraControl = true
+            scnView.present(galacticMap!, with: transition, incomingPointOfView: galacticMap?.rootNode.childNode(withName: "camera", recursively: true), completionHandler: {
+                self.scnView.allowsCameraControl = true
+            })
 
         }
 
@@ -229,7 +232,7 @@ fireTorp()
 		}
         let spawnDeadline = DispatchTime.now() + .seconds(8)
         DispatchQueue.main.asyncAfter(deadline: spawnDeadline) {
-            self.warpGrid.removeFromParentNode()
+           // self.warpGrid.removeFromParentNode()
             self.spawnDrones(number: Int(randRange(lower: 2, upper: 6)))
         }
 
@@ -241,7 +244,7 @@ fireTorp()
         setSpeed(Int(targetSpeed))
     }
 
-    // MARK: - GAME CONTROLLER CODE
+    // MARK: - MFI GAME CONTROLLER CODE
 
     private func processGameControllerInput() {
         guard let profile: GCExtendedGamepad = self.mainController?.extendedGamepad else {
@@ -276,7 +279,7 @@ fireTorp()
             // left shoulder button
             if (gamepad.leftShoulder == element && gamepad.leftShoulder.isPressed  && !self.leftShoulderJustPressed) {
                 self.leftShoulderJustPressed = true
-                self.showMap(self)
+                self.toggleGalacticMap(self)
             }
 
             // Left Shoulder button UP
@@ -571,7 +574,7 @@ fireTorp()
 
     }
     func addScanner() {
-        zylonScanner.position = SCNVector3Make(-3.7, -1.7, -8)
+        zylonScanner.position = SCNVector3Make(5.5, -1.7, -8)
         mainGameScene.rootNode.addChildNode(zylonScanner)
         zylonScanner.isHidden = true
         // start scanBeam
@@ -698,8 +701,6 @@ fireTorp()
         endOne.diffuse.contents =  UIColor.blue
         endOne.emission.contents = UIColor.blue
         endOne.isDoubleSided = true
-      //  let endTwo = SCNMaterial()
-        //endTwo.diffuse.contents =  UIColor.purple
         warpGrid.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
         warpGrid.physicsBody?.isAffectedByGravity = false
         warpGrid.physicsBody?.friction = 0
@@ -708,27 +709,25 @@ fireTorp()
         warpGrid.physicsBody?.contactTestBitMask  = 0
         warpGrid.name = "warpGrid"
         warpGrid.geometry?.materials = [outerTube, innerTube, endOne, endOne]
-        warpGrid.rotation = SCNVector4(x: 1, y: 0, z: 0, w: Float(Double.pi / 2))
+    //    warpGrid.rotation = SCNVector4(x: 1, y: 0, z: 0, w: Float(Double.pi / 2))
         warpGrid.worldPosition = SCNVector3Make(0, 0, -300)
         warpGrid.scale = SCNVector3Make(1, 1, 1)
         warpGrid.opacity = 0.0
         warpGrid.physicsBody?.applyTorque(SCNVector4Make(0, 0, 1, 10), asImpulse: true)
-    //    let rotForever = SCNAction.repeatForever(SCNAction.rotateBy(x: 0, y: 0, z: 3, duration: 0.5))
-     //   warpGrid.runAction(rotForever)
         mainGameScene.rootNode.addChildNode(self.warpGrid)
 
     }
 
     func resetWarpgrid() {
-        setupGridWarpEngineSounds()
-        warpGrid.physicsBody?.velocity = SCNVector3Make(0, 0, 0)
-        mainGameScene.rootNode.addChildNode(self.warpGrid)
         warpGrid.opacity = 1.0
-        warpGrid.rotation = SCNVector4(x: 1, y: 0, z: 0, w: Float(Double.pi / 2))
+        warpGrid.physicsBody?.velocity = SCNVector3Make(0, 0, 0)
         warpGrid.worldPosition = SCNVector3Make(0, 0, -300)
+        setupGridWarpEngineSounds()
+        warpGrid.rotation = SCNVector4(x: 1, y: 0, z: 0, w: Float(Double.pi / 2))
         warpGrid.physicsBody?.applyForce(SCNVector3Make(0, 0, 125), asImpulse: true)
         warpGrid.physicsBody?.applyTorque(SCNVector4Make(0, 0, 1, 10), asImpulse: true)
         warpEngineSound.play()
+
     }
     func performWarp() {
         resetWarpgrid()
@@ -808,11 +807,39 @@ fireTorp()
             let soundURL = Bundle.main.url(forResource: numString, withExtension: "m4a")
             let item = AVPlayerItem(url: soundURL!)
             audioItems.append(item)
-
         }
         computerVoice = AVQueuePlayer(items: audioItems)
         computerVoice.volume = 1
         computerVoice.play()
+    }
+
+    func updateTactical() {
+        DispatchQueue.main.async {
+            var rotx = self.sectorObjectsNode.eulerAngles.x.radiansToDegrees
+            if rotx < 0 || rotx > 360 {
+                rotx = abs(rotx.truncatingRemainder(dividingBy: 360))
+            }
+            var roty = self.sectorObjectsNode.eulerAngles.y.radiansToDegrees
+            if roty < 0 || rotx > 360 {
+                roty = abs(rotx.truncatingRemainder(dividingBy: 360))
+            }
+
+            if self.ship.shields {
+                self.shieldsDisplay.text = "Shields: UP"
+            } else {
+                self.shieldsDisplay.text = "Shields: DOWN"
+
+            }
+            self.shieldStrengthDisplay.text = "Shield Strength: \(self.ship.shieldStrength)%"
+            self.thetaDisplay.text = "THETA: \(rotx)"
+            self.phiDisplay.text = "PHI: \(roty)"
+            // self.ship.enemyShipsInSector = self.enemyShipsInSector.count
+            self.enemiesInSectorDisplay.text = "Enemies In Sector: \(self.enemyShipsInSector.count)"
+            if self.enemyShipCountInSector > 0 {
+                let drone = self.enemyShipsInSector[0]
+                self.targetDistanceDisplay.text = "DISTANCE TO TARGET - \(self.distanceBetweenPoints(first: drone.position, second: self.forwardCameraNode.position))"
+            }
+        }
     }
 
     // MARK: - Utility functioxns
@@ -983,35 +1010,6 @@ fireTorp()
             contact.nodeB.removeFromParentNode()
             }
         }
-        }
-    }
-
-    func updateTactical() {
-        DispatchQueue.main.async {
-            var rotx = self.sectorObjectsNode.eulerAngles.x.radiansToDegrees
-            if rotx < 0 || rotx > 360 {
-                rotx = abs(rotx.truncatingRemainder(dividingBy: 360))
-            }
-            var roty = self.sectorObjectsNode.eulerAngles.y.radiansToDegrees
-            if roty < 0 || rotx > 360 {
-                roty = abs(rotx.truncatingRemainder(dividingBy: 360))
-            }
-
-            if self.ship.shields {
-                self.shieldsDisplay.text = "Shields: UP"
-            } else {
-                self.shieldsDisplay.text = "Shields: DOWN"
-
-            }
-
-            self.thetaDisplay.text = "THETA: \(rotx)"
-            self.phiDisplay.text = "PHI: \(roty)"
-           // self.ship.enemyShipsInSector = self.enemyShipsInSector.count
-            self.enemiesInSectorDisplay.text = "Enemies In Sector: \(self.enemyShipsInSector.count)"
-            if self.enemyShipCountInSector > 0 {
-            let drone = self.enemyShipsInSector[0]
-            self.targetDistanceDisplay.text = "DISTANCE TO TARGET - \(self.distanceBetweenPoints(first: drone.position, second: self.forwardCameraNode.position))"
-            }
         }
     }
 

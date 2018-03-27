@@ -21,9 +21,6 @@
 		E1284C4E203914090022AE83 /* explosion3.m4a in Resources */ = {isa = PBXBuildFile; fileRef = E1284C4C203914080022AE83 /* explosion3.m4a */; };
 		E1284C50203A58950022AE83 /* forcefieldHit.m4a in Resources */ = {isa = PBXBuildFile; fileRef = E1284C4F203A58940022AE83 /* forcefieldHit.m4a */; };
 		E12948751F9D715200DA0E0F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1272AB71F64FBCE00A66358 /* LaunchScreen.storyboard */; };
-		E141B9AE1ED77A5700AB2A8C /* warpStart.aif in Resources */ = {isa = PBXBuildFile; fileRef = E141B9AC1ED77A5700AB2A8C /* warpStart.aif */; };
-		E141B9AF1ED77A5700AB2A8C /* warpStartStop.aif in Resources */ = {isa = PBXBuildFile; fileRef = E141B9AD1ED77A5700AB2A8C /* warpStartStop.aif */; };
-		E141B9B11ED77A6D00AB2A8C /* warpEnd.aif in Resources */ = {isa = PBXBuildFile; fileRef = E141B9B01ED77A6D00AB2A8C /* warpEnd.aif */; };
 		E151DA2E1E17926900A70B45 /* HUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = E151DA2D1E17926900A70B45 /* HUD.swift */; };
 		E15520321DCFE776001651EB /* starField.scnp in Resources */ = {isa = PBXBuildFile; fileRef = E15520311DCFE776001651EB /* starField.scnp */; };
 		E165672D1E3205EE00293285 /* Texas Instruments2.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E165672B1E3205EE00293285 /* Texas Instruments2.ttf */; };
@@ -111,7 +108,6 @@
 		E1BBE5A7205496D000A5C571 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1BBE5A6205496D000A5C571 /* AppDelegate.swift */; };
 		E1BBE5A9205496D000A5C571 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1BBE5A8205496D000A5C571 /* ViewController.swift */; };
 		E1BBE5AC205496D000A5C571 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1BBE5AA205496D000A5C571 /* Main.storyboard */; };
-		E1BBE5AE205496D000A5C571 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E1BBE5AD205496D000A5C571 /* Assets.xcassets */; };
 		E1BD14B01E24280C002E49A5 /* eight.m4a in Resources */ = {isa = PBXBuildFile; fileRef = E1BD14A51E24280C002E49A5 /* eight.m4a */; };
 		E1BD14B11E24280C002E49A5 /* entering_sector.m4a in Resources */ = {isa = PBXBuildFile; fileRef = E1BD14A61E24280C002E49A5 /* entering_sector.m4a */; };
 		E1BD14B21E24280C002E49A5 /* five.m4a in Resources */ = {isa = PBXBuildFile; fileRef = E1BD14A71E24280C002E49A5 /* five.m4a */; };
@@ -123,7 +119,6 @@
 		E1BD14B81E24280C002E49A5 /* three.m4a in Resources */ = {isa = PBXBuildFile; fileRef = E1BD14AD1E24280C002E49A5 /* three.m4a */; };
 		E1BD14B91E24280C002E49A5 /* two.m4a in Resources */ = {isa = PBXBuildFile; fileRef = E1BD14AE1E24280C002E49A5 /* two.m4a */; };
 		E1BD14BA1E24280C002E49A5 /* zero.m4a in Resources */ = {isa = PBXBuildFile; fileRef = E1BD14AF1E24280C002E49A5 /* zero.m4a */; };
-		E1C0E6AD203168670079B8B4 /* galaxy.scn in Resources */ = {isa = PBXBuildFile; fileRef = E1C0E6AC203168670079B8B4 /* galaxy.scn */; };
 		E1D1EA0D20267A7D00DB2984 /* Scanner.scn in Resources */ = {isa = PBXBuildFile; fileRef = E1D1EA0C20267A7D00DB2984 /* Scanner.scn */; };
 		E1D36D611FEA5764001F3E25 /* enemyAlert.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E1D36D5F1FEA5764001F3E25 /* enemyAlert.mp3 */; };
 		E1D36D621FEA5764001F3E25 /* sectorCleared.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E1D36D601FEA5764001F3E25 /* sectorCleared.mp3 */; };
@@ -135,6 +130,19 @@
 		E1E381E11EC4B79A000CC31C /* button_dir_right_0.png in Resources */ = {isa = PBXBuildFile; fileRef = E1E381DD1EC4B79A000CC31C /* button_dir_right_0.png */; };
 		E1E381E21EC4B79A000CC31C /* button_dir_up_0.png in Resources */ = {isa = PBXBuildFile; fileRef = E1E381DE1EC4B79A000CC31C /* button_dir_up_0.png */; };
 		E1E381E31EC4B79A000CC31C /* button_dir_left_0.png in Resources */ = {isa = PBXBuildFile; fileRef = E1E381DF1EC4B79A000CC31C /* button_dir_left_0.png */; };
+		E1E41C682068B7D1000A74DE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E1D8BD5A1DCFCD1A00C863DF /* Assets.xcassets */; };
+		E1E41C6A206A0504000A74DE /* ZylonGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D8BD551DCFCD1A00C863DF /* ZylonGameViewController.swift */; };
+		E1E41C6B206A050A000A74DE /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11978EE2031A358002214DB /* Constants.swift */; };
+		E1E41C6C206A050E000A74DE /* UtilityFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19F3F301F64647600F612A7 /* UtilityFunctions.swift */; };
+		E1E41C6D206A0513000A74DE /* CoreGraphics+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19F3F3A1F64962100F612A7 /* CoreGraphics+Additions.swift */; };
+		E1E41C6E206A051B000A74DE /* ZylonShip.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19BFF3E1EDFDEED00FCC5EE /* ZylonShip.swift */; };
+		E1E41C6F206A051F000A74DE /* HumonShip.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FD2A0B1EF7390B0096CB72 /* HumonShip.swift */; };
+		E1E41C70206A051F000A74DE /* Scanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B12C2920267EC70071F9A1 /* Scanner.swift */; };
+		E1E41C71206A051F000A74DE /* Torpedo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E187F56C1FB0275A0036B3FE /* Torpedo.swift */; };
+		E1E41C72206A051F000A74DE /* ShipExplosion.swift in Sources */ = {isa = PBXBuildFile; fileRef = E187F56F1FB028910036B3FE /* ShipExplosion.swift */; };
+		E1E41C73206A051F000A74DE /* HUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = E151DA2D1E17926900A70B45 /* HUD.swift */; };
+		E1E41C74206A052B000A74DE /* JoyStickView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19F3F321F6494AB00F612A7 /* JoyStickView.swift */; };
+		E1E41C75206A052B000A74DE /* MCController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16B66871E8B09F800F28144 /* MCController.swift */; };
 		E1EA0D6E1FE9C59A002BFB0F /* Glass_TTY_VT220.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E1EA0D6D1FE9C59A002BFB0F /* Glass_TTY_VT220.ttf */; };
 		E1F43D641DD115E900CC8988 /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = E1F43D631DD115E900CC8988 /* star.png */; };
 		E1F8BB0B1E3FF4E100460FC9 /* explosion.m4a in Resources */ = {isa = PBXBuildFile; fileRef = E1F8BB0A1E3FF4E100460FC9 /* explosion.m4a */; };
@@ -238,7 +246,6 @@
 		E1BD14AD1E24280C002E49A5 /* three.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = three.m4a; sourceTree = "<group>"; };
 		E1BD14AE1E24280C002E49A5 /* two.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = two.m4a; sourceTree = "<group>"; };
 		E1BD14AF1E24280C002E49A5 /* zero.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = zero.m4a; sourceTree = "<group>"; };
-		E1C0E6AC203168670079B8B4 /* galaxy.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = galaxy.scn; sourceTree = "<group>"; };
 		E1D1EA0C20267A7D00DB2984 /* Scanner.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = Scanner.scn; sourceTree = "<group>"; };
 		E1D36D5F1FEA5764001F3E25 /* enemyAlert.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = enemyAlert.mp3; sourceTree = "<group>"; };
 		E1D36D601FEA5764001F3E25 /* sectorCleared.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = sectorCleared.mp3; sourceTree = "<group>"; };
@@ -320,6 +327,16 @@
 			name = erroeMessages;
 			sourceTree = "<group>";
 		};
+		E16E290D20574844002362C1 /* Utility&Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				E11978EE2031A358002214DB /* Constants.swift */,
+				E19F3F301F64647600F612A7 /* UtilityFunctions.swift */,
+				E19F3F3A1F64962100F612A7 /* CoreGraphics+Additions.swift */,
+			);
+			name = "Utility&Extensions";
+			sourceTree = "<group>";
+		};
 		E187F56E1FB0276E0036B3FE /* Game Objects */ = {
 			isa = PBXGroup;
 			children = (
@@ -382,7 +399,6 @@
 				E126D43C203AA0D7006AB0E1 /* galacticmap.scn */,
 				E1272AB51F64EE4800A66358 /* Humon.scn */,
 				E1D1EA0C20267A7D00DB2984 /* Scanner.scn */,
-				E1C0E6AC203168670079B8B4 /* galaxy.scn */,
 			);
 			name = "Scenekit Models";
 			sourceTree = "<group>";
@@ -429,7 +445,7 @@
 			isa = PBXGroup;
 			children = (
 				E1D8BD551DCFCD1A00C863DF /* ZylonGameViewController.swift */,
-				E1D8BD501DCFCD1A00C863DF /* Utility Code */,
+				E1D8BD501DCFCD1A00C863DF /* Code */,
 				E19F3F2D1F6461DC00F612A7 /* Storyboards */,
 				E1A58DC01E1DCF9B00DCA24F /* assets */,
 				E1BBE5A5205496D000A5C571 /* ZTV */,
@@ -446,17 +462,15 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		E1D8BD501DCFCD1A00C863DF /* Utility Code */ = {
+		E1D8BD501DCFCD1A00C863DF /* Code */ = {
 			isa = PBXGroup;
 			children = (
-				E11978EE2031A358002214DB /* Constants.swift */,
-				E19F3F301F64647600F612A7 /* UtilityFunctions.swift */,
-				E19F3F3A1F64962100F612A7 /* CoreGraphics+Additions.swift */,
+				E16E290D20574844002362C1 /* Utility&Extensions */,
 				E187F56E1FB0276E0036B3FE /* Game Objects */,
 				E1DC3F911EB9A2C200B98829 /* Frameworks&Libraries */,
 				E1D8BD5F1DCFCD1A00C863DF /* Info.plist */,
 			);
-			name = "Utility Code";
+			name = Code;
 			path = zylons;
 			sourceTree = "<group>";
 		};
@@ -588,7 +602,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0920;
-				LastUpgradeCheck = 0900;
+				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = "Jeffery Glasse";
 				TargetAttributes = {
 					E1BBE5A3205496D000A5C571 = {
@@ -634,6 +648,7 @@
 				E16E28BA20564A41002362C1 /* Shields10 percent.aiff in Resources */,
 				E16E28E020564A41002362C1 /* Shields50 percent.aiff in Resources */,
 				E16E28E220564A41002362C1 /* ShieldModulationRegulator.aiff in Resources */,
+				E1E41C682068B7D1000A74DE /* Assets.xcassets in Resources */,
 				E16E28DA20564A41002362C1 /* Shields30 percent.aiff in Resources */,
 				E16E28E420564A41002362C1 /* ReallyreallyBad.aiff in Resources */,
 				E16E28C020564A41002362C1 /* warpStart.aif in Resources */,
@@ -645,7 +660,6 @@
 				E16E28D420564A41002362C1 /* Shields80 percent.aiff in Resources */,
 				E16E289B2056090B002362C1 /* photon_sound.mp3 in Resources */,
 				E16E28CC20564A41002362C1 /* gridwarpGovernorMalfunction.aiff in Resources */,
-				E1BBE5AE205496D000A5C571 /* Assets.xcassets in Resources */,
 				E16E28D220564A41002362C1 /* Shields20 percent.aiff in Resources */,
 				E1BBE5AC205496D000A5C571 /* Main.storyboard in Resources */,
 				E16E28B820564A41002362C1 /* warpEnd.aif in Resources */,
@@ -700,8 +714,6 @@
 				E16E28D520564A41002362C1 /* genderIdentityEnforcement.aiff in Resources */,
 				E1D8BD541DCFCD1A00C863DF /* art.scnassets in Resources */,
 				E1BD14B51E24280C002E49A5 /* one.m4a in Resources */,
-				E141B9B11ED77A6D00AB2A8C /* warpEnd.aif in Resources */,
-				E141B9AF1ED77A5700AB2A8C /* warpStartStop.aif in Resources */,
 				E16E28CB20564A41002362C1 /* gridwarpGovernorMalfunction.aiff in Resources */,
 				E16E28BD20564A41002362C1 /* outerHullFailure.aiff in Resources */,
 				E1D1EA0D20267A7D00DB2984 /* Scanner.scn in Resources */,
@@ -716,7 +728,6 @@
 				E10EFCC11EC0EE9400CC872E /* smallestGrid.png in Resources */,
 				E126D43E203AABD7006AB0E1 /* explosion4.m4a in Resources */,
 				E1BD14B81E24280C002E49A5 /* three.m4a in Resources */,
-				E1C0E6AD203168670079B8B4 /* galaxy.scn in Resources */,
 				E1A57AD01E1D8CCA009F2CA6 /* beep.mp3 in Resources */,
 				E1D36D611FEA5764001F3E25 /* enemyAlert.mp3 in Resources */,
 				E1BD14BA1E24280C002E49A5 /* zero.m4a in Resources */,
@@ -748,7 +759,6 @@
 				E1BD14B71E24280C002E49A5 /* six.m4a in Resources */,
 				E16E28E520564A41002362C1 /* Shields100 percent.aiff in Resources */,
 				E1BD14B21E24280C002E49A5 /* five.m4a in Resources */,
-				E141B9AE1ED77A5700AB2A8C /* warpStart.aif in Resources */,
 				E16E28E320564A41002362C1 /* ReallyreallyBad.aiff in Resources */,
 				E1A57ACC1E1C309A009F2CA6 /* ship_hum.mp3 in Resources */,
 				E16AB6241E1DD1F800E3D8C2 /* spark.png in Resources */,
@@ -780,7 +790,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				E1BBE5A9205496D000A5C571 /* ViewController.swift in Sources */,
+				E1E41C6D206A0513000A74DE /* CoreGraphics+Additions.swift in Sources */,
 				E1BBE5A7205496D000A5C571 /* AppDelegate.swift in Sources */,
+				E1E41C6A206A0504000A74DE /* ZylonGameViewController.swift in Sources */,
+				E1E41C70206A051F000A74DE /* Scanner.swift in Sources */,
+				E1E41C74206A052B000A74DE /* JoyStickView.swift in Sources */,
+				E1E41C6C206A050E000A74DE /* UtilityFunctions.swift in Sources */,
+				E1E41C6F206A051F000A74DE /* HumonShip.swift in Sources */,
+				E1E41C6E206A051B000A74DE /* ZylonShip.swift in Sources */,
+				E1E41C75206A052B000A74DE /* MCController.swift in Sources */,
+				E1E41C72206A051F000A74DE /* ShipExplosion.swift in Sources */,
+				E1E41C73206A051F000A74DE /* HUD.swift in Sources */,
+				E1E41C6B206A050A000A74DE /* Constants.swift in Sources */,
+				E1E41C71206A051F000A74DE /* Torpedo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
