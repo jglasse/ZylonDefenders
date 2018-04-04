@@ -24,6 +24,10 @@ extension FloatingPoint {
     var degreesToRadians: Self { return self * .pi / 180 }
     var radiansToDegrees: Self { return self * 180 / .pi }
 }
+
+func randIntRange (lower: Int, upper: Int) -> Int {
+    return lower + Int(arc4random_uniform(UInt32(upper - lower + 1)))
+}
 func randRange (lower: Float, upper: Float) -> Float {
     if upper > lower {
         let difference = abs(upper - lower)
@@ -74,7 +78,7 @@ extension ZylonGameViewController: CommandDelegate {
         case "TAC":
             notYetImplemented(command)
         case "SHIELDS":
-            toggleShields()
+            toggleShields(UIButton())
         case "TAC":
             notYetImplemented(command)
 

@@ -39,6 +39,11 @@ enum ShipDamage {
 
 }
 
+struct ShipDisplay {
+    var tactical = false
+    var galacticMap = false
+}
+
 struct Sector {
 	var x = 0
 	var y = 0
@@ -49,16 +54,18 @@ class ZylonShip: SCNNode {
 	var shields = false
 	var currentSpeed = 0
 	var currentSector = Sector()
-    var enemyShipsInSector = 0
+    var display = ShipDisplay()
+    var systemStatus = ShipSystems()
 	var engineHealth = 100
 	var shieldStrength = 100
 	var energyStore = 10000
 	var currentTorpedoBay = 1
     var sectorLocation = locationInSector(x: 500, y: 500, z: 500)
     var sector = currentSector(sectorX: 30, sectorY: 30, sectorZ: 30)
+
     override init() {
         super.init()
-        self.geometry = SCNSphere(radius: 0.25)
+        self.geometry = SCNSphere(radius: 0.20)
       //  self.physicsBody = SCNPhysicsBody(type: .kinematic, shape: nil)
 
     }
@@ -84,13 +91,26 @@ class ZylonShip: SCNNode {
 		var phi = 0.0
 	}
 
-	struct shipSystems {
-		var shieldStrength = 0
-		var warpEnergy = 100.0
-		var shipDamageStack = [ShipDamage]()
-		var compDamageStack = [ComputerDamage]()
-		var engineDamageStack: [ImpulseEngineDamage] = [.noDamage]
+    enum DamageAmount {
+        case functional
+        case damaged
+        case severelyDamaged
+        case destroyed
+    }
 
+    struct Damage {
+        var babelfishCircuit = DamageAmount.functional
+        var genderIdentityCircuit = DamageAmount.functional
+        var outerHull = DamageAmount.functional
+        var innerHull = DamageAmount.functional
+        var shieldIntegrity = DamageAmount.functional
+        var engineIntegrity = DamageAmount.functional
+    }
+
+	struct ShipSystems {
+		var shieldStrength = 0
+		var warpEnergy = 1000.0
+        var shipDamage = Damage()
 	}
 
 	var range = [Float]()

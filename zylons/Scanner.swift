@@ -28,13 +28,13 @@ class Scanner: SCNNode {
         self.addChildNode(sectorField)
         self.addChildNode(scanBeam)
         scanBeam.opacity = 0.55
+
         if let gaussianBlurFilter = CIFilter(name: "CIGaussianBlur") {
             gaussianBlurFilter.name = "blur"
-            gaussianBlurFilter.setValue(3, forKey: kCIInputRadiusKey)
-            scanBeam.filters = [gaussianBlurFilter ]
+            gaussianBlurFilter.setValue(5, forKey: kCIInputRadiusKey)
+            scanBeam.filters = [gaussianBlurFilter]
 
         }
-
         self.name = "scanner"
         self.worldPosition = SCNVector3(5, 5, -10)
         self.scale = SCNVector3Make(1, 1, 1)
