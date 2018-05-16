@@ -95,6 +95,10 @@
 		E187F56D1FB0275A0036B3FE /* Torpedo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E187F56C1FB0275A0036B3FE /* Torpedo.swift */; };
 		E187F5701FB028910036B3FE /* ShipExplosion.swift in Sources */ = {isa = PBXBuildFile; fileRef = E187F56F1FB028910036B3FE /* ShipExplosion.swift */; };
 		E187F5721FB04B140036B3FE /* HumonTorpedo.scnp in Resources */ = {isa = PBXBuildFile; fileRef = E187F5711FB04B140036B3FE /* HumonTorpedo.scnp */; };
+		E192623320A79A8600AB93F2 /* Starfield 2048x1024B.png in Resources */ = {isa = PBXBuildFile; fileRef = E192623220A79A8600AB93F2 /* Starfield 2048x1024B.png */; };
+		E192623420A79A8600AB93F2 /* Starfield 2048x1024B.png in Resources */ = {isa = PBXBuildFile; fileRef = E192623220A79A8600AB93F2 /* Starfield 2048x1024B.png */; };
+		E192623620A79E4600AB93F2 /* Starfield 2048x1024LB.png in Resources */ = {isa = PBXBuildFile; fileRef = E192623520A79E4600AB93F2 /* Starfield 2048x1024LB.png */; };
+		E192623720A79E4600AB93F2 /* Starfield 2048x1024LB.png in Resources */ = {isa = PBXBuildFile; fileRef = E192623520A79E4600AB93F2 /* Starfield 2048x1024LB.png */; };
 		E19BFF3F1EDFDEED00FCC5EE /* ZylonShip.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19BFF3E1EDFDEED00FCC5EE /* ZylonShip.swift */; };
 		E19F3F311F64647600F612A7 /* UtilityFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19F3F301F64647600F612A7 /* UtilityFunctions.swift */; };
 		E19F3F331F6494AB00F612A7 /* JoyStickView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19F3F321F6494AB00F612A7 /* JoyStickView.swift */; };
@@ -213,6 +217,8 @@
 		E187F56C1FB0275A0036B3FE /* Torpedo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Torpedo.swift; sourceTree = "<group>"; };
 		E187F56F1FB028910036B3FE /* ShipExplosion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShipExplosion.swift; sourceTree = "<group>"; };
 		E187F5711FB04B140036B3FE /* HumonTorpedo.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = HumonTorpedo.scnp; sourceTree = "<group>"; };
+		E192623220A79A8600AB93F2 /* Starfield 2048x1024B.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Starfield 2048x1024B.png"; sourceTree = "<group>"; };
+		E192623520A79E4600AB93F2 /* Starfield 2048x1024LB.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Starfield 2048x1024LB.png"; sourceTree = "<group>"; };
 		E19BFF3E1EDFDEED00FCC5EE /* ZylonShip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZylonShip.swift; sourceTree = "<group>"; };
 		E19F3F301F64647600F612A7 /* UtilityFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilityFunctions.swift; sourceTree = "<group>"; };
 		E19F3F321F6494AB00F612A7 /* JoyStickView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoyStickView.swift; sourceTree = "<group>"; };
@@ -406,6 +412,8 @@
 		E1B12C2C2027D4150071F9A1 /* PNG */ = {
 			isa = PBXGroup;
 			children = (
+				E192623220A79A8600AB93F2 /* Starfield 2048x1024B.png */,
+				E192623520A79E4600AB93F2 /* Starfield 2048x1024LB.png */,
 				E1A89EA71E9867F600EA8BC4 /* Default-568h@2x.png */,
 				E19F3F3F1F64EC4E00F612A7 /* diffuse.png */,
 				E19F3F3E1F64EC4E00F612A7 /* diffuse2.png */,
@@ -650,6 +658,7 @@
 				E16E28E220564A41002362C1 /* ShieldModulationRegulator.aiff in Resources */,
 				E1E41C682068B7D1000A74DE /* Assets.xcassets in Resources */,
 				E16E28DA20564A41002362C1 /* Shields30 percent.aiff in Resources */,
+				E192623420A79A8600AB93F2 /* Starfield 2048x1024B.png in Resources */,
 				E16E28E420564A41002362C1 /* ReallyreallyBad.aiff in Resources */,
 				E16E28C020564A41002362C1 /* warpStart.aif in Resources */,
 				E16E28BE20564A41002362C1 /* outerHullFailure.aiff in Resources */,
@@ -670,6 +679,7 @@
 				E16E289A205608FE002362C1 /* photon_sound.m4a in Resources */,
 				E16E28952055B806002362C1 /* shieldsUp.m4a in Resources */,
 				E16E28972055B806002362C1 /* shieldsDown.m4a in Resources */,
+				E192623720A79E4600AB93F2 /* Starfield 2048x1024LB.png in Resources */,
 				E16E28CA20564A41002362C1 /* warpStartStop.aif in Resources */,
 				E16E28EC20564A41002362C1 /* Shields90 percent.aiff in Resources */,
 				E16E28C620564A41002362C1 /* viralIntrusionDetected.aiff in Resources */,
@@ -684,6 +694,7 @@
 			files = (
 				E1EA0D6E1FE9C59A002BFB0F /* Glass_TTY_VT220.ttf in Resources */,
 				E16E28B720564A41002362C1 /* warpEnd.aif in Resources */,
+				E192623320A79A8600AB93F2 /* Starfield 2048x1024B.png in Resources */,
 				E16E28D920564A41002362C1 /* Shields30 percent.aiff in Resources */,
 				E16E28BF20564A41002362C1 /* warpStart.aif in Resources */,
 				E1BD14B91E24280C002E49A5 /* two.m4a in Resources */,
@@ -744,6 +755,7 @@
 				E16E28CD20564A41002362C1 /* Shields70 percent.aiff in Resources */,
 				E1D36D621FEA5764001F3E25 /* sectorCleared.mp3 in Resources */,
 				E1F8BB0B1E3FF4E100460FC9 /* explosion.m4a in Resources */,
+				E192623620A79E4600AB93F2 /* Starfield 2048x1024LB.png in Resources */,
 				E1E381E01EC4B79A000CC31C /* button_dir_down_0.png in Resources */,
 				E16E28DF20564A41002362C1 /* Shields50 percent.aiff in Resources */,
 				E16E28D720564A41002362C1 /* babelfishCircuitFailure.aiff in Resources */,

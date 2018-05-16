@@ -433,11 +433,11 @@ fireTorp()
         scnView.showsStatistics = false
         scnView.allowsCameraControl = false
         scnView.autoenablesDefaultLighting = true
-
-        //scnView.debugOptions = .showPhysicsShapes
         scnView.isPlaying = true
         scnView.backgroundColor = UIColor.black
-        joystickControl.movable = false
+        joystickControl.movable = true
+        //scnView.debugOptions = .showPhysicsShapes
+
     }
 
     func setupScene() {
@@ -480,6 +480,14 @@ fireTorp()
 
     func createStars() {
         sectorObjectsNode.name = "sectorObjectsNode"
+        let bgStars = SCNSphere(radius: 1200.0)
+        let bgStarsNode = SCNNode(geometry: bgStars)
+        bgStarsNode.opacity = 0.6
+        let stars = UIImage(named: "Starfield 2048x1024LB.png")
+        bgStarsNode.name = "BGStars"
+        bgStarsNode.geometry?.firstMaterial?.diffuse.contents =  stars
+        bgStarsNode.geometry?.firstMaterial?.isDoubleSided = true
+        sectorObjectsNode.addChildNode(bgStarsNode)
         mainGameScene.rootNode.addChildNode(sectorObjectsNode)
         for _ in 1...Constants.numberOfStars {
             let x = randRange(lower: -50, upper: 50)

@@ -12,16 +12,13 @@ import SpriteKit
 
 class MyViewController: UIViewController, AVAudioPlayerDelegate {
     let writeInterval = 0.040
-    //let telemetryTimer = Timer(timeInterval: writeInterval, target: self, selector: (#selector(self.advanceTelemetry)), userInfo: nil, repeats: true)
-
-    var messageArray = [(message: String, delay: Float)]()
     let soundURL = Bundle.main.url(forResource: "telemetry2", withExtension: "aiff")
 
+    lazy var telemetryTimer = Timer(timeInterval: writeInterval, target: self, selector: (#selector(self.advanceTelemetry)), userInfo: nil, repeats: true)
     var telemetryPlayer: AVAudioPlayer?
-
+    var messageArray = [(message: String, delay: Float)]()
     var currentMessageIndex = 0
     var currentLetterIndex = 0
-
     var currentLetter = ""
     var existingTelemetry = ""
     var currentMessage: String?
@@ -62,6 +59,17 @@ DEFEND THE EMPIRE. DRIVE BACK THE HUMONS. SAVE THE ZYLON RACE.
         setupTelemetryAudioPlayer()
     }
 
+    func setupTelemetryAudioPlayer() {
+        do {
+
+            self.telemetryPlayer = try AVAudioPlayer(contentsOf: soundURL!, fileTypeHint: AVFileType.aiff.rawValue)
+            self.telemetryPlayer?.delegate = self
+        } catch let error {
+            print(error.localizedDescription)
+        }
+        self.telemetryPlayer?.prepareToPlay()
+    }
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         messageArray = [(message1, 1), (message2, 1), (message3, 1), (message4, 0)]
@@ -73,27 +81,13 @@ DEFEND THE EMPIRE. DRIVE BACK THE HUMONS. SAVE THE ZYLON RACE.
 
     func playTelemetrySound() {
         if (self.telemetryPlayer?.isPlaying)! {
-            return
         } else {
             self.telemetryPlayer?.play()
         }
-
     }
 
     @objc func advanceTelemetry() {
 
-    }
-
-    func setupTelemetryAudioPlayer() {
-        do {
-            let soundURL = Bundle.main.url(forResource: "telemetry2", withExtension: "aiff")
-
-            self.telemetryPlayer = try AVAudioPlayer(contentsOf: soundURL!, fileTypeHint: AVFileType.aiff.rawValue)
-            self.telemetryPlayer?.delegate = self
-        } catch let error {
-            print(error.localizedDescription)
-        }
-        self.telemetryPlayer?.prepareToPlay()
     }
 
     func receive() {
@@ -112,7 +106,6 @@ DEFEND THE EMPIRE. DRIVE BACK THE HUMONS. SAVE THE ZYLON RACE.
 
     func receiveNewTelemetry(message: String) {
         self.currentLetterIndex = 0
-
         let mainQ = DispatchQueue.main
         let  bgQ = DispatchQueue.global()
         let sleepamount = DispatchTime.now() + 0.5
