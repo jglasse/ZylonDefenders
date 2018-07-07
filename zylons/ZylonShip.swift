@@ -45,7 +45,7 @@ struct ShipDisplay {
 }
 
 struct Sector {
-	var x = 0
+	var quadrant = "Alpha"
 	var y = 0
 	var z = 0
 }
@@ -61,7 +61,7 @@ class ZylonShip: SCNNode {
 	var energyStore = 10000
 	var currentTorpedoBay = 1
     var sectorLocation = locationInSector(x: 500, y: 500, z: 500)
-    var sector = currentSector(sectorX: 30, sectorY: 30, sectorZ: 30)
+    var sector = currentSector(quadrant: "Alpha", y: 30, z: 30)
 
     override init() {
         super.init()
@@ -81,9 +81,9 @@ class ZylonShip: SCNNode {
 	}
 
 	struct currentSector {
-		var sectorX = 0
-		var sectorY = 0
-		var sectorZ = 0
+        var quadrant = "Alpha"
+		var y = 0
+		var z = 0
 
 	}
 	struct rotation {

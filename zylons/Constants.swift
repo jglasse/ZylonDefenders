@@ -29,6 +29,7 @@ struct Constants {
     static let minHumanShootInterval: Float = 185
     static let maxHumanShootInterval: Float = 800
     static let sectorBreadth = 500
+    static let numberOfZylonsAtBeginningOfGame = 10
 }
 
 struct objectCategories {

@@ -82,7 +82,7 @@ class HUD: SKScene {
 
      func updateHUD() {
         if let myScene = self.parentScene {
-            let myX = myScene.ship.currentSector.x
+            let myX = myScene.ship.currentSector.quadrant
             let myY = myScene.ship.currentSector.y
             let myZ = myScene.ship.currentSector.z
             computerStatus.text = "CURRENT SECTOR: \(myX).\(myY).\(myZ)"

@@ -45,6 +45,41 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 
    // var enemyDrone: SCNNode?  // this should be removed in favor of enemyShipsInSector
 
+    struct GalaxyMap {
+        var sectorA = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        var sectorB = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        var sectorC = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        var sectorD = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        var entireMap: [[Int]] {
+            return [sectorA, sectorB, sectorC, sectorD]
+        }
+
+        // convenience init to randomly assign X number of ships
+        init(withRandomlyPlacedShips numberOfOccupiedSectors: Int, maxNumberPerSector: UInt32) {
+            for _ in 1...Int(numberOfOccupiedSectors) {
+                let numberOfZylons = Int(arc4random_uniform(_:maxNumberPerSector) + 1)
+                let sector = Int(arc4random_uniform(_:3) + 1)
+                let sectorIndex = Int(arc4random_uniform(_:31))
+
+                switch sector {
+                case 1:
+                    sectorA[sectorIndex] = numberOfZylons
+                case 2:
+                    sectorB[sectorIndex] = numberOfZylons
+                case 3:
+                    sectorC[sectorIndex] = numberOfZylons
+                case 4:
+                    sectorD[sectorIndex] = numberOfZylons
+                default:
+
+                    return
+                }
+            }
+
+        }
+    }
+
+    var zylonFleet = GalaxyMap(withRandomlyPlacedShips: 20, maxNumberPerSector: 3)
     var enemyShipsInSector = [HumonShip]()
     var enemyShipCountInSector: Int {
         return enemyShipsInSector.count
@@ -410,7 +445,7 @@ fireTorp()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        print(self.zylonFleet)
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(self.controllerWasConnected),
                                                name: NSNotification.Name.GCControllerDidConnect,
@@ -606,6 +641,86 @@ fireTorp()
         // place the camera
         cameraNode.position = SCNVector3(x: 0, y: 5, z: 10)
 
+        // Add Zylons to Sector A
+        for (index, element) in self.zylonFleet.sectorA.enumerated() {
+
+            if element > 0 {
+            let sphereNode = SCNNode(geometry: SCNSphere(radius: 0.12))
+            sphereNode.geometry?.firstMaterial?.diffuse.contents = UIColor.red
+            //sphereNode.geometry = SCNShape
+
+            var childNodeName: String
+            if index < 10 {
+                 childNodeName = "SECTOR_1_00"+String(index)
+            } else {
+                 childNodeName = "SECTOR_1_0"+String(index)
+            }
+            galacticMap?.rootNode.childNode(withName: childNodeName, recursively: true)?.addChildNode(sphereNode)
+                print("childNodeName: \(childNodeName) should have \(element) zylons from SectorA[\(index)]")
+            print(index)
+            }
+        }
+
+        // Add Zylons to Sector B
+        for (index, element) in self.zylonFleet.sectorB.enumerated() {
+
+            if element > 0 {
+                let sphereNode = SCNNode(geometry: SCNSphere(radius: 0.12))
+                sphereNode.geometry?.firstMaterial?.diffuse.contents = UIColor.red
+                //sphereNode.geometry = SCNShape
+
+                var childNodeName: String
+                if index < 10 {
+                    childNodeName = "SECTOR_2_00"+String(index)
+                } else {
+                    childNodeName = "SECTOR_2_0"+String(index)
+                }
+                galacticMap?.rootNode.childNode(withName: childNodeName, recursively: true)?.addChildNode(sphereNode)
+                print("childNodeName: \(childNodeName) should have \(element) zylons from SectorA[\(index)]")
+                print(index)
+            }
+        }
+
+        // Add Zylons to Sector C
+        for (index, element) in self.zylonFleet.sectorC.enumerated() {
+
+            if element > 0 {
+                let sphereNode = SCNNode(geometry: SCNSphere(radius: 0.12))
+                sphereNode.geometry?.firstMaterial?.diffuse.contents = UIColor.red
+                //sphereNode.geometry = SCNShape
+
+                var childNodeName: String
+                if index < 10 {
+                    childNodeName = "SECTOR_3_00"+String(index)
+                } else {
+                    childNodeName = "SECTOR_3_0"+String(index)
+                }
+                galacticMap?.rootNode.childNode(withName: childNodeName, recursively: true)?.addChildNode(sphereNode)
+                print("childNodeName: \(childNodeName) should have \(element) zylons from SectorA[\(index)]")
+                print(index)
+            }
+        }
+
+        // Add Zylons to Sector D
+        for (index, element) in self.zylonFleet.sectorD.enumerated() {
+
+            if element > 0 {
+                let sphereNode = SCNNode(geometry: SCNSphere(radius: 0.12))
+                sphereNode.geometry?.firstMaterial?.diffuse.contents = UIColor.red
+                //sphereNode.geometry = SCNShape
+
+                var childNodeName: String
+                if index < 10 {
+                    childNodeName = "SECTOR_4_00"+String(index)
+                } else {
+                    childNodeName = "SECTOR_4_0"+String(index)
+                }
+                galacticMap?.rootNode.childNode(withName: childNodeName, recursively: true)?.addChildNode(sphereNode)
+                print("childNodeName: \(childNodeName) should have \(element) zylons from SectorA[\(index)]")
+                print(index)
+            }
+        }
+
     }
      // MARK: - Sound Functions
 
@@ -781,12 +896,11 @@ fireTorp()
         var soundURL = Bundle.main.url(forResource: "entering_sector", withExtension: "m4a")
         let sector = AVPlayerItem(url: soundURL!)
         audioItems.append(sector)
-            var numString = numberstrings[ship.currentSector.x]
-             soundURL = Bundle.main.url(forResource: numString, withExtension: "m4a")
-            var item = AVPlayerItem(url: soundURL!)
-            audioItems.append(item)
+        soundURL = Bundle.main.url(forResource: ship.currentSector.quadrant, withExtension: "m4a")
+        var item = AVPlayerItem(url: soundURL!)
+        audioItems.append(item)
 
-             numString = numberstrings[ship.currentSector.y]
+             var numString = numberstrings[ship.currentSector.y]
              soundURL = Bundle.main.url(forResource: numString, withExtension: "m4a")
              item = AVPlayerItem(url: soundURL!)
             audioItems.append(item)
