@@ -926,7 +926,8 @@ fireTorp()
         var soundURL = Bundle.main.url(forResource: "entering_sector", withExtension: "m4a")
         let sector = AVPlayerItem(url: soundURL!)
         audioItems.append(sector)
-        soundURL = Bundle.main.url(forResource: ship.currentSector.quadrant, withExtension: "m4a")
+        soundURL = Bundle.main.url(forResource: ship.currentSector.quadrant.rawValue, withExtension: "m4a")
+
         var item = AVPlayerItem(url: soundURL!)
         audioItems.append(item)
 

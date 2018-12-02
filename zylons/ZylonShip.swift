@@ -46,7 +46,7 @@ struct ShipDisplay {
 }
 
 struct Sector {
-	var quadrant = "alpha"
+    var quadrant: Quadrant = .alpha
 	var y = 0
 	var z = 0
 }
