@@ -20,7 +20,7 @@ class HUD: SKScene {
     public var computerStatus = SKLabelNode()
     public var enemyIndicator = SKLabelNode()
     private let aftHairs = SKSpriteNode(imageNamed: "xenonHUDAFT")
-    private let foreHairs = SKSpriteNode(imageNamed: "xenonHUDAFT")
+    private let foreHairs = SKSpriteNode(imageNamed: "xenonHUD")
 
     var timer: Timer?
     var currentComputerStatusColor = UIColor.red
@@ -33,14 +33,15 @@ class HUD: SKScene {
 
     public func foreView() {
         print("fore View")
-
-        crosshairs=foreHairs
+        DispatchQueue.main.async {
+        self.crosshairs.isHidden = false
+        }
     }
 
     public func aftView() {
         print("aft View")
         DispatchQueue.main.async {
-            self.crosshairs=self.aftHairs
+            self.crosshairs.isHidden = true
         }
     }
 
@@ -49,7 +50,7 @@ class HUD: SKScene {
         self.backgroundColor = UIColor.clear
         shields = SKShapeNode(rectOf: size)
         shields.position = CGPoint(x: self.frame.midX, y: self.frame.midY)
-        shields.alpha = 0.0
+        shields.alpha = 0.4
         shields.fillColor = SKColor.blue
         shields.strokeColor =  UIColor.clear
         computerStatus.fontName = "Y14.5M 17.0"

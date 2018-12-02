@@ -9,17 +9,11 @@
 import UIKit
 import SceneKit
 
+// Mark: - Damage enums
 enum ImpulseEngineDamage {
 	case noDamage
 	case plasmaManifoldFailure
 	case engineFailure
-}
-
-enum WarpGridDamage {
-	case noDamage
-	case autoPilotDestroyed
-	case governorFailure
-	case gridCoreFailureImminent
 }
 
 enum ComputerDamage {
@@ -31,12 +25,19 @@ enum ComputerDamage {
     case empathyCircuitFailure
 
 }
+
+enum Quadrant: String {
+    case alpha
+    case beta
+    case gama
+    case delta
+}
+
 enum ShipDamage {
 	case shieldGeneratorDestroyed
 	case hullBreach
 	case computerDamaged
 	case shipDestroyed
-
 }
 
 struct ShipDisplay {
@@ -45,13 +46,13 @@ struct ShipDisplay {
 }
 
 struct Sector {
-	var quadrant = "Alpha"
+	var quadrant = "alpha"
 	var y = 0
 	var z = 0
 }
 
 class ZylonShip: SCNNode {
-	var shields = false
+	var shieldsAreUp = false
 	var currentSpeed = 0
 	var currentSector = Sector()
     var display = ShipDisplay()
@@ -61,7 +62,8 @@ class ZylonShip: SCNNode {
 	var energyStore = 10000
 	var currentTorpedoBay = 1
     var sectorLocation = locationInSector(x: 500, y: 500, z: 500)
-    var sector = currentSector(quadrant: "Alpha", y: 30, z: 30)
+    var sector = currentSector(quadrant: .alpha, y: 30, z: 30)
+    var damage = Damage()
 
     override init() {
         super.init()
@@ -81,7 +83,7 @@ class ZylonShip: SCNNode {
 	}
 
 	struct currentSector {
-        var quadrant = "Alpha"
+        var quadrant: Quadrant = .alpha
 		var y = 0
 		var z = 0
 

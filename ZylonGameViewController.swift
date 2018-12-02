@@ -85,7 +85,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         return enemyShipsInSector.count
     }
 
-	var ship = ZylonShip()
+    var ship = ZylonShip()
     var zylonShields = SCNNode()
 
 	var shipHud: HUD!
@@ -133,7 +133,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 
     @IBAction func toggleGalacticMap(_ sender: Any) {
         computerBeepSound("beep")
-        let transition = SKTransition.fade(withDuration: 0.25)
+        let transition = SKTransition.fade(withDuration: 0.15)
         if scnView.scene  == galacticMap {
             scnView.present(mainGameScene, with: transition, incomingPointOfView: mainGameScene.rootNode.childNode(withName: "camera", recursively: true), completionHandler: {
                 self.scnView.allowsCameraControl = false
@@ -148,7 +148,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 
     }
 
-    @IBAction func showTactical(_ sender: Any) {
+    @IBAction func toggleTacticalDispplay(_ sender: Any) {
         tacticalDisplay.isHidden = !tacticalDisplay.isHidden
         zylonScanner.isHidden = tacticalDisplay.isHidden
 
@@ -170,10 +170,14 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     }
 
     func computerBeepSound(_ soundString: String) {
-        let soundURL = Bundle.main.url(forResource: soundString, withExtension: "mp3")
-        beepsound =  try! AVAudioPlayer(contentsOf: soundURL!)
+        if let soundURL = Bundle.main.url(forResource: soundString, withExtension: "mp3") { do {
+            try beepsound =  AVAudioPlayer(contentsOf: soundURL)
+            } catch {
+            print("beepsound failed")
+            }
         beepsound.volume = 0.5
         beepsound.play()
+        }
     }
 
     func envSound(_ soundString: String) {
@@ -464,13 +468,15 @@ fireTorp()
     }
 
     func setupView() {
-        scnView = self.view as! SCNView
+        scnView = self.view as? SCNView
         scnView.showsStatistics = false
         scnView.allowsCameraControl = false
         scnView.autoenablesDefaultLighting = true
         scnView.isPlaying = true
         scnView.backgroundColor = UIColor.black
-        joystickControl.movable = true
+        joystickControl.movable = false
+        joystickControl.baseAlpha = 0.3
+        joystickControl.alpha = 0.5
         //scnView.debugOptions = .showPhysicsShapes
 
     }
@@ -572,11 +578,11 @@ fireTorp()
         self.zylonShields.physicsBody?.isAffectedByGravity = false
         self.zylonShields.physicsBody?.contactTestBitMask =  objectCategories.zylonShip
         self.zylonShields.physicsBody?.categoryBitMask =  objectCategories.zylonShip
-        let shieldMaterial = SCNMaterial()
-        shieldMaterial.diffuse.contents =  UIColor.green
-        shieldMaterial.isDoubleSided = true
-        shieldMaterial.emission.contents =  UIColor.green
-        self.zylonShields.geometry?.materials = [shieldMaterial, shieldMaterial]
+//        let shieldMaterial = SCNMaterial()
+//        shieldMaterial.diffuse.contents =  UIColor.green
+    //    shieldMaterial.isDoubleSided = true
+       // shieldMaterial.emission.contents =  UIColor.green
+      //  self.zylonShields.geometry?.materials = [shieldMaterial, shieldMaterial]
 
         // add hull
         let smallerSphere = SCNSphere(radius: 2.25)
@@ -645,7 +651,7 @@ fireTorp()
         for (index, element) in self.zylonFleet.sectorA.enumerated() {
 
             if element > 0 {
-            let sphereNode = SCNNode(geometry: SCNSphere(radius: 0.12))
+            let sphereNode = SCNNode(geometry: SCNSphere(radius: Constants.galacticMapBlipRadius))
             sphereNode.geometry?.firstMaterial?.diffuse.contents = UIColor.red
             //sphereNode.geometry = SCNShape
 
@@ -665,7 +671,7 @@ fireTorp()
         for (index, element) in self.zylonFleet.sectorB.enumerated() {
 
             if element > 0 {
-                let sphereNode = SCNNode(geometry: SCNSphere(radius: 0.12))
+                let sphereNode = SCNNode(geometry: SCNSphere(radius: Constants.galacticMapBlipRadius))
                 sphereNode.geometry?.firstMaterial?.diffuse.contents = UIColor.red
                 //sphereNode.geometry = SCNShape
 
@@ -685,7 +691,7 @@ fireTorp()
         for (index, element) in self.zylonFleet.sectorC.enumerated() {
 
             if element > 0 {
-                let sphereNode = SCNNode(geometry: SCNSphere(radius: 0.12))
+                let sphereNode = SCNNode(geometry: SCNSphere(radius: Constants.galacticMapBlipRadius))
                 sphereNode.geometry?.firstMaterial?.diffuse.contents = UIColor.red
                 //sphereNode.geometry = SCNShape
 
@@ -705,7 +711,7 @@ fireTorp()
         for (index, element) in self.zylonFleet.sectorD.enumerated() {
 
             if element > 0 {
-                let sphereNode = SCNNode(geometry: SCNSphere(radius: 0.12))
+                let sphereNode = SCNNode(geometry: SCNSphere(radius: Constants.galacticMapBlipRadius))
                 sphereNode.geometry?.firstMaterial?.diffuse.contents = UIColor.red
                 //sphereNode.geometry = SCNShape
 
@@ -750,7 +756,7 @@ fireTorp()
 
     func setSpeed(_ newSpeed: Int) {
 		let speedChange = abs(newSpeed - ship.currentSpeed)
-        SCNTransaction.animationDuration = Double(speedChange)
+    //    SCNTransaction.animationDuration = Double(speedChange)
 		SCNTransaction.begin()
 		ship.currentSpeed = newSpeed
         DispatchQueue.main.async {
@@ -780,16 +786,36 @@ fireTorp()
     }
 
     @IBAction func toggleShields(_ sender: UIButton) {
-        if ship.shields {
-            ship.shields = false
+        if ship.shieldsAreUp {
+            ship.shieldsAreUp = false
             envSound("shieldsDown")
         } else {
-            ship.shields = true
+            ship.shieldsAreUp = true
             envSound("shieldsUp")
 
         }    }
 
     // MARK: - Game Event functions
+
+    func zylonShipHit() {
+        if ship.shieldsAreUp && ship.shieldStrength > 0 {
+            ship.shieldStrength = ship.shieldStrength - 10
+        }
+        if ship.shieldStrength <= 0 {
+            ship.shieldStrength = 0
+            ship.damage.shieldIntegrity = .destroyed
+        }
+        print("Zylon Ship hit! Current Shield Strenth: \(ship.shieldStrength)")
+        print("Current ship Damage: \(ship.damage)")
+
+        // if shield strength == 0, destroy shields
+
+        // if shields are down, damage ship
+
+    }
+    func damageShip() {
+
+    }
 
     func updateStars() {
         for star in self.starSprites {
@@ -853,14 +879,18 @@ fireTorp()
 
     }
     func performWarp() {
+        if !self.tacticalDisplay.isHidden {
+            toggleTacticalDispplay(self)
+        }
         resetWarpgrid()
+
         self.forwardCameraNode.camera?.wantsHDR = false
-        self.forwardCameraNode.camera?.motionBlurIntensity = 1.0
+      //  self.forwardCameraNode.camera?.motionBlurIntensity = 1.0
 
         // WARP!
         SCNTransaction.begin()
-        SCNTransaction.animationDuration = 1.5
-			self.setSpeed(30)
+     //   SCNTransaction.animationDuration = 1.5
+			self.setSpeed(10)
             DispatchQueue.main.async {
 			self.stepperSpeed.value = 9
             }
@@ -946,7 +976,7 @@ fireTorp()
                 roty = abs(rotx.truncatingRemainder(dividingBy: 360))
             }
 
-            if self.ship.shields {
+            if self.ship.shieldsAreUp {
                 self.shieldsDisplay.text = "Shields: UP"
             } else {
                 self.shieldsDisplay.text = "Shields: DOWN"
@@ -985,12 +1015,12 @@ fireTorp()
                 print("target sector:\(String(describing: selectedNode.name))")
                 // highlight it
                 SCNTransaction.begin()
-                SCNTransaction.animationDuration = 0.5
+             //   SCNTransaction.animationDuration = 0.5
 
                 // on completion - unhighlight
                 SCNTransaction.completionBlock = {
                     SCNTransaction.begin()
-                    SCNTransaction.animationDuration = 0.5
+              //      SCNTransaction.animationDuration = 0.5
 
                     //   material.emission.contents = UIColor.black
 
@@ -1059,15 +1089,12 @@ fireTorp()
             }
 
 			// remove warpgrid - refactor to be time since warpgrid
-            if ((thisNode.presentation.position.z > 110) && (thisNode.name == "warpGrid")) {
-				SCNTransaction.animationDuration = 0
-				SCNTransaction.begin()
+            if ((thisNode.worldPosition.z > 150) && (thisNode.name == "warpGrid")) {
 				thisNode.opacity = 0
-				SCNTransaction.commit()
             }
-
+            // update shield display to current 
             if thisNode.name == "zylonShields" {
-            thisNode.isHidden = !self.ship.shields
+            thisNode.isHidden = !self.ship.shieldsAreUp
             }
 
             self.numberOfHumanShotsOnscreen = localNumberOfHumonShotsOnscreen
@@ -1089,13 +1116,20 @@ fireTorp()
     // MARK: - Collision Code
 
     func physicsWorld(_ world: SCNPhysicsWorld, didBegin contact: SCNPhysicsContact) {
+        print("contact.nodeA.name: \(String(describing: contact.nodeA.name))")
+        // print("contact.nodeA.position: \(contact.nodeA.worldPosition)")
+        print("contact.nodeB.name: \(String(describing: contact.nodeB.name))")
+        //  print("contact.nodeB.position: \(contact.nodeB.worldPosition)")
+
         if (contact.nodeA.name == "zylonShields") {
             self.environmentSound("forcefieldHit")
+            zylonShipHit()
             contact.nodeB.removeFromParentNode()
             return
         } else {
         if (contact.nodeB.name == "zylonShields") {
             self.environmentSound("forcefieldHit")
+            zylonShipHit()
            contact.nodeA.removeFromParentNode()
             return
         } else
@@ -1119,10 +1153,6 @@ fireTorp()
             } else {
                 explosionNode.position = contact.nodeB.presentation.position
             }
-            print("contact.nodeA.name: \(String(describing: contact.nodeA.name))")
-           // print("contact.nodeA.position: \(contact.nodeA.worldPosition)")
-            print("contact.nodeB.name: \(String(describing: contact.nodeB.name))")
-          //  print("contact.nodeB.position: \(contact.nodeB.worldPosition)")
 
             //scene.rootNode.addChildNode(explosionNode)
             self.sectorObjectsNode.addChildNode(explosionNode)
@@ -1134,6 +1164,8 @@ fireTorp()
         }
         }
     }
+
+    // MARK: - Game Loop
 
     func renderer(_ renderer: SCNSceneRenderer, didApplyAnimationsAtTime time: TimeInterval) {
      }
@@ -1149,6 +1181,8 @@ fireTorp()
         updateStars()
 		cleanSceneAndUpdateSectorNodeObjects()
         updateTactical()
+        shipHud.shields.isHidden = !ship.shieldsAreUp
+
     }
 
     // MARK: - Generic iOS Setup

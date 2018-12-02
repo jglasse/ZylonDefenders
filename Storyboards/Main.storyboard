@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BV1-FR-VrT">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BV1-FR-VrT">
     <device id="retina4_7" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -93,12 +93,12 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</stri
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="x7E-zj-YIL" userLabel="UpDown">
-                                <rect key="frame" x="74" y="180" width="32" height="32"/>
+                                <rect key="frame" x="74" y="180" width="42" height="28"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <gestureRecognizers/>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="PoQ-ji-oep" userLabel="Command Stack">
-                                <rect key="frame" x="195" y="308" width="442" height="50"/>
+                                <rect key="frame" x="267" y="308" width="370" height="50"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PFE-MW-5wO">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
@@ -121,7 +121,7 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</stri
                                         <fontDescription key="fontDescription" name="Y14.5M" family="Y14.5M" pointSize="15"/>
                                         <state key="normal" title="TACT"/>
                                         <connections>
-                                            <action selector="showTactical:" destination="BV1-FR-VrT" eventType="touchUpInside" id="TJ7-ne-dI6"/>
+                                            <action selector="toggleTacticalDispplay:" destination="BV1-FR-VrT" eventType="touchUpInside" id="TJ7-ne-dI6"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZGc-WM-dzj">
@@ -160,18 +160,10 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</stri
                                             <action selector="toggleView:" destination="BV1-FR-VrT" eventType="touchUpInside" id="vMe-A4-X6C"/>
                                         </connections>
                                     </button>
-                                    <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rab-IC-0Oq">
-                                        <rect key="frame" x="400" y="0.0" width="42" height="50"/>
-                                        <fontDescription key="fontDescription" name="Y14.5M" family="Y14.5M" pointSize="15"/>
-                                        <state key="normal" title="FIRE"/>
-                                        <connections>
-                                            <action selector="fireTorpedo:" destination="BV1-FR-VrT" eventType="touchUpInside" id="yvJ-qR-tHr"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="wgh-g3-0pN" userLabel="Speed Stack">
-                                <rect key="frame" x="20" y="319" width="122" height="29"/>
+                                <rect key="frame" x="20" y="319" width="121.5" height="29"/>
                                 <subviews>
                                     <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="5" maximumValue="9" translatesAutoresizingMaskIntoConstraints="NO" id="to0-eG-n4V">
                                         <rect key="frame" x="0.0" y="0.0" width="94" height="29"/>
@@ -184,7 +176,7 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</stri
                                         </connections>
                                     </stepper>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UfY-Ip-g2Z">
-                                        <rect key="frame" x="114" y="0.0" width="8" height="29"/>
+                                        <rect key="frame" x="114" y="0.0" width="7.5" height="29"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="7.5" id="EfZ-E1-IeI"/>
                                             <constraint firstAttribute="height" constant="29" id="sI6-4S-KdW"/>
@@ -257,6 +249,16 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</stri
                                     </label>
                                 </subviews>
                             </stackView>
+                            <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eo0-Hl-05V">
+                                <rect key="frame" x="417" y="0.0" width="251" height="311"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="251" id="AZe-R8-L6q"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Y14.5M" family="Y14.5M" pointSize="15"/>
+                                <connections>
+                                    <action selector="fireTorpedo:" destination="BV1-FR-VrT" eventType="touchUpInside" id="sLl-7B-86c"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -265,9 +267,12 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</stri
                             <constraint firstItem="wgh-g3-0pN" firstAttribute="leading" secondItem="TBr-jy-nsA" secondAttribute="leadingMargin" id="FPN-AY-kBf"/>
                             <constraint firstAttribute="trailingMargin" secondItem="PoQ-ji-oep" secondAttribute="trailing" constant="10" id="L7B-J5-Gtn"/>
                             <constraint firstItem="z62-zF-Ty3" firstAttribute="top" secondItem="cOD-NV-RaV" secondAttribute="bottom" constant="20" id="Up0-Ew-Y3W"/>
+                            <constraint firstAttribute="trailing" secondItem="Eo0-Hl-05V" secondAttribute="trailing" constant="-1" id="XPo-FJ-bZW"/>
                             <constraint firstItem="wgh-g3-0pN" firstAttribute="top" secondItem="6Sn-Ch-wiN" secondAttribute="bottom" constant="8" id="hjs-y0-3P5"/>
                             <constraint firstItem="z62-zF-Ty3" firstAttribute="leading" secondItem="TBr-jy-nsA" secondAttribute="leadingMargin" id="prt-qj-69b"/>
+                            <constraint firstItem="L0B-TD-jaq" firstAttribute="top" secondItem="Eo0-Hl-05V" secondAttribute="bottom" constant="64" id="ree-Ac-6IQ"/>
                             <constraint firstItem="L0B-TD-jaq" firstAttribute="top" secondItem="PoQ-ji-oep" secondAttribute="bottom" constant="17" id="rrG-ZO-3Np"/>
+                            <constraint firstItem="Eo0-Hl-05V" firstAttribute="top" secondItem="cOD-NV-RaV" secondAttribute="bottom" id="tT0-Nb-Lec"/>
                         </constraints>
                     </view>
                     <connections>

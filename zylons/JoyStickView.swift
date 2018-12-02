@@ -37,7 +37,7 @@ public final class JoyStickView: UIView {
 
     /// If `true` the joystick will move around in the parant's view so that the joystick handle is always at a
     /// displacement of 1.0. This is the default mode of operation. Setting to `false` will keep the view fixed.
-    public var movable: Bool = true
+    public var movable: Bool = false
     public var movableBounds: CGRect?
 
     /// The opacity of the base of the joystick. Note that this is different than the view's overall opacity setting.
