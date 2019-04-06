@@ -27,17 +27,10 @@ import SceneKit
 //}
 
 enum Quadrant: String {
-    case alpha
-    case beta
-    case gama
-    case delta
-}
-
-enum ShipDamage {
-	case shieldGeneratorDestroyed
-	case hullBreach
-	case computerDamaged
-	case shipDestroyed
+    case alpha = "alpha"
+    case beta = "beta"
+    case gamma = "gamma"
+    case delta = "delta"
 }
 
 struct ShipDisplay {
@@ -68,7 +61,6 @@ class ZylonShip: SCNNode {
     override init() {
         super.init()
         self.geometry = SCNSphere(radius: 0.20)
-      //  self.physicsBody = SCNPhysicsBody(type: .kinematic, shape: nil)
 
     }
 

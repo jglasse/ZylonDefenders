@@ -50,7 +50,7 @@ class HUD: SKScene {
         self.backgroundColor = UIColor.clear
         shields = SKShapeNode(rectOf: size)
         shields.position = CGPoint(x: self.frame.midX, y: self.frame.midY)
-        shields.alpha = 0.4
+        shields.alpha = 0.2
         shields.fillColor = SKColor.blue
         shields.strokeColor =  UIColor.clear
         computerStatus.fontName = "Y14.5M 17.0"

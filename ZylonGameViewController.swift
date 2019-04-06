@@ -141,7 +141,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 
         } else {
             scnView.present(galacticMap!, with: transition, incomingPointOfView: galacticMap?.rootNode.childNode(withName: "camera", recursively: true), completionHandler: {
-                self.scnView.allowsCameraControl = true
+                self.scnView.allowsCameraControl = false
             })
 
         }
@@ -585,10 +585,10 @@ fireTorp()
       //  self.zylonShields.geometry?.materials = [shieldMaterial, shieldMaterial]
 
         // add hull
-        let smallerSphere = SCNSphere(radius: 2.25)
+        let zylonHullSphere = SCNSphere(radius: 3.0)
         let zylonHull = SCNNode()
-        zylonHull.geometry  = smallerSphere
-        zylonHull.opacity = 0
+        zylonHull.geometry  = zylonHullSphere
+        zylonHull.opacity = 0.0064
         zylonHull.worldPosition = SCNVector3(x: 0, y: 0, z: 0)
         zylonHull.name = "zylonHull"
         zylonHull.physicsBody = SCNPhysicsBody(type: .kinematic, shape: nil)
@@ -596,7 +596,7 @@ fireTorp()
         zylonHull.physicsBody?.contactTestBitMask =  objectCategories.zylonShip
         zylonHull.physicsBody?.categoryBitMask =  objectCategories.zylonShip
 
-        mainGameScene.rootNode.addChildNode(zylonShields)
+     //   mainGameScene.rootNode.addChildNode(zylonShields)
         mainGameScene.rootNode.addChildNode(zylonHull)
 
         sectorScanCameraNode.camera = SCNCamera()
@@ -657,9 +657,9 @@ fireTorp()
 
             var childNodeName: String
             if index < 10 {
-                 childNodeName = "SECTOR_1_00"+String(index)
+                 childNodeName = "SECTOR_ALPHA_00"+String(index)
             } else {
-                 childNodeName = "SECTOR_1_0"+String(index)
+                 childNodeName = "SECTOR_ALPHA_0"+String(index)
             }
             galacticMap?.rootNode.childNode(withName: childNodeName, recursively: true)?.addChildNode(sphereNode)
                 print("childNodeName: \(childNodeName) should have \(element) zylons from SectorA[\(index)]")
@@ -677,9 +677,9 @@ fireTorp()
 
                 var childNodeName: String
                 if index < 10 {
-                    childNodeName = "SECTOR_2_00"+String(index)
+                    childNodeName = "SECTOR_BETA_00"+String(index)
                 } else {
-                    childNodeName = "SECTOR_2_0"+String(index)
+                    childNodeName = "SECTOR_BETA_0"+String(index)
                 }
                 galacticMap?.rootNode.childNode(withName: childNodeName, recursively: true)?.addChildNode(sphereNode)
                 print("childNodeName: \(childNodeName) should have \(element) zylons from SectorA[\(index)]")
@@ -697,9 +697,9 @@ fireTorp()
 
                 var childNodeName: String
                 if index < 10 {
-                    childNodeName = "SECTOR_3_00"+String(index)
+                    childNodeName = "SECTOR_GAMMA_00"+String(index)
                 } else {
-                    childNodeName = "SECTOR_3_0"+String(index)
+                    childNodeName = "SECTOR_GAMMA_0"+String(index)
                 }
                 galacticMap?.rootNode.childNode(withName: childNodeName, recursively: true)?.addChildNode(sphereNode)
                 print("childNodeName: \(childNodeName) should have \(element) zylons from SectorA[\(index)]")
@@ -798,21 +798,23 @@ fireTorp()
     // MARK: - Game Event functions
 
     func zylonShipHit() {
+        print("zylonShipHit entered. sheilds: \(ship.shieldsAreUp)")
+        print("ship.shieldStrength: \(ship.shieldStrength)")
+
         if ship.shieldsAreUp && ship.shieldStrength > 0 {
+            self.environmentSound("forcefieldHit")
             ship.shieldStrength = ship.shieldStrength - 10
+            print("SHIELDS HAVE HELD! Current Shield Strenth: \(ship.shieldStrength)")
         }
-        if ship.shieldStrength <= 0 {
-            ship.shieldStrength = 0
+        if ship.shieldStrength <= 0 || !ship.shieldsAreUp {
+            self.environmentSound("hullHit")
+
+            //ship.shieldStrength = 0
             ship.damage.shieldIntegrity = .destroyed
+            print("OUTER HULL HIT! Current ship Damage: \(ship.damage)")
         }
-        print("Zylon Ship hit! Current Shield Strenth: \(ship.shieldStrength)")
-        print("Current ship Damage: \(ship.damage)")
-
-        // if shield strength == 0, destroy shields
-
-        // if shields are down, damage ship
-
     }
+
     func damageShip() {
 
     }
@@ -1117,32 +1119,21 @@ fireTorp()
     // MARK: - Collision Code
 
     func physicsWorld(_ world: SCNPhysicsWorld, didBegin contact: SCNPhysicsContact) {
-        print("contact.nodeA.name: \(String(describing: contact.nodeA.name))")
-        print("contact.nodeB.name: \(String(describing: contact.nodeB.name))")
+        print("Contact!")
+        print("nodeA: \(String(describing: contact.nodeA.name))")
+        print("nodeB: \(String(describing: contact.nodeB.name))")
+        print("shield status at time of contact: \(ship.shieldsAreUp)")
 
-        if (contact.nodeA.name == "zylonShields") {
-            self.environmentSound("forcefieldHit")
+        if (contact.nodeA.name == "zylonHull") {
             zylonShipHit()
             contact.nodeB.removeFromParentNode()
             return
         } else {
-        if (contact.nodeB.name == "zylonShields") {
-            self.environmentSound("forcefieldHit")
+        if (contact.nodeB.name == "zylonHull") {
             zylonShipHit()
            contact.nodeA.removeFromParentNode()
             return
-        } else
-
-            if (contact.nodeB.name == "zylonHull") {
-                self.environmentSound("shipHullHit")
-                contact.nodeA.removeFromParentNode()
-                return
-            } else
-                if (contact.nodeA.name == "zylonHull") {
-                    self.environmentSound("shipHullHit")
-                    contact.nodeA.removeFromParentNode()
-                    return
-                } else {
+        } else {
 
         DispatchQueue.main.async {
             let explosionNode = ShipExplosion()
