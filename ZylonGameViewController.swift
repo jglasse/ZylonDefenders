@@ -1118,9 +1118,7 @@ fireTorp()
 
     func physicsWorld(_ world: SCNPhysicsWorld, didBegin contact: SCNPhysicsContact) {
         print("contact.nodeA.name: \(String(describing: contact.nodeA.name))")
-        // print("contact.nodeA.position: \(contact.nodeA.worldPosition)")
         print("contact.nodeB.name: \(String(describing: contact.nodeB.name))")
-        //  print("contact.nodeB.position: \(contact.nodeB.worldPosition)")
 
         if (contact.nodeA.name == "zylonShields") {
             self.environmentSound("forcefieldHit")

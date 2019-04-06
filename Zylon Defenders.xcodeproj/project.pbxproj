@@ -100,6 +100,8 @@
 		E192623720A79E4600AB93F2 /* Starfield 2048x1024LB.png in Resources */ = {isa = PBXBuildFile; fileRef = E192623520A79E4600AB93F2 /* Starfield 2048x1024LB.png */; };
 		E19BC7B122594F2500A1DA6B /* photon_sound.m4a in Resources */ = {isa = PBXBuildFile; fileRef = E19BC7AD22594F2500A1DA6B /* photon_sound.m4a */; };
 		E19BC7B222594F2500A1DA6B /* hullHit.m4a in Resources */ = {isa = PBXBuildFile; fileRef = E19BC7AE22594F2500A1DA6B /* hullHit.m4a */; };
+		E19BC7BB2259576700A1DA6B /* shieldsUp.m4a in Resources */ = {isa = PBXBuildFile; fileRef = E19BC7B622594FED00A1DA6B /* shieldsUp.m4a */; };
+		E19BC7BC2259576700A1DA6B /* shieldsDown.m4a in Resources */ = {isa = PBXBuildFile; fileRef = E19BC7B022594F2500A1DA6B /* shieldsDown.m4a */; };
 		E19BFF3F1EDFDEED00FCC5EE /* ZylonShip.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19BFF3E1EDFDEED00FCC5EE /* ZylonShip.swift */; };
 		E19F3F311F64647600F612A7 /* UtilityFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19F3F301F64647600F612A7 /* UtilityFunctions.swift */; };
 		E19F3F331F6494AB00F612A7 /* JoyStickView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19F3F321F6494AB00F612A7 /* JoyStickView.swift */; };
@@ -222,7 +224,6 @@
 		E192623520A79E4600AB93F2 /* Starfield 2048x1024LB.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Starfield 2048x1024LB.png"; sourceTree = "<group>"; };
 		E19BC7AD22594F2500A1DA6B /* photon_sound.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = photon_sound.m4a; sourceTree = "<group>"; };
 		E19BC7AE22594F2500A1DA6B /* hullHit.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = hullHit.m4a; sourceTree = "<group>"; };
-		E19BC7AF22594F2500A1DA6B /* shieldsUp.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = shieldsUp.m4a; sourceTree = "<group>"; };
 		E19BC7B022594F2500A1DA6B /* shieldsDown.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = shieldsDown.m4a; sourceTree = "<group>"; };
 		E19BC7B522594FCB00A1DA6B /* photon_sound.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = photon_sound.m4a; path = ../../../Desktop/DT/shields/photon_sound.m4a; sourceTree = "<group>"; };
 		E19BC7B622594FED00A1DA6B /* shieldsUp.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = shieldsUp.m4a; path = ../../../Desktop/DT/shields/shieldsUp.m4a; sourceTree = "<group>"; };
@@ -551,7 +552,6 @@
 				E19BC7AE22594F2500A1DA6B /* hullHit.m4a */,
 				E19BC7B022594F2500A1DA6B /* shieldsDown.m4a */,
 				E19BC7AD22594F2500A1DA6B /* photon_sound.m4a */,
-				E19BC7AF22594F2500A1DA6B /* shieldsUp.m4a */,
 				E1284C4F203A58940022AE83 /* forcefieldHit.m4a */,
 				E168B76F20468A69001061FE /* shipHullHit.m4a */,
 				E141B9B01ED77A6D00AB2A8C /* warpEnd.aif */,
@@ -702,6 +702,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E19BC7BB2259576700A1DA6B /* shieldsUp.m4a in Resources */,
+				E19BC7BC2259576700A1DA6B /* shieldsDown.m4a in Resources */,
 				E1EA0D6E1FE9C59A002BFB0F /* Glass_TTY_VT220.ttf in Resources */,
 				E16E28B720564A41002362C1 /* warpEnd.aif in Resources */,
 				E192623320A79A8600AB93F2 /* Starfield 2048x1024B.png in Resources */,
