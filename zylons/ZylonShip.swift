@@ -10,21 +10,21 @@ import UIKit
 import SceneKit
 
 // Mark: - Damage enums
-enum ImpulseEngineDamage {
-	case noDamage
-	case plasmaManifoldFailure
-	case engineFailure
-}
-
-enum ComputerDamage {
-	case viralIntrusion
-	case targetingInoperative
-	case autoPilotInoperative
-	case shortRangeScannerInoperative
-	case longRangeScannerInoperative
-    case empathyCircuitFailure
-
-}
+//enum ImpulseEngineDamage {
+//    case noDamage
+//    case plasmaManifoldFailure
+//    case engineFailure
+//}
+//
+//enum ComputerDamage {
+//    case viralIntrusion
+//    case targetingInoperative
+//    case autoPilotInoperative
+//    case shortRangeScannerInoperative
+//    case longRangeScannerInoperative
+//    case empathyCircuitFailure
+//
+//}
 
 enum Quadrant: String {
     case alpha
@@ -93,20 +93,27 @@ class ZylonShip: SCNNode {
 		var phi = 0.0
 	}
 
-    enum DamageAmount {
-        case functional
-        case damaged
-        case severelyDamaged
-        case destroyed
+    enum DamageAmount: Int, CaseIterable {
+        case functional = 0
+        case damaged = 1
+        case severelyDamaged = 2
+        case destroyed = 3
+
+        mutating func increase() {
+            self = DamageAmount(rawValue: self.rawValue + 1) ?? .destroyed
+        }
     }
 
     struct Damage {
-        var babelfishCircuit = DamageAmount.functional
-        var genderIdentityCircuit = DamageAmount.functional
+        // core systems
         var outerHull = DamageAmount.functional
         var innerHull = DamageAmount.functional
         var shieldIntegrity = DamageAmount.functional
         var engineIntegrity = DamageAmount.functional
+
+        // 
+        var babelfishCircuit = DamageAmount.functional
+        var genderIdentityCircuit = DamageAmount.functional
     }
 
 	struct ShipSystems {
@@ -117,6 +124,19 @@ class ZylonShip: SCNNode {
 
 	var range = [Float]()
 
+    func takeDamage() {
+        let dice = randIntRange(lower: 1, upper: 6)
+
+//        switch dice {
+//        case 1:
+//            if self.damage.babelfishCircuit.rawValue < 3 { self.damage.babelfishCircuit = self.damage.babelfishCircuit.increase() }
+//        case 2:
+//            if self.damage.babelfishCircuit.rawValue < 3 { self.damage.genderIdentityCircuit.rawValue = self.damage.genderIdentityCircuit.rawValue + 1 }
+//
+//        default:
+//            return
+//        }
+    }
     func updateSector() {
         self.currentSector.z+=1
     }

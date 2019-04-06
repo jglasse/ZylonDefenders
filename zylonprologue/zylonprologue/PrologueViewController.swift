@@ -10,8 +10,8 @@ import UIKit
 import AVFoundation
 import SpriteKit
 
-class MyViewController: UIViewController, AVAudioPlayerDelegate {
-    let writeInterval = 0.040
+class PrologueViewController: UIViewController, AVAudioPlayerDelegate {
+    let writeInterval = 0.10
     let soundURL = Bundle.main.url(forResource: "telemetry2", withExtension: "aiff")
 
     lazy var telemetryTimer = Timer(timeInterval: writeInterval, target: self, selector: (#selector(self.advanceTelemetry)), userInfo: nil, repeats: true)
@@ -76,7 +76,8 @@ DEFEND THE EMPIRE. DRIVE BACK THE HUMONS. SAVE THE ZYLON RACE.
 
         self.currentMessageIndex = 0
         self.currentLetterIndex = 0
-        self.receiveNewTelemetry(message: message1)
+        self.displayNewTelemetry(message: message1)
+
     }
 
     func playTelemetrySound() {
@@ -90,6 +91,10 @@ DEFEND THE EMPIRE. DRIVE BACK THE HUMONS. SAVE THE ZYLON RACE.
 
     }
 
+    func receiveTelemetry(location: CGPoint, message: String, delay: Double) {
+        var tempTelemetryTimer = Timer(timeInterval: delay, target: self, selector: (#selector(self.advanceTelemetry)), userInfo: nil, repeats: true)
+
+    }
     func receive() {
         self.transmissionView.text = self.existingTelemetry
         self.currentLetterIndex += 1
@@ -104,19 +109,21 @@ DEFEND THE EMPIRE. DRIVE BACK THE HUMONS. SAVE THE ZYLON RACE.
         }
     }
 
-    func receiveNewTelemetry(message: String) {
+    func displayNewTelemetry(message: String) {
         self.currentLetterIndex = 0
         let mainQ = DispatchQueue.main
         let  bgQ = DispatchQueue.global()
         let sleepamount = DispatchTime.now() + 0.5
-        bgQ.async {
+        bgQ.sync {
         for letter in message {
             self.existingTelemetry += String(letter)
+            print(letter)
             self.currentLetterIndex += 1
             mainQ.asyncAfter(deadline: sleepamount, execute: {
                 self.transmissionView.text = self.existingTelemetry
             if self.currentLetterIndex < self.message1.count-1 {
                     self.playTelemetrySound()
+
             }
             })
             self.telemetryPlayer?.stop()

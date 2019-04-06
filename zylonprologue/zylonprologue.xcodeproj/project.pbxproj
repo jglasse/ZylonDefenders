@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		E11859561FBD494000D81729 /* wopr.aiff in Resources */ = {isa = PBXBuildFile; fileRef = E11859551FBD494000D81729 /* wopr.aiff */; };
 		E1915C841FB6936100E1D31D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1915C831FB6936100E1D31D /* AppDelegate.swift */; };
-		E1915C861FB6936100E1D31D /* MyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1915C851FB6936100E1D31D /* MyViewController.swift */; };
+		E1915C861FB6936100E1D31D /* PrologueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1915C851FB6936100E1D31D /* PrologueViewController.swift */; };
 		E1915C891FB6936100E1D31D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1915C871FB6936100E1D31D /* Main.storyboard */; };
 		E1915C8B1FB6936100E1D31D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E1915C8A1FB6936100E1D31D /* Assets.xcassets */; };
 		E1915C8E1FB6936100E1D31D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1915C8C1FB6936100E1D31D /* LaunchScreen.storyboard */; };
@@ -23,7 +23,7 @@
 		E11859551FBD494000D81729 /* wopr.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = wopr.aiff; sourceTree = "<group>"; };
 		E1915C801FB6936100E1D31D /* zylonprologue.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = zylonprologue.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1915C831FB6936100E1D31D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		E1915C851FB6936100E1D31D /* MyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyViewController.swift; sourceTree = "<group>"; };
+		E1915C851FB6936100E1D31D /* PrologueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrologueViewController.swift; sourceTree = "<group>"; };
 		E1915C881FB6936100E1D31D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E1915C8A1FB6936100E1D31D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E1915C8D1FB6936100E1D31D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -65,7 +65,7 @@
 			isa = PBXGroup;
 			children = (
 				E1915C831FB6936100E1D31D /* AppDelegate.swift */,
-				E1915C851FB6936100E1D31D /* MyViewController.swift */,
+				E1915C851FB6936100E1D31D /* PrologueViewController.swift */,
 				E1B6B777201152B100A46E14 /* telemetry2.aiff */,
 				E1915C971FB6957100E1D31D /* Glass_TTY_VT220.ttf */,
 				E11859551FBD494000D81729 /* wopr.aiff */,
@@ -111,6 +111,7 @@
 				TargetAttributes = {
 					E1915C7F1FB6936100E1D31D = {
 						CreatedOnToolsVersion = 9.1;
+						LastSwiftMigration = 1010;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -156,7 +157,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E1915C861FB6936100E1D31D /* MyViewController.swift in Sources */,
+				E1915C861FB6936100E1D31D /* PrologueViewController.swift in Sources */,
 				E1915C841FB6936100E1D31D /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -305,7 +306,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.appetize.mobileSDK.zylonprologue;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -321,7 +322,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.appetize.mobileSDK.zylonprologue;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
