@@ -40,8 +40,8 @@ struct ShipDisplay {
 
 struct Sector {
     var quadrant: Quadrant = .alpha
-	var y = 0
-	var z = 0
+	var qx = 0
+	var qy = 0
 }
 
 class ZylonShip: SCNNode {
@@ -56,7 +56,7 @@ class ZylonShip: SCNNode {
 	var currentTorpedoBay = 1
     var sectorLocation = locationInSector(x: 500, y: 500, z: 500)
     var sector = currentSector(quadrant: .alpha, y: 30, z: 30)
-    var damage = Damage()
+    var shipSystems = ShipsSystems()
 
     override init() {
         super.init()
@@ -85,7 +85,7 @@ class ZylonShip: SCNNode {
 		var phi = 0.0
 	}
 
-    enum DamageAmount: Int, CaseIterable {
+    enum DamageAmount: Int {
         case functional = 0
         case damaged = 1
         case severelyDamaged = 2
@@ -96,14 +96,14 @@ class ZylonShip: SCNNode {
         }
     }
 
-    struct Damage {
+    struct ShipsSystems {
         // core systems
         var outerHull = DamageAmount.functional
         var innerHull = DamageAmount.functional
         var shieldIntegrity = DamageAmount.functional
         var engineIntegrity = DamageAmount.functional
 
-        // 
+        // comedic systems
         var babelfishCircuit = DamageAmount.functional
         var genderIdentityCircuit = DamageAmount.functional
     }
@@ -111,25 +111,25 @@ class ZylonShip: SCNNode {
 	struct ShipSystems {
 		var shieldStrength = 0
 		var warpEnergy = 1000.0
-        var shipDamage = Damage()
+        var shipDamage = ShipsSystems()
 	}
 
 	var range = [Float]()
 
     func takeDamage() {
-        let dice = randIntRange(lower: 1, upper: 6)
-
+//        let dice = randIntRange(lower: 1, upper: 6)
+//
 //        switch dice {
 //        case 1:
-//            if self.damage.babelfishCircuit.rawValue < 3 { self.damage.babelfishCircuit = self.damage.babelfishCircuit.increase() }
+//            if self.shipSystems.babelfishCircuit.rawValue < 3 { self.shipSystems.babelfishCircuit = DamageAmount(rawValue: self.shipSystems.babelfishCircuit+1)  }
 //        case 2:
-//            if self.damage.babelfishCircuit.rawValue < 3 { self.damage.genderIdentityCircuit.rawValue = self.damage.genderIdentityCircuit.rawValue + 1 }
+//            if self.shipSystems.genderIdentityCircuit.rawValue < 3 { self.shipSystems.genderIdentityCircuit = self.shipSystems.genderIdentityCircuit.rawValue + 1 }
 //
 //        default:
 //            return
 //        }
     }
     func updateSector() {
-        self.currentSector.z+=1
+        self.currentSector.qy+=1
     }
 }

@@ -567,23 +567,6 @@ fireTorp()
 
         self.ship.addChildNode(rearCameraNode)
 
-        //add shields
-        let sphere = SCNSphere(radius: 3.0)
-        self.zylonShields.geometry  = sphere
-        self.zylonShields.opacity = 0.0064
-        self.zylonShields.isHidden = true
-        self.zylonShields.worldPosition = SCNVector3(x: 0, y: 0, z: 0)
-        self.zylonShields.name = "zylonShields"
-        self.zylonShields.physicsBody = SCNPhysicsBody(type: .kinematic, shape: nil)
-        self.zylonShields.physicsBody?.isAffectedByGravity = false
-        self.zylonShields.physicsBody?.contactTestBitMask =  objectCategories.zylonShip
-        self.zylonShields.physicsBody?.categoryBitMask =  objectCategories.zylonShip
-//        let shieldMaterial = SCNMaterial()
-//        shieldMaterial.diffuse.contents =  UIColor.green
-    //    shieldMaterial.isDoubleSided = true
-       // shieldMaterial.emission.contents =  UIColor.green
-      //  self.zylonShields.geometry?.materials = [shieldMaterial, shieldMaterial]
-
         // add hull
         let zylonHullSphere = SCNSphere(radius: 3.0)
         let zylonHull = SCNNode()
@@ -596,7 +579,6 @@ fireTorp()
         zylonHull.physicsBody?.contactTestBitMask =  objectCategories.zylonShip
         zylonHull.physicsBody?.categoryBitMask =  objectCategories.zylonShip
 
-     //   mainGameScene.rootNode.addChildNode(zylonShields)
         mainGameScene.rootNode.addChildNode(zylonHull)
 
         sectorScanCameraNode.camera = SCNCamera()
@@ -798,24 +780,22 @@ fireTorp()
     // MARK: - Game Event functions
 
     func zylonShipHit() {
-        print("zylonShipHit entered. sheilds: \(ship.shieldsAreUp)")
-        print("ship.shieldStrength: \(ship.shieldStrength)")
-
-        if ship.shieldsAreUp && ship.shieldStrength > 0 {
+        if ship.shieldsAreUp && ship.shieldStrength>0 {
             self.environmentSound("forcefieldHit")
             ship.shieldStrength = ship.shieldStrength - 10
             print("SHIELDS HAVE HELD! Current Shield Strenth: \(ship.shieldStrength)")
-        }
-        if ship.shieldStrength <= 0 || !ship.shieldsAreUp {
+        } else {
             self.environmentSound("hullHit")
-
-            //ship.shieldStrength = 0
-            ship.damage.shieldIntegrity = .destroyed
-            print("OUTER HULL HIT! Current ship Damage: \(ship.damage)")
+            damageShip()
         }
     }
 
     func damageShip() {
+        if ship.shieldStrength <= 0 && ship.shieldsAreUp {
+            ship.shipSystems.shieldIntegrity = .destroyed
+            ship.shieldsAreUp = false
+        }
+        print("OUTER HULL HIT! Ship Damage: \(ship.shipSystems)")
 
     }
 
@@ -933,12 +913,12 @@ fireTorp()
         var item = AVPlayerItem(url: soundURL!)
         audioItems.append(item)
 
-             var numString = numberstrings[ship.currentSector.y]
+             var numString = numberstrings[ship.currentSector.qx]
              soundURL = Bundle.main.url(forResource: numString, withExtension: "m4a")
              item = AVPlayerItem(url: soundURL!)
             audioItems.append(item)
 
-            numString = numberstrings[ship.currentSector.z]
+            numString = numberstrings[ship.currentSector.qy]
             soundURL = Bundle.main.url(forResource: numString, withExtension: "m4a")
             item = AVPlayerItem(url: soundURL!)
             audioItems.append(item)

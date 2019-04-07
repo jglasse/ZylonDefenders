@@ -84,8 +84,8 @@ class HUD: SKScene {
      func updateHUD() {
         if let myScene = self.parentScene {
             let myX = myScene.ship.currentSector.quadrant
-            let myY = myScene.ship.currentSector.y
-            let myZ = myScene.ship.currentSector.z
+            let myY = myScene.ship.currentSector.qx
+            let myZ = myScene.ship.currentSector.qy
             computerStatus.text = "CURRENT SECTOR: \(myX).\(myY).\(myZ)"
             if myScene.enemyShipsInSector.count>0 {
                 enemyIndicator.color = UIColor.red
