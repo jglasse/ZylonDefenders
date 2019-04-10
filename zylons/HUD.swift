@@ -44,6 +44,12 @@ class HUD: SKScene {
             self.crosshairs.isHidden = true
         }
     }
+    public func mapView() {
+        print("aft View")
+        DispatchQueue.main.async {
+            self.crosshairs.isHidden = true
+        }
+    }
 
     override init(size: CGSize) {
         super.init(size: size)

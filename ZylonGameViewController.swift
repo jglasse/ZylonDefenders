@@ -40,8 +40,14 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     var sectorScanCameraNode = SCNNode()
     let warpGrid = SCNNode()
 
-    var currentExplosionParticleSystem: SCNParticleSystem?
-	var starSprites = [SCNNode]() // array of stars to make updating them each frame easy
+    // MARK: - GameState Enums & Structs
+
+    enum ViewMode: Int {
+
+        case cockpit
+        case aftView
+        case galacticMap
+    }
 
    // var enemyDrone: SCNNode?  // this should be removed in favor of enemyShipsInSector
 
@@ -78,6 +84,13 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 
         }
     }
+
+    // MARK: - GameState Variables
+
+    var viewMode = ViewMode.cockpit
+
+    var currentExplosionParticleSystem: SCNParticleSystem?
+    var starSprites = [SCNNode]() // array of stars to make updating them each frame easy
 
     var zylonFleet = GalaxyMap(withRandomlyPlacedShips: 20, maxNumberPerSector: 3)
     var enemyShipsInSector = [HumonShip]()
@@ -118,6 +131,8 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 
     // MARK: - IBOutlets
 
+    @IBOutlet weak var galacticStack: UIStackView!
+    @IBOutlet weak var commandStack: UIStackView!
     @IBOutlet weak var joystickControl: JoyStickView!
     @IBOutlet weak var tacticalDisplay: UIView!
 	@IBOutlet weak var currentSpeedDisplay: UILabel!
@@ -133,18 +148,22 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 
     @IBAction func toggleGalacticMap(_ sender: Any) {
         computerBeepSound("beep")
-        let transition = SKTransition.fade(withDuration: 0.15)
+        print("toggleingView mode from \(viewMode)...")
+        let transition = SKTransition.fade(withDuration: 0.05)
         if scnView.scene  == galacticMap {
+            self.viewMode = .cockpit
             scnView.present(mainGameScene, with: transition, incomingPointOfView: mainGameScene.rootNode.childNode(withName: "camera", recursively: true), completionHandler: {
                 self.scnView.allowsCameraControl = false
             })
 
         } else {
+            self.viewMode = .galacticMap
             scnView.present(galacticMap!, with: transition, incomingPointOfView: galacticMap?.rootNode.childNode(withName: "camera", recursively: true), completionHandler: {
                 self.scnView.allowsCameraControl = false
             })
 
         }
+        print("to \(viewMode)")
 
     }
 
@@ -786,17 +805,8 @@ fireTorp()
             print("SHIELDS HAVE HELD! Current Shield Strenth: \(ship.shieldStrength)")
         } else {
             self.environmentSound("hullHit")
-            damageShip()
+            ship.takeDamage()
         }
-    }
-
-    func damageShip() {
-        if ship.shieldStrength <= 0 && ship.shieldsAreUp {
-            ship.shipSystems.shieldIntegrity = .destroyed
-            ship.shieldsAreUp = false
-        }
-        print("OUTER HULL HIT! Ship Damage: \(ship.shipSystems)")
-
     }
 
     func updateStars() {
@@ -913,7 +923,12 @@ fireTorp()
         var item = AVPlayerItem(url: soundURL!)
         audioItems.append(item)
 
-             var numString = numberstrings[ship.currentSector.qx]
+            let quadString = ship.currentSector.quadrant.rawValue
+            soundURL = Bundle.main.url(forResource: quadString, withExtension: "m4a")
+            item = AVPlayerItem (url: soundURL!)
+            audioItems.append(item)
+
+            var numString = numberstrings[ship.currentSector.qx]
              soundURL = Bundle.main.url(forResource: numString, withExtension: "m4a")
              item = AVPlayerItem(url: soundURL!)
             audioItems.append(item)
@@ -1151,8 +1166,20 @@ fireTorp()
         updateStars()
 		cleanSceneAndUpdateSectorNodeObjects()
         updateTactical()
-        shipHud.shields.isHidden = !ship.shieldsAreUp
-
+         DispatchQueue.main.async {
+            self.shipHud.shields.isHidden = !self.ship.shieldsAreUp
+        }
+        if self.viewMode == .cockpit {
+             DispatchQueue.main.async {
+            self.galacticStack.isHidden = true
+            self.commandStack.isHidden = false
+            }
+        } else {
+            DispatchQueue.main.async {
+            self.galacticStack.isHidden = false
+            self.commandStack.isHidden = true
+            }
+        }
     }
 
     // MARK: - Generic iOS Setup

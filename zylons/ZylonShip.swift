@@ -27,10 +27,10 @@ import SceneKit
 //}
 
 enum Quadrant: String {
-    case alpha = "alpha"
-    case beta = "beta"
-    case gamma = "gamma"
-    case delta = "delta"
+    case alpha
+    case beta
+    case gamma
+    case delta
 }
 
 struct ShipDisplay {
@@ -57,6 +57,8 @@ class ZylonShip: SCNNode {
     var sectorLocation = locationInSector(x: 500, y: 500, z: 500)
     var sector = currentSector(quadrant: .alpha, y: 30, z: 30)
     var shipSystems = ShipsSystems()
+
+    let statusMessages = ["functional", "damaged", "severely damaged", "destroyed"]
 
     override init() {
         super.init()
@@ -117,17 +119,25 @@ class ZylonShip: SCNNode {
 	var range = [Float]()
 
     func takeDamage() {
-//        let dice = randIntRange(lower: 1, upper: 6)
-//
-//        switch dice {
-//        case 1:
-//            if self.shipSystems.babelfishCircuit.rawValue < 3 { self.shipSystems.babelfishCircuit = DamageAmount(rawValue: self.shipSystems.babelfishCircuit+1)  }
-//        case 2:
-//            if self.shipSystems.genderIdentityCircuit.rawValue < 3 { self.shipSystems.genderIdentityCircuit = self.shipSystems.genderIdentityCircuit.rawValue + 1 }
-//
-//        default:
-//            return
-//        }
+        if shieldStrength <= 0 && shieldsAreUp {
+            shipSystems.shieldIntegrity = .destroyed
+            shieldsAreUp = false
+        }
+        print("OUTER HULL HIT! Ship Damage: \(shipSystems)")
+
+        // calculateShipDamage
+        //        let dice = randIntRange(lower: 1, upper: 6)
+        //
+        //        switch dice {
+        //        case 1:
+        //            if self.shipSystems.babelfishCircuit.rawValue < 3 { self.shipSystems.babelfishCircuit = DamageAmount(rawValue: self.shipSystems.babelfishCircuit+1)  }
+        //        case 2:
+        //            if self.shipSystems.genderIdentityCircuit.rawValue < 3 { self.shipSystems.genderIdentityCircuit = self.shipSystems.genderIdentityCircuit.rawValue + 1 }
+        //
+        //        default:
+        //            return
+        //        }
+
     }
     func updateSector() {
         self.currentSector.qy+=1
