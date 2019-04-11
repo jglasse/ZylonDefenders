@@ -174,17 +174,15 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     }
 
     @IBAction func toggleView(_ sender: UIButton) {
-		SCNTransaction.animationDuration = 0.0
-
-		if scnView.pointOfView == forwardCameraNode {
-			sender.setTitle("AFT", for: .normal)
-            aftView()
+        if self.viewMode == .cockpit {
+            sender.setTitle("AFT", for: .normal)
+            self.viewMode = .aftView
         } else {
-			sender.setTitle("FORE", for: .normal)
-            foreView()
+            sender.setTitle("FORE", for: .normal)
+            self.viewMode = .cockpit
+
         }
         computerBeepSound("beep")
-		SCNTransaction.animationDuration = 0.0
 
     }
 
@@ -756,7 +754,7 @@ fireTorp()
     // MARK: - Ship Functions
 
     func setSpeed(_ newSpeed: Int) {
-		let speedChange = abs(newSpeed - ship.currentSpeed)
+	//	let speedChange = abs(newSpeed - ship.currentSpeed)
     //    SCNTransaction.animationDuration = Double(speedChange)
 		SCNTransaction.begin()
 		ship.currentSpeed = newSpeed
@@ -776,11 +774,12 @@ fireTorp()
     }
 
     func aftView() {
-        scnView.pointOfView = rearCameraNode
-        shipHud.aftView()
+        viewMode = .aftView
     }
 
     func foreView() {
+        viewMode = .cockpit
+
         scnView.pointOfView = forwardCameraNode
         shipHud.foreView()
 
@@ -1169,17 +1168,30 @@ fireTorp()
          DispatchQueue.main.async {
             self.shipHud.shields.isHidden = !self.ship.shieldsAreUp
         }
-        if self.viewMode == .cockpit {
-             DispatchQueue.main.async {
-            self.galacticStack.isHidden = true
-            self.commandStack.isHidden = false
-            }
-        } else {
+
+        switch self.viewMode {
+
+        case .aftView:
             DispatchQueue.main.async {
-            self.galacticStack.isHidden = false
-            self.commandStack.isHidden = true
+                self.galacticStack.isHidden = true
+                self.commandStack.isHidden = false
+                self.scnView.pointOfView = self.rearCameraNode
+                self.shipHud.crosshairs.isHidden = true
+            }
+        case .cockpit:
+                DispatchQueue.main.async {
+                    self.galacticStack.isHidden = true
+                    self.commandStack.isHidden = false
+                    self.scnView.pointOfView = self.forwardCameraNode
+                    self.shipHud.crosshairs.isHidden = false
+            }
+        case .galacticMap:
+                DispatchQueue.main.async {
+                    self.galacticStack.isHidden = false
+                    self.commandStack.isHidden = true
             }
         }
+
     }
 
     // MARK: - Generic iOS Setup

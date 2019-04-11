@@ -20,7 +20,7 @@
         <!--View Controller-->
         <scene sceneID="2f1-As-zml">
             <objects>
-                <viewController id="5DR-Qy-GgG" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BetaScreen" id="5DR-Qy-GgG" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="RKZ-W3-1R4"/>
                         <viewControllerLayoutGuide type="bottom" id="f7I-6l-bMV"/>
@@ -304,7 +304,7 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</stri
                                     </label>
                                 </subviews>
                             </stackView>
-                            <button contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eo0-Hl-05V">
+                            <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eo0-Hl-05V">
                                 <rect key="frame" x="415" y="0.0" width="251" height="311"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="251" id="AZe-R8-L6q"/>
@@ -325,7 +325,7 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</stri
                             <constraint firstAttribute="trailingMargin" secondItem="PoQ-ji-oep" secondAttribute="trailing" constant="90" id="L7B-J5-Gtn"/>
                             <constraint firstAttribute="trailingMargin" secondItem="hyH-e8-gbB" secondAttribute="trailing" constant="1" id="OCn-el-HrG"/>
                             <constraint firstItem="z62-zF-Ty3" firstAttribute="top" secondItem="cOD-NV-RaV" secondAttribute="bottom" constant="20" id="Up0-Ew-Y3W"/>
-                            <constraint firstAttribute="trailing" secondItem="Eo0-Hl-05V" secondAttribute="trailing" constant="-1" id="XPo-FJ-bZW"/>
+                            <constraint firstAttribute="trailing" secondItem="Eo0-Hl-05V" secondAttribute="trailing" constant="1" id="XPo-FJ-bZW"/>
                             <constraint firstItem="L0B-TD-jaq" firstAttribute="top" secondItem="PFE-MW-5wO" secondAttribute="bottom" constant="8" id="YR0-mi-7Zs"/>
                             <constraint firstItem="wgh-g3-0pN" firstAttribute="top" secondItem="6Sn-Ch-wiN" secondAttribute="bottom" constant="8" id="hjs-y0-3P5"/>
                             <constraint firstItem="z62-zF-Ty3" firstAttribute="leading" secondItem="TBr-jy-nsA" secondAttribute="leadingMargin" id="prt-qj-69b"/>
