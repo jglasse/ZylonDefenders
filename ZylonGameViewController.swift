@@ -278,18 +278,23 @@ fireTorp()
 	@IBOutlet weak var stepperSpeed: UIStepper!
 
 	@IBAction func gridWarp(_ sender: UIButton) {
+        if !ship.isCurrentlyinWarp {
         performWarp()
 		let deadlineTime = DispatchTime.now() + .seconds(6)
 		DispatchQueue.main.asyncAfter(deadline: deadlineTime) {
 			self.enterSector()
 			self.setSpeed(3)
             self.forwardCameraNode.camera?.motionBlurIntensity = 0
+            self.ship.isCurrentlyinWarp = false
 
 		}
         let spawnDeadline = DispatchTime.now() + .seconds(8)
         DispatchQueue.main.asyncAfter(deadline: spawnDeadline) {
            // self.warpGrid.removeFromParentNode()
             self.spawnDrones(number: Int(randRange(lower: 2, upper: 6)))
+        }
+        } else {
+            computerBeepSound("torpedo_fail")
         }
 
     }
@@ -870,6 +875,7 @@ fireTorp()
 
     }
     func performWarp() {
+        ship.isCurrentlyinWarp = true
         if !self.tacticalDisplay.isHidden {
             toggleTacticalDispplay(self)
         }

@@ -45,6 +45,7 @@ struct Sector {
 }
 
 class ZylonShip: SCNNode {
+    var isCurrentlyinWarp = false
 	var shieldsAreUp = false
 	var currentSpeed = 0
 	var currentSector = Sector()
