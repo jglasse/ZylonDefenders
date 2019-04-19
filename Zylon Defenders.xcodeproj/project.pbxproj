@@ -14,6 +14,8 @@
 		E10EFCC11EC0EE9400CC872E /* smallestGrid.png in Resources */ = {isa = PBXBuildFile; fileRef = E10EFCC01EC0EE9400CC872E /* smallestGrid.png */; };
 		E11978EF2031A358002214DB /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11978EE2031A358002214DB /* Constants.swift */; };
 		E11A73831E986DE4001CCAC8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E11A73811E986DE4001CCAC8 /* Main.storyboard */; };
+		E123FFD522679C3E00F41ADD /* SpaceStation5.dae in Resources */ = {isa = PBXBuildFile; fileRef = E123FFD422679C3E00F41ADD /* SpaceStation5.dae */; };
+		E123FFD622679C3E00F41ADD /* SpaceStation5.dae in Resources */ = {isa = PBXBuildFile; fileRef = E123FFD422679C3E00F41ADD /* SpaceStation5.dae */; };
 		E126D43E203AABD7006AB0E1 /* explosion4.m4a in Resources */ = {isa = PBXBuildFile; fileRef = E126D43D203AABD7006AB0E1 /* explosion4.m4a */; };
 		E1272AB81F65244500A66358 /* Humon.scn in Resources */ = {isa = PBXBuildFile; fileRef = E1272AB51F64EE4800A66358 /* Humon.scn */; };
 		E1284C4D203914080022AE83 /* explosion2.m4a in Resources */ = {isa = PBXBuildFile; fileRef = E1284C4B203914080022AE83 /* explosion2.m4a */; };
@@ -24,6 +26,8 @@
 		E13A032621B37B1D0049B125 /* delta.m4a in Resources */ = {isa = PBXBuildFile; fileRef = E13A032221B37B1D0049B125 /* delta.m4a */; };
 		E13A032721B37B1D0049B125 /* gamma.m4a in Resources */ = {isa = PBXBuildFile; fileRef = E13A032321B37B1D0049B125 /* gamma.m4a */; };
 		E13A032821B37B1D0049B125 /* alpha.m4a in Resources */ = {isa = PBXBuildFile; fileRef = E13A032421B37B1D0049B125 /* alpha.m4a */; };
+		E1503383226680D30083C300 /* galacticmap.scn in Resources */ = {isa = PBXBuildFile; fileRef = E126D43C203AA0D7006AB0E1 /* galacticmap.scn */; };
+		E1503384226680D40083C300 /* galacticmap.scn in Resources */ = {isa = PBXBuildFile; fileRef = E126D43C203AA0D7006AB0E1 /* galacticmap.scn */; };
 		E151DA2E1E17926900A70B45 /* HUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = E151DA2D1E17926900A70B45 /* HUD.swift */; };
 		E15520321DCFE776001651EB /* starField.scnp in Resources */ = {isa = PBXBuildFile; fileRef = E15520311DCFE776001651EB /* starField.scnp */; };
 		E165672D1E3205EE00293285 /* Texas Instruments2.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E165672B1E3205EE00293285 /* Texas Instruments2.ttf */; };
@@ -110,7 +114,6 @@
 		E1A57AD01E1D8CCA009F2CA6 /* beep.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E1A57ACF1E1D8CCA009F2CA6 /* beep.mp3 */; };
 		E1A58DC31E1DD07E00DCA24F /* Explosion.scnp in Resources */ = {isa = PBXBuildFile; fileRef = E1A58DC21E1DD07E00DCA24F /* Explosion.scnp */; };
 		E1A89EA81E9867F600EA8BC4 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E1A89EA71E9867F600EA8BC4 /* Default-568h@2x.png */; };
-		E1A9787D203D492B005C9C10 /* SpaceStation1.dae in Resources */ = {isa = PBXBuildFile; fileRef = E1A9787C203D492B005C9C10 /* SpaceStation1.dae */; };
 		E1B12C2A20267EC70071F9A1 /* Scanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B12C2920267EC70071F9A1 /* Scanner.swift */; };
 		E1BBE5A7205496D000A5C571 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1BBE5A6205496D000A5C571 /* AppDelegate.swift */; };
 		E1BBE5A9205496D000A5C571 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1BBE5A8205496D000A5C571 /* ViewController.swift */; };
@@ -164,6 +167,7 @@
 		E10EFCC01EC0EE9400CC872E /* smallestGrid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smallestGrid.png; sourceTree = "<group>"; };
 		E11978EE2031A358002214DB /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		E11A73811E986DE4001CCAC8 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Storyboards/Main.storyboard; sourceTree = SOURCE_ROOT; };
+		E123FFD422679C3E00F41ADD /* SpaceStation5.dae */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml.dae; path = SpaceStation5.dae; sourceTree = "<group>"; };
 		E126D43C203AA0D7006AB0E1 /* galacticmap.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = galacticmap.scn; sourceTree = "<group>"; };
 		E126D43D203AABD7006AB0E1 /* explosion4.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = explosion4.m4a; sourceTree = "<group>"; };
 		E1272AB51F64EE4800A66358 /* Humon.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = Humon.scn; sourceTree = "<group>"; };
@@ -241,7 +245,6 @@
 		E1A57ACF1E1D8CCA009F2CA6 /* beep.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = beep.mp3; sourceTree = "<group>"; };
 		E1A58DC21E1DD07E00DCA24F /* Explosion.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = Explosion.scnp; sourceTree = "<group>"; };
 		E1A89EA71E9867F600EA8BC4 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		E1A9787C203D492B005C9C10 /* SpaceStation1.dae */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml.dae; path = SpaceStation1.dae; sourceTree = "<group>"; };
 		E1B12C2920267EC70071F9A1 /* Scanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scanner.swift; sourceTree = "<group>"; };
 		E1BBE5A4205496D000A5C571 /* ZTV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZTV.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1BBE5A6205496D000A5C571 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -409,7 +412,7 @@
 		E1B12C2B2027D3FD0071F9A1 /* Scenekit Models */ = {
 			isa = PBXGroup;
 			children = (
-				E1A9787C203D492B005C9C10 /* SpaceStation1.dae */,
+				E123FFD422679C3E00F41ADD /* SpaceStation5.dae */,
 				E126D43C203AA0D7006AB0E1 /* galacticmap.scn */,
 				E1272AB51F64EE4800A66358 /* Humon.scn */,
 				E1D1EA0C20267A7D00DB2984 /* Scanner.scn */,
@@ -460,7 +463,6 @@
 		E1D8BD451DCFCD1A00C863DF = {
 			isa = PBXGroup;
 			children = (
-				E1D8BD551DCFCD1A00C863DF /* ZylonGameViewController.swift */,
 				E1D8BD501DCFCD1A00C863DF /* Code */,
 				E19F3F2D1F6461DC00F612A7 /* Storyboards */,
 				E1A58DC01E1DCF9B00DCA24F /* assets */,
@@ -481,6 +483,7 @@
 		E1D8BD501DCFCD1A00C863DF /* Code */ = {
 			isa = PBXGroup;
 			children = (
+				E1D8BD551DCFCD1A00C863DF /* ZylonGameViewController.swift */,
 				E187F56E1FB0276E0036B3FE /* Game Objects */,
 				E16E290D20574844002362C1 /* Utility&Extensions */,
 				E1DC3F911EB9A2C200B98829 /* Frameworks&Libraries */,
@@ -670,8 +673,10 @@
 				E16E28E220564A41002362C1 /* ShieldModulationRegulator.aiff in Resources */,
 				E1E41C682068B7D1000A74DE /* Assets.xcassets in Resources */,
 				E16E28DA20564A41002362C1 /* Shields30 percent.aiff in Resources */,
+				E123FFD622679C3E00F41ADD /* SpaceStation5.dae in Resources */,
 				E192623420A79A8600AB93F2 /* Starfield 2048x1024B.png in Resources */,
 				E16E28E420564A41002362C1 /* ReallyreallyBad.aiff in Resources */,
+				E1503384226680D40083C300 /* galacticmap.scn in Resources */,
 				E16E28C020564A41002362C1 /* warpStart.aif in Resources */,
 				E16E28BE20564A41002362C1 /* outerHullFailure.aiff in Resources */,
 				E16E28CE20564A41002362C1 /* Shields70 percent.aiff in Resources */,
@@ -715,7 +720,6 @@
 				E13A032721B37B1D0049B125 /* gamma.m4a in Resources */,
 				E109EB601E1BB938003DAB0F /* 40069.ttf in Resources */,
 				E1A89EA81E9867F600EA8BC4 /* Default-568h@2x.png in Resources */,
-				E1A9787D203D492B005C9C10 /* SpaceStation1.dae in Resources */,
 				E16E28D320564A41002362C1 /* Shields80 percent.aiff in Resources */,
 				E1A58DC31E1DD07E00DCA24F /* Explosion.scnp in Resources */,
 				E16E28C120564A41002362C1 /* empathyCircuitDamaged.aiff in Resources */,
@@ -768,6 +772,7 @@
 				E19BC7B222594F2500A1DA6B /* hullHit.m4a in Resources */,
 				E1F8BB0B1E3FF4E100460FC9 /* explosion.m4a in Resources */,
 				E192623620A79E4600AB93F2 /* Starfield 2048x1024LB.png in Resources */,
+				E1503383226680D30083C300 /* galacticmap.scn in Resources */,
 				E1E381E01EC4B79A000CC31C /* button_dir_down_0.png in Resources */,
 				E16E28DF20564A41002362C1 /* Shields50 percent.aiff in Resources */,
 				E16E28D720564A41002362C1 /* babelfishCircuitFailure.aiff in Resources */,
@@ -783,6 +788,7 @@
 				E1BD14B71E24280C002E49A5 /* six.m4a in Resources */,
 				E16E28E520564A41002362C1 /* Shields100 percent.aiff in Resources */,
 				E1BD14B21E24280C002E49A5 /* five.m4a in Resources */,
+				E123FFD522679C3E00F41ADD /* SpaceStation5.dae in Resources */,
 				E16E28E320564A41002362C1 /* ReallyreallyBad.aiff in Resources */,
 				E1A57ACC1E1C309A009F2CA6 /* ship_hum.mp3 in Resources */,
 				E16AB6241E1DD1F800E3D8C2 /* spark.png in Resources */,
@@ -1030,7 +1036,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = WPGAGSXUST;
 				INFOPLIST_FILE = zylons/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jeffglasse.StarRaiders;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1047,7 +1053,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = WPGAGSXUST;
 				INFOPLIST_FILE = zylons/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jeffglasse.StarRaiders;
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -34,14 +34,15 @@ class HUD: SKScene {
     public func foreView() {
         print("fore View")
         DispatchQueue.main.async {
-        self.crosshairs.isHidden = false
+            self.crosshairs = self.foreHairs
         }
     }
 
     public func aftView() {
         print("aft View")
         DispatchQueue.main.async {
-            self.crosshairs.isHidden = true
+            self.crosshairs = self.aftHairs
+
         }
     }
     public func mapView() {
@@ -51,6 +52,15 @@ class HUD: SKScene {
         }
     }
 
+    func shieldHit(location: CGPoint) {
+        let shieldSprite = SKSpriteNode(imageNamed: "shieldHit")
+        shieldSprite.size.width = shieldSprite.size.width/2
+        shieldSprite.size.height = shieldSprite.size.height/2
+
+        shieldSprite.position = location
+        self.addChild(shieldSprite)
+        shieldSprite.run(SKAction.fadeOut(withDuration: 1.0), completion: {shieldSprite.removeFromParent()})
+    }
     override init(size: CGSize) {
         super.init(size: size)
         self.backgroundColor = UIColor.clear
