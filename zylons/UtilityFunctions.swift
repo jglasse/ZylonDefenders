@@ -24,6 +24,15 @@ func distanceFromZylonShip(x: Float, y: Float, z: Float) -> Float {
 
 extension ZylonGameViewController {
 
+    func numberofShotsOnscreen() -> Int {
+        var numberOfShots = 0
+        mainGameScene.rootNode.enumerateChildNodes({ (child, _) in
+            if (child.name == "torpedo") {  numberOfShots = numberOfShots+1}
+        })
+
+        return numberOfShots
+    }
+
         // MARK: - MFI GAME CONTROLLER CODE
 
         private func processGameControllerInput() {
@@ -186,11 +195,23 @@ extension ZylonGameViewController {
 
         }
 
-    func overlayPos(node: SCNNode) -> SCNVector3 {
+    func overlayPos(node: SCNNode) -> CGPoint {
+        let tempPos = node.presentation.position
+        //let tempPosConverted =
+        let screenPos3D = scnView.projectPoint(tempPos)
+        let screenPos2D = CGPoint(x: Double(screenPos3D.x), y: Double(screenPos3D.y))
+        return screenPos2D
 
-        let screenPos = scnView.projectPoint(node.presentation.position)
-        return screenPos
+    }
 
+    func rotate(_ node: SCNNode, around axis: SCNVector3, by angle: CGFloat) {
+        let rotation = SCNMatrix4MakeRotation(Float(angle), axis.x, axis.y, axis.z)
+        let newTransform = SCNMatrix4Mult(node.worldTransform, rotation)
+        if let parent = node.parent {
+            node.transform = parent.convertTransform(newTransform, from: nil)
+        } else {
+            node.transform = newTransform
+        }
     }
 
 }
@@ -210,8 +231,6 @@ func randRange (lower: Float, upper: Float) -> Float {
         return lower
     }
 }
-
-// MARK: - Extensions
 
 // MARK: External Control
 
@@ -247,9 +266,9 @@ extension ZylonGameViewController: CommandDelegate {
         case "ATTACK":
             notYetImplemented(command)
         case "FORE":
-            foreView()
+            self.viewMode = .foreView
         case "AFT":
-            aftView()
+            self.viewMode = .aftView
         case "TAC":
             notYetImplemented(command)
         case "SHIELDS":

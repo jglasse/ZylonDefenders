@@ -16,6 +16,7 @@ import MultipeerConnectivity
 import GameController
 
 class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNSceneRendererDelegate {
+
     // MARK: - Multipeer
     var myMCController = MCController.sharedInstance
 
@@ -45,7 +46,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 
     enum ViewMode: Int {
 
-        case cockpit
+        case foreView
         case aftView
         case galacticMap
     }
@@ -54,7 +55,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 
     // MARK: - GameState Variables
 
-    var viewMode = ViewMode.cockpit
+    var viewMode = ViewMode.foreView
 
     var currentExplosionParticleSystem: SCNParticleSystem?
     var starSprites = [SCNNode]() // array of stars to make updating them each frame easy
@@ -119,7 +120,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         computerBeepSound("beep")
         print("toggleingView mode from \(viewMode)...")
         if self.viewMode == .galacticMap {
-            self.viewMode = .cockpit
+            self.viewMode = .foreView
 
         } else {
             self.viewMode = .galacticMap
@@ -135,12 +136,12 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     }
 
     @IBAction func toggleView(_ sender: UIButton) {
-        if self.viewMode == .cockpit {
+        if self.viewMode == .foreView {
             sender.setTitle("AFT", for: .normal)
             self.viewMode = .aftView
         } else {
             sender.setTitle("FORE", for: .normal)
-            self.viewMode = .cockpit
+            self.viewMode = .foreView
 
         }
         computerBeepSound("beep")
@@ -204,17 +205,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 }
 
 @IBAction func fireTorpedo(_ sender: UIButton) {
-    if self.viewMode != .galacticMap { fireTorp() }
-    }
-
-    func rotate(_ node: SCNNode, around axis: SCNVector3, by angle: CGFloat) {
-        let rotation = SCNMatrix4MakeRotation(Float(angle), axis.x, axis.y, axis.z)
-        let newTransform = SCNMatrix4Mult(node.worldTransform, rotation)
-        if let parent = node.parent {
-            node.transform = parent.convertTransform(newTransform, from: nil)
-        } else {
-            node.transform = newTransform
-        }
+    if self.viewMode == .foreView { fireTorp() }
     }
 
     @IBAction func spawnDrone(_ sender: UIButton) {
@@ -575,8 +566,6 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
             if element > 0 {
                 let sphereNode = SCNNode(geometry: SCNSphere(radius: Constants.galacticMapBlipRadius))
                 sphereNode.geometry?.firstMaterial?.diffuse.contents = UIColor.red
-                //sphereNode.geometry = SCNShape
-
                 var childNodeName: String
                 if index < 10 {
                     childNodeName = "SECTOR_4_00"+String(index)
@@ -591,8 +580,8 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 
         let transition = SKTransition.fade(withDuration: 0)
         mapScnView.present(galacticMap!, with: transition, incomingPointOfView: galacticMap?.rootNode.childNode(withName: "gCam", recursively: true), completionHandler: {
-            self.scnView.allowsCameraControl = false
-            print(self.scnView.description) })
+            self.mapScnView.allowsCameraControl = true
+            print(self.mapScnView.description) })
     }
 
     // MARK: - Ship Functions
@@ -617,22 +606,26 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 		}
     }
 
-    func aftView() {
-        viewMode = .aftView
-    }
-
-    func foreView() {
-        viewMode = .cockpit
-
-    }
+//    func aftView() {
+//        viewMode = .aftView
+//    }
+//
+//    func foreView() {
+//        viewMode = .foreView
+//
+//    }
 
     @IBAction func toggleShields(_ sender: UIButton) {
         if ship.shieldsAreUp {
             ship.shieldsAreUp = false
             envSound("shieldsDown")
         } else {
+            if ship.shipSystems.shieldIntegrity != .destroyed {
             ship.shieldsAreUp = true
             envSound("shieldsUp")
+            } else {
+                computerBeepSound("torpedo_fail")
+            }
 
         }    }
 
@@ -647,10 +640,18 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 
         if ship.shieldsAreUp && ship.shieldStrength>0 {
             self.environmentSound("forcefieldHit")
-            let overlayPos = CGPoint(x: CGFloat(self.overlayPos(node: node).x), y: CGFloat(self.overlayPos(node: node).y))
-            shipHud.shieldHit(location: overlayPos)
+
+            let overlayPos = self.overlayPos(node: node) // screen coordinates of hit in UIVIew
+            let overlaySpritePOS = shipHud.convertPoint(fromView: overlayPos) //
+           // let hitTest = UIView(frame: CGRect(x: overlayPos, y: <#T##CGFloat#>, width: <#T##CGFloat#>, height: <#T##CGFloat#>))
+            shipHud.shieldHit(location: overlaySpritePOS)
             ship.shieldStrength = ship.shieldStrength - 10
+            if ship.shieldStrength>0 {
             print("SHIELDS HAVE HELD! Current Shield Strenth: \(ship.shieldStrength)")
+            } else {
+                print("SHIELDS HAVE FAILED!")
+            }
+
         } else {
             self.environmentSound("hullHit")
             ship.takeDamage()
@@ -787,15 +788,39 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
             item = AVPlayerItem (url: soundURL!)
             audioItems.append(item)
 
-            var numString = numberstrings[ship.currentSector.qx]
+        if ship.currentSector.qx < 10 {
+            let numString = numberstrings[ship.currentSector.qx]
              soundURL = Bundle.main.url(forResource: numString, withExtension: "m4a")
              item = AVPlayerItem(url: soundURL!)
             audioItems.append(item)
 
-            numString = numberstrings[ship.currentSector.qy]
+        } else {
+            let numString = numberstrings[ship.currentSector.qx-10]
             soundURL = Bundle.main.url(forResource: numString, withExtension: "m4a")
             item = AVPlayerItem(url: soundURL!)
             audioItems.append(item)
+            let numString2 = numberstrings[1]
+            soundURL = Bundle.main.url(forResource: numString2, withExtension: "m4a")
+            item = AVPlayerItem(url: soundURL!)
+            audioItems.append(item)
+
+        }
+        if ship.currentSector.qy < 10 {
+            let numString = numberstrings[ship.currentSector.qy]
+            soundURL = Bundle.main.url(forResource: numString, withExtension: "m4a")
+            item = AVPlayerItem(url: soundURL!)
+            audioItems.append(item)
+        } else {
+            let numString = numberstrings[ship.currentSector.qy-10]
+            soundURL = Bundle.main.url(forResource: numString, withExtension: "m4a")
+            item = AVPlayerItem(url: soundURL!)
+            audioItems.append(item)
+            let numString2 = numberstrings[1]
+            soundURL = Bundle.main.url(forResource: numString2, withExtension: "m4a")
+            item = AVPlayerItem(url: soundURL!)
+            audioItems.append(item)
+
+        }
         computerVoice = AVQueuePlayer(items: audioItems)
         computerVoice.volume = 1
         computerVoice.play()
@@ -838,7 +863,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
             }
 
             if self.ship.shieldsAreUp {
-                self.shieldsDisplay.text = "Shields: UP"
+                self.shieldsDisplay.text = "Shields: \(self.ship.shipSystems.shieldIntegrity)"
             } else {
                 self.shieldsDisplay.text = "Shields: DOWN"
 
@@ -972,15 +997,6 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 
 }
 
-    func numberofShotsOnscreen() -> Int {
-    var numberOfShots = 0
-        mainGameScene.rootNode.enumerateChildNodes({ (child, _) in
-            if (child.name == "torpedo") {  numberOfShots = numberOfShots+1}
-            })
-
-    return numberOfShots
-    }
-
     // MARK: - Collision Code
 
     func physicsWorld(_ world: SCNPhysicsWorld, didBegin contact: SCNPhysicsContact) {
@@ -1050,7 +1066,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
                 self.scnView.pointOfView = self.rearCameraNode
                 self.shipHud.aftView()
             }
-        case .cockpit:
+        case .foreView:
                 DispatchQueue.main.async {
                     self.joystickControl.isHidden = false
                     self.mapScnView.isHidden = true
@@ -1058,7 +1074,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
                     self.galacticStack.isHidden = true
                     self.commandStack.isHidden = false
                     self.spaceScnView.pointOfView = self.forwardCameraNode
-                    self.shipHud.crosshairs.isHidden = false
+                    self.shipHud.foreView()
             }
         case .galacticMap:
                 DispatchQueue.main.async {

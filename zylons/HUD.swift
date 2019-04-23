@@ -19,8 +19,8 @@ class HUD: SKScene {
     var parentScene: ZylonGameViewController?
     public var computerStatus = SKLabelNode()
     public var enemyIndicator = SKLabelNode()
-    private let aftHairs = SKSpriteNode(imageNamed: "xenonHUDAFT")
-    private let foreHairs = SKSpriteNode(imageNamed: "xenonHUD")
+    let aftHairs = SKSpriteNode(imageNamed: "xenonHUDAFT")
+    let foreHairs = SKSpriteNode(imageNamed: "xenonHUD")
 
     var timer: Timer?
     var currentComputerStatusColor = UIColor.red
@@ -54,8 +54,8 @@ class HUD: SKScene {
 
     func shieldHit(location: CGPoint) {
         let shieldSprite = SKSpriteNode(imageNamed: "shieldHit")
-        shieldSprite.size.width = shieldSprite.size.width/2
-        shieldSprite.size.height = shieldSprite.size.height/2
+        shieldSprite.size.width = shieldSprite.size.width/3
+        shieldSprite.size.height = shieldSprite.size.height/3
 
         shieldSprite.position = location
         self.addChild(shieldSprite)

@@ -33,10 +33,10 @@ enum Quadrant: String {
     case delta
 }
 
-struct ShipDisplay {
-    var tactical = false
-    var galacticMap = false
-}
+//struct ShipDisplay {
+//    var tactical = false
+//    var galacticMap = false
+//}
 
 struct Sector {
     var quadrant: Quadrant = .alpha
@@ -50,7 +50,7 @@ class ZylonShip: SCNNode {
 	var shieldsAreUp = false
 	var currentSpeed = 0
 	var currentSector = Sector()
-    var display = ShipDisplay()
+  //  var display = ShipDisplay()
     var systemStatus = ShipSystems()
 	var engineHealth = 100
 	var shieldStrength = 100
@@ -121,6 +121,9 @@ class ZylonShip: SCNNode {
 	var range = [Float]()
 
     func takeDamage() {
+
+        // if shields at zero strength and  they are up when hit, they are immediately destroyed
+
         if shieldStrength <= 0 && shieldsAreUp {
             shipSystems.shieldIntegrity = .destroyed
             shieldsAreUp = false
