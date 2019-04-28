@@ -196,9 +196,16 @@ extension ZylonGameViewController {
         }
 
     func overlayPos(node: SCNNode) -> CGPoint {
-        let tempPos = node.presentation.position
-        //let tempPosConverted =
-        let screenPos3D = scnView.projectPoint(tempPos)
+        let v1w =  node.convertPosition(node.boundingBox.min, to: self.scnView.scene?.rootNode)
+        let v2w =  node.convertPosition(node.boundingBox.max, to: self.scnView.scene?.rootNode)
+
+        //calc center of BB in world coordinates
+        let center = SCNVector3Make(
+            (v1w.x + v2w.x)/2,
+            (v1w.y + v2w.y)/2,
+            (v1w.z + v2w.z)/2)
+
+        let screenPos3D = scnView.projectPoint(center)
         let screenPos2D = CGPoint(x: Double(screenPos3D.x), y: Double(screenPos3D.y))
         return screenPos2D
 

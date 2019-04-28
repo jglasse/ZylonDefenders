@@ -30,7 +30,7 @@ struct Constants {
     static let maxHumanShootInterval: Float = 800
     static let sectorBreadth = 500
     static let numberOfZylonsAtBeginningOfGame = 10
-    static let galacticMapBlipRadius: CGFloat = 0.2
+    static let galacticMapBlipRadius: CGFloat = 0.04
 }
 
 struct objectCategories {

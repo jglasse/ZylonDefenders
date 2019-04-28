@@ -13,60 +13,28 @@ import AVFoundation
 import SceneKit
 
 class HUD: SKScene {
+    // MARK: - Vars
+
+    public var computerStatus = SKLabelNode()
+    public var enemyIndicator = SKLabelNode()
     var shields: SKShapeNode!
     var crosshairs: SKSpriteNode!
     var aftcrosshairs: SKSpriteNode!
     var parentScene: ZylonGameViewController?
-    public var computerStatus = SKLabelNode()
-    public var enemyIndicator = SKLabelNode()
     let aftHairs = SKSpriteNode(imageNamed: "xenonHUDAFT")
     let foreHairs = SKSpriteNode(imageNamed: "xenonHUD")
-
     var timer: Timer?
     var currentComputerStatusColor = UIColor.red
 
 	var tacticalDisplay = [SKSpriteNode]()
+    // MARK: - Initialization
 
-    @objc func blinkComputerDisplay() {
-        if computerStatus.fontColor == currentComputerStatusColor {computerStatus.fontColor = UIColor.clear} else {computerStatus.fontColor = currentComputerStatusColor}
-    }
-
-    public func foreView() {
-        print("fore View")
-        DispatchQueue.main.async {
-            self.crosshairs = self.foreHairs
-        }
-    }
-
-    public func aftView() {
-        print("aft View")
-        DispatchQueue.main.async {
-            self.crosshairs = self.aftHairs
-
-        }
-    }
-    public func mapView() {
-        print("aft View")
-        DispatchQueue.main.async {
-            self.crosshairs.isHidden = true
-        }
-    }
-
-    func shieldHit(location: CGPoint) {
-        let shieldSprite = SKSpriteNode(imageNamed: "shieldHit")
-        shieldSprite.size.width = shieldSprite.size.width/3
-        shieldSprite.size.height = shieldSprite.size.height/3
-
-        shieldSprite.position = location
-        self.addChild(shieldSprite)
-        shieldSprite.run(SKAction.fadeOut(withDuration: 1.0), completion: {shieldSprite.removeFromParent()})
-    }
     override init(size: CGSize) {
         super.init(size: size)
         self.backgroundColor = UIColor.clear
         shields = SKShapeNode(rectOf: size)
         shields.position = CGPoint(x: self.frame.midX, y: self.frame.midY)
-        shields.alpha = 0.2
+        shields.alpha = 0.14
         shields.fillColor = SKColor.blue
         shields.strokeColor =  UIColor.clear
         computerStatus.fontName = "Y14.5M 17.0"
@@ -95,6 +63,39 @@ class HUD: SKScene {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
 
+    }
+
+    @objc func blinkComputerDisplay() {
+        if computerStatus.fontColor == currentComputerStatusColor {computerStatus.fontColor = UIColor.clear} else {computerStatus.fontColor = currentComputerStatusColor}
+    }
+
+    public func foreView() {
+        DispatchQueue.main.async {
+            self.crosshairs = self.foreHairs
+        }
+    }
+
+    public func aftView() {
+        DispatchQueue.main.async {
+            self.crosshairs = self.aftHairs
+
+        }
+    }
+    public func mapView() {
+        print("map View")
+        DispatchQueue.main.async {
+            self.crosshairs.isHidden = true
+        }
+    }
+
+    func shieldHit(location: CGPoint) {
+        let shieldSprite = SKSpriteNode(imageNamed: "shieldHit")
+        shieldSprite.size.width = shieldSprite.size.width/3
+        shieldSprite.size.height = shieldSprite.size.height/3
+
+        shieldSprite.position = location
+        self.addChild(shieldSprite)
+        shieldSprite.run(SKAction.fadeOut(withDuration: 1.0), completion: {shieldSprite.removeFromParent()})
     }
 
      func updateHUD() {

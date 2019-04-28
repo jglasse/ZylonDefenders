@@ -505,14 +505,14 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 
             var childNodeName: String
             if index < 10 {
-                 childNodeName = "SECTOR_ALPHA_00"+String(index)
+                 childNodeName = "ALPHA_00"+String(index)
             } else {
-                 childNodeName = "SECTOR_ALPHA_0"+String(index)
+                 childNodeName = "ALPHA_0"+String(index)
             }
             galacticMap?.rootNode.childNode(withName: childNodeName, recursively: true)?.addChildNode(sphereNode)
                 print("childNodeName: \(childNodeName) should have \(element) zylons from SectorA[\(index)]")
             print(index)
-            }
+            } else {print("no zylons to add to ALPHA sector")}
         }
 
         // Add Zylons to Sector Beta
@@ -527,9 +527,9 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 
                 var childNodeName: String
                 if index < 10 {
-                    childNodeName = "SECTOR_BETA_00"+String(index)
+                    childNodeName = "BETA_00"+String(index)
                 } else {
-                    childNodeName = "SECTOR_BETA_0"+String(index)
+                    childNodeName = "BETA_0"+String(index)
                 }
                 galacticMap?.rootNode.childNode(withName: childNodeName, recursively: true)?.addChildNode(sphereNode)
                 print("childNodeName: \(childNodeName) should have \(element) zylons from SectorA[\(index)]")
@@ -548,9 +548,9 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 
                 var childNodeName: String
                 if index < 10 {
-                    childNodeName = "SECTOR_GAMMA_00"+String(index)
+                    childNodeName = "GAMMA_00"+String(index)
                 } else {
-                    childNodeName = "SECTOR_GAMMA_0"+String(index)
+                    childNodeName = "GAMMA_0"+String(index)
                 }
                 galacticMap?.rootNode.childNode(withName: childNodeName, recursively: true)?.addChildNode(sphereNode)
                 print("childNodeName: \(childNodeName) should have \(element) zylons from SectorA[\(index)]")
@@ -568,9 +568,9 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
                 sphereNode.geometry?.firstMaterial?.diffuse.contents = UIColor.red
                 var childNodeName: String
                 if index < 10 {
-                    childNodeName = "SECTOR_4_00"+String(index)
+                    childNodeName = "DELTA_00"+String(index)
                 } else {
-                    childNodeName = "SECTOR_4_0"+String(index)
+                    childNodeName = "DELTA_0"+String(index)
                 }
                 galacticMap?.rootNode.childNode(withName: childNodeName, recursively: true)?.addChildNode(sphereNode)
                 print("childNodeName: \(childNodeName) should have \(element) zylons from SectorA[\(index)]")
@@ -631,19 +631,25 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 
     // MARK: - Game Event functions
 
+    func humonShipHit(nodeA: SCNNode, nodeB: SCNNode) {
+        boom(atNode: nodeA)
+    }
     func zylonShipHitBy(node: SCNNode) {
         print("Zylon Ship hit by \(node.description)")
 
         // animate removal of node, but for now just remove it.
+        if !ship.shieldsAreUp {
         boom(atNode: node)
+        }
         node.removeFromParentNode()
 
         if ship.shieldsAreUp && ship.shieldStrength>0 {
+            print("ship.shieldsAreUp && ship.shieldStrength>0")
             self.environmentSound("forcefieldHit")
+            print("self.environmentSound(forcefieldHit) played")
 
             let overlayPos = self.overlayPos(node: node) // screen coordinates of hit in UIVIew
             let overlaySpritePOS = shipHud.convertPoint(fromView: overlayPos) //
-           // let hitTest = UIView(frame: CGRect(x: overlayPos, y: <#T##CGFloat#>, width: <#T##CGFloat#>, height: <#T##CGFloat#>))
             shipHud.shieldHit(location: overlaySpritePOS)
             ship.shieldStrength = ship.shieldStrength - 10
             if ship.shieldStrength>0 {
@@ -653,12 +659,15 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
             }
 
         } else {
+            print("hullHit sound because sheilds are down")
+
             self.environmentSound("hullHit")
             ship.takeDamage()
         }
     }
 
     func boom(atNode: SCNNode) {
+        print("BOOM!")
         DispatchQueue.main.async {
             let explosionNode = ShipExplosion()
             explosionNode.position = atNode.presentation.position
@@ -1001,8 +1010,8 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 
     func physicsWorld(_ world: SCNPhysicsWorld, didBegin contact: SCNPhysicsContact) {
         print("Contact!")
-        print("nodeA: \(String(describing: contact.nodeA.name))")
-        print("nodeB: \(String(describing: contact.nodeB.name))")
+        print("nodeA: \(String(describing: contact.nodeA.name!))")
+        print("nodeB: \(String(describing: contact.nodeB.name!))")
         print("shield status at time of contact: \(ship.shieldsAreUp)")
 
         if (contact.nodeA.name == "zylonHull") {
@@ -1013,20 +1022,8 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
             zylonShipHitBy(node: contact.nodeA)
             return
         } else {
-
         DispatchQueue.main.async {
-            let explosionNode = ShipExplosion()
-         if (contact.nodeA.name != "torpedo") {
-                explosionNode.position = contact.nodeA.presentation.position
-
-            } else {
-                explosionNode.position = contact.nodeB.presentation.position
-            }
-
-            //scene.rootNode.addChildNode(explosionNode)
-            self.sectorObjectsNode.addChildNode(explosionNode)
-
-            self.explosionSound()
+            self.humonShipHit(nodeA: contact.nodeA, nodeB: contact.nodeB)
             contact.nodeA.removeFromParentNode()
             contact.nodeB.removeFromParentNode()
             }
