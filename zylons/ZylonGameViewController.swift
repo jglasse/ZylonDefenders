@@ -787,22 +787,20 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         var soundURL = Bundle.main.url(forResource: "entering_sector", withExtension: "m4a")
         let sector = AVPlayerItem(url: soundURL!)
         audioItems.append(sector)
-        soundURL = Bundle.main.url(forResource: ship.currentSector.quadrant.rawValue, withExtension: "m4a")
 
+        // quadrant
+        soundURL = Bundle.main.url(forResource: ship.currentSector.quadrant.rawValue, withExtension: "m4a")
         var item = AVPlayerItem(url: soundURL!)
         audioItems.append(item)
 
-            let quadString = ship.currentSector.quadrant.rawValue
-            soundURL = Bundle.main.url(forResource: quadString, withExtension: "m4a")
-            item = AVPlayerItem (url: soundURL!)
-            audioItems.append(item)
-
+        // x coordinate
         if ship.currentSector.qx < 10 {
             let numString = numberstrings[ship.currentSector.qx]
              soundURL = Bundle.main.url(forResource: numString, withExtension: "m4a")
              item = AVPlayerItem(url: soundURL!)
             audioItems.append(item)
 
+        // y coordinate
         } else {
             let numString = numberstrings[ship.currentSector.qx-10]
             soundURL = Bundle.main.url(forResource: numString, withExtension: "m4a")
