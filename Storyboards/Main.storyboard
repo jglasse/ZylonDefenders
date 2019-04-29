@@ -47,7 +47,7 @@
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" notEnabled="YES"/>
                                 </accessibility>
-                                <mutableString key="text">WELCOME TO THE ZYLON DEFENDER BETA -Build 14
+                                <string key="text">WELCOME TO THE ZYLON DEFENDER BETA -Build 14
 
 Apologies for the long delay, but I'm (belatedly) getting close 
 
@@ -69,7 +69,7 @@ Strategic movement of HUMON forces
 
 
 
-As always, email notes, thoughts, comments or threats to jglasse@gmail.com</mutableString>
+As always, email notes, thoughts, comments or threats to jglasse@gmail.com</string>
                                 <color key="textColor" red="0.0018759364314704374" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <fontDescription key="fontDescription" name="Glass_TTY_VT220" family="Glass TTY VT220" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -163,10 +163,22 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</muta
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </sceneKitView>
                             <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" restorationIdentifier="GalacticStack" spacing="33" translatesAutoresizingMaskIntoConstraints="NO" id="hyH-e8-gbB" userLabel="Galactic Stack">
-                                <rect key="frame" x="267" y="5" width="379" height="50"/>
+                                <rect key="frame" x="164" y="5" width="482" height="50"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9FZ-mG-dtS">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2nC-Nm-qWM">
                                         <rect key="frame" x="0.0" y="0.0" width="70" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="70" id="8CB-h9-ul8"/>
+                                            <constraint firstAttribute="height" constant="50" id="MmP-QU-9lh"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Y14.5M" family="Y14.5M" pointSize="22"/>
+                                        <state key="normal" title="∞"/>
+                                        <connections>
+                                            <action selector="allQuads:" destination="BV1-FR-VrT" eventType="touchUpInside" id="0Kz-8C-c1v"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9FZ-mG-dtS">
+                                        <rect key="frame" x="103" y="0.0" width="70" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="dYp-dG-cS5"/>
                                             <constraint firstAttribute="width" constant="70" id="tUK-wy-AXv"/>
@@ -178,7 +190,7 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</muta
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lKn-fM-mS4">
-                                        <rect key="frame" x="103" y="0.0" width="70" height="50"/>
+                                        <rect key="frame" x="206" y="0.0" width="70" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="70" id="AAm-7W-AnE"/>
                                             <constraint firstAttribute="height" constant="50" id="sB9-rc-9qM"/>
@@ -190,7 +202,7 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</muta
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fju-Xi-EWA">
-                                        <rect key="frame" x="206" y="0.0" width="70" height="50"/>
+                                        <rect key="frame" x="309" y="0.0" width="70" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="3hA-3B-WUp"/>
                                             <constraint firstAttribute="width" constant="70" id="GVk-iA-eWm"/>
@@ -202,7 +214,7 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</muta
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Pq-Sp-JAa">
-                                        <rect key="frame" x="309" y="0.0" width="70" height="50"/>
+                                        <rect key="frame" x="412" y="0.0" width="70" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="D15-KL-Hpm"/>
                                             <constraint firstAttribute="width" constant="70" id="pXN-1V-Czz"/>
@@ -268,48 +280,6 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</muta
                                     <constraint firstAttribute="height" constant="80" id="j4i-vf-K2g"/>
                                 </constraints>
                             </view>
-                            <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="6Sn-Ch-wiN">
-                                <rect key="frame" x="20" y="257" width="209" height="55"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="THETA: --" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MQV-Cf-PFY">
-                                        <rect key="frame" x="8" y="-16" width="54.5" height="7"/>
-                                        <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="10"/>
-                                        <color key="textColor" red="0.0018759364309999999" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PHI: --" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AcU-BV-dAF">
-                                        <rect key="frame" x="8" y="-5" width="42.5" height="7"/>
-                                        <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="10"/>
-                                        <color key="textColor" red="0.0018759364309999999" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DISTANCE TO TARGET: ||          " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uyd-8R-ulf">
-                                        <rect key="frame" x="8" y="6" width="193" height="7.5"/>
-                                        <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="10"/>
-                                        <color key="textColor" red="0.0018759364309999999" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enemies In Sector:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WVN-hE-EnE">
-                                        <rect key="frame" x="8" y="17.5" width="108.5" height="7"/>
-                                        <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="10"/>
-                                        <color key="textColor" red="0.0018759364309999999" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shields: DOWN" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qxJ-iY-TUa">
-                                        <rect key="frame" x="8" y="28.5" width="78.5" height="7.5"/>
-                                        <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="10"/>
-                                        <color key="textColor" red="0.0018759364309999999" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shield Strength: 100%" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tVA-tc-gId">
-                                        <rect key="frame" x="8" y="40" width="126.5" height="7"/>
-                                        <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="10"/>
-                                        <color key="textColor" red="0.0018759364309999999" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <edgeInsets key="layoutMargins" top="-16" left="8" bottom="8" right="8"/>
-                            </stackView>
                             <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eo0-Hl-05V" userLabel="FireButton">
                                 <rect key="frame" x="415" y="63" width="251" height="248"/>
                                 <constraints>
@@ -320,6 +290,48 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</muta
                                     <action selector="fireTorpedo:" destination="BV1-FR-VrT" eventType="touchUpInside" id="sLl-7B-86c"/>
                                 </connections>
                             </button>
+                            <stackView hidden="YES" opaque="NO" contentMode="scaleAspectFit" axis="vertical" distribution="equalSpacing" alignment="top" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="6Sn-Ch-wiN">
+                                <rect key="frame" x="20" y="224" width="201" height="87"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="THETA: --" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MQV-Cf-PFY">
+                                        <rect key="frame" x="0.0" y="0.0" width="54.5" height="12"/>
+                                        <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="10"/>
+                                        <color key="textColor" red="0.0018759364309999999" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PHI: --" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AcU-BV-dAF">
+                                        <rect key="frame" x="0.0" y="15" width="42.5" height="12"/>
+                                        <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="10"/>
+                                        <color key="textColor" red="0.0018759364309999999" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DISTANCE TO TARGET: ||          " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uyd-8R-ulf">
+                                        <rect key="frame" x="0.0" y="30" width="193" height="12"/>
+                                        <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="10"/>
+                                        <color key="textColor" red="0.0018759364309999999" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enemies In Sector:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WVN-hE-EnE">
+                                        <rect key="frame" x="0.0" y="45" width="108.5" height="12"/>
+                                        <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="10"/>
+                                        <color key="textColor" red="0.0018759364309999999" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shields: DOWN" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qxJ-iY-TUa">
+                                        <rect key="frame" x="0.0" y="60" width="78.5" height="12"/>
+                                        <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="10"/>
+                                        <color key="textColor" red="0.0018759364309999999" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shield Strength: 100%" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tVA-tc-gId">
+                                        <rect key="frame" x="0.0" y="75" width="126.5" height="12"/>
+                                        <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="10"/>
+                                        <color key="textColor" red="0.0018759364309999999" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="0.0" right="8"/>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -339,7 +351,7 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</muta
                             <constraint firstItem="z62-zF-Ty3" firstAttribute="top" secondItem="cOD-NV-RaV" secondAttribute="bottom" constant="20" id="Up0-Ew-Y3W"/>
                             <constraint firstAttribute="trailing" secondItem="Eo0-Hl-05V" secondAttribute="trailing" constant="1" id="XPo-FJ-bZW"/>
                             <constraint firstItem="L0B-TD-jaq" firstAttribute="top" secondItem="PFE-MW-5wO" secondAttribute="bottom" constant="8" id="YR0-mi-7Zs"/>
-                            <constraint firstItem="wgh-g3-0pN" firstAttribute="top" secondItem="6Sn-Ch-wiN" secondAttribute="bottom" constant="7" id="hjs-y0-3P5"/>
+                            <constraint firstItem="wgh-g3-0pN" firstAttribute="top" secondItem="6Sn-Ch-wiN" secondAttribute="bottom" constant="8" id="hjs-y0-3P5"/>
                             <constraint firstItem="z62-zF-Ty3" firstAttribute="leading" secondItem="TBr-jy-nsA" secondAttribute="leadingMargin" id="prt-qj-69b"/>
                             <constraint firstItem="7jm-zG-a79" firstAttribute="height" secondItem="TBr-jy-nsA" secondAttribute="height" id="rdH-CQ-USn"/>
                             <constraint firstItem="L0B-TD-jaq" firstAttribute="top" secondItem="Eo0-Hl-05V" secondAttribute="bottom" constant="64" id="ree-Ac-6IQ"/>
@@ -354,6 +366,7 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</muta
                         <outlet property="enemiesInSectorDisplay" destination="WVN-hE-EnE" id="wft-GI-LFO"/>
                         <outlet property="galacticStack" destination="hyH-e8-gbB" id="7Q2-6n-LWi"/>
                         <outlet property="joystickControl" destination="z62-zF-Ty3" id="Nhc-qM-bbn"/>
+                        <outlet property="mainView" destination="TBr-jy-nsA" id="xqd-hI-mDE"/>
                         <outlet property="mapScnView" destination="50S-aJ-rH1" id="d3z-92-0Vg"/>
                         <outlet property="phiDisplay" destination="AcU-BV-dAF" id="Aho-Bo-R46"/>
                         <outlet property="shieldStrengthDisplay" destination="tVA-tc-gId" id="iAW-BA-SMY"/>

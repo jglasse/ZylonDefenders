@@ -1,6 +1,6 @@
 //
 //  HUD.swift
-//  Zylon Defenders
+//  A spritekit overlay layer for Zylon Defenders
 //
 //  Created by Jeffery Glasse on 12/30/16.
 //  Copyright © 2016 Jeffery Glasse. All rights reserved.

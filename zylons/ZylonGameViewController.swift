@@ -99,6 +99,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 
     // MARK: - IBOutlets
 
+    @IBOutlet var mainView: UIView!
     @IBOutlet weak var spaceScnView: SCNView!
     @IBOutlet weak var mapScnView: SCNView!
     @IBOutlet weak var galacticStack: UIStackView!
@@ -268,48 +269,69 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 
     @IBAction func alpha(_ sender: Any) {
         computerBeepSound("beep")
-        let action = SCNAction.rotateTo(x: 0, y: 0, z: 2.95, duration: rotateSpeed, usesShortestUnitArc: true)
+        let action = SCNAction.rotateTo(x: 0.1, y: 0, z: 3.1, duration: rotateSpeed, usesShortestUnitArc: true)
             rotationNode.runAction(action)
             alphaSector.opacity = 1.0
             betaSector.opacity = 0.1
             gammaSector.opacity = 0.1
             deltaSector.opacity = 0.1
+        envSound("AlphaSector")
+
     }
     @IBAction func beta(_ sender: Any) {
         computerBeepSound("beep")
 
-            let action = SCNAction.rotateTo(x: 0, y: 0, z: 2.95, duration: rotateSpeed, usesShortestUnitArc: true)
+            let action = SCNAction.rotateTo(x: 0, y: 0, z: 3.1, duration: rotateSpeed, usesShortestUnitArc: true)
             rotationNode.runAction(action)
         alphaSector.opacity = 0.2
         betaSector.opacity = 1.0
         gammaSector.opacity = 0.2
         deltaSector.opacity = 0.2
+        envSound("BetaSector")
 
     }
     @IBAction func gamma(_ sender: Any) {
         computerBeepSound("beep")
 
-        let action = SCNAction.rotateTo(x: 0, y: 0, z: 2.95, duration: rotateSpeed, usesShortestUnitArc: true)
+        let action = SCNAction.rotateTo(x: -0.1, y: 0, z: 3.1, duration: rotateSpeed, usesShortestUnitArc: true)
         rotationNode.runAction(action)
         alphaSector.opacity = 0.1
         betaSector.opacity = 0.1
         gammaSector.opacity = 1.0
         deltaSector.opacity = 0.1
+        envSound("GammaSector")
 
     }
     @IBAction func delta(_ sender: Any) {
         computerBeepSound("beep")
 
-        let action = SCNAction.rotateTo(x: 0, y: 0, z: 2.95, duration: rotateSpeed, usesShortestUnitArc: true)
+        let action = SCNAction.rotateTo(x: -0.16, y: 0, z: 3.1, duration: rotateSpeed, usesShortestUnitArc: true)
         rotationNode.runAction(action)
         alphaSector.opacity = 0.1
         betaSector.opacity = 0.1
         gammaSector.opacity = 0.1
         deltaSector.opacity = 1.0
+        envSound("DeltaSector")
+
+    }
+
+    @IBAction func allQuads(_ sender: Any) {
+        let action = SCNAction.rotateTo(x: -0.5, y: 0, z: 3.1, duration: rotateSpeed, usesShortestUnitArc: true)
+        rotationNode.runAction(action)
+        computerBeepSound("beep")
+        alphaSector.opacity = 1.0
+        betaSector.opacity = 1.0
+        gammaSector.opacity = 1.0
+        deltaSector.opacity = 1.0
     }
 
     // MARK: - SETUP
 
+    override func viewDidAppear(_ animated: Bool) {
+        // update hud to current position (which should be randomized)
+        // done in viewdidappear to not falsely report empty sector
+        self.shipHud.updateHUD()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
 //        NotificationCenter.default.addObserver(self,
@@ -327,6 +349,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
        // myMCController.setup()
        // myMCController.myCommandDelegate = self
         shipHud.parentScene = self
+
     }
 
     func setupView() {
@@ -485,7 +508,6 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 
         galacticMap?.rootNode.addChildNode(cameraNode)
         rotationNode.rotation = SCNVector4Make(0, 0, 1, 3.141)
-       // galacticMap?.rootNode.rotation = SCNVector4Make(0, 1, 0, 1.571)
 
         let camConstraint = SCNLookAtConstraint(target: galacticMap?.rootNode)
         camConstraint.isGimbalLockEnabled = true
@@ -577,10 +599,10 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
                 print(index)
             }
         }
-
+        var  rotationNode: SCNNode { return  (galacticMap?.rootNode.childNode(withName: "rotateNode", recursively: true))! }
         let transition = SKTransition.fade(withDuration: 0)
         mapScnView.present(galacticMap!, with: transition, incomingPointOfView: galacticMap?.rootNode.childNode(withName: "gCam", recursively: true), completionHandler: {
-            self.mapScnView.allowsCameraControl = true
+            self.mapScnView.allowsCameraControl = false
             print(self.mapScnView.description) })
     }
 
@@ -637,11 +659,12 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     func zylonShipHitBy(node: SCNNode) {
         print("Zylon Ship hit by \(node.description)")
 
-        // animate removal of node, but for now just remove it.
+        // we should animate removal of node which hit ship, but for now just remove it.
         if !ship.shieldsAreUp {
         boom(atNode: node)
         }
         node.removeFromParentNode()
+        self.shipHud.updateHUD()
 
         if ship.shieldsAreUp && ship.shieldStrength>0 {
             print("ship.shieldsAreUp && ship.shieldStrength>0")
@@ -649,6 +672,17 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
             print("self.environmentSound(forcefieldHit) played")
 
             let overlayPos = self.overlayPos(node: node) // screen coordinates of hit in UIVIew
+
+            DispatchQueue.main.async {
+                let testView = UIView(frame: CGRect(x: overlayPos.x-5, y: overlayPos.y-5, width: 10, height: 10))
+                testView.tintColor = UIColor.red
+                self.mainView.addSubview(testView)
+
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                testView.removeFromSuperview()
+                }
+            }
+
             let overlaySpritePOS = shipHud.convertPoint(fromView: overlayPos) //
             shipHud.shieldHit(location: overlaySpritePOS)
             ship.shieldStrength = ship.shieldStrength - 10
@@ -756,9 +790,9 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 			self.stepperSpeed.value = 9
             }
         SCNTransaction.commit()
-		SCNTransaction.begin()
-		SCNTransaction.animationDuration = 0.0
-        SCNTransaction.commit()
+//        SCNTransaction.begin()
+//        SCNTransaction.animationDuration = 0.0
+//        SCNTransaction.commit()
         ship.updateSector()
 
     }
@@ -828,10 +862,10 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
             audioItems.append(item)
 
         }
+        self.shipHud.updateHUD()
         computerVoice = AVQueuePlayer(items: audioItems)
         computerVoice.volume = 1
         computerVoice.play()
-        shipHud.updateHUD()
     }
 
     func enterRandomSector() {
@@ -1045,6 +1079,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         updateStars()
 		cleanSceneAndUpdateSectorNodeObjects()
         updateTactical()
+
          DispatchQueue.main.async {
             self.shipHud.shields.isHidden = !self.ship.shieldsAreUp
         }

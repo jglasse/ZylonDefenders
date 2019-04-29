@@ -22,6 +22,14 @@
 		E1284C4E203914090022AE83 /* explosion3.m4a in Resources */ = {isa = PBXBuildFile; fileRef = E1284C4C203914080022AE83 /* explosion3.m4a */; };
 		E1284C50203A58950022AE83 /* forcefieldHit.m4a in Resources */ = {isa = PBXBuildFile; fileRef = E1284C4F203A58940022AE83 /* forcefieldHit.m4a */; };
 		E12948751F9D715200DA0E0F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1272AB71F64FBCE00A66358 /* LaunchScreen.storyboard */; };
+		E139A7042276153400534982 /* AlphaSector.m4a in Resources */ = {isa = PBXBuildFile; fileRef = E139A7002276153300534982 /* AlphaSector.m4a */; };
+		E139A7052276153400534982 /* AlphaSector.m4a in Resources */ = {isa = PBXBuildFile; fileRef = E139A7002276153300534982 /* AlphaSector.m4a */; };
+		E139A7062276153400534982 /* BetaSector.m4a in Resources */ = {isa = PBXBuildFile; fileRef = E139A7012276153300534982 /* BetaSector.m4a */; };
+		E139A7072276153400534982 /* BetaSector.m4a in Resources */ = {isa = PBXBuildFile; fileRef = E139A7012276153300534982 /* BetaSector.m4a */; };
+		E139A7082276153400534982 /* GammaSector.m4a in Resources */ = {isa = PBXBuildFile; fileRef = E139A7022276153300534982 /* GammaSector.m4a */; };
+		E139A7092276153400534982 /* GammaSector.m4a in Resources */ = {isa = PBXBuildFile; fileRef = E139A7022276153300534982 /* GammaSector.m4a */; };
+		E139A70A2276153400534982 /* DeltaSector.m4a in Resources */ = {isa = PBXBuildFile; fileRef = E139A7032276153400534982 /* DeltaSector.m4a */; };
+		E139A70B2276153400534982 /* DeltaSector.m4a in Resources */ = {isa = PBXBuildFile; fileRef = E139A7032276153400534982 /* DeltaSector.m4a */; };
 		E13A032521B37B1D0049B125 /* beta.m4a in Resources */ = {isa = PBXBuildFile; fileRef = E13A032121B37B1D0049B125 /* beta.m4a */; };
 		E13A032621B37B1D0049B125 /* delta.m4a in Resources */ = {isa = PBXBuildFile; fileRef = E13A032221B37B1D0049B125 /* delta.m4a */; };
 		E13A032721B37B1D0049B125 /* gamma.m4a in Resources */ = {isa = PBXBuildFile; fileRef = E13A032321B37B1D0049B125 /* gamma.m4a */; };
@@ -177,6 +185,10 @@
 		E1284C4B203914080022AE83 /* explosion2.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = explosion2.m4a; sourceTree = "<group>"; };
 		E1284C4C203914080022AE83 /* explosion3.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = explosion3.m4a; sourceTree = "<group>"; };
 		E1284C4F203A58940022AE83 /* forcefieldHit.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = forcefieldHit.m4a; sourceTree = "<group>"; };
+		E139A7002276153300534982 /* AlphaSector.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = AlphaSector.m4a; sourceTree = "<group>"; };
+		E139A7012276153300534982 /* BetaSector.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = BetaSector.m4a; sourceTree = "<group>"; };
+		E139A7022276153300534982 /* GammaSector.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = GammaSector.m4a; sourceTree = "<group>"; };
+		E139A7032276153400534982 /* DeltaSector.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = DeltaSector.m4a; sourceTree = "<group>"; };
 		E13A032121B37B1D0049B125 /* beta.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = beta.m4a; sourceTree = "<group>"; };
 		E13A032221B37B1D0049B125 /* delta.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = delta.m4a; sourceTree = "<group>"; };
 		E13A032321B37B1D0049B125 /* gamma.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = gamma.m4a; sourceTree = "<group>"; };
@@ -303,6 +315,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E139A6FF2276151B00534982 /* MapSectors */ = {
+			isa = PBXGroup;
+			children = (
+				E139A7002276153300534982 /* AlphaSector.m4a */,
+				E139A7012276153300534982 /* BetaSector.m4a */,
+				E139A7032276153400534982 /* DeltaSector.m4a */,
+				E139A7022276153300534982 /* GammaSector.m4a */,
+			);
+			name = MapSectors;
+			sourceTree = "<group>";
+		};
 		E165672A1E3205C100293285 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -576,6 +599,7 @@
 		FC9F9CF41E1AFC9A00907E04 /* sounds */ = {
 			isa = PBXGroup;
 			children = (
+				E139A6FF2276151B00534982 /* MapSectors */,
 				E16E28ED20564A53002362C1 /* errorMessages */,
 				E1D36D5E1FEA53D0001F3E25 /* beeps */,
 				E1F8BB071E3FD56C00460FC9 /* event_sounds */,
@@ -669,6 +693,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E139A7092276153400534982 /* GammaSector.m4a in Resources */,
 				E16E28C220564A41002362C1 /* empathyCircuitDamaged.aiff in Resources */,
 				E16E28EA20564A41002362C1 /* percent.aiff in Resources */,
 				E16E28DE20564A41002362C1 /* ShieldsFailure.aiff in Resources */,
@@ -678,6 +703,7 @@
 				E1E41C682068B7D1000A74DE /* Assets.xcassets in Resources */,
 				E16E28DA20564A41002362C1 /* Shields30 percent.aiff in Resources */,
 				E123FFD622679C3E00F41ADD /* SpaceStation5.dae in Resources */,
+				E139A70B2276153400534982 /* DeltaSector.m4a in Resources */,
 				E192623420A79A8600AB93F2 /* Starfield 2048x1024B.png in Resources */,
 				E16E28E420564A41002362C1 /* ReallyreallyBad.aiff in Resources */,
 				E1503384226680D40083C300 /* galacticmap.scn in Resources */,
@@ -692,8 +718,10 @@
 				E16E28D220564A41002362C1 /* Shields20 percent.aiff in Resources */,
 				E1BBE5AC205496D000A5C571 /* Main.storyboard in Resources */,
 				E16E28B820564A41002362C1 /* warpEnd.aif in Resources */,
+				E139A7072276153400534982 /* BetaSector.m4a in Resources */,
 				E16E28D620564A41002362C1 /* genderIdentityEnforcement.aiff in Resources */,
 				E16E28C420564A41002362C1 /* gridCoreFailureImminent.aiff in Resources */,
+				E139A7052276153400534982 /* AlphaSector.m4a in Resources */,
 				E16E28DC20564A41002362C1 /* Shields40 percent.aiff in Resources */,
 				E16E28C820564A41002362C1 /* innerHullFailure.aiff in Resources */,
 				E192623720A79E4600AB93F2 /* Starfield 2048x1024LB.png in Resources */,
@@ -723,6 +751,7 @@
 				E1E381E21EC4B79A000CC31C /* button_dir_up_0.png in Resources */,
 				E187F5721FB04B140036B3FE /* HumonTorpedo.scnp in Resources */,
 				E13A032721B37B1D0049B125 /* gamma.m4a in Resources */,
+				E139A7062276153400534982 /* BetaSector.m4a in Resources */,
 				E109EB601E1BB938003DAB0F /* 40069.ttf in Resources */,
 				E1A89EA81E9867F600EA8BC4 /* Default-568h@2x.png in Resources */,
 				E16E28D320564A41002362C1 /* Shields80 percent.aiff in Resources */,
@@ -735,6 +764,7 @@
 				E10EFCB91EBFBDA500CC872E /* tinyGrid.png in Resources */,
 				E16E28C920564A41002362C1 /* warpStartStop.aif in Resources */,
 				E16E28BB20564A41002362C1 /* Shields60 percent.aiff in Resources */,
+				E139A70A2276153400534982 /* DeltaSector.m4a in Resources */,
 				E12948751F9D715200DA0E0F /* LaunchScreen.storyboard in Resources */,
 				E16E28C720564A41002362C1 /* innerHullFailure.aiff in Resources */,
 				E1BD14B61E24280C002E49A5 /* seven.m4a in Resources */,
@@ -753,6 +783,7 @@
 				E168B77020468A69001061FE /* shipHullHit.m4a in Resources */,
 				E109EB5E1E1B3F7F003DAB0F /* shields.mp3 in Resources */,
 				E1BD14B41E24280C002E49A5 /* nine.m4a in Resources */,
+				E139A7082276153400534982 /* GammaSector.m4a in Resources */,
 				E1BD14B01E24280C002E49A5 /* eight.m4a in Resources */,
 				E1D8BD5B1DCFCD1A00C863DF /* Assets.xcassets in Resources */,
 				E1272AB81F65244500A66358 /* Humon.scn in Resources */,
@@ -776,6 +807,7 @@
 				E16E28CD20564A41002362C1 /* Shields70 percent.aiff in Resources */,
 				E1D36D621FEA5764001F3E25 /* sectorCleared.mp3 in Resources */,
 				E19BC7B222594F2500A1DA6B /* hullHit.m4a in Resources */,
+				E139A7042276153400534982 /* AlphaSector.m4a in Resources */,
 				E1F8BB0B1E3FF4E100460FC9 /* explosion.m4a in Resources */,
 				E192623620A79E4600AB93F2 /* Starfield 2048x1024LB.png in Resources */,
 				E1503383226680D30083C300 /* galacticmap.scn in Resources */,
