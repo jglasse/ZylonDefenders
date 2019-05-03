@@ -175,6 +175,26 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
             //torpedoNode.physicsBody?.applyForce(SCNVector3Make(-driftAmount, 1.7, forceAmount), asImpulse: true)
     }
 
+    func fireAftTorp() {
+        print("AFT Torpedo!")
+        if numberOfZylonShotsOnscreen < Constants.maxTorpedoes-2 && !self.aButtonJustPressed {
+            let torpedoNode = Torpedo(designatedTorpType: .zylon)
+            let photonSoundArray = [photonSound1, photonSound2, photonSound3, photonSound4]
+            let currentplayer = photonSoundArray[currentPhoton]
+           // let offset: Float = 4
+            mainGameScene.rootNode.addChildNode(torpedoNode)
+            let driftAmount: Float = 2
+            let forceAmount: Float = -95
+                torpedoNode.position = SCNVector3Make(-0.1, 2, 0)
+                torpedoNode.physicsBody?.applyForce(SCNVector3Make(0, 0, -forceAmount), asImpulse: true)
+            currentplayer?.play()
+            currentPhoton = currentPhoton+1
+            if currentPhoton>(photonSoundArray.count - 1) {currentPhoton = 0}
+            //countNodes()
+        } else {
+            computerBeepSound("torpedo_fail")
+        }
+    }
      func fireTorp() {
         if numberOfZylonShotsOnscreen < Constants.maxTorpedoes && !self.aButtonJustPressed {
             let torpedoNode = Torpedo(designatedTorpType: .zylon)
@@ -206,7 +226,8 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 }
 
 @IBAction func fireTorpedo(_ sender: UIButton) {
-    if self.viewMode == .foreView { fireTorp() }
+    if self.viewMode == .foreView { fireTorp() } else {
+        if self.viewMode == .aftView { fireAftTorp() }}
     }
 
     @IBAction func spawnDrone(_ sender: UIButton) {
@@ -330,7 +351,6 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     override func viewDidAppear(_ animated: Bool) {
         // update hud to current position (which should be randomized)
         // done in viewdidappear to not falsely report empty sector
-        self.shipHud.updateHUD()
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -664,7 +684,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         boom(atNode: node)
         }
         node.removeFromParentNode()
-        self.shipHud.updateHUD()
+       // self.shipHud.updateHUD()
 
         if ship.shieldsAreUp && ship.shieldStrength>0 {
             print("ship.shieldsAreUp && ship.shieldStrength>0")
@@ -674,11 +694,13 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
             let overlayPos = self.overlayPos(node: node) // screen coordinates of hit in UIVIew
 
             DispatchQueue.main.async {
-                let testView = UIView(frame: CGRect(x: overlayPos.x-5, y: overlayPos.y-5, width: 10, height: 10))
+                let testView = UIView(frame: CGRect(x: overlayPos.x-5, y: overlayPos.y-5, width: 30, height: 30))
                 testView.tintColor = UIColor.red
+                testView.backgroundColor = UIColor.red
                 self.mainView.addSubview(testView)
+                testView.setNeedsDisplay()
 
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 10.5) {
                 testView.removeFromSuperview()
                 }
             }
@@ -690,6 +712,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
             print("SHIELDS HAVE HELD! Current Shield Strenth: \(ship.shieldStrength)")
             } else {
                 print("SHIELDS HAVE FAILED!")
+                self.shipHud.activateAlert()
             }
 
         } else {
@@ -708,6 +731,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
             self.sectorObjectsNode.addChildNode(explosionNode)
             self.explosionSound()
         }
+        //self.shipHud.updateHUD()
 
     }
 
@@ -862,7 +886,6 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
             audioItems.append(lastItem)
 
         }
-        self.shipHud.updateHUD()
         computerVoice = AVQueuePlayer(items: audioItems)
         computerVoice.volume = 1
         computerVoice.play()
@@ -1079,6 +1102,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         updateStars()
 		cleanSceneAndUpdateSectorNodeObjects()
         updateTactical()
+        //self.shipHud.updateHUD()
 
          DispatchQueue.main.async {
             self.shipHud.shields.isHidden = !self.ship.shieldsAreUp

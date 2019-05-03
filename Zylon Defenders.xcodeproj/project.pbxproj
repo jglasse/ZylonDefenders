@@ -39,7 +39,6 @@
 		E151DA2E1E17926900A70B45 /* HUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = E151DA2D1E17926900A70B45 /* HUD.swift */; };
 		E15520321DCFE776001651EB /* starField.scnp in Resources */ = {isa = PBXBuildFile; fileRef = E15520311DCFE776001651EB /* starField.scnp */; };
 		E165672D1E3205EE00293285 /* Texas Instruments2.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E165672B1E3205EE00293285 /* Texas Instruments2.ttf */; };
-		E168B77020468A69001061FE /* shipHullHit.m4a in Resources */ = {isa = PBXBuildFile; fileRef = E168B76F20468A69001061FE /* shipHullHit.m4a */; };
 		E16AB6241E1DD1F800E3D8C2 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = E16AB6231E1DD1F800E3D8C2 /* spark.png */; };
 		E16AB62A1E1F120400E3D8C2 /* torpedo_fail.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E16AB6291E1F120400E3D8C2 /* torpedo_fail.mp3 */; };
 		E16B66881E8B09F800F28144 /* MCController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16B66871E8B09F800F28144 /* MCController.swift */; };
@@ -47,10 +46,10 @@
 		E16D68CB226B50F100B27067 /* alert.m4a in Resources */ = {isa = PBXBuildFile; fileRef = E16D68C9226B50F100B27067 /* alert.m4a */; };
 		E16E28B720564A41002362C1 /* warpEnd.aif in Resources */ = {isa = PBXBuildFile; fileRef = E16E289C20564A3F002362C1 /* warpEnd.aif */; };
 		E16E28B820564A41002362C1 /* warpEnd.aif in Resources */ = {isa = PBXBuildFile; fileRef = E16E289C20564A3F002362C1 /* warpEnd.aif */; };
-		E16E28B920564A41002362C1 /* Shields10 percent.aiff in Resources */ = {isa = PBXBuildFile; fileRef = E16E289D20564A3F002362C1 /* Shields10 percent.aiff */; };
-		E16E28BA20564A41002362C1 /* Shields10 percent.aiff in Resources */ = {isa = PBXBuildFile; fileRef = E16E289D20564A3F002362C1 /* Shields10 percent.aiff */; };
-		E16E28BB20564A41002362C1 /* Shields60 percent.aiff in Resources */ = {isa = PBXBuildFile; fileRef = E16E289E20564A3F002362C1 /* Shields60 percent.aiff */; };
-		E16E28BC20564A41002362C1 /* Shields60 percent.aiff in Resources */ = {isa = PBXBuildFile; fileRef = E16E289E20564A3F002362C1 /* Shields60 percent.aiff */; };
+		E16E28B920564A41002362C1 /* Shields10.aiff in Resources */ = {isa = PBXBuildFile; fileRef = E16E289D20564A3F002362C1 /* Shields10.aiff */; };
+		E16E28BA20564A41002362C1 /* Shields10.aiff in Resources */ = {isa = PBXBuildFile; fileRef = E16E289D20564A3F002362C1 /* Shields10.aiff */; };
+		E16E28BB20564A41002362C1 /* Shields60.aiff in Resources */ = {isa = PBXBuildFile; fileRef = E16E289E20564A3F002362C1 /* Shields60.aiff */; };
+		E16E28BC20564A41002362C1 /* Shields60.aiff in Resources */ = {isa = PBXBuildFile; fileRef = E16E289E20564A3F002362C1 /* Shields60.aiff */; };
 		E16E28BD20564A41002362C1 /* outerHullFailure.aiff in Resources */ = {isa = PBXBuildFile; fileRef = E16E289F20564A3F002362C1 /* outerHullFailure.aiff */; };
 		E16E28BE20564A41002362C1 /* outerHullFailure.aiff in Resources */ = {isa = PBXBuildFile; fileRef = E16E289F20564A3F002362C1 /* outerHullFailure.aiff */; };
 		E16E28BF20564A41002362C1 /* warpStart.aif in Resources */ = {isa = PBXBuildFile; fileRef = E16E28A020564A3F002362C1 /* warpStart.aif */; };
@@ -67,38 +66,38 @@
 		E16E28CA20564A41002362C1 /* warpStartStop.aif in Resources */ = {isa = PBXBuildFile; fileRef = E16E28A520564A40002362C1 /* warpStartStop.aif */; };
 		E16E28CB20564A41002362C1 /* gridwarpGovernorMalfunction.aiff in Resources */ = {isa = PBXBuildFile; fileRef = E16E28A620564A40002362C1 /* gridwarpGovernorMalfunction.aiff */; };
 		E16E28CC20564A41002362C1 /* gridwarpGovernorMalfunction.aiff in Resources */ = {isa = PBXBuildFile; fileRef = E16E28A620564A40002362C1 /* gridwarpGovernorMalfunction.aiff */; };
-		E16E28CD20564A41002362C1 /* Shields70 percent.aiff in Resources */ = {isa = PBXBuildFile; fileRef = E16E28A720564A40002362C1 /* Shields70 percent.aiff */; };
-		E16E28CE20564A41002362C1 /* Shields70 percent.aiff in Resources */ = {isa = PBXBuildFile; fileRef = E16E28A720564A40002362C1 /* Shields70 percent.aiff */; };
+		E16E28CD20564A41002362C1 /* Shields70.aiff in Resources */ = {isa = PBXBuildFile; fileRef = E16E28A720564A40002362C1 /* Shields70.aiff */; };
+		E16E28CE20564A41002362C1 /* Shields70.aiff in Resources */ = {isa = PBXBuildFile; fileRef = E16E28A720564A40002362C1 /* Shields70.aiff */; };
 		E16E28CF20564A41002362C1 /* proximateImprobabilityDriveDetected.aiff in Resources */ = {isa = PBXBuildFile; fileRef = E16E28A820564A40002362C1 /* proximateImprobabilityDriveDetected.aiff */; };
 		E16E28D020564A41002362C1 /* proximateImprobabilityDriveDetected.aiff in Resources */ = {isa = PBXBuildFile; fileRef = E16E28A820564A40002362C1 /* proximateImprobabilityDriveDetected.aiff */; };
-		E16E28D120564A41002362C1 /* Shields20 percent.aiff in Resources */ = {isa = PBXBuildFile; fileRef = E16E28A920564A40002362C1 /* Shields20 percent.aiff */; };
-		E16E28D220564A41002362C1 /* Shields20 percent.aiff in Resources */ = {isa = PBXBuildFile; fileRef = E16E28A920564A40002362C1 /* Shields20 percent.aiff */; };
-		E16E28D320564A41002362C1 /* Shields80 percent.aiff in Resources */ = {isa = PBXBuildFile; fileRef = E16E28AA20564A40002362C1 /* Shields80 percent.aiff */; };
-		E16E28D420564A41002362C1 /* Shields80 percent.aiff in Resources */ = {isa = PBXBuildFile; fileRef = E16E28AA20564A40002362C1 /* Shields80 percent.aiff */; };
+		E16E28D120564A41002362C1 /* Shields20.aiff in Resources */ = {isa = PBXBuildFile; fileRef = E16E28A920564A40002362C1 /* Shields20.aiff */; };
+		E16E28D220564A41002362C1 /* Shields20.aiff in Resources */ = {isa = PBXBuildFile; fileRef = E16E28A920564A40002362C1 /* Shields20.aiff */; };
+		E16E28D320564A41002362C1 /* Shields80.aiff in Resources */ = {isa = PBXBuildFile; fileRef = E16E28AA20564A40002362C1 /* Shields80.aiff */; };
+		E16E28D420564A41002362C1 /* Shields80.aiff in Resources */ = {isa = PBXBuildFile; fileRef = E16E28AA20564A40002362C1 /* Shields80.aiff */; };
 		E16E28D520564A41002362C1 /* genderIdentityEnforcement.aiff in Resources */ = {isa = PBXBuildFile; fileRef = E16E28AB20564A40002362C1 /* genderIdentityEnforcement.aiff */; };
 		E16E28D620564A41002362C1 /* genderIdentityEnforcement.aiff in Resources */ = {isa = PBXBuildFile; fileRef = E16E28AB20564A40002362C1 /* genderIdentityEnforcement.aiff */; };
 		E16E28D720564A41002362C1 /* babelfishCircuitFailure.aiff in Resources */ = {isa = PBXBuildFile; fileRef = E16E28AC20564A40002362C1 /* babelfishCircuitFailure.aiff */; };
 		E16E28D820564A41002362C1 /* babelfishCircuitFailure.aiff in Resources */ = {isa = PBXBuildFile; fileRef = E16E28AC20564A40002362C1 /* babelfishCircuitFailure.aiff */; };
-		E16E28D920564A41002362C1 /* Shields30 percent.aiff in Resources */ = {isa = PBXBuildFile; fileRef = E16E28AD20564A40002362C1 /* Shields30 percent.aiff */; };
-		E16E28DA20564A41002362C1 /* Shields30 percent.aiff in Resources */ = {isa = PBXBuildFile; fileRef = E16E28AD20564A40002362C1 /* Shields30 percent.aiff */; };
-		E16E28DB20564A41002362C1 /* Shields40 percent.aiff in Resources */ = {isa = PBXBuildFile; fileRef = E16E28AE20564A40002362C1 /* Shields40 percent.aiff */; };
-		E16E28DC20564A41002362C1 /* Shields40 percent.aiff in Resources */ = {isa = PBXBuildFile; fileRef = E16E28AE20564A40002362C1 /* Shields40 percent.aiff */; };
+		E16E28D920564A41002362C1 /* Shields30.aiff in Resources */ = {isa = PBXBuildFile; fileRef = E16E28AD20564A40002362C1 /* Shields30.aiff */; };
+		E16E28DA20564A41002362C1 /* Shields30.aiff in Resources */ = {isa = PBXBuildFile; fileRef = E16E28AD20564A40002362C1 /* Shields30.aiff */; };
+		E16E28DB20564A41002362C1 /* Shields40.aiff in Resources */ = {isa = PBXBuildFile; fileRef = E16E28AE20564A40002362C1 /* Shields40.aiff */; };
+		E16E28DC20564A41002362C1 /* Shields40.aiff in Resources */ = {isa = PBXBuildFile; fileRef = E16E28AE20564A40002362C1 /* Shields40.aiff */; };
 		E16E28DD20564A41002362C1 /* ShieldsFailure.aiff in Resources */ = {isa = PBXBuildFile; fileRef = E16E28AF20564A40002362C1 /* ShieldsFailure.aiff */; };
 		E16E28DE20564A41002362C1 /* ShieldsFailure.aiff in Resources */ = {isa = PBXBuildFile; fileRef = E16E28AF20564A40002362C1 /* ShieldsFailure.aiff */; };
-		E16E28DF20564A41002362C1 /* Shields50 percent.aiff in Resources */ = {isa = PBXBuildFile; fileRef = E16E28B020564A40002362C1 /* Shields50 percent.aiff */; };
-		E16E28E020564A41002362C1 /* Shields50 percent.aiff in Resources */ = {isa = PBXBuildFile; fileRef = E16E28B020564A40002362C1 /* Shields50 percent.aiff */; };
+		E16E28DF20564A41002362C1 /* Shields50.aiff in Resources */ = {isa = PBXBuildFile; fileRef = E16E28B020564A40002362C1 /* Shields50.aiff */; };
+		E16E28E020564A41002362C1 /* Shields50.aiff in Resources */ = {isa = PBXBuildFile; fileRef = E16E28B020564A40002362C1 /* Shields50.aiff */; };
 		E16E28E120564A41002362C1 /* ShieldModulationRegulator.aiff in Resources */ = {isa = PBXBuildFile; fileRef = E16E28B120564A40002362C1 /* ShieldModulationRegulator.aiff */; };
 		E16E28E220564A41002362C1 /* ShieldModulationRegulator.aiff in Resources */ = {isa = PBXBuildFile; fileRef = E16E28B120564A40002362C1 /* ShieldModulationRegulator.aiff */; };
 		E16E28E320564A41002362C1 /* ReallyreallyBad.aiff in Resources */ = {isa = PBXBuildFile; fileRef = E16E28B220564A40002362C1 /* ReallyreallyBad.aiff */; };
 		E16E28E420564A41002362C1 /* ReallyreallyBad.aiff in Resources */ = {isa = PBXBuildFile; fileRef = E16E28B220564A40002362C1 /* ReallyreallyBad.aiff */; };
-		E16E28E520564A41002362C1 /* Shields100 percent.aiff in Resources */ = {isa = PBXBuildFile; fileRef = E16E28B320564A40002362C1 /* Shields100 percent.aiff */; };
-		E16E28E620564A41002362C1 /* Shields100 percent.aiff in Resources */ = {isa = PBXBuildFile; fileRef = E16E28B320564A40002362C1 /* Shields100 percent.aiff */; };
+		E16E28E520564A41002362C1 /* Shields100.aiff in Resources */ = {isa = PBXBuildFile; fileRef = E16E28B320564A40002362C1 /* Shields100.aiff */; };
+		E16E28E620564A41002362C1 /* Shields100.aiff in Resources */ = {isa = PBXBuildFile; fileRef = E16E28B320564A40002362C1 /* Shields100.aiff */; };
 		E16E28E720564A41002362C1 /* plasmaManifoldFailure.aiff in Resources */ = {isa = PBXBuildFile; fileRef = E16E28B420564A40002362C1 /* plasmaManifoldFailure.aiff */; };
 		E16E28E820564A41002362C1 /* plasmaManifoldFailure.aiff in Resources */ = {isa = PBXBuildFile; fileRef = E16E28B420564A40002362C1 /* plasmaManifoldFailure.aiff */; };
 		E16E28E920564A41002362C1 /* percent.aiff in Resources */ = {isa = PBXBuildFile; fileRef = E16E28B520564A41002362C1 /* percent.aiff */; };
 		E16E28EA20564A41002362C1 /* percent.aiff in Resources */ = {isa = PBXBuildFile; fileRef = E16E28B520564A41002362C1 /* percent.aiff */; };
-		E16E28EB20564A41002362C1 /* Shields90 percent.aiff in Resources */ = {isa = PBXBuildFile; fileRef = E16E28B620564A41002362C1 /* Shields90 percent.aiff */; };
-		E16E28EC20564A41002362C1 /* Shields90 percent.aiff in Resources */ = {isa = PBXBuildFile; fileRef = E16E28B620564A41002362C1 /* Shields90 percent.aiff */; };
+		E16E28EB20564A41002362C1 /* Shields90.aiff in Resources */ = {isa = PBXBuildFile; fileRef = E16E28B620564A41002362C1 /* Shields90.aiff */; };
+		E16E28EC20564A41002362C1 /* Shields90.aiff in Resources */ = {isa = PBXBuildFile; fileRef = E16E28B620564A41002362C1 /* Shields90.aiff */; };
 		E17282A51EBEA144003C1955 /* grid.png in Resources */ = {isa = PBXBuildFile; fileRef = E17282A41EBEA144003C1955 /* grid.png */; };
 		E174FDC71E1A424500A7CC73 /* Torpedo.scnp in Resources */ = {isa = PBXBuildFile; fileRef = E174FDC51E1A424500A7CC73 /* Torpedo.scnp */; };
 		E174FDC81E1A424500A7CC73 /* bokeh.png in Resources */ = {isa = PBXBuildFile; fileRef = E174FDC61E1A424500A7CC73 /* bokeh.png */; };
@@ -200,14 +199,13 @@
 		E151DA2D1E17926900A70B45 /* HUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HUD.swift; sourceTree = "<group>"; };
 		E15520311DCFE776001651EB /* starField.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = starField.scnp; sourceTree = "<group>"; };
 		E165672B1E3205EE00293285 /* Texas Instruments2.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Texas Instruments2.ttf"; sourceTree = "<group>"; };
-		E168B76F20468A69001061FE /* shipHullHit.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = shipHullHit.m4a; sourceTree = "<group>"; };
 		E16AB6231E1DD1F800E3D8C2 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
 		E16AB6291E1F120400E3D8C2 /* torpedo_fail.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = torpedo_fail.mp3; sourceTree = "<group>"; };
 		E16B66871E8B09F800F28144 /* MCController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MCController.swift; sourceTree = "<group>"; };
 		E16D68C9226B50F100B27067 /* alert.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = alert.m4a; sourceTree = "<group>"; };
 		E16E289C20564A3F002362C1 /* warpEnd.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = warpEnd.aif; sourceTree = "<group>"; };
-		E16E289D20564A3F002362C1 /* Shields10 percent.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = "Shields10 percent.aiff"; sourceTree = "<group>"; };
-		E16E289E20564A3F002362C1 /* Shields60 percent.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = "Shields60 percent.aiff"; sourceTree = "<group>"; };
+		E16E289D20564A3F002362C1 /* Shields10.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = Shields10.aiff; sourceTree = "<group>"; };
+		E16E289E20564A3F002362C1 /* Shields60.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = Shields60.aiff; sourceTree = "<group>"; };
 		E16E289F20564A3F002362C1 /* outerHullFailure.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = outerHullFailure.aiff; sourceTree = "<group>"; };
 		E16E28A020564A3F002362C1 /* warpStart.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = warpStart.aif; sourceTree = "<group>"; };
 		E16E28A120564A3F002362C1 /* empathyCircuitDamaged.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = empathyCircuitDamaged.aiff; sourceTree = "<group>"; };
@@ -216,22 +214,22 @@
 		E16E28A420564A3F002362C1 /* innerHullFailure.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = innerHullFailure.aiff; sourceTree = "<group>"; };
 		E16E28A520564A40002362C1 /* warpStartStop.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = warpStartStop.aif; sourceTree = "<group>"; };
 		E16E28A620564A40002362C1 /* gridwarpGovernorMalfunction.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = gridwarpGovernorMalfunction.aiff; sourceTree = "<group>"; };
-		E16E28A720564A40002362C1 /* Shields70 percent.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = "Shields70 percent.aiff"; sourceTree = "<group>"; };
+		E16E28A720564A40002362C1 /* Shields70.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = Shields70.aiff; sourceTree = "<group>"; };
 		E16E28A820564A40002362C1 /* proximateImprobabilityDriveDetected.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = proximateImprobabilityDriveDetected.aiff; sourceTree = "<group>"; };
-		E16E28A920564A40002362C1 /* Shields20 percent.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = "Shields20 percent.aiff"; sourceTree = "<group>"; };
-		E16E28AA20564A40002362C1 /* Shields80 percent.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = "Shields80 percent.aiff"; sourceTree = "<group>"; };
+		E16E28A920564A40002362C1 /* Shields20.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = Shields20.aiff; sourceTree = "<group>"; };
+		E16E28AA20564A40002362C1 /* Shields80.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = Shields80.aiff; sourceTree = "<group>"; };
 		E16E28AB20564A40002362C1 /* genderIdentityEnforcement.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = genderIdentityEnforcement.aiff; sourceTree = "<group>"; };
 		E16E28AC20564A40002362C1 /* babelfishCircuitFailure.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = babelfishCircuitFailure.aiff; sourceTree = "<group>"; };
-		E16E28AD20564A40002362C1 /* Shields30 percent.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = "Shields30 percent.aiff"; sourceTree = "<group>"; };
-		E16E28AE20564A40002362C1 /* Shields40 percent.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = "Shields40 percent.aiff"; sourceTree = "<group>"; };
+		E16E28AD20564A40002362C1 /* Shields30.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = Shields30.aiff; sourceTree = "<group>"; };
+		E16E28AE20564A40002362C1 /* Shields40.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = Shields40.aiff; sourceTree = "<group>"; };
 		E16E28AF20564A40002362C1 /* ShieldsFailure.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = ShieldsFailure.aiff; sourceTree = "<group>"; };
-		E16E28B020564A40002362C1 /* Shields50 percent.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = "Shields50 percent.aiff"; sourceTree = "<group>"; };
+		E16E28B020564A40002362C1 /* Shields50.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = Shields50.aiff; sourceTree = "<group>"; };
 		E16E28B120564A40002362C1 /* ShieldModulationRegulator.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = ShieldModulationRegulator.aiff; sourceTree = "<group>"; };
 		E16E28B220564A40002362C1 /* ReallyreallyBad.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = ReallyreallyBad.aiff; sourceTree = "<group>"; };
-		E16E28B320564A40002362C1 /* Shields100 percent.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = "Shields100 percent.aiff"; sourceTree = "<group>"; };
+		E16E28B320564A40002362C1 /* Shields100.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = Shields100.aiff; sourceTree = "<group>"; };
 		E16E28B420564A40002362C1 /* plasmaManifoldFailure.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = plasmaManifoldFailure.aiff; sourceTree = "<group>"; };
 		E16E28B520564A41002362C1 /* percent.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = percent.aiff; sourceTree = "<group>"; };
-		E16E28B620564A41002362C1 /* Shields90 percent.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = "Shields90 percent.aiff"; sourceTree = "<group>"; };
+		E16E28B620564A41002362C1 /* Shields90.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = Shields90.aiff; sourceTree = "<group>"; };
 		E17282A41EBEA144003C1955 /* grid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grid.png; sourceTree = "<group>"; };
 		E174FDC51E1A424500A7CC73 /* Torpedo.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = Torpedo.scnp; sourceTree = "<group>"; };
 		E174FDC61E1A424500A7CC73 /* bokeh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bokeh.png; sourceTree = "<group>"; };
@@ -350,16 +348,16 @@
 				E16E28A820564A40002362C1 /* proximateImprobabilityDriveDetected.aiff */,
 				E16E28B220564A40002362C1 /* ReallyreallyBad.aiff */,
 				E16E28B120564A40002362C1 /* ShieldModulationRegulator.aiff */,
-				E16E289D20564A3F002362C1 /* Shields10 percent.aiff */,
-				E16E28A920564A40002362C1 /* Shields20 percent.aiff */,
-				E16E28AD20564A40002362C1 /* Shields30 percent.aiff */,
-				E16E28AE20564A40002362C1 /* Shields40 percent.aiff */,
-				E16E28B020564A40002362C1 /* Shields50 percent.aiff */,
-				E16E289E20564A3F002362C1 /* Shields60 percent.aiff */,
-				E16E28A720564A40002362C1 /* Shields70 percent.aiff */,
-				E16E28AA20564A40002362C1 /* Shields80 percent.aiff */,
-				E16E28B620564A41002362C1 /* Shields90 percent.aiff */,
-				E16E28B320564A40002362C1 /* Shields100 percent.aiff */,
+				E16E289D20564A3F002362C1 /* Shields10.aiff */,
+				E16E28A920564A40002362C1 /* Shields20.aiff */,
+				E16E28AD20564A40002362C1 /* Shields30.aiff */,
+				E16E28AE20564A40002362C1 /* Shields40.aiff */,
+				E16E28B020564A40002362C1 /* Shields50.aiff */,
+				E16E289E20564A3F002362C1 /* Shields60.aiff */,
+				E16E28A720564A40002362C1 /* Shields70.aiff */,
+				E16E28AA20564A40002362C1 /* Shields80.aiff */,
+				E16E28B620564A41002362C1 /* Shields90.aiff */,
+				E16E28B320564A40002362C1 /* Shields100.aiff */,
 				E16E28AF20564A40002362C1 /* ShieldsFailure.aiff */,
 				E16E28A320564A3F002362C1 /* viralIntrusionDetected.aiff */,
 				E16E289C20564A3F002362C1 /* warpEnd.aif */,
@@ -583,7 +581,6 @@
 				E19BC7B022594F2500A1DA6B /* shieldsDown.m4a */,
 				E19BC7AD22594F2500A1DA6B /* photon_sound.m4a */,
 				E1284C4F203A58940022AE83 /* forcefieldHit.m4a */,
-				E168B76F20468A69001061FE /* shipHullHit.m4a */,
 				E141B9B01ED77A6D00AB2A8C /* warpEnd.aif */,
 				E141B9AC1ED77A5700AB2A8C /* warpStart.aif */,
 				E141B9AD1ED77A5700AB2A8C /* warpStartStop.aif */,
@@ -697,11 +694,11 @@
 				E16E28C220564A41002362C1 /* empathyCircuitDamaged.aiff in Resources */,
 				E16E28EA20564A41002362C1 /* percent.aiff in Resources */,
 				E16E28DE20564A41002362C1 /* ShieldsFailure.aiff in Resources */,
-				E16E28BA20564A41002362C1 /* Shields10 percent.aiff in Resources */,
-				E16E28E020564A41002362C1 /* Shields50 percent.aiff in Resources */,
+				E16E28BA20564A41002362C1 /* Shields10.aiff in Resources */,
+				E16E28E020564A41002362C1 /* Shields50.aiff in Resources */,
 				E16E28E220564A41002362C1 /* ShieldModulationRegulator.aiff in Resources */,
 				E1E41C682068B7D1000A74DE /* Assets.xcassets in Resources */,
-				E16E28DA20564A41002362C1 /* Shields30 percent.aiff in Resources */,
+				E16E28DA20564A41002362C1 /* Shields30.aiff in Resources */,
 				E123FFD622679C3E00F41ADD /* SpaceStation5.dae in Resources */,
 				E139A70B2276153400534982 /* DeltaSector.m4a in Resources */,
 				E192623420A79A8600AB93F2 /* Starfield 2048x1024B.png in Resources */,
@@ -709,29 +706,29 @@
 				E1503384226680D40083C300 /* galacticmap.scn in Resources */,
 				E16E28C020564A41002362C1 /* warpStart.aif in Resources */,
 				E16E28BE20564A41002362C1 /* outerHullFailure.aiff in Resources */,
-				E16E28CE20564A41002362C1 /* Shields70 percent.aiff in Resources */,
+				E16E28CE20564A41002362C1 /* Shields70.aiff in Resources */,
 				E16E28D820564A41002362C1 /* babelfishCircuitFailure.aiff in Resources */,
 				E16E28D020564A41002362C1 /* proximateImprobabilityDriveDetected.aiff in Resources */,
 				E16E28E820564A41002362C1 /* plasmaManifoldFailure.aiff in Resources */,
-				E16E28D420564A41002362C1 /* Shields80 percent.aiff in Resources */,
+				E16E28D420564A41002362C1 /* Shields80.aiff in Resources */,
 				E16E28CC20564A41002362C1 /* gridwarpGovernorMalfunction.aiff in Resources */,
-				E16E28D220564A41002362C1 /* Shields20 percent.aiff in Resources */,
+				E16E28D220564A41002362C1 /* Shields20.aiff in Resources */,
 				E1BBE5AC205496D000A5C571 /* Main.storyboard in Resources */,
 				E16E28B820564A41002362C1 /* warpEnd.aif in Resources */,
 				E139A7072276153400534982 /* BetaSector.m4a in Resources */,
 				E16E28D620564A41002362C1 /* genderIdentityEnforcement.aiff in Resources */,
 				E16E28C420564A41002362C1 /* gridCoreFailureImminent.aiff in Resources */,
 				E139A7052276153400534982 /* AlphaSector.m4a in Resources */,
-				E16E28DC20564A41002362C1 /* Shields40 percent.aiff in Resources */,
+				E16E28DC20564A41002362C1 /* Shields40.aiff in Resources */,
 				E16E28C820564A41002362C1 /* innerHullFailure.aiff in Resources */,
 				E192623720A79E4600AB93F2 /* Starfield 2048x1024LB.png in Resources */,
 				E16D68CB226B50F100B27067 /* alert.m4a in Resources */,
 				E16E28CA20564A41002362C1 /* warpStartStop.aif in Resources */,
 				E18370B9212F609F003E2308 /* enemyAlert.mp3 in Resources */,
-				E16E28EC20564A41002362C1 /* Shields90 percent.aiff in Resources */,
+				E16E28EC20564A41002362C1 /* Shields90.aiff in Resources */,
 				E16E28C620564A41002362C1 /* viralIntrusionDetected.aiff in Resources */,
-				E16E28BC20564A41002362C1 /* Shields60 percent.aiff in Resources */,
-				E16E28E620564A41002362C1 /* Shields100 percent.aiff in Resources */,
+				E16E28BC20564A41002362C1 /* Shields60.aiff in Resources */,
+				E16E28E620564A41002362C1 /* Shields100.aiff in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -744,7 +741,7 @@
 				E1EA0D6E1FE9C59A002BFB0F /* Glass_TTY_VT220.ttf in Resources */,
 				E16E28B720564A41002362C1 /* warpEnd.aif in Resources */,
 				E192623320A79A8600AB93F2 /* Starfield 2048x1024B.png in Resources */,
-				E16E28D920564A41002362C1 /* Shields30 percent.aiff in Resources */,
+				E16E28D920564A41002362C1 /* Shields30.aiff in Resources */,
 				E13A032521B37B1D0049B125 /* beta.m4a in Resources */,
 				E16E28BF20564A41002362C1 /* warpStart.aif in Resources */,
 				E1BD14B91E24280C002E49A5 /* two.m4a in Resources */,
@@ -754,16 +751,16 @@
 				E139A7062276153400534982 /* BetaSector.m4a in Resources */,
 				E109EB601E1BB938003DAB0F /* 40069.ttf in Resources */,
 				E1A89EA81E9867F600EA8BC4 /* Default-568h@2x.png in Resources */,
-				E16E28D320564A41002362C1 /* Shields80 percent.aiff in Resources */,
+				E16E28D320564A41002362C1 /* Shields80.aiff in Resources */,
 				E1A58DC31E1DD07E00DCA24F /* Explosion.scnp in Resources */,
 				E16E28C120564A41002362C1 /* empathyCircuitDamaged.aiff in Resources */,
 				E16AB62A1E1F120400E3D8C2 /* torpedo_fail.mp3 in Resources */,
-				E16E28DB20564A41002362C1 /* Shields40 percent.aiff in Resources */,
+				E16E28DB20564A41002362C1 /* Shields40.aiff in Resources */,
 				E11A73831E986DE4001CCAC8 /* Main.storyboard in Resources */,
 				E1E381E31EC4B79A000CC31C /* button_dir_left_0.png in Resources */,
 				E10EFCB91EBFBDA500CC872E /* tinyGrid.png in Resources */,
 				E16E28C920564A41002362C1 /* warpStartStop.aif in Resources */,
-				E16E28BB20564A41002362C1 /* Shields60 percent.aiff in Resources */,
+				E16E28BB20564A41002362C1 /* Shields60.aiff in Resources */,
 				E139A70A2276153400534982 /* DeltaSector.m4a in Resources */,
 				E12948751F9D715200DA0E0F /* LaunchScreen.storyboard in Resources */,
 				E16E28C720564A41002362C1 /* innerHullFailure.aiff in Resources */,
@@ -779,8 +776,7 @@
 				E13A032621B37B1D0049B125 /* delta.m4a in Resources */,
 				E19BC7B122594F2500A1DA6B /* photon_sound.m4a in Resources */,
 				E1D1EA0D20267A7D00DB2984 /* Scanner.scn in Resources */,
-				E16E28D120564A41002362C1 /* Shields20 percent.aiff in Resources */,
-				E168B77020468A69001061FE /* shipHullHit.m4a in Resources */,
+				E16E28D120564A41002362C1 /* Shields20.aiff in Resources */,
 				E109EB5E1E1B3F7F003DAB0F /* shields.mp3 in Resources */,
 				E1BD14B41E24280C002E49A5 /* nine.m4a in Resources */,
 				E139A7082276153400534982 /* GammaSector.m4a in Resources */,
@@ -797,14 +793,14 @@
 				E16E28CF20564A41002362C1 /* proximateImprobabilityDriveDetected.aiff in Resources */,
 				E174FDC81E1A424500A7CC73 /* bokeh.png in Resources */,
 				E16E28DD20564A41002362C1 /* ShieldsFailure.aiff in Resources */,
-				E16E28B920564A41002362C1 /* Shields10 percent.aiff in Resources */,
+				E16E28B920564A41002362C1 /* Shields10.aiff in Resources */,
 				E16E28C520564A41002362C1 /* viralIntrusionDetected.aiff in Resources */,
 				E17282A51EBEA144003C1955 /* grid.png in Resources */,
 				E13A032821B37B1D0049B125 /* alpha.m4a in Resources */,
 				E1284C4D203914080022AE83 /* explosion2.m4a in Resources */,
 				E1284C50203A58950022AE83 /* forcefieldHit.m4a in Resources */,
 				E1E381E11EC4B79A000CC31C /* button_dir_right_0.png in Resources */,
-				E16E28CD20564A41002362C1 /* Shields70 percent.aiff in Resources */,
+				E16E28CD20564A41002362C1 /* Shields70.aiff in Resources */,
 				E1D36D621FEA5764001F3E25 /* sectorCleared.mp3 in Resources */,
 				E19BC7B222594F2500A1DA6B /* hullHit.m4a in Resources */,
 				E139A7042276153400534982 /* AlphaSector.m4a in Resources */,
@@ -812,19 +808,19 @@
 				E192623620A79E4600AB93F2 /* Starfield 2048x1024LB.png in Resources */,
 				E1503383226680D30083C300 /* galacticmap.scn in Resources */,
 				E1E381E01EC4B79A000CC31C /* button_dir_down_0.png in Resources */,
-				E16E28DF20564A41002362C1 /* Shields50 percent.aiff in Resources */,
+				E16E28DF20564A41002362C1 /* Shields50.aiff in Resources */,
 				E16E28D720564A41002362C1 /* babelfishCircuitFailure.aiff in Resources */,
 				E165672D1E3205EE00293285 /* Texas Instruments2.ttf in Resources */,
 				E16E28E920564A41002362C1 /* percent.aiff in Resources */,
 				E15520321DCFE776001651EB /* starField.scnp in Resources */,
 				E1BD14B11E24280C002E49A5 /* entering_sector.m4a in Resources */,
-				E16E28EB20564A41002362C1 /* Shields90 percent.aiff in Resources */,
+				E16E28EB20564A41002362C1 /* Shields90.aiff in Resources */,
 				E1F43D641DD115E900CC8988 /* star.png in Resources */,
 				E16E28E720564A41002362C1 /* plasmaManifoldFailure.aiff in Resources */,
 				E174FDC71E1A424500A7CC73 /* Torpedo.scnp in Resources */,
 				E10EFCBF1EC0EE8400CC872E /* smallestGridLessDense.png in Resources */,
 				E1BD14B71E24280C002E49A5 /* six.m4a in Resources */,
-				E16E28E520564A41002362C1 /* Shields100 percent.aiff in Resources */,
+				E16E28E520564A41002362C1 /* Shields100.aiff in Resources */,
 				E1BD14B21E24280C002E49A5 /* five.m4a in Resources */,
 				E123FFD522679C3E00F41ADD /* SpaceStation5.dae in Resources */,
 				E16E28E320564A41002362C1 /* ReallyreallyBad.aiff in Resources */,

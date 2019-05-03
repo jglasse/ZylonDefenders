@@ -15,6 +15,7 @@ import SceneKit
 class HUD: SKScene {
     // MARK: - Vars
 
+    var numberOfAlertRepeats = 0
     public var computerStatus = SKLabelNode()
     public var enemyIndicator = SKLabelNode()
     var shields: SKShapeNode!
@@ -23,7 +24,7 @@ class HUD: SKScene {
     var parentScene: ZylonGameViewController?
     let aftHairs = SKSpriteNode(imageNamed: "xenonHUDAFT")
     let foreHairs = SKSpriteNode(imageNamed: "xenonHUD")
-    var timer: Timer?
+    var alertTimer: Timer?
     var currentComputerStatusColor = UIColor.red
 
 	var tacticalDisplay = [SKSpriteNode]()
@@ -39,13 +40,13 @@ class HUD: SKScene {
         shields.strokeColor =  UIColor.clear
         computerStatus.fontName = "Y14.5M 17.0"
         computerStatus.fontSize = 10
-        computerStatus.fontColor = UIColor.red
+        computerStatus.fontColor = UIColor.green
         computerStatus.position = CGPoint(x: self.frame.midX, y: self.frame.maxY-40)
 
         enemyIndicator.fontName = "Y14.5M 17.0"
         enemyIndicator.fontSize = 10
-        enemyIndicator.fontColor = UIColor.red
-        computerStatus.position = CGPoint(x: self.frame.midX, y: self.frame.maxY-54)
+        enemyIndicator.fontColor = UIColor.green
+        enemyIndicator.position = CGPoint(x: self.frame.midX, y: self.frame.maxY-54)
 
         updateHUD()
 
@@ -54,9 +55,8 @@ class HUD: SKScene {
         crosshairs = foreHairs
         crosshairs.position = CGPoint(x: self.frame.midX, y: self.frame.midY)
         self.addChild(crosshairs)
-
         self.addChild(computerStatus)
-        //self.activateAlert()
+        self.addChild(enemyIndicator)
 
     }
 
@@ -66,7 +66,11 @@ class HUD: SKScene {
     }
 
     @objc func blinkComputerDisplay() {
-        if computerStatus.fontColor == currentComputerStatusColor {computerStatus.fontColor = UIColor.clear} else {computerStatus.fontColor = currentComputerStatusColor}
+        self.numberOfAlertRepeats += 1
+        if self.numberOfAlertRepeats > 8 {self.alertTimer?.invalidate() }
+        if computerStatus.fontColor == currentComputerStatusColor {computerStatus.fontColor = UIColor.clear} else {computerStatus.fontColor = currentComputerStatusColor
+            self.parentScene?.envSound("alert")
+            }
     }
 
     public func foreView() {
@@ -100,11 +104,18 @@ class HUD: SKScene {
 
      func updateHUD() {
         if let myScene = self.parentScene {
+
+            if myScene.ship.isInAlertMode {
+                computerStatus.text = "ALERT"
+
+            } else {
             let myX = myScene.ship.currentSector.quadrant
             let myY = myScene.ship.currentSector.qx
             let myZ = myScene.ship.currentSector.qy
             computerStatus.text = "CURRENT SECTOR: \(myX).\(myY).\(myZ)"
-            if myScene.enemyShipsInSector.count>0 {
+            }
+
+            if myScene.enemyShipsInSector.count > 0 {
                 enemyIndicator.color = UIColor.red
                 enemyIndicator.text = "ENEMIES IN RANGE: \(myScene.enemyShipsInSector.count)"
                 myScene.computerBeepSound("enemyAlert")
@@ -112,14 +123,14 @@ class HUD: SKScene {
             } else {
                 enemyIndicator.color = UIColor.green
                 enemyIndicator.text = "SECTOR CLEARED"
-                myScene.computerBeepSound("sectorCleared")
             }
         }
     }
 
     func activateAlert() {
         DispatchQueue.main.async {
-            self.timer = Timer.scheduledTimer(timeInterval: 1, target: self,
+            self.computerStatus.text = "ALERT"
+            self.alertTimer = Timer.scheduledTimer(timeInterval: 1, target: self,
                                               selector: #selector(self.blinkComputerDisplay), userInfo: nil, repeats: true)
         }
     }

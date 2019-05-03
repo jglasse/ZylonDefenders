@@ -46,6 +46,7 @@ struct Sector {
 
 class ZylonShip: SCNNode {
     var tacticalDisplayEngaged = false
+    var isInAlertMode = false
     var isCurrentlyinWarp = false
 	var shieldsAreUp = false
 	var currentSpeed = 0
