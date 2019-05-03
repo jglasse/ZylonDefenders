@@ -272,9 +272,9 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         let action = SCNAction.rotateTo(x: 0.1, y: 0, z: 3.1, duration: rotateSpeed, usesShortestUnitArc: true)
             rotationNode.runAction(action)
             alphaSector.opacity = 1.0
-            betaSector.opacity = 0.1
-            gammaSector.opacity = 0.1
-            deltaSector.opacity = 0.1
+            betaSector.opacity = Constants.mapTransparency
+            gammaSector.opacity = Constants.mapTransparency
+            deltaSector.opacity = Constants.mapTransparency
         envSound("AlphaSector")
 
     }
@@ -295,10 +295,10 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 
         let action = SCNAction.rotateTo(x: -0.1, y: 0, z: 3.1, duration: rotateSpeed, usesShortestUnitArc: true)
         rotationNode.runAction(action)
-        alphaSector.opacity = 0.1
-        betaSector.opacity = 0.1
+        alphaSector.opacity = Constants.mapTransparency
+        betaSector.opacity = Constants.mapTransparency
         gammaSector.opacity = 1.0
-        deltaSector.opacity = 0.1
+        deltaSector.opacity = Constants.mapTransparency
         envSound("GammaSector")
 
     }
@@ -307,9 +307,9 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 
         let action = SCNAction.rotateTo(x: -0.16, y: 0, z: 3.1, duration: rotateSpeed, usesShortestUnitArc: true)
         rotationNode.runAction(action)
-        alphaSector.opacity = 0.1
-        betaSector.opacity = 0.1
-        gammaSector.opacity = 0.1
+        alphaSector.opacity = Constants.mapTransparency
+        betaSector.opacity = Constants.mapTransparency
+        gammaSector.opacity = Constants.mapTransparency
         deltaSector.opacity = 1.0
         envSound("DeltaSector")
 
@@ -851,15 +851,15 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
             soundURL = Bundle.main.url(forResource: numString, withExtension: "m4a")
             item = AVPlayerItem(url: soundURL!)
             audioItems.append(item)
-        } else {
-            let numString = numberstrings[ship.currentSector.qy-10]
-            soundURL = Bundle.main.url(forResource: numString, withExtension: "m4a")
-            item = AVPlayerItem(url: soundURL!)
-            audioItems.append(item)
+        } else { // break numb7ers greater than 9 into two digits
             let numString2 = numberstrings[1]
             soundURL = Bundle.main.url(forResource: numString2, withExtension: "m4a")
             item = AVPlayerItem(url: soundURL!)
             audioItems.append(item)
+            let numString = numberstrings[ship.currentSector.qy-10]
+            soundURL = Bundle.main.url(forResource: numString, withExtension: "m4a")
+            let lastItem = AVPlayerItem(url: soundURL!)
+            audioItems.append(lastItem)
 
         }
         self.shipHud.updateHUD()

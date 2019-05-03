@@ -10,6 +10,7 @@ import Foundation
 import SceneKit
 
 struct Constants {
+    static let mapTransparency: CGFloat = 0.08
     static let starMoveDivider: Float = 0.4
     static let maxTorpedoes = 4
     static let maxEnemyShips = 5
