@@ -711,8 +711,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
             if ship.shieldStrength>0 {
             print("SHIELDS HAVE HELD! Current Shield Strenth: \(ship.shieldStrength)")
             } else {
-                print("SHIELDS HAVE FAILED!")
-                self.shipHud.activateAlert()
+                self.shipHud.activateAlert(message: "SHIELDS FAILURE!")
             }
 
         } else {
@@ -933,8 +932,11 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 
             }
             self.shieldStrengthDisplay.text = "Shield Strength: \(self.ship.shieldStrength)%"
-            self.thetaDisplay.text = "THETA: \(rotx)"
-            self.phiDisplay.text = "PHI: \(roty)"
+            let roundedX = round(rotx * 100) / 100
+            let roundedY = round(roty * 100) / 100
+
+            self.thetaDisplay.text = "Θ: \(roundedX)"
+            self.phiDisplay.text = "ɸ: \(roundedY)"
             // self.ship.enemyShipsInSector = self.enemyShipsInSector.count
             self.enemiesInSectorDisplay.text = "Enemies In Sector: \(self.enemyShipsInSector.count)"
             if self.enemyShipCountInSector > 0 {

@@ -123,7 +123,7 @@ class ZylonShip: SCNNode {
 
     func takeDamage() {
 
-        // if shields at zero strength and  they are up when hit, they are immediately destroyed
+        // if shields at zero strength and they are up when hit, they are immediately destroyed
 
         if shieldStrength <= 0 && shieldsAreUp {
             shipSystems.shieldIntegrity = .destroyed

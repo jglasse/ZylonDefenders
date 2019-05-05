@@ -11,17 +11,18 @@ import AVFoundation
 import SpriteKit
 
 class PrologueViewController: UIViewController, AVAudioPlayerDelegate {
-    let writeInterval = 0.10
+    let writeInterval = 0.01
     let soundURL = Bundle.main.url(forResource: "telemetry2", withExtension: "aiff")
 
-    lazy var telemetryTimer = Timer(timeInterval: writeInterval, target: self, selector: (#selector(self.advanceTelemetry)), userInfo: nil, repeats: true)
-    var telemetryPlayer: AVAudioPlayer?
-    var messageArray = [(message: String, delay: Float)]()
+    var telemetryTimer = Timer(timeInterval: writeInterval, target: self, selector: (#selector(self.advanceTelemetry)), userInfo: nil, repeats: true)
+    var receievingMessage = false
+    var telemetrySoundPlayer: AVAudioPlayer?
+      messageArray = [(message: String, delay: Float)]()
     var currentMessageIndex = 0
     var currentLetterIndex = 0
     var currentLetter = ""
     var existingTelemetry = ""
-    var currentMessage: String?
+    var currentMessage = ""
 
     let message1 = """
 Forty centons ago, they came -  spreading relentlessly
@@ -62,28 +63,26 @@ DEFEND THE EMPIRE. DRIVE BACK THE HUMONS. SAVE THE ZYLON RACE.
     func setupTelemetryAudioPlayer() {
         do {
 
-            self.telemetryPlayer = try AVAudioPlayer(contentsOf: soundURL!, fileTypeHint: AVFileType.aiff.rawValue)
-            self.telemetryPlayer?.delegate = self
+            self.telemetrySoundPlayer = try AVAudioPlayer(contentsOf: soundURL!, fileTypeHint: AVFileType.aiff.rawValue)
+            self.telemetrySoundPlayer?.delegate = self
         } catch let error {
             print(error.localizedDescription)
         }
-        self.telemetryPlayer?.prepareToPlay()
+        self.telemetrySoundPlayer?.prepareToPlay()
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         messageArray = [(message1, 1), (message2, 1), (message3, 1), (message4, 0)]
 
-        self.currentMessageIndex = 0
-        self.currentLetterIndex = 0
-        self.displayNewTelemetry(message: message1)
+        self.receiveTelemetry(location: 0, 0, message: message1)
 
     }
 
     func playTelemetrySound() {
-        if (self.telemetryPlayer?.isPlaying)! {
+        if (self.telemetrySoundPlayer?.isPlaying)! {
         } else {
-            self.telemetryPlayer?.play()
+            self.telemetrySoundPlayer?.play()
         }
     }
 
@@ -91,10 +90,11 @@ DEFEND THE EMPIRE. DRIVE BACK THE HUMONS. SAVE THE ZYLON RACE.
 
     }
 
-    func receiveTelemetry(location: CGPoint, message: String, delay: Double) {
-        var tempTelemetryTimer = Timer(timeInterval: delay, target: self, selector: (#selector(self.advanceTelemetry)), userInfo: nil, repeats: true)
+    func receiveTelemetry(location: CGPoint, message: String) {
 
     }
+
+        })
     func receive() {
         self.transmissionView.text = self.existingTelemetry
         self.currentLetterIndex += 1
@@ -108,27 +108,6 @@ DEFEND THE EMPIRE. DRIVE BACK THE HUMONS. SAVE THE ZYLON RACE.
 
         }
     }
-
-    func displayNewTelemetry(message: String) {
-        self.currentLetterIndex = 0
-        let mainQ = DispatchQueue.main
-        let  bgQ = DispatchQueue.global()
-        let sleepamount = DispatchTime.now() + 0.5
-        bgQ.sync {
-        for letter in message {
-            self.existingTelemetry += String(letter)
-            print(letter)
-            self.currentLetterIndex += 1
-            mainQ.asyncAfter(deadline: sleepamount, execute: {
-                self.transmissionView.text = self.existingTelemetry
-            if self.currentLetterIndex < self.message1.count-1 {
-                    self.playTelemetrySound()
-
-            }
-            })
-            self.telemetryPlayer?.stop()
-        }
-        }}}
 
 extension String {
     subscript (bounds: CountableClosedRange<Int>) -> String {

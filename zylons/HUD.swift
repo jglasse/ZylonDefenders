@@ -27,7 +27,7 @@ class HUD: SKScene {
     var alertTimer: Timer?
     var currentComputerStatusColor = UIColor.red
 
-	var tacticalDisplay = [SKSpriteNode]()
+	//var tacticalDisplay = [SKSpriteNode]()
     // MARK: - Initialization
 
     override init(size: CGSize) {
@@ -65,9 +65,8 @@ class HUD: SKScene {
 
     }
 
-    @objc func blinkComputerDisplay() {
+    @objc func alert() {
         self.numberOfAlertRepeats += 1
-        if self.numberOfAlertRepeats > 8 {self.alertTimer?.invalidate() }
         if computerStatus.fontColor == currentComputerStatusColor {computerStatus.fontColor = UIColor.clear} else {computerStatus.fontColor = currentComputerStatusColor
             self.parentScene?.envSound("alert")
             }
@@ -127,11 +126,14 @@ class HUD: SKScene {
         }
     }
 
-    func activateAlert() {
+    func activateAlert(message: String) {
         DispatchQueue.main.async {
-            self.computerStatus.text = "ALERT"
+            self.computerStatus.text = "message"
+            if self.alertTimer != nil
+            {
             self.alertTimer = Timer.scheduledTimer(timeInterval: 1, target: self,
-                                              selector: #selector(self.blinkComputerDisplay), userInfo: nil, repeats: true)
+                                              selector: #selector(self.alert), userInfo: nil, repeats: true)
+            }
         }
     }
 

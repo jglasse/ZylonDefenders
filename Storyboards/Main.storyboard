@@ -293,14 +293,14 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</stri
                             <stackView hidden="YES" opaque="NO" contentMode="scaleAspectFit" axis="vertical" distribution="equalSpacing" alignment="top" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="6Sn-Ch-wiN">
                                 <rect key="frame" x="20" y="224" width="201" height="87"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="THETA: --" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MQV-Cf-PFY">
-                                        <rect key="frame" x="0.0" y="0.0" width="54.5" height="12"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Θ: --" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MQV-Cf-PFY">
+                                        <rect key="frame" x="0.0" y="0.0" width="30.5" height="12"/>
                                         <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="10"/>
                                         <color key="textColor" red="0.0018759364309999999" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PHI: --" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AcU-BV-dAF">
-                                        <rect key="frame" x="0.0" y="15" width="42.5" height="12"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ɸ: --" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AcU-BV-dAF">
+                                        <rect key="frame" x="0.0" y="15" width="30.5" height="12"/>
                                         <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="10"/>
                                         <color key="textColor" red="0.0018759364309999999" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <nil key="highlightedColor"/>
