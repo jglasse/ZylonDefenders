@@ -128,9 +128,8 @@ class HUD: SKScene {
 
     func activateAlert(message: String) {
         DispatchQueue.main.async {
-            self.computerStatus.text = "message"
-            if self.alertTimer != nil
-            {
+            self.computerStatus.text = message
+            if self.alertTimer == nil {
             self.alertTimer = Timer.scheduledTimer(timeInterval: 1, target: self,
                                               selector: #selector(self.alert), userInfo: nil, repeats: true)
             }

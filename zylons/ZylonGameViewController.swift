@@ -97,9 +97,13 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     var numberOfZylonShotsOnscreen = 0
     var numberOfHumanShotsOnscreen = 0
 
+    // gesture variables
+    var currentMapAngleZ: Float = 0.0
+
     // MARK: - IBOutlets
 
     @IBOutlet var mainView: UIView!
+    @IBOutlet weak var galacticGestureView: UIView!
     @IBOutlet weak var spaceScnView: SCNView!
     @IBOutlet weak var mapScnView: SCNView!
     @IBOutlet weak var galacticStack: UIStackView!
@@ -119,7 +123,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 
     @IBAction func toggleGalacticMap(_ sender: Any) {
         computerBeepSound("beep")
-        print("toggleingView mode from \(viewMode)...")
+        print("toggling View Mode from \(viewMode)...")
         if self.viewMode == .galacticMap {
             self.viewMode = .foreView
 
@@ -196,6 +200,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         }
     }
      func fireTorp() {
+        print("FireTorp!")
         if numberOfZylonShotsOnscreen < Constants.maxTorpedoes && !self.aButtonJustPressed {
             let torpedoNode = Torpedo(designatedTorpType: .zylon)
             let photonSoundArray = [photonSound1, photonSound2, photonSound3, photonSound4]
@@ -219,7 +224,6 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
             currentplayer?.play()
             currentPhoton = currentPhoton+1
             if currentPhoton>(photonSoundArray.count - 1) {currentPhoton = 0}
-          //countNodes()
         } else {
             computerBeepSound("torpedo_fail")
         }
@@ -304,10 +308,10 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 
             let action = SCNAction.rotateTo(x: 0, y: 0, z: 3.1, duration: rotateSpeed, usesShortestUnitArc: true)
             rotationNode.runAction(action)
-        alphaSector.opacity = 0.2
+        alphaSector.opacity = Constants.mapTransparency
         betaSector.opacity = 1.0
-        gammaSector.opacity = 0.2
-        deltaSector.opacity = 0.2
+        gammaSector.opacity = Constants.mapTransparency
+        deltaSector.opacity = Constants.mapTransparency
         envSound("BetaSector")
 
     }
@@ -349,8 +353,6 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     // MARK: - SETUP
 
     override func viewDidAppear(_ animated: Bool) {
-        // update hud to current position (which should be randomized)
-        // done in viewdidappear to not falsely report empty sector
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -534,7 +536,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         cameraNode.constraints = [camConstraint]
 
         // place the camera
-        cameraNode.position = SCNVector3(x: 0, y: -8, z: 3.2)
+        cameraNode.position = SCNVector3(x: 0, y: -8, z: 4.2)
 
         // Add Zylons to Sector Alpha
         print("adding zylons to Sector Alpha")
@@ -619,11 +621,64 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
                 print(index)
             }
         }
+
         var  rotationNode: SCNNode { return  (galacticMap?.rootNode.childNode(withName: "rotateNode", recursively: true))! }
+
+        // creae pan recognizer
+        let mapPan = UIPanGestureRecognizer(target: self, action: #selector(mapPan(_:)))
+    self.galacticGestureView.addGestureRecognizer(mapPan)
+
+        // add mapView
+
         let transition = SKTransition.fade(withDuration: 0)
         mapScnView.present(galacticMap!, with: transition, incomingPointOfView: galacticMap?.rootNode.childNode(withName: "gCam", recursively: true), completionHandler: {
             self.mapScnView.allowsCameraControl = false
             print(self.mapScnView.description) })
+    }
+
+    // MARK: - Map rotator
+    @objc func mapPan(_ gesture: UIPanGestureRecognizer) {
+        print("Map Panned")
+        var rotationNode: SCNNode { return  (galacticMap?.rootNode.childNode(withName: "rotateNode", recursively: true))! }
+
+//        let translation = gesture.translation(in: gesture.view)
+//
+//        let x = Float(translation.x)
+//        //let y = Float(-translation.y)
+//
+//        let anglePan = sqrt(pow(x, 2)+pow(y, 2))*(Float)(M_PI)/180.0
+//
+//        var rotationVector = SCNVector4()
+//        rotationVector.x = -y
+//        rotationVector.y = x
+//        rotationVector.z = 0
+//        rotationVector.w = anglePan
+//
+//        rotationNode.rotation = rotationVector
+//
+//        //geometryNode.transform = SCNMatrix4MakeRotation(anglePan, -y, x, 0)
+//
+//        if gesture.state == .ended {
+//
+//            let currentPivot = rotationNode.pivot
+//            let changePivot = SCNMatrix4Invert( rotationNode.transform)
+//
+//            rotationNode.pivot = SCNMatrix4Mult(changePivot, currentPivot)
+//
+//            rotationNode.transform = SCNMatrix4Identity
+//        }
+
+        let translation = gesture.translation(in: gesture.view)
+
+        var newAngleZ = (Float)(translation.x)*(Float)(Double.pi)/180.0
+        newAngleZ += currentMapAngleZ
+
+        rotationNode.eulerAngles.z = newAngleZ
+
+        if gesture.state == .ended {
+           currentMapAngleZ = newAngleZ
+        }
+
     }
 
     // MARK: - Ship Functions
@@ -941,7 +996,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
             self.enemiesInSectorDisplay.text = "Enemies In Sector: \(self.enemyShipsInSector.count)"
             if self.enemyShipCountInSector > 0 {
                 let drone = self.enemyShipsInSector[0]
-                self.targetDistanceDisplay.text = "DISTANCE TO TARGET - \(self.distanceBetweenPoints(first: drone.position, second: self.forwardCameraNode.position))"
+                self.targetDistanceDisplay.text = "DISTANCE TO TARGET - \(distanceBetweenPoints(first: drone.position, second: self.forwardCameraNode.position))"
             }
         }
         } else {
@@ -1120,7 +1175,9 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
                 self.galacticStack.isHidden = true
                 self.commandStack.isHidden = false
                 self.scnView.pointOfView = self.rearCameraNode
-                self.shipHud.aftView()
+                //self.shipHud.aftView()
+                self.galacticGestureView.isHidden = true
+
             }
         case .foreView:
                 DispatchQueue.main.async {
@@ -1131,6 +1188,8 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
                     self.commandStack.isHidden = false
                     self.spaceScnView.pointOfView = self.forwardCameraNode
                     self.shipHud.foreView()
+                    self.galacticGestureView.isHidden = true
+
             }
         case .galacticMap:
                 DispatchQueue.main.async {
@@ -1139,6 +1198,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
                     self.scnView.isHidden = true
                     self.galacticStack.isHidden = false
                     self.commandStack.isHidden = true
+                    self.galacticGestureView.isHidden = false
             }
         }
 
@@ -1152,15 +1212,6 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 
     override var prefersStatusBarHidden: Bool {
         return true
-    }
-
-    func distanceBetweenPoints(first: SCNVector3, second: SCNVector3) -> Float {
-        let xDistance: Float = first.x-second.x
-        let yDistance: Float = first.y-second.y
-        let zDistance: Float = first.z-second.z
-        let sum = xDistance * xDistance + yDistance * yDistance + zDistance * zDistance
-        let result = sqrt(sum)
-        return result
     }
 
 }

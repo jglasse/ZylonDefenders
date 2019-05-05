@@ -22,6 +22,15 @@ func distanceFromZylonShip(x: Float, y: Float, z: Float) -> Float {
     return distance
 }
 
+func distanceBetweenPoints(first: SCNVector3, second: SCNVector3) -> Float {
+    let xDistance: Float = first.x-second.x
+    let yDistance: Float = first.y-second.y
+    let zDistance: Float = first.z-second.z
+    let sum = xDistance * xDistance + yDistance * yDistance + zDistance * zDistance
+    let result = sqrt(sum)
+    return result
+}
+
 extension ZylonGameViewController {
 
     func numberofShotsOnscreen() -> Int {
