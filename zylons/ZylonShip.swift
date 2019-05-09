@@ -26,7 +26,7 @@ import SceneKit
 //
 //}
 
-enum Quadrant: String {
+enum KnownQuadrants: String {
     case alpha
     case beta
     case gamma
@@ -39,7 +39,7 @@ enum Quadrant: String {
 //}
 
 struct Sector {
-    var quadrant: Quadrant = .alpha
+    var quadrant: KnownQuadrants = .alpha
 	var qx = 0
 	var qy = 0
 }
@@ -80,7 +80,7 @@ class ZylonShip: SCNNode {
 	}
 
 	struct currentSector {
-        var quadrant: Quadrant = .alpha
+        var quadrant: KnownQuadrants = .alpha
 		var y = 0
 		var z = 0
 

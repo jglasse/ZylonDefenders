@@ -45,7 +45,6 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     // MARK: - GameState Enums & Structs
 
     enum ViewMode: Int {
-
         case foreView
         case aftView
         case galacticMap
@@ -61,6 +60,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     var starSprites = [SCNNode]() // array of stars to make updating them each frame easy
 
     var enemyFleet = GalaxyMap(withRandomlyPlacedShips: 20, maxNumberPerSector: 3)
+    var enFleet = NewGalaxyMap(difficulty: 1)
     var enemyShipsInSector = [HumonShip]()
     var enemyShipCountInSector: Int {
         return enemyShipsInSector.count
@@ -538,6 +538,80 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         // place the camera
         cameraNode.position = SCNVector3(x: 0, y: -8, z: 4.2)
 
+        
+        // refactored add enemyFleet  to alpha Sector
+        var index = 0
+        for currentIndex  in self.enFleet.alphaQuadrant.min...self.enFleet.alphaQuadrant.max {
+            let currentCount = self.enFleet.map[currentIndex].ships.count
+            switch currentCount {
+            case 0:
+                let sphereNode = SCNNode(geometry: SCNSphere(radius: Constants.galacticMapBlipRadius))
+                sphereNode.geometry?.firstMaterial?.diffuse.contents = UIColor.red
+                
+                var childNodeName: String
+                if index < 10 {
+                    childNodeName = "ALPHA_00"+String(index)
+                } else {
+                    childNodeName = "ALPHA_0"+String(index)
+                }
+                galacticMap?.rootNode.childNode(withName: childNodeName, recursively: true)?.addChildNode(sphereNode)
+                print("childNodeName: \(childNodeName) should have \(currentCount) zylons from SectorA[\(index)]")
+            case 1:
+                let sphereNode = SCNNode(geometry: SCNSphere(radius: Constants.galacticMapBlipRadius))
+                sphereNode.geometry?.firstMaterial?.diffuse.contents = UIColor.red
+                
+                var childNodeName: String
+                if index < 10 {
+                    childNodeName = "ALPHA_00"+String(index)
+                } else {
+                    childNodeName = "ALPHA_0"+String(index)
+                }
+                galacticMap?.rootNode.childNode(withName: childNodeName, recursively: true)?.addChildNode(sphereNode)
+                print("childNodeName: \(childNodeName) should have \(currentCount) = 1 zylon from SectorA[\(index)]")
+            case 2:
+                let sphereNode = SCNNode(geometry: SCNSphere(radius: Constants.galacticMapBlipRadius))
+                sphereNode.geometry?.firstMaterial?.diffuse.contents = UIColor.red
+                
+                var childNodeName: String
+                if index < 10 {
+                    childNodeName = "ALPHA_00"+String(index)
+                } else {
+                    childNodeName = "ALPHA_0"+String(index)
+                }
+                galacticMap?.rootNode.childNode(withName: childNodeName, recursively: true)?.addChildNode(sphereNode)
+                print("childNodeName: \(childNodeName) should have \(currentCount) = 2 zylons from SectorA[\(index)]")
+            case 3:
+                let sphereNode = SCNNode(geometry: SCNSphere(radius: Constants.galacticMapBlipRadius))
+                sphereNode.geometry?.firstMaterial?.diffuse.contents = UIColor.red
+                
+                var childNodeName: String
+                if index < 10 {
+                    childNodeName = "ALPHA_00"+String(index)
+                } else {
+                    childNodeName = "ALPHA_0"+String(index)
+                }
+                galacticMap?.rootNode.childNode(withName: childNodeName, recursively: true)?.addChildNode(sphereNode)
+                print("childNodeName: \(childNodeName) should have \(currentCount) = 3 zylons from SectorA[\(index)]")
+            case 4:
+                let sphereNode = SCNNode(geometry: SCNSphere(radius: Constants.galacticMapBlipRadius))
+                sphereNode.geometry?.firstMaterial?.diffuse.contents = UIColor.red
+                
+                var childNodeName: String
+                if index < 10 {
+                    childNodeName = "ALPHA_00"+String(index)
+                } else {
+                    childNodeName = "ALPHA_0"+String(index)
+                }
+                galacticMap?.rootNode.childNode(withName: childNodeName, recursively: true)?.addChildNode(sphereNode)
+                print("childNodeName: \(childNodeName) should have \(currentCount) = 4 zylons from SectorA[\(index)]")
+            default:
+                print ("no enemies to add to index \(currentIndex)")
+                
+            }
+            index += 1
+        }
+        
+        
         // Add Zylons to Sector Alpha
         print("adding zylons to Sector Alpha")
 
