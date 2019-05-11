@@ -11,9 +11,9 @@ import UIKit
 import SceneKit
 import SpriteKit
 import AVFoundation
-//import CoreMotion
 import MultipeerConnectivity
 import GameController
+//import CoreMotion
 
 class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNSceneRendererDelegate {
 
@@ -59,8 +59,8 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     var currentExplosionParticleSystem: SCNParticleSystem?
     var starSprites = [SCNNode]() // array of stars to make updating them each frame easy
 
-    var enemyFleet = GalaxyMap(withRandomlyPlacedShips: 20, maxNumberPerSector: 3)
-    var enFleet = NewGalaxyMap(difficulty: 1)
+    //var enemyFleet = GalaxyMap(withRandomlyPlacedShips: 20, maxNumberPerSector: 3)
+    var enemyFleet = NewGalaxyMap(difficulty: 1)
     var enemyShipsInSector = [HumonShip]()
     var enemyShipCountInSector: Int {
         return enemyShipsInSector.count
@@ -187,7 +187,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
             let currentplayer = photonSoundArray[currentPhoton]
            // let offset: Float = 4
             mainGameScene.rootNode.addChildNode(torpedoNode)
-            let driftAmount: Float = 2
+           // let driftAmount: Float = 2
             let forceAmount: Float = -95
                 torpedoNode.position = SCNVector3Make(-0.1, 2, 0)
                 torpedoNode.physicsBody?.applyForce(SCNVector3Make(0, 0, -forceAmount), asImpulse: true)
@@ -285,10 +285,10 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     }
 
     let rotateSpeed = 0.5
-    var alphaSector: SCNNode { return (galacticMap?.rootNode.childNode(withName: "ALPHA", recursively: true))! }
-    var betaSector: SCNNode { return (galacticMap?.rootNode.childNode(withName: "BETA", recursively: true))! }
-    var gammaSector: SCNNode { return (galacticMap?.rootNode.childNode(withName: "GAMMA", recursively: true))! }
-    var deltaSector: SCNNode { return (galacticMap?.rootNode.childNode(withName: "DELTA", recursively: true))! }
+    var alphaQuadrant: SCNNode { return (galacticMap?.rootNode.childNode(withName: "ALPHA", recursively: true))! }
+    var betaQuadrant: SCNNode { return (galacticMap?.rootNode.childNode(withName: "BETA", recursively: true))! }
+    var gammaQuadrant: SCNNode { return (galacticMap?.rootNode.childNode(withName: "GAMMA", recursively: true))! }
+    var deltaQuadrant: SCNNode { return (galacticMap?.rootNode.childNode(withName: "DELTA", recursively: true))! }
 
     var rotationNode: SCNNode { return  (galacticMap?.rootNode.childNode(withName: "rotateNode", recursively: true))! }
 
@@ -296,10 +296,10 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         computerBeepSound("beep")
         let action = SCNAction.rotateTo(x: 0.1, y: 0, z: 3.1, duration: rotateSpeed, usesShortestUnitArc: true)
             rotationNode.runAction(action)
-            alphaSector.opacity = 1.0
-            betaSector.opacity = Constants.mapTransparency
-            gammaSector.opacity = Constants.mapTransparency
-            deltaSector.opacity = Constants.mapTransparency
+            alphaQuadrant.opacity = 1.0
+            betaQuadrant.opacity = Constants.mapTransparency
+            gammaQuadrant.opacity = Constants.mapTransparency
+            deltaQuadrant.opacity = Constants.mapTransparency
         envSound("AlphaSector")
 
     }
@@ -308,10 +308,10 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 
             let action = SCNAction.rotateTo(x: 0, y: 0, z: 3.1, duration: rotateSpeed, usesShortestUnitArc: true)
             rotationNode.runAction(action)
-        alphaSector.opacity = Constants.mapTransparency
-        betaSector.opacity = 1.0
-        gammaSector.opacity = Constants.mapTransparency
-        deltaSector.opacity = Constants.mapTransparency
+        alphaQuadrant.opacity = Constants.mapTransparency
+        betaQuadrant.opacity = 1.0
+        gammaQuadrant.opacity = Constants.mapTransparency
+        deltaQuadrant.opacity = Constants.mapTransparency
         envSound("BetaSector")
 
     }
@@ -320,10 +320,10 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 
         let action = SCNAction.rotateTo(x: -0.1, y: 0, z: 3.1, duration: rotateSpeed, usesShortestUnitArc: true)
         rotationNode.runAction(action)
-        alphaSector.opacity = Constants.mapTransparency
-        betaSector.opacity = Constants.mapTransparency
-        gammaSector.opacity = 1.0
-        deltaSector.opacity = Constants.mapTransparency
+        alphaQuadrant.opacity = Constants.mapTransparency
+        betaQuadrant.opacity = Constants.mapTransparency
+        gammaQuadrant.opacity = 1.0
+        deltaQuadrant.opacity = Constants.mapTransparency
         envSound("GammaSector")
 
     }
@@ -332,10 +332,10 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 
         let action = SCNAction.rotateTo(x: -0.16, y: 0, z: 3.1, duration: rotateSpeed, usesShortestUnitArc: true)
         rotationNode.runAction(action)
-        alphaSector.opacity = Constants.mapTransparency
-        betaSector.opacity = Constants.mapTransparency
-        gammaSector.opacity = Constants.mapTransparency
-        deltaSector.opacity = 1.0
+        alphaQuadrant.opacity = Constants.mapTransparency
+        betaQuadrant.opacity = Constants.mapTransparency
+        gammaQuadrant.opacity = Constants.mapTransparency
+        deltaQuadrant.opacity = 1.0
         envSound("DeltaSector")
 
     }
@@ -344,10 +344,10 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         let action = SCNAction.rotateTo(x: -0.5, y: 0, z: 3.1, duration: rotateSpeed, usesShortestUnitArc: true)
         rotationNode.runAction(action)
         computerBeepSound("beep")
-        alphaSector.opacity = 1.0
-        betaSector.opacity = 1.0
-        gammaSector.opacity = 1.0
-        deltaSector.opacity = 1.0
+        alphaQuadrant.opacity = 1.0
+        betaQuadrant.opacity = 1.0
+        gammaQuadrant.opacity = 1.0
+        deltaQuadrant.opacity = 1.0
     }
 
     // MARK: - SETUP
@@ -384,8 +384,6 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         joystickControl.movable = false
         joystickControl.baseAlpha = 0.3
         joystickControl.alpha = 0.2
-        //scnView.debugOptions = .showPhysicsShapes
-
     }
 
     func setupScene() {
@@ -531,6 +529,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         galacticMap?.rootNode.addChildNode(cameraNode)
         rotationNode.rotation = SCNVector4Make(0, 0, 1, 3.141)
 
+        //point the camera at the galaxy map
         let camConstraint = SCNLookAtConstraint(target: galacticMap?.rootNode)
         camConstraint.isGimbalLockEnabled = true
         cameraNode.constraints = [camConstraint]
@@ -538,176 +537,6 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         // place the camera
         cameraNode.position = SCNVector3(x: 0, y: -8, z: 4.2)
 
-        
-        // refactored add enemyFleet  to alpha Sector
-        var index = 0
-        for currentIndex  in self.enFleet.alphaQuadrant.min...self.enFleet.alphaQuadrant.max {
-            let currentCount = self.enFleet.map[currentIndex].ships.count
-            switch currentCount {
-            case 0:
-                let sphereNode = SCNNode(geometry: SCNSphere(radius: Constants.galacticMapBlipRadius))
-                sphereNode.geometry?.firstMaterial?.diffuse.contents = UIColor.red
-                
-                var childNodeName: String
-                if index < 10 {
-                    childNodeName = "ALPHA_00"+String(index)
-                } else {
-                    childNodeName = "ALPHA_0"+String(index)
-                }
-                galacticMap?.rootNode.childNode(withName: childNodeName, recursively: true)?.addChildNode(sphereNode)
-                print("childNodeName: \(childNodeName) should have \(currentCount) zylons from SectorA[\(index)]")
-            case 1:
-                let sphereNode = SCNNode(geometry: SCNSphere(radius: Constants.galacticMapBlipRadius))
-                sphereNode.geometry?.firstMaterial?.diffuse.contents = UIColor.red
-                
-                var childNodeName: String
-                if index < 10 {
-                    childNodeName = "ALPHA_00"+String(index)
-                } else {
-                    childNodeName = "ALPHA_0"+String(index)
-                }
-                galacticMap?.rootNode.childNode(withName: childNodeName, recursively: true)?.addChildNode(sphereNode)
-                print("childNodeName: \(childNodeName) should have \(currentCount) = 1 zylon from SectorA[\(index)]")
-            case 2:
-                let sphereNode = SCNNode(geometry: SCNSphere(radius: Constants.galacticMapBlipRadius))
-                sphereNode.geometry?.firstMaterial?.diffuse.contents = UIColor.red
-                
-                var childNodeName: String
-                if index < 10 {
-                    childNodeName = "ALPHA_00"+String(index)
-                } else {
-                    childNodeName = "ALPHA_0"+String(index)
-                }
-                galacticMap?.rootNode.childNode(withName: childNodeName, recursively: true)?.addChildNode(sphereNode)
-                print("childNodeName: \(childNodeName) should have \(currentCount) = 2 zylons from SectorA[\(index)]")
-            case 3:
-                let sphereNode = SCNNode(geometry: SCNSphere(radius: Constants.galacticMapBlipRadius))
-                sphereNode.geometry?.firstMaterial?.diffuse.contents = UIColor.red
-                
-                var childNodeName: String
-                if index < 10 {
-                    childNodeName = "ALPHA_00"+String(index)
-                } else {
-                    childNodeName = "ALPHA_0"+String(index)
-                }
-                galacticMap?.rootNode.childNode(withName: childNodeName, recursively: true)?.addChildNode(sphereNode)
-                print("childNodeName: \(childNodeName) should have \(currentCount) = 3 zylons from SectorA[\(index)]")
-            case 4:
-                let sphereNode = SCNNode(geometry: SCNSphere(radius: Constants.galacticMapBlipRadius))
-                sphereNode.geometry?.firstMaterial?.diffuse.contents = UIColor.red
-                
-                var childNodeName: String
-                if index < 10 {
-                    childNodeName = "ALPHA_00"+String(index)
-                } else {
-                    childNodeName = "ALPHA_0"+String(index)
-                }
-                galacticMap?.rootNode.childNode(withName: childNodeName, recursively: true)?.addChildNode(sphereNode)
-                print("childNodeName: \(childNodeName) should have \(currentCount) = 4 zylons from SectorA[\(index)]")
-            default:
-                print ("no enemies to add to index \(currentIndex)")
-                
-            }
-            index += 1
-        }
-        
-        
-        // Add Zylons to Sector Alpha
-        print("adding zylons to Sector Alpha")
-
-        for (index, element) in self.enemyFleet.alphaSector.enumerated() {
-
-            if element > 0 {
-            let sphereNode = SCNNode(geometry: SCNSphere(radius: Constants.galacticMapBlipRadius))
-            sphereNode.geometry?.firstMaterial?.diffuse.contents = UIColor.red
-
-            var childNodeName: String
-            if index < 10 {
-                 childNodeName = "ALPHA_00"+String(index)
-            } else {
-                 childNodeName = "ALPHA_0"+String(index)
-            }
-            galacticMap?.rootNode.childNode(withName: childNodeName, recursively: true)?.addChildNode(sphereNode)
-                print("childNodeName: \(childNodeName) should have \(element) zylons from SectorA[\(index)]")
-            print(index)
-            } else {print("no zylons to add to ALPHA sector")}
-        }
-
-        // Add Zylons to Sector Beta
-        print("adding zylons to Sector Beta")
-
-        for (index, element) in self.enemyFleet.betaSector.enumerated() {
-
-            if element > 0 {
-                let sphereNode = SCNNode(geometry: SCNSphere(radius: Constants.galacticMapBlipRadius))
-                sphereNode.geometry?.firstMaterial?.diffuse.contents = UIColor.red
-                //sphereNode.geometry = SCNShape
-
-                var childNodeName: String
-                if index < 10 {
-                    childNodeName = "BETA_00"+String(index)
-                } else {
-                    childNodeName = "BETA_0"+String(index)
-                }
-                galacticMap?.rootNode.childNode(withName: childNodeName, recursively: true)?.addChildNode(sphereNode)
-                print("childNodeName: \(childNodeName) should have \(element) zylons from SectorA[\(index)]")
-                print(index)
-            }
-        }
-
-        // Add Zylons to Sector Gamma
-        print("adding zylons to Sector Gamma")
-        for (index, element) in self.enemyFleet.gammaSector.enumerated() {
-
-            if element > 0 {
-                let sphereNode = SCNNode(geometry: SCNSphere(radius: Constants.galacticMapBlipRadius))
-                sphereNode.geometry?.firstMaterial?.diffuse.contents = UIColor.red
-                //sphereNode.geometry = SCNShape
-
-                var childNodeName: String
-                if index < 10 {
-                    childNodeName = "GAMMA_00"+String(index)
-                } else {
-                    childNodeName = "GAMMA_0"+String(index)
-                }
-                galacticMap?.rootNode.childNode(withName: childNodeName, recursively: true)?.addChildNode(sphereNode)
-                print("childNodeName: \(childNodeName) should have \(element) zylons from SectorA[\(index)]")
-                print(index)
-            }
-        }
-
-        // Add Zylons to Sector Delta
-        print("adding zylons to Sector Delta")
-
-        for (index, element) in self.enemyFleet.deltaSector.enumerated() {
-
-            if element > 0 {
-                let sphereNode = SCNNode(geometry: SCNSphere(radius: Constants.galacticMapBlipRadius))
-                sphereNode.geometry?.firstMaterial?.diffuse.contents = UIColor.red
-                var childNodeName: String
-                if index < 10 {
-                    childNodeName = "DELTA_00"+String(index)
-                } else {
-                    childNodeName = "DELTA_0"+String(index)
-                }
-                galacticMap?.rootNode.childNode(withName: childNodeName, recursively: true)?.addChildNode(sphereNode)
-                print("childNodeName: \(childNodeName) should have \(element) zylons from SectorA[\(index)]")
-                print(index)
-            }
-        }
-
-        var  rotationNode: SCNNode { return  (galacticMap?.rootNode.childNode(withName: "rotateNode", recursively: true))! }
-
-        // creae pan recognizer
-        let mapPan = UIPanGestureRecognizer(target: self, action: #selector(mapPan(_:)))
-    self.galacticGestureView.addGestureRecognizer(mapPan)
-
-        // add mapView
-
-        let transition = SKTransition.fade(withDuration: 0)
-        mapScnView.present(galacticMap!, with: transition, incomingPointOfView: galacticMap?.rootNode.childNode(withName: "gCam", recursively: true), completionHandler: {
-            self.mapScnView.allowsCameraControl = false
-            print(self.mapScnView.description) })
     }
 
     // MARK: - Map rotator

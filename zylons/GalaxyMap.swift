@@ -10,20 +10,21 @@ import Foundation
 
 struct NewGalaxyMap {
     struct Sector {
-        var ships =  [HumonShip]()
+        var designation = ""
+        var sectorObjects =  [SectorObject]()
     }
     struct Quadrant {
         var designation: KnownQuadrants
         var min: Int
         var max: Int
-        
+
         init(designation: KnownQuadrants, min: Int, max: Int) {
             self.designation = designation
             self.max = max
             self.min = min
         }
     }
-    
+
     var map =  [Sector]()
     var alphaQuadrant =  Quadrant(designation: .alpha, min: 0, max: 31)
     var betaQuadrant = Quadrant(designation: .beta, min: 32, max: 63)
@@ -50,11 +51,22 @@ struct NewGalaxyMap {
             numberofOccupiedSectors = 6
             maxShipsPerSector = 3
         }
-        
+
         // first, add an empty map
-        for _ in 1...128 {
-            self.map.append(Sector())
+        for x in 1...128 {
+            let sectorname = String(x)
+            let currentSector = Sector(designation: sectorname, sectorObjects: [HumonShip]())
+            self.map.append(currentSector)
         }
+        //then add spaceStations to three sectors
+        
+        for _ in 1...3 {
+            let 
+            
+        }
+        
+        
+        
         // then, iterate over the number of occupied sectors...
         for _ in 1...numberofOccupiedSectors {
             // picking a random sector:
@@ -66,7 +78,7 @@ struct NewGalaxyMap {
                 shipsArray.append(HumonShip())
             }
             // and assigning those ships to that random sector
-            self.map[currentSectorIndex].ships = shipsArray
+            self.map[currentSectorIndex].sectorObjects = shipsArray
             }
         }
     }

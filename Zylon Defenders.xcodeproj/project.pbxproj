@@ -130,6 +130,7 @@
 		E1A5A7912283FC7800EC5A71 /* MS5_Diffuse3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E1A5A7892283FC7800EC5A71 /* MS5_Diffuse3.jpg */; };
 		E1A89EA81E9867F600EA8BC4 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E1A89EA71E9867F600EA8BC4 /* Default-568h@2x.png */; };
 		E1B12C2A20267EC70071F9A1 /* Scanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B12C2920267EC70071F9A1 /* Scanner.swift */; };
+		E1B70C6022864C5D00DBD099 /* SpaceStation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B70C5F22864C5D00DBD099 /* SpaceStation.swift */; };
 		E1BBE5A7205496D000A5C571 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1BBE5A6205496D000A5C571 /* AppDelegate.swift */; };
 		E1BBE5A9205496D000A5C571 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1BBE5A8205496D000A5C571 /* ViewController.swift */; };
 		E1BBE5AC205496D000A5C571 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1BBE5AA205496D000A5C571 /* Main.storyboard */; };
@@ -270,9 +271,10 @@
 		E1A5A7872283FC7800EC5A71 /* MS5_Diffuse2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = MS5_Diffuse2.jpg; sourceTree = "<group>"; };
 		E1A5A7882283FC7800EC5A71 /* MS5_Metal.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = MS5_Metal.jpg; sourceTree = "<group>"; };
 		E1A5A7892283FC7800EC5A71 /* MS5_Diffuse3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = MS5_Diffuse3.jpg; sourceTree = "<group>"; };
-		E1A5A7922283FD6E00EC5A71 /* SpaceStation5.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = SpaceStation5.scn; sourceTree = "<group>"; };
+		E1A5A7922283FD6E00EC5A71 /* zylonStation.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = zylonStation.scn; sourceTree = "<group>"; };
 		E1A89EA71E9867F600EA8BC4 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		E1B12C2920267EC70071F9A1 /* Scanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scanner.swift; sourceTree = "<group>"; };
+		E1B70C5F22864C5D00DBD099 /* SpaceStation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceStation.swift; sourceTree = "<group>"; };
 		E1BBE5A4205496D000A5C571 /* ZTV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZTV.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1BBE5A6205496D000A5C571 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E1BBE5A8205496D000A5C571 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -395,11 +397,12 @@
 			isa = PBXGroup;
 			children = (
 				E184AE3B20C094A60090D979 /* GalaxyMap.swift */,
+				E1B70C5F22864C5D00DBD099 /* SpaceStation.swift */,
 				E1FD2A0B1EF7390B0096CB72 /* HumonShip.swift */,
-				E1B12C2920267EC70071F9A1 /* Scanner.swift */,
-				E187F56C1FB0275A0036B3FE /* Torpedo.swift */,
 				E19BFF3E1EDFDEED00FCC5EE /* ZylonShip.swift */,
+				E187F56C1FB0275A0036B3FE /* Torpedo.swift */,
 				E187F56F1FB028910036B3FE /* ShipExplosion.swift */,
+				E1B12C2920267EC70071F9A1 /* Scanner.swift */,
 				E151DA2D1E17926900A70B45 /* HUD.swift */,
 			);
 			name = "Game Objects";
@@ -458,7 +461,7 @@
 				E1A5A7882283FC7800EC5A71 /* MS5_Metal.jpg */,
 				E1A5A7822283FC7700EC5A71 /* MS5_Normal.jpg */,
 				E1A5A7842283FC7700EC5A71 /* MS5_Roughness.jpg */,
-				E1A5A7922283FD6E00EC5A71 /* SpaceStation5.scn */,
+				E1A5A7922283FD6E00EC5A71 /* zylonStation.scn */,
 				E126D43C203AA0D7006AB0E1 /* galacticmap.scn */,
 				E1272AB51F64EE4800A66358 /* Humon.scn */,
 				E1D1EA0C20267A7D00DB2984 /* Scanner.scn */,
@@ -915,6 +918,7 @@
 				E19BFF3F1EDFDEED00FCC5EE /* ZylonShip.swift in Sources */,
 				E187F5701FB028910036B3FE /* ShipExplosion.swift in Sources */,
 				E1D8BD521DCFCD1A00C863DF /* AppDelegate.swift in Sources */,
+				E1B70C6022864C5D00DBD099 /* SpaceStation.swift in Sources */,
 				E1B12C2A20267EC70071F9A1 /* Scanner.swift in Sources */,
 				E187F56D1FB0275A0036B3FE /* Torpedo.swift in Sources */,
 			);
