@@ -16,9 +16,8 @@ class SectorObject: SCNNode {
         case asteroid
     }
     var sectorObjectType: objectType =  .asteroid
-    
-}
 
+}
 
 class HumonShip: SectorObject {
 

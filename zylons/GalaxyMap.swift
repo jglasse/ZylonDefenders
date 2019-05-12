@@ -34,22 +34,33 @@ struct NewGalaxyMap {
      init(difficulty: Int) {
         var numberofOccupiedSectors = 0
         var maxShipsPerSector = 0
+        var numberofStations = 0
         switch difficulty {
         case 1:
             numberofOccupiedSectors = 6
             maxShipsPerSector = 3
+            numberofStations = 3
+
         case 2:
             numberofOccupiedSectors = 8
             maxShipsPerSector = 3
+            numberofStations = 3
+
         case 3:
             numberofOccupiedSectors = 10
             maxShipsPerSector = 4
+            numberofStations = 3
+
         case 4:
             numberofOccupiedSectors = 12
             maxShipsPerSector = 4
+            numberofStations = 3
+
         default:
             numberofOccupiedSectors = 6
             maxShipsPerSector = 3
+            numberofStations = 3
+
         }
 
         // first, add an empty map
@@ -59,14 +70,11 @@ struct NewGalaxyMap {
             self.map.append(currentSector)
         }
         //then add spaceStations to three sectors
-        
+
         for _ in 1...3 {
-            let 
-            
+            print ("add spaceStation")
         }
-        
-        
-        
+
         // then, iterate over the number of occupied sectors...
         for _ in 1...numberofOccupiedSectors {
             // picking a random sector:

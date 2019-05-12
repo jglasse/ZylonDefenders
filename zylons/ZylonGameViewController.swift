@@ -1074,34 +1074,34 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
             DispatchQueue.main.async {
                 self.joystickControl.isHidden = false
                 self.mapScnView.isHidden = true
+                self.galacticGestureView.isHidden = true
                 self.scnView.isHidden = false
                 self.galacticStack.isHidden = true
                 self.commandStack.isHidden = false
                 self.scnView.pointOfView = self.rearCameraNode
                 //self.shipHud.aftView()
-                self.galacticGestureView.isHidden = true
 
             }
         case .foreView:
                 DispatchQueue.main.async {
                     self.joystickControl.isHidden = false
                     self.mapScnView.isHidden = true
+                    self.galacticGestureView.isHidden = true
                     self.scnView.isHidden = false
                     self.galacticStack.isHidden = true
                     self.commandStack.isHidden = false
                     self.spaceScnView.pointOfView = self.forwardCameraNode
                     self.shipHud.foreView()
-                    self.galacticGestureView.isHidden = true
 
             }
         case .galacticMap:
                 DispatchQueue.main.async {
                     self.joystickControl.isHidden = false
                     self.mapScnView.isHidden = false
+                    self.galacticGestureView.isHidden = true
                     self.scnView.isHidden = true
                     self.galacticStack.isHidden = false
                     self.commandStack.isHidden = true
-                    self.galacticGestureView.isHidden = false
             }
         }
 

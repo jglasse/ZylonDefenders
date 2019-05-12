@@ -14,14 +14,13 @@ class ZylonStation: SectorObject {
     var shieldStrength = 100
     var weaponType = 0
     var zylonTargetPosition = vector3(0.0, 0.0, 0.0)
-    
-    
+
     override init() {
         super.init()
         self.sectorObjectType = .zylonStation
         let zylonStationpScene = SCNScene(named: "zylonStation.scn")
         let zylonStation = zylonStationpScene?.rootNode.childNode(withName: "zStation", recursively: true)
-        let stationShape = SCNBox(width: 10, height: 10, length:10, chamferRadius: 0)
+        let stationShape = SCNBox(width: 10, height: 10, length: 10, chamferRadius: 0)
         let stationPhysicsShape = SCNPhysicsShape(geometry: stationShape, options: nil)
         self.addChildNode(zylonStation!)
         self.physicsBody = SCNPhysicsBody(type: .kinematic, shape: stationPhysicsShape)
@@ -34,9 +33,9 @@ class ZylonStation: SectorObject {
         self.pivot = SCNMatrix4MakeTranslation(0.5, 0.5, 0.5)
         self.worldPosition = SCNVector3Make(randRange(lower: -10, upper: 10), randRange(lower: -12, upper: 12), randRange(lower: -80, upper: -60))
         self.scale = SCNVector3Make(1, 1, 1)
-        
+
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

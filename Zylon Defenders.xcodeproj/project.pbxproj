@@ -152,6 +152,8 @@
 		E1D8BD541DCFCD1A00C863DF /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = E1D8BD531DCFCD1A00C863DF /* art.scnassets */; };
 		E1D8BD561DCFCD1A00C863DF /* ZylonGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D8BD551DCFCD1A00C863DF /* ZylonGameViewController.swift */; };
 		E1D8BD5B1DCFCD1A00C863DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E1D8BD5A1DCFCD1A00C863DF /* Assets.xcassets */; };
+		E1DFC2272287A89B00F90E69 /* ShieldTorpExplosion.scnp in Resources */ = {isa = PBXBuildFile; fileRef = E1DFC2262287A89B00F90E69 /* ShieldTorpExplosion.scnp */; };
+		E1DFC2282287A89B00F90E69 /* ShieldTorpExplosion.scnp in Resources */ = {isa = PBXBuildFile; fileRef = E1DFC2262287A89B00F90E69 /* ShieldTorpExplosion.scnp */; };
 		E1E381E01EC4B79A000CC31C /* button_dir_down_0.png in Resources */ = {isa = PBXBuildFile; fileRef = E1E381DC1EC4B79A000CC31C /* button_dir_down_0.png */; };
 		E1E381E11EC4B79A000CC31C /* button_dir_right_0.png in Resources */ = {isa = PBXBuildFile; fileRef = E1E381DD1EC4B79A000CC31C /* button_dir_right_0.png */; };
 		E1E381E21EC4B79A000CC31C /* button_dir_up_0.png in Resources */ = {isa = PBXBuildFile; fileRef = E1E381DE1EC4B79A000CC31C /* button_dir_up_0.png */; };
@@ -301,6 +303,7 @@
 		E1D8BD551DCFCD1A00C863DF /* ZylonGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZylonGameViewController.swift; sourceTree = "<group>"; };
 		E1D8BD5A1DCFCD1A00C863DF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E1D8BD5F1DCFCD1A00C863DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E1DFC2262287A89B00F90E69 /* ShieldTorpExplosion.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = ShieldTorpExplosion.scnp; sourceTree = "<group>"; };
 		E1E381DC1EC4B79A000CC31C /* button_dir_down_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_dir_down_0.png; sourceTree = "<group>"; };
 		E1E381DD1EC4B79A000CC31C /* button_dir_right_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_dir_right_0.png; sourceTree = "<group>"; };
 		E1E381DE1EC4B79A000CC31C /* button_dir_up_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_dir_up_0.png; sourceTree = "<group>"; };
@@ -416,6 +419,7 @@
 				E16AB6231E1DD1F800E3D8C2 /* spark.png */,
 				E15520311DCFE776001651EB /* starField.scnp */,
 				E1A58DC21E1DD07E00DCA24F /* Explosion.scnp */,
+				E1DFC2262287A89B00F90E69 /* ShieldTorpExplosion.scnp */,
 				E187F5711FB04B140036B3FE /* HumonTorpedo.scnp */,
 				E174FDC51E1A424500A7CC73 /* Torpedo.scnp */,
 			);
@@ -720,6 +724,7 @@
 				E16E28EA20564A41002362C1 /* percent.aiff in Resources */,
 				E16E28DE20564A41002362C1 /* ShieldsFailure.aiff in Resources */,
 				E16E28BA20564A41002362C1 /* Shields10.aiff in Resources */,
+				E1DFC2282287A89B00F90E69 /* ShieldTorpExplosion.scnp in Resources */,
 				E16E28E020564A41002362C1 /* Shields50.aiff in Resources */,
 				E16E28E220564A41002362C1 /* ShieldModulationRegulator.aiff in Resources */,
 				E1E41C682068B7D1000A74DE /* Assets.xcassets in Resources */,
@@ -774,6 +779,7 @@
 				E187F5721FB04B140036B3FE /* HumonTorpedo.scnp in Resources */,
 				E13A032721B37B1D0049B125 /* gamma.m4a in Resources */,
 				E1A5A78D2283FC7800EC5A71 /* MS5_Diffuse4.jpg in Resources */,
+				E1DFC2272287A89B00F90E69 /* ShieldTorpExplosion.scnp in Resources */,
 				E139A7062276153400534982 /* BetaSector.m4a in Resources */,
 				E109EB601E1BB938003DAB0F /* 40069.ttf in Resources */,
 				E1A89EA81E9867F600EA8BC4 /* Default-568h@2x.png in Resources */,
