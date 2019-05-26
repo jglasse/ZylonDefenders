@@ -27,38 +27,25 @@ import SceneKit
 //}
 
 enum KnownQuadrants: String {
-    case alpha
-    case beta
-    case gamma
-    case delta
+    case alpha,beta,gamma,delta
 }
 
-//struct ShipDisplay {
-//    var tactical = false
-//    var galacticMap = false
-//}
 
-struct Sector {
-    var quadrant: KnownQuadrants = .alpha
-	var qx = 0
-	var qy = 0
-}
 
 class ZylonShip: SCNNode {
-    var tacticalDisplayEngaged = false
+    var currentSector = 64
+    var targetSector = 68
+    var tacticalDisplayEngaged = true
     var isInAlertMode = false
     var isCurrentlyinWarp = false
 	var shieldsAreUp = false
 	var currentSpeed = 0
-	var currentSector = Sector()
-  //  var display = ShipDisplay()
     var systemStatus = ShipSystems()
 	var engineHealth = 100
 	var shieldStrength = 100
 	var energyStore = 10000
 	var currentTorpedoBay = 1
     var sectorLocation = locationInSector(x: 500, y: 500, z: 500)
-    var sector = currentSector(quadrant: .alpha, y: 30, z: 30)
     var shipSystems = ShipsSystems()
 
     let statusMessages = ["functional", "damaged", "severely damaged", "destroyed"]
@@ -79,22 +66,16 @@ class ZylonShip: SCNNode {
 		var z = 0
 	}
 
-	struct currentSector {
-        var quadrant: KnownQuadrants = .alpha
-		var y = 0
-		var z = 0
-
-	}
 	struct rotation {
 		var theta = 0.0
 		var phi = 0.0
 	}
 
     enum DamageAmount: Int {
-        case functional = 0
-        case damaged = 1
-        case severelyDamaged = 2
-        case destroyed = 3
+        case functional
+        case damaged
+        case severelyDamaged
+        case destroyed
 
         mutating func increase() {
             self = DamageAmount(rawValue: self.rawValue + 1) ?? .destroyed
@@ -146,6 +127,6 @@ class ZylonShip: SCNNode {
 
     }
     func updateSector() {
-        self.currentSector.qy+=1
+        self.targetSector+=1
     }
 }

@@ -19,7 +19,7 @@ class ZylonStation: SectorObject {
         super.init()
         self.sectorObjectType = .zylonStation
         let zylonStationpScene = SCNScene(named: "zylonStation.scn")
-        let zylonStation = zylonStationpScene?.rootNode.childNode(withName: "zStation", recursively: true)
+        let zylonStation = zylonStationpScene?.rootNode.childNode(withName: "Zstation", recursively: true)
         let stationShape = SCNBox(width: 10, height: 10, length: 10, chamferRadius: 0)
         let stationPhysicsShape = SCNPhysicsShape(geometry: stationShape, options: nil)
         self.addChildNode(zylonStation!)

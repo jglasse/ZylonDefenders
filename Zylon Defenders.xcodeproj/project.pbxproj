@@ -40,6 +40,8 @@
 		E16AB6241E1DD1F800E3D8C2 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = E16AB6231E1DD1F800E3D8C2 /* spark.png */; };
 		E16AB62A1E1F120400E3D8C2 /* torpedo_fail.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E16AB6291E1F120400E3D8C2 /* torpedo_fail.mp3 */; };
 		E16B66881E8B09F800F28144 /* MCController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16B66871E8B09F800F28144 /* MCController.swift */; };
+		E16C7EB3228BCF9300117E92 /* zylonStation.scn in Resources */ = {isa = PBXBuildFile; fileRef = E1A5A7922283FD6E00EC5A71 /* zylonStation.scn */; };
+		E16C7EB4228BCF9400117E92 /* zylonStation.scn in Resources */ = {isa = PBXBuildFile; fileRef = E1A5A7922283FD6E00EC5A71 /* zylonStation.scn */; };
 		E16D68CA226B50F100B27067 /* alert.m4a in Resources */ = {isa = PBXBuildFile; fileRef = E16D68C9226B50F100B27067 /* alert.m4a */; };
 		E16D68CB226B50F100B27067 /* alert.m4a in Resources */ = {isa = PBXBuildFile; fileRef = E16D68C9226B50F100B27067 /* alert.m4a */; };
 		E16E28B720564A41002362C1 /* warpEnd.aif in Resources */ = {isa = PBXBuildFile; fileRef = E16E289C20564A3F002362C1 /* warpEnd.aif */; };
@@ -751,6 +753,7 @@
 				E16E28DC20564A41002362C1 /* Shields40.aiff in Resources */,
 				E16E28C820564A41002362C1 /* innerHullFailure.aiff in Resources */,
 				E192623720A79E4600AB93F2 /* Starfield 2048x1024LB.png in Resources */,
+				E16C7EB4228BCF9400117E92 /* zylonStation.scn in Resources */,
 				E16D68CB226B50F100B27067 /* alert.m4a in Resources */,
 				E16E28CA20564A41002362C1 /* warpStartStop.aif in Resources */,
 				E18370B9212F609F003E2308 /* enemyAlert.mp3 in Resources */,
@@ -837,6 +840,7 @@
 				E1284C50203A58950022AE83 /* forcefieldHit.m4a in Resources */,
 				E1E381E11EC4B79A000CC31C /* button_dir_right_0.png in Resources */,
 				E1A5A78A2283FC7800EC5A71 /* MS5_Normal.jpg in Resources */,
+				E16C7EB3228BCF9300117E92 /* zylonStation.scn in Resources */,
 				E16E28CD20564A41002362C1 /* Shields70.aiff in Resources */,
 				E1D36D621FEA5764001F3E25 /* sectorCleared.mp3 in Resources */,
 				E19BC7B222594F2500A1DA6B /* hullHit.m4a in Resources */,

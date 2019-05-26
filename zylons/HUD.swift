@@ -22,7 +22,8 @@ class HUD: SKScene {
     var crosshairs: SKSpriteNode!
     var aftcrosshairs: SKSpriteNode!
     var parentScene: ZylonGameViewController?
-    let aftHairs = SKSpriteNode(imageNamed: "xenonHUDAFT")
+    let aftHairTexture = SKTexture(imageNamed: "xenonHUDAFT")
+    let foreHairTexture = SKTexture(imageNamed: "xenonHUD")
     let foreHairs = SKSpriteNode(imageNamed: "xenonHUD")
     var alertTimer: Timer?
     var currentComputerStatusColor = UIColor.red
@@ -51,13 +52,18 @@ class HUD: SKScene {
         updateHUD()
 
         self.addChild(shields)
-
-        crosshairs = foreHairs
+        crosshairs = SKSpriteNode(imageNamed: "xenonHUD")
+        crosshairs.name = "crosshairs"
         crosshairs.position = CGPoint(x: self.frame.midX, y: self.frame.midY)
         self.addChild(crosshairs)
         self.addChild(computerStatus)
         self.addChild(enemyIndicator)
 
+    }
+
+    func aftCrossHairs() {
+        let currentHairs = self.childNode(withName: "crosshairs") as! SKSpriteNode
+        currentHairs.texture = aftHairTexture
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -74,13 +80,13 @@ class HUD: SKScene {
 
     public func foreView() {
         DispatchQueue.main.async {
-            self.crosshairs = self.foreHairs
-        }
+            let currentHairs = self.childNode(withName: "crosshairs") as! SKSpriteNode
+            currentHairs.texture = self.foreHairTexture        }
     }
 
     public func aftView() {
         DispatchQueue.main.async {
-            self.crosshairs = self.aftHairs
+            self.aftCrossHairs()
 
         }
     }

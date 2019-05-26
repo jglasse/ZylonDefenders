@@ -59,8 +59,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     var currentExplosionParticleSystem: SCNParticleSystem?
     var starSprites = [SCNNode]() // array of stars to make updating them each frame easy
 
-    //var enemyFleet = GalaxyMap(withRandomlyPlacedShips: 20, maxNumberPerSector: 3)
-    var enemyFleet = NewGalaxyMap(difficulty: 1)
+    var actualGalaxyModel = NewGalaxyMap(difficulty: 1)
     var enemyShipsInSector = [HumonShip]()
     var enemyShipCountInSector: Int {
         return enemyShipsInSector.count
@@ -118,6 +117,16 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     @IBOutlet weak var targetDistanceDisplay: UILabel!
     @IBOutlet weak var shieldsDisplay: UILabel!
     @IBOutlet weak var shieldStrengthDisplay: UILabel!
+
+//    func NewOverlayPos(node: SCNNode) -> CGPoint {
+//        
+//        let worldposition = node.worldPosition
+//        
+////        let projectedOrigin = scnView.projectPoint(SCNVector3Zero)
+////        let vp = gestureRecognizer.locationInView(scnView)
+////        let vpWithZ = SCNVector3(x: vp.x, y: vp.y, z: projectedOrigin.z)
+////        let worldPoint = gameView.unprojectPoint(vpWithZ)
+//    }
 
     // MARK: - IBActions
 
@@ -261,11 +270,12 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         performWarp()
 		let deadlineTime = DispatchTime.now() + .seconds(6)
 		DispatchQueue.main.asyncAfter(deadline: deadlineTime) {
-			self.enterSector()
+            self.enterSector(sectorNumber: self.ship.targetSector)
 			self.setSpeed(3)
             self.forwardCameraNode.camera?.motionBlurIntensity = 0
             self.ship.isCurrentlyinWarp = false
             self.ship.tacticalDisplayEngaged = tacticalWasEngaged
+            self.ship.currentSector = self.ship.targetSector
 		}
         let spawnDeadline = DispatchTime.now() + .seconds(8)
         DispatchQueue.main.asyncAfter(deadline: spawnDeadline) {
@@ -387,9 +397,10 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     }
 
     func setupScene() {
-        scnView.scene = mainGameScene
 
         //prepare game elements for later display
+
+        scnView.scene = mainGameScene
         createStars()
         generateWarpGrid()
 
@@ -537,39 +548,17 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         // place the camera
         cameraNode.position = SCNVector3(x: 0, y: -8, z: 4.2)
 
+        var  rotationNode: SCNNode { return  (galacticMap?.rootNode.childNode(withName: "rotateNode", recursively: true))! }
+        let transition = SKTransition.fade(withDuration: 0)
+        mapScnView.present(galacticMap!, with: transition, incomingPointOfView: galacticMap?.rootNode.childNode(withName: "gCam", recursively: true), completionHandler: {
+            self.mapScnView.allowsCameraControl = false
+            print(self.mapScnView.description) })
     }
 
     // MARK: - Map rotator
     @objc func mapPan(_ gesture: UIPanGestureRecognizer) {
         print("Map Panned")
         var rotationNode: SCNNode { return  (galacticMap?.rootNode.childNode(withName: "rotateNode", recursively: true))! }
-
-//        let translation = gesture.translation(in: gesture.view)
-//
-//        let x = Float(translation.x)
-//        //let y = Float(-translation.y)
-//
-//        let anglePan = sqrt(pow(x, 2)+pow(y, 2))*(Float)(M_PI)/180.0
-//
-//        var rotationVector = SCNVector4()
-//        rotationVector.x = -y
-//        rotationVector.y = x
-//        rotationVector.z = 0
-//        rotationVector.w = anglePan
-//
-//        rotationNode.rotation = rotationVector
-//
-//        //geometryNode.transform = SCNMatrix4MakeRotation(anglePan, -y, x, 0)
-//
-//        if gesture.state == .ended {
-//
-//            let currentPivot = rotationNode.pivot
-//            let changePivot = SCNMatrix4Invert( rotationNode.transform)
-//
-//            rotationNode.pivot = SCNMatrix4Mult(changePivot, currentPivot)
-//
-//            rotationNode.transform = SCNMatrix4Identity
-//        }
 
         let translation = gesture.translation(in: gesture.view)
 
@@ -606,15 +595,6 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 		}
     }
 
-//    func aftView() {
-//        viewMode = .aftView
-//    }
-//
-//    func foreView() {
-//        viewMode = .foreView
-//
-//    }
-
     @IBAction func toggleShields(_ sender: UIButton) {
         if ship.shieldsAreUp {
             ship.shieldsAreUp = false
@@ -638,33 +618,40 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         print("Zylon Ship hit by \(node.description)")
 
         // we should animate removal of node which hit ship, but for now just remove it.
+
+        // if no shields, special explosion for zylonShipHit
+
         if !ship.shieldsAreUp {
-        boom(atNode: node)
+        zylonSurvivableBoom(atNode: node)
         }
         node.removeFromParentNode()
-       // self.shipHud.updateHUD()
 
         if ship.shieldsAreUp && ship.shieldStrength>0 {
             print("ship.shieldsAreUp && ship.shieldStrength>0")
             self.environmentSound("forcefieldHit")
             print("self.environmentSound(forcefieldHit) played")
 
-            let overlayPos = self.overlayPos(node: node) // screen coordinates of hit in UIVIew
+            //let overlayPos = self.overlayPos(node: node) // screen coordinates of hit in UIVIew
 
             DispatchQueue.main.async {
-                let testView = UIView(frame: CGRect(x: overlayPos.x-5, y: overlayPos.y-5, width: 30, height: 30))
-                testView.tintColor = UIColor.red
-                testView.backgroundColor = UIColor.red
-                self.mainView.addSubview(testView)
-                testView.setNeedsDisplay()
+                let hitplane = SCNPlane(width: 1, height: 1)
+                hitplane.firstMaterial?.diffuse.contents = UIImage(named: "shieldHit")
+                let hitPlaneNode = SCNNode(geometry: hitplane)
+                hitPlaneNode.opacity = 0.5
+                hitPlaneNode.position = node.presentation.position
 
-                DispatchQueue.main.asyncAfter(deadline: .now() + 10.5) {
-                testView.removeFromSuperview()
+                self.mainGameScene.rootNode.addChildNode(hitPlaneNode)
+                let fadeout = SCNAction.fadeOut(duration: 1.0)
+                hitPlaneNode.runAction(fadeout)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                hitPlaneNode.removeFromParentNode()
                 }
             }
 
-            let overlaySpritePOS = shipHud.convertPoint(fromView: overlayPos) //
-            shipHud.shieldHit(location: overlaySpritePOS)
+           // let overlaySpritePOS = shipHud.convertPoint(fromView: overlayPos) //
+           //shipHud.shieldHit(location: overlaySpritePOS)
+
+            //decrement shield strength, and then determine if shields have held
             ship.shieldStrength = ship.shieldStrength - 10
             if ship.shieldStrength>0 {
             print("SHIELDS HAVE HELD! Current Shield Strenth: \(ship.shieldStrength)")
@@ -688,7 +675,16 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
             self.sectorObjectsNode.addChildNode(explosionNode)
             self.explosionSound()
         }
-        //self.shipHud.updateHUD()
+
+    }
+    func zylonSurvivableBoom(atNode: SCNNode) {
+        print("SHIELDBOOM!")
+        DispatchQueue.main.async {
+            let explosionNode = ShieldExplosion()
+            explosionNode.position = atNode.presentation.position
+            self.sectorObjectsNode.addChildNode(explosionNode)
+            self.explosionSound()
+        }
 
     }
 
@@ -796,13 +792,15 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 
     }
 
-    func enterSector() {
+    func enterSector(sectorNumber: Int) {
         print("Entering sector:", self.ship.currentSector)
         var audioItems: [AVPlayerItem] = []
         var soundURL = Bundle.main.url(forResource: "entering_sector", withExtension: "m4a")
         let sector = AVPlayerItem(url: soundURL!)
         audioItems.append(sector)
 
+        
+        
         // quadrant
         soundURL = Bundle.main.url(forResource: ship.currentSector.quadrant.rawValue, withExtension: "m4a")
         var item = AVPlayerItem(url: soundURL!)
@@ -895,7 +893,6 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 
             self.thetaDisplay.text = "Θ: \(roundedX)"
             self.phiDisplay.text = "ɸ: \(roundedY)"
-            // self.ship.enemyShipsInSector = self.enemyShipsInSector.count
             self.enemiesInSectorDisplay.text = "Enemies In Sector: \(self.enemyShipsInSector.count)"
             if self.enemyShipCountInSector > 0 {
                 let drone = self.enemyShipsInSector[0]
@@ -985,7 +982,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
                 }
             }
 
-			// if this node is an explosion, update it's position (because it's not in sectorObjectsNode) and update it for decay
+			// if this node is an explosion, update its position (because it's not in sectorObjectsNode) and update it for decay
             if (thisNode.name == "explosionNode") {
                 let thisExplosion = thisNode as! ShipExplosion
                 var actualExplosionPosition = mainGameScene.rootNode.convertPosition(thisNode.position, from: sectorObjectsNode)
@@ -1046,6 +1043,10 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         }
     }
 
+    func populateGalacticMap() {
+
+    }
+
     // MARK: - Game Loop
 
     func renderer(_ renderer: SCNSceneRenderer, didApplyAnimationsAtTime time: TimeInterval) {
@@ -1096,9 +1097,10 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
             }
         case .galacticMap:
                 DispatchQueue.main.async {
+                    self.populateGalacticMap()
                     self.joystickControl.isHidden = false
                     self.mapScnView.isHidden = false
-                    self.galacticGestureView.isHidden = true
+                    self.galacticGestureView.isHidden = false
                     self.scnView.isHidden = true
                     self.galacticStack.isHidden = false
                     self.commandStack.isHidden = true

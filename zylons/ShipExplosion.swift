@@ -28,3 +28,18 @@ public var age = 0
         fatalError("init(coder:) has not been implemented")
     }
 }
+
+class ShieldExplosion: ShipExplosion {
+
+    override init() {
+        super.init()
+        let explosionParticles = SCNParticleSystem(named: "ShieldTorpExplosion", inDirectory: nil)
+        explosionParticles?.emissionDuration = 0.3
+        self.name = "explosionNode"
+        self.addParticleSystem(explosionParticles!)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
