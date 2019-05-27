@@ -793,7 +793,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     }
 
     func enterSector(sectorNumber: Int) {
-        print("Entering sector:", self.ship.currentSector)
+        print("Entering sector:", sectorNumber)
         var audioItems: [AVPlayerItem] = []
         var soundURL = Bundle.main.url(forResource: "entering_sector", withExtension: "m4a")
         let sector = AVPlayerItem(url: soundURL!)
@@ -802,43 +802,37 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         
         
         // quadrant
-        soundURL = Bundle.main.url(forResource: ship.currentSector.quadrant.rawValue, withExtension: "m4a")
+        let quad = actualGalaxyModel.map[sectorNumber].quadrant
+        let quadrantNumber = actualGalaxyModel.map[sectorNumber].quadrantNumber
+        soundURL = Bundle.main.url(forResource: quad.rawValue, withExtension: "m4a")
         var item = AVPlayerItem(url: soundURL!)
         audioItems.append(item)
 
         // x coordinate
-        if ship.currentSector.qx < 10 {
-            let numString = numberstrings[ship.currentSector.qx]
-             soundURL = Bundle.main.url(forResource: numString, withExtension: "m4a")
+        
+        
+        
+        if quadrantNumber < 10 {
+            let tensString = numberstrings[0]
+            soundURL = Bundle.main.url(forResource: tensString, withExtension: "m4a")
+            item = AVPlayerItem(url: soundURL!)
+            audioItems.append(item)
+
+            let onesString = numberstrings[quadrantNumber]
+             soundURL = Bundle.main.url(forResource: onesString, withExtension: "m4a")
              item = AVPlayerItem(url: soundURL!)
             audioItems.append(item)
 
-        // y coordinate
         } else {
-            let numString = numberstrings[ship.currentSector.qx-10]
-            soundURL = Bundle.main.url(forResource: numString, withExtension: "m4a")
+            let tensString = numberstrings[quadrantNumber / 10] //tens digit
+            soundURL = Bundle.main.url(forResource: tensString, withExtension: "m4a")
             item = AVPlayerItem(url: soundURL!)
             audioItems.append(item)
-            let numString2 = numberstrings[1]
-            soundURL = Bundle.main.url(forResource: numString2, withExtension: "m4a")
+            
+            let onesString = numberstrings[quadrantNumber % 10] // remainder
+            soundURL = Bundle.main.url(forResource: onesString, withExtension: "m4a")
             item = AVPlayerItem(url: soundURL!)
             audioItems.append(item)
-
-        }
-        if ship.currentSector.qy < 10 {
-            let numString = numberstrings[ship.currentSector.qy]
-            soundURL = Bundle.main.url(forResource: numString, withExtension: "m4a")
-            item = AVPlayerItem(url: soundURL!)
-            audioItems.append(item)
-        } else { // break numb7ers greater than 9 into two digits
-            let numString2 = numberstrings[1]
-            soundURL = Bundle.main.url(forResource: numString2, withExtension: "m4a")
-            item = AVPlayerItem(url: soundURL!)
-            audioItems.append(item)
-            let numString = numberstrings[ship.currentSector.qy-10]
-            soundURL = Bundle.main.url(forResource: numString, withExtension: "m4a")
-            let lastItem = AVPlayerItem(url: soundURL!)
-            audioItems.append(lastItem)
 
         }
         computerVoice = AVQueuePlayer(items: audioItems)

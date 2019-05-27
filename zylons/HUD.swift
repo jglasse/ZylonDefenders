@@ -114,10 +114,10 @@ class HUD: SKScene {
                 computerStatus.text = "ALERT"
 
             } else {
-            let myX = myScene.ship.currentSector.quadrant
-            let myY = myScene.ship.currentSector.qx
-            let myZ = myScene.ship.currentSector.qy
-            computerStatus.text = "CURRENT SECTOR: \(myX).\(myY).\(myZ)"
+            let ship = myScene.actualGalaxyModel.map[myScene.ship.currentSector]
+            let myX = ship.quadrant
+            let myY = ship.quadrantNumber
+            computerStatus.text = "CURRENT SECTOR: \(myX).\(myY)"
             }
 
             if myScene.enemyShipsInSector.count > 0 {

@@ -278,7 +278,7 @@ extension ZylonGameViewController: CommandDelegate {
         case "ABORT":
             notYetImplemented(command)
         case "GRID":
-            enterSector()
+            enterSector(sectorNumber: 16)
         case "ATTACK":
             notYetImplemented(command)
         case "FORE":

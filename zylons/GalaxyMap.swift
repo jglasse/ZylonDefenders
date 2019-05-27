@@ -8,19 +8,50 @@
 
 import Foundation
 
+enum SectorType {
+    case enemy
+    case starbase
+    case empty
+}
+struct Sector {
+    var number = 0
+    var numberString: String {
+        return String(number)
+    }
+
+    var sectorObjects =  0
+    var sectorType = SectorType.empty
+    var quadrant: KnownQuadrants {
+        switch number
+        {
+        case 1...32:
+            return .alpha
+        case 33...64:
+            return .beta
+        case 65...96:
+            return .gamma
+        default:
+            return .delta
+        }
+    }
+    
+    var quadrantNumber: Int {
+        switch number
+        {
+        case 97...128:
+            return number - 96
+        case 33...64:
+            return number - 32
+        case 65...96:
+            return number - 64
+        default:
+            return number
+        }
+    }
+}
+
 
 struct NewGalaxyMap {
-    struct Sector {
-        var number = ""
-        var sectorObjects =  0
-        var sectorType = SectorType.empty
-    }
-    enum SectorType {
-        case enemy
-        case starbase
-        case empty
-    }
-
     var map =  [Sector]()
 
      init(difficulty: Int) {
@@ -59,8 +90,7 @@ struct NewGalaxyMap {
 
         // first, add an empty map with 128 sectors
         for x in 1...128 {
-            let sectorname = String(x)
-            let currentSector = Sector(number: sectorname, sectorObjects: 0, sectorType: .empty)
+            let currentSector = Sector(number: x, sectorObjects: 0, sectorType: .empty)
             self.map.append(currentSector)
         }
         //then randomly add space Stations to the appropriate number of sectors
