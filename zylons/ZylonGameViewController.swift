@@ -242,17 +242,20 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         if self.viewMode == .aftView { fireAftTorp() }}
     }
 
-    @IBAction func spawnDrone(_ sender: UIButton) {
-        spawnDrone()
-    }
+//    @IBAction func spawnDrone(_ sender: UIButton) {
+//        spawnEnemy()
+//    }
 
     func spawnStarbase() {
-        let zylonShip = ZylonStation()
-        zylonShip.position = self.mainGameScene.rootNode.convertPosition((zylonShip.worldPosition), to: self.sectorObjectsNode)
-        self.sectorObjectsNode.addChildNode(zylonShip)
-        zylonShip.runAction(SCNAction.repeatForever(SCNAction.rotateBy(x: 0, y: 1, z: 0, duration: 0)))
+        let zylonStation = ZylonStation()
+        zylonStation.position = self.mainGameScene.rootNode.convertPosition((zylonStation.worldPosition), to: self.sectorObjectsNode)
+        self.sectorObjectsNode.addChildNode(zylonStation)
+        
+        let action = SCNAction.rotateBy(x: 0, y: CGFloat(GLKMathDegreesToRadians(360)), z: 0, duration: 28)
+        let forever = SCNAction.repeatForever(action)
+        zylonStation.runAction(forever)
     }
-    func spawnDrone() {
+    func spawnEnemy() {
         let enemyDrone = HumonShip()
         let constraint = SCNLookAtConstraint(target: mainGameScene.rootNode)
         constraint.isGimbalLockEnabled = true
@@ -263,7 +266,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 
     func spawnEnemies(number: Int) {
         for _ in 1...number {
-            spawnDrone()
+            spawnEnemy()
         }
     }
 
@@ -399,7 +402,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         setupView()
         setupScene()
         setupShip()
-        spawnEnemies(number: 3)
+       // spawnEnemies(number: 3)
        // myMCController.setup()
        // myMCController.myCommandDelegate = self
         shipHud.parentScene = self
