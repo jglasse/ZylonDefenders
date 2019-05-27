@@ -31,7 +31,7 @@ class ZylonStation: SectorObject {
         self.name = "zylonStation"
         self.worldOrientation = SCNVector4(0, 0, 1, Float.pi)
         self.pivot = SCNMatrix4MakeTranslation(0.5, 0.5, 0.5)
-        self.worldPosition = SCNVector3Make(randRange(lower: -10, upper: 10), randRange(lower: -12, upper: 12), randRange(lower: -80, upper: -60))
+        self.worldPosition = SCNVector3Make(0,0,-160)
         self.scale = SCNVector3Make(1, 1, 1)
 
     }

@@ -209,7 +209,6 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         }
     }
      func fireTorp() {
-        print("FireTorp!")
         if numberOfZylonShotsOnscreen < Constants.maxTorpedoes && !self.aButtonJustPressed {
             let torpedoNode = Torpedo(designatedTorpType: .zylon)
             let photonSoundArray = [photonSound1, photonSound2, photonSound3, photonSound4]
@@ -247,6 +246,12 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         spawnDrone()
     }
 
+    func spawnStarbase() {
+        let zylonShip = ZylonStation()
+        zylonShip.position = self.mainGameScene.rootNode.convertPosition((zylonShip.worldPosition), to: self.sectorObjectsNode)
+        self.sectorObjectsNode.addChildNode(zylonShip)
+        zylonShip.runAction(SCNAction.repeatForever(SCNAction.rotateBy(x: 0, y: 1, z: 0, duration: 0)))
+    }
     func spawnDrone() {
         let enemyDrone = HumonShip()
         let constraint = SCNLookAtConstraint(target: mainGameScene.rootNode)
@@ -256,7 +261,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         self.sectorObjectsNode.addChildNode(enemyDrone)
     }
 
-    func spawnDrones(number: Int) {
+    func spawnEnemies(number: Int) {
         for _ in 1...number {
             spawnDrone()
         }
@@ -266,23 +271,40 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 
 	@IBAction func gridWarp(_ sender: UIButton) {
         if !ship.isCurrentlyinWarp {
+    self.ship.targetSector = randIntRange(lower: 1, upper: 128)
         let tacticalWasEngaged = ship.tacticalDisplayEngaged
         performWarp()
 		let deadlineTime = DispatchTime.now() + .seconds(6)
 		DispatchQueue.main.asyncAfter(deadline: deadlineTime) {
-            self.enterSector(sectorNumber: self.ship.targetSector)
 			self.setSpeed(3)
             self.forwardCameraNode.camera?.motionBlurIntensity = 0
             self.ship.isCurrentlyinWarp = false
             self.ship.tacticalDisplayEngaged = tacticalWasEngaged
             self.ship.currentSector = self.ship.targetSector
+            self.enterSector(sectorNumber: self.ship.targetSector)
+
 		}
         let spawnDeadline = DispatchTime.now() + .seconds(8)
         DispatchQueue.main.asyncAfter(deadline: spawnDeadline) {
            // self.warpGrid.removeFromParentNode()
-            self.spawnDrones(number: Int(randRange(lower: 2, upper: 6)))
+            let whereWeAre = self.actualGalaxyModel.map[self.ship.currentSector]
+            
+            switch whereWeAre.sectorType {
+            case .starbase:
+                self.spawnStarbase()
+                
+            case .enemy:
+                self.spawnEnemies(number: whereWeAre.numberOfSectorObjects)
+                print("ENEMY SECTOR \(whereWeAre.quadrant) \(whereWeAre.quadrantNumber). Spawning \(whereWeAre.numberOfSectorObjects) enemies")
+            
+            case .empty:
+                print("Empty Sector")
+            }
+            
+            }
+            
         }
-        } else {
+        else {
             computerBeepSound("torpedo_fail")
         }
 
@@ -377,7 +399,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         setupView()
         setupScene()
         setupShip()
-        spawnDrones(number: 3)
+        spawnEnemies(number: 3)
        // myMCController.setup()
        // myMCController.myCommandDelegate = self
         shipHud.parentScene = self
@@ -793,7 +815,10 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     }
 
     func enterSector(sectorNumber: Int) {
-        print("Entering sector:", sectorNumber)
+        let whereWeAre = self.actualGalaxyModel.map[self.ship.currentSector]
+        print("Entering sector: \(whereWeAre.quadrant) \(whereWeAre.quadrantNumber)")
+        print("actualSector Number: \(sectorNumber)")
+
         var audioItems: [AVPlayerItem] = []
         var soundURL = Bundle.main.url(forResource: "entering_sector", withExtension: "m4a")
         let sector = AVPlayerItem(url: soundURL!)

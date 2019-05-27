@@ -110,7 +110,8 @@ class ZylonShip: SCNNode {
             shipSystems.shieldIntegrity = .destroyed
             shieldsAreUp = false
         }
-        print("OUTER HULL HIT! Ship Damage: \(shipSystems)")
+       // print("OUTER HULL HIT! Ship Damage: \(shipSystems)")
+        print("OUTER HULL HIT! Ship Damage")
 
         // calculateShipDamage
         //        let dice = randIntRange(lower: 1, upper: 6)

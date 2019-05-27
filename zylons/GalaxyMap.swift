@@ -19,7 +19,7 @@ struct Sector {
         return String(number)
     }
 
-    var sectorObjects =  0
+    var numberOfSectorObjects =  0
     var sectorType = SectorType.empty
     var quadrant: KnownQuadrants {
         switch number
@@ -62,53 +62,57 @@ struct NewGalaxyMap {
         // based on difficulty level, set internal variables
         switch difficulty {
         case 1:
-            numberofOccupiedSectors = 6
+            numberofOccupiedSectors = 30
             maxShipsPerSector = 3
-            numberofStations = 3
+            numberofStations = 15
 
         case 2:
-            numberofOccupiedSectors = 8
+            numberofOccupiedSectors = 30
             maxShipsPerSector = 3
-            numberofStations = 3
+            numberofStations = 15
 
         case 3:
-            numberofOccupiedSectors = 10
+            numberofOccupiedSectors = 30
             maxShipsPerSector = 4
-            numberofStations = 3
+            numberofStations = 15
 
         case 4:
-            numberofOccupiedSectors = 12
+            numberofOccupiedSectors = 30
             maxShipsPerSector = 5
-            numberofStations = 3
+            numberofStations = 15
 
         default:
-            numberofOccupiedSectors = 6
+            numberofOccupiedSectors = 30
             maxShipsPerSector = 3
-            numberofStations = 3
+            numberofStations = 15
 
         }
 
         // first, add an empty map with 128 sectors
         for x in 1...128 {
-            let currentSector = Sector(number: x, sectorObjects: 0, sectorType: .empty)
+            let currentSector = Sector(number: x, numberOfSectorObjects: 0, sectorType: .empty)
             self.map.append(currentSector)
         }
         //then randomly add space Stations to the appropriate number of sectors
         for _ in 1...numberofStations {
             let currentSectorIndex = Int(randRange(lower: 0, upper: 127))
-            self.map[currentSectorIndex].sectorObjects = 1
+            self.map[currentSectorIndex].numberOfSectorObjects = 1
             self.map[currentSectorIndex].sectorType = .starbase
         }
 
         // then, iterate over the number of occupied sectors...
+        print("Adding \(numberofOccupiedSectors) occipied Sectors")
         for _ in 1...numberofOccupiedSectors {
             // picking a random sector:
             let currentSectorIndex = Int(randRange(lower: 0, upper: 127))
             if self.map[currentSectorIndex].sectorType != .starbase {
+                
                 let numberofshipsToAdd = Int(randIntRange(lower: 1, upper: maxShipsPerSector))
             // and assigning those ships to that random sector
-                self.map[currentSectorIndex].sectorObjects = numberofshipsToAdd
+                self.map[currentSectorIndex].numberOfSectorObjects = numberofshipsToAdd
                 self.map[currentSectorIndex].sectorType = .enemy
+                print("Adding \(numberofshipsToAdd) to sector \(currentSectorIndex)")
+
                 }
             }
         }
