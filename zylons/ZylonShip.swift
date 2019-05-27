@@ -128,6 +128,6 @@ class ZylonShip: SCNNode {
 
     }
     func updateSector() {
-        self.targetSector+=1
+        self.currentSector = self.targetSector
     }
 }

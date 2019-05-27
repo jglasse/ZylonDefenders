@@ -248,6 +248,9 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 
     func spawnStarbase() {
         let zylonStation = ZylonStation()
+        let constraint = SCNLookAtConstraint(target: mainGameScene.rootNode)
+        constraint.isGimbalLockEnabled = true
+        zylonStation.constraints = [constraint]
         zylonStation.position = self.mainGameScene.rootNode.convertPosition((zylonStation.worldPosition), to: self.sectorObjectsNode)
         self.sectorObjectsNode.addChildNode(zylonStation)
         
@@ -274,43 +277,62 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 
 	@IBAction func gridWarp(_ sender: UIButton) {
         if !ship.isCurrentlyinWarp {
-    self.ship.targetSector = randIntRange(lower: 1, upper: 128)
-        let tacticalWasEngaged = ship.tacticalDisplayEngaged
-        performWarp()
-		let deadlineTime = DispatchTime.now() + .seconds(6)
-		DispatchQueue.main.asyncAfter(deadline: deadlineTime) {
-			self.setSpeed(3)
-            self.forwardCameraNode.camera?.motionBlurIntensity = 0
-            self.ship.isCurrentlyinWarp = false
-            self.ship.tacticalDisplayEngaged = tacticalWasEngaged
-            self.ship.currentSector = self.ship.targetSector
-            self.enterSector(sectorNumber: self.ship.targetSector)
+            let newTarget = nextOccupiedSector(currentSector: self.ship.currentSector)
+            self.ship.targetSector = newTarget
+        
+            
+            let tacticalWasEngaged = ship.tacticalDisplayEngaged
+            performWarp()
+            let deadlineTime = DispatchTime.now() + .seconds(6)
+            DispatchQueue.main.asyncAfter(deadline: deadlineTime) {
+                self.setSpeed(3)
+                self.forwardCameraNode.camera?.motionBlurIntensity = 0
+                self.ship.isCurrentlyinWarp = false
+                self.ship.tacticalDisplayEngaged = tacticalWasEngaged
+                self.ship.updateSector()
+                self.enterSector(sectorNumber: self.ship.targetSector)
 
-		}
-        let spawnDeadline = DispatchTime.now() + .seconds(8)
-        DispatchQueue.main.asyncAfter(deadline: spawnDeadline) {
-           // self.warpGrid.removeFromParentNode()
-            let whereWeAre = self.actualGalaxyModel.map[self.ship.currentSector]
-            
-            switch whereWeAre.sectorType {
-            case .starbase:
-                self.spawnStarbase()
+            }
+            let spawnDeadline = DispatchTime.now() + .seconds(8)
+            DispatchQueue.main.asyncAfter(deadline: spawnDeadline) {
+               // self.warpGrid.removeFromParentNode()
+                let whereWeAre = self.actualGalaxyModel.map[self.ship.currentSector]
                 
-            case .enemy:
-                self.spawnEnemies(number: whereWeAre.numberOfSectorObjects)
-                print("ENEMY SECTOR \(whereWeAre.quadrant) \(whereWeAre.quadrantNumber). Spawning \(whereWeAre.numberOfSectorObjects) enemies")
-            
-            case .empty:
-                print("Empty Sector")
+                switch whereWeAre.sectorType {
+                case .starbase:
+                    self.spawnStarbase()
+                    
+                case .enemy:
+                    self.spawnEnemies(number: whereWeAre.numberOfSectorObjects)
+                    print("ENEMY SECTOR \(whereWeAre.quadrant) \(whereWeAre.quadrantNumber). Spawning \(whereWeAre.numberOfSectorObjects) enemies")
+                
+                case .empty:
+                    print("Empty Sector")
+                }
             }
-            
-            }
-            
         }
         else {
             computerBeepSound("torpedo_fail")
         }
 
+    }
+    
+    func nextOccupiedSector(currentSector: Int)-> Int {
+        var foundOccupiedSector = false
+        var nextSector = currentSector + 1
+        repeat  {
+            if nextSector > 128 { nextSector=0}
+            if actualGalaxyModel.map[nextSector].sectorType != .empty {
+                foundOccupiedSector = true
+                return nextSector
+            }
+            else
+            {
+                nextSector += 1
+            }
+            
+        } while !foundOccupiedSector
+        
     }
 
     @IBAction func speedChanged(_ sender: UIStepper) {
@@ -782,7 +804,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         resetWarpgrid()
 
         self.forwardCameraNode.camera?.wantsHDR = false
-      //  self.forwardCameraNode.camera?.motionBlurIntensity = 1.0
+        self.forwardCameraNode.camera?.motionBlurIntensity = 1.0
 
         // WARP!
         SCNTransaction.begin()
@@ -795,7 +817,6 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 //        SCNTransaction.begin()
 //        SCNTransaction.animationDuration = 0.0
 //        SCNTransaction.commit()
-        ship.updateSector()
 
     }
 
