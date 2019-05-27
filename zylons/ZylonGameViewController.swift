@@ -242,11 +242,10 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         if self.viewMode == .aftView { fireAftTorp() }}
     }
 
-//    @IBAction func spawnDrone(_ sender: UIButton) {
-//        spawnEnemy()
-//    }
 
     func spawnStarbase() {
+        
+        let panim = SCNAction.scale(to: 1.2, duration: 0.5)
         let zylonStation = ZylonStation()
         let constraint = SCNLookAtConstraint(target: mainGameScene.rootNode)
         constraint.isGimbalLockEnabled = true
@@ -254,9 +253,8 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         zylonStation.position = self.mainGameScene.rootNode.convertPosition((zylonStation.worldPosition), to: self.sectorObjectsNode)
         self.sectorObjectsNode.addChildNode(zylonStation)
         
-        let action = SCNAction.rotateBy(x: 0, y: CGFloat(GLKMathDegreesToRadians(360)), z: 0, duration: 28)
-        let forever = SCNAction.repeatForever(action)
-        zylonStation.runAction(forever)
+       zylonStation.runAction(panim)
+
     }
     func spawnEnemy() {
         let enemyDrone = HumonShip()
@@ -322,7 +320,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         var nextSector = currentSector + 1
         repeat  {
             if nextSector > 128 { nextSector=0}
-            if actualGalaxyModel.map[nextSector].sectorType != .empty {
+            if actualGalaxyModel.map[nextSector].sectorType == .starbase {
                 foundOccupiedSector = true
                 return nextSector
             }

@@ -18,11 +18,13 @@ class ZylonStation: SectorObject {
     override init() {
         super.init()
         self.sectorObjectType = .zylonStation
-        let zylonStationpScene = SCNScene(named: "zylonStation.scn")
-        let zylonStation = zylonStationpScene?.rootNode.childNode(withName: "Zstation", recursively: true)
+        let zylonStationScene = SCNScene(named: "zylonStation.scn")
+        let zylonStation = zylonStationScene?.rootNode.childNode(withName: "Zstation", recursively: true)
         let stationShape = SCNBox(width: 10, height: 10, length: 10, chamferRadius: 0)
         let stationPhysicsShape = SCNPhysicsShape(geometry: stationShape, options: nil)
-        self.addChildNode(zylonStation!)
+        let zylonStationHolderNode = SCNNode()
+        zylonStationHolderNode.addChildNode(zylonStation!)
+        self.addChildNode(zylonStationHolderNode)
         self.physicsBody = SCNPhysicsBody(type: .kinematic, shape: stationPhysicsShape)
         self.physicsBody?.isAffectedByGravity = false
         self.physicsBody?.friction = 0
@@ -32,7 +34,12 @@ class ZylonStation: SectorObject {
        // self.worldOrientation = SCNVector4(0, 0, 1, Float.pi)
         self.pivot = SCNMatrix4MakeTranslation(0.5, 0.5, 0.5)
         self.worldPosition = SCNVector3Make(0,0,-200)
-        self.scale = SCNVector3Make(1, 1, 1)
+        self.scale = SCNVector3Make(0.1, 0.1, 0.1)
+        
+        let action = SCNAction.rotateBy(x: 0, y: CGFloat(GLKMathDegreesToRadians(360)), z: 0, duration: 58)
+        let forever = SCNAction.repeatForever(action)
+        zylonStation?.runAction(forever)
+        
         
 
     }

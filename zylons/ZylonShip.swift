@@ -32,7 +32,7 @@ enum KnownQuadrants: String {
 
 
 
-class ZylonShip: SCNNode {
+class ZylonShip: SectorObject {
     var currentSector = 64
     var targetSector = 68
     var tacticalDisplayEngaged = true

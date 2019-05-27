@@ -32,7 +32,7 @@ class Starbase: SectorObject {
         self.worldOrientation = SCNVector4(0, 0, 1, Float.pi)
       //  self.pivot = SCNMatrix4MakeTranslation(0.5, 0.5, 0.5)
         self.worldPosition = SCNVector3Make(0, 0, -60)
-        self.scale = SCNVector3Make(0.5, 0.5, 0.5)
+        self.scale = SCNVector3Make(0.06, 0.06, 0.06)
         
         
     }

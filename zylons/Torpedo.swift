@@ -13,7 +13,7 @@ enum TorpType {
     case zylon
 }
 
-class Torpedo: SCNNode {
+class Torpedo: SectorObject {
 
     public var age = 0
     public var torpType: TorpType = .zylon
