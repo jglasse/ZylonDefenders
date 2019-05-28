@@ -143,6 +143,9 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 
     // MARK: - IBActions
 
+    @IBAction func galacticSlide(_ sender: UISlider) {
+        self.ship.targetSector = Int(sender.value)
+    }
     @IBAction func toggleGalacticMap(_ sender: Any) {
         computerBeepSound("beep")
         print("toggling View Mode from \(viewMode)...")
@@ -367,7 +370,12 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
             betaQuadrant.opacity = Constants.mapTransparency
             gammaQuadrant.opacity = Constants.mapTransparency
             deltaQuadrant.opacity = Constants.mapTransparency
-        envSound("AlphaSector")
+            envSound("AlphaSector")
+            galacticSlider.minimumValue = 0
+            galacticSlider.maximumValue = 31
+            ship.targetSector = 16
+        
+
 
     }
     @IBAction func beta(_ sender: Any) {
@@ -380,7 +388,9 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         gammaQuadrant.opacity = Constants.mapTransparency
         deltaQuadrant.opacity = Constants.mapTransparency
         envSound("BetaSector")
-
+        galacticSlider.minimumValue = 32
+        galacticSlider.maximumValue = 63
+        ship.targetSector = 48
     }
     @IBAction func gamma(_ sender: Any) {
         computerBeepSound("beep")
@@ -392,6 +402,10 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         gammaQuadrant.opacity = 1.0
         deltaQuadrant.opacity = Constants.mapTransparency
         envSound("GammaSector")
+        galacticSlider.minimumValue = 64
+        galacticSlider.maximumValue = 95
+        ship.targetSector = 80
+
 
     }
     @IBAction func delta(_ sender: Any) {
@@ -404,6 +418,10 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         gammaQuadrant.opacity = Constants.mapTransparency
         deltaQuadrant.opacity = 1.0
         envSound("DeltaSector")
+        galacticSlider.minimumValue = 96
+        galacticSlider.maximumValue = 127
+        ship.targetSector = 112
+
 
     }
 
@@ -415,6 +433,9 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         betaQuadrant.opacity = 1.0
         gammaQuadrant.opacity = 1.0
         deltaQuadrant.opacity = 1.0
+        
+        galacticSlider.minimumValue = 0
+        galacticSlider.maximumValue = 1
     }
 
     // MARK: - SETUP
@@ -965,8 +986,9 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
             self.tacticalDisplay.isHidden = true
            }
             DispatchQueue.main.async {
-
         self.zylonScanner.isHidden = self.tacticalDisplay.isHidden
+        self.shipSectorLabel.text = "Ship Sector: \(self.shipSector.quadrant) \(self.shipSector.quadrantNumber)"
+        self.targetSectorLabel.text = "Target Sector: \(self.targetSector.quadrant) \(self.targetSector.quadrantNumber)"
             }
         }
     }
@@ -1172,6 +1194,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
             }
         case .galacticMap:
                 DispatchQueue.main.async {
+                    self.sectorStack.isHidden = false
                     self.tacticalDisplay.isHidden = true
                     self.populateGalacticMap()
                     self.joystickControl.isHidden = true
