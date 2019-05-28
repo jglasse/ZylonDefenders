@@ -102,11 +102,6 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</stri
                         <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view autoresizesSubviews="NO" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3bj-9m-5g9" userLabel="GalacticGestureView">
-                                <rect key="frame" x="125" y="54" width="397" height="268"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <gestureRecognizers/>
-                            </view>
                             <sceneKitView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7jm-zG-a79" userLabel="SpaceScnView">
                                 <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
                             </sceneKitView>
@@ -155,54 +150,12 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</stri
                                 <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
                                 <color key="backgroundColor" red="0.076768197120000006" green="0.076862581070000005" blue="0.076782830060000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </sceneKitView>
-                            <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" restorationIdentifier="GalacticStack" spacing="33" translatesAutoresizingMaskIntoConstraints="NO" id="hyH-e8-gbB" userLabel="Galactic Stack">
-                                <rect key="frame" x="157" y="5" width="360" height="36"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2nC-Nm-qWM">
-                                        <rect key="frame" x="0.0" y="0.0" width="30" height="36"/>
-                                        <fontDescription key="fontDescription" name="Y14.5M" family="Y14.5M" pointSize="22"/>
-                                        <state key="normal" title="∞"/>
-                                        <connections>
-                                            <action selector="allQuads:" destination="BV1-FR-VrT" eventType="touchUpInside" id="0Kz-8C-c1v"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9FZ-mG-dtS">
-                                        <rect key="frame" x="63" y="0.0" width="52" height="36"/>
-                                        <fontDescription key="fontDescription" name="Y14.5M" family="Y14.5M" pointSize="15"/>
-                                        <state key="normal" title="ALPHA"/>
-                                        <connections>
-                                            <action selector="alpha:" destination="BV1-FR-VrT" eventType="touchUpInside" id="b0i-1B-BKn"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lKn-fM-mS4">
-                                        <rect key="frame" x="148" y="0.0" width="42" height="36"/>
-                                        <fontDescription key="fontDescription" name="Y14.5M" family="Y14.5M" pointSize="15"/>
-                                        <state key="normal" title="BETA"/>
-                                        <connections>
-                                            <action selector="beta:" destination="BV1-FR-VrT" eventType="touchUpInside" id="AI1-An-FZw"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fju-Xi-EWA">
-                                        <rect key="frame" x="223" y="0.0" width="52" height="36"/>
-                                        <fontDescription key="fontDescription" name="Y14.5M" family="Y14.5M" pointSize="15"/>
-                                        <state key="normal" title="GAMMA"/>
-                                        <connections>
-                                            <action selector="gamma:" destination="BV1-FR-VrT" eventType="touchUpInside" id="EYr-ad-2oz"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Pq-Sp-JAa">
-                                        <rect key="frame" x="308" y="0.0" width="52" height="36"/>
-                                        <fontDescription key="fontDescription" name="Y14.5M" family="Y14.5M" pointSize="15"/>
-                                        <state key="normal" title="DELTA"/>
-                                        <connections>
-                                            <action selector="delta:" destination="BV1-FR-VrT" eventType="touchUpInside" id="CS7-6v-wwL"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.0" maxValue="255" translatesAutoresizingMaskIntoConstraints="NO" id="4Gh-nZ-GBi">
+                                <rect key="frame" x="156" y="50" width="355" height="31"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="36" id="eaV-TW-eKF"/>
+                                    <constraint firstAttribute="height" constant="30" id="cmZ-Iw-3PU"/>
                                 </constraints>
-                            </stackView>
+                            </slider>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="wgh-g3-0pN" userLabel="Speed Stack">
                                 <rect key="frame" x="20" y="319" width="121.5" height="29"/>
                                 <subviews>
@@ -299,25 +252,72 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</stri
                                     <action selector="toggleGalacticMap:" destination="BV1-FR-VrT" eventType="touchUpInside" id="Y5d-w0-RQg"/>
                                 </connections>
                             </button>
+                            <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" restorationIdentifier="GalacticStack" spacing="33" translatesAutoresizingMaskIntoConstraints="NO" id="hyH-e8-gbB" userLabel="Galactic Stack">
+                                <rect key="frame" x="287" y="5" width="360" height="36"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2nC-Nm-qWM">
+                                        <rect key="frame" x="0.0" y="0.0" width="30" height="36"/>
+                                        <fontDescription key="fontDescription" name="Y14.5M" family="Y14.5M" pointSize="22"/>
+                                        <state key="normal" title="∞"/>
+                                        <connections>
+                                            <action selector="allQuads:" destination="BV1-FR-VrT" eventType="touchUpInside" id="0Kz-8C-c1v"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9FZ-mG-dtS">
+                                        <rect key="frame" x="63" y="0.0" width="52" height="36"/>
+                                        <fontDescription key="fontDescription" name="Y14.5M" family="Y14.5M" pointSize="15"/>
+                                        <state key="normal" title="ALPHA"/>
+                                        <connections>
+                                            <action selector="alpha:" destination="BV1-FR-VrT" eventType="touchUpInside" id="b0i-1B-BKn"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lKn-fM-mS4">
+                                        <rect key="frame" x="148" y="0.0" width="42" height="36"/>
+                                        <fontDescription key="fontDescription" name="Y14.5M" family="Y14.5M" pointSize="15"/>
+                                        <state key="normal" title="BETA"/>
+                                        <connections>
+                                            <action selector="beta:" destination="BV1-FR-VrT" eventType="touchUpInside" id="AI1-An-FZw"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fju-Xi-EWA">
+                                        <rect key="frame" x="223" y="0.0" width="52" height="36"/>
+                                        <fontDescription key="fontDescription" name="Y14.5M" family="Y14.5M" pointSize="15"/>
+                                        <state key="normal" title="GAMMA"/>
+                                        <connections>
+                                            <action selector="gamma:" destination="BV1-FR-VrT" eventType="touchUpInside" id="EYr-ad-2oz"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Pq-Sp-JAa">
+                                        <rect key="frame" x="308" y="0.0" width="52" height="36"/>
+                                        <fontDescription key="fontDescription" name="Y14.5M" family="Y14.5M" pointSize="15"/>
+                                        <state key="normal" title="DELTA"/>
+                                        <connections>
+                                            <action selector="delta:" destination="BV1-FR-VrT" eventType="touchUpInside" id="CS7-6v-wwL"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="36" id="eaV-TW-eKF"/>
+                                </constraints>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="Eo0-Hl-05V" firstAttribute="leading" secondItem="hyH-e8-gbB" secondAttribute="trailing" id="2GF-7G-MoJ"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="3bj-9m-5g9" secondAttribute="trailing" constant="125" id="2HR-NM-Ufv"/>
                             <constraint firstItem="50S-aJ-rH1" firstAttribute="height" secondItem="TBr-jy-nsA" secondAttribute="height" id="5Ku-PA-EL2"/>
                             <constraint firstItem="L0B-TD-jaq" firstAttribute="top" secondItem="wgh-g3-0pN" secondAttribute="bottom" constant="27" id="6S6-oB-XKp"/>
+                            <constraint firstAttribute="trailing" secondItem="4Gh-nZ-GBi" secondAttribute="trailing" constant="158" id="Ah0-2g-zvl"/>
                             <constraint firstItem="L0B-TD-jaq" firstAttribute="top" secondItem="PoQ-ji-oep" secondAttribute="bottom" constant="30" id="DLH-SN-KYK"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="hyH-e8-gbB" secondAttribute="trailing" id="EKd-TU-iqW"/>
                             <constraint firstItem="50S-aJ-rH1" firstAttribute="centerX" secondItem="TBr-jy-nsA" secondAttribute="centerX" id="FDO-L5-bvb"/>
                             <constraint firstItem="50S-aJ-rH1" firstAttribute="width" secondItem="TBr-jy-nsA" secondAttribute="width" id="Fgd-fw-nSo"/>
                             <constraint firstItem="50S-aJ-rH1" firstAttribute="centerY" secondItem="TBr-jy-nsA" secondAttribute="centerY" id="Pg5-hl-p3V"/>
                             <constraint firstItem="7jm-zG-a79" firstAttribute="height" secondItem="TBr-jy-nsA" secondAttribute="height" id="VRo-MN-yGh"/>
+                            <constraint firstItem="4Gh-nZ-GBi" firstAttribute="leading" secondItem="TBr-jy-nsA" secondAttribute="leading" constant="158" id="Y8d-0x-bh8"/>
                             <constraint firstItem="7jm-zG-a79" firstAttribute="width" secondItem="TBr-jy-nsA" secondAttribute="width" id="YU4-cL-k11"/>
                             <constraint firstItem="7jm-zG-a79" firstAttribute="centerY" secondItem="TBr-jy-nsA" secondAttribute="centerY" id="apa-db-FfP"/>
-                            <constraint firstItem="3bj-9m-5g9" firstAttribute="leading" secondItem="TBr-jy-nsA" secondAttribute="leading" constant="125" id="b49-0T-JcH"/>
                             <constraint firstItem="PoQ-ji-oep" firstAttribute="trailing" secondItem="PFE-MW-5wO" secondAttribute="trailing" constant="-80" id="byW-Sg-kUk"/>
                             <constraint firstItem="Eo0-Hl-05V" firstAttribute="top" secondItem="cOD-NV-RaV" secondAttribute="bottom" constant="20" id="cbB-dZ-sxd"/>
-                            <constraint firstItem="L0B-TD-jaq" firstAttribute="top" secondItem="3bj-9m-5g9" secondAttribute="bottom" constant="53" id="csV-L1-p11"/>
                             <constraint firstItem="7jm-zG-a79" firstAttribute="centerX" secondItem="TBr-jy-nsA" secondAttribute="centerX" id="dKr-Xx-AYK"/>
                             <constraint firstItem="6Sn-Ch-wiN" firstAttribute="leading" secondItem="TBr-jy-nsA" secondAttribute="leadingMargin" id="fhx-bY-Dlr"/>
                             <constraint firstItem="wgh-g3-0pN" firstAttribute="top" secondItem="6Sn-Ch-wiN" secondAttribute="bottom" constant="8" id="gn9-UD-WSy"/>
@@ -327,14 +327,14 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</stri
                             <constraint firstAttribute="trailing" secondItem="PFE-MW-5wO" secondAttribute="trailing" constant="51" id="qgl-MW-qjZ"/>
                             <constraint firstItem="PFE-MW-5wO" firstAttribute="centerY" secondItem="PoQ-ji-oep" secondAttribute="centerY" constant="2" id="rM5-pa-Qlq"/>
                             <constraint firstItem="hyH-e8-gbB" firstAttribute="top" secondItem="cOD-NV-RaV" secondAttribute="bottom" constant="5" id="tix-Zp-pFX"/>
-                            <constraint firstItem="3bj-9m-5g9" firstAttribute="top" secondItem="cOD-NV-RaV" secondAttribute="bottom" constant="54" id="xLz-hK-a2J"/>
+                            <constraint firstItem="4Gh-nZ-GBi" firstAttribute="top" secondItem="hyH-e8-gbB" secondAttribute="top" constant="45" id="uPr-N6-Z3c"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="commandStack" destination="PoQ-ji-oep" id="2fh-Bc-jMN"/>
                         <outlet property="currentSpeedDisplay" destination="UfY-Ip-g2Z" id="rA9-h2-Alq"/>
                         <outlet property="enemiesInSectorDisplay" destination="WVN-hE-EnE" id="wft-GI-LFO"/>
-                        <outlet property="galacticGestureView" destination="3bj-9m-5g9" id="Ewm-TC-nV8"/>
+                        <outlet property="galacticSlider" destination="4Gh-nZ-GBi" id="VQY-7k-H4P"/>
                         <outlet property="galacticStack" destination="hyH-e8-gbB" id="7Q2-6n-LWi"/>
                         <outlet property="joystickControl" destination="z62-zF-Ty3" id="Nhc-qM-bbn"/>
                         <outlet property="mainView" destination="TBr-jy-nsA" id="xqd-hI-mDE"/>
@@ -343,6 +343,7 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</stri
                         <outlet property="shieldStrengthDisplay" destination="tVA-tc-gId" id="iAW-BA-SMY"/>
                         <outlet property="shieldsDisplay" destination="qxJ-iY-TUa" id="BkQ-ux-FAq"/>
                         <outlet property="spaceScnView" destination="7jm-zG-a79" id="f5u-HU-HqO"/>
+                        <outlet property="speedStack" destination="wgh-g3-0pN" id="9zH-xs-MhY"/>
                         <outlet property="stepperSpeed" destination="to0-eG-n4V" id="wL0-jY-7T4"/>
                         <outlet property="tacticalDisplay" destination="6Sn-Ch-wiN" id="DBg-qg-QpQ"/>
                         <outlet property="targetDistanceDisplay" destination="uyd-8R-ulf" id="eMt-pP-PIG"/>
@@ -351,6 +352,7 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</stri
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer cancelsTouchesInView="NO" direction="right" id="yq0-gJ-5OF"/>
             </objects>
             <point key="canvasLocation" x="31.934032983508249" y="37.600000000000001"/>
         </scene>

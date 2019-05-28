@@ -114,7 +114,7 @@ class HUD: SKScene {
                 computerStatus.text = "ALERT"
 
             } else {
-            let ship = myScene.actualGalaxyModel.map[myScene.ship.currentSector]
+            let ship = myScene.galaxyModel.map[myScene.ship.currentSector]
             let myX = ship.quadrant
             let myY = ship.quadrantNumber
             computerStatus.text = "CURRENT SECTOR: \(myX).\(myY)"

@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  PrologueViewController.swift
 //  zylonprologue
 //
 //  Created by Jeffrey Glasse on 11/10/17.
@@ -12,18 +12,20 @@ import SpriteKit
 
 class PrologueViewController: UIViewController, AVAudioPlayerDelegate {
     let writeInterval = 0.01
-    let soundURL = Bundle.main.url(forResource: "telemetry2", withExtension: "aiff")
-
-    var telemetryTimer = Timer(timeInterval: writeInterval, target: self, selector: (#selector(self.advanceTelemetry)), userInfo: nil, repeats: true)
+    let soundURL = Bundle.main.url(forResource: "wopr2", withExtension: "aiff")
+    var telemetryTimer: Timer?
+    
     var receievingMessage = false
     var telemetrySoundPlayer: AVAudioPlayer?
-      messageArray = [(message: String, delay: Float)]()
+    
+    var messageArray = [(message: String, delay: Float)]()
+    var currentMessage: String {
+        return messageArray[currentMessageIndex].message
+    }
     var currentMessageIndex = 0
     var currentLetterIndex = 0
     var currentLetter = ""
     var existingTelemetry = ""
-    var currentMessage = ""
-
     let message1 = """
 Forty centons ago, they came -  spreading relentlessly
 across peaceful Zylon systems like an unstoppable virus.
@@ -40,7 +42,7 @@ a single raider defeated almost our entire defense force.
 
     let message3 = """
 But a few brave scientists managed to develop an experimental
-starcruiser that could defeat the star raiders - and
+starcruiser that could defeat the invaders - and
 finally drive them back to their distant homesystem, Sol.
 
 You will pilot that starship.
@@ -49,7 +51,7 @@ You will pilot that starship.
 
 DEFEND THE EMPIRE. DRIVE BACK THE HUMONS. SAVE THE ZYLON RACE.
 
-[TRANSMISSION 40AFFE TERMINATED]
+[TRANSMISSION TERMINATED 40AFFE]
 """
 
     @IBOutlet weak var starFieldView: UIImageView!
@@ -57,8 +59,19 @@ DEFEND THE EMPIRE. DRIVE BACK THE HUMONS. SAVE THE ZYLON RACE.
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        messageArray = [(message1, 1), (message2, 1), (message3, 1), (message4, 0)]
+        telemetryTimer = Timer.scheduledTimer(timeInterval: 0.025, target: self, selector: #selector(advanceTelemetry), userInfo: nil, repeats: true)
         setupTelemetryAudioPlayer()
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        currentMessageIndex = 0
+        self.transmissionView.text = ""
+        
+        
+    }
+    
 
     func setupTelemetryAudioPlayer() {
         do {
@@ -71,43 +84,92 @@ DEFEND THE EMPIRE. DRIVE BACK THE HUMONS. SAVE THE ZYLON RACE.
         self.telemetrySoundPlayer?.prepareToPlay()
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(true)
-        messageArray = [(message1, 1), (message2, 1), (message3, 1), (message4, 0)]
+ 
+    
+    @objc func advanceTelemetry() {
+        self.playTelemetrySound()
+       // print("current Letter Index: \(self.currentLetterIndex)")
+        if self.currentLetterIndex < currentMessage.count {
+            let currentIndex = self.currentMessage.index(currentMessage.startIndex, offsetBy: currentLetterIndex)
+            let newletter = self.currentMessage[currentIndex]
+            transmissionView.text?.append(newletter)
+            self.currentLetterIndex = self.currentLetterIndex + 1
 
-        self.receiveTelemetry(location: 0, 0, message: message1)
-
+        }
+        else
+        {
+            telemetryTimer?.invalidate()
+            messageArray.remove(at: 0)
+            print(messageArray.description)
+        }
     }
-
     func playTelemetrySound() {
-        if (self.telemetrySoundPlayer?.isPlaying)! {
+        if (self.telemetrySoundPlayer?.isPlaying ?? false) {
         } else {
             self.telemetrySoundPlayer?.play()
         }
     }
 
-    @objc func advanceTelemetry() {
+}
 
+
+
+extension String {
+    subscript (i: Int) -> Character {
+        return self[index(startIndex, offsetBy: i)]
     }
-
-    func receiveTelemetry(location: CGPoint, message: String) {
-
+    subscript (bounds: CountableRange<Int>) -> Substring {
+        let start = index(startIndex, offsetBy: bounds.lowerBound)
+        let end = index(startIndex, offsetBy: bounds.upperBound)
+        return self[start ..< end]
     }
-
-        })
-    func receive() {
-        self.transmissionView.text = self.existingTelemetry
-        self.currentLetterIndex += 1
-        if let message = currentMessage {
-           // currentLetter = message[currentLetterIndex]
-        }
-        self.existingTelemetry += String(currentLetter)
-
-        if self.currentLetterIndex < self.message1.count-1 {
-            self.playTelemetrySound()
-
-        }
+    subscript (bounds: CountableClosedRange<Int>) -> Substring {
+        let start = index(startIndex, offsetBy: bounds.lowerBound)
+        let end = index(startIndex, offsetBy: bounds.upperBound)
+        return self[start ... end]
     }
+    subscript (bounds: CountablePartialRangeFrom<Int>) -> Substring {
+        let start = index(startIndex, offsetBy: bounds.lowerBound)
+        let end = index(endIndex, offsetBy: -1)
+        return self[start ... end]
+    }
+    subscript (bounds: PartialRangeThrough<Int>) -> Substring {
+        let end = index(startIndex, offsetBy: bounds.upperBound)
+        return self[startIndex ... end]
+    }
+    subscript (bounds: PartialRangeUpTo<Int>) -> Substring {
+        let end = index(startIndex, offsetBy: bounds.upperBound)
+        return self[startIndex ..< end]
+    }
+}
+extension Substring {
+    subscript (i: Int) -> Character {
+        return self[index(startIndex, offsetBy: i)]
+    }
+    subscript (bounds: CountableRange<Int>) -> Substring {
+        let start = index(startIndex, offsetBy: bounds.lowerBound)
+        let end = index(startIndex, offsetBy: bounds.upperBound)
+        return self[start ..< end]
+    }
+    subscript (bounds: CountableClosedRange<Int>) -> Substring {
+        let start = index(startIndex, offsetBy: bounds.lowerBound)
+        let end = index(startIndex, offsetBy: bounds.upperBound)
+        return self[start ... end]
+    }
+    subscript (bounds: CountablePartialRangeFrom<Int>) -> Substring {
+        let start = index(startIndex, offsetBy: bounds.lowerBound)
+        let end = index(endIndex, offsetBy: -1)
+        return self[start ... end]
+    }
+    subscript (bounds: PartialRangeThrough<Int>) -> Substring {
+        let end = index(startIndex, offsetBy: bounds.upperBound)
+        return self[startIndex ... end]
+    }
+    subscript (bounds: PartialRangeUpTo<Int>) -> Substring {
+        let end = index(startIndex, offsetBy: bounds.upperBound)
+        return self[startIndex ..< end]
+    }
+}
 
 extension String {
     subscript (bounds: CountableClosedRange<Int>) -> String {
@@ -115,11 +177,12 @@ extension String {
         let end = index(startIndex, offsetBy: bounds.upperBound)
         return String(self[start...end])
     }
-
+    
     subscript (bounds: CountableRange<Int>) -> String {
         let start = index(startIndex, offsetBy: bounds.lowerBound)
         let end = index(startIndex, offsetBy: bounds.upperBound)
         return String(self[start..<end])
     }
-
+    
 }
+
