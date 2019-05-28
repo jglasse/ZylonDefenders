@@ -36,7 +36,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     let sectorObjectsNode = SCNNode()
 
     let galacticMap = SCNScene(named: "galacticmap.scn")
-
+    let zylonStation = ZylonStation() // preload station
     var forwardCameraNode = SCNNode()
     var rearCameraNode = SCNNode()
     var sectorScanCameraNode = SCNNode()
@@ -66,6 +66,13 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     }
 
     var ship = ZylonShip()
+    var shipSector: Sector {
+        return self.galaxyModel.map[ship.currentSector]
+    }
+    var targetSector: Sector {
+        return self.galaxyModel.map[ship.targetSector]
+    }
+    
     var zylonShields = SCNNode()
 
 	var shipHud: HUD!
@@ -101,6 +108,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 
     // MARK: - IBOutlets
 
+    @IBOutlet weak var sectorStack: UIStackView!
     @IBOutlet weak var speedStack: UIStackView!
     @IBOutlet weak var galacticSlider: UISlider!
     @IBOutlet var mainView: UIView!
@@ -118,6 +126,8 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     @IBOutlet weak var targetDistanceDisplay: UILabel!
     @IBOutlet weak var shieldsDisplay: UILabel!
     @IBOutlet weak var shieldStrengthDisplay: UILabel!
+    @IBOutlet weak var shipSectorLabel: UILabel!
+    @IBOutlet weak var targetSectorLabel: UILabel!
     
     
 
@@ -249,7 +259,6 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     func spawnStarbase() {
         
         let panim = SCNAction.scale(to: 1.2, duration: 0.5)
-        let zylonStation = ZylonStation()
         let constraint = SCNLookAtConstraint(target: mainGameScene.rootNode)
         constraint.isGimbalLockEnabled = true
         zylonStation.constraints = [constraint]
@@ -955,8 +964,10 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 
             self.tacticalDisplay.isHidden = true
            }
-        self.zylonScanner.isHidden = self.tacticalDisplay.isHidden
+            DispatchQueue.main.async {
 
+        self.zylonScanner.isHidden = self.tacticalDisplay.isHidden
+            }
         }
     }
 
@@ -1161,7 +1172,6 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
             }
         case .galacticMap:
                 DispatchQueue.main.async {
-        
                     self.tacticalDisplay.isHidden = true
                     self.populateGalacticMap()
                     self.joystickControl.isHidden = true

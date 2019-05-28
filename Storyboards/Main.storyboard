@@ -150,11 +150,14 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</stri
                                 <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
                                 <color key="backgroundColor" red="0.076768197120000006" green="0.076862581070000005" blue="0.076782830060000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </sceneKitView>
-                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.0" maxValue="255" translatesAutoresizingMaskIntoConstraints="NO" id="4Gh-nZ-GBi">
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.0" maxValue="127" translatesAutoresizingMaskIntoConstraints="NO" id="4Gh-nZ-GBi">
                                 <rect key="frame" x="156" y="50" width="355" height="31"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="cmZ-Iw-3PU"/>
                                 </constraints>
+                                <color key="minimumTrackTintColor" red="0.20411634449999999" green="0.47271108630000003" blue="0.96475440260000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="maximumTrackTintColor" red="0.20411634449999999" green="0.47271108630000003" blue="0.96475440260000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="thumbTintColor" red="0.20411634449999999" green="0.47271108630000003" blue="0.96475440260000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </slider>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="wgh-g3-0pN" userLabel="Speed Stack">
                                 <rect key="frame" x="20" y="319" width="121.5" height="29"/>
@@ -177,6 +180,23 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</stri
                                     <constraint firstAttribute="height" constant="29" id="KCD-qi-MQK"/>
                                     <constraint firstAttribute="width" constant="121.5" id="WFb-qX-Zme"/>
                                 </constraints>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="xsg-ZW-l5i" userLabel="SectorStack">
+                                <rect key="frame" x="20" y="20" width="106" height="40.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ship Sector:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nt9-u6-R5R" userLabel="ShipSectorLabel">
+                                        <rect key="frame" x="0.0" y="0.0" width="106" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.20411634449999999" green="0.47271108630000003" blue="0.96475440260000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Target Sector:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YQK-T0-L4Q" userLabel="TargetSectorLabel">
+                                        <rect key="frame" x="0.0" y="20.5" width="106" height="20"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                        <color key="textColor" red="0.20411634449999999" green="0.47271108630000003" blue="0.96475440260000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
                             </stackView>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="z62-zF-Ty3" customClass="JoyStickView" customModule="Zylon_Defenders" customModuleProvider="target">
                                 <rect key="frame" x="20" y="20" width="80" height="80"/>
@@ -311,6 +331,7 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</stri
                             <constraint firstAttribute="trailingMargin" secondItem="hyH-e8-gbB" secondAttribute="trailing" id="EKd-TU-iqW"/>
                             <constraint firstItem="50S-aJ-rH1" firstAttribute="centerX" secondItem="TBr-jy-nsA" secondAttribute="centerX" id="FDO-L5-bvb"/>
                             <constraint firstItem="50S-aJ-rH1" firstAttribute="width" secondItem="TBr-jy-nsA" secondAttribute="width" id="Fgd-fw-nSo"/>
+                            <constraint firstItem="xsg-ZW-l5i" firstAttribute="leading" secondItem="TBr-jy-nsA" secondAttribute="leadingMargin" id="Osj-bU-h8a"/>
                             <constraint firstItem="50S-aJ-rH1" firstAttribute="centerY" secondItem="TBr-jy-nsA" secondAttribute="centerY" id="Pg5-hl-p3V"/>
                             <constraint firstItem="7jm-zG-a79" firstAttribute="height" secondItem="TBr-jy-nsA" secondAttribute="height" id="VRo-MN-yGh"/>
                             <constraint firstItem="4Gh-nZ-GBi" firstAttribute="leading" secondItem="TBr-jy-nsA" secondAttribute="leading" constant="158" id="Y8d-0x-bh8"/>
@@ -320,6 +341,7 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</stri
                             <constraint firstItem="Eo0-Hl-05V" firstAttribute="top" secondItem="cOD-NV-RaV" secondAttribute="bottom" constant="20" id="cbB-dZ-sxd"/>
                             <constraint firstItem="7jm-zG-a79" firstAttribute="centerX" secondItem="TBr-jy-nsA" secondAttribute="centerX" id="dKr-Xx-AYK"/>
                             <constraint firstItem="6Sn-Ch-wiN" firstAttribute="leading" secondItem="TBr-jy-nsA" secondAttribute="leadingMargin" id="fhx-bY-Dlr"/>
+                            <constraint firstItem="xsg-ZW-l5i" firstAttribute="top" secondItem="cOD-NV-RaV" secondAttribute="bottom" constant="20" id="fod-yH-Fqc"/>
                             <constraint firstItem="wgh-g3-0pN" firstAttribute="top" secondItem="6Sn-Ch-wiN" secondAttribute="bottom" constant="8" id="gn9-UD-WSy"/>
                             <constraint firstItem="L0B-TD-jaq" firstAttribute="top" secondItem="Eo0-Hl-05V" secondAttribute="bottom" constant="64" id="hQC-LC-3Ym"/>
                             <constraint firstAttribute="trailing" secondItem="Eo0-Hl-05V" secondAttribute="trailing" id="mwC-DV-QuW"/>
@@ -340,13 +362,16 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</stri
                         <outlet property="mainView" destination="TBr-jy-nsA" id="xqd-hI-mDE"/>
                         <outlet property="mapScnView" destination="50S-aJ-rH1" id="d3z-92-0Vg"/>
                         <outlet property="phiDisplay" destination="AcU-BV-dAF" id="Aho-Bo-R46"/>
+                        <outlet property="sectorStack" destination="xsg-ZW-l5i" id="F51-QP-fQz"/>
                         <outlet property="shieldStrengthDisplay" destination="tVA-tc-gId" id="iAW-BA-SMY"/>
                         <outlet property="shieldsDisplay" destination="qxJ-iY-TUa" id="BkQ-ux-FAq"/>
+                        <outlet property="shipSectorLabel" destination="Nt9-u6-R5R" id="3Cx-pU-Crc"/>
                         <outlet property="spaceScnView" destination="7jm-zG-a79" id="f5u-HU-HqO"/>
                         <outlet property="speedStack" destination="wgh-g3-0pN" id="9zH-xs-MhY"/>
                         <outlet property="stepperSpeed" destination="to0-eG-n4V" id="wL0-jY-7T4"/>
                         <outlet property="tacticalDisplay" destination="6Sn-Ch-wiN" id="DBg-qg-QpQ"/>
                         <outlet property="targetDistanceDisplay" destination="uyd-8R-ulf" id="eMt-pP-PIG"/>
+                        <outlet property="targetSectorLabel" destination="YQK-T0-L4Q" id="PaY-fh-lBd"/>
                         <outlet property="thetaDisplay" destination="MQV-Cf-PFY" id="TZY-Ll-wjW"/>
                         <outlet property="viewButton" destination="2sP-pn-M7j" id="JVW-mq-nch"/>
                     </connections>
