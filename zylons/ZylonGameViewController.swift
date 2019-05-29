@@ -145,6 +145,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 
     @IBAction func galacticSlide(_ sender: UISlider) {
         self.ship.targetSector = Int(sender.value)
+        computerBeepSound("wopr2")
     }
     @IBAction func toggleGalacticMap(_ sender: Any) {
         computerBeepSound("beep")
@@ -153,6 +154,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
             self.viewMode = .foreView
 
         } else {
+            self.populateGalacticMap()
             self.viewMode = .galacticMap
 
         }
@@ -188,7 +190,6 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         beepsound.play()
         }
     }
-
     func envSound(_ soundString: String) {
         let soundURL = Bundle.main.url(forResource: soundString, withExtension: "m4a")
         beepsound =  try! AVAudioPlayer(contentsOf: soundURL!)
@@ -1139,7 +1140,15 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     }
 
     func populateGalacticMap() {
+        print("populateGalacticMap()")
+        for i in 1...127 {
+            let sectorString = "\(i)"
+            let targetGrid = galacticMap?.rootNode.childNode(withName: sectorString, recursively: true)
+            print("targetGrid: \(String(describing: targetGrid?.name)) is of type \(galaxyModel.map[i].sectorType)")
+            let enemyNode = GalaxyBlip(sectorType: galaxyModel.map[i].sectorType)
+            targetGrid?.addChildNode(enemyNode)
 
+        }
     }
 
     // MARK: - Game Loop
@@ -1196,7 +1205,6 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
                 DispatchQueue.main.async {
                     self.sectorStack.isHidden = false
                     self.tacticalDisplay.isHidden = true
-                    self.populateGalacticMap()
                     self.joystickControl.isHidden = true
                     self.mapScnView.isHidden = false
                     self.galacticSlider.isHidden = false
