@@ -145,7 +145,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 
     @IBAction func galacticSlide(_ sender: UISlider) {
         self.ship.targetSector = Int(sender.value)
-        computerBeepSound("wopr2")
+        envSound("shieldsDown")
     }
     @IBAction func toggleGalacticMap(_ sender: Any) {
         computerBeepSound("beep")
@@ -191,10 +191,15 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         }
     }
     func envSound(_ soundString: String) {
-        let soundURL = Bundle.main.url(forResource: soundString, withExtension: "m4a")
-        beepsound =  try! AVAudioPlayer(contentsOf: soundURL!)
-        beepsound.volume = 0.5
-        beepsound.play()
+        print("envSound -  Soundstring: \(soundString)")
+        if let soundURL = Bundle.main.url(forResource: soundString, withExtension: "m4a") { do {
+            try beepsound =  AVAudioPlayer(contentsOf: soundURL)
+        } catch {
+            print("beepsound failed")
+            }
+            beepsound.volume = 0.5
+            beepsound.play()
+        }
     }
     func fireHumonTorpedo(fromShip: HumonShip) {
         let torpedoNode = Torpedo(designatedTorpType: .humon)

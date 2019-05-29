@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6B134387229E5BA7004467CB /* rotMap.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 6B134386229E5BA7004467CB /* rotMap.m4a */; };
 		6BBF5A48229E40990080A195 /* GalaxyBlip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BBF5A47229E40990080A195 /* GalaxyBlip.swift */; };
 		6BBF5A4A229E4ACE0080A195 /* wopr2.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 6BBF5A49229E4ACE0080A195 /* wopr2.aiff */; };
 		6BF25A37229CA96E002F261C /* Sector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF25A36229CA96E002F261C /* Sector.swift */; };
@@ -183,6 +184,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6B134386229E5BA7004467CB /* rotMap.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = rotMap.m4a; sourceTree = "<group>"; };
 		6BBF5A47229E40990080A195 /* GalaxyBlip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalaxyBlip.swift; sourceTree = "<group>"; };
 		6BBF5A49229E4ACE0080A195 /* wopr2.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; name = wopr2.aiff; path = zylonprologue/zylonprologue/wopr2.aiff; sourceTree = SOURCE_ROOT; };
 		6BF25A36229CA96E002F261C /* Sector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sector.swift; sourceTree = "<group>"; };
@@ -636,6 +638,7 @@
 		FC9F9CF41E1AFC9A00907E04 /* sounds */ = {
 			isa = PBXGroup;
 			children = (
+				6B134386229E5BA7004467CB /* rotMap.m4a */,
 				E139A6FF2276151B00534982 /* MapSectors */,
 				E16E28ED20564A53002362C1 /* errorMessages */,
 				E1D36D5E1FEA53D0001F3E25 /* beeps */,
@@ -838,6 +841,7 @@
 				E1D36D611FEA5764001F3E25 /* enemyAlert.mp3 in Resources */,
 				E1BD14BA1E24280C002E49A5 /* zero.m4a in Resources */,
 				E16E28CF20564A41002362C1 /* proximateImprobabilityDriveDetected.aiff in Resources */,
+				6B134387229E5BA7004467CB /* rotMap.m4a in Resources */,
 				E174FDC81E1A424500A7CC73 /* bokeh.png in Resources */,
 				E16E28DD20564A41002362C1 /* ShieldsFailure.aiff in Resources */,
 				E16E28B920564A41002362C1 /* Shields10.aiff in Resources */,
