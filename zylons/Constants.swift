@@ -10,7 +10,7 @@ import Foundation
 import SceneKit
 
 struct Constants {
-    static let mapTransparency: CGFloat = 0.06
+    static let fadedMapTransparency: CGFloat = 0.04
     static let starMoveDivider: Float = 0.4
     static let maxTorpedoes = 4
     static let maxEnemyShips = 5
@@ -31,7 +31,7 @@ struct Constants {
     static let maxHumanShootInterval: Float = 800
     static let sectorBreadth = 500
     static let numberOfZylonsAtBeginningOfGame = 10
-    static let galacticMapBlipRadius: CGFloat = 0.04
+    static let galacticMapBlipRadius: CGFloat = 0.06
 }
 
 struct objectCategories {

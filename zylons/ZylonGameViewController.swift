@@ -59,7 +59,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     var currentExplosionParticleSystem: SCNParticleSystem?
     var starSprites = [SCNNode]() // array of stars to make updating them each frame easy
 
-    var galaxyModel = GalaxyMap(difficulty: 1)
+    var galaxyModel = GalaxyMapModel(difficulty: 1)
     var enemyShipsInSector = [HumonShip]()
     var enemyShipCountInSector: Int {
         return enemyShipsInSector.count
@@ -145,7 +145,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 
     @IBAction func galacticSlide(_ sender: UISlider) {
         self.ship.targetSector = Int(sender.value)
-        envSound("shieldsDown")
+        
     }
     @IBAction func toggleGalacticMap(_ sender: Any) {
         computerBeepSound("beep")
@@ -315,15 +315,13 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
             let spawnDeadline = DispatchTime.now() + .seconds(8)
             DispatchQueue.main.asyncAfter(deadline: spawnDeadline) {
                // self.warpGrid.removeFromParentNode()
-                let whereWeAre = self.galaxyModel.map[self.ship.currentSector]
-                
-                switch whereWeAre.sectorType {
+                switch self.shipSector.sectorType {
                 case .starbase:
                     self.spawnStarbase()
                     
                 case .enemy:
-                    self.spawnEnemies(number: whereWeAre.numberOfSectorObjects)
-                    print("ENEMY SECTOR \(whereWeAre.quadrant) \(whereWeAre.quadrantNumber). Spawning \(whereWeAre.numberOfSectorObjects) enemies")
+                    self.spawnEnemies(number: self.shipSector.numberOfSectorObjects)
+                    print("ENEMY SECTOR \(self.shipSector.quadrant) \(self.shipSector.quadrantNumber). Spawning \(self.shipSector.numberOfSectorObjects) enemies")
                 
                 case .empty:
                     print("Empty Sector")
@@ -373,9 +371,9 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         let action = SCNAction.rotateTo(x: 0.1, y: 0, z: 3.1, duration: rotateSpeed, usesShortestUnitArc: true)
             rotationNode.runAction(action)
             alphaQuadrant.opacity = 1.0
-            betaQuadrant.opacity = Constants.mapTransparency
-            gammaQuadrant.opacity = Constants.mapTransparency
-            deltaQuadrant.opacity = Constants.mapTransparency
+            betaQuadrant.opacity = Constants.fadedMapTransparency
+            gammaQuadrant.opacity = Constants.fadedMapTransparency
+            deltaQuadrant.opacity = Constants.fadedMapTransparency
             envSound("AlphaSector")
             galacticSlider.minimumValue = 0
             galacticSlider.maximumValue = 31
@@ -389,10 +387,10 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 
             let action = SCNAction.rotateTo(x: 0, y: 0, z: 3.1, duration: rotateSpeed, usesShortestUnitArc: true)
             rotationNode.runAction(action)
-        alphaQuadrant.opacity = Constants.mapTransparency
+        alphaQuadrant.opacity = Constants.fadedMapTransparency
         betaQuadrant.opacity = 1.0
-        gammaQuadrant.opacity = Constants.mapTransparency
-        deltaQuadrant.opacity = Constants.mapTransparency
+        gammaQuadrant.opacity = Constants.fadedMapTransparency
+        deltaQuadrant.opacity = Constants.fadedMapTransparency
         envSound("BetaSector")
         galacticSlider.minimumValue = 32
         galacticSlider.maximumValue = 63
@@ -403,10 +401,10 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 
         let action = SCNAction.rotateTo(x: -0.1, y: 0, z: 3.1, duration: rotateSpeed, usesShortestUnitArc: true)
         rotationNode.runAction(action)
-        alphaQuadrant.opacity = Constants.mapTransparency
-        betaQuadrant.opacity = Constants.mapTransparency
+        alphaQuadrant.opacity = Constants.fadedMapTransparency
+        betaQuadrant.opacity = Constants.fadedMapTransparency
         gammaQuadrant.opacity = 1.0
-        deltaQuadrant.opacity = Constants.mapTransparency
+        deltaQuadrant.opacity = Constants.fadedMapTransparency
         envSound("GammaSector")
         galacticSlider.minimumValue = 64
         galacticSlider.maximumValue = 95
@@ -419,9 +417,9 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 
         let action = SCNAction.rotateTo(x: -0.16, y: 0, z: 3.1, duration: rotateSpeed, usesShortestUnitArc: true)
         rotationNode.runAction(action)
-        alphaQuadrant.opacity = Constants.mapTransparency
-        betaQuadrant.opacity = Constants.mapTransparency
-        gammaQuadrant.opacity = Constants.mapTransparency
+        alphaQuadrant.opacity = Constants.fadedMapTransparency
+        betaQuadrant.opacity = Constants.fadedMapTransparency
+        gammaQuadrant.opacity = Constants.fadedMapTransparency
         deltaQuadrant.opacity = 1.0
         envSound("DeltaSector")
         galacticSlider.minimumValue = 96
@@ -632,7 +630,6 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         // place the camera
         cameraNode.position = SCNVector3(x: 0, y: -8, z: 4.2)
 
-        var  rotationNode: SCNNode { return  (galacticMap?.rootNode.childNode(withName: "rotateNode", recursively: true))! }
         let transition = SKTransition.fade(withDuration: 0)
         mapScnView.present(galacticMap!, with: transition, incomingPointOfView: galacticMap?.rootNode.childNode(withName: "gCam", recursively: true), completionHandler: {
             self.mapScnView.allowsCameraControl = true
@@ -869,17 +866,17 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         if let controllerHardware = mainController?.extendedGamepad {
             let yT = controllerHardware.leftThumbstick.xAxis.value/40
             let xT = controllerHardware.leftThumbstick.yAxis.value/40
-            self.rotate(self.sectorObjectsNode, around: SCNVector3Make(1, 0, 0), by: CGFloat(xT))
-            self.rotate(self.sectorObjectsNode, around: SCNVector3Make(0, 1, 0), by: CGFloat(yT))
+            self.rotate(self.sectorObjectsNode, around: Constants.xAxis, by: CGFloat(xT))
+            self.rotate(self.sectorObjectsNode, around: Constants.yAxis, by: CGFloat(yT))
 
         } else {
-            self.rotate(self.sectorObjectsNode, around: SCNVector3Make(1, 0, 0), by: CGFloat(self.xThrust))
-            self.rotate(self.sectorObjectsNode, around: SCNVector3Make(0, 1, 0), by: CGFloat(self.yThrust))
+            self.rotate(self.sectorObjectsNode, around: Constants.xAxis, by: CGFloat(self.xThrust))
+            self.rotate(self.sectorObjectsNode, around: Constants.yAxis, by: CGFloat(self.yThrust))
 
         }
 
-        self.rotate(self.sectorObjectsNode, around: SCNVector3Make(1, 0, 0), by: CGFloat(self.xThrust))
-        self.rotate(self.sectorObjectsNode, around: SCNVector3Make(0, 1, 0), by: CGFloat(self.yThrust))
+        self.rotate(self.sectorObjectsNode, around: Constants.yAxis, by: CGFloat(self.xThrust))
+        self.rotate(self.sectorObjectsNode, around: Constants.yAxis, by: CGFloat(self.yThrust))
 
     }
 
@@ -959,6 +956,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
             DispatchQueue.main.async {
 
             self.tacticalDisplay.isHidden = false
+            self.zylonScanner.isHidden = false
             var rotx = self.sectorObjectsNode.eulerAngles.x.radiansToDegrees
             if rotx < 0 || rotx > 360 {
                 rotx = abs(rotx.truncatingRemainder(dividingBy: 360))
@@ -989,10 +987,8 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         } else {
             DispatchQueue.main.async {
 
-            self.tacticalDisplay.isHidden = true
-           }
-            DispatchQueue.main.async {
-        self.zylonScanner.isHidden = self.tacticalDisplay.isHidden
+        self.tacticalDisplay.isHidden = self.ship.tacticalDisplayEngaged
+        self.zylonScanner.isHidden = self.ship.tacticalDisplayEngaged
         self.shipSectorLabel.text = "Ship Sector: \(self.shipSector.quadrant) \(self.shipSector.quadrantNumber)"
         self.targetSectorLabel.text = "Target Sector: \(self.targetSector.quadrant) \(self.targetSector.quadrantNumber)"
             }

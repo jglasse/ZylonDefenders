@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct GalaxyMap {
+struct GalaxyMapModel {
     var map =  [Sector]()
 
      init(difficulty: Int) {
@@ -19,29 +19,29 @@ struct GalaxyMap {
         // based on difficulty level, set internal variables
         switch difficulty {
         case 1:
-            numberofOccupiedSectors = 30
+            numberofOccupiedSectors = 12
             maxShipsPerSector = 3
-            numberofStations = 15
+            numberofStations = 4
 
         case 2:
-            numberofOccupiedSectors = 30
+            numberofOccupiedSectors = 15
             maxShipsPerSector = 3
-            numberofStations = 15
+            numberofStations = 4
 
         case 3:
-            numberofOccupiedSectors = 30
+            numberofOccupiedSectors = 18
             maxShipsPerSector = 4
-            numberofStations = 15
+            numberofStations = 4
 
         case 4:
-            numberofOccupiedSectors = 30
+            numberofOccupiedSectors = 25
             maxShipsPerSector = 5
-            numberofStations = 15
+            numberofStations = 4
 
         default:
             numberofOccupiedSectors = 30
             maxShipsPerSector = 3
-            numberofStations = 15
+            numberofStations = 4
 
         }
 
