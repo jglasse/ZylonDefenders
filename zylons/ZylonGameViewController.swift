@@ -34,8 +34,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     var scnView: SCNView!
     var galacticView = SCNView.init()
     let sectorObjectsNode = SCNNode()
-
-    let galacticMap = SCNScene(named: "galacticmap.scn")
+    let galacticDisplay = GalacticMapDisplay()
     let zylonStation = ZylonStation() // preload station
     var forwardCameraNode = SCNNode()
     var rearCameraNode = SCNNode()
@@ -296,10 +295,6 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 
 	@IBAction func gridWarp(_ sender: UIButton) {
         if !ship.isCurrentlyinWarp {
-            let newTarget = nextOccupiedSector(currentSector: self.ship.currentSector)
-            self.ship.targetSector = newTarget
-        
-            
             let tacticalWasEngaged = ship.tacticalDisplayEngaged
             performWarp()
             let deadlineTime = DispatchTime.now() + .seconds(6)
@@ -359,12 +354,12 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     }
 
     let rotateSpeed = 0.5
-    var alphaQuadrant: SCNNode { return (galacticMap?.rootNode.childNode(withName: "ALPHA", recursively: true))! }
-    var betaQuadrant: SCNNode { return (galacticMap?.rootNode.childNode(withName: "BETA", recursively: true))! }
-    var gammaQuadrant: SCNNode { return (galacticMap?.rootNode.childNode(withName: "GAMMA", recursively: true))! }
-    var deltaQuadrant: SCNNode { return (galacticMap?.rootNode.childNode(withName: "DELTA", recursively: true))! }
+    var alphaQuadrant: SCNNode { return (galacticDisplay.map.rootNode.childNode(withName: "ALPHA", recursively: true))! }
+    var betaQuadrant: SCNNode { return (galacticDisplay.map.rootNode.childNode(withName: "BETA", recursively: true))! }
+    var gammaQuadrant: SCNNode { return (galacticDisplay.map.rootNode.childNode(withName: "GAMMA", recursively: true))! }
+    var deltaQuadrant: SCNNode { return (galacticDisplay.map.rootNode.childNode(withName: "DELTA", recursively: true))! }
 
-    var rotationNode: SCNNode { return  (galacticMap?.rootNode.childNode(withName: "rotateNode", recursively: true))! }
+    var rotationNode: SCNNode { return  (galacticDisplay.map.rootNode.childNode(withName: "rotateNode", recursively: true))! }
 
     @IBAction func alpha(_ sender: Any) {
         computerBeepSound("beep")
@@ -614,24 +609,8 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 
     func setupGalacticMap() {
 
-         // create and add a camera to the scene
-        let cameraNode = SCNNode()
-        cameraNode.camera = SCNCamera()
-        cameraNode.name = "gCam"
-
-        galacticMap?.rootNode.addChildNode(cameraNode)
-        rotationNode.rotation = SCNVector4Make(0, 0, 1, 3.141)
-
-        //point the camera at the galaxy map
-        let camConstraint = SCNLookAtConstraint(target: galacticMap?.rootNode)
-        camConstraint.isGimbalLockEnabled = true
-        cameraNode.constraints = [camConstraint]
-
-        // place the camera
-        cameraNode.position = SCNVector3(x: 0, y: -8, z: 4.2)
-
         let transition = SKTransition.fade(withDuration: 0)
-        mapScnView.present(galacticMap!, with: transition, incomingPointOfView: galacticMap?.rootNode.childNode(withName: "gCam", recursively: true), completionHandler: {
+        mapScnView.present(galacticDisplay.map, with: transition, incomingPointOfView: galacticDisplay.map.rootNode.childNode(withName: "gCam", recursively: true), completionHandler: {
             self.mapScnView.allowsCameraControl = true
             print(self.mapScnView.description) })
     }
@@ -639,7 +618,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     // MARK: - Map rotator
     @objc func mapPan(_ gesture: UIPanGestureRecognizer) {
         print("Map Panned")
-        var rotationNode: SCNNode { return  (galacticMap?.rootNode.childNode(withName: "rotateNode", recursively: true))! }
+        var rotationNode: SCNNode { return  (galacticDisplay.map.rootNode.childNode(withName: "rotateNode", recursively: true))! }
 
         let translation = gesture.translation(in: gesture.view)
 
@@ -1144,7 +1123,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         print("populateGalacticMap()")
         for i in 1...127 {
             let sectorString = "\(i)"
-            let targetGrid = galacticMap?.rootNode.childNode(withName: sectorString, recursively: true)
+            let targetGrid = galacticDisplay.map.rootNode.childNode(withName: sectorString, recursively: true)
             print("targetGrid: \(String(describing: targetGrid?.name)) is of type \(galaxyModel.map[i].sectorType)")
             let enemyNode = GalaxyBlip(sectorType: galaxyModel.map[i].sectorType)
             targetGrid?.addChildNode(enemyNode)
