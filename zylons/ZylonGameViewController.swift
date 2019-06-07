@@ -686,11 +686,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     // MARK: - Game Event functions
     func humonShipHit(nodeA: SCNNode, nodeB: SCNNode) {
         boom(atNode: nodeA)
-        galaxyModel.map[ship.currentSectorNumber].numberOfSectorObjects -= 1
-        if  galaxyModel.map[ship.currentSectorNumber].numberOfSectorObjects == 0 {
-            galaxyModel.map[ship.currentSectorNumber].sectorType = .empty
-        }
-    
+        galaxyModel.decrementEnemyCount(sector: ship.currentSectorNumber)
     }
     
   
@@ -879,7 +875,6 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     }
 
     func enterSector(sectorNumber: Int) {
-        let whereWeAre = self.galaxyModel.map[self.ship.currentSectorNumber]
         print("Entering sector: \(shipSector.quadrant) \(shipSector.quadrantNumber)")
         print("actualSector Number: \(sectorNumber)")
 
