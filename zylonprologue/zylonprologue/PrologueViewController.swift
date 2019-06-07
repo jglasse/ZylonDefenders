@@ -13,10 +13,13 @@ import SpriteKit
 class PrologueViewController: UIViewController, AVAudioPlayerDelegate {
     let writeInterval = 0.01
     let soundURL = Bundle.main.url(forResource: "wopr", withExtension: "aiff")
+    let musicURL = Bundle.main.url(forResource: "zylonHope", withExtension: "m4a")
+
     var telemetryTimer: Timer?
     
     var receievingMessage = false
     var telemetrySoundPlayer: AVAudioPlayer?
+    var musicAudioPlayer: AVAudioPlayer?
     
     var messageArray = [(message: String, delay: Float)]()
     var currentMessage: String {
@@ -27,52 +30,83 @@ class PrologueViewController: UIViewController, AVAudioPlayerDelegate {
     var currentLetter = ""
     var existingTelemetry = ""
     let message1 = """
-Forty centons ago, they came -  spreading relentlessly
-across peaceful Zylon systems like an unstoppable virus.
+Forty centons ago, they came -  spreading relentlessly across peaceful Zylon systems like an unstoppable virus.
+
+"""
+    let message1a = """
 
 The STAR RAIDERS.
 """
-
+    
+    
+    
     let message2 = """
-With warp technology, they quickly established starbases
-deep within zylon space, conducting brutal raids which
-easily overwhelmed our defenses. In just three centons,
-a single raider defeated almost our entire defense force.
+
+
+With warp technology, they quickly established starbases deep within zylon space, conducting brutal raids which easily overwhelmed our defenses. In just three centons, a single raider defeated almost our entire defense force.
 """
 
     let message3 = """
-But a few brave scientists managed to develop an experimental
-starcruiser that could defeat the invaders - and
-finally drive them back to their distant homesystem, Sol.
+
+
+But a few brave scientists managed to develop an experimental starcruiser that could defeat the invaders - and finally drive them back to their distant homesystem, Sol.
+
+"""
+    let message3a = """
 
 You will pilot that starship.
 """
+
     let message4 = """
+
 
 DEFEND THE EMPIRE. DRIVE BACK THE HUMON INVADERS. SAVE THE ZYLON RACE.
 
-[TRANSMISSION TERMINATED 40AFFE]
-"""
 
+"""
+let message5="[TRANSMISSION TERMINATED 40AFFE]"
+    
+    
     @IBOutlet weak var starFieldView: UIImageView!
     @IBOutlet weak var transmissionView: UITextView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        messageArray = [(message1, 1), (message2, 1), (message3, 1), (message4, 0)]
+        messageArray = [(message1, 1),(message1a, 1), (message2, 1), (message3, 1),(message3a, 2),  (message4, 0.5),(message5, 1)]
         setupTelemetryAudioPlayer()
+        setupMusicAudioPlayer()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        self.transmissionView.text = ""
+        currentMessageIndex = 0
+        setupTimer()
+
+
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        self.telemetrySoundPlayer?.play()
+        self.musicAudioPlayer?.play()
+        
+    }
+    
+    func setupTimer(){
         telemetryTimer = Timer.scheduledTimer(timeInterval: 0.031, target: self, selector: #selector(advanceTelemetry), userInfo: nil, repeats: true)
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(true)
-        currentMessageIndex = 0
-        self.telemetrySoundPlayer?.play()
-        self.transmissionView.text = ""
-        
-        
-    }
     
+    func setupMusicAudioPlayer() {
+        do {
+            
+            self.musicAudioPlayer = try AVAudioPlayer(contentsOf: musicURL!, fileTypeHint: AVFileType.aiff.rawValue)
+            self.musicAudioPlayer?.delegate = self
+        } catch let error {
+            print(error.localizedDescription)
+        }
+        self.musicAudioPlayer?.prepareToPlay()
+    }
 
     func setupTelemetryAudioPlayer() {
         do {
@@ -82,11 +116,17 @@ DEFEND THE EMPIRE. DRIVE BACK THE HUMON INVADERS. SAVE THE ZYLON RACE.
         } catch let error {
             print(error.localizedDescription)
         }
-        self.telemetrySoundPlayer?.numberOfLoops = currentMessage.count
+        self.telemetrySoundPlayer?.numberOfLoops = 1000
         self.telemetrySoundPlayer?.prepareToPlay()
     }
 
- 
+    
+    
+    func delayWithSeconds(_ seconds: Double, completion: @escaping () -> ()) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
+            completion()
+        }
+    }
     
     @objc func advanceTelemetry() {
        // print("current Letter Index: \(self.currentLetterIndex)")
@@ -100,8 +140,21 @@ DEFEND THE EMPIRE. DRIVE BACK THE HUMON INVADERS. SAVE THE ZYLON RACE.
         else
         {
             telemetryTimer?.invalidate()
+            let delay = messageArray[currentMessageIndex].delay
             messageArray.remove(at: 0)
+            print("Message completed!")
+            self.telemetrySoundPlayer?.stop()
+            self.currentLetterIndex = 0
             print(messageArray.description)
+            self.delayWithSeconds(Double(delay)) {
+                if self.messageArray.count > 0
+                {
+                self.setupTimer()
+                self.telemetrySoundPlayer?.play()
+                }
+                else
+                { print("TRANSMISSIOM COMPLETED!")}
+            }
         }
     }
 
