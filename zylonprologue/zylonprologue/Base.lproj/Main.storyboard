@@ -26,34 +26,32 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Starfield 2048x1024B.png" translatesAutoresizingMaskIntoConstraints="NO" id="5sS-kb-iRw">
                                 <rect key="frame" x="0.0" y="-10.5" width="896" height="414"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Now is the time for all good men" lineBreakMode="clip" numberOfLines="23" baselineAdjustment="none" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UMw-PU-wZh">
-                                <rect key="frame" x="64" y="18" width="768" height="356"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="telemetryTextView" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="YHM-kt-3YW">
+                                <rect key="frame" x="64" y="21" width="768" height="373"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <color key="textColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <fontDescription key="fontDescription" name="Glass_TTY_VT220" family="Glass TTY VT220" pointSize="20"/>
-                                <color key="textColor" red="0.49121696669588649" green="0.93001320078028171" blue="0.089606950586337678" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="UMw-PU-wZh" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="2fH-rh-DV0"/>
                             <constraint firstItem="5sS-kb-iRw" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="BiX-cX-QsR"/>
-                            <constraint firstItem="UMw-PU-wZh" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="18" id="Pld-jK-7X3"/>
                             <constraint firstItem="5sS-kb-iRw" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="VdW-JP-VSG"/>
                             <constraint firstItem="5sS-kb-iRw" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="cAh-CB-R4i"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="UMw-PU-wZh" secondAttribute="bottom" constant="19" id="cnA-gl-EWA"/>
                             <constraint firstItem="5sS-kb-iRw" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="oa4-9O-8yd"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="UMw-PU-wZh" secondAttribute="trailing" constant="20" id="rdb-iD-xcS"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
                         <outlet property="starFieldView" destination="5sS-kb-iRw" id="Qfj-pL-Wbo"/>
-                        <outlet property="transmissionView" destination="UMw-PU-wZh" id="uFx-fY-Tvl"/>
+                        <outlet property="transmissionView" destination="YHM-kt-3YW" id="gWs-Px-eHi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="34.632683658170919" y="16.800000000000001"/>
+            <point key="canvasLocation" x="34.151785714285715" y="15.942028985507248"/>
         </scene>
     </scenes>
     <resources>

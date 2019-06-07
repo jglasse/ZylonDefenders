@@ -34,7 +34,7 @@ enum KnownQuadrants: String {
 
 class ZylonShip: SectorObject {
     var currentSector = 64
-    var targetSector = 68
+    var targetSectorNumber = 68
     var tacticalDisplayEngaged = true
     var isInAlertMode = false
     var isCurrentlyinWarp = false
@@ -128,6 +128,6 @@ class ZylonShip: SectorObject {
 
     }
     func updateSector() {
-        self.currentSector = self.targetSector
+        self.currentSector = self.targetSectorNumber
     }
 }

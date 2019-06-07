@@ -1,7 +1,8 @@
 //
 //  Scanner.swift
 //  Zylon Defenders
-//
+//  SCNNode which 
+
 //  Created by jglasse on 2/3/18.
 //  Copyright © 2018 Jeffery Glasse. All rights reserved.
 //

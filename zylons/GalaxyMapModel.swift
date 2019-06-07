@@ -68,7 +68,7 @@ struct GalaxyMapModel {
             // and assigning those ships to that random sector
                 self.map[currentSectorIndex].numberOfSectorObjects = numberofshipsToAdd
                 self.map[currentSectorIndex].sectorType = .enemy
-                print("Adding \(numberofshipsToAdd) to sector \(currentSectorIndex)")
+                print("Adding \(numberofshipsToAdd) enemies to sector \(currentSectorIndex)")
 
                 }
             }

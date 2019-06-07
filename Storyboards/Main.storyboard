@@ -150,7 +150,7 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</stri
                                 <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
                                 <color key="backgroundColor" red="0.076768197120000006" green="0.076862581070000005" blue="0.076782830060000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </sceneKitView>
-                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.0" maxValue="127" translatesAutoresizingMaskIntoConstraints="NO" id="4Gh-nZ-GBi">
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="1" maxValue="127" translatesAutoresizingMaskIntoConstraints="NO" id="4Gh-nZ-GBi">
                                 <rect key="frame" x="156" y="50" width="355" height="31"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="cmZ-Iw-3PU"/>

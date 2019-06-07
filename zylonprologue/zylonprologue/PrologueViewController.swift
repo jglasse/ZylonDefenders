@@ -12,7 +12,7 @@ import SpriteKit
 
 class PrologueViewController: UIViewController, AVAudioPlayerDelegate {
     let writeInterval = 0.01
-    let soundURL = Bundle.main.url(forResource: "wopr2", withExtension: "aiff")
+    let soundURL = Bundle.main.url(forResource: "wopr", withExtension: "aiff")
     var telemetryTimer: Timer?
     
     var receievingMessage = false
@@ -49,24 +49,25 @@ You will pilot that starship.
 """
     let message4 = """
 
-DEFEND THE EMPIRE. DRIVE BACK THE HUMONS. SAVE THE ZYLON RACE.
+DEFEND THE EMPIRE. DRIVE BACK THE HUMON INVADERS. SAVE THE ZYLON RACE.
 
 [TRANSMISSION TERMINATED 40AFFE]
 """
 
     @IBOutlet weak var starFieldView: UIImageView!
-    @IBOutlet weak var transmissionView: UILabel!
-
+    @IBOutlet weak var transmissionView: UITextView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         messageArray = [(message1, 1), (message2, 1), (message3, 1), (message4, 0)]
-        telemetryTimer = Timer.scheduledTimer(timeInterval: 0.025, target: self, selector: #selector(advanceTelemetry), userInfo: nil, repeats: true)
         setupTelemetryAudioPlayer()
+        telemetryTimer = Timer.scheduledTimer(timeInterval: 0.031, target: self, selector: #selector(advanceTelemetry), userInfo: nil, repeats: true)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         currentMessageIndex = 0
+        self.telemetrySoundPlayer?.play()
         self.transmissionView.text = ""
         
         
@@ -81,13 +82,13 @@ DEFEND THE EMPIRE. DRIVE BACK THE HUMONS. SAVE THE ZYLON RACE.
         } catch let error {
             print(error.localizedDescription)
         }
+        self.telemetrySoundPlayer?.numberOfLoops = currentMessage.count
         self.telemetrySoundPlayer?.prepareToPlay()
     }
 
  
     
     @objc func advanceTelemetry() {
-        self.playTelemetrySound()
        // print("current Letter Index: \(self.currentLetterIndex)")
         if self.currentLetterIndex < currentMessage.count {
             let currentIndex = self.currentMessage.index(currentMessage.startIndex, offsetBy: currentLetterIndex)
@@ -101,12 +102,6 @@ DEFEND THE EMPIRE. DRIVE BACK THE HUMONS. SAVE THE ZYLON RACE.
             telemetryTimer?.invalidate()
             messageArray.remove(at: 0)
             print(messageArray.description)
-        }
-    }
-    func playTelemetrySound() {
-        if (self.telemetrySoundPlayer?.isPlaying ?? false) {
-        } else {
-            self.telemetrySoundPlayer?.play()
         }
     }
 

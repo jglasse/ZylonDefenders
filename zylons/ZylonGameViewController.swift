@@ -39,7 +39,17 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     var forwardCameraNode = SCNNode()
     var rearCameraNode = SCNNode()
     var sectorScanCameraNode = SCNNode()
+
     let warpGrid = SCNNode()
+    let rotateSpeed = 0.5
+    
+    var alphaQuadrant: SCNNode { return (galacticDisplay.map.rootNode.childNode(withName: "ALPHA", recursively: true))! }
+    var betaQuadrant: SCNNode { return (galacticDisplay.map.rootNode.childNode(withName: "BETA", recursively: true))! }
+    var gammaQuadrant: SCNNode { return (galacticDisplay.map.rootNode.childNode(withName: "GAMMA", recursively: true))! }
+    var deltaQuadrant: SCNNode { return (galacticDisplay.map.rootNode.childNode(withName: "DELTA", recursively: true))! }
+    
+    var rotationNode: SCNNode { return  (galacticDisplay.map.rootNode.childNode(withName: "rotateNode", recursively: true))! }
+
 
     // MARK: - GameState Enums & Structs
 
@@ -69,7 +79,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         return self.galaxyModel.map[ship.currentSector]
     }
     var targetSector: Sector {
-        return self.galaxyModel.map[ship.targetSector]
+        return self.galaxyModel.map[ship.targetSectorNumber]
     }
     
     var zylonShields = SCNNode()
@@ -94,6 +104,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     var computerVoice: AVQueuePlayer!
     var environmentSound: AVAudioPlayer!
 	var explosionDuration = 0
+    let kohai = Kohai()
 
     //var motionManager: CMMotionManager!
 
@@ -143,8 +154,10 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     // MARK: - IBActions
 
     @IBAction func galacticSlide(_ sender: UISlider) {
-        self.ship.targetSector = Int(sender.value)
-        
+        self.ship.targetSectorNumber = Int(sender.value)
+        let sectorString = "\(self.ship.targetSectorNumber)"
+        let targetGrid = galacticDisplay.map.rootNode.childNode(withName: sectorString, recursively: true)
+        galacticDisplay.targetIndicator.worldPosition = targetGrid!.worldPosition
     }
     @IBAction func toggleGalacticMap(_ sender: Any) {
         computerBeepSound("beep")
@@ -153,7 +166,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
             self.viewMode = .foreView
 
         } else {
-            self.populateGalacticMap()
+            self.updateGalacticMap()
             self.viewMode = .galacticMap
 
         }
@@ -296,6 +309,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 	@IBAction func gridWarp(_ sender: UIButton) {
         if !ship.isCurrentlyinWarp {
             let tacticalWasEngaged = ship.tacticalDisplayEngaged
+            ship.tacticalDisplayEngaged = false
             performWarp()
             let deadlineTime = DispatchTime.now() + .seconds(6)
             DispatchQueue.main.asyncAfter(deadline: deadlineTime) {
@@ -304,10 +318,10 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
                 self.ship.isCurrentlyinWarp = false
                 self.ship.tacticalDisplayEngaged = tacticalWasEngaged
                 self.ship.updateSector()
-                self.enterSector(sectorNumber: self.ship.targetSector)
+                self.enterSector(sectorNumber: self.ship.targetSectorNumber)
 
             }
-            let spawnDeadline = DispatchTime.now() + .seconds(8)
+            let spawnDeadline = DispatchTime.now() + .seconds(7)
             DispatchQueue.main.asyncAfter(deadline: spawnDeadline) {
                // self.warpGrid.removeFromParentNode()
                 switch self.shipSector.sectorType {
@@ -329,23 +343,23 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 
     }
     
-    func nextOccupiedSector(currentSector: Int)-> Int {
-        var foundOccupiedSector = false
-        var nextSector = currentSector + 1
-        repeat  {
-            if nextSector > 128 { nextSector=0}
-            if galaxyModel.map[nextSector].sectorType == .starbase {
-                foundOccupiedSector = true
-                return nextSector
-            }
-            else
-            {
-                nextSector += 1
-            }
-            
-        } while !foundOccupiedSector
-        
-    }
+//    func nextOccupiedSector(currentSector: Int)-> Int {
+//        var foundOccupiedSector = false
+//        var nextSector = currentSector + 1
+//        repeat  {
+//            if nextSector > 128 { nextSector=0}
+//            if galaxyModel.map[nextSector].sectorType == .starbase {
+//                foundOccupiedSector = true
+//                return nextSector
+//            }
+//            else
+//            {
+//                nextSector += 1
+//            }
+//
+//        } while !foundOccupiedSector
+//
+//    }
 
     @IBAction func speedChanged(_ sender: UIStepper) {
         computerBeepSound("beep")
@@ -353,13 +367,6 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         setSpeed(Int(targetSpeed))
     }
 
-    let rotateSpeed = 0.5
-    var alphaQuadrant: SCNNode { return (galacticDisplay.map.rootNode.childNode(withName: "ALPHA", recursively: true))! }
-    var betaQuadrant: SCNNode { return (galacticDisplay.map.rootNode.childNode(withName: "BETA", recursively: true))! }
-    var gammaQuadrant: SCNNode { return (galacticDisplay.map.rootNode.childNode(withName: "GAMMA", recursively: true))! }
-    var deltaQuadrant: SCNNode { return (galacticDisplay.map.rootNode.childNode(withName: "DELTA", recursively: true))! }
-
-    var rotationNode: SCNNode { return  (galacticDisplay.map.rootNode.childNode(withName: "rotateNode", recursively: true))! }
 
     @IBAction func alpha(_ sender: Any) {
         computerBeepSound("beep")
@@ -369,10 +376,10 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
             betaQuadrant.opacity = Constants.fadedMapTransparency
             gammaQuadrant.opacity = Constants.fadedMapTransparency
             deltaQuadrant.opacity = Constants.fadedMapTransparency
-            envSound("AlphaSector")
+            kohai.speak("AlphaSector")
             galacticSlider.minimumValue = 0
             galacticSlider.maximumValue = 31
-            ship.targetSector = 16
+            ship.targetSectorNumber = 16
         
 
 
@@ -386,10 +393,10 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         betaQuadrant.opacity = 1.0
         gammaQuadrant.opacity = Constants.fadedMapTransparency
         deltaQuadrant.opacity = Constants.fadedMapTransparency
-        envSound("BetaSector")
+        kohai.speak(("BetaSector"))
         galacticSlider.minimumValue = 32
         galacticSlider.maximumValue = 63
-        ship.targetSector = 48
+        ship.targetSectorNumber = 48
     }
     @IBAction func gamma(_ sender: Any) {
         computerBeepSound("beep")
@@ -400,10 +407,10 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         betaQuadrant.opacity = Constants.fadedMapTransparency
         gammaQuadrant.opacity = 1.0
         deltaQuadrant.opacity = Constants.fadedMapTransparency
-        envSound("GammaSector")
+        kohai.speak("GammaSector")
         galacticSlider.minimumValue = 64
         galacticSlider.maximumValue = 95
-        ship.targetSector = 80
+        ship.targetSectorNumber = 80
 
 
     }
@@ -416,10 +423,10 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         betaQuadrant.opacity = Constants.fadedMapTransparency
         gammaQuadrant.opacity = Constants.fadedMapTransparency
         deltaQuadrant.opacity = 1.0
-        envSound("DeltaSector")
+        kohai.speak("DeltaSector")
         galacticSlider.minimumValue = 96
         galacticSlider.maximumValue = 127
-        ship.targetSector = 112
+        ship.targetSectorNumber = 112
 
 
     }
@@ -488,7 +495,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         scnView.delegate = self
 
         // setup scanner & galactic map views
-        setupGalacticMap()
+        setupGalacticMapView()
         addScanner()
 
         // prepare sounds
@@ -607,12 +614,12 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         zylonScanner.scanBeam.runAction(perpetualRotation)
     }
 
-    func setupGalacticMap() {
+    func setupGalacticMapView() {
 
         let transition = SKTransition.fade(withDuration: 0)
         mapScnView.present(galacticDisplay.map, with: transition, incomingPointOfView: galacticDisplay.map.rootNode.childNode(withName: "gCam", recursively: true), completionHandler: {
             self.mapScnView.allowsCameraControl = true
-            print(self.mapScnView.description) })
+            })
     }
 
     // MARK: - Map rotator
@@ -861,7 +868,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 
     func enterSector(sectorNumber: Int) {
         let whereWeAre = self.galaxyModel.map[self.ship.currentSector]
-        print("Entering sector: \(whereWeAre.quadrant) \(whereWeAre.quadrantNumber)")
+        print("Entering sector: \(shipSector.quadrant) \(shipSector.quadrantNumber)")
         print("actualSector Number: \(sectorNumber)")
 
         var audioItems: [AVPlayerItem] = []
@@ -930,6 +937,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         computerVoice.play()
     }
 
+    
     func updateTactical() {
         if ship.tacticalDisplayEngaged && !ship.isCurrentlyinWarp && self.viewMode != .galacticMap {
             DispatchQueue.main.async {
@@ -1119,16 +1127,20 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         }
     }
 
-    func populateGalacticMap() {
-        print("populateGalacticMap()")
-        for i in 1...127 {
+    func updateGalacticMap() {
+        print("updateGalacticMap()")
+        for i in 1...128 {
             let sectorString = "\(i)"
-            let targetGrid = galacticDisplay.map.rootNode.childNode(withName: sectorString, recursively: true)
-            print("targetGrid: \(String(describing: targetGrid?.name)) is of type \(galaxyModel.map[i].sectorType)")
-            let enemyNode = GalaxyBlip(sectorType: galaxyModel.map[i].sectorType)
-            targetGrid?.addChildNode(enemyNode)
-
+            let currentGrid = galacticDisplay.map.rootNode.childNode(withName: sectorString, recursively: true)
+            print("targetGrid: \(String(describing: currentGrid?.name)) is of type \(galaxyModel.map[i-1].sectorType)")
+            let enemyNode = GalaxyBlip(sectorType: galaxyModel.map[i-1].sectorType)
+            currentGrid?.addChildNode(enemyNode)
         }
+        
+        let sectorString = "\(self.ship.targetSectorNumber)"
+        let targetGrid = galacticDisplay.map.rootNode.childNode(withName: sectorString, recursively: true)
+        galacticDisplay.targetIndicator.worldPosition = targetGrid!.worldPosition
+
     }
 
     // MARK: - Game Loop

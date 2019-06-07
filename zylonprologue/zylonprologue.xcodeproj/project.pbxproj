@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6B6642C122AA3B6300066491 /* Starfield 2048x1024B.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B6642C022AA3B6300066491 /* Starfield 2048x1024B.png */; };
 		6BF25A39229CF41F002F261C /* wopr2.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 6BF25A38229CF41F002F261C /* wopr2.aiff */; };
 		E11859561FBD494000D81729 /* wopr.aiff in Resources */ = {isa = PBXBuildFile; fileRef = E11859551FBD494000D81729 /* wopr.aiff */; };
 		E1915C841FB6936100E1D31D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1915C831FB6936100E1D31D /* AppDelegate.swift */; };
@@ -14,13 +15,12 @@
 		E1915C891FB6936100E1D31D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1915C871FB6936100E1D31D /* Main.storyboard */; };
 		E1915C8B1FB6936100E1D31D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E1915C8A1FB6936100E1D31D /* Assets.xcassets */; };
 		E1915C8E1FB6936100E1D31D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1915C8C1FB6936100E1D31D /* LaunchScreen.storyboard */; };
-		E1915C961FB693DD00E1D31D /* Starfield 2048x1024B.png in Resources */ = {isa = PBXBuildFile; fileRef = E1915C951FB693DD00E1D31D /* Starfield 2048x1024B.png */; };
 		E1915C981FB6957100E1D31D /* Glass_TTY_VT220.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E1915C971FB6957100E1D31D /* Glass_TTY_VT220.ttf */; };
-		E1AD1C381FB9F97F003730E9 /* Starfield 2048x1024.png in Resources */ = {isa = PBXBuildFile; fileRef = E1AD1C371FB9F97F003730E9 /* Starfield 2048x1024.png */; };
 		E1B6B778201152B100A46E14 /* telemetry2.aiff in Resources */ = {isa = PBXBuildFile; fileRef = E1B6B777201152B100A46E14 /* telemetry2.aiff */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6B6642C022AA3B6300066491 /* Starfield 2048x1024B.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Starfield 2048x1024B.png"; path = "../../zylons/Starfield 2048x1024B.png"; sourceTree = "<group>"; };
 		6BF25A38229CF41F002F261C /* wopr2.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = wopr2.aiff; sourceTree = "<group>"; };
 		E11859551FBD494000D81729 /* wopr.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = wopr.aiff; sourceTree = "<group>"; };
 		E1915C801FB6936100E1D31D /* zylonprologue.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = zylonprologue.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -30,9 +30,7 @@
 		E1915C8A1FB6936100E1D31D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E1915C8D1FB6936100E1D31D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E1915C8F1FB6936100E1D31D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E1915C951FB693DD00E1D31D /* Starfield 2048x1024B.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Starfield 2048x1024B.png"; path = "../../asset_creater/Starfield 2048x1024B.png"; sourceTree = "<group>"; };
 		E1915C971FB6957100E1D31D /* Glass_TTY_VT220.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Glass_TTY_VT220.ttf; sourceTree = "<group>"; };
-		E1AD1C371FB9F97F003730E9 /* Starfield 2048x1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Starfield 2048x1024.png"; path = "../../asset_creater/Starfield 2048x1024.png"; sourceTree = "<group>"; };
 		E1B6B777201152B100A46E14 /* telemetry2.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = telemetry2.aiff; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -74,8 +72,7 @@
 				6BF25A38229CF41F002F261C /* wopr2.aiff */,
 				E1915C871FB6936100E1D31D /* Main.storyboard */,
 				E1915C8A1FB6936100E1D31D /* Assets.xcassets */,
-				E1AD1C371FB9F97F003730E9 /* Starfield 2048x1024.png */,
-				E1915C951FB693DD00E1D31D /* Starfield 2048x1024B.png */,
+				6B6642C022AA3B6300066491 /* Starfield 2048x1024B.png */,
 				E1915C8C1FB6936100E1D31D /* LaunchScreen.storyboard */,
 				E1915C8F1FB6936100E1D31D /* Info.plist */,
 			);
@@ -114,7 +111,7 @@
 				TargetAttributes = {
 					E1915C7F1FB6936100E1D31D = {
 						CreatedOnToolsVersion = 9.1;
-						LastSwiftMigration = 1010;
+						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -144,12 +141,11 @@
 			files = (
 				E1B6B778201152B100A46E14 /* telemetry2.aiff in Resources */,
 				6BF25A39229CF41F002F261C /* wopr2.aiff in Resources */,
-				E1915C961FB693DD00E1D31D /* Starfield 2048x1024B.png in Resources */,
 				E1915C981FB6957100E1D31D /* Glass_TTY_VT220.ttf in Resources */,
-				E1AD1C381FB9F97F003730E9 /* Starfield 2048x1024.png in Resources */,
 				E1915C8E1FB6936100E1D31D /* LaunchScreen.storyboard in Resources */,
 				E11859561FBD494000D81729 /* wopr.aiff in Resources */,
 				E1915C8B1FB6936100E1D31D /* Assets.xcassets in Resources */,
+				6B6642C122AA3B6300066491 /* Starfield 2048x1024B.png in Resources */,
 				E1915C891FB6936100E1D31D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -310,7 +306,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.appetize.mobileSDK.zylonprologue;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -326,7 +322,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.appetize.mobileSDK.zylonprologue;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
