@@ -23,7 +23,7 @@ class GalaxyBlip: SCNNode {
             case .enemy:
                 self.geometry =  SCNSphere.init(radius: Constants.galacticMapBlipRadius)
                 self.geometry?.firstMaterial?.diffuse.contents = UIColor.red
-                self.highlightNodeWithDurarion(0.1, UIColor.black)
+                self.highlightNodeWithDurarion(0.1, UIColor.yellow)
             case .starbase:
                 self.geometry =  SCNPyramid.init(width: Constants.galacticMapBlipRadius*4
                     , height: Constants.galacticMapBlipRadius*4, length: Constants.galacticMapBlipRadius*4)

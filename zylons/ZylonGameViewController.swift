@@ -76,7 +76,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 
     var ship = ZylonShip()
     var shipSector: Sector {
-        return self.galaxyModel.map[ship.currentSector]
+        return self.galaxyModel.map[ship.currentSectorNumber]
     }
     var targetSector: Sector {
         return self.galaxyModel.map[ship.targetSectorNumber]
@@ -155,7 +155,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 
     @IBAction func galacticSlide(_ sender: UISlider) {
         self.ship.targetSectorNumber = Int(sender.value)
-        let sectorString = "\(self.ship.targetSectorNumber)"
+        let sectorString = "\(self.ship.targetSectorNumber+1)"
         let targetGrid = galacticDisplay.map.rootNode.childNode(withName: sectorString, recursively: true)
         galacticDisplay.targetIndicator.worldPosition = targetGrid!.worldPosition
     }
@@ -277,6 +277,25 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     }
 
 
+
+	@IBOutlet weak var stepperSpeed: UIStepper!
+
+    fileprivate func populateSector() {
+        // self.warpGrid.removeFromParentNode()
+        switch self.shipSector.sectorType {
+        case .starbase:
+            self.spawnStarbase()
+            
+        case .enemy:
+            self.spawnEnemies(number: self.shipSector.numberOfSectorObjects)
+            print("ENEMY SECTOR \(self.shipSector.quadrant) \(self.shipSector.quadrantNumber). Spawning \(self.shipSector.numberOfSectorObjects) enemies")
+            
+        case .empty:
+            print("Empty Sector")
+        }
+    }
+    
+    
     func spawnStarbase() {
         
         let panim = SCNAction.scale(to: 1.2, duration: 0.5)
@@ -286,8 +305,8 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         zylonStation.position = self.mainGameScene.rootNode.convertPosition((zylonStation.worldPosition), to: self.sectorObjectsNode)
         self.sectorObjectsNode.addChildNode(zylonStation)
         
-       zylonStation.runAction(panim)
-
+        zylonStation.runAction(panim)
+        
     }
     func spawnEnemy() {
         let enemyDrone = HumonShip()
@@ -297,16 +316,15 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         enemyDrone.position = self.mainGameScene.rootNode.convertPosition((enemyDrone.worldPosition), to: self.sectorObjectsNode)
         self.sectorObjectsNode.addChildNode(enemyDrone)
     }
-
+    
     func spawnEnemies(number: Int) {
         for _ in 1...number {
             spawnEnemy()
         }
     }
 
-	@IBOutlet weak var stepperSpeed: UIStepper!
-
-	@IBAction func gridWarp(_ sender: UIButton) {
+    
+    @IBAction func gridWarp(_ sender: UIButton) {
         if !ship.isCurrentlyinWarp {
             let tacticalWasEngaged = ship.tacticalDisplayEngaged
             ship.tacticalDisplayEngaged = false
@@ -323,18 +341,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
             }
             let spawnDeadline = DispatchTime.now() + .seconds(7)
             DispatchQueue.main.asyncAfter(deadline: spawnDeadline) {
-               // self.warpGrid.removeFromParentNode()
-                switch self.shipSector.sectorType {
-                case .starbase:
-                    self.spawnStarbase()
-                    
-                case .enemy:
-                    self.spawnEnemies(number: self.shipSector.numberOfSectorObjects)
-                    print("ENEMY SECTOR \(self.shipSector.quadrant) \(self.shipSector.quadrantNumber). Spawning \(self.shipSector.numberOfSectorObjects) enemies")
-                
-                case .empty:
-                    print("Empty Sector")
-                }
+                self.populateSector()
             }
         }
         else {
@@ -677,15 +684,20 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         }    }
 
     // MARK: - Game Event functions
-
     func humonShipHit(nodeA: SCNNode, nodeB: SCNNode) {
         boom(atNode: nodeA)
+        galaxyModel.map[ship.currentSectorNumber].numberOfSectorObjects -= 1
+        if  galaxyModel.map[ship.currentSectorNumber].numberOfSectorObjects == 0 {
+            galaxyModel.map[ship.currentSectorNumber].sectorType = .empty
+        }
+    
     }
+    
+  
     func zylonShipHitBy(node: SCNNode) {
         print("Zylon Ship hit by \(node.description)")
 
         // we should animate removal of node which hit ship, but for now just remove it.
-
         // if no shields, special explosion for zylonShipHit
 
         if !ship.shieldsAreUp {
@@ -867,7 +879,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     }
 
     func enterSector(sectorNumber: Int) {
-        let whereWeAre = self.galaxyModel.map[self.ship.currentSector]
+        let whereWeAre = self.galaxyModel.map[self.ship.currentSectorNumber]
         print("Entering sector: \(shipSector.quadrant) \(shipSector.quadrantNumber)")
         print("actualSector Number: \(sectorNumber)")
 
