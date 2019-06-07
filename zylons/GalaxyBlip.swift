@@ -19,6 +19,7 @@ class GalaxyBlip: SCNNode {
     init(sectorType: SectorType) {
         super.init()
         self.opacity = 1
+        self.name = "blip"
         switch sectorType {
             case .enemy:
                 self.geometry =  SCNSphere.init(radius: Constants.galacticMapBlipRadius)

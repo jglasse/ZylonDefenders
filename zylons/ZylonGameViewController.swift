@@ -1136,10 +1136,15 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 
     func updateGalacticMap() {
         print("updateGalacticMap()")
+
         for i in 1...128 {
             let sectorString = "\(i)"
             let currentGrid = galacticDisplay.map.rootNode.childNode(withName: sectorString, recursively: true)
-            print("targetGrid: \(String(describing: currentGrid?.name)) is of type \(galaxyModel.map[i-1].sectorType)")
+            for gridElement in currentGrid!.childNodes {
+                gridElement.removeFromParentNode()
+            }
+
+           // print("targetGrid: \(currentGrid!.name ?? "") is of type \(galaxyModel.map[i-1].sectorType)")
             let enemyNode = GalaxyBlip(sectorType: galaxyModel.map[i-1].sectorType)
             currentGrid?.addChildNode(enemyNode)
         }
