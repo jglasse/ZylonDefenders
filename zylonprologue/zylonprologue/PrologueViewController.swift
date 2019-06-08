@@ -10,7 +10,7 @@ import UIKit
 import AVFoundation
 import SpriteKit
 
-class PrologueViewController: UIViewController, AVAudioPlayerDelegate {
+class PrologueViewController: UIViewController, AVAudioPlayerDelegate, UIViewControllerTransitioningDelegate {
     // MARK: - IBOutlets
     @IBOutlet weak var transmissionView: UITextView!
     @IBOutlet weak var starFieldView: UIImageView!
@@ -35,11 +35,11 @@ class PrologueViewController: UIViewController, AVAudioPlayerDelegate {
     var currentLetterIndex = 0
     var currentLetter = ""
     var existingTelemetry = ""
-    let message1 = """
-Forty centons ago, they came -  spreading relentlessly across peaceful Zylon systems like an unstoppable virus.
+    let message0 = "Forty centons ago, they came"
 
-"""
+    let message1 = " -  spreading relentlessly across peaceful Zylon systems like an unstoppable virus."
     let message1a = """
+
 
 The STAR RAIDERS.
 """
@@ -63,41 +63,51 @@ But a few brave scientists managed to develop an experimental starcruiser that c
 You will pilot that starship.
 """
 
-    let message4 = """
+    let message4a = """
 
 
-DEFEND THE EMPIRE. DRIVE BACK THE HUMON INVADERS. SAVE THE ZYLON RACE.
+DEFEND THE EMPIRE.
+"""
+    let message4b = " DRIVE BACK THE HUMON INVADERS."
+    
+    
+    let message4c = """
+ SAVE THE ZYLON RACE.
 
 
 """
-let message5="[TRANSMISSION TERMINATED 40AFFE]"
+let message5 = "[TRANSMISSION TERMINATED 40AFFE]"
     
     // MARK: - Lifecycle Funcs
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        messageArray = [(message1, 1),(message1a, 1), (message2, 1), (message3, 1),(message3a, 2),  (message4, 0.5),(message5, 1)]
+        messageArray = [(message0, 0.75),(message1, 1),(message1a, 1), (message2, 1), (message3, 1),(message3a, 1.5),  (message4a, 0.65),(message4b, 0.65),(message4c, 1.0
+            ),(message5, 1)]
         setupTelemetryAudioPlayer()
         setupMusicAudioPlayer()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
+        super.viewWillAppear(animated)
         self.transmissionView.text = ""
         currentMessageIndex = 0
 
 
     }
     override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(true)
+        super.viewDidAppear(animated)
         self.musicAudioPlayer?.play()
         self.delayWithSeconds(2, completion: {
             self.telemetrySoundPlayer?.play()
             self.setupTimer()
         })
-        
-
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super .viewWillDisappear(animated)
+        self.musicAudioPlayer?.setVolume(0, fadeDuration: 1.5)
+        self.musicAudioPlayer?.stop()
     }
     
     

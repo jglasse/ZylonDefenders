@@ -124,7 +124,7 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</stri
                                     <constraint firstAttribute="height" constant="30" id="ZZF-vD-chY"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Glass_TTY_VT220" family="Glass TTY VT220" pointSize="20"/>
-                                <state key="normal" title="&gt;&gt;&gt;">
+                                <state key="normal" title="&gt;">
                                     <color key="titleColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </state>
                                 <connections>

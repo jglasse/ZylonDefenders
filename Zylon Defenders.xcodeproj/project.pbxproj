@@ -196,7 +196,7 @@
 		6B354D4922AB2E3400482384 /* Starfield 2048x1024B.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Starfield 2048x1024B.png"; sourceTree = "<group>"; };
 		6B354D4B22AB344600482384 /* zylonHope.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = zylonHope.m4a; sourceTree = "<group>"; };
 		6B6642C422AB087300066491 /* PrologueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PrologueViewController.swift; path = ../zylonprologue/zylonprologue/PrologueViewController.swift; sourceTree = "<group>"; };
-		6B6642C722AB087E00066491 /* wopr.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; name = wopr.aiff; path = ../zylonprologue/zylonprologue/wopr.aiff; sourceTree = "<group>"; };
+		6B6642C722AB087E00066491 /* wopr.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = wopr.aiff; sourceTree = "<group>"; };
 		6BBF5A47229E40990080A195 /* GalaxyBlip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalaxyBlip.swift; sourceTree = "<group>"; };
 		6BBF5A49229E4ACE0080A195 /* wopr2.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; name = wopr2.aiff; path = zylonprologue/zylonprologue/wopr2.aiff; sourceTree = SOURCE_ROOT; };
 		6BC17C0722A3674E00583F22 /* MapTargetIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapTargetIndicator.swift; sourceTree = "<group>"; };
@@ -469,6 +469,8 @@
 		E1A58DC01E1DCF9B00DCA24F /* assets */ = {
 			isa = PBXGroup;
 			children = (
+				6B6642C722AB087E00066491 /* wopr.aiff */,
+				6B354D4B22AB344600482384 /* zylonHope.m4a */,
 				6BCAA9E3229E5CE100E1A605 /* mapSound.mp3 */,
 				6BBF5A49229E4ACE0080A195 /* wopr2.aiff */,
 				E1EA0D6D1FE9C59A002BFB0F /* Glass_TTY_VT220.ttf */,
@@ -570,9 +572,7 @@
 		E1D8BD501DCFCD1A00C863DF /* Code */ = {
 			isa = PBXGroup;
 			children = (
-				6B354D4B22AB344600482384 /* zylonHope.m4a */,
 				6B6642C422AB087300066491 /* PrologueViewController.swift */,
-				6B6642C722AB087E00066491 /* wopr.aiff */,
 				E1D8BD551DCFCD1A00C863DF /* ZylonGameViewController.swift */,
 				E187F56E1FB0276E0036B3FE /* Game Objects */,
 				E16E290D20574844002362C1 /* Utility&Extensions */,
