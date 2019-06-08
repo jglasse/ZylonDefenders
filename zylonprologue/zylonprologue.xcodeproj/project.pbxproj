@@ -22,7 +22,7 @@
 
 /* Begin PBXFileReference section */
 		6B6642C022AA3B6300066491 /* Starfield 2048x1024B.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Starfield 2048x1024B.png"; path = "../../zylons/Starfield 2048x1024B.png"; sourceTree = "<group>"; };
-		6B6642C222AA4F3300066491 /* zylonHope.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = zylonHope.m4a; sourceTree = "<group>"; };
+		6B6642C222AA4F3300066491 /* zylonHope.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = zylonHope.m4a; path = ../../zylons/zylonHope.m4a; sourceTree = "<group>"; };
 		6BF25A38229CF41F002F261C /* wopr2.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = wopr2.aiff; sourceTree = "<group>"; };
 		E11859551FBD494000D81729 /* wopr.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = wopr.aiff; sourceTree = "<group>"; };
 		E1915C801FB6936100E1D31D /* zylonprologue.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = zylonprologue.app; sourceTree = BUILT_PRODUCTS_DIR; };

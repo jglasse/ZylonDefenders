@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6B354D4A22AB2E3400482384 /* Starfield 2048x1024B.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B354D4922AB2E3400482384 /* Starfield 2048x1024B.png */; };
+		6B354D4C22AB344B00482384 /* zylonHope.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 6B354D4B22AB344600482384 /* zylonHope.m4a */; };
+		6B6642C522AB087300066491 /* PrologueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6642C422AB087300066491 /* PrologueViewController.swift */; };
+		6B6642C622AB087300066491 /* PrologueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6642C422AB087300066491 /* PrologueViewController.swift */; };
+		6B6642C822AB088100066491 /* wopr.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 6B6642C722AB087E00066491 /* wopr.aiff */; };
+		6B6642C922AB088200066491 /* wopr.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 6B6642C722AB087E00066491 /* wopr.aiff */; };
 		6BBF5A48229E40990080A195 /* GalaxyBlip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BBF5A47229E40990080A195 /* GalaxyBlip.swift */; };
 		6BBF5A4A229E4ACE0080A195 /* wopr2.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 6BBF5A49229E4ACE0080A195 /* wopr2.aiff */; };
 		6BC17C0822A3674E00583F22 /* MapTargetIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BC17C0722A3674E00583F22 /* MapTargetIndicator.swift */; };
@@ -187,6 +193,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6B354D4922AB2E3400482384 /* Starfield 2048x1024B.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Starfield 2048x1024B.png"; sourceTree = "<group>"; };
+		6B354D4B22AB344600482384 /* zylonHope.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = zylonHope.m4a; sourceTree = "<group>"; };
+		6B6642C422AB087300066491 /* PrologueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PrologueViewController.swift; path = ../zylonprologue/zylonprologue/PrologueViewController.swift; sourceTree = "<group>"; };
+		6B6642C722AB087E00066491 /* wopr.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; name = wopr.aiff; path = ../zylonprologue/zylonprologue/wopr.aiff; sourceTree = "<group>"; };
 		6BBF5A47229E40990080A195 /* GalaxyBlip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalaxyBlip.swift; sourceTree = "<group>"; };
 		6BBF5A49229E4ACE0080A195 /* wopr2.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; name = wopr2.aiff; path = zylonprologue/zylonprologue/wopr2.aiff; sourceTree = SOURCE_ROOT; };
 		6BC17C0722A3674E00583F22 /* MapTargetIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapTargetIndicator.swift; sourceTree = "<group>"; };
@@ -467,6 +477,7 @@
 				E1E381E51EC4B7AA000CC31C /* Grids */,
 				E165672A1E3205C100293285 /* Fonts */,
 				E1D8BD5A1DCFCD1A00C863DF /* Assets.xcassets */,
+				6B354D4922AB2E3400482384 /* Starfield 2048x1024B.png */,
 				E1B12C2B2027D3FD0071F9A1 /* Scenekit Models */,
 				E19B4E761E40776300BAFA62 /* particle_sytems */,
 				E1B12C2C2027D4150071F9A1 /* PNG */,
@@ -559,6 +570,9 @@
 		E1D8BD501DCFCD1A00C863DF /* Code */ = {
 			isa = PBXGroup;
 			children = (
+				6B354D4B22AB344600482384 /* zylonHope.m4a */,
+				6B6642C422AB087300066491 /* PrologueViewController.swift */,
+				6B6642C722AB087E00066491 /* wopr.aiff */,
 				E1D8BD551DCFCD1A00C863DF /* ZylonGameViewController.swift */,
 				E187F56E1FB0276E0036B3FE /* Game Objects */,
 				E16E290D20574844002362C1 /* Utility&Extensions */,
@@ -764,6 +778,7 @@
 				E16E28E820564A41002362C1 /* plasmaManifoldFailure.aiff in Resources */,
 				E16E28D420564A41002362C1 /* Shields80.aiff in Resources */,
 				E16E28CC20564A41002362C1 /* gridwarpGovernorMalfunction.aiff in Resources */,
+				6B6642C922AB088200066491 /* wopr.aiff in Resources */,
 				E16E28D220564A41002362C1 /* Shields20.aiff in Resources */,
 				E1BBE5AC205496D000A5C571 /* Main.storyboard in Resources */,
 				E16E28B820564A41002362C1 /* warpEnd.aif in Resources */,
@@ -791,6 +806,7 @@
 			files = (
 				E19BC7BB2259576700A1DA6B /* shieldsUp.m4a in Resources */,
 				E19BC7BC2259576700A1DA6B /* shieldsDown.m4a in Resources */,
+				6B354D4C22AB344B00482384 /* zylonHope.m4a in Resources */,
 				E1EA0D6E1FE9C59A002BFB0F /* Glass_TTY_VT220.ttf in Resources */,
 				E16E28B720564A41002362C1 /* warpEnd.aif in Resources */,
 				E192623320A79A8600AB93F2 /* Starfield 2048x1024B.png in Resources */,
@@ -813,6 +829,7 @@
 				E16AB62A1E1F120400E3D8C2 /* torpedo_fail.mp3 in Resources */,
 				E16E28DB20564A41002362C1 /* Shields40.aiff in Resources */,
 				E11A73831E986DE4001CCAC8 /* Main.storyboard in Resources */,
+				6B354D4A22AB2E3400482384 /* Starfield 2048x1024B.png in Resources */,
 				E1E381E31EC4B79A000CC31C /* button_dir_left_0.png in Resources */,
 				E10EFCB91EBFBDA500CC872E /* tinyGrid.png in Resources */,
 				E16E28C920564A41002362C1 /* warpStartStop.aif in Resources */,
@@ -826,6 +843,7 @@
 				E16E28D520564A41002362C1 /* genderIdentityEnforcement.aiff in Resources */,
 				E1D8BD541DCFCD1A00C863DF /* art.scnassets in Resources */,
 				E1BD14B51E24280C002E49A5 /* one.m4a in Resources */,
+				6B6642C822AB088100066491 /* wopr.aiff in Resources */,
 				E16E28CB20564A41002362C1 /* gridwarpGovernorMalfunction.aiff in Resources */,
 				E16D68CA226B50F100B27067 /* alert.m4a in Resources */,
 				E16E28BD20564A41002362C1 /* outerHullFailure.aiff in Resources */,
@@ -920,6 +938,7 @@
 				E1BBE5A9205496D000A5C571 /* ViewController.swift in Sources */,
 				E1E41C6D206A0513000A74DE /* CoreGraphics+Additions.swift in Sources */,
 				E1BBE5A7205496D000A5C571 /* AppDelegate.swift in Sources */,
+				6B6642C522AB087300066491 /* PrologueViewController.swift in Sources */,
 				E1E41C6A206A0504000A74DE /* ZylonGameViewController.swift in Sources */,
 				E1E41C70206A051F000A74DE /* Scanner.swift in Sources */,
 				E1E41C74206A052B000A74DE /* JoyStickView.swift in Sources */,
@@ -958,6 +977,7 @@
 				E1B12C2A20267EC70071F9A1 /* Scanner.swift in Sources */,
 				6BC17C0822A3674E00583F22 /* MapTargetIndicator.swift in Sources */,
 				E187F56D1FB0275A0036B3FE /* Torpedo.swift in Sources */,
+				6B6642C622AB087300066491 /* PrologueViewController.swift in Sources */,
 				6BCAA9E6229EDA3500E1A605 /* GalaxyMapDisplay.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

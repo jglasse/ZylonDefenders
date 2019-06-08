@@ -11,6 +11,12 @@ import AVFoundation
 import SpriteKit
 
 class PrologueViewController: UIViewController, AVAudioPlayerDelegate {
+    // MARK: - IBOutlets
+    @IBOutlet weak var transmissionView: UITextView!
+    @IBOutlet weak var starFieldView: UIImageView!
+
+    // MARK: - Vars
+
     let writeInterval = 0.01
     let soundURL = Bundle.main.url(forResource: "wopr", withExtension: "aiff")
     let musicURL = Bundle.main.url(forResource: "zylonHope", withExtension: "m4a")
@@ -66,9 +72,8 @@ DEFEND THE EMPIRE. DRIVE BACK THE HUMON INVADERS. SAVE THE ZYLON RACE.
 """
 let message5="[TRANSMISSION TERMINATED 40AFFE]"
     
-    
-    @IBOutlet weak var starFieldView: UIImageView!
-    @IBOutlet weak var transmissionView: UITextView!
+    // MARK: - Lifecycle Funcs
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -81,17 +86,23 @@ let message5="[TRANSMISSION TERMINATED 40AFFE]"
         super.viewWillAppear(true)
         self.transmissionView.text = ""
         currentMessageIndex = 0
-        setupTimer()
 
 
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        self.telemetrySoundPlayer?.play()
         self.musicAudioPlayer?.play()
+        self.delayWithSeconds(2, completion: {
+            self.telemetrySoundPlayer?.play()
+            self.setupTimer()
+        })
         
+
     }
     
+    
+    // MARK: - Custom Funcs
+
     func setupTimer(){
         telemetryTimer = Timer.scheduledTimer(timeInterval: 0.031, target: self, selector: #selector(advanceTelemetry), userInfo: nil, repeats: true)
     }
@@ -153,7 +164,10 @@ let message5="[TRANSMISSION TERMINATED 40AFFE]"
                 self.telemetrySoundPlayer?.play()
                 }
                 else
-                { print("TRANSMISSIOM COMPLETED!")}
+                {
+                    print("TRANSMISSIOM COMPLETED!")
+                    // show continue button
+                }
             }
         }
     }
