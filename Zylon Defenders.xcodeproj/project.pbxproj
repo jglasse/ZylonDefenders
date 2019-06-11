@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6B354D4A22AB2E3400482384 /* Starfield 2048x1024B.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B354D4922AB2E3400482384 /* Starfield 2048x1024B.png */; };
 		6B354D4C22AB344B00482384 /* zylonHope.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 6B354D4B22AB344600482384 /* zylonHope.m4a */; };
 		6B6642C522AB087300066491 /* PrologueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6642C422AB087300066491 /* PrologueViewController.swift */; };
 		6B6642C622AB087300066491 /* PrologueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6642C422AB087300066491 /* PrologueViewController.swift */; };
@@ -193,7 +192,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		6B354D4922AB2E3400482384 /* Starfield 2048x1024B.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Starfield 2048x1024B.png"; sourceTree = "<group>"; };
 		6B354D4B22AB344600482384 /* zylonHope.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = zylonHope.m4a; sourceTree = "<group>"; };
 		6B6642C422AB087300066491 /* PrologueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PrologueViewController.swift; path = ../zylonprologue/zylonprologue/PrologueViewController.swift; sourceTree = "<group>"; };
 		6B6642C722AB087E00066491 /* wopr.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = wopr.aiff; sourceTree = "<group>"; };
@@ -479,7 +477,6 @@
 				E1E381E51EC4B7AA000CC31C /* Grids */,
 				E165672A1E3205C100293285 /* Fonts */,
 				E1D8BD5A1DCFCD1A00C863DF /* Assets.xcassets */,
-				6B354D4922AB2E3400482384 /* Starfield 2048x1024B.png */,
 				E1B12C2B2027D3FD0071F9A1 /* Scenekit Models */,
 				E19B4E761E40776300BAFA62 /* particle_sytems */,
 				E1B12C2C2027D4150071F9A1 /* PNG */,
@@ -829,7 +826,6 @@
 				E16AB62A1E1F120400E3D8C2 /* torpedo_fail.mp3 in Resources */,
 				E16E28DB20564A41002362C1 /* Shields40.aiff in Resources */,
 				E11A73831E986DE4001CCAC8 /* Main.storyboard in Resources */,
-				6B354D4A22AB2E3400482384 /* Starfield 2048x1024B.png in Resources */,
 				E1E381E31EC4B79A000CC31C /* button_dir_left_0.png in Resources */,
 				E10EFCB91EBFBDA500CC872E /* tinyGrid.png in Resources */,
 				E16E28C920564A41002362C1 /* warpStartStop.aif in Resources */,
@@ -1160,7 +1156,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = WPGAGSXUST;
 				INFOPLIST_FILE = zylons/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jeffglasse.StarRaiders;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1177,7 +1173,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = WPGAGSXUST;
 				INFOPLIST_FILE = zylons/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jeffglasse.StarRaiders;
 				PRODUCT_NAME = "$(TARGET_NAME)";

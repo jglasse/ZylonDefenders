@@ -13,8 +13,8 @@ class GalacticMapDisplay {
     let map = SCNScene(named: "galacticmap.scn")!
     var rotationNode: SCNNode { return  (map.rootNode.childNode(withName: "rotateNode", recursively: true)!) }
     // create target indicator
-    var targetIndicator = SCNNode(geometry: SCNSphere(radius: Constants.galacticMapBlipRadius*4))
-    var currentLocationIndicator = SCNNode(geometry: SCNSphere(radius: Constants.galacticMapBlipRadius*3))
+    var targetIndicator = SCNNode(geometry: SCNSphere(radius: Constants.galacticMapBlipRadius*3))
+    var currentLocationIndicator = SCNNode(geometry: SCNSphere(radius: Constants.galacticMapBlipRadius*2))
 
     
     
@@ -47,12 +47,14 @@ class GalacticMapDisplay {
         let sequence = SCNAction.sequence([growAndFade, shrinkAndMakeVisible])
         let repeatedSequence = SCNAction.repeatForever(sequence)
 
-    targetIndicator.geometry?.firstMaterial?.diffuse.contents = UIColor.green
+    targetIndicator.geometry?.firstMaterial?.diffuse.contents = UIColor.yellow
     targetIndicator.runAction(repeatedSequence)
     rotationNode.addChildNode(targetIndicator)
         
     currentLocationIndicator.geometry?.firstMaterial?.diffuse.contents = UIColor.blue
     currentLocationIndicator.runAction(repeatedSequence)
+    rotationNode.addChildNode(currentLocationIndicator)
+
     
 
     

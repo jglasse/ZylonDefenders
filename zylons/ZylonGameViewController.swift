@@ -158,6 +158,15 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         let sectorString = "\(self.ship.targetSectorNumber+1)"
         let targetGrid = galacticDisplay.map.rootNode.childNode(withName: sectorString, recursively: true)
         galacticDisplay.targetIndicator.worldPosition = targetGrid!.worldPosition
+        switch galaxyModel.map[ship.targetSectorNumber].sectorType {
+        case .empty:
+                galacticDisplay.targetIndicator.geometry?.firstMaterial?.diffuse.contents = UIColor.yellow
+        case .enemy:
+                galacticDisplay.targetIndicator.geometry?.firstMaterial?.diffuse.contents = UIColor.red
+        case .starbase:
+                galacticDisplay.targetIndicator.geometry?.firstMaterial?.diffuse.contents = UIColor.green
+        }
+        
     }
     @IBAction func toggleGalacticMap(_ sender: Any) {
         computerBeepSound("beep")
@@ -948,7 +957,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 
     
     func updateTactical() {
-        if ship.tacticalDisplayEngaged && !ship.isCurrentlyinWarp && self.viewMode != .galacticMap {
+        if ship.tacticalDisplayEngaged && !ship.isCurrentlyinWarp{
             DispatchQueue.main.async {
 
             var rotx = self.sectorObjectsNode.eulerAngles.x.radiansToDegrees
@@ -973,17 +982,14 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
             self.thetaDisplay.text = "Θ: \(roundedX)"
             self.phiDisplay.text = "ɸ: \(roundedY)"
             self.enemiesInSectorDisplay.text = "Enemies In Sector: \(self.enemyShipCountInSector)"
+            self.shipSectorLabel.text = "Ship Sector: \(self.shipSector.quadrant) \(self.shipSector.quadrantNumber)"
+            self.targetSectorLabel.text = "Target Sector: \(self.targetSector.quadrant) \(self.targetSector.quadrantNumber)"
+
             if self.enemyShipCountInSector > 0 {
                 let drone = self.enemyShipsInSector[0]
                 self.targetDistanceDisplay.text = "DISTANCE TO TARGET - \(distanceBetweenPoints(first: drone.position, second: self.forwardCameraNode.position))"
             }
         }
-        } else {
-            DispatchQueue.main.async {
-
-        self.shipSectorLabel.text = "Ship Sector: \(self.shipSector.quadrant) \(self.shipSector.quadrantNumber)"
-        self.targetSectorLabel.text = "Target Sector: \(self.targetSector.quadrant) \(self.targetSector.quadrantNumber)"
-            }
         }
     }
 
