@@ -16,7 +16,7 @@ class PrologueViewController: UIViewController, AVAudioPlayerDelegate, UIViewCon
     @IBOutlet weak var starFieldView: UIImageView!
 
     // MARK: - Vars
-
+    var onPrologue = true
     let writeInterval = 0.01
     let soundURL = Bundle.main.url(forResource: "wopr", withExtension: "aiff")
     let musicURL = Bundle.main.url(forResource: "zylonHope", withExtension: "m4a")
@@ -35,9 +35,9 @@ class PrologueViewController: UIViewController, AVAudioPlayerDelegate, UIViewCon
     var currentLetterIndex = 0
     var currentLetter = ""
     var existingTelemetry = ""
-    let message0 = "Forty centons ago, they came"
+    let message0 = "Forty centons ago, they arrived..."
 
-    let message1 = " -  spreading relentlessly across peaceful Zylon systems like an unstoppable virus."
+    let message1 = " spreading relentlessly across peaceful Zylon systems like an unstoppable virus."
     let message1a = """
 
 
@@ -49,8 +49,11 @@ The STAR RAIDERS.
     let message2 = """
 
 
-With warp technology, they quickly established starbases deep within zylon space, conducting brutal raids which easily overwhelmed our defenses. In just three centons, a single raider defeated almost our entire defense force.
+With warp technology, they quickly established starbases deep within zylon space, conducting brutal raids which easily overwhelmed our defenses.
 """
+    
+    let message2a = " In just four cycles, a single raider defeated almost our entire defense force."
+
 
     let message3 = """
 
@@ -83,7 +86,7 @@ let message5 = "[TRANSMISSION TERMINATED 40AFFE]"
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        messageArray = [(message0, 0.75),(message1, 1),(message1a, 1), (message2, 1), (message3, 1),(message3a, 1.5),  (message4a, 0.65),(message4b, 0.65),(message4c, 1.0
+        messageArray = [(message0, 0.75),(message1, 1),(message1a, 1), (message2, 1),(message2a, 1), (message3, 1),(message3a, 1.5),  (message4a, 0.85),(message4b, 0.85),(message4c, 1.3
             ),(message5, 1)]
         setupTelemetryAudioPlayer()
         setupMusicAudioPlayer()
@@ -108,6 +111,8 @@ let message5 = "[TRANSMISSION TERMINATED 40AFFE]"
         super .viewWillDisappear(animated)
         self.musicAudioPlayer?.setVolume(0, fadeDuration: 1.5)
         self.musicAudioPlayer?.stop()
+        self.onPrologue = false
+
     }
     
     
@@ -151,7 +156,7 @@ let message5 = "[TRANSMISSION TERMINATED 40AFFE]"
     
     @objc func advanceTelemetry() {
        // print("current Letter Index: \(self.currentLetterIndex)")
-        if self.currentLetterIndex < currentMessage.count {
+        if self.currentLetterIndex < currentMessage.count && onPrologue {
             let currentIndex = self.currentMessage.index(currentMessage.startIndex, offsetBy: currentLetterIndex)
             let newletter = self.currentMessage[currentIndex]
             transmissionView.text?.append(newletter)
@@ -163,10 +168,8 @@ let message5 = "[TRANSMISSION TERMINATED 40AFFE]"
             telemetryTimer?.invalidate()
             let delay = messageArray[currentMessageIndex].delay
             messageArray.remove(at: 0)
-            print("Message completed!")
             self.telemetrySoundPlayer?.stop()
             self.currentLetterIndex = 0
-            print(messageArray.description)
             self.delayWithSeconds(Double(delay)) {
                 if self.messageArray.count > 0
                 {
