@@ -35,7 +35,7 @@ enum KnownQuadrants: String {
 class ZylonShip: SectorObject {
     var currentSectorNumber = 64
     var targetSectorNumber = 68
-    var tacticalDisplayEngaged = true
+    var tacticalDisplayEngaged = false
     var isInAlertMode = false
     var isCurrentlyinWarp = false
 	var shieldsAreUp = false
@@ -48,6 +48,7 @@ class ZylonShip: SectorObject {
     var sectorLocation = locationInSector(x: 500, y: 500, z: 500)
     var shipSystems = ShipsSystems()
 
+    
     let statusMessages = ["functional", "damaged", "severely damaged", "destroyed"]
 
     override init() {
@@ -127,7 +128,6 @@ class ZylonShip: SectorObject {
         //        }
 
     }
-    func updateSector() {
-        self.currentSectorNumber = self.targetSectorNumber
-    }
+    
+    
 }

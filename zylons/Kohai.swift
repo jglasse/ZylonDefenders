@@ -10,7 +10,7 @@ import Foundation
 import AVFoundation
 
 class Kohai {
-    var voice: AVAudioPlayer!
+    private var voice: AVAudioPlayer!
 
     func speak(_ soundString: String) {
         print("envSound -  Soundstring: \(soundString)")

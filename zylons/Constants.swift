@@ -19,14 +19,14 @@ struct Constants {
     static let torpedoCorrectionSpeedDivider: Float = 13
     static let shotDelay = 1
     static let thrustAmount: Float = 5.0
-    static let numberOfStars = 200
+    static let numberOfStars = 100
     static let xAxis = SCNVector3Make(1, 0, 0)
     static let yAxis = SCNVector3Make(0, 1, 0)
     static let zAxis = SCNVector3Make(0, 0, 1)
     static let starBoundsX = 200
     static let starBoundsY = 500
     static let starBoundsZ = 500
-    static let cameraFalloff = 1500.0
+    static let cameraFalloff = 2500.0
     static let minHumanShootInterval: Float = 185
     static let maxHumanShootInterval: Float = 800
     static let sectorBreadth = 500

@@ -56,7 +56,6 @@ class GalacticMapDisplay {
     rotationNode.addChildNode(currentLocationIndicator)
 
     
-
     
     
     }

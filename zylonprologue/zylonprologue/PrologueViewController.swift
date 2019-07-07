@@ -13,11 +13,12 @@ import SpriteKit
 class PrologueViewController: UIViewController, AVAudioPlayerDelegate, UIViewControllerTransitioningDelegate {
     // MARK: - IBOutlets
     @IBOutlet weak var transmissionView: UITextView!
-    @IBOutlet weak var starFieldView: UIImageView!
-
+    @IBOutlet weak var starFieldBG: UIImageView!
+    @IBOutlet weak var progressButton: UIButton!
+    
     // MARK: - Vars
     var onPrologue = true
-    let writeInterval = 0.01
+    let writeInterval = 0.037
     let soundURL = Bundle.main.url(forResource: "wopr", withExtension: "aiff")
     let musicURL = Bundle.main.url(forResource: "zylonHope", withExtension: "m4a")
 
@@ -35,9 +36,12 @@ class PrologueViewController: UIViewController, AVAudioPlayerDelegate, UIViewCon
     var currentLetterIndex = 0
     var currentLetter = ""
     var existingTelemetry = ""
-    let message0 = "Forty centons ago, they arrived..."
+    let message0 = "Forty centons ago, they arrived"
 
-    let message1 = " spreading relentlessly across peaceful Zylon systems like an unstoppable virus."
+    let message1 = """
+...spreading relentlessly across peaceful Zylon systems like an
+unstoppable virus.
+"""
     let message1a = """
 
 
@@ -49,16 +53,21 @@ The STAR RAIDERS.
     let message2 = """
 
 
-With warp technology, they quickly established starbases deep within zylon space, conducting brutal raids which easily overwhelmed our defenses.
+With warp technology, they quickly established starbases deep within Zylon space, conducting
+brutal raids which easily overwhelmed our defenses.
 """
     
-    let message2a = " In just four cycles, a single raider defeated almost our entire defense force."
+    let message2a =  """
+ In just four cycles, a single raider
+defeated almost our entire defense force.
+"""
 
 
     let message3 = """
 
 
-But a few brave scientists managed to develop an experimental starcruiser that could defeat the invaders - and finally drive them back to their distant homesystem, Sol.
+But a few brave scientists managed to develop an experimental starcruiser that could defeat
+the invaders - and finally drive them back to their distant homesystem, Sol.
 
 """
     let message3a = """
@@ -86,8 +95,8 @@ let message5 = "[TRANSMISSION TERMINATED 40AFFE]"
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        messageArray = [(message0, 0.75),(message1, 1),(message1a, 1), (message2, 1),(message2a, 1), (message3, 1),(message3a, 1.5),  (message4a, 0.85),(message4b, 0.85),(message4c, 1.3
-            ),(message5, 1)]
+        messageArray = [(message0, 1.25),(message1, 1.25),(message1a, 1.55), (message2, 1),(message2a, 1), (message3, 1.8),(message3a, 1.5),  (message4a, 0.75),(message4b, 0.75),(message4c, 1.0
+            ),(message5, 0)]
         setupTelemetryAudioPlayer()
         setupMusicAudioPlayer()
     }
@@ -102,9 +111,20 @@ let message5 = "[TRANSMISSION TERMINATED 40AFFE]"
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.musicAudioPlayer?.play()
-        self.delayWithSeconds(2, completion: {
+        UIView.animate(withDuration: 3.75, animations: {
+            self.starFieldBG.alpha = 1.0
+        })
+        UIView.animate(withDuration: 48.75, delay: 0, options: .curveLinear, animations: {
+            self.starFieldBG.transform = CGAffineTransform(scaleX: 3.0, y: 3.0)
+        }, completion: nil)
+
+        self.delayWithSeconds(2.85, completion: {
             self.telemetrySoundPlayer?.play()
             self.setupTimer()
+            UIView.animate(withDuration: 1.25, animations: {
+                self.progressButton.alpha = 0.75
+                
+            })
         })
     }
     override func viewWillDisappear(_ animated: Bool) {
@@ -119,7 +139,7 @@ let message5 = "[TRANSMISSION TERMINATED 40AFFE]"
     // MARK: - Custom Funcs
 
     func setupTimer(){
-        telemetryTimer = Timer.scheduledTimer(timeInterval: 0.031, target: self, selector: #selector(advanceTelemetry), userInfo: nil, repeats: true)
+        telemetryTimer = Timer.scheduledTimer(timeInterval: writeInterval, target: self, selector: #selector(advanceTelemetry), userInfo: nil, repeats: true)
     }
     
     
@@ -171,19 +191,37 @@ let message5 = "[TRANSMISSION TERMINATED 40AFFE]"
             self.telemetrySoundPlayer?.stop()
             self.currentLetterIndex = 0
             self.delayWithSeconds(Double(delay)) {
-                if self.messageArray.count > 0
+                if self.messageArray.count > 0  // if there are still messages left to receive, receive them
                 {
                 self.setupTimer()
                 self.telemetrySoundPlayer?.play()
                 }
-                else
+                else //otherwise, finish things up 
                 {
-                    print("TRANSMISSIOM COMPLETED!")
+                    self.delayWithSeconds(6, completion: {self.fadeout()})
                     // show continue button
                 }
             }
         }
     }
+
+    func fadeout() {
+        UIView.animate(withDuration: 2, animations: {
+            self.transmissionView.alpha = 0.0
+        })
+        UIView.animate(withDuration: 4, animations: {
+            self.starFieldBG.alpha = 0.0
+        })
+        self.delayWithSeconds(2.85, completion: {
+            self.telemetrySoundPlayer?.stop()
+            self.musicAudioPlayer?.setVolume(0, fadeDuration: 2.0)
+        })
+        self.delayWithSeconds(4, completion: {
+            // go to gameplay screen
+        })
+    }
+        
+        
 
 }
 

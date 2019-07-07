@@ -123,8 +123,6 @@ class HUD: SKScene {
             if myScene.enemyShipsInSector.count > 0 {
                 enemyIndicator.color = UIColor.red
                 enemyIndicator.text = "ENEMIES IN RANGE: \(myScene.enemyShipsInSector.count)"
-                myScene.computerBeepSound("enemyAlert")
-
             } else {
                 enemyIndicator.color = UIColor.green
                 enemyIndicator.text = "SECTOR CLEARED"

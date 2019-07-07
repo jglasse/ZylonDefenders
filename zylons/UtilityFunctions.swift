@@ -31,6 +31,20 @@ func distanceBetweenPoints(first: SCNVector3, second: SCNVector3) -> Float {
     return result
 }
 
+
+func computerBeepSound(_ soundString: String) {
+    var beepsound: AVAudioPlayer
+    if let soundURL = Bundle.main.url(forResource: soundString, withExtension: "mp3") { do {
+        try beepsound =  AVAudioPlayer(contentsOf: soundURL)
+        beepsound.volume = 0.5
+        beepsound.play()
+    } catch {
+        print("beepsound failed")
+        }
+
+    }
+}
+
 extension ZylonGameViewController {
 
     func numberofShotsOnscreen() -> Int {
@@ -298,6 +312,7 @@ extension ZylonGameViewController: CommandDelegate {
 }
 
     // MARK: Sound
+    
 
     func playEngineSound(volume: Float) {
         var soundURL: URL?

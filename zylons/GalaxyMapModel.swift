@@ -16,6 +16,8 @@ struct GalaxyMapModel {
         self.map[sector].numberOfSectorObjects -= 1
         if  self.map[sector].numberOfSectorObjects == 0 {
             self.map[sector].sectorType = .empty
+            computerBeepSound("enemyAlert")
+
         }
         
     }
