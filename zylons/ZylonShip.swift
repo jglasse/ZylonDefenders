@@ -47,7 +47,7 @@ class ZylonShip: SectorObject {
 	var currentTorpedoBay = 1
     var sectorLocation = locationInSector(x: 500, y: 500, z: 500)
     var shipSystems = ShipsSystems()
-
+    var shipClock:Timer?
     
     let statusMessages = ["functional", "damaged", "severely damaged", "destroyed"]
 
@@ -66,6 +66,7 @@ class ZylonShip: SectorObject {
 		var y = 0
 		var z = 0
 	}
+
 
 	struct rotation {
 		var theta = 0.0
@@ -102,7 +103,13 @@ class ZylonShip: SectorObject {
 	}
 
 	var range = [Float]()
-
+    
+    @objc func updateShipClock() {
+        if self.energyStore>1 {
+            self.energyStore -= 1
+        }
+    }
+    
     func takeDamage() {
 
         // if shields at zero strength and they are up when hit, they are immediately destroyed

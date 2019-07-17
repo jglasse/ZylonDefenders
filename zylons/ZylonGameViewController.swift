@@ -32,7 +32,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     // MARK: - Scenes, Views and Nodes
     var mainGameScene = SCNScene()
     var scnView: SCNView!
-    var galacticView = SCNView.init()
+    //var galacticView = SCNView.init()
     let sectorObjectsNode = SCNNode()
     let galacticDisplay = GalacticMapDisplay()
     let zylonStation = ZylonStation() // preload station
@@ -63,10 +63,9 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     // MARK: - GameState Variables
 
     var viewMode = ViewMode.foreView
-
     var currentExplosionParticleSystem: SCNParticleSystem?
     var starSprites = [SCNNode]() // array of stars to make updating them each frame easy
-
+    var attractMode = true
     var galaxyModel = GalaxyMapModel(difficulty: 1)
     var enemyShipsInSector = [HumonShip]()
     var enemyShipCountInSector: Int {
@@ -135,7 +134,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     @IBOutlet weak var enemiesInSectorDisplay: UILabel!
     @IBOutlet weak var targetDistanceDisplay: UILabel!
     @IBOutlet weak var shieldsDisplay: UILabel!
-    @IBOutlet weak var shieldStrengthDisplay: UILabel!
+    @IBOutlet weak var shipEnergyDisplay: UILabel!
     @IBOutlet weak var shipSectorLabel: UILabel!
     @IBOutlet weak var targetSectorLabel: UILabel!
     
@@ -300,7 +299,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         case .enemy:
             self.spawnEnemies(number: self.shipSector.numberOfSectorObjects)
             print("ENEMY SECTOR \(self.shipSector.quadrant) \(self.shipSector.quadrantNumber). Spawning \(self.shipSector.numberOfSectorObjects) enemies")
-            self.enemyAlert()
+            self.shipHud.soundSectorAlarm()
         case .empty:
             print("Empty Sector")
         }
@@ -502,6 +501,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         joystickControl.movable = false
         joystickControl.baseAlpha = 0.3
         joystickControl.alpha = 0.2
+        self.galacticSlider.transform = CGAffineTransform(rotationAngle: -CGFloat.pi/2)
     }
 
     func setupScene() {
@@ -947,25 +947,25 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         computerVoice.play()
     }
 
-    func enterRandomSector() {
-        var audioItems: [AVPlayerItem] = []
-        let soundURL = Bundle.main.url(forResource: "entering_sector", withExtension: "m4a")
-        let sector = AVPlayerItem(url: soundURL!)
-        audioItems.append(sector)
-
-        print("Entering sector:", terminator: "")
-        for i in 1...4 {
-            let randomIndex = Int(arc4random_uniform(UInt32(numberstrings.count)))
-            let numString = numberstrings[randomIndex]
-            if i < 4 {print(numString + "-", terminator: "")} else {print(numString)}
-            let soundURL = Bundle.main.url(forResource: numString, withExtension: "m4a")
-            let item = AVPlayerItem(url: soundURL!)
-            audioItems.append(item)
-        }
-        computerVoice = AVQueuePlayer(items: audioItems)
-        computerVoice.volume = 1
-        computerVoice.play()
-    }
+//    func enterRandomSector() {
+//        var audioItems: [AVPlayerItem] = []
+//        let soundURL = Bundle.main.url(forResource: "entering_sector", withExtension: "m4a")
+//        let sector = AVPlayerItem(url: soundURL!)
+//        audioItems.append(sector)
+//
+//        print("Entering sector:", terminator: "")
+//        for i in 1...4 {
+//            let randomIndex = Int(arc4random_uniform(UInt32(numberstrings.count)))
+//            let numString = numberstrings[randomIndex]
+//            if i < 4 {print(numString + "-", terminator: "")} else {print(numString)}
+//            let soundURL = Bundle.main.url(forResource: numString, withExtension: "m4a")
+//            let item = AVPlayerItem(url: soundURL!)
+//            audioItems.append(item)
+//        }
+//        computerVoice = AVQueuePlayer(items: audioItems)
+//        computerVoice.volume = 1
+//        computerVoice.play()
+//    }
 
     
     func updateTactical() {
@@ -981,18 +981,22 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
                 roty = abs(rotx.truncatingRemainder(dividingBy: 360))
             }
 
+                
+            let roundedX = round(rotx * 100) / 100
+            let roundedY = round(roty * 100) / 100
+                
+            self.thetaDisplay.text = "Θ: \(roundedX)"
+            self.phiDisplay.text = "ɸ: \(roundedY)"
+                
+                
             if self.ship.shieldsAreUp {
                 self.shieldsDisplay.text = "Shields: \(self.ship.shipSystems.shieldIntegrity)"
             } else {
                 self.shieldsDisplay.text = "Shields: DOWN"
 
             }
-            self.shieldStrengthDisplay.text = "Shield Strength: \(self.ship.shieldStrength)%"
-            let roundedX = round(rotx * 100) / 100
-            let roundedY = round(roty * 100) / 100
-
-            self.thetaDisplay.text = "Θ: \(roundedX)"
-            self.phiDisplay.text = "ɸ: \(roundedY)"
+            self.shipEnergyDisplay.text = "Energy: \(self.ship.energyStore)%"
+     
             self.enemiesInSectorDisplay.text = "Enemies In Sector: \(self.enemyShipCountInSector)"
             self.shipSectorLabel.text = "Ship Sector: \(self.shipSector.quadrant) \(self.shipSector.quadrantNumber)"
             self.targetSectorLabel.text = "Target Sector: \(self.targetSector.quadrant) \(self.targetSector.quadrantNumber)"

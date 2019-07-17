@@ -17,6 +17,7 @@ class PrologueViewController: UIViewController, AVAudioPlayerDelegate, UIViewCon
     @IBOutlet weak var progressButton: UIButton!
     
     // MARK: - Vars
+    var prologueViewed = false
     var onPrologue = true
     let writeInterval = 0.037
     let soundURL = Bundle.main.url(forResource: "wopr", withExtension: "aiff")
@@ -39,8 +40,8 @@ class PrologueViewController: UIViewController, AVAudioPlayerDelegate, UIViewCon
     let message0 = "Forty centons ago, they arrived"
 
     let message1 = """
-...spreading relentlessly across peaceful Zylon systems like an
-unstoppable virus.
+...spreading relentlessly across peaceful Zylon
+systems like an unstoppable virus.
 """
     let message1a = """
 
@@ -53,21 +54,21 @@ The STAR RAIDERS.
     let message2 = """
 
 
-With warp technology, they quickly established starbases deep within Zylon space, conducting
-brutal raids which easily overwhelmed our defenses.
+With warp technology, they quickly established starbases deep within Zylon space,
+conducting brutal raids which easily overwhelmed our defenses.
 """
     
     let message2a =  """
- In just four cycles, a single raider
-defeated almost our entire defense force.
+ In just four cycles,
+a single raider defeated almost our entire defense force.
 """
 
 
     let message3 = """
 
 
-But a few brave scientists managed to develop an experimental starcruiser that could defeat
-the invaders - and finally drive them back to their distant homesystem, Sol.
+But a few brave scientists managed to develop an experimental starcruiser that could
+defeat the invaders - and finally drive them back to their distant homesystem, Sol.
 
 """
     let message3a = """
@@ -95,7 +96,20 @@ let message5 = "[TRANSMISSION TERMINATED 40AFFE]"
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        messageArray = [(message0, 1.25),(message1, 1.25),(message1a, 1.55), (message2, 1),(message2a, 1), (message3, 1.8),(message3a, 1.5),  (message4a, 0.75),(message4b, 0.75),(message4c, 1.0
+        
+        if let path = Bundle.main.path(forResource: "Info", ofType: "plist") {
+            
+            
+            ////If your plist contain root as Dictionary
+            if let dic = NSDictionary(contentsOfFile: path) as? [String: Any] {
+                if let x = dic["PrologueViewed"] as? Bool {
+                    self.prologueViewed = x
+                    print("PrologueViewed = \(self.prologueViewed)")
+                }
+            }
+        }
+        
+        messageArray = [(message0, 0.75),(message1, 1.20),(message1a, 1.55), (message2, 1),(message2a, 1), (message3, 1.25),(message3a, 1.5),  (message4a, 0.5),(message4b, 0.5),(message4c, 0.75
             ),(message5, 0)]
         setupTelemetryAudioPlayer()
         setupMusicAudioPlayer()
@@ -298,4 +312,7 @@ extension String {
     }
     
 }
+
+
+
 

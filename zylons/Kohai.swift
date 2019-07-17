@@ -7,11 +7,15 @@
 //
 
 import Foundation
-import AVFoundation
+import AVFoundation 
+
+let numberstrings = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"]
 
 class Kohai {
+    
     private var voice: AVAudioPlayer!
 
+    
     func speak(_ soundString: String) {
         print("envSound -  Soundstring: \(soundString)")
         if let soundURL = Bundle.main.url(forResource: soundString, withExtension: "m4a") { do {
@@ -23,6 +27,7 @@ class Kohai {
             voice.play()
         }
     }
+    
     
     
     

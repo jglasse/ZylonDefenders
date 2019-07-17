@@ -11,6 +11,7 @@ import Foundation
 struct GalaxyMapModel {
     var map =  [Sector]()
 
+    
     mutating func decrementEnemyCount(sector: Int){
         print("decrementing enemy count from \(self.map[sector].numberOfSectorObjects)")
         self.map[sector].numberOfSectorObjects -= 1

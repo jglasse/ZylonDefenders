@@ -15,6 +15,15 @@ import SceneKit
 class HUD: SKScene {
     // MARK: - Vars
 
+    
+    var engine: AVAudioEngine!
+    private let highTone = 486.0
+    private let lowTone = 334.0
+    private var alarmRepeats = 0
+    private var alarmTimer: Timer?
+    private var tone: AVTonePlayerUnit!
+    
+    
     var numberOfAlertRepeats = 0
     public var computerStatus = SKLabelNode()
     public var enemyIndicator = SKLabelNode()
@@ -58,9 +67,42 @@ class HUD: SKScene {
         self.addChild(crosshairs)
         self.addChild(computerStatus)
         self.addChild(enemyIndicator)
+        tone = AVTonePlayerUnit()
+        tone.frequency = highTone
+
 
     }
 
+    @objc func occupiedSectorAlarm() {
+        if alarmRepeats < 7
+        {
+            alarmRepeats+=1
+            print("occupiedSectorAlarm number \(alarmRepeats)")
+            
+            if tone.frequency == highTone {
+                tone.frequency = lowTone
+            }
+            else {
+                tone.frequency = highTone
+            }
+        }
+        else
+        {
+            tone.stop()
+            alarmRepeats = 0
+            alarmTimer?.invalidate()
+        }
+        
+    }
+    
+    func soundSectorAlarm() {
+        tone.preparePlaying()
+        tone.play()
+        engine.mainMixerNode.volume = 1.0
+        
+        alarmTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(occupiedSectorAlarm), userInfo: nil, repeats: true)
+    }
+    
     func aftCrossHairs() {
         let currentHairs = self.childNode(withName: "crosshairs") as! SKSpriteNode
         currentHairs.texture = aftHairTexture

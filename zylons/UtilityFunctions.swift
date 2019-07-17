@@ -12,7 +12,6 @@ import AVFoundation
 import SceneKit
 import GameController
 
-let numberstrings = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"]
 
 // MARK - Utility Functions
 // These are globally available, and should be unit tested
