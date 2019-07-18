@@ -51,6 +51,9 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     
     var rotationNode: SCNNode { return  (galacticDisplay.map.rootNode.childNode(withName: "rotateNode", recursively: true))! }
 
+    
+    var galacticSlider = UISlider()
+
     // MARK: - GameState Enums & Structs
 
     enum ViewMode: Int {
@@ -119,7 +122,6 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 
     @IBOutlet weak var sectorStack: UIStackView!
     @IBOutlet weak var speedStack: UIStackView!
-    @IBOutlet weak var galacticSlider: UISlider!
     @IBOutlet var mainView: UIView!
     @IBOutlet weak var spaceScnView: SCNView!
     @IBOutlet weak var mapScnView: SCNView!
@@ -137,6 +139,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     @IBOutlet weak var shipEnergyDisplay: UILabel!
     @IBOutlet weak var shipSectorLabel: UILabel!
     @IBOutlet weak var targetSectorLabel: UILabel!
+    @IBOutlet weak var sliderContainerView: UIView!
     
     
 
@@ -501,7 +504,27 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         joystickControl.movable = false
         joystickControl.baseAlpha = 0.3
         joystickControl.alpha = 0.2
-        self.galacticSlider.transform = CGAffineTransform(rotationAngle: -CGFloat.pi/2)
+        
+        // rotate slider and constrain it to the container view
+        galacticSlider.minimumValue = 0
+        galacticSlider.maximumValue = 127
+        galacticSlider.isUserInteractionEnabled = true
+        galacticSlider.addTarget(self, action: #selector(galacticSlide(_:)), for: UIControl.Event.valueChanged)
+        galacticSlider.translatesAutoresizingMaskIntoConstraints = false
+        sliderContainerView.addSubview(galacticSlider)
+        galacticSlider.tintColor = .blue
+        galacticSlider.thumbTintColor = .blue
+        galacticSlider.maximumTrackTintColor = .blue
+//        self.galacticSlider.center = self.sliderContainerView.center
+        galacticSlider.transform = CGAffineTransform(rotationAngle: CGFloat(-Float.pi/2))
+            var constraints = [NSLayoutConstraint]()
+        constraints.append(galacticSlider.widthAnchor.constraint(equalTo: sliderContainerView.heightAnchor))
+        constraints.append(galacticSlider.centerYAnchor.constraint(equalTo: sliderContainerView.centerYAnchor))
+        constraints.append(galacticSlider.centerXAnchor.constraint(equalTo: sliderContainerView.centerXAnchor))
+        constraints.append(galacticSlider.centerYAnchor.constraint(equalTo: sliderContainerView.centerYAnchor))
+        
+        self.galacticSlider.heightAnchor.constraint(equalTo: self.sliderContainerView.widthAnchor)
+        NSLayoutConstraint.activate(constraints)
     }
 
     func setupScene() {

@@ -10,7 +10,7 @@ import UIKit
 import SceneKit
 import SpriteKit
 
-struct gameSettings: Codable {
+struct GameSettings: Codable {
     var prologueEnabled: Bool
 }
 
@@ -21,19 +21,21 @@ class mainMenuViewController: UIViewController {
     @IBOutlet weak var prologueToggleSwitch: UIButton!
     @IBOutlet weak var mapScnView: SCNView!
     let galaxyScene = SCNScene(named: "galacticmap.scn")!
-    var settings = gameSettings(prologueEnabled: true)
+    var settings = getSettings()
     
     // MARK: - IBActions
 
     @IBAction func togglePrologue(_ sender: UIButton) {
         switch self.settings.prologueEnabled {
         case true:
-            sender.setTitle("PROLOGUE OFF", for: .normal)
-             self.settings.prologueEnabled = false
-        case false:
-            sender.setTitle("PROLOGUE ON", for: .normal)
+            prologueToggleSwitch.setTitle("PROLOGUE OFF", for: .normal)
+            self.settings.prologueEnabled = false
+        default: // handles false and nil
+            prologueToggleSwitch.setTitle("PROLOGUE ON", for: .normal)
             self.settings.prologueEnabled = true
         }
+        
+        save(settings: settings)
 
         
     }
@@ -55,6 +57,13 @@ class mainMenuViewController: UIViewController {
     
         // MARK: - View Cycle Methods
     override func viewDidLoad() {
+        switch self.settings.prologueEnabled {
+        case true:
+            prologueToggleSwitch.setTitle("PROLOGUE OFF", for: .normal)
+        case false: // handles false and nil
+            prologueToggleSwitch.setTitle("PROLOGUE ON", for: .normal)
+        }
+
 //        let settingsURL: URL = ... // location of plist file
 //        var settings: MySettings?
 //        do {
@@ -67,7 +76,10 @@ class mainMenuViewController: UIViewController {
 //        }
     }
     
-    
+    override func viewWillAppear(_ animated: Bool) {
+        self.settings = getSettings()
+        super.viewWillAppear(animated)
+    }
     
     override func viewDidAppear(_ animated: Bool) {
         print("viewdidAppear")
@@ -86,11 +98,11 @@ class mainMenuViewController: UIViewController {
         cameraNode.constraints = [camConstraint]
         
         // place the camera
-        cameraNode.position = SCNVector3(x: 0, y: -17, z: 9.2)
+        cameraNode.position = SCNVector3(x: -0.5, y: -17, z: 7.2)
         
         
         
-        let action = SCNAction.rotateBy(x: 0, y: 0, z: CGFloat(GLKMathDegreesToRadians(360)), duration: 16)
+        let action = SCNAction.rotateBy(x: 0, y: 0, z: CGFloat(GLKMathDegreesToRadians(360)), duration: 26)
         let forever = SCNAction.repeatForever(action)
         rotationNode.runAction(forever)
         

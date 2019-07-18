@@ -212,7 +212,7 @@ let message5 = "[TRANSMISSION TERMINATED 40AFFE]"
                 }
                 else //otherwise, finish things up 
                 {
-                    self.delayWithSeconds(6, completion: {self.fadeout()})
+                    self.delayWithSeconds(4, completion: {self.fadeout()})
                     // show continue button
                 }
             }
@@ -231,7 +231,10 @@ let message5 = "[TRANSMISSION TERMINATED 40AFFE]"
             self.musicAudioPlayer?.setVolume(0, fadeDuration: 2.0)
         })
         self.delayWithSeconds(4, completion: {
-            // go to gameplay screen
+            let sb = UIStoryboard(name: "Main", bundle: nil)
+            let vc = sb.instantiateViewController(withIdentifier: "gameView")
+            vc.modalTransitionStyle = .crossDissolve
+            self.present(vc, animated: true, completion: nil)
         })
     }
         

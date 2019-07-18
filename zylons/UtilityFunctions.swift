@@ -44,6 +44,31 @@ func computerBeepSound(_ soundString: String) {
     }
 }
 
+
+func getSettings() -> GameSettings
+{
+    let defaults = UserDefaults.standard
+    var gameSettings:GameSettings?
+    let prologueBool = defaults.bool(forKey: "prologueViewed")
+    gameSettings = GameSettings(prologueEnabled: prologueBool)
+    if gameSettings != nil {
+        print("gameSettings retreived from UserDefaults!")
+        return gameSettings!
+        
+    }
+    else
+    {
+        print("gameSettings NOT retreived from UserDefaults. CREATING!")
+
+        return GameSettings(prologueEnabled: true)}
+    
+}
+
+func save(settings: GameSettings) {
+    let defaults = UserDefaults.standard
+    defaults.set(settings.prologueEnabled, forKey: "prologueViewed")
+}
+
 extension ZylonGameViewController {
 
     func numberofShotsOnscreen() -> Int {
@@ -335,3 +360,4 @@ extension ZylonGameViewController: CommandDelegate {
         self.environmentSound(explosionString)
     }
 }
+
