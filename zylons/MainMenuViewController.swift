@@ -26,13 +26,18 @@ class mainMenuViewController: UIViewController {
     // MARK: - IBActions
 
     @IBAction func togglePrologue(_ sender: UIButton) {
-        switch self.settings.prologueEnabled {
+        print("togglePrologue entered")
+        print("settings:\(settings)")
+
+        switch settings.prologueEnabled {
         case true:
+            print("togglePrologue found TRUE; setting to false")
             prologueToggleSwitch.setTitle("PROLOGUE OFF", for: .normal)
-            self.settings.prologueEnabled = false
-        default: // handles false and nil
+            settings.prologueEnabled = false
+        case false:
+            print("togglePrologue found FALSE; setting to TRUE")
             prologueToggleSwitch.setTitle("PROLOGUE ON", for: .normal)
-            self.settings.prologueEnabled = true
+            settings.prologueEnabled = true
         }
         
         save(settings: settings)
@@ -56,29 +61,18 @@ class mainMenuViewController: UIViewController {
     }
     
         // MARK: - View Cycle Methods
-    override func viewDidLoad() {
-        switch self.settings.prologueEnabled {
-        case true:
-            prologueToggleSwitch.setTitle("PROLOGUE OFF", for: .normal)
-        case false: // handles false and nil
-            prologueToggleSwitch.setTitle("PROLOGUE ON", for: .normal)
-        }
-
-//        let settingsURL: URL = ... // location of plist file
-//        var settings: MySettings?
-//        do {
-//            let data = try Data(contentsOf: settingsURL)
-//            let decoder = PropertyListDecoder()
-//            settings = try decoder.decode(MySettings.self, from: data)
-//        } catch {
-//            // Handle error
-//            print(error)
-//        }
-    }
+   
     
     override func viewWillAppear(_ animated: Bool) {
-        self.settings = getSettings()
         super.viewWillAppear(animated)
+        switch self.settings.prologueEnabled {
+        case true:
+            prologueToggleSwitch.setTitle("PROLOGUE ON", for: .normal)
+        case false: // handles false and nil
+            prologueToggleSwitch.setTitle("PROLOGUE OFF", for: .normal)
+        }
+        print("viewDidLoad settings:\(settings)")
+
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -113,6 +107,9 @@ class mainMenuViewController: UIViewController {
             print("viewdidAppear ENDS")
 
         })
+        
+        print("viewDidAppear settings:\(settings)")
+
     }
     
 }

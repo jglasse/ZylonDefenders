@@ -59,6 +59,7 @@ func getSettings() -> GameSettings
     else
     {
         print("gameSettings NOT retreived from UserDefaults. CREATING!")
+        save(settings: GameSettings(prologueEnabled: true))
 
         return GameSettings(prologueEnabled: true)}
     
@@ -66,6 +67,8 @@ func getSettings() -> GameSettings
 
 func save(settings: GameSettings) {
     let defaults = UserDefaults.standard
+    print("saving follwoing settings : \(settings.prologueEnabled)")
+    
     defaults.set(settings.prologueEnabled, forKey: "prologueViewed")
 }
 
