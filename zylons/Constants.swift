@@ -26,7 +26,7 @@ struct Constants {
     static let starBoundsX = 200
     static let starBoundsY = 500
     static let starBoundsZ = 500
-    static let cameraFalloff = 2500.0
+    static let cameraFalloff = 1500.0
     static let minHumanShootInterval: Float = 185
     static let maxHumanShootInterval: Float = 800
     static let sectorBreadth = 500

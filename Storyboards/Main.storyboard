@@ -206,7 +206,7 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</stri
                                     <color key="titleColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </state>
                                 <connections>
-                                    <segue destination="BV1-FR-VrT" kind="show" id="mou-6L-auC"/>
+                                    <action selector="skipPrologue:" destination="y0o-Ve-XE6" eventType="touchUpInside" id="vmo-Nz-3Qd"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -247,9 +247,8 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</stri
                         <rect key="frame" x="0.0" y="0.0" width="812" height="375"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <sceneKitView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7jm-zG-a79" userLabel="SpaceScnView">
-                                <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <sceneKitView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7jm-zG-a79" userLabel="SpaceScnView">
+                                <rect key="frame" x="0.0" y="0.0" width="812" height="375"/>
                             </sceneKitView>
                             <sceneKitView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="50S-aJ-rH1" userLabel="MapScnView">
                                 <rect key="frame" x="0.0" y="47" width="812" height="281"/>
@@ -260,6 +259,10 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</stri
                                 <subviews>
                                     <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" maximumValue="9" translatesAutoresizingMaskIntoConstraints="NO" id="to0-eG-n4V">
                                         <rect key="frame" x="0.0" y="0.0" width="94" height="29"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="94" id="dWK-GS-kom"/>
+                                            <constraint firstAttribute="height" constant="29" id="yRr-Mr-23o"/>
+                                        </constraints>
                                         <color key="tintColor" red="0.0021471127402037382" green="0.41513693332672119" blue="0.86550837755203247" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
                                             <action selector="speedChanged:" destination="BV1-FR-VrT" eventType="valueChanged" id="6dZ-xR-YuP"/>
@@ -273,6 +276,8 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</stri
                                     </label>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstItem="to0-eG-n4V" firstAttribute="leading" secondItem="wgh-g3-0pN" secondAttribute="leading" id="AWD-n5-hSp"/>
+                                    <constraint firstAttribute="bottom" secondItem="to0-eG-n4V" secondAttribute="bottom" id="BX2-W8-fu6"/>
                                     <constraint firstAttribute="height" constant="29" id="Mec-aK-Dad"/>
                                 </constraints>
                             </stackView>
@@ -298,14 +303,14 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</stri
                                 </constraints>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z62-zF-Ty3" customClass="JoyStickView" customModule="Zylon_Defenders" customModuleProvider="target">
-                                <rect key="frame" x="20" y="20" width="80" height="80"/>
+                                <rect key="frame" x="40" y="40" width="80" height="80"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="0aC-5t-PQw"/>
                                     <constraint firstAttribute="width" constant="80" id="Hi9-6X-a5g"/>
                                 </constraints>
                             </view>
-                            <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="6Sn-Ch-wiN">
+                            <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" distribution="fillEqually" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="6Sn-Ch-wiN">
                                 <rect key="frame" x="64" y="240" width="192.66666666666663" height="80"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <subviews>
@@ -347,16 +352,6 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</stri
                                     </label>
                                 </subviews>
                             </stackView>
-                            <button autoresizesSubviews="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eo0-Hl-05V" userLabel="FireButton">
-                                <rect key="frame" x="746" y="20" width="150" height="309"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" name="Y14.5M" family="Y14.5M" pointSize="15"/>
-                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <connections>
-                                    <action selector="fireTorpedo:" destination="BV1-FR-VrT" eventType="touchUpInside" id="sLl-7B-86c"/>
-                                </connections>
-                            </button>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="PoQ-ji-oep" userLabel="Command Stack">
                                 <rect key="frame" x="430" y="328" width="258" height="28"/>
                                 <subviews>
@@ -407,7 +402,7 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</stri
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0dF-9a-5mU" userLabel="sliderContainerView">
-                                <rect key="frame" x="22" y="90" width="44" height="264"/>
+                                <rect key="frame" x="22" y="90" width="44" height="239"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="44" id="Pdi-Qw-QSj"/>
@@ -462,12 +457,23 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</stri
                                     <constraint firstAttribute="height" constant="36" id="ixb-YF-HfD"/>
                                 </constraints>
                             </stackView>
+                            <button autoresizesSubviews="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eo0-Hl-05V" userLabel="FireButton">
+                                <rect key="frame" x="662" y="47" width="150" height="282"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="Y14.5M" family="Y14.5M" pointSize="15"/>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <action selector="fireTorpedo:" destination="BV1-FR-VrT" eventType="touchUpInside" id="sLl-7B-86c"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
                         <constraints>
+                            <constraint firstItem="7jm-zG-a79" firstAttribute="centerY" secondItem="TBr-jy-nsA" secondAttribute="centerY" id="0jj-Nw-OwD"/>
                             <constraint firstItem="PFE-MW-5wO" firstAttribute="leading" secondItem="PoQ-ji-oep" secondAttribute="trailing" constant="23" id="1AH-89-a1E"/>
                             <constraint firstItem="xsg-ZW-l5i" firstAttribute="leading" secondItem="TBr-jy-nsA" secondAttribute="leading" constant="64" id="26E-UC-OyX"/>
+                            <constraint firstItem="Eo0-Hl-05V" firstAttribute="bottom" secondItem="PoQ-ji-oep" secondAttribute="bottom" constant="-27" id="2I9-LI-VOv"/>
                             <constraint firstAttribute="trailing" secondItem="hyH-e8-gbB" secondAttribute="trailing" constant="51" id="4Sb-yp-rTG"/>
                             <constraint firstItem="qxJ-iY-TUa" firstAttribute="leading" secondItem="wgh-g3-0pN" secondAttribute="leading" id="5se-fo-LLT"/>
                             <constraint firstItem="wgh-g3-0pN" firstAttribute="leading" secondItem="TBr-jy-nsA" secondAttribute="leading" constant="64" id="8F6-e8-iuX"/>
@@ -475,19 +481,25 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</stri
                             <constraint firstItem="hyH-e8-gbB" firstAttribute="top" secondItem="cOD-NV-RaV" secondAttribute="bottom" constant="20" id="Dg8-wn-kaV"/>
                             <constraint firstItem="0dF-9a-5mU" firstAttribute="leading" secondItem="TBr-jy-nsA" secondAttribute="leading" constant="22" id="Ove-Dh-qny"/>
                             <constraint firstItem="50S-aJ-rH1" firstAttribute="centerY" secondItem="TBr-jy-nsA" secondAttribute="centerY" id="PfF-G3-6Ks"/>
-                            <constraint firstItem="z62-zF-Ty3" firstAttribute="top" secondItem="cOD-NV-RaV" secondAttribute="bottom" constant="20" id="Sxk-rX-fr1"/>
+                            <constraint firstItem="z62-zF-Ty3" firstAttribute="top" secondItem="cOD-NV-RaV" secondAttribute="bottom" constant="40" id="Sxk-rX-fr1"/>
                             <constraint firstAttribute="trailing" secondItem="50S-aJ-rH1" secondAttribute="trailing" id="ULq-uf-Wj4"/>
-                            <constraint firstItem="z62-zF-Ty3" firstAttribute="leading" secondItem="TBr-jy-nsA" secondAttribute="leading" constant="20" id="Ued-56-Yeb"/>
+                            <constraint firstItem="z62-zF-Ty3" firstAttribute="leading" secondItem="TBr-jy-nsA" secondAttribute="leading" constant="40" id="Ued-56-Yeb"/>
                             <constraint firstItem="wgh-g3-0pN" firstAttribute="top" secondItem="qxJ-iY-TUa" secondAttribute="bottom" constant="41.333333333333314" id="VG4-Vn-edC"/>
                             <constraint firstItem="50S-aJ-rH1" firstAttribute="leading" secondItem="TBr-jy-nsA" secondAttribute="leading" id="adm-3z-SWI"/>
+                            <constraint firstItem="Eo0-Hl-05V" firstAttribute="top" secondItem="hyH-e8-gbB" secondAttribute="top" constant="27" id="beI-lt-hQO"/>
                             <constraint firstItem="50S-aJ-rH1" firstAttribute="width" secondItem="TBr-jy-nsA" secondAttribute="width" id="cM3-8m-BBm"/>
                             <constraint firstItem="PoQ-ji-oep" firstAttribute="centerY" secondItem="PFE-MW-5wO" secondAttribute="centerY" id="eyM-1L-CJl"/>
+                            <constraint firstItem="7jm-zG-a79" firstAttribute="centerX" secondItem="TBr-jy-nsA" secondAttribute="centerX" id="fvD-BU-SD0"/>
                             <constraint firstAttribute="trailing" secondItem="PFE-MW-5wO" secondAttribute="trailing" constant="51" id="i3E-3N-bzg"/>
-                            <constraint firstItem="L0B-TD-jaq" firstAttribute="top" secondItem="0dF-9a-5mU" secondAttribute="bottom" id="ih6-nN-6Zq"/>
+                            <constraint firstItem="L0B-TD-jaq" firstAttribute="top" secondItem="0dF-9a-5mU" secondAttribute="bottom" constant="25" id="ih6-nN-6Zq"/>
                             <constraint firstItem="wgh-g3-0pN" firstAttribute="centerY" secondItem="PoQ-ji-oep" secondAttribute="centerY" id="kup-NC-yBf"/>
+                            <constraint firstItem="Eo0-Hl-05V" firstAttribute="leading" secondItem="TBr-jy-nsA" secondAttribute="leading" constant="662" id="stn-0U-MgC"/>
+                            <constraint firstItem="7jm-zG-a79" firstAttribute="height" secondItem="TBr-jy-nsA" secondAttribute="height" id="ugU-si-2gj"/>
                             <constraint firstItem="0dF-9a-5mU" firstAttribute="top" secondItem="cOD-NV-RaV" secondAttribute="bottom" constant="90" id="w6v-sK-KWu"/>
                             <constraint firstItem="50S-aJ-rH1" firstAttribute="top" secondItem="cOD-NV-RaV" secondAttribute="bottom" constant="47" id="wU1-9F-Dkn"/>
                             <constraint firstAttribute="bottom" secondItem="PFE-MW-5wO" secondAttribute="bottom" constant="8" id="xa0-FX-Sz7"/>
+                            <constraint firstItem="7jm-zG-a79" firstAttribute="width" secondItem="TBr-jy-nsA" secondAttribute="width" id="xhd-ur-JxB"/>
+                            <constraint firstAttribute="trailing" secondItem="Eo0-Hl-05V" secondAttribute="trailing" id="ze3-jA-KT9"/>
                         </constraints>
                     </view>
                     <connections>

@@ -16,6 +16,14 @@ class PrologueViewController: UIViewController, AVAudioPlayerDelegate, UIViewCon
     @IBOutlet weak var starFieldBG: UIImageView!
     @IBOutlet weak var progressButton: UIButton!
     
+    @IBAction func skipPrologue(_ sender: Any) {
+        self.telemetrySoundPlayer?.stop()
+        let sb = UIStoryboard(name: "Main", bundle: nil)
+        let vc = sb.instantiateViewController(withIdentifier: "gameView")
+        vc.modalTransitionStyle = .crossDissolve
+        self.present(vc, animated: true, completion: nil)
+        
+    }
     // MARK: - Vars
     var prologueViewed = false
     var onPrologue = true

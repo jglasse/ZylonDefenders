@@ -297,13 +297,16 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     fileprivate func populateSector() {
         switch self.shipSector.sectorType {
         case .starbase:
+            ship.currentSpeed = 0
             self.spawnStarbase()
             
         case .enemy:
+            ship.currentSpeed = 2
             self.spawnEnemies(number: self.shipSector.numberOfSectorObjects)
             print("ENEMY SECTOR \(self.shipSector.quadrant) \(self.shipSector.quadrantNumber). Spawning \(self.shipSector.numberOfSectorObjects) enemies")
             self.shipHud.soundSectorAlarm()
         case .empty:
+            ship.currentSpeed = 3
             print("Empty Sector")
         }
     }
@@ -313,14 +316,15 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         computerBeepSound("enemyAlert")
     }
     func spawnStarbase() {
-        
+        zylonStation.worldPosition = SCNVector3Make(0,0,-200)
+        zylonStation.scale = SCNVector3Make(0.1, 0.1, 0.1)
+        zylonStation.isHidden = false
         let panim = SCNAction.scale(to: 1.2, duration: 0.5)
         let constraint = SCNLookAtConstraint(target: mainGameScene.rootNode)
         constraint.isGimbalLockEnabled = true
         zylonStation.constraints = [constraint]
         zylonStation.position = self.mainGameScene.rootNode.convertPosition((zylonStation.worldPosition), to: self.sectorObjectsNode)
-        self.sectorObjectsNode.addChildNode(zylonStation)
-        
+
         zylonStation.runAction(panim)
         
     }
@@ -550,6 +554,9 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         setupGridWarpEngineSounds()
         playEngineSound(volume: 1)
 
+        self.sectorObjectsNode.addChildNode(zylonStation)
+        zylonStation.isHidden = true
+        
         // add a tap gesture recognizer
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
         scnView.addGestureRecognizer(tapGesture)
@@ -665,7 +672,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 
         let transition = SKTransition.fade(withDuration: 0)
         mapScnView.present(galacticDisplay.map, with: transition, incomingPointOfView: galacticDisplay.map.rootNode.childNode(withName: "gCam", recursively: true), completionHandler: {
-            self.mapScnView.allowsCameraControl = true
+            self.mapScnView.allowsCameraControl = false
             })
     }
 
@@ -875,6 +882,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         if ship.tacticalDisplayEngaged {
             toggleTacticalDisplay(self)
         }
+        self.viewMode = .foreView
         resetWarpgrid()
 
         self.forwardCameraNode.camera?.wantsHDR = false
@@ -895,10 +903,10 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
             markSectorObjectToBeRemoved(object: thisNode)
             }
         })
+        
+        
         SCNTransaction.commit()
-//        SCNTransaction.begin()
-//        SCNTransaction.animationDuration = 0.0
-//        SCNTransaction.commit()
+
 
     }
 
@@ -921,6 +929,9 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     }
 
     func enterSector(sectorNumber: Int) {
+        
+        
+        
         print("Entering sector: \(shipSector.quadrant) \(shipSector.quadrantNumber)")
         print("actualSector Number: \(sectorNumber)")
 
@@ -1013,7 +1024,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
                 
                 
             if self.ship.shieldsAreUp {
-                self.shieldsDisplay.text = "Shields: \(self.ship.shipSystems.shieldIntegrity)"
+                self.shieldsDisplay.text = "Shields: \(self.ship.shieldStrength)%"
             } else {
                 self.shieldsDisplay.text = "Shields: DOWN"
 
@@ -1205,7 +1216,10 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         
         let sectorString = "\(self.ship.targetSectorNumber)"
         let targetGrid = galacticDisplay.map.rootNode.childNode(withName: sectorString, recursively: true)
-        galacticDisplay.targetIndicator.worldPosition = targetGrid!.worldPosition
+        if let tg = targetGrid {
+            galacticDisplay.targetIndicator.worldPosition = tg.worldPosition
+
+        }
         
         
         

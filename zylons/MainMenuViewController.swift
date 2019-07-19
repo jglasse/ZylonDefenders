@@ -9,13 +9,18 @@
 import UIKit
 import SceneKit
 import SpriteKit
+import AVFoundation
 
 struct GameSettings: Codable {
     var prologueEnabled: Bool
 }
 
 
-class mainMenuViewController: UIViewController {
+class mainMenuViewController: UIViewController, AVAudioPlayerDelegate {
+    
+    let musicURL = Bundle.main.url(forResource: "dreadnaught", withExtension: "m4a")
+    var musicAudioPlayer: AVAudioPlayer?
+
 
     // MARK: - IBOutlets
     @IBOutlet weak var prologueToggleSwitch: UIButton!
@@ -62,9 +67,21 @@ class mainMenuViewController: UIViewController {
     
         // MARK: - View Cycle Methods
    
+    func setupMusicAudioPlayer() {
+        do {
+            
+            self.musicAudioPlayer = try AVAudioPlayer(contentsOf: musicURL!, fileTypeHint: AVFileType.aiff.rawValue)
+            self.musicAudioPlayer?.delegate = self
+        } catch let error {
+            print(error.localizedDescription)
+        }
+        self.musicAudioPlayer?.prepareToPlay()
+    }
+
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        setupMusicAudioPlayer()
         switch self.settings.prologueEnabled {
         case true:
             prologueToggleSwitch.setTitle("PROLOGUE ON", for: .normal)
@@ -107,9 +124,7 @@ class mainMenuViewController: UIViewController {
             print("viewdidAppear ENDS")
 
         })
-        
-        print("viewDidAppear settings:\(settings)")
-
+        self.musicAudioPlayer?.play()
     }
     
 }

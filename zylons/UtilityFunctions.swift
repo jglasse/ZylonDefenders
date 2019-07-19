@@ -364,3 +364,30 @@ extension ZylonGameViewController: CommandDelegate {
     }
 }
 
+
+class GameHelper {
+    
+    static func rad2deg( rad:Float ) -> Float {
+        return rad * (Float) (180.0 /  Double.pi)
+    }
+    
+    static func deg2rad( deg:Float ) -> Float{
+        return deg * (Float)(Double.pi / 180)
+    }
+    
+    static func getPanDirection(velocity: CGPoint) -> String {
+        var panDirection:String = ""
+        if ( velocity.x > 0 && velocity.x > abs(velocity.y) || velocity.x < 0 && abs(velocity.x) > abs(velocity.y) ){
+            panDirection = "horizontal"
+        }
+        
+        if ( velocity.y < 0 && abs(velocity.y) > abs(velocity.x) || velocity.y > 0 &&  velocity.y  > abs(velocity.x)) {
+            panDirection = "vertical"
+        }
+        
+        
+        return panDirection
+    }
+    
+}
+

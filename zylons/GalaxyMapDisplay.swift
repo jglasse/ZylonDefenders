@@ -16,6 +16,8 @@ class GalacticMapDisplay {
     var targetIndicator = SCNNode(geometry: SCNSphere(radius: Constants.galacticMapBlipRadius*3))
     var currentLocationIndicator = SCNNode(geometry: SCNSphere(radius: Constants.galacticMapBlipRadius*2))
 
+    var currentAngleY: Float = 0.0
+
     
     
     init() {
@@ -55,7 +57,19 @@ class GalacticMapDisplay {
     currentLocationIndicator.runAction(repeatedSequence)
     rotationNode.addChildNode(currentLocationIndicator)
 
-    
+      func rotateObject(_ gesture: UIPanGestureRecognizer) {
+            
+        
+            let translation = gesture.translation(in: gesture.view!)
+            var newAngleY = (Float)(translation.x)*(Float)(Double.pi)/180.0
+            newAngleY += currentAngleY
+            
+            rotationNode.eulerAngles.y = newAngleY
+            
+            if(gesture.state == .ended) { currentAngleY = newAngleY }
+            
+            print(rotationNode.eulerAngles)
+        }
     
     
     }
