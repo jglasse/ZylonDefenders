@@ -12,9 +12,20 @@ import AVFoundation
 let numberstrings = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"]
 
 class Kohai {
+    var voice: AVAudioPlayer!
+    var beepsound:AVAudioPlayer!
     
-    private var voice: AVAudioPlayer!
-
+    func computerBeepSound(_ soundString: String) {
+        if let soundURL = Bundle.main.url(forResource: soundString, withExtension: "mp3") { do {
+            try beepsound =  AVAudioPlayer(contentsOf: soundURL)
+            beepsound.volume = 0.5
+            beepsound.play()
+        } catch {
+            print("beepsound failed")
+            }
+            
+        }
+    }
     
     func speak(_ soundString: String) {
         print("envSound -  Soundstring: \(soundString)")

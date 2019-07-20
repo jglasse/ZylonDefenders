@@ -304,7 +304,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
             ship.currentSpeed = 2
             self.spawnEnemies(number: self.shipSector.numberOfSectorObjects)
             print("ENEMY SECTOR \(self.shipSector.quadrant) \(self.shipSector.quadrantNumber). Spawning \(self.shipSector.numberOfSectorObjects) enemies")
-            self.shipHud.soundSectorAlarm()
+            //self.shipHud.soundSectorAlarm()
         case .empty:
             ship.currentSpeed = 3
             print("Empty Sector")
@@ -587,7 +587,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         for _ in 1...Constants.numberOfStars {
             let x = randRange(lower: -50, upper: 50)
             let y = randRange(lower: -50, upper: 50)
-            let z = randRange(lower: -700, upper: 700)
+            let z = randRange(lower: -500, upper: 500)
             let sphere = SCNSphere(radius: 0.25)
             let starSprite = SCNNode()
             starSprite.geometry  = sphere
@@ -824,7 +824,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
             starScenePosition.z += Float(ship.currentSpeed) * Constants.starMoveDivider
 
             if starScenePosition.z > 400 || starScenePosition.y > 250 || starScenePosition.y < -250 {
-                starScenePosition.z = randRange(lower: -1200, upper: -300)
+                starScenePosition.z = randRange(lower: -600, upper: -400)
                 starScenePosition.x = randRange(lower: -200, upper: 200)
                 starScenePosition.y = randRange(lower: -200, upper: 200)
             }

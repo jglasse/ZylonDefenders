@@ -31,18 +31,7 @@ func distanceBetweenPoints(first: SCNVector3, second: SCNVector3) -> Float {
 }
 
 
-func computerBeepSound(_ soundString: String) {
-    var beepsound: AVAudioPlayer
-    if let soundURL = Bundle.main.url(forResource: soundString, withExtension: "mp3") { do {
-        try beepsound =  AVAudioPlayer(contentsOf: soundURL)
-        beepsound.volume = 0.5
-        beepsound.play()
-    } catch {
-        print("beepsound failed")
-        }
 
-    }
-}
 
 
 func getSettings() -> GameSettings

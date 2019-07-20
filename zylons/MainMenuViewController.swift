@@ -51,6 +51,8 @@ class mainMenuViewController: UIViewController, AVAudioPlayerDelegate {
     }
     
     @IBAction func startGame(_ sender: Any) {
+        self.musicAudioPlayer?.setVolume(0, fadeDuration: 1.5)
+        self.musicAudioPlayer?.stop()
         var vc: UIViewController
         let sb = UIStoryboard(name: "Main", bundle: nil)
 
@@ -93,11 +95,10 @@ class mainMenuViewController: UIViewController, AVAudioPlayerDelegate {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        print("viewdidAppear")
         super.viewDidAppear(animated)
         
         
-        let rotationNode =   galaxyScene.rootNode.childNode(withName: "rotateNode", recursively: true)!
+        let rotationNode = galaxyScene.rootNode.childNode(withName: "rotateNode", recursively: true)!
         let cameraNode = SCNNode()
         cameraNode.camera = SCNCamera()
         cameraNode.name = "gCam"
@@ -109,11 +110,11 @@ class mainMenuViewController: UIViewController, AVAudioPlayerDelegate {
         cameraNode.constraints = [camConstraint]
         
         // place the camera
-        cameraNode.position = SCNVector3(x: -0.5, y: -17, z: 7.2)
+        cameraNode.position = SCNVector3(x: -0.5, y: -17, z: 4.2)
+        //cameraNode.rotation = SCNVector4
+        cameraNode.camera?.focalLength = 32.0
         
-        
-        
-        let action = SCNAction.rotateBy(x: 0, y: 0, z: CGFloat(GLKMathDegreesToRadians(360)), duration: 26)
+        let action = SCNAction.rotateBy(x: 0, y: 0, z: CGFloat(GLKMathDegreesToRadians(360)), duration: 36)
         let forever = SCNAction.repeatForever(action)
         rotationNode.runAction(forever)
         
@@ -121,7 +122,6 @@ class mainMenuViewController: UIViewController, AVAudioPlayerDelegate {
         
         self.mapScnView.present(galaxyScene, with: transition, incomingPointOfView: galaxyScene.rootNode.childNode(withName: "gCam", recursively: true), completionHandler: {
             self.mapScnView.allowsCameraControl = true
-            print("viewdidAppear ENDS")
 
         })
         self.musicAudioPlayer?.play()
