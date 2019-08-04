@@ -33,6 +33,7 @@ enum KnownQuadrants: String {
 
 
 class ZylonShip: SectorObject {
+    var shipClock = 0
     var currentSectorNumber = 64
     var targetSectorNumber = 68
     var tacticalDisplayEngaged = false
@@ -47,7 +48,6 @@ class ZylonShip: SectorObject {
 	var currentTorpedoBay = 1
     var sectorLocation = locationInSector(x: 500, y: 500, z: 500)
     var shipSystems = ShipsSystems()
-    var shipClock:Timer?
     
     let statusMessages = ["functional", "damaged", "severely damaged", "destroyed"]
 
@@ -104,7 +104,22 @@ class ZylonShip: SectorObject {
 
 	var range = [Float]()
     
-    @objc func updateShipClock() {
+    func updateShipClock() {
+        print("updateShipClock")
+        self.shipClock += 1
+        
+        if self.shipClock % 60 == 0
+        {
+        if self.energyStore>1 {
+            self.energyStore -= 1
+        }
+            
+        }
+        
+    }
+    
+    func drainEnergyStore() {
+        print("depleteEnergyStore")
         if self.energyStore>1 {
             self.energyStore -= 1
         }

@@ -346,6 +346,13 @@ extension ZylonGameViewController: CommandDelegate {
         environmentSound.play()
     }
 
+    func finalExplosionSound() {
+        let soundURL = Bundle.main.url(forResource: "death", withExtension: "mp3")
+        try! environmentSound = AVAudioPlayer(contentsOf: soundURL!)
+        environmentSound.volume = 0.6
+        environmentSound.play()
+        
+    }
     func explosionSound() {
         let explosionArray = ["explosion", "explosion2", "explosion3", "explosion4"]
         let explosionString = explosionArray[randIntRange(lower: 0, upper: 3)]
@@ -353,6 +360,11 @@ extension ZylonGameViewController: CommandDelegate {
     }
 }
 
+func delayWithSeconds(_ seconds: Double, completion: @escaping () -> ()) {
+    DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
+        completion()
+    }
+}
 
 class GameHelper {
     
@@ -379,4 +391,7 @@ class GameHelper {
     }
     
 }
+
+
+
 

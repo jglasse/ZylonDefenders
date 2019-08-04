@@ -20,6 +20,9 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     // MARK: - Multipeer
     var myMCController = MCController.sharedInstance
 
+    // MARK: - GameState
+    var gameOver = false
+    
     // MARK: - Mfi Game Controller vars
     var mainController: GCController?
     var aButtonJustPressed = false
@@ -744,8 +747,10 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         // if no shields, special explosion for zylonShipHit
 
         if !ship.shieldsAreUp {
-        zylonSurvivableBoom(atNode: node)
+            boomAndLose(atNode: node)
+            return
         }
+        
         if let removeMe = node as? SectorObject {
         markSectorObjectToBeRemoved(object: removeMe)
         }
@@ -810,6 +815,19 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
             self.explosionSound()
         }
 
+    }
+    
+    func boomAndLose(atNode: SCNNode) {
+        print("Game Over!")
+        finalExplosionSound()
+        gameOver = true
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.endGame()
+        }
+        
+    }
+    func endGame() {
+        
     }
     
     func markSectorObjectToBeRemoved(object: SCNNode){
@@ -1029,7 +1047,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
                 self.shieldsDisplay.text = "Shields: DOWN"
 
             }
-            self.shipEnergyDisplay.text = "Energy: \(self.ship.energyStore)%"
+            self.shipEnergyDisplay.text = "Energy: \(self.ship.energyStore)"
      
             self.enemiesInSectorDisplay.text = "Enemies In Sector: \(self.enemyShipCountInSector)"
             self.shipSectorLabel.text = "Ship Sector: \(self.shipSector.quadrant) \(self.shipSector.quadrantNumber)"
@@ -1240,12 +1258,18 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 
     }
     func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
+        if !gameOver
+        {
         cleanSceneAndUpdateSectorNodeObjects()
         updateTactical()
         updateStars()
+        }
     }
     func renderer(_ renderer: SCNSceneRenderer, didRenderScene scene: SCNScene, atTime time: TimeInterval) {
+        if !gameOver
+        {
         turnShip()
+        ship.updateShipClock()
         zylonScanner.eulerAngles = sectorObjectsNode.eulerAngles
         if self.shipSector.sectorType == .enemy
         {
@@ -1307,6 +1331,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
                     self.galacticStack.isHidden = false
                     self.speedStack.isHidden = true
             }
+        }
         }
 
     }

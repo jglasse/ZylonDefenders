@@ -32,9 +32,7 @@ class PrologueViewController: UIViewController, AVAudioPlayerDelegate, UIViewCon
     let musicURL = Bundle.main.url(forResource: "zylonHope", withExtension: "m4a")
 
     var telemetryTimer: Timer?
-    
-    var receievingMessage = false
-    var telemetrySoundPlayer: AVAudioPlayer?
+        var telemetrySoundPlayer: AVAudioPlayer?
     var musicAudioPlayer: AVAudioPlayer?
     
     var messageArray = [(message: String, delay: Float)]()
@@ -45,11 +43,10 @@ class PrologueViewController: UIViewController, AVAudioPlayerDelegate, UIViewCon
     var currentLetterIndex = 0
     var currentLetter = ""
     var existingTelemetry = ""
-    let message0 = "Forty centons ago, they arrived"
+    let message0 = "Forty centons ago, they arrived..."
 
     let message1 = """
-...spreading relentlessly across peaceful Zylon
-systems like an unstoppable virus.
+spreading relentlessly across peaceful Zylon systems like an unstoppable virus.
 """
     let message1a = """
 
@@ -133,14 +130,12 @@ let message5 = "[TRANSMISSION TERMINATED 40AFFE]"
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.musicAudioPlayer?.play()
-        UIView.animate(withDuration: 3.75, animations: {
-            self.starFieldBG.alpha = 1.0
-        })
+       5
         UIView.animate(withDuration: 48.75, delay: 0, options: .curveLinear, animations: {
             self.starFieldBG.transform = CGAffineTransform(scaleX: 3.0, y: 3.0)
         }, completion: nil)
 
-        self.delayWithSeconds(2.85, completion: {
+        delayWithSeconds(2.85, completion: {
             self.telemetrySoundPlayer?.play()
             self.setupTimer()
             UIView.animate(withDuration: 1.25, animations: {
@@ -190,11 +185,7 @@ let message5 = "[TRANSMISSION TERMINATED 40AFFE]"
 
     
     
-    func delayWithSeconds(_ seconds: Double, completion: @escaping () -> ()) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
-            completion()
-        }
-    }
+   
     
     @objc func advanceTelemetry() {
        // print("current Letter Index: \(self.currentLetterIndex)")
@@ -212,7 +203,7 @@ let message5 = "[TRANSMISSION TERMINATED 40AFFE]"
             messageArray.remove(at: 0)
             self.telemetrySoundPlayer?.stop()
             self.currentLetterIndex = 0
-            self.delayWithSeconds(Double(delay)) {
+            delayWithSeconds(Double(delay)) {
                 if self.messageArray.count > 0  // if there are still messages left to receive, receive them
                 {
                 self.setupTimer()
@@ -220,7 +211,7 @@ let message5 = "[TRANSMISSION TERMINATED 40AFFE]"
                 }
                 else //otherwise, finish things up 
                 {
-                    self.delayWithSeconds(4, completion: {self.fadeout()})
+                    delayWithSeconds(4, completion: {self.fadeout()})
                     // show continue button
                 }
             }
@@ -234,11 +225,12 @@ let message5 = "[TRANSMISSION TERMINATED 40AFFE]"
         UIView.animate(withDuration: 4, animations: {
             self.starFieldBG.alpha = 0.0
         })
-        self.delayWithSeconds(2.85, completion: {
+        delayWithSeconds(2.85, completion: {
+            self.musicAudioPlayer?.setVolume(0, fadeDuration: 0.3)
             self.telemetrySoundPlayer?.stop()
             self.musicAudioPlayer?.setVolume(0, fadeDuration: 2.0)
         })
-        self.delayWithSeconds(4, completion: {
+        delayWithSeconds(4, completion: {
             let sb = UIStoryboard(name: "Main", bundle: nil)
             let vc = sb.instantiateViewController(withIdentifier: "gameView")
             vc.modalTransitionStyle = .crossDissolve
@@ -252,77 +244,6 @@ let message5 = "[TRANSMISSION TERMINATED 40AFFE]"
 
 
 
-extension String {
-    subscript (i: Int) -> Character {
-        return self[index(startIndex, offsetBy: i)]
-    }
-    subscript (bounds: CountableRange<Int>) -> Substring {
-        let start = index(startIndex, offsetBy: bounds.lowerBound)
-        let end = index(startIndex, offsetBy: bounds.upperBound)
-        return self[start ..< end]
-    }
-    subscript (bounds: CountableClosedRange<Int>) -> Substring {
-        let start = index(startIndex, offsetBy: bounds.lowerBound)
-        let end = index(startIndex, offsetBy: bounds.upperBound)
-        return self[start ... end]
-    }
-    subscript (bounds: CountablePartialRangeFrom<Int>) -> Substring {
-        let start = index(startIndex, offsetBy: bounds.lowerBound)
-        let end = index(endIndex, offsetBy: -1)
-        return self[start ... end]
-    }
-    subscript (bounds: PartialRangeThrough<Int>) -> Substring {
-        let end = index(startIndex, offsetBy: bounds.upperBound)
-        return self[startIndex ... end]
-    }
-    subscript (bounds: PartialRangeUpTo<Int>) -> Substring {
-        let end = index(startIndex, offsetBy: bounds.upperBound)
-        return self[startIndex ..< end]
-    }
-}
-extension Substring {
-    subscript (i: Int) -> Character {
-        return self[index(startIndex, offsetBy: i)]
-    }
-    subscript (bounds: CountableRange<Int>) -> Substring {
-        let start = index(startIndex, offsetBy: bounds.lowerBound)
-        let end = index(startIndex, offsetBy: bounds.upperBound)
-        return self[start ..< end]
-    }
-    subscript (bounds: CountableClosedRange<Int>) -> Substring {
-        let start = index(startIndex, offsetBy: bounds.lowerBound)
-        let end = index(startIndex, offsetBy: bounds.upperBound)
-        return self[start ... end]
-    }
-    subscript (bounds: CountablePartialRangeFrom<Int>) -> Substring {
-        let start = index(startIndex, offsetBy: bounds.lowerBound)
-        let end = index(endIndex, offsetBy: -1)
-        return self[start ... end]
-    }
-    subscript (bounds: PartialRangeThrough<Int>) -> Substring {
-        let end = index(startIndex, offsetBy: bounds.upperBound)
-        return self[startIndex ... end]
-    }
-    subscript (bounds: PartialRangeUpTo<Int>) -> Substring {
-        let end = index(startIndex, offsetBy: bounds.upperBound)
-        return self[startIndex ..< end]
-    }
-}
-
-extension String {
-    subscript (bounds: CountableClosedRange<Int>) -> String {
-        let start = index(startIndex, offsetBy: bounds.lowerBound)
-        let end = index(startIndex, offsetBy: bounds.upperBound)
-        return String(self[start...end])
-    }
-    
-    subscript (bounds: CountableRange<Int>) -> String {
-        let start = index(startIndex, offsetBy: bounds.lowerBound)
-        let end = index(startIndex, offsetBy: bounds.upperBound)
-        return String(self[start..<end])
-    }
-    
-}
 
 
 
