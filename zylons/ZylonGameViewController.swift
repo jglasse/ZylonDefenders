@@ -133,7 +133,10 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     @IBOutlet weak var joystickControl: JoyStickView!
     @IBOutlet weak var tacticalDisplay: UIView!
 	@IBOutlet weak var currentSpeedDisplay: UILabel!
-	@IBOutlet weak var viewButton: UIButton!
+    
+    
+    @IBOutlet weak var mapButton: UIButton!
+    @IBOutlet weak var viewButton: UIButton!
     @IBOutlet weak var phiDisplay: UILabel!
     @IBOutlet weak var thetaDisplay: UILabel!
     @IBOutlet weak var enemiesInSectorDisplay: UILabel!
@@ -143,6 +146,8 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     @IBOutlet weak var shipSectorLabel: UILabel!
     @IBOutlet weak var targetSectorLabel: UILabel!
     @IBOutlet weak var sliderContainerView: UIView!
+    
+    @IBOutlet weak var gameOverView: TelemetryPlayer!
     
     
 
@@ -479,6 +484,9 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 
     // MARK: - SETUP
 
+    override func viewWillAppear(_ animated: Bool) {
+        self.galacticSlider.isHidden = true
+    }
     override func viewDidAppear(_ animated: Bool) {
     }
     override func viewDidLoad() {
@@ -821,13 +829,25 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         print("Game Over!")
         finalExplosionSound()
         gameOver = true
+        shipHud.flash()
+        engineSound.stop()
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             self.endGame()
         }
         
     }
     func endGame() {
-        
+        delayWithSeconds(1, completion: {
+            self.gameOverView.text = ""
+            self.gameOverView.isHidden = false
+            let message = """
+            Zylon Command to all sectors. Prototype defense ship destroyed by Humon fire.
+            
+            Postumous Rank: [FILL IN SCORE HERE]
+            """
+            self.gameOverView.writeMessage(message: message, speed: 0.06)
+            
+        })
     }
     
     func markSectorObjectToBeRemoved(object: SCNNode){
@@ -1283,6 +1303,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 
          DispatchQueue.main.async {
             self.shipHud.shields.isHidden = !self.ship.shieldsAreUp
+            if self.gameOver {self.shipHud.shields.isHidden = false}
         }
 
         switch self.viewMode {
@@ -1332,6 +1353,21 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
                     self.speedStack.isHidden = true
             }
         }
+        }
+            
+        else{ // Game over. hide all displays
+            DispatchQueue.main.async {
+            self.sectorStack.isHidden = true
+            self.commandStack.isHidden = true
+            self.tacticalDisplay.isHidden = true
+            self.joystickControl.isHidden = true
+            self.mapScnView.isHidden = true
+            self.galacticSlider.isHidden = true
+            self.galacticStack.isHidden = true
+            self.speedStack.isHidden = true
+            self.mapButton.isHidden = true
+            
+            }
         }
 
     }

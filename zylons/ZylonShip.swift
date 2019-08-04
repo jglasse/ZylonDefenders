@@ -105,7 +105,6 @@ class ZylonShip: SectorObject {
 	var range = [Float]()
     
     func updateShipClock() {
-        print("updateShipClock")
         self.shipClock += 1
         
         if self.shipClock % 60 == 0

@@ -14,7 +14,7 @@ struct Constants {
     static let starMoveDivider: Float = 0.4
     static let maxTorpedoes = 4
     static let maxEnemyShips = 5
-    static let torpedoLifespan = 80
+    static let torpedoLifespan = 150
     static let torpedoSpeed = 0.6
     static let torpedoCorrectionSpeedDivider: Float = 13
     static let shotDelay = 1

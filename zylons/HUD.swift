@@ -12,6 +12,7 @@ import SpriteKit
 import AVFoundation
 import SceneKit
 
+
 class HUD: SKScene {
     // MARK: - Vars
 
@@ -147,6 +148,24 @@ class HUD: SKScene {
         shieldSprite.position = location
         self.addChild(shieldSprite)
         shieldSprite.run(SKAction.fadeOut(withDuration: 1.0), completion: {shieldSprite.removeFromParent()})
+    }
+    
+    func flash() {
+        let wait1 = SKAction.wait(forDuration: TimeInterval(randRange(lower: 0.05, upper: 0.1)))
+        let wait2 = SKAction.wait(forDuration: TimeInterval(randRange(lower: 0.05, upper: 0.1)))
+        let wait3 = SKAction.wait(forDuration: TimeInterval(randRange(lower: 0.05, upper: 0.1)))
+        let flashWhite = SKAction.run {
+            self.shields.fillColor = .white
+        }
+        let flashClear = SKAction.run {
+            self.shields.fillColor = .clear
+        }
+        self.shields.isHidden = false
+        self.shields.alpha = 0.25
+        let flashSequence = SKAction.sequence([flashWhite,wait1,flashClear,wait2,flashWhite,wait3,flashClear,wait2,flashWhite,wait2,flashClear,wait3,flashWhite,wait1,flashClear])
+        self.shields.run(flashSequence)
+        
+
     }
 
      func updateHUD() {

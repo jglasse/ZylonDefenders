@@ -46,7 +46,8 @@ class PrologueViewController: UIViewController, AVAudioPlayerDelegate, UIViewCon
     let message0 = "Forty centons ago, they arrived..."
 
     let message1 = """
-spreading relentlessly across peaceful Zylon systems like an unstoppable virus.
+spreading relentlessly across peaceful Zylon
+systems like an unstoppable virus.
 """
     let message1a = """
 
@@ -130,11 +131,14 @@ let message5 = "[TRANSMISSION TERMINATED 40AFFE]"
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.musicAudioPlayer?.play()
-       5
+      
         UIView.animate(withDuration: 48.75, delay: 0, options: .curveLinear, animations: {
             self.starFieldBG.transform = CGAffineTransform(scaleX: 3.0, y: 3.0)
         }, completion: nil)
-
+        
+        UIView.animate(withDuration: 2.0, animations: {
+            self.starFieldBG.alpha = 1.0
+        })
         delayWithSeconds(2.85, completion: {
             self.telemetrySoundPlayer?.play()
             self.setupTimer()

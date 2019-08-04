@@ -11,8 +11,21 @@ import SceneKit
 import SpriteKit
 import AVFoundation
 
+
+enum Difficulty:String, Codable {
+    case Novice = "Novice"
+    case Pilot = "Pilot"
+    case Warrior = "Warrior"
+    case Commander = "Commander"
+    case Lord = "Zylon Lord"
+
+    
+}
+
+
 struct GameSettings: Codable {
     var prologueEnabled: Bool
+    var difficulty: Difficulty
 }
 
 class mainMenuViewController: UIViewController, AVAudioPlayerDelegate {
@@ -20,7 +33,7 @@ class mainMenuViewController: UIViewController, AVAudioPlayerDelegate {
     let musicURL = Bundle.main.url(forResource: "dreadnaught", withExtension: "m4a")
     var musicAudioPlayer: AVAudioPlayer?
     var currentCredit = 0
-    let credits = ["based on STAR RAIDERS by Doug Neubauer","Music by Neon Insect","Special thanks to Lorenz Wiest","Programmed by Jeff Glasse","Copyright 2019 Nine Industries"]
+    let credits = ["based on STAR RAIDERS by Doug Neubauer","Music by Neon Insect","Special thanks to Lorenz Wiest","Programmed and designed by Jeff Glasse","Many thanks to Aimee for her infinite patience", "Copyright 2019 Nine Industries"]
     var creditTimer:  Timer?
 
 
@@ -36,17 +49,31 @@ class mainMenuViewController: UIViewController, AVAudioPlayerDelegate {
     
     // MARK: - IBActions
 
-    @IBAction func togglePrologue(_ sender: UIButton) {
-        print("togglePrologue entered")
-        print("settings:\(settings)")
+    @IBAction func setDifficulty(_ sender: Any) {
+        creditTimer?.invalidate()
+        switch settings.difficulty {
+        case .Novice:
+                settings.difficulty = .Pilot
+        case .Pilot:
+                settings.difficulty = .Commander
+        case .Commander:
+            settings.difficulty = .Warrior
+        case .Warrior:
+            settings.difficulty = .Lord
+        case .Lord:
+            settings.difficulty = .Novice
+        }
+        creditsView.text = "Difficulty: \(settings.difficulty.rawValue)"
+        creditsView.quickFadeInandOut()
+        save(settings: settings)
 
+    }
+    @IBAction func togglePrologue(_ sender: UIButton) {
         switch settings.prologueEnabled {
         case true:
-            print("togglePrologue found TRUE; setting to false")
             prologueToggleSwitch.setTitle("PROLOGUE OFF", for: .normal)
             settings.prologueEnabled = false
         case false:
-            print("togglePrologue found FALSE; setting to TRUE")
             prologueToggleSwitch.setTitle("PROLOGUE ON", for: .normal)
             settings.prologueEnabled = true
         }
@@ -55,6 +82,7 @@ class mainMenuViewController: UIViewController, AVAudioPlayerDelegate {
 
         
     }
+    
     
     @IBAction func startGame(_ sender: Any) {
         self.musicAudioPlayer?.setVolume(0, fadeDuration: 1.5)
@@ -75,6 +103,14 @@ class mainMenuViewController: UIViewController, AVAudioPlayerDelegate {
         vc.modalTransitionStyle = .crossDissolve
         self.present(vc, animated: true, completion: nil)
     }
+    
+    @IBAction func displayTutorial(_ sender: Any) {
+        creditTimer?.invalidate()
+        creditsView.alpha = 0.0
+        creditsView.text = "Not yet implemented"
+        creditsView.quickFadeInandOut()
+    }
+    
     
         // MARK: - View Cycle Methods
    
@@ -174,6 +210,23 @@ class mainMenuViewController: UIViewController, AVAudioPlayerDelegate {
 
 
 extension UIView {
+    
+    
+    
+    func quickFadeInandOut() {
+        UIView.animate(withDuration: 0.50, delay: 0.0, options: UIView.AnimationOptions.curveEaseIn, animations: {
+            self.alpha = 1.0
+        }, completion: andOut(success:))
+    }
+    
+    func quickOut(success:Bool = true){
+        UIView.animate(withDuration: 0.75, delay: 2.0, options: UIView.AnimationOptions.curveEaseOut, animations: {
+            self.alpha = 0.0
+        }, completion: nil)
+        
+    }
+
+    
     
     func fadeInandOut() {
         UIView.animate(withDuration: 2.0, delay: 0.0, options: UIView.AnimationOptions.curveEaseIn, animations: {

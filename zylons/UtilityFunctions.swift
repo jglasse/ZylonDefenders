@@ -37,21 +37,12 @@ func distanceBetweenPoints(first: SCNVector3, second: SCNVector3) -> Float {
 func getSettings() -> GameSettings
 {
     let defaults = UserDefaults.standard
-    var gameSettings:GameSettings?
+    var gameSettings:GameSettings
     let prologueBool = defaults.bool(forKey: "prologueViewed")
-    gameSettings = GameSettings(prologueEnabled: prologueBool)
-    if gameSettings != nil {
-        print("gameSettings retreived from UserDefaults!")
-        return gameSettings!
-        
-    }
-    else
-    {
-        print("gameSettings NOT retreived from UserDefaults. CREATING!")
-        save(settings: GameSettings(prologueEnabled: true))
-
-        return GameSettings(prologueEnabled: true)}
-    
+    let difficultyLevelString = defaults.string(forKey: "difficulty") ?? "Novice"
+    let difficultyLevel = Difficulty(rawValue: difficultyLevelString) ?? .Novice
+    gameSettings = GameSettings(prologueEnabled: prologueBool, difficulty: difficultyLevel)
+    return gameSettings
 }
 
 func save(settings: GameSettings) {

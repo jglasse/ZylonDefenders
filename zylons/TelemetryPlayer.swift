@@ -11,7 +11,7 @@ import AVFoundation
 import UIKit
 
 
-class TelemetryPlayer: UITextView {
+class TelemetryPlayer: UITextView,AVAudioPlayerDelegate {
     private var isWriting = false
     private var currentLetterIndex = 0
     private var currentLetter = ""
@@ -21,10 +21,7 @@ class TelemetryPlayer: UITextView {
     private var blinkTimer: Timer?
     private var telemetrySoundPlayer: AVAudioPlayer?
     
-    
     private let soundURL = Bundle.main.url(forResource: "wopr", withExtension: "aiff")
-    
-    
     
     func writeMessage(message:String, speed: Double = 0.097 ){
         if isWriting {
@@ -65,6 +62,21 @@ class TelemetryPlayer: UITextView {
         }
         
     }
+    
+    func setupTelemetryAudioPlayer() {
+        do {
+            
+            self.telemetrySoundPlayer = try AVAudioPlayer(contentsOf: soundURL!, fileTypeHint: AVFileType.aiff.rawValue)
+            self.telemetrySoundPlayer?.delegate = self
+        } catch let error {
+            print(error.localizedDescription)
+        }
+        self.telemetrySoundPlayer?.numberOfLoops = 1000
+        self.telemetrySoundPlayer?.prepareToPlay()
+    }
+
+    
+    
     @objc func advanceTelemetry() {
         // print("current Letter Index: \(self.currentLetterIndex)")
         if self.currentLetterIndex < currentMessage.count {
