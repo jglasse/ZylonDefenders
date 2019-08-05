@@ -131,6 +131,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     @IBOutlet weak var tacticalDisplay: UIView!
 	@IBOutlet weak var currentSpeedDisplay: UILabel!
 
+    @IBOutlet weak var restartButton: UIButton!
     @IBOutlet weak var mapButton: UIButton!
     @IBOutlet weak var viewButton: UIButton!
     @IBOutlet weak var phiDisplay: UILabel!
@@ -207,6 +208,21 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 
     }
 
+    @IBAction func restartGame(_ sender: Any) {
+        func gotoMain(alwaysTrue: Bool) {
+            let sb = UIStoryboard(name: "Main", bundle: nil)
+            let vc = sb.instantiateViewController(withIdentifier: "mainMenu")
+            vc.modalTransitionStyle = .crossDissolve
+            self.present(vc, animated: true, completion: nil)
+        }
+        
+        UIView.animate(withDuration: 2.0, animations: {
+            self.view.alpha = 0.0
+        }, completion: gotoMain(alwaysTrue:))
+        
+    }
+
+    
     func computerBeepSound(_ soundString: String) {
         if let soundURL = Bundle.main.url(forResource: soundString, withExtension: "mp3") { do {
             try beepsound =  AVAudioPlayer(contentsOf: soundURL)
@@ -474,6 +490,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 
     override func viewWillAppear(_ animated: Bool) {
         self.galacticSlider.isHidden = true
+        self.restartButton.isHidden = true
     }
     override func viewDidAppear(_ animated: Bool) {
     }
@@ -834,6 +851,12 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
             """
             self.gameOverView.writeMessage(message: message, speed: 0.06)
 
+        })
+        
+        delayWithSeconds(6, completion: {
+            self.restartButton.alpha = 0
+            self.restartButton.isHidden = false
+            self.restartButton.fadeIn()
         })
     }
 

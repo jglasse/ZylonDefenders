@@ -500,6 +500,15 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</muta
                                 <fontDescription key="fontDescription" name="Glass_TTY_VT220" family="Glass TTY VT220" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3zc-Ha-CFT">
+                                <rect key="frame" x="342" y="240" width="128.33333333333331" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Y14.5M" family="Y14.5M" pointSize="17"/>
+                                <state key="normal" title="RESTART"/>
+                                <connections>
+                                    <action selector="restartGame:" destination="BV1-FR-VrT" eventType="touchUpInside" id="Kdl-1p-j15"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
@@ -547,6 +556,7 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</muta
                         <outlet property="mapButton" destination="PFE-MW-5wO" id="8xq-5E-pU6"/>
                         <outlet property="mapScnView" destination="50S-aJ-rH1" id="d3z-92-0Vg"/>
                         <outlet property="phiDisplay" destination="AcU-BV-dAF" id="Aho-Bo-R46"/>
+                        <outlet property="restartButton" destination="3zc-Ha-CFT" id="Yzo-P3-xEu"/>
                         <outlet property="sectorStack" destination="xsg-ZW-l5i" id="F51-QP-fQz"/>
                         <outlet property="shieldsDisplay" destination="qxJ-iY-TUa" id="BkQ-ux-FAq"/>
                         <outlet property="shipEnergyDisplay" destination="tVA-tc-gId" id="iAW-BA-SMY"/>
