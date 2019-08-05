@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AB2-5A-Arv">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="5DR-Qy-GgG">
     <device id="retina5_9" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
@@ -31,7 +31,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bUR-Pk-TVp">
-                                <rect key="frame" x="20" y="20" width="772" height="288"/>
+                                <rect key="frame" x="31" y="20" width="749" height="288"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" notEnabled="YES"/>
@@ -46,17 +46,18 @@ Apologies for the long delay. New things to check out:
    the original game.
 
 STILL TO DO: 
-Play Levels not implemented - always easy
-Strategic movement of HUMON forces on galactic map
-Tutorial
-Play balancing and other niceties like,say, fremium game preview
+  * Difficulty Levels &amp; Tutorial
+  * Strategic movement of HUMON forces on galactic map
+  * Scoring &amp; Ship Energy Drain logic
+  * Game pause/resume; restart controls after game over
+  * Play balancing and other niceties like,say, Map rotation with swipe
+  * Screen sizing adjustments - especially on prologue. Only tested on iPhone X
 
-
-Hoping to be in beta soon! Thanks again for your feedback!
+Hoping to be in beta in a week or two. Thanks again for your feedback!
 
 As always, email notes, thoughts, comments or threats to jglasse@gmail.com</mutableString>
                                 <color key="textColor" red="0.0018759364314704374" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <fontDescription key="fontDescription" name="Glass_TTY_VT220" family="Glass TTY VT220" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="Glass_TTY_VT220" family="Glass TTY VT220" pointSize="13"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wgi-zc-LlL">
@@ -77,15 +78,15 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</muta
                             <constraint firstItem="wgi-zc-LlL" firstAttribute="centerX" secondItem="nfN-3V-G5x" secondAttribute="centerX" id="16E-PL-cBz"/>
                             <constraint firstItem="f7I-6l-bMV" firstAttribute="top" secondItem="bUR-Pk-TVp" secondAttribute="bottom" constant="46" id="707-1N-IMD"/>
                             <constraint firstItem="bUR-Pk-TVp" firstAttribute="top" secondItem="RKZ-W3-1R4" secondAttribute="bottom" constant="20" id="ZRN-pV-987"/>
-                            <constraint firstItem="bUR-Pk-TVp" firstAttribute="leading" secondItem="nfN-3V-G5x" secondAttribute="leading" constant="20" id="ckl-v6-0K8"/>
-                            <constraint firstAttribute="trailing" secondItem="bUR-Pk-TVp" secondAttribute="trailing" constant="20" id="lQM-ME-dUE"/>
+                            <constraint firstItem="bUR-Pk-TVp" firstAttribute="leading" secondItem="nfN-3V-G5x" secondAttribute="leading" constant="31" id="ckl-v6-0K8"/>
+                            <constraint firstAttribute="trailing" secondItem="bUR-Pk-TVp" secondAttribute="trailing" constant="32" id="lQM-ME-dUE"/>
                             <constraint firstItem="f7I-6l-bMV" firstAttribute="top" secondItem="wgi-zc-LlL" secondAttribute="bottom" constant="8" id="xI4-oT-MIX"/>
                         </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tmw-tX-wDj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1963" y="-878"/>
+            <point key="canvasLocation" x="-1963.3004926108374" y="-879.20000000000005"/>
         </scene>
         <!--Main Menu View Controller-->
         <scene sceneID="k3D-Ej-WZF">

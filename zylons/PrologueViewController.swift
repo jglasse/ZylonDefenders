@@ -15,14 +15,14 @@ class PrologueViewController: UIViewController, AVAudioPlayerDelegate, UIViewCon
     @IBOutlet weak var transmissionView: UITextView!
     @IBOutlet weak var starFieldBG: UIImageView!
     @IBOutlet weak var progressButton: UIButton!
-    
+
     @IBAction func skipPrologue(_ sender: Any) {
         self.telemetrySoundPlayer?.stop()
         let sb = UIStoryboard(name: "Main", bundle: nil)
         let vc = sb.instantiateViewController(withIdentifier: "gameView")
         vc.modalTransitionStyle = .crossDissolve
         self.present(vc, animated: true, completion: nil)
-        
+
     }
     // MARK: - Vars
     var prologueViewed = false
@@ -34,7 +34,7 @@ class PrologueViewController: UIViewController, AVAudioPlayerDelegate, UIViewCon
     var telemetryTimer: Timer?
         var telemetrySoundPlayer: AVAudioPlayer?
     var musicAudioPlayer: AVAudioPlayer?
-    
+
     var messageArray = [(message: String, delay: Float)]()
     var currentMessage: String {
         return messageArray[currentMessageIndex].message
@@ -54,21 +54,18 @@ systems like an unstoppable virus.
 
 The STAR RAIDERS.
 """
-    
-    
-    
+
     let message2 = """
 
 
 With warp technology, they quickly established starbases deep within Zylon space,
 conducting brutal raids which easily overwhelmed our defenses.
 """
-    
+
     let message2a =  """
  In just four cycles,
 a single raider defeated almost our entire defense force.
 """
-
 
     let message3 = """
 
@@ -88,24 +85,21 @@ You will pilot that starship.
 DEFEND THE EMPIRE.
 """
     let message4b = " DRIVE BACK THE HUMON INVADERS."
-    
-    
+
     let message4c = """
  SAVE THE ZYLON RACE.
 
 
 """
 let message5 = "[TRANSMISSION TERMINATED 40AFFE]"
-    
+
     // MARK: - Lifecycle Funcs
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         if let path = Bundle.main.path(forResource: "Info", ofType: "plist") {
-            
-            
+
             ////If your plist contain root as Dictionary
             if let dic = NSDictionary(contentsOfFile: path) as? [String: Any] {
                 if let x = dic["PrologueViewed"] as? Bool {
@@ -114,28 +108,27 @@ let message5 = "[TRANSMISSION TERMINATED 40AFFE]"
                 }
             }
         }
-        
-        messageArray = [(message0, 0.75),(message1, 1.20),(message1a, 1.55), (message2, 1),(message2a, 1), (message3, 1.25),(message3a, 1.5),  (message4a, 0.5),(message4b, 0.5),(message4c, 0.75
-            ),(message5, 0)]
+
+        messageArray = [(message0, 0.75), (message1, 1.20), (message1a, 1.55), (message2, 1), (message2a, 1), (message3, 1.25), (message3a, 1.5), (message4a, 0.5), (message4b, 0.5), (message4c, 0.75
+            ), (message5, 0)]
         setupTelemetryAudioPlayer()
         setupMusicAudioPlayer()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.transmissionView.text = ""
         currentMessageIndex = 0
 
-
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.musicAudioPlayer?.play()
-      
+
         UIView.animate(withDuration: 48.75, delay: 0, options: .curveLinear, animations: {
             self.starFieldBG.transform = CGAffineTransform(scaleX: 3.0, y: 3.0)
         }, completion: nil)
-        
+
         UIView.animate(withDuration: 2.0, animations: {
             self.starFieldBG.alpha = 1.0
         })
@@ -144,7 +137,7 @@ let message5 = "[TRANSMISSION TERMINATED 40AFFE]"
             self.setupTimer()
             UIView.animate(withDuration: 1.25, animations: {
                 self.progressButton.alpha = 0.75
-                
+
             })
         })
     }
@@ -155,18 +148,16 @@ let message5 = "[TRANSMISSION TERMINATED 40AFFE]"
         self.onPrologue = false
 
     }
-    
-    
+
     // MARK: - Custom Funcs
 
-    func setupTimer(){
+    func setupTimer() {
         telemetryTimer = Timer.scheduledTimer(timeInterval: writeInterval, target: self, selector: #selector(advanceTelemetry), userInfo: nil, repeats: true)
     }
-    
-    
+
     func setupMusicAudioPlayer() {
         do {
-            
+
             self.musicAudioPlayer = try AVAudioPlayer(contentsOf: musicURL!, fileTypeHint: AVFileType.aiff.rawValue)
             self.musicAudioPlayer?.delegate = self
         } catch let error {
@@ -187,10 +178,6 @@ let message5 = "[TRANSMISSION TERMINATED 40AFFE]"
         self.telemetrySoundPlayer?.prepareToPlay()
     }
 
-    
-    
-   
-    
     @objc func advanceTelemetry() {
        // print("current Letter Index: \(self.currentLetterIndex)")
         if self.currentLetterIndex < currentMessage.count && onPrologue {
@@ -199,9 +186,7 @@ let message5 = "[TRANSMISSION TERMINATED 40AFFE]"
             transmissionView.text?.append(newletter)
             self.currentLetterIndex = self.currentLetterIndex + 1
 
-        }
-        else
-        {
+        } else {
             telemetryTimer?.invalidate()
             let delay = messageArray[currentMessageIndex].delay
             messageArray.remove(at: 0)
@@ -212,8 +197,7 @@ let message5 = "[TRANSMISSION TERMINATED 40AFFE]"
                 {
                 self.setupTimer()
                 self.telemetrySoundPlayer?.play()
-                }
-                else //otherwise, finish things up 
+                } else //otherwise, finish things up 
                 {
                     delayWithSeconds(4, completion: {self.fadeout()})
                     // show continue button
@@ -241,14 +225,5 @@ let message5 = "[TRANSMISSION TERMINATED 40AFFE]"
             self.present(vc, animated: true, completion: nil)
         })
     }
-        
-        
 
 }
-
-
-
-
-
-
-

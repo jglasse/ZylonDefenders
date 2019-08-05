@@ -18,33 +18,30 @@ class GalacticMapDisplay {
 
     var currentAngleY: Float = 0.0
 
-    
-    
     init() {
     let cameraNode = SCNNode()
     cameraNode.camera = SCNCamera()
     cameraNode.name = "gCam"
-    
+
         self.map.rootNode.addChildNode(cameraNode)
         rotationNode.rotation = SCNVector4Make(0, 0, 1, 3.141)
-    
+
     //point the camera at the galaxy map
     let camConstraint = SCNLookAtConstraint(target: self.map.rootNode)
     camConstraint.isGimbalLockEnabled = true
     cameraNode.constraints = [camConstraint]
-    
+
     // place the camera
     cameraNode.position = SCNVector3(x: 0, y: -8, z: 5.2)
-    
-        
+
     // add the target and current position nodes
         let growAnim = SCNAction.scale(by: 2.5, duration: 1.0)
         let fadeAnim = SCNAction.fadeOut(duration: 1.0)
-        let actions = [growAnim,fadeAnim]
+        let actions = [growAnim, fadeAnim]
         let growAndFade = SCNAction.group(actions)
         let reset = SCNAction.scale(to: 1.0, duration: 0)
         let reset2 = SCNAction.fadeIn(duration: 0)
-        let resetActions = [reset,reset2]
+        let resetActions = [reset, reset2]
         let shrinkAndMakeVisible = SCNAction.group(resetActions)
         let sequence = SCNAction.sequence([growAndFade, shrinkAndMakeVisible])
         let repeatedSequence = SCNAction.repeatForever(sequence)
@@ -52,34 +49,32 @@ class GalacticMapDisplay {
     targetIndicator.geometry?.firstMaterial?.diffuse.contents = UIColor.yellow
     targetIndicator.runAction(repeatedSequence)
     rotationNode.addChildNode(targetIndicator)
-        
+
     currentLocationIndicator.geometry?.firstMaterial?.diffuse.contents = UIColor.blue
     currentLocationIndicator.runAction(repeatedSequence)
     rotationNode.addChildNode(currentLocationIndicator)
 
       func rotateObject(_ gesture: UIPanGestureRecognizer) {
-            
-        
+
             let translation = gesture.translation(in: gesture.view!)
             var newAngleY = (Float)(translation.x)*(Float)(Double.pi)/180.0
             newAngleY += currentAngleY
-            
+
             rotationNode.eulerAngles.y = newAngleY
-            
+
             if(gesture.state == .ended) { currentAngleY = newAngleY }
-            
+
             print(rotationNode.eulerAngles)
         }
-    
-    
+
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    func updateDisplay(withModel: GalaxyMapModel){
-        
+
+    func updateDisplay(withModel: GalaxyMapModel) {
+
     }
-    
+
 }

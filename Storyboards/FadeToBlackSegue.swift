@@ -9,10 +9,9 @@
 import UIKit
 
 class FadeToBlackSegue: UIStoryboardSegue {
-    
+
     override func perform() {
-        
+
     }
-    
-    
+
 }

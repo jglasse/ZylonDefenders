@@ -10,11 +10,10 @@ import Foundation
 import SceneKit
 
 class Starbase: SectorObject {
-    
+
     var shieldStrength = 100
     var isRefueling = false
-   
-    
+
     override init() {
         super.init()
         self.sectorObjectType = .zylonStation //
@@ -33,10 +32,9 @@ class Starbase: SectorObject {
       //  self.pivot = SCNMatrix4MakeTranslation(0.5, 0.5, 0.5)
         self.worldPosition = SCNVector3Make(0, 0, -60)
         self.scale = SCNVector3Make(0.06, 0.06, 0.06)
-        
-        
+
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

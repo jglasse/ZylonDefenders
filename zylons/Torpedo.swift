@@ -27,16 +27,16 @@ class Torpedo: SectorObject {
         if torpType == .humon  //create humon torpedo
         {
         self.name = "Humon torpedo"
-            self.physicsBody?.categoryBitMask = objectCategories.enemyFire
-            self.physicsBody?.contactTestBitMask =  objectCategories.zylonShip
+            self.physicsBody?.categoryBitMask = ObjectCategories.enemyFire
+            self.physicsBody?.contactTestBitMask =  ObjectCategories.zylonShip
             let torpedoSparkle = SCNParticleSystem(named: "HumonTorpedo", inDirectory: "")
             self.addParticleSystem(torpedoSparkle!)
 
         } else // create zylon torpedo
         {
             self.name = "torpedo"
-            self.physicsBody?.categoryBitMask = objectCategories.zylonFire
-            self.physicsBody?.contactTestBitMask =  objectCategories.enemyShip
+            self.physicsBody?.categoryBitMask = ObjectCategories.zylonFire
+            self.physicsBody?.contactTestBitMask =  ObjectCategories.enemyShip
             let torpedoSparkle = SCNParticleSystem(named: "Torpedo", inDirectory: "")
             self.addParticleSystem(torpedoSparkle!)
         }

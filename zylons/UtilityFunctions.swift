@@ -12,8 +12,7 @@ import AVFoundation
 import SceneKit
 import GameController
 
-
-// MARK - Utility Functions
+// MARK: - Utility Functions
 // These are globally available, and should be unit tested
 
 func distanceFromZylonShip(x: Float, y: Float, z: Float) -> Float {
@@ -30,14 +29,9 @@ func distanceBetweenPoints(first: SCNVector3, second: SCNVector3) -> Float {
     return result
 }
 
-
-
-
-
-func getSettings() -> GameSettings
-{
+func getSettings() -> GameSettings {
     let defaults = UserDefaults.standard
-    var gameSettings:GameSettings
+    var gameSettings: GameSettings
     let prologueBool = defaults.bool(forKey: "prologueViewed")
     let difficultyLevelString = defaults.string(forKey: "difficulty") ?? "Novice"
     let difficultyLevel = Difficulty(rawValue: difficultyLevelString) ?? .Novice
@@ -48,7 +42,7 @@ func getSettings() -> GameSettings
 func save(settings: GameSettings) {
     let defaults = UserDefaults.standard
     print("saving follwoing settings : \(settings.prologueEnabled)")
-    
+
     defaults.set(settings.prologueEnabled, forKey: "prologueViewed")
 }
 
@@ -319,7 +313,6 @@ extension ZylonGameViewController: CommandDelegate {
 }
 
     // MARK: Sound
-    
 
     func playEngineSound(volume: Float) {
         var soundURL: URL?
@@ -342,7 +335,7 @@ extension ZylonGameViewController: CommandDelegate {
         try! environmentSound = AVAudioPlayer(contentsOf: soundURL!)
         environmentSound.volume = 0.6
         environmentSound.play()
-        
+
     }
     func explosionSound() {
         let explosionArray = ["explosion", "explosion2", "explosion3", "explosion4"]
@@ -351,38 +344,33 @@ extension ZylonGameViewController: CommandDelegate {
     }
 }
 
-func delayWithSeconds(_ seconds: Double, completion: @escaping () -> ()) {
+func delayWithSeconds(_ seconds: Double, completion: @escaping () -> Void) {
     DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
         completion()
     }
 }
 
 class GameHelper {
-    
-    static func rad2deg( rad:Float ) -> Float {
+
+    static func rad2deg( rad: Float ) -> Float {
         return rad * (Float) (180.0 /  Double.pi)
     }
-    
-    static func deg2rad( deg:Float ) -> Float{
+
+    static func deg2rad( deg: Float ) -> Float {
         return deg * (Float)(Double.pi / 180)
     }
-    
+
     static func getPanDirection(velocity: CGPoint) -> String {
-        var panDirection:String = ""
-        if ( velocity.x > 0 && velocity.x > abs(velocity.y) || velocity.x < 0 && abs(velocity.x) > abs(velocity.y) ){
+        var panDirection: String = ""
+        if ( velocity.x > 0 && velocity.x > abs(velocity.y) || velocity.x < 0 && abs(velocity.x) > abs(velocity.y) ) {
             panDirection = "horizontal"
         }
-        
+
         if ( velocity.y < 0 && abs(velocity.y) > abs(velocity.x) || velocity.y > 0 &&  velocity.y  > abs(velocity.x)) {
             panDirection = "vertical"
         }
-        
-        
+
         return panDirection
     }
-    
+
 }
-
-
-
-

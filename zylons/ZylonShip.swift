@@ -9,7 +9,7 @@
 import UIKit
 import SceneKit
 
-// Mark: - Damage enums
+// MARK: - Damage enums
 //enum ImpulseEngineDamage {
 //    case noDamage
 //    case plasmaManifoldFailure
@@ -27,10 +27,8 @@ import SceneKit
 //}
 
 enum KnownQuadrants: String {
-    case alpha,beta,gamma,delta
+    case alpha, beta, gamma, delta
 }
-
-
 
 class ZylonShip: SectorObject {
     var shipClock = 0
@@ -48,7 +46,7 @@ class ZylonShip: SectorObject {
 	var currentTorpedoBay = 1
     var sectorLocation = locationInSector(x: 500, y: 500, z: 500)
     var shipSystems = ShipsSystems()
-    
+
     let statusMessages = ["functional", "damaged", "severely damaged", "destroyed"]
 
     override init() {
@@ -66,7 +64,6 @@ class ZylonShip: SectorObject {
 		var y = 0
 		var z = 0
 	}
-
 
 	struct rotation {
 		var theta = 0.0
@@ -103,27 +100,26 @@ class ZylonShip: SectorObject {
 	}
 
 	var range = [Float]()
-    
+
     func updateShipClock() {
         self.shipClock += 1
-        
-        if self.shipClock % 60 == 0
-        {
+
+        if self.shipClock % 60 == 0 {
         if self.energyStore>1 {
             self.energyStore -= 1
         }
-            
+
         }
-        
+
     }
-    
+
     func drainEnergyStore() {
         print("depleteEnergyStore")
         if self.energyStore>1 {
             self.energyStore -= 1
         }
     }
-    
+
     func takeDamage() {
 
         // if shields at zero strength and they are up when hit, they are immediately destroyed
@@ -149,6 +145,5 @@ class ZylonShip: SectorObject {
         //        }
 
     }
-    
-    
+
 }

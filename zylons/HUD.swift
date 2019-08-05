@@ -12,19 +12,16 @@ import SpriteKit
 import AVFoundation
 import SceneKit
 
-
 class HUD: SKScene {
     // MARK: - Vars
 
-    
     var engine: AVAudioEngine!
     private let highTone = 486.0
     private let lowTone = 334.0
     private var alarmRepeats = 0
     private var alarmTimer: Timer?
     private var tone: AVTonePlayerUnit!
-    
-    
+
     var numberOfAlertRepeats = 0
     public var computerStatus = SKLabelNode()
     public var enemyIndicator = SKLabelNode()
@@ -71,39 +68,34 @@ class HUD: SKScene {
         tone = AVTonePlayerUnit()
         tone.frequency = highTone
 
-
     }
 
     @objc func occupiedSectorAlarm() {
-        if alarmRepeats < 7
-        {
+        if alarmRepeats < 7 {
             alarmRepeats+=1
             print("occupiedSectorAlarm number \(alarmRepeats)")
-            
+
             if tone.frequency == highTone {
                 tone.frequency = lowTone
-            }
-            else {
+            } else {
                 tone.frequency = highTone
             }
-        }
-        else
-        {
+        } else {
             tone.stop()
             alarmRepeats = 0
             alarmTimer?.invalidate()
         }
-        
+
     }
-    
+
     func soundSectorAlarm() {
         tone.preparePlaying()
         tone.play()
         engine.mainMixerNode.volume = 1.0
-        
+
         alarmTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(occupiedSectorAlarm), userInfo: nil, repeats: true)
     }
-    
+
     func aftCrossHairs() {
         let currentHairs = self.childNode(withName: "crosshairs") as! SKSpriteNode
         currentHairs.texture = aftHairTexture
@@ -149,7 +141,7 @@ class HUD: SKScene {
         self.addChild(shieldSprite)
         shieldSprite.run(SKAction.fadeOut(withDuration: 1.0), completion: {shieldSprite.removeFromParent()})
     }
-    
+
     func flash() {
         let wait1 = SKAction.wait(forDuration: TimeInterval(randRange(lower: 0.05, upper: 0.1)))
         let wait2 = SKAction.wait(forDuration: TimeInterval(randRange(lower: 0.05, upper: 0.1)))
@@ -162,9 +154,8 @@ class HUD: SKScene {
         }
         self.shields.isHidden = false
         self.shields.alpha = 0.25
-        let flashSequence = SKAction.sequence([flashWhite,wait1,flashClear,wait2,flashWhite,wait3,flashClear,wait2,flashWhite,wait2,flashClear,wait3,flashWhite,wait1,flashClear])
+        let flashSequence = SKAction.sequence([flashWhite, wait1, flashClear, wait2, flashWhite, wait3, flashClear, wait2, flashWhite, wait2, flashClear, wait3, flashWhite, wait1, flashClear])
         self.shields.run(flashSequence)
-        
 
     }
 

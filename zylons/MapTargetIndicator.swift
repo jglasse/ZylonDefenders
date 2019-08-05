@@ -9,8 +9,7 @@
 import Foundation
 import SceneKit
 
-
-class MapTargetIndicator:SCNNode {
+class MapTargetIndicator: SCNNode {
     // add the target and current position nodes
     init(color: UIColor) {
     super.init()
@@ -19,21 +18,20 @@ class MapTargetIndicator:SCNNode {
     self.geometry?.firstMaterial?.diffuse.contents = color
     let growAnim = SCNAction.scale(by: 3, duration: 1.0)
     let fadeAnim = SCNAction.fadeOut(duration: 1.0)
-    let actions = [growAnim,fadeAnim]
+    let actions = [growAnim, fadeAnim]
     let growAndFade = SCNAction.group(actions)
     let reset = SCNAction.scale(to: 1.0, duration: 0)
     let reset2 = SCNAction.fadeIn(duration: 0)
-    let resetActions = [reset,reset2]
+    let resetActions = [reset, reset2]
     let shrinkAndMakeVisible = SCNAction.group(resetActions)
     let sequence = SCNAction.sequence([growAndFade, shrinkAndMakeVisible])
     let repeatedSequence = SCNAction.repeatForever(sequence)
     self.runAction(repeatedSequence)
 
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    
+
 }

@@ -33,7 +33,7 @@ struct Constants {
     static let galacticMapBlipRadius: CGFloat = 0.06
 }
 
-struct objectCategories {
+struct ObjectCategories {
     static let zylonShip = 0b00000001
     static let zylonFire = 0b00000010
     static let enemyShip = 0b00000100

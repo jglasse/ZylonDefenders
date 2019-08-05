@@ -10,10 +10,8 @@ import Foundation
 import SceneKit
 
 class ZylonStation: SectorObject {
-    var currentSpeed = 0.0
     var shieldStrength = 100
     var weaponType = 0
-    var zylonTargetPosition = vector3(0.0, 0.0, 0.0)
 
     override init() {
         super.init()
@@ -28,20 +26,18 @@ class ZylonStation: SectorObject {
         self.physicsBody = SCNPhysicsBody(type: .kinematic, shape: stationPhysicsShape)
         self.physicsBody?.isAffectedByGravity = false
         self.physicsBody?.friction = 0
-        self.physicsBody?.categoryBitMask = objectCategories.enemyShip
-        self.physicsBody?.contactTestBitMask = objectCategories.zylonFire
+        self.physicsBody?.categoryBitMask = ObjectCategories.enemyShip
+        self.physicsBody?.contactTestBitMask = ObjectCategories.zylonFire
         self.name = "zylonStation"
        // self.worldOrientation = SCNVector4(0, 0, 1, Float.pi)
         self.pivot = SCNMatrix4MakeTranslation(0.5, 0.5, 0.5)
-        self.worldPosition = SCNVector3Make(0,0,-200)
-        self.scale = SCNVector3Make(0.1, 0.1, 0.1)
-        
+        self.worldPosition = SCNVector3Make(0, 0, -200)
+        self.scale = SCNVector3Make(1, 1, 1)
+
         let action = SCNAction.rotateBy(x: 0, y: CGFloat(GLKMathDegreesToRadians(360)), z: 0, duration: 58)
         let forever = SCNAction.repeatForever(action)
         zylonStation?.runAction(forever)
-        
-        
-
+        print("zylon Station Created")
     }
 
     required init?(coder aDecoder: NSCoder) {

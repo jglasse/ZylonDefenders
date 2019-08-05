@@ -120,8 +120,8 @@ class HumonShip: SectorObject {
         self.physicsBody = SCNPhysicsBody(type: .kinematic, shape: dronePhysicsShape)
         self.physicsBody?.isAffectedByGravity = false
         self.physicsBody?.friction = 0
-        self.physicsBody?.categoryBitMask = objectCategories.enemyShip
-        self.physicsBody?.contactTestBitMask = objectCategories.zylonFire
+        self.physicsBody?.categoryBitMask = ObjectCategories.enemyShip
+        self.physicsBody?.contactTestBitMask = ObjectCategories.zylonFire
         self.name = "humonShip"
         self.worldOrientation = SCNVector4(0, 0, 1, Float.pi)
         self.pivot = SCNMatrix4MakeTranslation(0.5, 0.5, 0.5)

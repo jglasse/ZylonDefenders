@@ -11,8 +11,8 @@ import Foundation
 struct GalaxyMapModel {
     var map =  [Sector]()
     var kh = Kohai()
-    
-    mutating func decrementEnemyCount(sector: Int){
+
+    mutating func decrementEnemyCount(sector: Int) {
         print("decrementing enemy count from \(self.map[sector].numberOfSectorObjects)")
         self.map[sector].numberOfSectorObjects -= 1
         if  self.map[sector].numberOfSectorObjects == 0 {
@@ -20,13 +20,13 @@ struct GalaxyMapModel {
             kh.computerBeepSound("enemyAlert")
 
         }
-        
+
     }
      init(difficulty: Int) {
         var numberofOccupiedSectors = 0
         var maxShipsPerSector = 0
         var numberofStations = 0
-        
+
         // based on difficulty level, set internal variables
         switch difficulty {
         case 1:
@@ -74,7 +74,7 @@ struct GalaxyMapModel {
             // picking a random sector:
             let currentSectorIndex = Int(randRange(lower: 0, upper: 127))
             if self.map[currentSectorIndex].sectorType != .starbase {
-                
+
                 let numberofshipsToAdd = Int(randIntRange(lower: 1, upper: maxShipsPerSector))
             // and assigning those ships to that random sector
                 self.map[currentSectorIndex].numberOfSectorObjects = numberofshipsToAdd

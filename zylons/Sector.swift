@@ -19,12 +19,11 @@ struct Sector {
     var numberString: String {
         return String(number)
     }
-    
+
     var numberOfSectorObjects =  0
     var sectorType = SectorType.empty
     var quadrant: KnownQuadrants {
-        switch number
-        {
+        switch number {
         case 1...32:
             return .alpha
         case 33...64:
@@ -35,10 +34,9 @@ struct Sector {
             return .delta
         }
     }
-    
+
     var quadrantNumber: Int {
-        switch number
-        {
+        switch number {
         case 97...128:
             return number - 96
         case 33...64:
