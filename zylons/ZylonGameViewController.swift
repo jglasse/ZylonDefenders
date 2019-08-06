@@ -337,6 +337,16 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         case .starbase:
             ship.currentSpeed = 0
             self.spawnStarbase()
+            gameOverView.text = ""
+            gameOverView.isHidden = false
+            gameOverView.alpha = 1.0
+            delayWithSeconds(2, completion: {self.gameOverView.writeMessage(message: "Standby for repairs")})
+            delayWithSeconds(6, completion: {
+                self.ship.repair()
+                self.kohai.computerBeepSound("sectorCleared")
+                self.gameOverView.writeMessage(message: "Repairs completed")
+                delayWithSeconds(2, completion: {self.gameOverView.fadeout()})
+            })
 
         case .enemy:
             ship.currentSpeed = 2
@@ -805,6 +815,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         if ship.shieldsAreUp && ship.shieldStrength>0 {
             ship.energyStore -= 50
             self.environmentSound("forcefieldHit")
+            shipHud.shieldFlash()
 
             //let overlayPos = self.overlayPos(node: node) // screen coordinates of hit in UIVIew
 
@@ -867,7 +878,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         print("Game Over!")
         finalExplosionSound()
         gameOver = true
-        shipHud.flash()
+        shipHud.fatalFlash()
         engineSound.stop()
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             self.endGame(cause)

@@ -122,6 +122,10 @@ class ZylonShip: SectorObject {
         }
     }
 
+     func repair() {
+        self.shieldStrength = 100
+        self.energyStore = 10000
+    }
     func takeDamage() {
 
         // if shields at zero strength and they are up when hit, they are immediately destroyed

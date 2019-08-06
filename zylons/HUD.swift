@@ -142,7 +142,20 @@ class HUD: SKScene {
         shieldSprite.run(SKAction.fadeOut(withDuration: 1.0), completion: {shieldSprite.removeFromParent()})
     }
 
-    func flash() {
+    func shieldFlash() {
+        let wait1 = SKAction.wait(forDuration: TimeInterval(randRange(lower: 0.05, upper: 0.1)))
+        let wait2 = SKAction.wait(forDuration: TimeInterval(randRange(lower: 0.05, upper: 0.1)))
+        let flashWhite = SKAction.run {
+            self.shields.alpha = 0.6
+        }
+        let flashblue = SKAction.run {
+            self.shields.alpha = 0.14
+        }
+        let flashSequence = SKAction.sequence([flashWhite, wait1, flashblue, wait2, flashWhite, wait1, flashblue])
+        self.shields.run(flashSequence)
+
+    }
+    func fatalFlash() {
         let wait1 = SKAction.wait(forDuration: TimeInterval(randRange(lower: 0.05, upper: 0.1)))
         let wait2 = SKAction.wait(forDuration: TimeInterval(randRange(lower: 0.05, upper: 0.1)))
         let wait3 = SKAction.wait(forDuration: TimeInterval(randRange(lower: 0.05, upper: 0.1)))

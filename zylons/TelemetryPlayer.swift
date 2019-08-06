@@ -38,7 +38,8 @@ class TelemetryPlayer: UITextView, AVAudioPlayerDelegate {
     }
 
     func fadeout() {
-        self.alpha = 0
+        UIView.animate(withDuration: 1.0, animations: {self.alpha = 0})
+        
     }
     private func setupTimer(speed: Double) {
         telemetryTimer = Timer.scheduledTimer(timeInterval: speed, target: self, selector: #selector(advanceTelemetry), userInfo: nil, repeats: true)
