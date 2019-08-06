@@ -27,8 +27,11 @@ class TelemetryPlayer: UITextView, AVAudioPlayerDelegate {
             telemetryTimer?.invalidate()
             isWriting = false
         }
+        isWriting = true
         self.telemetrySoundPlayer?.play()
         self.text = ""
+        self.isHidden = false
+        self.alpha = 1.0
         blinkTimer?.invalidate()
         cursorIsVisitble = false
         currentLetterIndex = 0
