@@ -235,8 +235,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         func gotoMain(alwaysTrue: Bool) {
             let sb = UIStoryboard(name: "Main", bundle: nil)
             let vc = sb.instantiateViewController(withIdentifier: "mainMenu")
-            vc.modalTransitionStyle = .crossDissolve
-            self.present(vc, animated: true, completion: nil)
+            self.present(vc, animated: false, completion: nil)
         }
         
         UIView.animate(withDuration: 2.0, animations: {
@@ -1266,10 +1265,14 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 
         if (contact.nodeA.name == "zylonHull") {
             zylonShipHitBy(node: contact.nodeB)
+            self.markSectorObjectToBeRemoved(object: contact.nodeB)
+
             return
         } else {
         if (contact.nodeB.name == "zylonHull") {
             zylonShipHitBy(node: contact.nodeA)
+            self.markSectorObjectToBeRemoved(object: contact.nodeA)
+
             return
         } else {
         DispatchQueue.main.async {
