@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="5DR-Qy-GgG">
-    <device id="retina5_9" orientation="landscape">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AB2-5A-Arv">
+    <device id="retina6_1" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -27,21 +27,21 @@
                         <viewControllerLayoutGuide type="bottom" id="f7I-6l-bMV"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="nfN-3V-G5x">
-                        <rect key="frame" x="0.0" y="0.0" width="812" height="375"/>
+                        <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bUR-Pk-TVp">
-                                <rect key="frame" x="31" y="20" width="749" height="288"/>
+                                <rect key="frame" x="31" y="20" width="833" height="327"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" notEnabled="YES"/>
                                 </accessibility>
-                                <mutableString key="text">WELCOME TO THE ZYLON DEFENDERS ALPHA - Build 32
+                                <string key="text">WELCOME TO THE ZYLON DEFENDERS ALPHA - Build 32
 
 Apologies for the long delay. New things to check out: 
 
 1) Navigable galactic map. Warp to APLHA, BETA, GAMMA and DELTA sectors to eradicate the HUMON MENACE.
-2) Space Stations! Refuel &amp; repair your ship and return to battle to defeat the Humons.
+2) Space Stations! 
 3) Game action now continues while you are on galactic map, just as in
    the original game.
 
@@ -51,17 +51,18 @@ STILL TO DO:
   * Scoring &amp; Ship Energy Drain logic
   * Game pause/resume; restart controls after game over
   * Play balancing and other niceties like,say, Map rotation with swipe
+  * Lots of animation tweaks, especially in local combat and arrival from warp
   * Screen sizing adjustments - especially on prologue. Only tested on iPhone X
 
 Hoping to be in beta in a week or two. Thanks again for your feedback!
 
-As always, email notes, thoughts, comments or threats to jglasse@gmail.com</mutableString>
+As always, email notes, thoughts, comments or threats to jglasse@gmail.com</string>
                                 <color key="textColor" red="0.0018759364314704374" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <fontDescription key="fontDescription" name="Glass_TTY_VT220" family="Glass TTY VT220" pointSize="13"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wgi-zc-LlL">
-                                <rect key="frame" x="352.66666666666669" y="316" width="107" height="30"/>
+                                <rect key="frame" x="394.5" y="355" width="107" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="YRB-LB-NW9"/>
                                     <constraint firstAttribute="width" constant="107" id="hzf-vg-TZa"/>
@@ -97,17 +98,17 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</muta
                         <viewControllerLayoutGuide type="bottom" id="fjc-Rt-eqv"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Vwn-De-txE">
-                        <rect key="frame" x="0.0" y="0.0" width="812" height="375"/>
+                        <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <sceneKitView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" restorationIdentifier="mapScnView" allowsCameraControl="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Pyg-dV-Xih" userLabel="MapScnView">
-                                <rect key="frame" x="0.0" y="0.0" width="812" height="375"/>
+                                <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
                             </sceneKitView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="110" translatesAutoresizingMaskIntoConstraints="NO" id="PYg-9h-NF8" userLabel="ButtonStack">
-                                <rect key="frame" x="104" y="293" width="604" height="31"/>
+                                <rect key="frame" x="104" y="332" width="688" height="31"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JPG-C1-Qzr">
-                                        <rect key="frame" x="0.0" y="0.0" width="125" height="31"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="142.5" height="31"/>
                                         <fontDescription key="fontDescription" name="Y14.5M" family="Y14.5M" pointSize="17"/>
                                         <state key="normal" title="START GAME"/>
                                         <connections>
@@ -115,7 +116,7 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</muta
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LU4-Ve-bX3">
-                                        <rect key="frame" x="235" y="0.0" width="130.66666666666663" height="31"/>
+                                        <rect key="frame" x="252.5" y="0.0" width="148.5" height="31"/>
                                         <fontDescription key="fontDescription" name="Y14.5M" family="Y14.5M" pointSize="17"/>
                                         <state key="normal" title="DIFFICULTY"/>
                                         <connections>
@@ -123,7 +124,7 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</muta
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CQ5-j5-cqs">
-                                        <rect key="frame" x="475.66666666666657" y="0.0" width="128.33333333333331" height="31"/>
+                                        <rect key="frame" x="511" y="0.0" width="177" height="31"/>
                                         <fontDescription key="fontDescription" name="Y14.5M" family="Y14.5M" pointSize="17"/>
                                         <state key="normal" title="TUTORIAL"/>
                                         <connections>
@@ -145,14 +146,14 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</muta
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ZylonDefenderTitleALPHA" translatesAutoresizingMaskIntoConstraints="NO" id="X5n-VY-IB9">
-                                <rect key="frame" x="235" y="0.0" width="342" height="150"/>
+                                <rect key="frame" x="277" y="0.0" width="342" height="150"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="150" id="ZlY-D9-yFr"/>
                                     <constraint firstAttribute="width" constant="342" id="uj1-RJ-YQw"/>
                                 </constraints>
                             </imageView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" restorationIdentifier="telemetryTextView" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" delaysContentTouches="NO" canCancelContentTouches="NO" bouncesZoom="NO" editable="NO" text="Copyright 2019 Nine Industries. All Rights Reserved." textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ggg-fA-fxP" userLabel="Credits" customClass="TelemetryPlayer" customModule="Zylon_Defenders" customModuleProvider="target">
-                                <rect key="frame" x="60" y="115" width="688" height="84"/>
+                                <rect key="frame" x="60" y="115" width="772" height="84"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" notEnabled="YES"/>
                                 </accessibility>
@@ -200,15 +201,15 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</muta
                         <viewControllerLayoutGuide type="bottom" id="6yQ-9l-t5p"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="pVc-fe-ica">
-                        <rect key="frame" x="0.0" y="0.0" width="812" height="375"/>
+                        <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Starfield 2048x1024B.png" translatesAutoresizingMaskIntoConstraints="NO" id="vgS-7K-Dvn">
-                                <rect key="frame" x="0.0" y="-10.666666666666657" width="812" height="375.33333333333326"/>
+                                <rect key="frame" x="0.0" y="-10.5" width="896" height="414"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" restorationIdentifier="telemetryTextView" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" delaysContentTouches="NO" canCancelContentTouches="NO" bouncesZoom="NO" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HK1-WJ-VhA">
-                                <rect key="frame" x="64" y="21" width="684" height="312"/>
+                                <rect key="frame" x="64" y="21" width="768" height="351"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" notEnabled="YES"/>
                                 </accessibility>
@@ -218,7 +219,7 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</muta
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pff-ol-vqT">
-                                <rect key="frame" x="661" y="316" width="107" height="30"/>
+                                <rect key="frame" x="745" y="355" width="107" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="107" id="3V9-mm-zUQ"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="7fi-z9-sPc"/>
@@ -268,18 +269,18 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</muta
                         <viewControllerLayoutGuide type="bottom" id="L0B-TD-jaq"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="TBr-jy-nsA" userLabel="MainView">
-                        <rect key="frame" x="0.0" y="0.0" width="812" height="375"/>
+                        <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <sceneKitView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7jm-zG-a79" userLabel="SpaceScnView">
-                                <rect key="frame" x="0.0" y="0.0" width="812" height="375"/>
+                                <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
                             </sceneKitView>
                             <sceneKitView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="50S-aJ-rH1" userLabel="MapScnView">
-                                <rect key="frame" x="0.0" y="47" width="812" height="281"/>
+                                <rect key="frame" x="0.0" y="47" width="896" height="320"/>
                                 <color key="backgroundColor" red="0.076768197120000006" green="0.076862581070000005" blue="0.076782830060000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </sceneKitView>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="wgh-g3-0pN" userLabel="Speed Stack">
-                                <rect key="frame" x="63.999999999999993" y="327.66666666666669" width="121.33333333333331" height="29"/>
+                                <rect key="frame" x="64" y="366.5" width="121.5" height="29"/>
                                 <subviews>
                                     <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" maximumValue="9" translatesAutoresizingMaskIntoConstraints="NO" id="to0-eG-n4V">
                                         <rect key="frame" x="0.0" y="0.0" width="94" height="29"/>
@@ -293,7 +294,7 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</muta
                                         </connections>
                                     </stepper>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UfY-Ip-g2Z">
-                                        <rect key="frame" x="114" y="0.0" width="7.3333333333333286" height="29"/>
+                                        <rect key="frame" x="114" y="0.0" width="7.5" height="29"/>
                                         <fontDescription key="fontDescription" name="Y14.5M" family="Y14.5M" pointSize="17"/>
                                         <color key="textColor" red="0.0053549790754914284" green="0.41515737771987915" blue="0.86551386117935181" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -306,23 +307,23 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</muta
                                 </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="xsg-ZW-l5i" userLabel="SectorStack">
-                                <rect key="frame" x="63.999999999999993" y="20" width="84.333333333333314" height="23.333333333333329"/>
+                                <rect key="frame" x="64" y="20" width="150" height="23.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Ship Sector:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nt9-u6-R5R" userLabel="ShipSectorLabel">
-                                        <rect key="frame" x="0.0" y="0.0" width="84.333333333333329" height="11.666666666666666"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="150" height="12"/>
                                         <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="10"/>
                                         <color key="textColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Target Sector:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YQK-T0-L4Q" userLabel="TargetSectorLabel">
-                                        <rect key="frame" x="0.0" y="11.666666666666668" width="84.333333333333329" height="11.666666666666668"/>
+                                        <rect key="frame" x="0.0" y="12" width="150" height="11.5"/>
                                         <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="10"/>
                                         <color key="textColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="84.329999999999998" id="6su-8t-nhI"/>
+                                    <constraint firstAttribute="width" constant="150" id="6su-8t-nhI"/>
                                     <constraint firstAttribute="height" constant="23.329999999999998" id="SB4-Pg-Ubq"/>
                                 </constraints>
                             </stackView>
@@ -334,50 +335,8 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</muta
                                     <constraint firstAttribute="width" constant="80" id="Hi9-6X-a5g"/>
                                 </constraints>
                             </view>
-                            <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="6Sn-Ch-wiN">
-                                <rect key="frame" x="64" y="240" width="192.66666666666663" height="70"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Θ: --" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MQV-Cf-PFY">
-                                        <rect key="frame" x="0.0" y="0.0" width="192.66666666666666" height="11.666666666666666"/>
-                                        <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="10"/>
-                                        <color key="textColor" red="0.0018759364309999999" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ɸ: --" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AcU-BV-dAF">
-                                        <rect key="frame" x="0.0" y="11.666666666666657" width="192.66666666666666" height="11.666666666666664"/>
-                                        <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="10"/>
-                                        <color key="textColor" red="0.0018759364309999999" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DISTANCE TO TARGET: ||          " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uyd-8R-ulf">
-                                        <rect key="frame" x="0.0" y="23.333333333333343" width="192.66666666666666" height="11.666666666666664"/>
-                                        <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="10"/>
-                                        <color key="textColor" red="0.0018759364309999999" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enemies In Sector:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WVN-hE-EnE">
-                                        <rect key="frame" x="0.0" y="35" width="192.66666666666666" height="11.666666666666664"/>
-                                        <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="10"/>
-                                        <color key="textColor" red="0.0018759364309999999" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shields: DOWN" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qxJ-iY-TUa">
-                                        <rect key="frame" x="0.0" y="46.666666666666686" width="192.66666666666666" height="11.666666666666664"/>
-                                        <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="10"/>
-                                        <color key="textColor" red="0.0018759364309999999" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Energy: 10000" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tVA-tc-gId">
-                                        <rect key="frame" x="0.0" y="58.333333333333307" width="192.66666666666666" height="11.666666666666664"/>
-                                        <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="10"/>
-                                        <color key="textColor" red="0.0018759364309999999" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                            </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="PoQ-ji-oep" userLabel="Command Stack">
-                                <rect key="frame" x="430" y="328" width="258" height="28"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="PoQ-ji-oep" userLabel="Command Stack">
+                                <rect key="frame" x="514" y="367" width="258" height="28"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b5j-bO-0M6">
                                         <rect key="frame" x="0.0" y="0.0" width="42" height="28"/>
@@ -414,7 +373,7 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</muta
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PFE-MW-5wO">
-                                <rect key="frame" x="711" y="317" width="50" height="50"/>
+                                <rect key="frame" x="795" y="356" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="M8q-GM-8Qd"/>
                                     <constraint firstAttribute="height" constant="50" id="NFP-Pk-bHf"/>
@@ -426,14 +385,14 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</muta
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0dF-9a-5mU" userLabel="sliderContainerView">
-                                <rect key="frame" x="22" y="90" width="44" height="239"/>
+                                <rect key="frame" x="22" y="90" width="44" height="278"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="44" id="Pdi-Qw-QSj"/>
                                 </constraints>
                             </view>
                             <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" restorationIdentifier="GalacticStack" spacing="33" translatesAutoresizingMaskIntoConstraints="NO" id="hyH-e8-gbB" userLabel="Galactic Stack">
-                                <rect key="frame" x="401" y="20" width="360" height="36"/>
+                                <rect key="frame" x="485" y="20" width="360" height="36"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2nC-Nm-qWM">
                                         <rect key="frame" x="0.0" y="0.0" width="30" height="36"/>
@@ -482,8 +441,11 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</muta
                                 </constraints>
                             </stackView>
                             <button autoresizesSubviews="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eo0-Hl-05V" userLabel="FireButton">
-                                <rect key="frame" x="662" y="47" width="150" height="282"/>
+                                <rect key="frame" x="730" y="47" width="166" height="321"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="166" id="Lgv-36-Bgq"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="Y14.5M" family="Y14.5M" pointSize="15"/>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
@@ -500,15 +462,62 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</muta
                                 <fontDescription key="fontDescription" name="Glass_TTY_VT220" family="Glass TTY VT220" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3zc-Ha-CFT">
-                                <rect key="frame" x="342" y="240" width="128.33333333333331" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3zc-Ha-CFT">
+                                <rect key="frame" x="384" y="240" width="128" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="31" id="NcM-Yb-iTx"/>
+                                    <constraint firstAttribute="width" constant="128.33000000000001" id="yGt-ZW-Wf6"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="Y14.5M" family="Y14.5M" pointSize="17"/>
                                 <state key="normal" title="RESTART"/>
                                 <connections>
                                     <action selector="restartGame:" destination="BV1-FR-VrT" eventType="touchUpInside" id="Kdl-1p-j15"/>
                                 </connections>
                             </button>
+                            <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="6Sn-Ch-wiN">
+                                <rect key="frame" x="64" y="286" width="193" height="72"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Θ: --" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MQV-Cf-PFY">
+                                        <rect key="frame" x="0.0" y="0.0" width="193" height="12"/>
+                                        <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="10"/>
+                                        <color key="textColor" red="0.0018759364309999999" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ɸ: --" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AcU-BV-dAF">
+                                        <rect key="frame" x="0.0" y="12" width="193" height="12"/>
+                                        <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="10"/>
+                                        <color key="textColor" red="0.0018759364309999999" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DISTANCE TO TARGET: ||          " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uyd-8R-ulf">
+                                        <rect key="frame" x="0.0" y="24" width="193" height="12"/>
+                                        <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="10"/>
+                                        <color key="textColor" red="0.0018759364309999999" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enemies In Sector:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WVN-hE-EnE">
+                                        <rect key="frame" x="0.0" y="36" width="193" height="12"/>
+                                        <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="10"/>
+                                        <color key="textColor" red="0.0018759364309999999" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shields: DOWN" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qxJ-iY-TUa">
+                                        <rect key="frame" x="0.0" y="48" width="193" height="12"/>
+                                        <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="10"/>
+                                        <color key="textColor" red="0.0018759364309999999" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Energy: 10000" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tVA-tc-gId">
+                                        <rect key="frame" x="0.0" y="60" width="193" height="12"/>
+                                        <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="10"/>
+                                        <color key="textColor" red="0.0018759364309999999" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="193" id="pN0-tE-2Fu"/>
+                                </constraints>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
@@ -518,16 +527,16 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</muta
                             <constraint firstItem="xsg-ZW-l5i" firstAttribute="leading" secondItem="TBr-jy-nsA" secondAttribute="leading" constant="64" id="26E-UC-OyX"/>
                             <constraint firstItem="Eo0-Hl-05V" firstAttribute="bottom" secondItem="PoQ-ji-oep" secondAttribute="bottom" constant="-27" id="2I9-LI-VOv"/>
                             <constraint firstAttribute="trailing" secondItem="hyH-e8-gbB" secondAttribute="trailing" constant="51" id="4Sb-yp-rTG"/>
-                            <constraint firstItem="qxJ-iY-TUa" firstAttribute="leading" secondItem="wgh-g3-0pN" secondAttribute="leading" id="5se-fo-LLT"/>
                             <constraint firstItem="wgh-g3-0pN" firstAttribute="leading" secondItem="TBr-jy-nsA" secondAttribute="leading" constant="64" id="8F6-e8-iuX"/>
                             <constraint firstItem="xsg-ZW-l5i" firstAttribute="top" secondItem="cOD-NV-RaV" secondAttribute="bottom" constant="20" id="B76-Pv-haW"/>
                             <constraint firstItem="hyH-e8-gbB" firstAttribute="top" secondItem="cOD-NV-RaV" secondAttribute="bottom" constant="20" id="Dg8-wn-kaV"/>
+                            <constraint firstItem="6Sn-Ch-wiN" firstAttribute="leading" secondItem="TBr-jy-nsA" secondAttribute="leadingMargin" id="NGm-pv-gDV"/>
                             <constraint firstItem="0dF-9a-5mU" firstAttribute="leading" secondItem="TBr-jy-nsA" secondAttribute="leading" constant="22" id="Ove-Dh-qny"/>
+                            <constraint firstItem="3zc-Ha-CFT" firstAttribute="top" secondItem="cOD-NV-RaV" secondAttribute="bottom" constant="240" id="PHi-OC-A6H"/>
                             <constraint firstItem="50S-aJ-rH1" firstAttribute="centerY" secondItem="TBr-jy-nsA" secondAttribute="centerY" id="PfF-G3-6Ks"/>
                             <constraint firstItem="z62-zF-Ty3" firstAttribute="top" secondItem="cOD-NV-RaV" secondAttribute="bottom" constant="40" id="Sxk-rX-fr1"/>
                             <constraint firstAttribute="trailing" secondItem="50S-aJ-rH1" secondAttribute="trailing" id="ULq-uf-Wj4"/>
                             <constraint firstItem="z62-zF-Ty3" firstAttribute="leading" secondItem="TBr-jy-nsA" secondAttribute="leading" constant="40" id="Ued-56-Yeb"/>
-                            <constraint firstItem="wgh-g3-0pN" firstAttribute="top" secondItem="qxJ-iY-TUa" secondAttribute="bottom" constant="41.333333333333314" id="VG4-Vn-edC"/>
                             <constraint firstItem="50S-aJ-rH1" firstAttribute="leading" secondItem="TBr-jy-nsA" secondAttribute="leading" id="adm-3z-SWI"/>
                             <constraint firstItem="Eo0-Hl-05V" firstAttribute="top" secondItem="hyH-e8-gbB" secondAttribute="top" constant="27" id="beI-lt-hQO"/>
                             <constraint firstItem="50S-aJ-rH1" firstAttribute="width" secondItem="TBr-jy-nsA" secondAttribute="width" id="cM3-8m-BBm"/>
@@ -536,10 +545,11 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</muta
                             <constraint firstAttribute="trailing" secondItem="PFE-MW-5wO" secondAttribute="trailing" constant="51" id="i3E-3N-bzg"/>
                             <constraint firstItem="L0B-TD-jaq" firstAttribute="top" secondItem="0dF-9a-5mU" secondAttribute="bottom" constant="25" id="ih6-nN-6Zq"/>
                             <constraint firstItem="wgh-g3-0pN" firstAttribute="centerY" secondItem="PoQ-ji-oep" secondAttribute="centerY" id="kup-NC-yBf"/>
-                            <constraint firstItem="Eo0-Hl-05V" firstAttribute="leading" secondItem="TBr-jy-nsA" secondAttribute="leading" constant="662" id="stn-0U-MgC"/>
                             <constraint firstItem="7jm-zG-a79" firstAttribute="height" secondItem="TBr-jy-nsA" secondAttribute="height" id="ugU-si-2gj"/>
+                            <constraint firstItem="3zc-Ha-CFT" firstAttribute="centerX" secondItem="TBr-jy-nsA" secondAttribute="centerX" id="vz8-ED-RvL"/>
                             <constraint firstItem="0dF-9a-5mU" firstAttribute="top" secondItem="cOD-NV-RaV" secondAttribute="bottom" constant="90" id="w6v-sK-KWu"/>
                             <constraint firstItem="50S-aJ-rH1" firstAttribute="top" secondItem="cOD-NV-RaV" secondAttribute="bottom" constant="47" id="wU1-9F-Dkn"/>
+                            <constraint firstItem="wgh-g3-0pN" firstAttribute="top" secondItem="6Sn-Ch-wiN" secondAttribute="bottom" constant="8.5" id="xLd-3S-8KW"/>
                             <constraint firstAttribute="bottom" secondItem="PFE-MW-5wO" secondAttribute="bottom" constant="8" id="xa0-FX-Sz7"/>
                             <constraint firstItem="7jm-zG-a79" firstAttribute="width" secondItem="TBr-jy-nsA" secondAttribute="width" id="xhd-ur-JxB"/>
                             <constraint firstAttribute="trailing" secondItem="Eo0-Hl-05V" secondAttribute="trailing" id="ze3-jA-KT9"/>
@@ -575,7 +585,7 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</muta
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
                 <swipeGestureRecognizer cancelsTouchesInView="NO" direction="right" id="yq0-gJ-5OF"/>
             </objects>
-            <point key="canvasLocation" x="-600" y="157.59999999999999"/>
+            <point key="canvasLocation" x="-600" y="157.5"/>
         </scene>
     </scenes>
     <resources>

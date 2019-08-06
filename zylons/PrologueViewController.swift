@@ -25,6 +25,7 @@ class PrologueViewController: UIViewController, AVAudioPlayerDelegate, UIViewCon
 
     }
     // MARK: - Vars
+    
     var prologueViewed = false
     var onPrologue = true
     let writeInterval = 0.037

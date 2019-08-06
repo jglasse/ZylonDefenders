@@ -23,6 +23,7 @@ struct GalaxyMapModel {
 
     }
      init(difficulty: Int) {
+        print("creating map with difficulty \(difficulty)")
         var numberofOccupiedSectors = 0
         var maxShipsPerSector = 0
         var numberofStations = 0
@@ -48,6 +49,12 @@ struct GalaxyMapModel {
             numberofOccupiedSectors = 25
             maxShipsPerSector = 5
             numberofStations = 4
+            
+        case 5:
+            numberofOccupiedSectors = 40
+            maxShipsPerSector = 7
+            numberofStations = 3
+            
 
         default:
             numberofOccupiedSectors = 30

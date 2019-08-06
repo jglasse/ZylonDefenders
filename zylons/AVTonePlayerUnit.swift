@@ -62,7 +62,6 @@ class AVTonePlayerUnit: AVAudioPlayerNode {
 
     func preparePlaying() {
         print("preparePlaying")
-
         scheduleBuffer()
         scheduleBuffer()
         scheduleBuffer()

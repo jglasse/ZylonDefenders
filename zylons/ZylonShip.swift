@@ -101,16 +101,18 @@ class ZylonShip: SectorObject {
 
 	var range = [Float]()
 
-    func updateShipClock() {
+    func updateShipSystems(difficulty: Int) {
         self.shipClock += 1
-
-        if self.shipClock % 60 == 0 {
-        if self.energyStore>1 {
+        var energyDrainRate = self.shieldsAreUp ? Int(20/difficulty - currentSpeed/3): Int(60/difficulty - currentSpeed/3)
+        if energyDrainRate < 1 { energyDrainRate = 1}
+        if self.shipClock % energyDrainRate == 0 {
+        if self.energyStore>0 {
             self.energyStore -= 1
         }
-
+        else {
+            self.energyStore = 0
+            }
         }
-
     }
 
     func drainEnergyStore() {

@@ -21,7 +21,24 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     var myMCController = MCController.sharedInstance
 
     // MARK: - GameState
+    var gameSettings = getSettings()
     var gameOver = false
+    var difficultyScalar: Int {
+        switch gameSettings.difficulty {
+        case .Novice:
+            return 1
+        case .Pilot:
+            return 2
+        case .Commander:
+            return 3
+        case .Warrior:
+            return 4
+        case .Lord:
+            return 5
+        }
+        
+    }
+    // make gamestate a single codable object
 
     // MARK: - Mfi Game Controller vars
     var mainController: GCController?
@@ -35,7 +52,6 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     // MARK: - Scenes, Views and Nodes
     var mainGameScene = SCNScene()
     var scnView: SCNView!
-    //var galacticView = SCNView.init()
     let sectorObjectsNode = SCNNode()
     let galacticDisplay = GalacticMapDisplay()
     let zylonStation = ZylonStation() // preload station
@@ -70,7 +86,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     var currentExplosionParticleSystem: SCNParticleSystem?
     var starSprites = [SCNNode]() // array of stars to make updating them each frame easy
     var attractMode = true
-    var galaxyModel = GalaxyMapModel(difficulty: 1)
+    var galaxyModel: GalaxyMapModel!  // <--- Stupid swift /Objective C lifecycle stuff. Defined at viewWillDisplay
     var enemyShipsInSector = [HumonShip]()
     var enemyShipCountInSector: Int {
         return enemyShipsInSector.count
@@ -173,9 +189,11 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         }
 
         let currentSectorString = "\(self.ship.currentSectorNumber+1)"
-        print("currentSectorString:  \(currentSectorString)")
         let presentGrid = galacticDisplay.map.rootNode.childNode(withName: currentSectorString, recursively: true)
         galacticDisplay.currentLocationIndicator.worldPosition = presentGrid!.worldPosition
+        self.shipSectorLabel.text = "Ship Sector: \(self.shipSector.quadrant) \(self.shipSector.quadrantNumber)"
+        self.targetSectorLabel.text = "Target Sector: \(self.targetSector.quadrant) \(self.targetSector.quadrantNumber)"
+
 
     }
     @IBAction func toggleGalacticMap(_ sender: Any) {
@@ -190,9 +208,14 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     }
 
     @IBAction func toggleTacticalDisplay(_ sender: Any) {
+        if ship.isCurrentlyinWarp {
+            computerBeepSound("torpedo_fail")
+        }
+        else
+        {
         computerBeepSound("beep")
         ship.tacticalDisplayEngaged = !ship.tacticalDisplayEngaged
-
+        }
     }
 
     @IBAction func toggleView(_ sender: UIButton) {
@@ -234,7 +257,6 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         }
     }
     func envSound(_ soundString: String) {
-        print("envSound -  Soundstring: \(soundString)")
         if let soundURL = Bundle.main.url(forResource: soundString, withExtension: "m4a") { do {
             try beepsound =  AVAudioPlayer(contentsOf: soundURL)
         } catch {
@@ -254,8 +276,8 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     }
 
     func fireAftTorp() {
-        print("AFT Torpedo!")
         if numberOfZylonShotsOnscreen < Constants.maxTorpedoes-2 && !self.aButtonJustPressed {
+            ship.energyStore -= 5 * self.difficultyScalar
             let torpedoNode = Torpedo(designatedTorpType: .zylon)
             let photonSoundArray = [photonSound1, photonSound2, photonSound3, photonSound4]
             let currentplayer = photonSoundArray[currentPhoton]
@@ -275,6 +297,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     }
      func fireTorp() {
         if numberOfZylonShotsOnscreen < Constants.maxTorpedoes && !self.aButtonJustPressed {
+            ship.energyStore -= 5 * self.difficultyScalar
             let torpedoNode = Torpedo(designatedTorpType: .zylon)
             let photonSoundArray = [photonSound1, photonSound2, photonSound3, photonSound4]
             let currentplayer = photonSoundArray[currentPhoton]
@@ -332,8 +355,8 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     func spawnStarbase() {
         zylonStation.worldPosition = SCNVector3Make(0, 0, -150)
         zylonStation.scale = SCNVector3Make(0.1, 0.1, 0.1)
+        let panim = SCNAction.scale(to: 1.1, duration: 1.5)
         zylonStation.isHidden = false
-        let panim = SCNAction.scale(to: 1.2, duration: 0.5)
         let constraint = SCNLookAtConstraint(target: mainGameScene.rootNode)
         constraint.isGimbalLockEnabled = true
         zylonStation.constraints = [constraint]
@@ -341,9 +364,8 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 
         zylonStation.runAction(panim)
         print("starbase spawned at position")
-        print(zylonStation.position)
-        print("starbase spawned at world position")
         print(zylonStation.worldPosition)
+        
 
 
     }
@@ -352,7 +374,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         let constraint = SCNLookAtConstraint(target: mainGameScene.rootNode)
         constraint.isGimbalLockEnabled = true
         enemyDrone.constraints = [constraint]
-        enemyDrone.position = self.mainGameScene.rootNode.convertPosition((enemyDrone.worldPosition), to: self.sectorObjectsNode)
+        //enemyDrone.position = self.mainGameScene.rootNode.convertPosition((enemyDrone.worldPosition), to: self.sectorObjectsNode)
         self.sectorObjectsNode.addChildNode(enemyDrone)
     }
 
@@ -366,6 +388,12 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         if !ship.isCurrentlyinWarp && ship.targetSectorNumber != ship.currentSectorNumber {
             let tacticalWasEngaged = ship.tacticalDisplayEngaged
             ship.tacticalDisplayEngaged = false
+            
+            // preload starbase for starbase sectors
+            if galaxyModel.map[ship.targetSectorNumber].sectorType  == .starbase {
+                self.scnView.prepare(zylonStation, shouldAbortBlock: nil)
+            }
+            
             performWarp()
             let deadlineTime = DispatchTime.now() + .seconds(6)
             DispatchQueue.main.asyncAfter(deadline: deadlineTime) {
@@ -426,6 +454,8 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
             galacticSlider.minimumValue = 0
             galacticSlider.maximumValue = 31
             ship.targetSectorNumber = 16
+        self.targetSectorLabel.text = "Target Sector: \(self.targetSector.quadrant) \(self.targetSector.quadrantNumber)"
+
 
     }
     @IBAction func beta(_ sender: Any) {
@@ -441,6 +471,8 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         galacticSlider.minimumValue = 32
         galacticSlider.maximumValue = 63
         ship.targetSectorNumber = 48
+        self.targetSectorLabel.text = "Target Sector: \(self.targetSector.quadrant) \(self.targetSector.quadrantNumber)"
+
     }
     @IBAction func gamma(_ sender: Any) {
         computerBeepSound("beep")
@@ -470,6 +502,8 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         galacticSlider.minimumValue = 96
         galacticSlider.maximumValue = 127
         ship.targetSectorNumber = 112
+        self.targetSectorLabel.text = "Target Sector: \(self.targetSector.quadrant) \(self.targetSector.quadrantNumber)"
+
 
     }
 
@@ -481,14 +515,15 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         betaQuadrant.opacity = 1.0
         gammaQuadrant.opacity = 1.0
         deltaQuadrant.opacity = 1.0
-
         galacticSlider.minimumValue = 0
-        galacticSlider.maximumValue = 1
+        galacticSlider.maximumValue = 127
+
     }
 
     // MARK: - SETUP
 
     override func viewWillAppear(_ animated: Bool) {
+        self.galaxyModel = GalaxyMapModel(difficulty: difficultyScalar)
         self.galacticSlider.isHidden = true
         self.restartButton.isHidden = true
     }
@@ -759,7 +794,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         // if no shields, special explosion for zylonShipHit
 
         if !ship.shieldsAreUp {
-            boomAndLose(atNode: node)
+            boomAndLose(atNode: node, cause: "by Humon Fire")
             return
         }
 
@@ -768,9 +803,8 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         }
 
         if ship.shieldsAreUp && ship.shieldStrength>0 {
-            print("ship.shieldsAreUp && ship.shieldStrength>0")
+            ship.energyStore -= 50
             self.environmentSound("forcefieldHit")
-            print("self.environmentSound(forcefieldHit) played")
 
             //let overlayPos = self.overlayPos(node: node) // screen coordinates of hit in UIVIew
 
@@ -797,7 +831,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
             if ship.shieldStrength>0 {
             print("SHIELDS HAVE HELD! Current Shield Strenth: \(ship.shieldStrength)")
             } else {
-                self.shipHud.activateAlert(message: "SHIELDS FAILURE!")
+                self.shipHud.activateAlert(message: "SHIELD FAILURE!")
             }
 
         } else {
@@ -829,27 +863,29 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 
     }
 
-    func boomAndLose(atNode: SCNNode) {
+    func boomAndLose(atNode: SCNNode, cause: String) {
         print("Game Over!")
         finalExplosionSound()
         gameOver = true
         shipHud.flash()
         engineSound.stop()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            self.endGame()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            self.endGame(cause)
         }
 
     }
-    func endGame() {
+    
+    func endGame(_ cause: String) {
+        self.gameOverView.setupTelemetryAudioPlayer()
         delayWithSeconds(1, completion: {
             self.gameOverView.text = ""
             self.gameOverView.isHidden = false
             let message = """
-            Zylon Command to all sectors. Prototype defense ship destroyed by Humon fire.
+            Zylon Command to all sectors. Prototype defense ship destroyed \(cause)
 
             Postumous Rank: [FILL IN SCORE HERE]
             """
-            self.gameOverView.writeMessage(message: message, speed: 0.06)
+            self.gameOverView.writeMessage(message: message, speed: 0.05)
 
         })
         
@@ -926,6 +962,8 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 
     }
     func performWarp() {
+        let energyUsed = abs(ship.currentSectorNumber - ship.targetSectorNumber) * self.difficultyScalar
+        ship.energyStore -= energyUsed
         ship.isCurrentlyinWarp = true
         if ship.tacticalDisplayEngaged {
             toggleTacticalDisplay(self)
@@ -1069,9 +1107,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
             self.shipEnergyDisplay.text = "Energy: \(self.ship.energyStore)"
 
             self.enemiesInSectorDisplay.text = "Enemies In Sector: \(self.enemyShipCountInSector)"
-            self.shipSectorLabel.text = "Ship Sector: \(self.shipSector.quadrant) \(self.shipSector.quadrantNumber)"
-            self.targetSectorLabel.text = "Target Sector: \(self.targetSector.quadrant) \(self.targetSector.quadrantNumber)"
-
+ 
             if self.enemyShipCountInSector > 0 {
                 let drone = self.enemyShipsInSector[0]
                 self.targetDistanceDisplay.text = "DISTANCE TO TARGET - \(distanceBetweenPoints(first: drone.position, second: self.forwardCameraNode.position))"
@@ -1235,6 +1271,10 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     }
 
     func updateGalacticMap() {
+        
+        self.shipSectorLabel.text = "Ship Sector: \(self.shipSector.quadrant) \(self.shipSector.quadrantNumber)"
+        self.targetSectorLabel.text = "Target Sector: \(self.targetSector.quadrant) \(self.targetSector.quadrantNumber)"
+
         for i in 1...128 {
             let sectorString = "\(i)"
             let currentGrid = galacticDisplay.map.rootNode.childNode(withName: sectorString, recursively: true)
@@ -1279,8 +1319,11 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     }
     func renderer(_ renderer: SCNSceneRenderer, didRenderScene scene: SCNScene, atTime time: TimeInterval) {
         if !gameOver {
+            if ship.energyStore <= 0{
+                boomAndLose(atNode: ship, cause: "GridWarp core containment failure")
+            }
         turnShip()
-        ship.updateShipClock()
+        ship.updateShipSystems(difficulty: difficultyScalar)
         zylonScanner.eulerAngles = sectorObjectsNode.eulerAngles
         if self.shipSector.sectorType == .enemy {
         zylonScanner.updateScanner(with: self.enemyShipsInSector)
@@ -1298,7 +1341,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 
         case .aftView:
             DispatchQueue.main.async {
-                self.sectorStack.isHidden = !self.ship.tacticalDisplayEngaged
+                self.sectorStack.isHidden = true
                 self.zylonScanner.isHidden = !self.ship.tacticalDisplayEngaged
                 self.tacticalDisplay.isHidden = !self.ship.tacticalDisplayEngaged
                 self.speedStack.isHidden = false
@@ -1314,7 +1357,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
             }
         case .foreView:
             DispatchQueue.main.async {
-                self.sectorStack.isHidden = !self.ship.tacticalDisplayEngaged
+                self.sectorStack.isHidden = true
                 self.zylonScanner.isHidden = !self.ship.tacticalDisplayEngaged
                 self.tacticalDisplay.isHidden = !self.ship.tacticalDisplayEngaged
                 self.speedStack.isHidden = false
@@ -1326,7 +1369,6 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
                 self.commandStack.isHidden = false
                 self.spaceScnView.pointOfView = self.forwardCameraNode
                 self.shipHud.foreView()
-
             }
         case .galacticMap:
                 DispatchQueue.main.async {
@@ -1339,6 +1381,8 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
                     self.scnView.isHidden = true
                     self.galacticStack.isHidden = false
                     self.speedStack.isHidden = true
+                    self.mapScnView.allowsCameraControl = true
+
             }
         }
         } else { // Game over. hide all displays

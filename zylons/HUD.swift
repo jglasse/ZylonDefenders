@@ -156,6 +156,7 @@ class HUD: SKScene {
         self.shields.alpha = 0.25
         let flashSequence = SKAction.sequence([flashWhite, wait1, flashClear, wait2, flashWhite, wait3, flashClear, wait2, flashWhite, wait2, flashClear, wait3, flashWhite, wait1, flashClear])
         self.shields.run(flashSequence)
+        self.alertTimer?.invalidate()
 
     }
 

@@ -60,6 +60,7 @@ class mainMenuViewController: UIViewController, AVAudioPlayerDelegate {
         creditsView.text = "Difficulty: \(settings.difficulty.rawValue)"
         creditsView.quickFadeInandOut()
         save(settings: settings)
+        print("saved settings: \(settings)")
 
     }
     @IBAction func togglePrologue(_ sender: UIButton) {

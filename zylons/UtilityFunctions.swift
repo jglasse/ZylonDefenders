@@ -34,6 +34,7 @@ func getSettings() -> GameSettings {
     var gameSettings: GameSettings
     let prologueBool = defaults.bool(forKey: "prologueViewed")
     let difficultyLevelString = defaults.string(forKey: "difficulty") ?? "Novice"
+    print("getSettings difficultyLevelString = \(difficultyLevelString)")
     let difficultyLevel = Difficulty(rawValue: difficultyLevelString) ?? .Novice
     gameSettings = GameSettings(prologueEnabled: prologueBool, difficulty: difficultyLevel)
     return gameSettings
@@ -41,9 +42,10 @@ func getSettings() -> GameSettings {
 
 func save(settings: GameSettings) {
     let defaults = UserDefaults.standard
+    let difficultyString = settings.difficulty.rawValue
     print("saving follwoing settings : \(settings.prologueEnabled)")
-
     defaults.set(settings.prologueEnabled, forKey: "prologueViewed")
+    defaults.set(difficultyString, forKey: "difficulty")
 }
 
 extension ZylonGameViewController {
