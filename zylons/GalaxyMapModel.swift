@@ -9,7 +9,7 @@
 import Foundation
 
 struct GalaxyMapModel {
-    var map =  [Sector]()
+    var map =  [SectorGrid]()
     var kh = Kohai()
 
     mutating func decrementEnemyCount(sector: Int) {
@@ -65,7 +65,7 @@ struct GalaxyMapModel {
 
         // first, add an empty map with 128 sectors
         for x in 1...128 {
-            let currentSector = Sector(number: x, numberOfSectorObjects: 0, sectorType: .empty)
+            let currentSector = SectorGrid(number: x, numberOfSectorObjects: 0, sectorType: .empty)
             self.map.append(currentSector)
         }
         //then randomly add space Stations to the appropriate number of sectors

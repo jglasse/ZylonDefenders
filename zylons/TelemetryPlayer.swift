@@ -55,7 +55,7 @@ class TelemetryPlayer: UITextView, AVAudioPlayerDelegate {
     @objc func blinkCursor() {
         switch cursorIsVisitble {
         case true:
-            self.text.removeLast()
+            if self.text.count>0 {self.text.removeLast()}
             cursorIsVisitble = false
         case false:
             self.text.append(Character("_"))

@@ -20,7 +20,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     // MARK: - Multipeer
     var myMCController = MCController.sharedInstance
 
-    // MARK: - GameState
+    // MARK: - Game Settings
     var gameSettings = getSettings()
     var gameOver = false
     var difficultyScalar: Int {
@@ -37,6 +37,12 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
             return 5
         }
         
+    }
+    
+    // MARK: - Generic iOS
+
+    override var prefersStatusBarHidden: Bool {
+        return true
     }
     // make gamestate a single codable object
 
@@ -93,10 +99,10 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     }
 
     var ship = ZylonShip()
-    var shipSector: Sector {
+    var shipSector: SectorGrid {
         return self.galaxyModel.map[ship.currentSectorNumber]
     }
-    var targetSector: Sector {
+    var targetSector: SectorGrid {
         return self.galaxyModel.map[ship.targetSectorNumber]
     }
 
@@ -160,7 +166,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     @IBOutlet weak var targetSectorLabel: UILabel!
     @IBOutlet weak var sliderContainerView: UIView!
 
-    @IBOutlet weak var gameOverView: TelemetryPlayer!
+    @IBOutlet weak var telemetryView: TelemetryPlayer!
 
 //    func NewOverlayPos(node: SCNNode) -> CGPoint {
 //        
@@ -336,15 +342,22 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         case .starbase:
             ship.currentSpeed = 0
             self.spawnStarbase()
-            gameOverView.text = ""
-            gameOverView.isHidden = false
-            gameOverView.alpha = 1.0
-            delayWithSeconds(2, completion: {self.gameOverView.writeMessage(message: "Standby for repairs")})
+            telemetryView.text = ""
+            telemetryView.isHidden = false
+            telemetryView.alpha = 1.0
+            delayWithSeconds(2, completion: {self.telemetryView.writeMessage(message: "Standby for repairs")})
             delayWithSeconds(6, completion: {
                 self.ship.repair()
-                self.kohai.computerBeepSound("sectorCleared")
-                self.gameOverView.writeMessage(message: "Repairs completed")
-                delayWithSeconds(2, completion: {self.gameOverView.fadeout()})
+                if self.galaxyModel.map[self.ship.currentSectorNumber].sectorType == .empty {
+                    self.kohai.computerBeepSound("alert")
+                    self.telemetryView.writeMessage(message: "Repairs aborted")
+                }
+                else
+                {
+                self.kohai.computerBeepSound("refuelComplete")
+                self.telemetryView.writeMessage(message: "Repairs completed")
+                }
+                delayWithSeconds(2, completion: {self.telemetryView.fadeout()})
             })
 
         case .enemy:
@@ -362,29 +375,35 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         computerBeepSound("enemyAlert")
     }
     func spawnStarbase() {
-        zylonStation.worldPosition = SCNVector3Make(0, 0, -150)
+        zylonStation.worldPosition = SCNVector3Make(0, 0, -50)
         zylonStation.scale = SCNVector3Make(0.1, 0.1, 0.1)
-        let panim = SCNAction.scale(to: 1.1, duration: 1.5)
         zylonStation.isHidden = false
         let constraint = SCNLookAtConstraint(target: mainGameScene.rootNode)
         constraint.isGimbalLockEnabled = true
         zylonStation.constraints = [constraint]
        // zylonStation.position = self.mainGameScene.rootNode.convertPosition((zylonStation.worldPosition), to: self.sectorObjectsNode)
-
-        zylonStation.runAction(panim)
+        flyIn(node: zylonStation, toScale: 0.5)
         print("starbase spawned at position")
         print(zylonStation.worldPosition)
         
 
 
     }
+    
+    func flyIn(node: SectorObject, toScale: Float){
+        let panim = SCNAction.scale(to: CGFloat(toScale), duration: 1.5)
+        node.runAction(panim)
+    }
     func spawnEnemy() {
         let enemyDrone = HumonShip()
+        enemyDrone.scale = SCNVector3Make(0.1, 0.1, 0.1)
+
         let constraint = SCNLookAtConstraint(target: mainGameScene.rootNode)
         constraint.isGimbalLockEnabled = true
         enemyDrone.constraints = [constraint]
-        //enemyDrone.position = self.mainGameScene.rootNode.convertPosition((enemyDrone.worldPosition), to: self.sectorObjectsNode)
+        enemyDrone.position = self.mainGameScene.rootNode.convertPosition((enemyDrone.worldPosition), to: self.sectorObjectsNode)
         self.sectorObjectsNode.addChildNode(enemyDrone)
+        flyIn(node: enemyDrone, toScale: 1.0)
     }
 
     func spawnEnemies(number: Int) {
@@ -535,8 +554,10 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         self.galaxyModel = GalaxyMapModel(difficulty: difficultyScalar)
         self.galacticSlider.isHidden = true
         self.restartButton.isHidden = true
+        self.view.alpha = 0
     }
     override func viewDidAppear(_ animated: Bool) {
+        UIView.animate(withDuration: 1.0, animations: {self.view.alpha = 1})
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -852,6 +873,32 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         }
     }
 
+    
+    func stationBoom(atNode: SCNNode) {
+        print("stationBoom!")
+            
+        for _ in 1...8
+        {
+            let randomX = randRange(lower: -10, upper: 15)
+            let randomY = randRange(lower: -10, upper: 10)
+            let randomZ = randRange(lower: -10, upper: 10)
+            let newPOS = SCNVector3(x: atNode.presentation.position.x + randomX, y: atNode.presentation.position.y + randomY, z: atNode.presentation.position.z + randomZ)
+            let explosionNode = StationExplosion()
+            explosionNode.position = atNode.presentation.position
+            self.sectorObjectsNode.addChildNode(explosionNode)
+        DispatchQueue.main.async {
+            let explosionNode = StationExplosion()
+            explosionNode.worldPosition = newPOS
+            self.sectorObjectsNode.addChildNode(explosionNode)
+            self.explosionSound()
+        }
+            galaxyModel.decrementEnemyCount(sector: ship.currentSectorNumber)
+
+        }
+        
+        delayWithSeconds(1.7, completion: {self.kohai.speak("badIdea")})
+
+    }
     func boom(atNode: SCNNode) {
         print("BOOM!")
         DispatchQueue.main.async {
@@ -886,16 +933,16 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     }
     
     func endGame(_ cause: String) {
-        self.gameOverView.setupTelemetryAudioPlayer()
+        self.telemetryView.setupTelemetryAudioPlayer()
         delayWithSeconds(1, completion: {
-            self.gameOverView.text = ""
-            self.gameOverView.isHidden = false
+            self.telemetryView.text = ""
+            self.telemetryView.isHidden = false
             let message = """
             Zylon Command to all sectors. Prototype defense ship destroyed \(cause)
 
             Postumous Rank: [FILL IN SCORE HERE]
             """
-            self.gameOverView.writeMessage(message: message, speed: 0.05)
+            self.telemetryView.writeMessage(message: message, speed: 0.05)
 
         })
         
@@ -1069,25 +1116,6 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         computerVoice.play()
     }
 
-//    func enterRandomSector() {
-//        var audioItems: [AVPlayerItem] = []
-//        let soundURL = Bundle.main.url(forResource: "entering_sector", withExtension: "m4a")
-//        let sector = AVPlayerItem(url: soundURL!)
-//        audioItems.append(sector)
-//
-//        print("Entering sector:", terminator: "")
-//        for i in 1...4 {
-//            let randomIndex = Int(arc4random_uniform(UInt32(numberstrings.count)))
-//            let numString = numberstrings[randomIndex]
-//            if i < 4 {print(numString + "-", terminator: "")} else {print(numString)}
-//            let soundURL = Bundle.main.url(forResource: numString, withExtension: "m4a")
-//            let item = AVPlayerItem(url: soundURL!)
-//            audioItems.append(item)
-//        }
-//        computerVoice = AVQueuePlayer(items: audioItems)
-//        computerVoice.volume = 1
-//        computerVoice.play()
-//    }
 
     func updateTactical() {
         if ship.tacticalDisplayEngaged && !ship.isCurrentlyinWarp {
@@ -1233,7 +1261,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
                 enemyShipsInSector.append(thisHumonShip)
                 let thisShip = thisNode as! HumonShip
                 var actualShipPosition = mainGameScene.rootNode.convertPosition(thisNode.position, from: sectorObjectsNode)
-                actualShipPosition.z += Float(ship.currentSpeed)/10
+                actualShipPosition.z += Float(ship.currentSpeed)/5
                 thisShip.position = sectorObjectsNode.convertPosition(actualShipPosition, from: mainGameScene.rootNode)
 
                 thisHumonShip.maneuver()
@@ -1263,24 +1291,37 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         print("nodeB: \(String(describing: contact.nodeB.name!))")
         print("shield status at time of contact: \(ship.shieldsAreUp)")
 
-        if (contact.nodeA.name == "zylonHull") {
+        if contact.nodeA.name == "zylonHull" {
             zylonShipHitBy(node: contact.nodeB)
             self.markSectorObjectToBeRemoved(object: contact.nodeB)
-
             return
-        } else {
-        if (contact.nodeB.name == "zylonHull") {
-            zylonShipHitBy(node: contact.nodeA)
-            self.markSectorObjectToBeRemoved(object: contact.nodeA)
-
-            return
-        } else {
+            } else {
+            if (contact.nodeB.name == "zylonHull")  {
+                    zylonShipHitBy(node: contact.nodeA)
+                    self.markSectorObjectToBeRemoved(object: contact.nodeA)
+                    return
+            } else {
+            if  contact.nodeB.name == "zylonStation" {
+                        stationBoom(atNode: contact.nodeB)
+                        self.markSectorObjectToBeRemoved(object: contact.nodeA)
+                        contact.nodeB.isHidden = true
+                    }
+            else  { if contact.nodeA.name == "zylonStation"
+            {
+                stationBoom(atNode: contact.nodeB)
+                self.markSectorObjectToBeRemoved(object: contact.nodeB)
+                contact.nodeA.isHidden = true
+            }
+                else  {
         DispatchQueue.main.async {
             self.humonShipHit(nodeA: contact.nodeA, nodeB: contact.nodeB)
             self.markSectorObjectToBeRemoved(object: contact.nodeA)
             self.markSectorObjectToBeRemoved(object: contact.nodeB)
             }
+            }
+    
         }
+            }
         }
     }
 
@@ -1417,13 +1458,14 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     }
 
     // MARK: - Generic iOS Setup
-
+    
+    override var prefersHomeIndicatorAutoHidden: Bool {
+        return true
+    }
     override var shouldAutorotate: Bool {
         return false
     }
 
-    override var prefersStatusBarHidden: Bool {
-        return true
-    }
+   
 
 }

@@ -32,7 +32,7 @@ class Kohai {
         if let soundURL = Bundle.main.url(forResource: soundString, withExtension: "m4a") { do {
             try voice =  AVAudioPlayer(contentsOf: soundURL)
         } catch {
-            print("beepsound failed")
+            print("Kohai speak failed")
             }
             voice.volume = 0.5
             voice.play()

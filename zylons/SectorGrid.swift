@@ -8,20 +8,20 @@
 
 import Foundation
 
-enum SectorType {
+enum SectorGridType {
     case enemy
     case starbase
     case empty
 }
 
-struct Sector {
+struct SectorGrid {
     var number = 0
     var numberString: String {
         return String(number)
     }
 
     var numberOfSectorObjects =  0
-    var sectorType = SectorType.empty
+    var sectorType = SectorGridType.empty
     var quadrant: KnownQuadrants {
         switch number {
         case 1...32:

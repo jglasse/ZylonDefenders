@@ -33,6 +33,11 @@ class mainMenuViewController: UIViewController, AVAudioPlayerDelegate {
     let credits = ["based on STAR RAIDERS by Doug Neubauer", "Music by Neon Insect", "Special thanks to Lorenz Wiest", "Programmed and designed by Jeff Glasse", "With many thanks to Aimee for her infinite patience", "Copyright 2019 Nine Industries. All Rights Reserved."]
     var creditTimer: Timer?
 
+    override var prefersHomeIndicatorAutoHidden: Bool {
+        return true
+    }
+    
+    
     // MARK: - IBOutlets
     @IBOutlet weak var prologueToggleSwitch: UIButton!
     @IBOutlet weak var mapScnView: SCNView!
@@ -89,11 +94,15 @@ class mainMenuViewController: UIViewController, AVAudioPlayerDelegate {
             vc = sb.instantiateViewController(withIdentifier: "gameView")
 
         }
+        
         UIView.animate(withDuration: 1.0, animations: {
             self.view.alpha = 0.0
+        }, completion: { finished in
+            self.present(vc, animated: false, completion: nil)
         })
-        vc.modalTransitionStyle = .crossDissolve
-        self.present(vc, animated: true, completion: nil)
+        
+        
+        
     }
 
     @IBAction func displayTutorial(_ sender: Any) {

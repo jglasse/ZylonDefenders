@@ -15,6 +15,11 @@ import GameController
 // MARK: - Utility Functions
 // These are globally available, and should be unit tested
 
+
+
+
+
+
 func distanceFromZylonShip(x: Float, y: Float, z: Float) -> Float {
     let distance = sqrt(x*x + y*y + z*z)
     return distance

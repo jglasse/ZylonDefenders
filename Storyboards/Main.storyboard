@@ -560,7 +560,6 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</stri
                         <outlet property="currentSpeedDisplay" destination="UfY-Ip-g2Z" id="rA9-h2-Alq"/>
                         <outlet property="enemiesInSectorDisplay" destination="WVN-hE-EnE" id="wft-GI-LFO"/>
                         <outlet property="galacticStack" destination="hyH-e8-gbB" id="7Q2-6n-LWi"/>
-                        <outlet property="gameOverView" destination="P5c-OT-ydd" id="IEU-fC-IRf"/>
                         <outlet property="joystickControl" destination="z62-zF-Ty3" id="Nhc-qM-bbn"/>
                         <outlet property="mainView" destination="TBr-jy-nsA" id="xqd-hI-mDE"/>
                         <outlet property="mapButton" destination="PFE-MW-5wO" id="8xq-5E-pU6"/>
@@ -578,6 +577,7 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</stri
                         <outlet property="tacticalDisplay" destination="6Sn-Ch-wiN" id="DBg-qg-QpQ"/>
                         <outlet property="targetDistanceDisplay" destination="uyd-8R-ulf" id="eMt-pP-PIG"/>
                         <outlet property="targetSectorLabel" destination="YQK-T0-L4Q" id="PaY-fh-lBd"/>
+                        <outlet property="telemetryView" destination="P5c-OT-ydd" id="IEU-fC-IRf"/>
                         <outlet property="thetaDisplay" destination="MQV-Cf-PFY" id="TZY-Ll-wjW"/>
                         <outlet property="viewButton" destination="2sP-pn-M7j" id="JVW-mq-nch"/>
                     </connections>

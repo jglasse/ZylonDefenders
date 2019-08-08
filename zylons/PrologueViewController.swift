@@ -26,6 +26,9 @@ class PrologueViewController: UIViewController, AVAudioPlayerDelegate, UIViewCon
     }
     // MARK: - Vars
     
+    override var prefersHomeIndicatorAutoHidden: Bool {
+        return true
+    }
     var prologueViewed = false
     var onPrologue = true
     let writeInterval = 0.037
@@ -211,20 +214,21 @@ let message5 = "[TRANSMISSION TERMINATED 40AFFE]"
         UIView.animate(withDuration: 2, animations: {
             self.transmissionView.alpha = 0.0
         })
-        UIView.animate(withDuration: 4, animations: {
+        UIView.animate(withDuration: 3, animations: {
             self.starFieldBG.alpha = 0.0
+            self.progressButton.alpha = 0
         })
-        delayWithSeconds(2.85, completion: {
+        delayWithSeconds(2.55, completion: {
             self.musicAudioPlayer?.setVolume(0, fadeDuration: 0.3)
             self.telemetrySoundPlayer?.stop()
             self.musicAudioPlayer?.setVolume(0, fadeDuration: 2.0)
         })
-        delayWithSeconds(4, completion: {
+        delayWithSeconds(3.5, completion: {
             let sb = UIStoryboard(name: "Main", bundle: nil)
             let vc = sb.instantiateViewController(withIdentifier: "gameView")
-            vc.modalTransitionStyle = .crossDissolve
-            self.present(vc, animated: true, completion: nil)
+            self.present(vc, animated: false, completion: nil)
         })
     }
 
+ 
 }
