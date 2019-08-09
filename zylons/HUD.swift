@@ -196,6 +196,11 @@ class HUD: SKScene {
         }
     }
 
+    func deactivateAlert(){
+        self.computerStatus.text = ""
+        self.alertTimer?.invalidate()
+        
+    }
     func activateAlert(message: String) {
         DispatchQueue.main.async {
             self.computerStatus.text = message

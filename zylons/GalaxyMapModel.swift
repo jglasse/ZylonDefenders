@@ -14,11 +14,11 @@ struct GalaxyMapModel {
 
     mutating func decrementEnemyCount(sector: Int) {
         print("decrementing enemy count from \(self.map[sector].numberOfSectorObjects)")
+        print("current sector Type: \(self.map[sector].sectorType)")
         self.map[sector].numberOfSectorObjects -= 1
         if  self.map[sector].numberOfSectorObjects == 0 {
             self.map[sector].sectorType = .empty
             kh.computerBeepSound("enemyAlert")
-
         }
 
     }

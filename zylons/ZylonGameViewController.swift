@@ -345,9 +345,15 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
             telemetryView.text = ""
             telemetryView.isHidden = false
             telemetryView.alpha = 1.0
-            delayWithSeconds(2, completion: {self.telemetryView.writeMessage(message: "Standby for repairs")})
-            delayWithSeconds(6, completion: {
+            delayWithSeconds(2.75, completion: {self.telemetryView.writeMessage(message: "Standby for repairs")})
+            
+            // TODO: replace with beam animation
+            if !self.gameOver && self.shipSector.numberOfSectorObjects > 0 {
+            delayWithSeconds(8, completion: {
+                if !self.gameOver
+                {
                 self.ship.repair()
+                self.shipHud.deactivateAlert()
                 if self.galaxyModel.map[self.ship.currentSectorNumber].sectorType == .empty {
                     self.kohai.computerBeepSound("alert")
                     self.telemetryView.writeMessage(message: "Repairs aborted")
@@ -357,8 +363,18 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
                 self.kohai.computerBeepSound("refuelComplete")
                 self.telemetryView.writeMessage(message: "Repairs completed")
                 }
-                delayWithSeconds(2, completion: {self.telemetryView.fadeout()})
+                delayWithSeconds(4, completion: {self.telemetryView.fadeout()})
+                }
+                else
+                {
+                    self.telemetryView.abort()
+                }
             })
+            }
+            else
+            {
+                self.telemetryView.abort()
+            }
 
         case .enemy:
             ship.currentSpeed = 2
@@ -815,6 +831,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     func humonShipHit(nodeA: SCNNode, nodeB: SCNNode) {
         boom(atNode: nodeA)
         galaxyModel.decrementEnemyCount(sector: ship.currentSectorNumber)
+        
     }
 
     func zylonShipHitBy(node: SCNNode) {
@@ -824,7 +841,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         // if no shields, special explosion for zylonShipHit
 
         if !ship.shieldsAreUp {
-            boomAndLose(atNode: node, cause: "by Humon Fire")
+            boomAndLose(atNode: node, cause: "Prototype defense ship destroyed by Humon Fire")
             return
         }
 
@@ -884,6 +901,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
             let randomZ = randRange(lower: -10, upper: 10)
             let newPOS = SCNVector3(x: atNode.presentation.position.x + randomX, y: atNode.presentation.position.y + randomY, z: atNode.presentation.position.z + randomZ)
             let explosionNode = StationExplosion()
+            explosionNode.scale = SCNVector3(2, 2, 2)
             explosionNode.position = atNode.presentation.position
             self.sectorObjectsNode.addChildNode(explosionNode)
         DispatchQueue.main.async {
@@ -892,9 +910,9 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
             self.sectorObjectsNode.addChildNode(explosionNode)
             self.explosionSound()
         }
-            galaxyModel.decrementEnemyCount(sector: ship.currentSectorNumber)
-
         }
+            galaxyModel.decrementEnemyCount(sector: ship.currentSectorNumber)
+            galacticDisplay.updateDisplay(withModel: galaxyModel)
         
         delayWithSeconds(1.7, completion: {self.kohai.speak("badIdea")})
 
@@ -925,20 +943,43 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         finalExplosionSound()
         gameOver = true
         shipHud.fatalFlash()
-        engineSound.stop()
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             self.endGame(cause)
         }
 
     }
     
+    func justWin(atNode: SCNNode, cause: String) {
+        print("YOU WIN!")
+        gameOver = true
+        shipHud.fatalFlash()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            self.endGame(cause)
+        }
+        
+    }
+    
+    func checkForGameEnd() {
+        let stationGrids = galaxyModel.map.filter {$0.sectorType == .starbase}
+        let enemyGrids = galaxyModel.map.filter {$0.sectorType == .enemy }
+        if stationGrids.count == 0 {
+            boomAndLose(atNode: ship, cause: "All is lost. Zylon outposts destroyed by Humon invaders")
+        }
+        
+        if enemyGrids.count == 0 {
+            justWin(atNode: ship, cause: "Victory is ours. The Humons have been vanquished")
+        }
+        }
+    
+    
     func endGame(_ cause: String) {
+        engineSound.stop()
         self.telemetryView.setupTelemetryAudioPlayer()
         delayWithSeconds(1, completion: {
             self.telemetryView.text = ""
             self.telemetryView.isHidden = false
             let message = """
-            Zylon Command to all sectors. Prototype defense ship destroyed \(cause)
+            Zylon Command to all sectors. \(cause)
 
             Postumous Rank: [FILL IN SCORE HERE]
             """
@@ -1207,7 +1248,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
             object.removeFromParentNode()
         }
         sectorObjectsToBeRemoved.removeAll()
-
+        checkForGameEnd()
     }
     func cleanSceneAndUpdateSectorNodeObjects() {
         var localNumberOfZylonShotsOnscreen = 0
@@ -1305,6 +1346,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
                         stationBoom(atNode: contact.nodeB)
                         self.markSectorObjectToBeRemoved(object: contact.nodeA)
                         contact.nodeB.isHidden = true
+                        telemetryView.abort()
                     }
             else  { if contact.nodeA.name == "zylonStation"
             {
@@ -1375,7 +1417,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     func renderer(_ renderer: SCNSceneRenderer, didRenderScene scene: SCNScene, atTime time: TimeInterval) {
         if !gameOver {
             if ship.energyStore <= 0{
-                boomAndLose(atNode: ship, cause: "GridWarp core containment failure")
+                boomAndLose(atNode: ship, cause: "Prototype defense ship destroyed due to GridWarp core containment failure")
             }
         turnShip()
         ship.updateShipSystems(difficulty: difficultyScalar)

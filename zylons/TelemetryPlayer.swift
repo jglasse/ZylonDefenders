@@ -15,31 +15,38 @@ class TelemetryPlayer: UITextView, AVAudioPlayerDelegate {
     private var currentLetterIndex = 0
     private var currentLetter = ""
     private var currentMessage = ""
-    private var cursorIsVisitble = false
+    private var cursorIsVisible = false
     private var telemetryTimer: Timer?
     private var blinkTimer: Timer?
     private var telemetrySoundPlayer: AVAudioPlayer?
+    var gameover = false 
 
     private let soundURL = Bundle.main.url(forResource: "wopr", withExtension: "aiff")
 
     func writeMessage(message: String, speed: Double = 0.097 ) {
-        if isWriting {
-            telemetryTimer?.invalidate()
-            isWriting = false
-        }
+        blinkTimer?.invalidate()
+        telemetryTimer?.invalidate()
         isWriting = true
         self.telemetrySoundPlayer?.play()
         self.text = ""
         self.isHidden = false
         self.alpha = 1.0
         blinkTimer?.invalidate()
-        cursorIsVisitble = false
+        cursorIsVisible = false
         currentLetterIndex = 0
         currentLetter = ""
         currentMessage = message
         setupTimer(speed: speed)
     }
 
+    func abort() {
+        self.telemetrySoundPlayer?.stop()
+        telemetryTimer?.invalidate()
+        blinkTimer?.invalidate()
+        self.text = ""
+        isWriting = false
+        self.gameover = true
+    }
     func fadeout() {
         UIView.animate(withDuration: 1.0, animations: {self.alpha = 0})
         
@@ -53,13 +60,13 @@ class TelemetryPlayer: UITextView, AVAudioPlayerDelegate {
     }
 
     @objc func blinkCursor() {
-        switch cursorIsVisitble {
+        switch cursorIsVisible {
         case true:
             if self.text.count>0 {self.text.removeLast()}
-            cursorIsVisitble = false
+            cursorIsVisible = false
         case false:
             self.text.append(Character("_"))
-            cursorIsVisitble = true
+            cursorIsVisible = true
 
         }
 
@@ -78,8 +85,8 @@ class TelemetryPlayer: UITextView, AVAudioPlayerDelegate {
     }
 
     @objc func advanceTelemetry() {
-        // print("current Letter Index: \(self.currentLetterIndex)")
-        if self.currentLetterIndex < currentMessage.count {
+        if !gameover {
+        if currentLetterIndex < currentMessage.count && isWriting  {
             let currentIndex = self.currentMessage.index(currentMessage.startIndex, offsetBy: currentLetterIndex)
             let newletter = self.currentMessage[currentIndex]
             self.text?.append(newletter)
@@ -90,6 +97,11 @@ class TelemetryPlayer: UITextView, AVAudioPlayerDelegate {
             self.telemetrySoundPlayer?.stop()
             self.currentLetterIndex = 0
             self.setupBlinkTimer()
+            isWriting = false
+        }
+        }
+        else {
+            abort()
         }
     }
 }

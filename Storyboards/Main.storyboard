@@ -452,7 +452,7 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</stri
                                     <action selector="fireTorpedo:" destination="BV1-FR-VrT" eventType="touchUpInside" id="sLl-7B-86c"/>
                                 </connections>
                             </button>
-                            <textView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="telemetryTextView" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" delaysContentTouches="NO" canCancelContentTouches="NO" bouncesZoom="NO" editable="NO" text="Game Over" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P5c-OT-ydd" userLabel="gameOverView" customClass="TelemetryPlayer" customModule="Zylon_Defenders" customModuleProvider="target">
+                            <textView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="telemetryTextView" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" delaysContentTouches="NO" canCancelContentTouches="NO" bouncesZoom="NO" editable="NO" text="Game Over" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P5c-OT-ydd" userLabel="TelemetryView" customClass="TelemetryPlayer" customModule="Zylon_Defenders" customModuleProvider="target">
                                 <rect key="frame" x="64" y="64" width="684" height="256"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <accessibility key="accessibilityConfiguration">
