@@ -10,10 +10,11 @@ import Foundation
 import SceneKit
 
 class GalacticMapDisplay {
+    var currentTargetIndex =  0
     let map = SCNScene(named: "galacticmap.scn")!
     var rotationNode: SCNNode { return  (map.rootNode.childNode(withName: "rotateNode", recursively: true)!) }
     // create target indicator
-    var targetIndicator = SCNNode(geometry: SCNSphere(radius: Constants.galacticMapBlipRadius*3))
+//    var oldTargetIndicator = SCNNode(geometry: SCNSphere(radius: Constants.galacticMapBlipRadius*3))
     var currentLocationIndicator = SCNNode(geometry: SCNSphere(radius: Constants.galacticMapBlipRadius*2))
 
     var currentAngleY: Float = 0.0
@@ -46,9 +47,9 @@ class GalacticMapDisplay {
         let sequence = SCNAction.sequence([growAndFade, shrinkAndMakeVisible])
         let repeatedSequence = SCNAction.repeatForever(sequence)
 
-    targetIndicator.geometry?.firstMaterial?.diffuse.contents = UIColor.yellow
-    targetIndicator.runAction(repeatedSequence)
-    rotationNode.addChildNode(targetIndicator)
+//    oldTargetIndicator.geometry?.firstMaterial?.diffuse.contents = UIColor.yellow
+//    oldTargetIndicator.runAction(repeatedSequence)
+//    rotationNode.addChildNode(oldTargetIndicator)
 
     currentLocationIndicator.geometry?.firstMaterial?.diffuse.contents = UIColor.blue
     currentLocationIndicator.runAction(repeatedSequence)
@@ -66,15 +67,56 @@ class GalacticMapDisplay {
 
             print(rotationNode.eulerAngles)
         }
+        // and make all node geometries independent entities, so they can be highlighted
 
+        for nodeNumber in 1...128 {
+            let currentNode = sectorGrid(number: nodeNumber)
+            let newMaterial = SCNMaterial()
+            newMaterial.diffuse.contents = UIColor.green
+            let newMaterials = [newMaterial]
+            currentNode?.geometry?.materials = newMaterials
+        }
+        
+        
+   
+        
     }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
+    internal func sectorGrid(number: Int) -> SCNNode? {
+        let nodeNumberString = String(number+1)
+        return  map.rootNode.childNode(withName: nodeNumberString, recursively: true)
+    }
+    
+    func gridMaterial(color: UIColor) -> [SCNMaterial] {
+        let newMaterial = SCNMaterial()
+        newMaterial.diffuse.contents = color
+        return [newMaterial]
+    }
+    
+    internal func unHilightGrid(number: Int) {
+        let grid = sectorGrid(number: number)
+        grid?.geometry?.materials = gridMaterial(color: .green)
+    }
+    
+    // Public functions
     func updateDisplay(withModel: GalaxyMapModel) {
 
     }
+    
+    func hilightGrid(number: Int, color: UIColor) {
+        unHilightGrid(number: currentTargetIndex)
+        let grid = sectorGrid(number: number)
+        grid?.geometry?.materials = gridMaterial(color: color)
+        currentTargetIndex = number
+    }
+    
+  
+    
+  
+    
 
 }

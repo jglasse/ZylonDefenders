@@ -92,17 +92,17 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     var currentExplosionParticleSystem: SCNParticleSystem?
     var starSprites = [SCNNode]() // array of stars to make updating them each frame easy
     var attractMode = true
-    var galaxyModel: GalaxyMapModel!  // <--- Stupid swift /Objective C lifecycle stuff. Defined at viewWillDisplay
+    var galaxyModel: GalaxyMapModel!  // <--- Stupid swift /iOS lifecycle stuff. Defined at viewWillDisplay
     var enemyShipsInSector = [HumonShip]()
     var enemyShipCountInSector: Int {
         return enemyShipsInSector.count
     }
 
     var ship = ZylonShip()
-    var shipSector: SectorGrid {
+    var shipCurrrentSectorGrid: SectorGrid {
         return self.galaxyModel.map[ship.currentSectorNumber]
     }
-    var targetSector: SectorGrid {
+    var targetSectorGrid: SectorGrid {
         return self.galaxyModel.map[ship.targetSectorNumber]
     }
 
@@ -182,23 +182,27 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 
     @IBAction func galacticSlide(_ sender: UISlider) {
         self.ship.targetSectorNumber = Int(sender.value)
-        let sectorString = "\(self.ship.targetSectorNumber+1)"
-        let targetGrid = galacticDisplay.map.rootNode.childNode(withName: sectorString, recursively: true)
-        galacticDisplay.targetIndicator.worldPosition = targetGrid!.worldPosition
-        switch galaxyModel.map[ship.targetSectorNumber].sectorType {
-        case .empty:
-                galacticDisplay.targetIndicator.geometry?.firstMaterial?.diffuse.contents = UIColor.yellow
-        case .enemy:
-                galacticDisplay.targetIndicator.geometry?.firstMaterial?.diffuse.contents = UIColor.red
-        case .starbase:
-                galacticDisplay.targetIndicator.geometry?.firstMaterial?.diffuse.contents = UIColor.green
-        }
+//        let sectorString = "\(self.ship.targetSectorNumber+1)"
+//        let targetGrid = galacticDisplay.map.rootNode.childNode(withName: sectorString, recursively: true)
+        
+        galacticDisplay.hilightGrid(number: ship.targetSectorNumber, color: UIColor.white)
+//        galacticDisplay.oldTargetIndicator.worldPosition = targetGrid!.worldPosition
+//
+//
+//        switch galaxyModel.map[ship.targetSectorNumber].sectorType {
+//        case .empty:
+//                galacticDisplay.oldTargetIndicator.geometry?.firstMaterial?.diffuse.contents = UIColor.yellow
+//        case .enemy:
+//                galacticDisplay.oldTargetIndicator.geometry?.firstMaterial?.diffuse.contents = UIColor.red
+//        case .starbase:
+//                galacticDisplay.oldTargetIndicator.geometry?.firstMaterial?.diffuse.contents = UIColor.green
+//        }
 
         let currentSectorString = "\(self.ship.currentSectorNumber+1)"
         let presentGrid = galacticDisplay.map.rootNode.childNode(withName: currentSectorString, recursively: true)
         galacticDisplay.currentLocationIndicator.worldPosition = presentGrid!.worldPosition
-        self.shipSectorLabel.text = "Ship Sector: \(self.shipSector.quadrant) \(self.shipSector.quadrantNumber)"
-        self.targetSectorLabel.text = "Target Sector: \(self.targetSector.quadrant) \(self.targetSector.quadrantNumber)"
+        self.shipSectorLabel.text = "Ship Sector: \(self.shipCurrrentSectorGrid.quadrant) \(self.shipCurrrentSectorGrid.quadrantNumber)"
+        self.targetSectorLabel.text = "Target Sector: \(self.targetSectorGrid.quadrant) \(self.targetSectorGrid.quadrantNumber)"
 
 
     }
@@ -338,7 +342,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 	@IBOutlet weak var stepperSpeed: UIStepper!
 
     fileprivate func populateSector() {
-        switch self.shipSector.sectorType {
+        switch self.shipCurrrentSectorGrid.sectorType {
         case .starbase:
             ship.currentSpeed = 0
             self.spawnStarbase()
@@ -348,7 +352,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
             delayWithSeconds(2.75, completion: {self.telemetryView.writeMessage(message: "Standby for repairs")})
             
             // TODO: replace with beam animation
-            if !self.gameOver && self.shipSector.numberOfSectorObjects > 0 {
+            if !self.gameOver && self.shipCurrrentSectorGrid.numberOfSectorObjects > 0 {
             delayWithSeconds(8, completion: {
                 if !self.gameOver
                 {
@@ -378,8 +382,8 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 
         case .enemy:
             ship.currentSpeed = 2
-            self.spawnEnemies(number: self.shipSector.numberOfSectorObjects)
-            print("ENEMY SECTOR \(self.shipSector.quadrant) \(self.shipSector.quadrantNumber). Spawning \(self.shipSector.numberOfSectorObjects) enemies")
+            self.spawnEnemies(number: self.shipCurrrentSectorGrid.numberOfSectorObjects)
+            print("ENEMY SECTOR \(self.shipCurrrentSectorGrid.quadrant) \(self.shipCurrrentSectorGrid.quadrantNumber). Spawning \(self.shipCurrrentSectorGrid.numberOfSectorObjects) enemies")
             //self.shipHud.soundSectorAlarm()
         case .empty:
             ship.currentSpeed = 3
@@ -498,7 +502,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
             galacticSlider.minimumValue = 0
             galacticSlider.maximumValue = 31
             ship.targetSectorNumber = 16
-        self.targetSectorLabel.text = "Target Sector: \(self.targetSector.quadrant) \(self.targetSector.quadrantNumber)"
+        self.targetSectorLabel.text = "Target Sector: \(self.targetSectorGrid.quadrant) \(self.targetSectorGrid.quadrantNumber)"
 
 
     }
@@ -515,7 +519,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         galacticSlider.minimumValue = 32
         galacticSlider.maximumValue = 63
         ship.targetSectorNumber = 48
-        self.targetSectorLabel.text = "Target Sector: \(self.targetSector.quadrant) \(self.targetSector.quadrantNumber)"
+        self.targetSectorLabel.text = "Target Sector: \(self.targetSectorGrid.quadrant) \(self.targetSectorGrid.quadrantNumber)"
 
     }
     @IBAction func gamma(_ sender: Any) {
@@ -546,7 +550,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         galacticSlider.minimumValue = 96
         galacticSlider.maximumValue = 127
         ship.targetSectorNumber = 112
-        self.targetSectorLabel.text = "Target Sector: \(self.targetSector.quadrant) \(self.targetSector.quadrantNumber)"
+        self.targetSectorLabel.text = "Target Sector: \(self.targetSectorGrid.quadrant) \(self.targetSectorGrid.quadrantNumber)"
 
 
     }
@@ -1112,7 +1116,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 
     func enterSector(sectorNumber: Int) {
 
-        print("Entering sector: \(shipSector.quadrant) \(shipSector.quadrantNumber)")
+        print("Entering sector: \(shipCurrrentSectorGrid.quadrant) \(shipCurrrentSectorGrid.quadrantNumber)")
         print("actualSector Number: \(sectorNumber)")
 
         var audioItems: [AVPlayerItem] = []
@@ -1369,8 +1373,8 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 
     func updateGalacticMap() {
         
-        self.shipSectorLabel.text = "Ship Sector: \(self.shipSector.quadrant) \(self.shipSector.quadrantNumber)"
-        self.targetSectorLabel.text = "Target Sector: \(self.targetSector.quadrant) \(self.targetSector.quadrantNumber)"
+        self.shipSectorLabel.text = "Ship Sector: \(self.shipCurrrentSectorGrid.quadrant) \(self.shipCurrrentSectorGrid.quadrantNumber)"
+        self.targetSectorLabel.text = "Target Sector: \(self.targetSectorGrid.quadrant) \(self.targetSectorGrid.quadrantNumber)"
 
         for i in 1...128 {
             let sectorString = "\(i)"
@@ -1384,12 +1388,12 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
             currentGrid?.addChildNode(enemyNode)
         }
 
-        let sectorString = "\(self.ship.targetSectorNumber)"
-        let targetGrid = galacticDisplay.map.rootNode.childNode(withName: sectorString, recursively: true)
-        if let tg = targetGrid {
-            galacticDisplay.targetIndicator.worldPosition = tg.worldPosition
-
-        }
+//        let sectorString = "\(self.ship.targetSectorNumber)"
+//        let targetGrid = galacticDisplay.map.rootNode.childNode(withName: sectorString, recursively: true)
+//        if let tg = targetGrid {
+//            galacticDisplay.oldTargetIndicator.worldPosition = tg.worldPosition
+//
+//        }
 
         let currentSectorString = "\(self.ship.currentSectorNumber+1)"
         print("currentSectorString:  \(currentSectorString)")
@@ -1422,7 +1426,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         turnShip()
         ship.updateShipSystems(difficulty: difficultyScalar)
         zylonScanner.eulerAngles = sectorObjectsNode.eulerAngles
-        if self.shipSector.sectorType == .enemy {
+        if self.shipCurrrentSectorGrid.sectorType == .enemy {
         zylonScanner.updateScanner(with: self.enemyShipsInSector)
         } else {
             zylonScanner.updateScanner(with: self.enemyShipsInSector)
