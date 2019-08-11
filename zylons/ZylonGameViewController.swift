@@ -11,14 +11,14 @@ import UIKit
 import SceneKit
 import SpriteKit
 import AVFoundation
-import MultipeerConnectivity
+//import MultipeerConnectivity
 import GameController
 //import CoreMotion
 
 class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNSceneRendererDelegate {
 
     // MARK: - Multipeer
-    var myMCController = MCController.sharedInstance
+   // var myMCController = MCController.sharedInstance
 
     // MARK: - Game Settings
     var gameSettings = getSettings()
@@ -185,7 +185,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 //        let sectorString = "\(self.ship.targetSectorNumber+1)"
 //        let targetGrid = galacticDisplay.map.rootNode.childNode(withName: sectorString, recursively: true)
         
-        galacticDisplay.hilightGrid(number: ship.targetSectorNumber, color: UIColor.white)
+        galacticDisplay.hilightNewtargetGrid(number: ship.targetSectorNumber, color: UIColor.red)
 //        galacticDisplay.oldTargetIndicator.worldPosition = targetGrid!.worldPosition
 //
 //
@@ -200,7 +200,6 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 
         let currentSectorString = "\(self.ship.currentSectorNumber+1)"
         let presentGrid = galacticDisplay.map.rootNode.childNode(withName: currentSectorString, recursively: true)
-        galacticDisplay.currentLocationIndicator.worldPosition = presentGrid!.worldPosition
         self.shipSectorLabel.text = "Ship Sector: \(self.shipCurrrentSectorGrid.quadrant) \(self.shipCurrrentSectorGrid.quadrantNumber)"
         self.targetSectorLabel.text = "Target Sector: \(self.targetSectorGrid.quadrant) \(self.targetSectorGrid.quadrantNumber)"
 
@@ -436,7 +435,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         if !ship.isCurrentlyinWarp && ship.targetSectorNumber != ship.currentSectorNumber {
             let tacticalWasEngaged = ship.tacticalDisplayEngaged
             ship.tacticalDisplayEngaged = false
-            
+            let targetAtWarp = ship.targetSectorNumber
             // preload starbase for starbase sectors
             if galaxyModel.map[ship.targetSectorNumber].sectorType  == .starbase {
                 self.scnView.prepare(zylonStation, shouldAbortBlock: nil)
@@ -449,10 +448,9 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
                 self.forwardCameraNode.camera?.motionBlurIntensity = 0
                 self.ship.isCurrentlyinWarp = false
                 self.ship.tacticalDisplayEngaged = tacticalWasEngaged
-                self.ship.currentSectorNumber = self.ship.targetSectorNumber
-
-                self.enterSector(sectorNumber: self.ship.targetSectorNumber)
-
+                self.ship.currentSectorNumber = targetAtWarp
+                self.enterSector(sectorNumber: targetAtWarp)
+                self.galacticDisplay.updateDisplay(galaxyModel: self.galaxyModel, shipSector: self.ship.currentSectorNumber)
             }
             let spawnDeadline = DispatchTime.now() + .seconds(7)
             DispatchQueue.main.asyncAfter(deadline: spawnDeadline) {
@@ -465,24 +463,6 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         }
 
     }
-
-//    func nextOccupiedSector(currentSector: Int)-> Int {
-//        var foundOccupiedSector = false
-//        var nextSector = currentSector + 1
-//        repeat  {
-//            if nextSector > 128 { nextSector=0}
-//            if galaxyModel.map[nextSector].sectorType == .starbase {
-//                foundOccupiedSector = true
-//                return nextSector
-//            }
-//            else
-//            {
-//                nextSector += 1
-//            }
-//
-//        } while !foundOccupiedSector
-//
-//    }
 
     @IBAction func speedChanged(_ sender: UIStepper) {
         computerBeepSound("beep")
@@ -606,7 +586,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         scnView.autoenablesDefaultLighting = true
         scnView.isPlaying = true
         scnView.backgroundColor = UIColor.black
-        joystickControl.movable = false
+        joystickControl.movable = true
         joystickControl.baseAlpha = 0.3
         joystickControl.alpha = 0.2
 
@@ -910,13 +890,13 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
             self.sectorObjectsNode.addChildNode(explosionNode)
         DispatchQueue.main.async {
             let explosionNode = StationExplosion()
-            explosionNode.worldPosition = newPOS
+            explosionNode.position = newPOS
             self.sectorObjectsNode.addChildNode(explosionNode)
             self.explosionSound()
         }
         }
             galaxyModel.decrementEnemyCount(sector: ship.currentSectorNumber)
-            galacticDisplay.updateDisplay(withModel: galaxyModel)
+            galacticDisplay.updateDisplay(galaxyModel: galaxyModel, shipSector: ship.currentSectorNumber)
         
         delayWithSeconds(1.7, completion: {self.kohai.speak("badIdea")})
 
@@ -943,6 +923,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     }
 
     func boomAndLose(atNode: SCNNode, cause: String) {
+        viewMode = .foreView
         print("Game Over!")
         finalExplosionSound()
         gameOver = true
@@ -1371,34 +1352,41 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         }
     }
 
+    
+    
+    
     func updateGalacticMap() {
-        
+    
+        galacticDisplay.updateDisplay(galaxyModel: galaxyModel, shipSector: ship.currentSectorNumber)
         self.shipSectorLabel.text = "Ship Sector: \(self.shipCurrrentSectorGrid.quadrant) \(self.shipCurrrentSectorGrid.quadrantNumber)"
         self.targetSectorLabel.text = "Target Sector: \(self.targetSectorGrid.quadrant) \(self.targetSectorGrid.quadrantNumber)"
 
-        for i in 1...128 {
-            let sectorString = "\(i)"
-            let currentGrid = galacticDisplay.map.rootNode.childNode(withName: sectorString, recursively: true)
-            for gridElement in currentGrid!.childNodes {
-                gridElement.removeFromParentNode()
-            }
-
-           // print("targetGrid: \(currentGrid!.name ?? "") is of type \(galaxyModel.map[i-1].sectorType)")
-            let enemyNode = GalaxyBlip(sectorType: galaxyModel.map[i-1].sectorType)
-            currentGrid?.addChildNode(enemyNode)
-        }
-
-//        let sectorString = "\(self.ship.targetSectorNumber)"
-//        let targetGrid = galacticDisplay.map.rootNode.childNode(withName: sectorString, recursively: true)
-//        if let tg = targetGrid {
-//            galacticDisplay.oldTargetIndicator.worldPosition = tg.worldPosition
+        
 //
+//        for i in 1...128 {
+//            let sectorString = "\(i)"
+//            let currentGrid = galacticDisplay.map.rootNode.childNode(withName: sectorString, recursively: true)
+//
+//            for gridElement in currentGrid!.childNodes {
+//                gridElement.removeFromParentNode()
+//            }
+//
+//           // print("targetGrid: \(currentGrid!.name ?? "") is of type \(galaxyModel.map[i-1].sectorType)")
+//            let enemyNode = GalaxyBlip(sectorType: galaxyModel.map[i-1].sectorType)
+//            currentGrid?.addChildNode(enemyNode)
 //        }
-
-        let currentSectorString = "\(self.ship.currentSectorNumber+1)"
-        print("currentSectorString:  \(currentSectorString)")
-        let presentGrid = galacticDisplay.map.rootNode.childNode(withName: currentSectorString, recursively: true)
-        galacticDisplay.currentLocationIndicator.worldPosition = presentGrid!.worldPosition
+//
+////        let sectorString = "\(self.ship.targetSectorNumber)"
+////        let targetGrid = galacticDisplay.map.rootNode.childNode(withName: sectorString, recursively: true)
+////        if let tg = targetGrid {
+////            galacticDisplay.oldTargetIndicator.worldPosition = tg.worldPosition
+////
+////        }
+//
+//        let currentSectorString = "\(self.ship.currentSectorNumber+1)"
+//        print("currentSectorString:  \(currentSectorString)")
+//        let presentGrid = galacticDisplay.map.rootNode.childNode(withName: currentSectorString, recursively: true)
+//
 
     }
 

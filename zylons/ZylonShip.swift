@@ -84,9 +84,9 @@ class ZylonShip: SectorObject {
     struct ShipsSystems {
         // core systems
         var outerHull = DamageAmount.functional
-        var innerHull = DamageAmount.functional
         var shieldIntegrity = DamageAmount.functional
         var engineIntegrity = DamageAmount.functional
+        var scanner = DamageAmount.functional
 
         // comedic systems
         var babelfishCircuit = DamageAmount.functional
@@ -123,6 +123,9 @@ class ZylonShip: SectorObject {
     }
 
      func repair() {
+        self.shipSystems.outerHull = .functional
+        self.shipSystems.engineIntegrity = .functional
+        self.shipSystems.shieldIntegrity = .functional
         self.shieldStrength = 100
         self.energyStore = 10000
     }

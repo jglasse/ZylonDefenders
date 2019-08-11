@@ -10,12 +10,12 @@ import Foundation
 import SceneKit
 
 class GalacticMapDisplay {
+    var currentShipSectorIndex = 0
     var currentTargetIndex =  0
     let map = SCNScene(named: "galacticmap.scn")!
     var rotationNode: SCNNode { return  (map.rootNode.childNode(withName: "rotateNode", recursively: true)!) }
     // create target indicator
 //    var oldTargetIndicator = SCNNode(geometry: SCNSphere(radius: Constants.galacticMapBlipRadius*3))
-    var currentLocationIndicator = SCNNode(geometry: SCNSphere(radius: Constants.galacticMapBlipRadius*2))
 
     var currentAngleY: Float = 0.0
 
@@ -50,10 +50,6 @@ class GalacticMapDisplay {
 //    oldTargetIndicator.geometry?.firstMaterial?.diffuse.contents = UIColor.yellow
 //    oldTargetIndicator.runAction(repeatedSequence)
 //    rotationNode.addChildNode(oldTargetIndicator)
-
-    currentLocationIndicator.geometry?.firstMaterial?.diffuse.contents = UIColor.blue
-    currentLocationIndicator.runAction(repeatedSequence)
-    rotationNode.addChildNode(currentLocationIndicator)
 
       func rotateObject(_ gesture: UIPanGestureRecognizer) {
 
@@ -99,19 +95,56 @@ class GalacticMapDisplay {
     
     internal func unHilightGrid(number: Int) {
         let grid = sectorGrid(number: number)
-        grid?.geometry?.materials = gridMaterial(color: .green)
+        let gridColor = number == currentShipSectorIndex ? UIColor.white : UIColor.green
+        grid?.geometry?.materials = gridMaterial(color: gridColor)
     }
     
     // Public functions
-    func updateDisplay(withModel: GalaxyMapModel) {
-
+    func updateDisplay(galaxyModel: GalaxyMapModel, shipSector: Int) {
+        //iterate over grids
+        for i in 1...128 {
+            
+            let sectorString = "\(i)"
+            let currentGrid = map.rootNode.childNode(withName: sectorString, recursively: true)
+            for gridElement in currentGrid!.childNodes {
+                gridElement.removeFromParentNode()
+            }
+            let sectorObjectNode = GalaxyBlip(sectorType: galaxyModel.map[i-1].sectorType)
+            currentGrid?.addChildNode(sectorObjectNode)
+        }
+        let currentSectorString = "\(shipSector+1)"
+        hilightNewShipCurrentGrid(number: shipSector, color: .white)
+        
     }
+        
     
-    func hilightGrid(number: Int, color: UIColor) {
+    
+    func addIcon(at node: SCNNode, icon: String) {
+        let newPlane = SCNPlane(width: 0.35, height: 0.35)
+        newPlane.materials = [SCNMaterial()]
+        newPlane.materials.first?.diffuse.contents = UIImage(named: icon)
+        newPlane.materials.first?.isDoubleSided = true
+        let icon = SCNNode(geometry: newPlane)
+        icon.rotation = SCNVector4 (1, 0, 0, Float.pi/2)
+        node.addChildNode(icon)
+        let action = SCNAction.rotateBy(x: 0, y: 0, z: CGFloat(GLKMathDegreesToRadians(360)), duration: 1)
+        let forever = SCNAction.repeatForever(action)
+        icon.runAction(forever)
+    }
+
+    
+    func hilightNewtargetGrid(number: Int, color: UIColor) {
         unHilightGrid(number: currentTargetIndex)
         let grid = sectorGrid(number: number)
         grid?.geometry?.materials = gridMaterial(color: color)
         currentTargetIndex = number
+    }
+    
+    func hilightNewShipCurrentGrid(number: Int, color: UIColor) {
+        unHilightGrid(number: currentTargetIndex)
+        let grid = sectorGrid(number: number)
+        grid?.geometry?.materials = gridMaterial(color: color)
+        currentShipSectorIndex = number
     }
     
   
