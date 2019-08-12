@@ -432,7 +432,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     }
 
     @IBAction func gridWarp(_ sender: UIButton) {
-        if !ship.isCurrentlyinWarp && ship.targetSectorNumber != ship.currentSectorNumber {
+        if !ship.isCurrentlyinWarp && !gameOver && ship.targetSectorNumber != ship.currentSectorNumber {
             let tacticalWasEngaged = ship.tacticalDisplayEngaged
             ship.tacticalDisplayEngaged = false
             let targetAtWarp = ship.targetSectorNumber
@@ -444,6 +444,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
             performWarp()
             let deadlineTime = DispatchTime.now() + .seconds(6)
             DispatchQueue.main.asyncAfter(deadline: deadlineTime) {
+                if !self.gameOver {
                 self.setSpeed(3)
                 self.forwardCameraNode.camera?.motionBlurIntensity = 0
                 self.ship.isCurrentlyinWarp = false
@@ -451,6 +452,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
                 self.ship.currentSectorNumber = targetAtWarp
                 self.enterSector(sectorNumber: targetAtWarp)
                 self.galacticDisplay.updateDisplay(galaxyModel: self.galaxyModel, shipSector: self.ship.currentSectorNumber)
+                }
             }
             let spawnDeadline = DispatchTime.now() + .seconds(7)
             DispatchQueue.main.asyncAfter(deadline: spawnDeadline) {
@@ -923,6 +925,8 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     }
 
     func boomAndLose(atNode: SCNNode, cause: String) {
+        zylonScanner.isHidden = true
+        zylonScanner.scanBeam.removeAllActions()
         viewMode = .foreView
         print("Game Over!")
         finalExplosionSound()
