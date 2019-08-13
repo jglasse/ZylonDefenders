@@ -139,6 +139,8 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 
     // gesture variables
     var currentMapAngleZ: Float = 0.0
+    var currentMapAngleX: Float = 0.0
+    var currentMapZoom: Float = 1.0
 
     // MARK: - IBOutlets
 
@@ -198,8 +200,6 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 //                galacticDisplay.oldTargetIndicator.geometry?.firstMaterial?.diffuse.contents = UIColor.green
 //        }
 
-        let currentSectorString = "\(self.ship.currentSectorNumber+1)"
-        let presentGrid = galacticDisplay.map.rootNode.childNode(withName: currentSectorString, recursively: true)
         self.shipSectorLabel.text = "Ship Sector: \(self.shipCurrrentSectorGrid.quadrant) \(self.shipCurrrentSectorGrid.quadrantNumber)"
         self.targetSectorLabel.text = "Target Sector: \(self.targetSectorGrid.quadrant) \(self.targetSectorGrid.quadrantNumber)"
 
@@ -474,8 +474,8 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 
     @IBAction func alpha(_ sender: Any) {
         computerBeepSound("beep")
-        let action = SCNAction.rotateTo(x: 0.1, y: 0, z: 3.1, duration: rotateSpeed, usesShortestUnitArc: true)
-            rotationNode.runAction(action)
+//        let action = SCNAction.rotateTo(x: 0.1, y: 0, z: 3.1, duration: rotateSpeed, usesShortestUnitArc: true)
+//            rotationNode.runAction(action)
             alphaQuadrant.opacity = 1.0
             betaQuadrant.opacity = Constants.fadedMapTransparency
             gammaQuadrant.opacity = Constants.fadedMapTransparency
@@ -491,8 +491,8 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     @IBAction func beta(_ sender: Any) {
         computerBeepSound("beep")
 
-            let action = SCNAction.rotateTo(x: 0, y: 0, z: 3.1, duration: rotateSpeed, usesShortestUnitArc: true)
-            rotationNode.runAction(action)
+//            let action = SCNAction.rotateTo(x: 0, y: 0, z: 3.1, duration: rotateSpeed, usesShortestUnitArc: true)
+//            rotationNode.runAction(action)
         alphaQuadrant.opacity = Constants.fadedMapTransparency
         betaQuadrant.opacity = 1.0
         gammaQuadrant.opacity = Constants.fadedMapTransparency
@@ -507,8 +507,8 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     @IBAction func gamma(_ sender: Any) {
         computerBeepSound("beep")
 
-        let action = SCNAction.rotateTo(x: -0.1, y: 0, z: 3.1, duration: rotateSpeed, usesShortestUnitArc: true)
-        rotationNode.runAction(action)
+//        let action = SCNAction.rotateTo(x: -0.1, y: 0, z: 3.1, duration: rotateSpeed, usesShortestUnitArc: true)
+//        rotationNode.runAction(action)
         alphaQuadrant.opacity = Constants.fadedMapTransparency
         betaQuadrant.opacity = Constants.fadedMapTransparency
         gammaQuadrant.opacity = 1.0
@@ -522,8 +522,8 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     @IBAction func delta(_ sender: Any) {
         computerBeepSound("beep")
 
-        let action = SCNAction.rotateTo(x: -0.16, y: 0, z: 3.1, duration: rotateSpeed, usesShortestUnitArc: true)
-        rotationNode.runAction(action)
+//        let action = SCNAction.rotateTo(x: -0.16, y: 0, z: 3.1, duration: rotateSpeed, usesShortestUnitArc: true)
+//        rotationNode.runAction(action)
         alphaQuadrant.opacity = Constants.fadedMapTransparency
         betaQuadrant.opacity = Constants.fadedMapTransparency
         gammaQuadrant.opacity = Constants.fadedMapTransparency
@@ -538,8 +538,8 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     }
 
     @IBAction func allQuads(_ sender: Any) {
-        let action = SCNAction.rotateTo(x: -0.5, y: 0, z: 3.1, duration: rotateSpeed, usesShortestUnitArc: true)
-        rotationNode.runAction(action)
+//        let action = SCNAction.rotateTo(x: -0.5, y: 0, z: 3.1, duration: rotateSpeed, usesShortestUnitArc: true)
+//        rotationNode.runAction(action)
         kohai.speak("galacticMap")
         alphaQuadrant.opacity = 1.0
         betaQuadrant.opacity = 1.0
@@ -757,24 +757,39 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         mapScnView.present(galacticDisplay.map, with: transition, incomingPointOfView: galacticDisplay.map.rootNode.childNode(withName: "gCam", recursively: true), completionHandler: {
             self.mapScnView.allowsCameraControl = false
             })
+        let myRecognizer = UIPanGestureRecognizer(target: self, action: #selector(mapPan(_:)))
+        let myZoomRecognizer = UIPinchGestureRecognizer(target: self, action: #selector(mapZoom(_:)))
+        mapScnView.addGestureRecognizer(myRecognizer)
+        mapScnView.addGestureRecognizer(myZoomRecognizer)
     }
 
-    // MARK: - Map rotator
+    // MARK: - Map rotator & Zoomer
     @objc func mapPan(_ gesture: UIPanGestureRecognizer) {
-        print("Map Panned")
-        var rotationNode: SCNNode { return  (galacticDisplay.map.rootNode.childNode(withName: "rotateNode", recursively: true))! }
 
         let translation = gesture.translation(in: gesture.view)
-
         var newAngleZ = (Float)(translation.x)*(Float)(Double.pi)/180.0
         newAngleZ += currentMapAngleZ
+        
+        var newAngleX = (Float)(translation.y)*(Float)(Double.pi)/180.0
+        newAngleX += currentMapAngleX
+
 
         rotationNode.eulerAngles.z = newAngleZ
+        rotationNode.eulerAngles.x = newAngleX
 
         if gesture.state == .ended {
            currentMapAngleZ = newAngleZ
+           currentMapAngleX = newAngleX
         }
 
+    }
+    
+    
+    @objc func mapZoom(_ gesture: UIPinchGestureRecognizer) {
+        var newZoom = gesture.scale
+        if newZoom > 1.1 {newZoom = 1.1}
+        if newZoom < 0.5 {newZoom = 0.5}
+        galacticDisplay.rotationNode.scale = SCNVector3(newZoom,newZoom,newZoom)
     }
 
     // MARK: - Ship Functions
@@ -1360,7 +1375,6 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     
     
     func updateGalacticMap() {
-    
         galacticDisplay.updateDisplay(galaxyModel: galaxyModel, shipSector: ship.currentSectorNumber)
         self.shipSectorLabel.text = "Ship Sector: \(self.shipCurrrentSectorGrid.quadrant) \(self.shipCurrrentSectorGrid.quadrantNumber)"
         self.targetSectorLabel.text = "Target Sector: \(self.targetSectorGrid.quadrant) \(self.targetSectorGrid.quadrantNumber)"
@@ -1474,8 +1488,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
                     self.scnView.isHidden = true
                     self.galacticStack.isHidden = false
                     self.speedStack.isHidden = true
-                    self.mapScnView.allowsCameraControl = true
-
+                    self.mapScnView.allowsCameraControl = false
             }
         }
         } else { // Game over. hide all displays

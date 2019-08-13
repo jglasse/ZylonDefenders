@@ -10,22 +10,43 @@ import Foundation
 import SceneKit
 
 class GalacticMapDisplay {
+    var myRecognizer: UIGestureRecognizer!
     var currentShipSectorIndex = 0
     var currentTargetIndex =  0
     let map = SCNScene(named: "galacticmap.scn")!
     var rotationNode: SCNNode { return  (map.rootNode.childNode(withName: "rotateNode", recursively: true)!) }
+    let cameraNode = SCNNode()
+
     // create target indicator
 //    var oldTargetIndicator = SCNNode(geometry: SCNSphere(radius: Constants.galacticMapBlipRadius*3))
 
+    
+    
     var currentAngleY: Float = 0.0
-
+    
+    @objc func rotateObject(_ gesture: UIPanGestureRecognizer) {
+        
+        let translation = gesture.translation(in: gesture.view!)
+        var newAngleY = (Float)(translation.x)*(Float)(Double.pi)/180.0
+        newAngleY += currentAngleY
+        
+        rotationNode.eulerAngles.y = newAngleY
+        
+        if(gesture.state == .ended) { currentAngleY = newAngleY }
+        
+        print(rotationNode.eulerAngles)
+    }
+    
     init() {
-    let cameraNode = SCNNode()
+        
+    myRecognizer = UIPanGestureRecognizer(target: self, action: #selector(rotateObject(_:)))
     cameraNode.camera = SCNCamera()
     cameraNode.name = "gCam"
 
         self.map.rootNode.addChildNode(cameraNode)
-        rotationNode.rotation = SCNVector4Make(0, 0, 1, 3.141)
+        
+        let internalRot = map.rootNode.childNode(withName: "internalRot", recursively: true)
+        internalRot?.rotation = SCNVector4Make(0, 0, 1, 3.141)
 
     //point the camera at the galaxy map
     let camConstraint = SCNLookAtConstraint(target: self.map.rootNode)
@@ -35,34 +56,23 @@ class GalacticMapDisplay {
     // place the camera
     cameraNode.position = SCNVector3(x: 0, y: -8, z: 5.2)
 
-    // add the target and current position nodes
-        let growAnim = SCNAction.scale(by: 2.5, duration: 1.0)
-        let fadeAnim = SCNAction.fadeOut(duration: 1.0)
-        let actions = [growAnim, fadeAnim]
-        let growAndFade = SCNAction.group(actions)
-        let reset = SCNAction.scale(to: 1.0, duration: 0)
-        let reset2 = SCNAction.fadeIn(duration: 0)
-        let resetActions = [reset, reset2]
-        let shrinkAndMakeVisible = SCNAction.group(resetActions)
-        let sequence = SCNAction.sequence([growAndFade, shrinkAndMakeVisible])
-        let repeatedSequence = SCNAction.repeatForever(sequence)
+//    // add the target and current position nodes
+//        let growAnim = SCNAction.scale(by: 2.5, duration: 1.0)
+//        let fadeAnim = SCNAction.fadeOut(duration: 1.0)
+//        let actions = [growAnim, fadeAnim]
+//        let growAndFade = SCNAction.group(actions)
+//        let reset = SCNAction.scale(to: 1.0, duration: 0)
+//        let reset2 = SCNAction.fadeIn(duration: 0)
+//        let resetActions = [reset, reset2]
+//        let shrinkAndMakeVisible = SCNAction.group(resetActions)
+//        let sequence = SCNAction.sequence([growAndFade, shrinkAndMakeVisible])
+//        let repeatedSequence = SCNAction.repeatForever(sequence)
 
 //    oldTargetIndicator.geometry?.firstMaterial?.diffuse.contents = UIColor.yellow
 //    oldTargetIndicator.runAction(repeatedSequence)
 //    rotationNode.addChildNode(oldTargetIndicator)
 
-      func rotateObject(_ gesture: UIPanGestureRecognizer) {
-
-            let translation = gesture.translation(in: gesture.view!)
-            var newAngleY = (Float)(translation.x)*(Float)(Double.pi)/180.0
-            newAngleY += currentAngleY
-
-            rotationNode.eulerAngles.y = newAngleY
-
-            if(gesture.state == .ended) { currentAngleY = newAngleY }
-
-            print(rotationNode.eulerAngles)
-        }
+ 
         // and make all node geometries independent entities, so they can be highlighted
 
         for nodeNumber in 1...128 {
@@ -112,7 +122,7 @@ class GalacticMapDisplay {
             let sectorObjectNode = GalaxyBlip(sectorType: galaxyModel.map[i-1].sectorType)
             currentGrid?.addChildNode(sectorObjectNode)
         }
-        let currentSectorString = "\(shipSector+1)"
+//        let currentSectorString = "\(shipSector+1)"
         hilightNewShipCurrentGrid(number: shipSector, color: .white)
         
     }
