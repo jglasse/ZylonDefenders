@@ -188,6 +188,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 //        let targetGrid = galacticDisplay.map.rootNode.childNode(withName: sectorString, recursively: true)
         
         galacticDisplay.hilightNewtargetGrid(number: ship.targetSectorNumber, color: UIColor.red)
+        galacticDisplay.hilightNewShipCurrentGrid(number: ship.currentSectorNumber, color: UIColor.white)
 //        galacticDisplay.oldTargetIndicator.worldPosition = targetGrid!.worldPosition
 //
 //
@@ -757,13 +758,23 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         mapScnView.present(galacticDisplay.map, with: transition, incomingPointOfView: galacticDisplay.map.rootNode.childNode(withName: "gCam", recursively: true), completionHandler: {
             self.mapScnView.allowsCameraControl = false
             })
-        let myRecognizer = UIPanGestureRecognizer(target: self, action: #selector(mapPan(_:)))
+        let myPanRecognizer = UIPanGestureRecognizer(target: self, action: #selector(mapPan(_:)))
         let myZoomRecognizer = UIPinchGestureRecognizer(target: self, action: #selector(mapZoom(_:)))
-        mapScnView.addGestureRecognizer(myRecognizer)
+        let myTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(mapTap(_:)))
+        mapScnView.addGestureRecognizer(myPanRecognizer)
         mapScnView.addGestureRecognizer(myZoomRecognizer)
+        mapScnView.addGestureRecognizer(myTapRecognizer)
+
     }
 
     // MARK: - Map rotator & Zoomer
+    
+    
+    @objc func mapTap(_ gesture: UITapGestureRecognizer) {
+        let location = gesture.location(in: mapScnView)
+        let hitresults = mapScnView.hitTest(location, options: nil)
+        print(hitresults)
+    }
     @objc func mapPan(_ gesture: UIPanGestureRecognizer) {
 
         let translation = gesture.translation(in: gesture.view)
@@ -772,6 +783,10 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         
         var newAngleX = (Float)(translation.y)*(Float)(Double.pi)/180.0
         newAngleX += currentMapAngleX
+        if newAngleX > 0 {newAngleX = 0}
+         else if newAngleX < -0.2 {newAngleX = -0.2}
+
+
 
 
         rotationNode.eulerAngles.z = newAngleZ
@@ -788,7 +803,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     @objc func mapZoom(_ gesture: UIPinchGestureRecognizer) {
         var newZoom = gesture.scale
         if newZoom > 1.1 {newZoom = 1.1}
-        if newZoom < 0.5 {newZoom = 0.5}
+        else if newZoom < 0.75 {newZoom = 0.75}
         galacticDisplay.rotationNode.scale = SCNVector3(newZoom,newZoom,newZoom)
     }
 
@@ -881,6 +896,8 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
             print("SHIELDS HAVE HELD! Current Shield Strenth: \(ship.shieldStrength)")
             } else {
                 self.shipHud.activateAlert(message: "SHIELD FAILURE!")
+                ship.takeDamage()
+
             }
 
         } else {
@@ -1433,9 +1450,9 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         ship.updateShipSystems(difficulty: difficultyScalar)
         zylonScanner.eulerAngles = sectorObjectsNode.eulerAngles
         if self.shipCurrrentSectorGrid.sectorType == .enemy {
-        zylonScanner.updateScanner(with: self.enemyShipsInSector)
+            zylonScanner.updateScanner(with: self.enemyShipsInSector, sceneView: self.spaceScnView)
         } else {
-            zylonScanner.updateScanner(with: self.enemyShipsInSector)
+            zylonScanner.updateScanner(with: self.enemyShipsInSector, sceneView:  self.spaceScnView)
         }
         //self.shipHud.updateHUD()
 

@@ -176,7 +176,7 @@ class mainMenuViewController: UIViewController, AVAudioPlayerDelegate {
         let transition = SKTransition.fade(withDuration: 0.0)
 
         self.mapScnView.present(galaxyScene, with: transition, incomingPointOfView: galaxyScene.rootNode.childNode(withName: "gCam", recursively: true), completionHandler: {
-            self.mapScnView.allowsCameraControl = true
+            self.mapScnView.allowsCameraControl = false
         })
         self.view.alpha = 0
         self.creditsView.text = ""

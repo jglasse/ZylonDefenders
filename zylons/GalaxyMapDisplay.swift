@@ -10,7 +10,7 @@ import Foundation
 import SceneKit
 
 class GalacticMapDisplay {
-    var myRecognizer: UIGestureRecognizer!
+    var myPanRecognizer: UIPanGestureRecognizer!
     var currentShipSectorIndex = 0
     var currentTargetIndex =  0
     let map = SCNScene(named: "galacticmap.scn")!
@@ -39,7 +39,7 @@ class GalacticMapDisplay {
     
     init() {
         
-    myRecognizer = UIPanGestureRecognizer(target: self, action: #selector(rotateObject(_:)))
+    myPanRecognizer = UIPanGestureRecognizer(target: self, action: #selector(rotateObject(_:)))
     cameraNode.camera = SCNCamera()
     cameraNode.name = "gCam"
 
@@ -103,10 +103,11 @@ class GalacticMapDisplay {
         return [newMaterial]
     }
     
-    internal func unHilightGrid(number: Int) {
-        let grid = sectorGrid(number: number)
-        let gridColor = number == currentShipSectorIndex ? UIColor.white : UIColor.green
-        grid?.geometry?.materials = gridMaterial(color: gridColor)
+    internal func unHilightGrid(gridNumber: Int) {
+        
+        let gColor = UIColor.green
+        let grid = sectorGrid(number: gridNumber)
+        grid?.geometry?.materials = gridMaterial(color: gColor)
     }
     
     // Public functions
@@ -144,14 +145,15 @@ class GalacticMapDisplay {
 
     
     func hilightNewtargetGrid(number: Int, color: UIColor) {
-        unHilightGrid(number: currentTargetIndex)
+        unHilightGrid(gridNumber: currentTargetIndex)
         let grid = sectorGrid(number: number)
         grid?.geometry?.materials = gridMaterial(color: color)
         currentTargetIndex = number
+        
     }
     
     func hilightNewShipCurrentGrid(number: Int, color: UIColor) {
-        unHilightGrid(number: currentTargetIndex)
+        unHilightGrid(gridNumber: currentShipSectorIndex)
         let grid = sectorGrid(number: number)
         grid?.geometry?.materials = gridMaterial(color: color)
         currentShipSectorIndex = number
