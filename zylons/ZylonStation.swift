@@ -13,6 +13,36 @@ class ZylonStation: SectorObject {
     var shieldStrength = 100
     var weaponType = 0
 
+    func beginRepair() {
+        let beam = SCNNode()
+        beam.name = "repairBeam"
+        beam.rotation = SCNVector4(1, 0, 0, Float.pi/2)
+        let beamHeight = 150
+        let beamGeometry = SCNCylinder(radius: 0.3, height: CGFloat(beamHeight))
+        //    beamGeometry.materials.first?.emission.contents = UIColor.purple
+        //   beamGeometry.materials.first?.diffuse.contents = UIColor.purple
+        beamGeometry.materials.first?.isDoubleSided = true
+        beamGeometry.materials.first?.blendMode = .add
+        beam.geometry = beamGeometry
+        beam.worldPosition = SCNVector3(0,-29,beamHeight/2)
+        beam.colorSwap(color1: UIColor.purple, color2: UIColor.blue, duration: 1.5)
+        self.addChildNode(beam)
+    }
+    
+    func completeRepair() {
+        
+    }
+    
+    func abortRepair() {
+        
+        
+    }
+    
+    func attack() {
+        
+    }
+    
+    
     override init() {
         super.init()
         self.sectorObjectType = .zylonStation

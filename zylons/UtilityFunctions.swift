@@ -48,7 +48,7 @@ func getSettings() -> GameSettings {
 func save(settings: GameSettings) {
     let defaults = UserDefaults.standard
     let difficultyString = settings.difficulty.rawValue
-    print("saving follwoing settings : \(settings.prologueEnabled)")
+    print("saving following settings : \(settings.prologueEnabled)")
     defaults.set(settings.prologueEnabled, forKey: "prologueViewed")
     defaults.set(difficultyString, forKey: "difficulty")
 }

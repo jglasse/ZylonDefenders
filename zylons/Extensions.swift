@@ -7,6 +7,8 @@
 //
 
 import CoreGraphics
+import SceneKit
+
 
 public extension CGRect {
     var mid: CGPoint {
@@ -136,4 +138,35 @@ extension String {
         return String(self[start..<end])
     }
 
+}
+
+extension SCNNode {
+    private func aniColor(from: UIColor, to: UIColor, percentage: CGFloat) -> UIColor {
+        let fromComponents = from.cgColor.components!
+        let toComponents = to.cgColor.components!
+        
+        let color = UIColor(red: fromComponents[0] + (toComponents[0] - fromComponents[0]) * percentage,
+                            green: fromComponents[1] + (toComponents[1] - fromComponents[1]) * percentage,
+                            blue: fromComponents[2] + (toComponents[2] - fromComponents[2]) * percentage,
+                            alpha: fromComponents[3] + (toComponents[3] - fromComponents[3]) * percentage)
+        return color
+    }
+    
+    
+    func colorSwap(color1: UIColor, color2: UIColor, duration: Float){
+        
+        let act0 = SCNAction.customAction(duration: TimeInterval(duration), action: { (node, elapsedTime) in
+            let percentage = elapsedTime / CGFloat(duration)
+            node.geometry?.firstMaterial?.diffuse.contents = self.aniColor(from: color2, to: color1, percentage: percentage)
+        })
+        let act1 = SCNAction.customAction(duration: TimeInterval(duration), action: { (node, elapsedTime) in
+            let percentage:CGFloat = elapsedTime*2 / CGFloat(duration)
+            node.geometry?.firstMaterial?.diffuse.contents = self.aniColor(from: color1, to: color2, percentage: percentage)
+        })
+        
+        
+        let act = SCNAction.repeatForever(SCNAction.sequence([act0, act1]))
+        self.runAction(act)
+    }
+    
 }

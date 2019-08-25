@@ -23,6 +23,7 @@
 		6B6642C922AB088200066491 /* wopr.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 6B6642C722AB087E00066491 /* wopr.aiff */; };
 		6B72B76522F6259400564D52 /* TelemetryPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BAF88C222E59DCD0022400E /* TelemetryPlayer.swift */; };
 		6B72B76622F6259400564D52 /* AVTonePlayerUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B600D6522D2A87E003D3504 /* AVTonePlayerUnit.swift */; };
+		6B8515D12308B5AF000FEA53 /* rock.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6B8515D02308B5AF000FEA53 /* rock.jpg */; };
 		6B8E68EB22DBC081000D3DFF /* FadeToBlackSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B8E68EA22DBC081000D3DFF /* FadeToBlackSegue.swift */; };
 		6BAF88C322E59DCD0022400E /* TelemetryPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BAF88C222E59DCD0022400E /* TelemetryPlayer.swift */; };
 		6BB6C38222B1B25C002F59D1 /* galacticMap.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 6BB6C38122B1B25C002F59D1 /* galacticMap.m4a */; };
@@ -206,6 +207,8 @@
 		6B600D6522D2A87E003D3504 /* AVTonePlayerUnit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVTonePlayerUnit.swift; sourceTree = "<group>"; };
 		6B6642C422AB087300066491 /* PrologueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrologueViewController.swift; sourceTree = "<group>"; };
 		6B6642C722AB087E00066491 /* wopr.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = wopr.aiff; sourceTree = "<group>"; };
+		6B8515D02308B5AF000FEA53 /* rock.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = rock.jpg; sourceTree = "<group>"; };
+		6B8515D22308B6C8000FEA53 /* meteor_NM_7366.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = meteor_NM_7366.scn; sourceTree = "<group>"; };
 		6B8E68EA22DBC081000D3DFF /* FadeToBlackSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FadeToBlackSegue.swift; sourceTree = "<group>"; };
 		6BAF88C222E59DCD0022400E /* TelemetryPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelemetryPlayer.swift; sourceTree = "<group>"; };
 		6BB6C38122B1B25C002F59D1 /* galacticMap.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = galacticMap.m4a; sourceTree = "<group>"; };
@@ -524,6 +527,8 @@
 		E1B12C2B2027D3FD0071F9A1 /* Scenekit Models */ = {
 			isa = PBXGroup;
 			children = (
+				6B8515D02308B5AF000FEA53 /* rock.jpg */,
+				6B8515D22308B6C8000FEA53 /* meteor_NM_7366.scn */,
 				E1A5A7832283FC7700EC5A71 /* MS5_Diffuse1.jpg */,
 				E1A5A7872283FC7800EC5A71 /* MS5_Diffuse2.jpg */,
 				E1A5A7892283FC7800EC5A71 /* MS5_Diffuse3.jpg */,
@@ -854,6 +859,7 @@
 				E109EB601E1BB938003DAB0F /* 40069.ttf in Resources */,
 				E1A89EA81E9867F600EA8BC4 /* Default-568h@2x.png in Resources */,
 				E1A58DC31E1DD07E00DCA24F /* Explosion.scnp in Resources */,
+				6B8515D12308B5AF000FEA53 /* rock.jpg in Resources */,
 				E16E28C120564A41002362C1 /* empathyCircuitDamaged.aiff in Resources */,
 				E16AB62A1E1F120400E3D8C2 /* torpedo_fail.mp3 in Resources */,
 				E11A73831E986DE4001CCAC8 /* Main.storyboard in Resources */,

@@ -75,7 +75,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     var deltaQuadrant: SCNNode { return (galacticDisplay.map.rootNode.childNode(withName: "DELTA", recursively: true))! }
 
     var rotationNode: SCNNode { return  (galacticDisplay.map.rootNode.childNode(withName: "rotateNode", recursively: true))! }
-
+    var internalRotationNode: SCNNode { return  (galacticDisplay.map.rootNode.childNode(withName: "internalRot", recursively: true))! }
     var galacticSlider = UISlider()
 
     // MARK: - GameState Enums & Structs
@@ -138,7 +138,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     var numberOfHumanShotsOnscreen = 0
 
     // gesture variables
-    var currentMapAngleZ: Float = 0.0
+    var currentMapAngleZ =  Float.pi
     var currentMapAngleX: Float = 0.0
     var currentMapZoom: Float = 1.0
 
@@ -187,8 +187,8 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 //        let sectorString = "\(self.ship.targetSectorNumber+1)"
 //        let targetGrid = galacticDisplay.map.rootNode.childNode(withName: sectorString, recursively: true)
         
-        galacticDisplay.hilightNewtargetGrid(number: ship.targetSectorNumber, color: UIColor.red)
-        galacticDisplay.hilightNewShipCurrentGrid(number: ship.currentSectorNumber, color: UIColor.white)
+        galacticDisplay.setNewTargetGrid(number: ship.targetSectorNumber, color: UIColor.red)
+        galacticDisplay.setNewShipCurrentGrid(number: ship.currentSectorNumber, color: UIColor.white)
 //        galacticDisplay.oldTargetIndicator.worldPosition = targetGrid!.worldPosition
 //
 //
@@ -334,6 +334,10 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         }
 }
 
+    func beginRepairBeamFrom(starbase: ZylonStation){
+        starbase.beginRepair()
+    }
+
 @IBAction func fireTorpedo(_ sender: UIButton) {
     if self.viewMode == .foreView { fireTorp() } else {
         if self.viewMode == .aftView { fireAftTorp() }}
@@ -349,7 +353,10 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
             telemetryView.text = ""
             telemetryView.isHidden = false
             telemetryView.alpha = 1.0
-            delayWithSeconds(2.75, completion: {self.telemetryView.writeMessage(message: "Standby for repairs")})
+            delayWithSeconds(2.75, completion: {
+                self.telemetryView.writeMessage(message: "Standby for repairs")
+                self.beginRepairBeamFrom(starbase: self.zylonStation)
+            })
             
             // TODO: replace with beam animation
             if !self.gameOver && self.shipCurrrentSectorGrid.numberOfSectorObjects > 0 {
@@ -372,6 +379,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
                 else
                 {
                     self.telemetryView.abort()
+                    self.shipHud.deactivateAlert()
                 }
             })
             }
@@ -452,7 +460,8 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
                 self.ship.tacticalDisplayEngaged = tacticalWasEngaged
                 self.ship.currentSectorNumber = targetAtWarp
                 self.enterSector(sectorNumber: targetAtWarp)
-                self.galacticDisplay.updateDisplay(galaxyModel: self.galaxyModel, shipSector: self.ship.currentSectorNumber)
+                self.ship.targetSectorNumber = randIntRange(lower: 0, upper: 126)
+                    self.galacticDisplay.updateDisplay(galaxyModel: self.galaxyModel, shipSector: self.ship.currentSectorNumber, targetSector: self.ship.targetSectorNumber)
                 }
             }
             let spawnDeadline = DispatchTime.now() + .seconds(7)
@@ -771,10 +780,36 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     
     
     @objc func mapTap(_ gesture: UITapGestureRecognizer) {
+        if gesture.state == .ended{
         let location = gesture.location(in: mapScnView)
         let hitresults = mapScnView.hitTest(location, options: nil)
-        print(hitresults)
+            print("hitResults:\(hitresults)")
+        if !hitresults.isEmpty
+        {
+            var tappedNode: SCNNode?
+            // test if it's a grid element
+            
+            for result in hitresults {
+            for x in 0...127
+            {
+                let sectorString = "\(x)"
+                if result.node.name == sectorString {
+                    tappedNode =  hitresults.first?.node
+                    print("tapped Node:\(tappedNode?.name)")
+                    print("galaxyModel.map[\(x)].sectorType:", galaxyModel.map[x].sectorType)
+                    if galaxyModel.map[x].sectorType != .empty {
+                    galacticDisplay.setNewTargetGrid(number: x, color: UIColor.red)
+        
+                    print("Node Highlighted")
+                    }
+                }
+            }
+            }
+        }
+
+        }
     }
+    
     @objc func mapPan(_ gesture: UIPanGestureRecognizer) {
 
         let translation = gesture.translation(in: gesture.view)
@@ -783,13 +818,13 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         
         var newAngleX = (Float)(translation.y)*(Float)(Double.pi)/180.0
         newAngleX += currentMapAngleX
-        if newAngleX > 0 {newAngleX = 0}
-         else if newAngleX < -0.2 {newAngleX = -0.2}
+        if newAngleX > 0.2 {newAngleX = 0.2}
+         else if newAngleX < -0.4 {newAngleX = -0.4}
 
 
+        
 
-
-        rotationNode.eulerAngles.z = newAngleZ
+        internalRotationNode.eulerAngles.z = newAngleZ
         rotationNode.eulerAngles.x = newAngleX
 
         if gesture.state == .ended {
@@ -802,7 +837,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     
     @objc func mapZoom(_ gesture: UIPinchGestureRecognizer) {
         var newZoom = gesture.scale
-        if newZoom > 1.1 {newZoom = 1.1}
+        if newZoom > 1.2 {newZoom = 1.2}
         else if newZoom < 0.75 {newZoom = 0.75}
         galacticDisplay.rotationNode.scale = SCNVector3(newZoom,newZoom,newZoom)
     }
@@ -865,8 +900,11 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         markSectorObjectToBeRemoved(object: removeMe)
         }
 
-        if ship.shieldsAreUp && ship.shieldStrength>0 {
-            ship.energyStore -= 50
+        if ship.shieldsAreUp && ship.shieldStrength > -1 {
+            
+            if difficultyScalar>1 {
+            ship.energyStore -= 5 * self.difficultyScalar
+            }
             self.environmentSound("forcefieldHit")
             shipHud.shieldFlash()
 
@@ -891,7 +929,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
            //shipHud.shieldHit(location: overlaySpritePOS)
 
             //decrement shield strength, and then determine if shields have held
-            ship.shieldStrength = ship.shieldStrength - 10
+            ship.shieldStrength = ship.shieldStrength - 5 * self.difficultyScalar
             if ship.shieldStrength>0 {
             print("SHIELDS HAVE HELD! Current Shield Strenth: \(ship.shieldStrength)")
             } else {
@@ -903,7 +941,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         } else {
             print("hullHit sound because sheilds are down")
 
-            self.environmentSound("hullHit")
+            self.environmentSound("Raw Hull Hit")
             ship.takeDamage()
         }
     }
@@ -930,7 +968,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         }
         }
             galaxyModel.decrementEnemyCount(sector: ship.currentSectorNumber)
-            galacticDisplay.updateDisplay(galaxyModel: galaxyModel, shipSector: ship.currentSectorNumber)
+            galacticDisplay.updateDisplay(galaxyModel: galaxyModel, shipSector: ship.currentSectorNumber, targetSector: self.ship.targetSectorNumber)
         
         delayWithSeconds(1.7, completion: {self.kohai.speak("badIdea")})
 
@@ -971,10 +1009,12 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     }
     
     func justWin(atNode: SCNNode, cause: String) {
-        print("YOU WIN!")
-        gameOver = true
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+            self.gameOver = true
+        })
         shipHud.fatalFlash()
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            
             self.endGame(cause)
         }
         
@@ -1392,7 +1432,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     
     
     func updateGalacticMap() {
-        galacticDisplay.updateDisplay(galaxyModel: galaxyModel, shipSector: ship.currentSectorNumber)
+        galacticDisplay.updateDisplay(galaxyModel: galaxyModel, shipSector: ship.currentSectorNumber, targetSector: ship.targetSectorNumber)
         self.shipSectorLabel.text = "Ship Sector: \(self.shipCurrrentSectorGrid.quadrant) \(self.shipCurrrentSectorGrid.quadrantNumber)"
         self.targetSectorLabel.text = "Target Sector: \(self.targetSectorGrid.quadrant) \(self.targetSectorGrid.quadrantNumber)"
 
@@ -1439,6 +1479,9 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         cleanSceneAndUpdateSectorNodeObjects()
         updateTactical()
         updateStars()
+        }
+        else {
+            shipHud.deactivateAlert()
         }
     }
     func renderer(_ renderer: SCNSceneRenderer, didRenderScene scene: SCNScene, atTime time: TimeInterval) {

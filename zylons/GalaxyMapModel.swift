@@ -53,7 +53,7 @@ struct GalaxyMapModel {
         case 5:
             numberofOccupiedSectors = 40
             maxShipsPerSector = 7
-            numberofStations = 3
+            numberofStations = 4
             
 
         default:
@@ -69,8 +69,9 @@ struct GalaxyMapModel {
             self.map.append(currentSector)
         }
         //then randomly add space Stations to the appropriate number of sectors
-        for _ in 1...numberofStations {
-            let currentSectorIndex = Int(randRange(lower: 0, upper: 127))
+        for x in 0...numberofStations-1 {
+            let lowerrange:Int = x*32
+            let currentSectorIndex = randIntRange(lower: lowerrange, upper: lowerrange+31)
             self.map[currentSectorIndex].numberOfSectorObjects = 1
             self.map[currentSectorIndex].sectorType = .starbase
         }

@@ -111,7 +111,7 @@ class GalacticMapDisplay {
     }
     
     // Public functions
-    func updateDisplay(galaxyModel: GalaxyMapModel, shipSector: Int) {
+    func updateDisplay(galaxyModel: GalaxyMapModel, shipSector: Int, targetSector:Int) {
         //iterate over grids
         for i in 1...128 {
             
@@ -124,7 +124,8 @@ class GalacticMapDisplay {
             currentGrid?.addChildNode(sectorObjectNode)
         }
 //        let currentSectorString = "\(shipSector+1)"
-        hilightNewShipCurrentGrid(number: shipSector, color: .white)
+        setNewShipCurrentGrid(number: shipSector, color: .white)
+        setNewTargetGrid(number: targetSector, color: .red)
         
     }
         
@@ -144,7 +145,7 @@ class GalacticMapDisplay {
     }
 
     
-    func hilightNewtargetGrid(number: Int, color: UIColor) {
+    func setNewTargetGrid(number: Int, color: UIColor) {
         unHilightGrid(gridNumber: currentTargetIndex)
         let grid = sectorGrid(number: number)
         grid?.geometry?.materials = gridMaterial(color: color)
@@ -152,7 +153,7 @@ class GalacticMapDisplay {
         
     }
     
-    func hilightNewShipCurrentGrid(number: Int, color: UIColor) {
+    func setNewShipCurrentGrid(number: Int, color: UIColor) {
         unHilightGrid(gridNumber: currentShipSectorIndex)
         let grid = sectorGrid(number: number)
         grid?.geometry?.materials = gridMaterial(color: color)
