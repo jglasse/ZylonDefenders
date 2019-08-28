@@ -97,6 +97,7 @@ class ClassicMap: SKScene {
                 sectorIcon = SKSpriteNode(imageNamed: "spaceStation")
             }
             if let icon = sectorIcon {
+
                 icon.position = mapGridFromSector(number: i)
                 icon.size = CGSize(width: 24, height: 24)
                 mapGrid.addChild(icon)
