@@ -460,6 +460,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 
     @IBAction func gridWarp(_ sender: UIButton) {
         if !ship.isCurrentlyinWarp && !gameOver && ship.targetSectorNumber != ship.currentSectorNumber {
+            let speedBeforeWarp = ship.currentSpeed
             let tacticalWasEngaged = ship.tacticalDisplayEngaged
             ship.tacticalDisplayEngaged = false
             let targetAtWarp = ship.targetSectorNumber
@@ -472,7 +473,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
             let deadlineTime = DispatchTime.now() + .seconds(6)
             DispatchQueue.main.asyncAfter(deadline: deadlineTime) {
                 if !self.gameOver {
-                self.setSpeed(3)
+                self.setSpeed(speedBeforeWarp)
                 self.forwardCameraNode.camera?.motionBlurIntensity = 0
                 self.ship.isCurrentlyinWarp = false
                 self.ship.tacticalDisplayEngaged = tacticalWasEngaged
@@ -515,7 +516,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
             galacticSlider.maximumValue = 31
             ship.targetSectorNumber = 16
         self.targetSectorLabel.text = "Target Sector: \(self.targetSectorGrid.quadrant) \(self.targetSectorGrid.quadrantNumber)"
-
+        classicMap.updateDisplay(galaxyModel: galaxyModel, shipSector: ship.currentSectorNumber, targetSector: ship.targetSectorNumber)
 
     }
     @IBAction func beta(_ sender: Any) {
@@ -532,6 +533,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         galacticSlider.maximumValue = 63
         ship.targetSectorNumber = 48
         self.targetSectorLabel.text = "Target Sector: \(self.targetSectorGrid.quadrant) \(self.targetSectorGrid.quadrantNumber)"
+        classicMap.updateDisplay(galaxyModel: galaxyModel, shipSector: ship.currentSectorNumber, targetSector: ship.targetSectorNumber)
 
     }
     @IBAction func gamma(_ sender: Any) {
@@ -547,6 +549,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         galacticSlider.minimumValue = 64
         galacticSlider.maximumValue = 95
         ship.targetSectorNumber = 80
+        classicMap.updateDisplay(galaxyModel: galaxyModel, shipSector: ship.currentSectorNumber, targetSector: ship.targetSectorNumber)
 
     }
     @IBAction func delta(_ sender: Any) {
@@ -563,6 +566,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         galacticSlider.maximumValue = 127
         ship.targetSectorNumber = 112
         self.targetSectorLabel.text = "Target Sector: \(self.targetSectorGrid.quadrant) \(self.targetSectorGrid.quadrantNumber)"
+        classicMap.updateDisplay(galaxyModel: galaxyModel, shipSector: ship.currentSectorNumber, targetSector: ship.targetSectorNumber)
 
 
     }
@@ -1148,6 +1152,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 
     }
     func performWarp() {
+
         let energyUsed = abs(ship.currentSectorNumber - ship.targetSectorNumber) * self.difficultyScalar
         ship.energyStore -= energyUsed
         ship.isCurrentlyinWarp = true

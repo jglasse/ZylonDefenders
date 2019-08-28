@@ -25,6 +25,23 @@
 		6B6C26512315FAA800F51088 /* Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6C264F2315FAA000F51088 /* Grid.swift */; };
 		6B6C26532315FCD100F51088 /* ClassicMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6C26522315FCD100F51088 /* ClassicMap.swift */; };
 		6B6C265423161EF600F51088 /* ClassicMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6C26522315FCD100F51088 /* ClassicMap.swift */; };
+		6B6C265A2316540D00F51088 /* HumonHunter.scn in Resources */ = {isa = PBXBuildFile; fileRef = 6B6C26592316540D00F51088 /* HumonHunter.scn */; };
+		6B6C265C2316541B00F51088 /* HumonFighter.scn in Resources */ = {isa = PBXBuildFile; fileRef = 6B6C265B2316541B00F51088 /* HumonFighter.scn */; };
+		6B6C26662316546B00F51088 /* Atari 2_Atari 2_Normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B6C265E2316546600F51088 /* Atari 2_Atari 2_Normal.png */; };
+		6B6C26672316546B00F51088 /* Atari 2_Atari 2_Emissive.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B6C265F2316546600F51088 /* Atari 2_Atari 2_Emissive.png */; };
+		6B6C26682316546B00F51088 /* Atari 2_Atari 2_BaseColor.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B6C26602316546700F51088 /* Atari 2_Atari 2_BaseColor.png */; };
+		6B6C26692316546B00F51088 /* Atari 2_Atari 2_Roughness.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B6C26612316546800F51088 /* Atari 2_Atari 2_Roughness.png */; };
+		6B6C266A2316546B00F51088 /* Atari 2.json in Resources */ = {isa = PBXBuildFile; fileRef = 6B6C26622316546800F51088 /* Atari 2.json */; };
+		6B6C266B2316546B00F51088 /* Atari 2_Atari 2_Height.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B6C26632316546900F51088 /* Atari 2_Atari 2_Height.png */; };
+		6B6C266C2316546B00F51088 /* Atari 2_Atari 2_AO.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B6C26642316546A00F51088 /* Atari 2_Atari 2_AO.png */; };
+		6B6C266D2316546B00F51088 /* Atari 2_Atari 2_Metallic.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B6C26652316546A00F51088 /* Atari 2_Atari 2_Metallic.png */; };
+		6B6C2676231655E600F51088 /* Atari 1_Atari 1_BaseColor.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B6C266F231655E000F51088 /* Atari 1_Atari 1_BaseColor.png */; };
+		6B6C2677231655E600F51088 /* Atari 1_Atari 1_Normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B6C2670231655E300F51088 /* Atari 1_Atari 1_Normal.png */; };
+		6B6C2678231655E600F51088 /* Atari 1_Atari 1_Height.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B6C2671231655E300F51088 /* Atari 1_Atari 1_Height.png */; };
+		6B6C2679231655E600F51088 /* Atari 1_Atari 1_Emissive.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B6C2672231655E400F51088 /* Atari 1_Atari 1_Emissive.png */; };
+		6B6C267A231655E600F51088 /* Atari 1_Atari 1_Roughness.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B6C2673231655E500F51088 /* Atari 1_Atari 1_Roughness.png */; };
+		6B6C267B231655E600F51088 /* Atari 1_Atari 1_Metallic.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B6C2674231655E500F51088 /* Atari 1_Atari 1_Metallic.png */; };
+		6B6C267C231655E600F51088 /* Atari 1_Atari 1_AO.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B6C2675231655E600F51088 /* Atari 1_Atari 1_AO.png */; };
 		6B72B76522F6259400564D52 /* TelemetryPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BAF88C222E59DCD0022400E /* TelemetryPlayer.swift */; };
 		6B72B76622F6259400564D52 /* AVTonePlayerUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B600D6522D2A87E003D3504 /* AVTonePlayerUnit.swift */; };
 		6B8515D12308B5AF000FEA53 /* rock.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6B8515D02308B5AF000FEA53 /* rock.jpg */; };
@@ -215,6 +232,23 @@
 		6B6642C722AB087E00066491 /* wopr.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = wopr.aiff; sourceTree = "<group>"; };
 		6B6C264F2315FAA000F51088 /* Grid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Grid.swift; sourceTree = "<group>"; };
 		6B6C26522315FCD100F51088 /* ClassicMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassicMap.swift; sourceTree = "<group>"; };
+		6B6C26592316540D00F51088 /* HumonHunter.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = HumonHunter.scn; sourceTree = "<group>"; };
+		6B6C265B2316541B00F51088 /* HumonFighter.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = HumonFighter.scn; sourceTree = "<group>"; };
+		6B6C265E2316546600F51088 /* Atari 2_Atari 2_Normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Atari 2_Atari 2_Normal.png"; sourceTree = "<group>"; };
+		6B6C265F2316546600F51088 /* Atari 2_Atari 2_Emissive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Atari 2_Atari 2_Emissive.png"; sourceTree = "<group>"; };
+		6B6C26602316546700F51088 /* Atari 2_Atari 2_BaseColor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Atari 2_Atari 2_BaseColor.png"; sourceTree = "<group>"; };
+		6B6C26612316546800F51088 /* Atari 2_Atari 2_Roughness.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Atari 2_Atari 2_Roughness.png"; sourceTree = "<group>"; };
+		6B6C26622316546800F51088 /* Atari 2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "Atari 2.json"; sourceTree = "<group>"; };
+		6B6C26632316546900F51088 /* Atari 2_Atari 2_Height.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Atari 2_Atari 2_Height.png"; sourceTree = "<group>"; };
+		6B6C26642316546A00F51088 /* Atari 2_Atari 2_AO.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Atari 2_Atari 2_AO.png"; sourceTree = "<group>"; };
+		6B6C26652316546A00F51088 /* Atari 2_Atari 2_Metallic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Atari 2_Atari 2_Metallic.png"; sourceTree = "<group>"; };
+		6B6C266F231655E000F51088 /* Atari 1_Atari 1_BaseColor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Atari 1_Atari 1_BaseColor.png"; sourceTree = "<group>"; };
+		6B6C2670231655E300F51088 /* Atari 1_Atari 1_Normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Atari 1_Atari 1_Normal.png"; sourceTree = "<group>"; };
+		6B6C2671231655E300F51088 /* Atari 1_Atari 1_Height.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Atari 1_Atari 1_Height.png"; sourceTree = "<group>"; };
+		6B6C2672231655E400F51088 /* Atari 1_Atari 1_Emissive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Atari 1_Atari 1_Emissive.png"; sourceTree = "<group>"; };
+		6B6C2673231655E500F51088 /* Atari 1_Atari 1_Roughness.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Atari 1_Atari 1_Roughness.png"; sourceTree = "<group>"; };
+		6B6C2674231655E500F51088 /* Atari 1_Atari 1_Metallic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Atari 1_Atari 1_Metallic.png"; sourceTree = "<group>"; };
+		6B6C2675231655E600F51088 /* Atari 1_Atari 1_AO.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Atari 1_Atari 1_AO.png"; sourceTree = "<group>"; };
 		6B8515D02308B5AF000FEA53 /* rock.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = rock.jpg; sourceTree = "<group>"; };
 		6B8515D22308B6C8000FEA53 /* meteor_NM_7366.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = meteor_NM_7366.scn; sourceTree = "<group>"; };
 		6B8E68EA22DBC081000D3DFF /* FadeToBlackSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FadeToBlackSegue.swift; sourceTree = "<group>"; };
@@ -378,6 +412,35 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6B6C265D2316544500F51088 /* BaseStarTextures */ = {
+			isa = PBXGroup;
+			children = (
+				6B6C26642316546A00F51088 /* Atari 2_Atari 2_AO.png */,
+				6B6C26602316546700F51088 /* Atari 2_Atari 2_BaseColor.png */,
+				6B6C265F2316546600F51088 /* Atari 2_Atari 2_Emissive.png */,
+				6B6C26632316546900F51088 /* Atari 2_Atari 2_Height.png */,
+				6B6C26652316546A00F51088 /* Atari 2_Atari 2_Metallic.png */,
+				6B6C265E2316546600F51088 /* Atari 2_Atari 2_Normal.png */,
+				6B6C26612316546800F51088 /* Atari 2_Atari 2_Roughness.png */,
+				6B6C26622316546800F51088 /* Atari 2.json */,
+			);
+			path = BaseStarTextures;
+			sourceTree = "<group>";
+		};
+		6B6C266E231655B400F51088 /* HUMON Textures */ = {
+			isa = PBXGroup;
+			children = (
+				6B6C2675231655E600F51088 /* Atari 1_Atari 1_AO.png */,
+				6B6C266F231655E000F51088 /* Atari 1_Atari 1_BaseColor.png */,
+				6B6C2672231655E400F51088 /* Atari 1_Atari 1_Emissive.png */,
+				6B6C2671231655E300F51088 /* Atari 1_Atari 1_Height.png */,
+				6B6C2674231655E500F51088 /* Atari 1_Atari 1_Metallic.png */,
+				6B6C2670231655E300F51088 /* Atari 1_Atari 1_Normal.png */,
+				6B6C2673231655E500F51088 /* Atari 1_Atari 1_Roughness.png */,
+			);
+			path = "HUMON Textures";
+			sourceTree = "<group>";
+		};
 		6B72B76422F6258500564D52 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -557,6 +620,11 @@
 		E1B12C2B2027D3FD0071F9A1 /* Scenekit Models */ = {
 			isa = PBXGroup;
 			children = (
+				E1272AB51F64EE4800A66358 /* Humon.scn */,
+				6B6C265B2316541B00F51088 /* HumonFighter.scn */,
+				6B6C26592316540D00F51088 /* HumonHunter.scn */,
+				6B6C265D2316544500F51088 /* BaseStarTextures */,
+				6B6C266E231655B400F51088 /* HUMON Textures */,
 				6B8515D02308B5AF000FEA53 /* rock.jpg */,
 				6B8515D22308B6C8000FEA53 /* meteor_NM_7366.scn */,
 				E1A5A7832283FC7700EC5A71 /* MS5_Diffuse1.jpg */,
@@ -569,7 +637,6 @@
 				E1A5A7842283FC7700EC5A71 /* MS5_Roughness.jpg */,
 				E1A5A7922283FD6E00EC5A71 /* zylonStation.scn */,
 				E126D43C203AA0D7006AB0E1 /* galacticmap.scn */,
-				E1272AB51F64EE4800A66358 /* Humon.scn */,
 				E1D1EA0C20267A7D00DB2984 /* Scanner.scn */,
 			);
 			name = "Scenekit Models";
@@ -876,11 +943,13 @@
 				E19BC7BB2259576700A1DA6B /* shieldsUp.m4a in Resources */,
 				E19BC7BC2259576700A1DA6B /* shieldsDown.m4a in Resources */,
 				6B281EEB22FCA75B00B4C288 /* StationExplosion.scnp in Resources */,
+				6B6C2678231655E600F51088 /* Atari 1_Atari 1_Height.png in Resources */,
 				6B354D4C22AB344B00482384 /* zylonHope.m4a in Resources */,
 				E1EA0D6E1FE9C59A002BFB0F /* Glass_TTY_VT220.ttf in Resources */,
 				E16E28B720564A41002362C1 /* warpEnd.aif in Resources */,
 				E192623320A79A8600AB93F2 /* Starfield 2048x1024B.png in Resources */,
 				E16E28D920564A41002362C1 /* Shields30.aiff in Resources */,
+				6B6C26682316546B00F51088 /* Atari 2_Atari 2_BaseColor.png in Resources */,
 				E13A032521B37B1D0049B125 /* beta.m4a in Resources */,
 				E1A5A78F2283FC7800EC5A71 /* MS5_Diffuse2.jpg in Resources */,
 				E16E28BF20564A41002362C1 /* warpStart.aif in Resources */,
@@ -891,9 +960,14 @@
 				E1A5A78D2283FC7800EC5A71 /* MS5_Diffuse4.jpg in Resources */,
 				E1DFC2272287A89B00F90E69 /* ShieldTorpExplosion.scnp in Resources */,
 				E139A7062276153400534982 /* BetaSector.m4a in Resources */,
+				6B6C267C231655E600F51088 /* Atari 1_Atari 1_AO.png in Resources */,
 				E109EB601E1BB938003DAB0F /* 40069.ttf in Resources */,
 				E1A89EA81E9867F600EA8BC4 /* Default-568h@2x.png in Resources */,
+				6B6C2676231655E600F51088 /* Atari 1_Atari 1_BaseColor.png in Resources */,
+				6B6C266C2316546B00F51088 /* Atari 2_Atari 2_AO.png in Resources */,
+				6B6C266D2316546B00F51088 /* Atari 2_Atari 2_Metallic.png in Resources */,
 				E1A58DC31E1DD07E00DCA24F /* Explosion.scnp in Resources */,
+				6B6C26662316546B00F51088 /* Atari 2_Atari 2_Normal.png in Resources */,
 				6B8515D12308B5AF000FEA53 /* rock.jpg in Resources */,
 				E16E28C120564A41002362C1 /* empathyCircuitDamaged.aiff in Resources */,
 				E16AB62A1E1F120400E3D8C2 /* torpedo_fail.mp3 in Resources */,
@@ -904,6 +978,8 @@
 				E16E28C920564A41002362C1 /* warpStartStop.aif in Resources */,
 				E139A70A2276153400534982 /* DeltaSector.m4a in Resources */,
 				E12948751F9D715200DA0E0F /* LaunchScreen.storyboard in Resources */,
+				6B6C265A2316540D00F51088 /* HumonHunter.scn in Resources */,
+				6B6C266B2316546B00F51088 /* Atari 2_Atari 2_Height.png in Resources */,
 				E16E28C720564A41002362C1 /* innerHullFailure.aiff in Resources */,
 				E1BD14B61E24280C002E49A5 /* seven.m4a in Resources */,
 				E16E28C320564A41002362C1 /* gridCoreFailureImminent.aiff in Resources */,
@@ -919,13 +995,17 @@
 				E19BC7B122594F2500A1DA6B /* photon_sound.m4a in Resources */,
 				E1D1EA0D20267A7D00DB2984 /* Scanner.scn in Resources */,
 				6BB6C38222B1B25C002F59D1 /* galacticMap.m4a in Resources */,
+				6B6C26672316546B00F51088 /* Atari 2_Atari 2_Emissive.png in Resources */,
 				E16E28D120564A41002362C1 /* Shields20.aiff in Resources */,
 				6BE194B122E23791002C670C /* dreadnaught.m4a in Resources */,
 				E109EB5E1E1B3F7F003DAB0F /* shields.mp3 in Resources */,
 				E1BD14B41E24280C002E49A5 /* nine.m4a in Resources */,
 				E139A7082276153400534982 /* GammaSector.m4a in Resources */,
+				6B6C267B231655E600F51088 /* Atari 1_Atari 1_Metallic.png in Resources */,
 				E1BD14B01E24280C002E49A5 /* eight.m4a in Resources */,
+				6B6C267A231655E600F51088 /* Atari 1_Atari 1_Roughness.png in Resources */,
 				E1D8BD5B1DCFCD1A00C863DF /* Assets.xcassets in Resources */,
+				6B6C266A2316546B00F51088 /* Atari 2.json in Resources */,
 				E1A5A78E2283FC7800EC5A71 /* MS5_Glow.jpg in Resources */,
 				E1272AB81F65244500A66358 /* Humon.scn in Resources */,
 				E10EFCC11EC0EE9400CC872E /* smallestGrid.png in Resources */,
@@ -935,13 +1015,16 @@
 				E1A57AD01E1D8CCA009F2CA6 /* beep.mp3 in Resources */,
 				E1A5A78C2283FC7800EC5A71 /* MS5_Roughness.jpg in Resources */,
 				E1D36D611FEA5764001F3E25 /* enemyAlert.mp3 in Resources */,
+				6B6C26692316546B00F51088 /* Atari 2_Atari 2_Roughness.png in Resources */,
 				E1BD14BA1E24280C002E49A5 /* zero.m4a in Resources */,
 				E16E28CF20564A41002362C1 /* proximateImprobabilityDriveDetected.aiff in Resources */,
 				E174FDC81E1A424500A7CC73 /* bokeh.png in Resources */,
 				E16E28DD20564A41002362C1 /* ShieldsFailure.aiff in Resources */,
 				E16E28B920564A41002362C1 /* Shields10.aiff in Resources */,
 				E16E28C520564A41002362C1 /* viralIntrusionDetected.aiff in Resources */,
+				6B6C2677231655E600F51088 /* Atari 1_Atari 1_Normal.png in Resources */,
 				6B356FBA22FCC60A00869FAA /* alphaStationDestroyed.m4a in Resources */,
+				6B6C265C2316541B00F51088 /* HumonFighter.scn in Resources */,
 				E17282A51EBEA144003C1955 /* grid.png in Resources */,
 				E1A5A7902283FC7800EC5A71 /* MS5_Metal.jpg in Resources */,
 				E13A032821B37B1D0049B125 /* alpha.m4a in Resources */,
@@ -970,6 +1053,7 @@
 				E16E28E720564A41002362C1 /* plasmaManifoldFailure.aiff in Resources */,
 				E174FDC71E1A424500A7CC73 /* Torpedo.scnp in Resources */,
 				E10EFCBF1EC0EE8400CC872E /* smallestGridLessDense.png in Resources */,
+				6B6C2679231655E600F51088 /* Atari 1_Atari 1_Emissive.png in Resources */,
 				E1BD14B71E24280C002E49A5 /* six.m4a in Resources */,
 				E1A5A7912283FC7800EC5A71 /* MS5_Diffuse3.jpg in Resources */,
 				E16E28E520564A41002362C1 /* Shields100.aiff in Resources */,

@@ -112,6 +112,7 @@ class HumonShip: SectorObject {
     override init() {
         super.init()
         self.sectorObjectType = .humonShip // 
+       // let humonshipScene = SCNScene(named: "Humon.scn")
         let humonshipScene = SCNScene(named: "Humon.scn")
         let humonShip = humonshipScene?.rootNode.childNodes[0]
         let droneShape = SCNBox(width: 10, height: 5, length: 5, chamferRadius: 0)
