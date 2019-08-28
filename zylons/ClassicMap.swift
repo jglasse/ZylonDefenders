@@ -13,6 +13,7 @@ import UIKit
 class ClassicMap: SKScene {
     var mapGrid: Grid!
     var targetSector:SKSpriteNode!
+    var currentSector: SKSpriteNode!
     
     override init(size: CGSize) {
         super.init(size: size)
@@ -21,10 +22,17 @@ class ClassicMap: SKScene {
         mapGrid.position = CGPoint(x: frame.midX, y: frame.midY)
         self.addChild(mapGrid)
         targetSector = SKSpriteNode(color: .red, size: CGSize(width: 32 ,height: 32))
-        // let gamePiece = SKSpriteNode(imageNamed: "Spaceship")
+        currentSector = SKSpriteNode(color: .white, size: CGSize(width: 32 ,height: 32))
+        targetSector.name = "keepMe"
+        currentSector.name = "keepMe"
         targetSector.setScale(1.0)
         targetSector.position = mapGrid.gridPosition(row: 0, col: 2)
+        targetSector.alpha = 0.4
+        currentSector.alpha = 0.4
+        
         mapGrid.addChild(targetSector)
+        mapGrid.addChild(currentSector)
+
         
     }
 
@@ -77,8 +85,12 @@ class ClassicMap: SKScene {
     }
     
     func updateDisplay(galaxyModel: GalaxyMapModel, shipSector: Int, targetSector:Int) {
-        //iterate over grids, putting appropriate icons where they should be
-      //  mapGrid.removeAllChildren()
+
+        // first, clear all non-indicators from the map
+        for child in mapGrid.children where child.name != "keepMe" {child.removeFromParent()}
+
+        // then iterate over each empty square, putting appropriate icons where they should appear
+        
         for i in 0...127 {
             var sectorIcon: SKSpriteNode?
             let currentSectorType = galaxyModel.map[i].sectorType
@@ -104,7 +116,8 @@ class ClassicMap: SKScene {
     }
     
     func setNewShipCurrentGrid(number: Int, color: UIColor) {
-        
+        self.currentSector.position = mapGridFromSector(number: number)
+
     }
     
     func setNewTargetGrid(number: Int, color: UIColor) {
