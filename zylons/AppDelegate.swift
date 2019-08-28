@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Bugsnag
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -14,6 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        Bugsnag.start(withApiKey: "f504f23c0cce5e2b4ef86d97f6b34e0e")
 
         return true
     }

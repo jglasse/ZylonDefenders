@@ -518,6 +518,20 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</stri
                                     <constraint firstAttribute="width" constant="193" id="pN0-tE-2Fu"/>
                                 </constraints>
                             </stackView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="yVD-WN-np4">
+                                <rect key="frame" x="387.5" y="57" width="121" height="28"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="27" id="QWM-yM-BgV"/>
+                                    <constraint firstAttribute="width" constant="121" id="Uwb-SD-ugy"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="2D"/>
+                                    <segment title="3D"/>
+                                </segments>
+                                <connections>
+                                    <action selector="threeDSwitch:" destination="BV1-FR-VrT" eventType="valueChanged" id="As8-zy-hvJ"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
@@ -528,6 +542,7 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</stri
                             <constraint firstItem="Eo0-Hl-05V" firstAttribute="bottom" secondItem="PoQ-ji-oep" secondAttribute="bottom" constant="-27" id="2I9-LI-VOv"/>
                             <constraint firstAttribute="trailing" secondItem="hyH-e8-gbB" secondAttribute="trailing" constant="51" id="4Sb-yp-rTG"/>
                             <constraint firstItem="wgh-g3-0pN" firstAttribute="leading" secondItem="TBr-jy-nsA" secondAttribute="leading" constant="64" id="8F6-e8-iuX"/>
+                            <constraint firstItem="yVD-WN-np4" firstAttribute="top" secondItem="hyH-e8-gbB" secondAttribute="bottom" constant="1" id="91K-7Y-WHc"/>
                             <constraint firstItem="xsg-ZW-l5i" firstAttribute="top" secondItem="cOD-NV-RaV" secondAttribute="bottom" constant="20" id="B76-Pv-haW"/>
                             <constraint firstItem="hyH-e8-gbB" firstAttribute="top" secondItem="cOD-NV-RaV" secondAttribute="bottom" constant="20" id="Dg8-wn-kaV"/>
                             <constraint firstItem="6Sn-Ch-wiN" firstAttribute="leading" secondItem="TBr-jy-nsA" secondAttribute="leadingMargin" id="NGm-pv-gDV"/>
@@ -537,6 +552,7 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</stri
                             <constraint firstItem="z62-zF-Ty3" firstAttribute="top" secondItem="cOD-NV-RaV" secondAttribute="bottom" constant="40" id="Sxk-rX-fr1"/>
                             <constraint firstAttribute="trailing" secondItem="50S-aJ-rH1" secondAttribute="trailing" id="ULq-uf-Wj4"/>
                             <constraint firstItem="z62-zF-Ty3" firstAttribute="leading" secondItem="TBr-jy-nsA" secondAttribute="leading" constant="40" id="Ued-56-Yeb"/>
+                            <constraint firstItem="yVD-WN-np4" firstAttribute="centerX" secondItem="TBr-jy-nsA" secondAttribute="centerX" id="Wfh-SF-KsI"/>
                             <constraint firstItem="50S-aJ-rH1" firstAttribute="leading" secondItem="TBr-jy-nsA" secondAttribute="leading" id="adm-3z-SWI"/>
                             <constraint firstItem="Eo0-Hl-05V" firstAttribute="top" secondItem="hyH-e8-gbB" secondAttribute="top" constant="27" id="beI-lt-hQO"/>
                             <constraint firstItem="50S-aJ-rH1" firstAttribute="width" secondItem="TBr-jy-nsA" secondAttribute="width" id="cM3-8m-BBm"/>
@@ -579,6 +595,7 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</stri
                         <outlet property="targetSectorLabel" destination="YQK-T0-L4Q" id="PaY-fh-lBd"/>
                         <outlet property="telemetryView" destination="P5c-OT-ydd" id="IEU-fC-IRf"/>
                         <outlet property="thetaDisplay" destination="MQV-Cf-PFY" id="TZY-Ll-wjW"/>
+                        <outlet property="threeDtoggle" destination="yVD-WN-np4" id="2N8-Qj-nW2"/>
                         <outlet property="viewButton" destination="2sP-pn-M7j" id="JVW-mq-nch"/>
                     </connections>
                 </viewController>

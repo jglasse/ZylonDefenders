@@ -14,17 +14,18 @@ import SceneKit
 
 class HUD: SKScene {
     // MARK: - Vars
-
     var engine: AVAudioEngine!
     private let highTone = 486.0
     private let lowTone = 334.0
     private var alarmRepeats = 0
     private var alarmTimer: Timer?
     private var tone: AVTonePlayerUnit!
+    
 
     var numberOfAlertRepeats = 0
     public var computerStatus = SKLabelNode()
     public var enemyIndicator = SKLabelNode()
+    var threeDmode = false
     var shields: SKShapeNode!
     var crosshairs: SKSpriteNode!
     var aftcrosshairs: SKSpriteNode!
@@ -55,7 +56,6 @@ class HUD: SKScene {
         enemyIndicator.fontSize = 10
         enemyIndicator.fontColor = UIColor.green
         enemyIndicator.position = CGPoint(x: self.frame.midX, y: self.frame.maxY-54)
-
         updateHUD()
 
         self.addChild(shields)
@@ -70,6 +70,10 @@ class HUD: SKScene {
 
     }
 
+    func toggleHudMode() {
+        
+        
+    }
     @objc func occupiedSectorAlarm() {
         if alarmRepeats < 7 {
             alarmRepeats+=1

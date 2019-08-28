@@ -42,7 +42,6 @@ class ZylonStation: SectorObject {
         
     }
     
-    
     override init() {
         super.init()
         self.sectorObjectType = .zylonStation

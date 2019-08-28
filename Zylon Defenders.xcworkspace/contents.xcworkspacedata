@@ -7,4 +7,7 @@
    <FileRef
       location = "group:Zylon Defenders.xcodeproj">
    </FileRef>
+   <FileRef
+      location = "group:Pods/Pods.xcodeproj">
+   </FileRef>
 </Workspace>

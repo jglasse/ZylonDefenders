@@ -1,6 +1,0 @@
-framework module JBKenBurnsView {
-  umbrella header "JBKenBurnsView-umbrella.h"
-
-  export *
-  module * { export * }
-}

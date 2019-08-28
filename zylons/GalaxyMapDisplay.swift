@@ -8,11 +8,13 @@
 
 import Foundation
 import SceneKit
+import SpriteKit
 
 class GalacticMapDisplay {
     var myPanRecognizer: UIPanGestureRecognizer!
     var currentShipSectorIndex = 0
     var currentTargetIndex =  0
+    var threeDMode = true 
     let map = SCNScene(named: "galacticmap.scn")!
     var rotationNode: SCNNode { return  (map.rootNode.childNode(withName: "rotateNode", recursively: true)!) }
     let cameraNode = SCNNode()
@@ -160,9 +162,4 @@ class GalacticMapDisplay {
         currentShipSectorIndex = number
     }
     
-  
-    
-  
-    
-
 }

@@ -7,5 +7,5 @@ target 'Zylon Defenders' do
   use_frameworks!
 
   # Pods for Zylon Defenders
-pod 'JBKenBurnsView'
+pod 'Bugsnag'
 end
