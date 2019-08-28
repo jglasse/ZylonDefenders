@@ -20,7 +20,7 @@ class ClassicMap: SKScene {
         mapGrid =  Grid(blockSize: 32, rows: 8, cols: 16)
         mapGrid.position = CGPoint(x: frame.midX, y: frame.midY)
         self.addChild(mapGrid)
-        targetSector = SKSpriteNode(color: .yellow, size: CGSize(width: 32 ,height: 32))
+        targetSector = SKSpriteNode(color: .red, size: CGSize(width: 32 ,height: 32))
         // let gamePiece = SKSpriteNode(imageNamed: "Spaceship")
         targetSector.setScale(1.0)
         targetSector.position = mapGrid.gridPosition(row: 0, col: 2)
@@ -32,13 +32,7 @@ class ClassicMap: SKScene {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    func setNewShipCurrentGrid(number: Int, color: UIColor) {
-        
-    }
-    
-    func setNewTargetGrid(number: Int, color: UIColor) {
-        
-    }
+   
     
     func highlightAlpha() {
         
@@ -107,6 +101,14 @@ class ClassicMap: SKScene {
         setNewShipCurrentGrid(number: shipSector, color: .white)
         setNewTargetGrid(number: targetSector, color: .red)
         
+    }
+    
+    func setNewShipCurrentGrid(number: Int, color: UIColor) {
+        
+    }
+    
+    func setNewTargetGrid(number: Int, color: UIColor) {
+        self.targetSector.position = mapGridFromSector(number: number)
     }
     
 }
