@@ -15,13 +15,8 @@ import GameController
 // MARK: - Utility Functions
 // These are globally available, and should be unit tested
 
-
-
-
-
-
-func distanceFromZylonShip(x: Float, y: Float, z: Float) -> Float {
-    let distance = sqrt(x*x + y*y + z*z)
+func distanceFromZylonShip(xLoc: Float, yLoc: Float, zLoc: Float) -> Float {
+    let distance = sqrt(xLoc*xLoc + yLoc*yLoc + zLoc*zLoc)
     return distance
 }
 
@@ -58,7 +53,7 @@ extension ZylonGameViewController {
     func numberofShotsOnscreen() -> Int {
         var numberOfShots = 0
         mainGameScene.rootNode.enumerateChildNodes({ (child, _) in
-            if (child.name == "torpedo") {  numberOfShots = numberOfShots+1}
+            if child.name == "torpedo" {  numberOfShots = numberOfShots+1}
         })
 
         return numberOfShots
@@ -70,7 +65,6 @@ extension ZylonGameViewController {
             guard let profile: GCExtendedGamepad = self.mainController?.extendedGamepad else {
                 return
             }
-
             profile.valueChangedHandler = ({
                 (gamepad: GCExtendedGamepad, element: GCControllerElement) in
 
@@ -78,104 +72,104 @@ extension ZylonGameViewController {
                 var message: String = ""
 
                 // left trigger
-                if (gamepad.leftTrigger == element && gamepad.leftTrigger.isPressed) {
+                if gamepad.leftTrigger == element && gamepad.leftTrigger.isPressed {
                     message = "Left Trigger - Shields"
                     self.toggleShields(UIButton())
                 }
 
                 // right trigger
-                if (gamepad.rightTrigger == element && gamepad.rightTrigger.isPressed && !self.aButtonJustPressed) {
+                if gamepad.rightTrigger == element && gamepad.rightTrigger.isPressed && !self.aButtonJustPressed {
                     self.aButtonJustPressed = true
                     message = "Right Trigger - Fire"
                     self.fireTorp()
                 }
 
-                if (gamepad.rightTrigger == element && !gamepad.rightTrigger.isPressed) {
+                if gamepad.rightTrigger == element && !gamepad.rightTrigger.isPressed {
                     self.aButtonJustPressed = false
                     message = "Right Trigger - released"
 
                 }
 
                 // left shoulder button
-                if (gamepad.leftShoulder == element && gamepad.leftShoulder.isPressed  && !self.leftShoulderJustPressed) {
+                if gamepad.leftShoulder == element && gamepad.leftShoulder.isPressed  && !self.leftShoulderJustPressed {
                     self.leftShoulderJustPressed = true
                     self.toggleGalacticMap(self)
                 }
 
                 // Left Shoulder button UP
-                if (gamepad.leftShoulder == element && !gamepad.leftShoulder.isPressed) {
+                if gamepad.leftShoulder == element && !gamepad.leftShoulder.isPressed {
                     self.leftShoulderJustPressed = false
                 }
 
                 // right shoulder button
-                if (gamepad.rightShoulder == element && gamepad.rightShoulder.isPressed) {
+                if gamepad.rightShoulder == element && gamepad.rightShoulder.isPressed {
                     message = "Right Shoulder Button"
                 }
 
                 // A button
-                if (gamepad.buttonA == element && gamepad.buttonA.isPressed  && !self.aButtonJustPressed) {
+                if gamepad.buttonA == element && gamepad.buttonA.isPressed  && !self.aButtonJustPressed {
                     message = "A Button - FIRE"
                     self.fireTorp()
                     self.aButtonJustPressed = true
 
                 }
                 // A button UP
-                if (gamepad.buttonA == element && !gamepad.buttonA.isPressed) {
+                if gamepad.buttonA == element && !gamepad.buttonA.isPressed {
                     self.aButtonJustPressed = false
                     message = "A Button - FIRE"
                 }
 
                 // B button
-                if (gamepad.buttonB == element && gamepad.buttonB.isPressed && !self.bButtonJustPressed) {
+                if gamepad.buttonB == element && gamepad.buttonB.isPressed && !self.bButtonJustPressed {
                     message = "B Button - toggleView"
                     self.bButtonJustPressed = true
                     self.toggleView(UIButton())
                 }
 
                 // B button UP
-                if (gamepad.buttonB == element && !gamepad.buttonB.isPressed) {
+                if gamepad.buttonB == element && !gamepad.buttonB.isPressed {
                     self.bButtonJustPressed = false
                     message = "B Button - toggleView"
                 }
 
                 // X button
-                if (gamepad.buttonX == element && gamepad.buttonX.isPressed) {
+                if gamepad.buttonX == element && gamepad.buttonX.isPressed {
                     message = "X Button"
                 }
 
                 // Y button
-                if (gamepad.buttonY == element && gamepad.buttonY.isPressed) {
+                if gamepad.buttonY == element && gamepad.buttonY.isPressed {
                     message = "Y Button"
                 }
 
                 // d-pad
-                if (gamepad.dpad == element) {
-                    if (gamepad.dpad.up.isPressed) {
+                if gamepad.dpad == element {
+                    if gamepad.dpad.up.isPressed {
                         message = "D-Pad Up"
                     }
-                    if (gamepad.dpad.down.isPressed) {
+                    if gamepad.dpad.down.isPressed {
                         message = "D-Pad Down"
                     }
-                    if (gamepad.dpad.left.isPressed) {
+                    if gamepad.dpad.left.isPressed {
                         message = "D-Pad Left"
                     }
-                    if (gamepad.dpad.right.isPressed) {
+                    if gamepad.dpad.right.isPressed {
                         message = "D-Pad Right"
                     }
                 }
 
                 // left stick
-                if (gamepad.leftThumbstick == element) {
-                    if (gamepad.leftThumbstick.up.isPressed) {
+                if gamepad.leftThumbstick == element {
+                    if gamepad.leftThumbstick.up.isPressed {
                         message = "Left Stick %f \(gamepad.leftThumbstick.yAxis.value)"
                     }
-                    if (gamepad.leftThumbstick.down.isPressed) {
+                    if gamepad.leftThumbstick.down.isPressed {
                         message = "Left Stick %f \(gamepad.leftThumbstick.yAxis.value)"
                     }
-                    if (gamepad.leftThumbstick.left.isPressed) {
+                    if gamepad.leftThumbstick.left.isPressed {
                         message = "Left Stick %f \(gamepad.leftThumbstick.xAxis.value)"
                     }
-                    if (gamepad.leftThumbstick.right.isPressed) {
+                    if gamepad.leftThumbstick.right.isPressed {
                         message = "Left Stick %f \(gamepad.leftThumbstick.xAxis.value)"
                     }
                     position = CGPoint(x: CGFloat(gamepad.leftThumbstick.xAxis.value),
@@ -184,17 +178,17 @@ extension ZylonGameViewController {
                 }
 
                 // right stick
-                if (gamepad.rightThumbstick == element) {
-                    if (gamepad.rightThumbstick.up.isPressed) {
+                if gamepad.rightThumbstick == element {
+                    if gamepad.rightThumbstick.up.isPressed {
                         message = "Right Stick %f \(gamepad.rightThumbstick.yAxis.value)"
                     }
-                    if (gamepad.rightThumbstick.down.isPressed) {
+                    if gamepad.rightThumbstick.down.isPressed {
                         message = "Right Stick %f \(gamepad.rightThumbstick.yAxis.value)"
                     }
-                    if (gamepad.rightThumbstick.left.isPressed) {
+                    if gamepad.rightThumbstick.left.isPressed {
                         message = "Right Stick %f \(gamepad.rightThumbstick.xAxis.value)"
                     }
-                    if (gamepad.rightThumbstick.right.isPressed) {
+                    if gamepad.rightThumbstick.right.isPressed {
                         message = "Right Stick %f \(gamepad.rightThumbstick.xAxis.value)"
                     }
                     //                position = CGPoint(x: gamepad.rightThumbstick.xAxis.value, y: gamepad.rightThumbstick.yAxis.value)
@@ -207,23 +201,24 @@ extension ZylonGameViewController {
         }
 
         @objc private func controllerWasConnected(_ notification: Notification) {
-            let controller: GCController = notification.object as! GCController
+            if let controller: GCController = notification.object as? GCController {
             let status = "MFi Controller: \(String(describing: controller.vendorName)) is connected"
             print(status)
             self.joystickControl.isHidden = true
 
             mainController = controller
             processGameControllerInput()
+            }
         }
 
         @objc private func controllerWasDisconnected(_ notification: Notification) {
-            let controller: GCController = notification.object as! GCController
+            if let controller: GCController = notification.object as? GCController {
             let status = "MFi Controller: \(String(describing: controller.vendorName)) is disconnected"
             print(status)
 
             mainController = nil
             self.joystickControl.isHidden = false
-
+            }
         }
 
     func overlayPos(node: SCNNode) -> CGPoint {
@@ -324,24 +319,32 @@ extension ZylonGameViewController: CommandDelegate {
     func playEngineSound(volume: Float) {
         var soundURL: URL?
         soundURL = Bundle.main.url(forResource: "ship_hum", withExtension: "mp3")
-        try! engineSound = AVAudioPlayer(contentsOf: soundURL!)
+        do {
+            try engineSound = AVAudioPlayer(contentsOf: soundURL!)
         engineSound.numberOfLoops = -1
         engineSound.volume = volume
         engineSound.play()
+        } catch { print("engineSound fail") }
     }
 
     func environmentSound(_ soundString: String) {
         let soundURL = Bundle.main.url(forResource: soundString, withExtension: "m4a")
-        try! environmentSound = AVAudioPlayer(contentsOf: soundURL!)
+        do {
+            try environmentSound = AVAudioPlayer(contentsOf: soundURL!)
         environmentSound.volume = 0.6
         environmentSound.play()
+        } catch { print("environment Sound fail") }
     }
 
     func finalExplosionSound() {
         let soundURL = Bundle.main.url(forResource: "death", withExtension: "mp3")
-        try! environmentSound = AVAudioPlayer(contentsOf: soundURL!)
+        do {
+            try environmentSound = AVAudioPlayer(contentsOf: soundURL!)
         environmentSound.volume = 0.6
         environmentSound.play()
+        } catch {
+            print("death Sound fail")
+        }
 
     }
     func explosionSound() {
@@ -369,11 +372,11 @@ class GameHelper {
 
     static func getPanDirection(velocity: CGPoint) -> String {
         var panDirection: String = ""
-        if ( velocity.x > 0 && velocity.x > abs(velocity.y) || velocity.x < 0 && abs(velocity.x) > abs(velocity.y) ) {
+        if  velocity.x > 0 && velocity.x > abs(velocity.y) || velocity.x < 0 && abs(velocity.x) > abs(velocity.y) {
             panDirection = "horizontal"
         }
 
-        if ( velocity.y < 0 && abs(velocity.y) > abs(velocity.x) || velocity.y > 0 &&  velocity.y  > abs(velocity.x)) {
+        if  velocity.y < 0 && abs(velocity.y) > abs(velocity.x) || velocity.y > 0 &&  velocity.y  > abs(velocity.x) {
             panDirection = "vertical"
         }
 

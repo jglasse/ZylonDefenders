@@ -25,7 +25,7 @@ struct GameSettings: Codable {
     var difficulty: Difficulty
 }
 
-class mainMenuViewController: UIViewController, AVAudioPlayerDelegate {
+class MainMenuViewController: UIViewController, AVAudioPlayerDelegate {
 
     let musicURL = Bundle.main.url(forResource: "dreadnaught", withExtension: "m4a")
     var musicAudioPlayer: AVAudioPlayer?
@@ -36,8 +36,7 @@ class mainMenuViewController: UIViewController, AVAudioPlayerDelegate {
     override var prefersHomeIndicatorAutoHidden: Bool {
         return true
     }
-    
-    
+
     // MARK: - IBOutlets
     @IBOutlet weak var prologueToggleSwitch: UIButton!
     @IBOutlet weak var mapScnView: SCNView!
@@ -94,15 +93,13 @@ class mainMenuViewController: UIViewController, AVAudioPlayerDelegate {
             vc = sb.instantiateViewController(withIdentifier: "gameView")
 
         }
-        
+
         UIView.animate(withDuration: 1.0, animations: {
             self.view.alpha = 0.0
-        }, completion: { finished in
+        }, completion: { _ in
             self.present(vc, animated: false, completion: nil)
         })
-        
-        
-        
+
     }
 
     @IBAction func displayTutorial(_ sender: Any) {

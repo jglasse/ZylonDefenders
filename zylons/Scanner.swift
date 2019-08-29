@@ -19,7 +19,7 @@ class Scanner: SCNNode {
     }
     var scanBeam: SCNNode
     var sectorField: SCNNode
-    
+
     override init() {
         let scannerScene = SCNScene(named: "Scanner.scn")
         sectorField = (scannerScene?.rootNode.childNodes[0])!
@@ -48,14 +48,11 @@ class Scanner: SCNNode {
 
     func updateScanner(with sectorTargets: [SectorObject], sceneView: SCNView?) {
         scannerTargets.removeAll()
-        for oldtarget in sectorField.childNodes {
-            if oldtarget.name == "blip" {
+        for oldtarget in sectorField.childNodes where oldtarget.name == "blip" {
             oldtarget.removeFromParentNode()
-            }
         }
         for target in sectorTargets {
-            
-            
+
                 let blip = SCNPyramid(width: 0.15, height: 0.15, length: 0.15)
                 let blipSprite = SCNNode()
                 blipSprite.geometry  = blip
@@ -64,9 +61,7 @@ class Scanner: SCNNode {
                 blipSprite.geometry?.firstMaterial?.diffuse.contents = UIColor.yellow
                 blipSprite.name = "blip"
             if let cameraPOV = sceneView?.pointOfView {
-                if let isMaybeVisible = sceneView?.isNode(target, insideFrustumOf: cameraPOV)
-
-                { blipSprite.geometry?.firstMaterial?.diffuse.contents = isMaybeVisible ? UIColor.red : UIColor.yellow }
+                if let isMaybeVisible = sceneView?.isNode(target, insideFrustumOf: cameraPOV) { blipSprite.geometry?.firstMaterial?.diffuse.contents = isMaybeVisible ? UIColor.red : UIColor.yellow }
 
             }
                 sectorField.addChildNode(blipSprite)

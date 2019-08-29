@@ -8,4 +8,5 @@ target 'Zylon Defenders' do
 
   # Pods for Zylon Defenders
 pod 'Bugsnag'
+pod 'SwiftLint'
 end

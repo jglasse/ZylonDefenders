@@ -20,7 +20,6 @@ class HUD: SKScene {
     private var alarmRepeats = 0
     private var alarmTimer: Timer?
     private var tone: AVTonePlayerUnit!
-    
 
     var numberOfAlertRepeats = 0
     public var computerStatus = SKLabelNode()
@@ -71,8 +70,7 @@ class HUD: SKScene {
     }
 
     func toggleHudMode() {
-        
-        
+
     }
     @objc func occupiedSectorAlarm() {
         if alarmRepeats < 7 {
@@ -138,7 +136,7 @@ class HUD: SKScene {
 
     func shieldHit(location: CGPoint) {
         let shieldSprite = SKSpriteNode(imageNamed: "shieldHit")
-        shieldSprite.size.width = shieldSprite.size.width/3
+        shieldSprite.size.width /= shieldSprite.size.width/3
         shieldSprite.size.height = shieldSprite.size.height/3
 
         shieldSprite.position = location
@@ -159,7 +157,7 @@ class HUD: SKScene {
         self.shields.run(flashSequence)
 
     }
-    func fatalFlash() {
+    func finalFlash() {
         let wait1 = SKAction.wait(forDuration: TimeInterval(randRange(lower: 0.05, upper: 0.1)))
         let wait2 = SKAction.wait(forDuration: TimeInterval(randRange(lower: 0.05, upper: 0.1)))
         let wait3 = SKAction.wait(forDuration: TimeInterval(randRange(lower: 0.05, upper: 0.1)))
@@ -200,10 +198,10 @@ class HUD: SKScene {
         }
     }
 
-    func deactivateAlert(){
+    func deactivateAlert() {
         self.computerStatus.text = ""
         self.alertTimer?.invalidate()
-        
+
     }
     func activateAlert(message: String) {
         DispatchQueue.main.async {

@@ -12,9 +12,9 @@ import SceneKit
 class ZylonStation: SectorObject {
     var shieldStrength = 100
     var weaponType = 0
+    var beam = SCNNode()
 
     func beginRepair() {
-        let beam = SCNNode()
         beam.name = "repairBeam"
         beam.rotation = SCNVector4(1, 0, 0, Float.pi/2)
         let beamHeight = 150
@@ -24,24 +24,24 @@ class ZylonStation: SectorObject {
         beamGeometry.materials.first?.isDoubleSided = true
         beamGeometry.materials.first?.blendMode = .add
         beam.geometry = beamGeometry
-        beam.worldPosition = SCNVector3(0,-29,beamHeight/2)
+        beam.worldPosition = SCNVector3(0, -29, beamHeight/2)
         beam.colorSwap(color1: UIColor.purple, color2: UIColor.blue, duration: 1.5)
-        self.addChildNode(beam)
+        self.parent?.addChildNode(beam)
+
     }
-    
+
     func completeRepair() {
-        
+        beam.removeFromParentNode()
     }
-    
+
     func abortRepair() {
-        
-        
+
     }
-    
+
     func attack() {
-        
+
     }
-    
+
     override init() {
         super.init()
         self.sectorObjectType = .zylonStation
@@ -63,7 +63,7 @@ class ZylonStation: SectorObject {
         self.worldPosition = SCNVector3Make(0, 0, -200)
         self.scale = SCNVector3Make(1, 1, 1)
 
-        let action = SCNAction.rotateBy(x: 0, y: CGFloat(GLKMathDegreesToRadians(360)), z: 0, duration: 58)
+        let action = SCNAction.rotateBy(x: 0, y: CGFloat(GLKMathDegreesToRadians(360)), z: 0, duration: 90)
         let forever = SCNAction.repeatForever(action)
         zylonStation?.runAction(forever)
         print("zylon Station Created")

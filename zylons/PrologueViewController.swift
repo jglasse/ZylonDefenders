@@ -25,7 +25,7 @@ class PrologueViewController: UIViewController, AVAudioPlayerDelegate, UIViewCon
 
     }
     // MARK: - Vars
-    
+
     override var prefersHomeIndicatorAutoHidden: Bool {
         return true
     }
@@ -230,5 +230,4 @@ let message5 = "[TRANSMISSION TERMINATED 40AFFE]"
         })
     }
 
- 
 }

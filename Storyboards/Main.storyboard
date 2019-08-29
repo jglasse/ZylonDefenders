@@ -92,7 +92,7 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</stri
         <!--Main Menu View Controller-->
         <scene sceneID="k3D-Ej-WZF">
             <objects>
-                <viewController restorationIdentifier="mainMenu" storyboardIdentifier="mainMenu" id="AB2-5A-Arv" customClass="mainMenuViewController" customModule="Zylon_Defenders" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="mainMenu" storyboardIdentifier="mainMenu" id="AB2-5A-Arv" customClass="MainMenuViewController" customModule="Zylon_Defenders" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="0ki-4f-fOo"/>
                         <viewControllerLayoutGuide type="bottom" id="fjc-Rt-eqv"/>
@@ -396,6 +396,9 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</stri
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2nC-Nm-qWM">
                                         <rect key="frame" x="0.0" y="0.0" width="30" height="36"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="30" id="VBr-sI-Wi9"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" name="Y14.5M" family="Y14.5M" pointSize="22"/>
                                         <state key="normal" title="∞"/>
                                         <connections>

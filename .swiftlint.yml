@@ -1,0 +1,10 @@
+disabled_rules:
+   - line_length
+   - cyclomatic_complexity
+   - function_body_length
+   - identifier_name
+   - force_cast
+   - file_length
+   - shorthand_operator
+   - type_body_length
+   - large_tuple

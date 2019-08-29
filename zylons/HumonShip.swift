@@ -10,12 +10,12 @@ import Foundation
 import SceneKit
 
 class SectorObject: SCNNode {
-    enum objectType {
+    enum ObjectType {
         case humonShip
         case zylonStation
         case asteroid
     }
-    var sectorObjectType: objectType =  .asteroid
+    var sectorObjectType: ObjectType =  .asteroid
 
 }
 

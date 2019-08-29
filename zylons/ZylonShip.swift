@@ -44,7 +44,7 @@ class ZylonShip: SectorObject {
 	var shieldStrength = 100
 	var energyStore = 10000
 	var currentTorpedoBay = 1
-    var sectorLocation = locationInSector(x: 500, y: 500, z: 500)
+    var sectorLocation = LocationInSector(xLoc: 500, yLoc: 500, zLoc: 500)
     var shipSystems = ShipsSystems()
 
     let statusMessages = ["functional", "damaged", "severely damaged", "destroyed"]
@@ -59,13 +59,13 @@ class ZylonShip: SectorObject {
         fatalError("init(coder:) has not been implemented")
     }
 
-	struct locationInSector {
-		var x = 0
-		var y = 0
-		var z = 0
+	struct LocationInSector {
+		var xLoc = 0
+		var yLoc = 0
+		var zLoc = 0
 	}
 
-	struct rotation {
+	struct Rotation {
 		var theta = 0.0
 		var phi = 0.0
 	}
@@ -108,8 +108,7 @@ class ZylonShip: SectorObject {
         if self.shipClock % energyDrainRate == 0 {
         if self.energyStore>0 {
             self.energyStore -= 1
-        }
-        else {
+        } else {
             self.energyStore = 0
             }
         }
