@@ -78,6 +78,8 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     var internalRotationNode: SCNNode { return  (galacticDisplay.map.rootNode.childNode(withName: "internalRot", recursively: true))! }
     var galacticSlider = UISlider()
 
+    var enemiesArray: [ShipType]? { return galaxyModel.map[ship.currentSectorNumber].enemyTypes }
+
     // MARK: - GameState Enums & Structs
 
     enum ViewMode: Int {
@@ -315,7 +317,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         }
     }
      func fireTorp() {
-        if numberOfZylonShotsOnscreen < Constants.maxTorpedoes && !self.aButtonJustPressed {
+        if numberOfZylonShotsOnscreen < Constants.maxTorpedoes && !self.aButtonJustPressed && !gameOver {
             ship.energyStore -= 5 * self.difficultyScalar
             let torpedoNode = Torpedo(designatedTorpType: .zylon)
             let photonSoundArray = [photonSound1, photonSound2, photonSound3, photonSound4]
@@ -392,10 +394,13 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
                 self.telemetryView.abort()
             }
 
-        case .enemy:
+        case .enemy,
+             .enemy2,
+             .enemy3:
             ship.currentSpeed = 2
-            self.spawnEnemies(number: self.shipCurrrentSectorGrid.numberOfSectorObjects)
-            print("ENEMY SECTOR \(self.shipCurrrentSectorGrid.quadrant) \(self.shipCurrrentSectorGrid.quadrantNumber). Spawning \(self.shipCurrrentSectorGrid.numberOfSectorObjects) enemies")
+           // self.spawnEnemies(number: self.shipCurrrentSectorGrid.numberOfSectorObjects)
+            if let  enemies = enemiesArray { self.spawnEnemies(ofTypes: enemies) }
+            print("ENEMY SECTOR \(self.shipCurrrentSectorGrid.quadrant) \(self.shipCurrrentSectorGrid.quadrantNumber) type: \(self.shipCurrrentSectorGrid.sectorType) spawning \(self.shipCurrrentSectorGrid.numberOfSectorObjects) enemies")
             //self.shipHud.soundSectorAlarm()
         case .empty:
             ship.currentSpeed = 3
@@ -436,11 +441,28 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         flyIn(node: enemyDrone, toScale: 1.0)
     }
 
+    func spawnEnemy(type: ShipType ) {
+         let enemyDrone = HumonShip(shipType: type)
+         enemyDrone.scale = SCNVector3Make(0.1, 0.1, 0.1)
+
+         let constraint = SCNLookAtConstraint(target: mainGameScene.rootNode)
+         constraint.isGimbalLockEnabled = true
+         enemyDrone.constraints = [constraint]
+         enemyDrone.position = self.mainGameScene.rootNode.convertPosition((enemyDrone.worldPosition), to: self.sectorObjectsNode)
+         self.sectorObjectsNode.addChildNode(enemyDrone)
+         flyIn(node: enemyDrone, toScale: 1.0)
+     }
+
     func spawnEnemies(number: Int) {
         for _ in 1...number {
             spawnEnemy()
         }
     }
+    func spawnEnemies(ofTypes: [ShipType]) {
+           for  type in ofTypes {
+               spawnEnemy(type: type)
+           }
+       }
 
     @IBAction func gridWarp(_ sender: UIButton) {
         if !ship.isCurrentlyinWarp && !gameOver && ship.targetSectorNumber != ship.currentSectorNumber {
@@ -448,12 +470,18 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
             let tacticalWasEngaged = ship.tacticalDisplayEngaged
             ship.tacticalDisplayEngaged = false
             let targetAtWarp = ship.targetSectorNumber
+            performWarp()
             // preload starbase for starbase sectors
-            if galaxyModel.map[ship.targetSectorNumber].sectorType  == .starbase {
+
+            switch galaxyModel.map[ship.targetSectorNumber].sectorType {
+            case .starbase:
                 self.scnView.prepare(zylonStation, shouldAbortBlock: nil)
+            case .enemy:
+                self.scnView.prepare(zylonStation, shouldAbortBlock: nil)
+            default:
+                print("Empty Sector")
             }
 
-            performWarp()
             let deadlineTime = DispatchTime.now() + .seconds(6)
             DispatchQueue.main.asyncAfter(deadline: deadlineTime) {
                 if !self.gameOver {
@@ -592,7 +620,6 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         setupView()
         setupScene()
         setupShip()
-       // spawnEnemies(number: 3)
        // myMCController.setup()
        // myMCController.myCommandDelegate = self
         shipHud.parentScene = self
@@ -628,7 +655,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         constraints.append(galacticSlider.centerXAnchor.constraint(equalTo: sliderContainerView.centerXAnchor))
         constraints.append(galacticSlider.centerYAnchor.constraint(equalTo: sliderContainerView.centerYAnchor))
 
-        self.galacticSlider.heightAnchor.constraint(equalTo: self.sliderContainerView.widthAnchor)
+       // self.galacticSlider.heightAnchor.constraint(equalTo: self.sliderContainerView.widthAnchor)
         NSLayoutConstraint.activate(constraints)
     }
 

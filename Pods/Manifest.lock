@@ -1,20 +1,16 @@
 PODS:
-  - Bugsnag (5.22.5)
-  - SwiftLint (0.34.0)
+  - SwiftLint (0.35.0)
 
 DEPENDENCIES:
-  - Bugsnag
   - SwiftLint
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
-    - Bugsnag
     - SwiftLint
 
 SPEC CHECKSUMS:
-  Bugsnag: 60e887aa63a5a842fc77f7b1e7c1310800f5b4e1
-  SwiftLint: 79d48a17c6565dc286c37efb8322c7b450f95c67
+  SwiftLint: 5553187048b900c91aa03552807681bb6b027846
 
-PODFILE CHECKSUM: c0c0dda14bb750a67c98583755d8e226517c7da9
+PODFILE CHECKSUM: 8e7606ae5f4e3a7c65ba05b384641ac457a4670b
 
 COCOAPODS: 1.7.5

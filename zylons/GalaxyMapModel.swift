@@ -64,10 +64,11 @@ struct GalaxyMapModel {
 
         // first, add an empty map with 128 sectors
         for x in 1...128 {
-            let currentSector = SectorGrid(number: x, numberOfSectorObjects: 0, sectorType: .empty)
+            let currentSector = SectorGrid(number: x, enemyTypes: nil, numberOfSectorObjects: 0, sectorType: .empty)
             self.map.append(currentSector)
         }
-        //then randomly add space Stations to the appropriate number of sectors
+        //then randomly add Space Stations, evenly distributed acrozss four sectors
+        // NOTE - current algorithm assumes 4 stations
         for x in 0...numberofStations-1 {
             let lowerrange: Int = x*32
             let currentSectorIndex = randIntRange(lower: lowerrange, upper: lowerrange+31)
@@ -76,6 +77,7 @@ struct GalaxyMapModel {
         }
 
         // then, iterate over the number of occupied sectors...
+
         print("Adding \(numberofOccupiedSectors) occipied Sectors")
         for _ in 1...numberofOccupiedSectors {
             // picking a random sector:
@@ -85,8 +87,26 @@ struct GalaxyMapModel {
                 let numberofshipsToAdd = Int(randIntRange(lower: 1, upper: maxShipsPerSector))
             // and assigning those ships to that random sector
                 self.map[currentSectorIndex].numberOfSectorObjects = numberofshipsToAdd
-                self.map[currentSectorIndex].sectorType = .enemy
-                print("Adding \(numberofshipsToAdd) enemies to sector \(currentSectorIndex)")
+                self.map[currentSectorIndex].enemyTypes = [ShipType]()
+                let typeOfSectorRoll = randIntRange(lower: 1, upper: 3)
+                var chanceOfFighters = 0
+                switch typeOfSectorRoll {
+                case 3:
+                    self.map[currentSectorIndex].sectorType = .enemy3
+                     chanceOfFighters = 2
+                case 2:
+                    self.map[currentSectorIndex].sectorType = .enemy2
+                     chanceOfFighters = 1
+                default:
+                    self.map[currentSectorIndex].sectorType = .enemy
+                }
+                print("Adding \(numberofshipsToAdd) enemies to sector \(currentSectorIndex) which is of type \(self.map[currentSectorIndex].sectorType)")
+                for x in 1...numberofshipsToAdd {
+                    let randType = randIntRange(lower: 0, upper: chanceOfFighters)
+                    let shiptype = ShipType(rawValue: Int(randType)) ?? ShipType.scout
+                    self.map[currentSectorIndex].enemyTypes?.append(shiptype)
+                    print("ship #\(x) is type \(shiptype)")
+                }
 
                 }
             }

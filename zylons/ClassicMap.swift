@@ -40,9 +40,7 @@ class ClassicMap: SKScene {
     }
 
     func highlightAlpha() {
-
     print("classic Alpha")
-
     }
     func highlightBeta() {
 
@@ -51,27 +49,8 @@ class ClassicMap: SKScene {
     }
 
     func convertToRows(number: Int) -> (Int, Int) {
-        var row = 0
-        switch number {
-        case 0...15:
-            row = 0
-        case 16...31:
-            row = 1
-        case 32...47:
-            row = 2
-        case 48...63:
-            row = 3
-        case 64...79:
-            row = 4
-        case 80...95:
-            row = 5
-        case 96...111:
-            row = 6
-        default:
-            row = 7
-        }
-        let column = (number) % 16
-
+        let row = number / mapGrid.cols
+        let column = (number) % mapGrid.cols
         return (row, column)
 
     }
@@ -92,7 +71,9 @@ class ClassicMap: SKScene {
             var sectorIcon: SKSpriteNode?
             let currentSectorType = galaxyModel.map[iLoop].sectorType
             switch currentSectorType {
-            case .enemy:
+            case .enemy,
+                 .enemy2,
+                 .enemy3:
                 sectorIcon = SKSpriteNode(imageNamed: "tieIconRed")
             case .empty:
                 sectorIcon = nil

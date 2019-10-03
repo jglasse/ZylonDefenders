@@ -21,7 +21,9 @@ class GalaxyBlip: SCNNode {
         self.opacity = 1
         self.name = "blip"
         switch sectorType {
-        case .enemy:
+        case .enemy,
+             .enemy2,
+             .enemy3:
                 let newPlane = SCNPlane(width: 0.45, height: 0.45)
                 newPlane.materials = [SCNMaterial()]
                 newPlane.materials.first?.diffuse.contents = UIImage(named: "tieIconRed")
@@ -44,9 +46,9 @@ class GalaxyBlip: SCNNode {
                 let action = SCNAction.rotateBy(x: 0, y: 0, z: CGFloat(GLKMathDegreesToRadians(360)), duration: 4)
                 let forever = SCNAction.repeatForever(action)
                 self.runAction(forever)
-                self.geometry?.firstMaterial?.emission.contents = UIColor.green
+                //self.geometry?.firstMaterial?.emission.contents = UIColor.green
 
-        case .empty:
+        default:
                 break
         }
 

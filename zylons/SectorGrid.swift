@@ -10,6 +10,8 @@ import Foundation
 
 enum SectorGridType {
     case enemy
+    case enemy2
+    case enemy3
     case starbase
     case empty
 }
@@ -19,7 +21,7 @@ struct SectorGrid {
     var numberString: String {
         return String(number)
     }
-
+    var enemyTypes: [ShipType]?
     var numberOfSectorObjects =  0
     var sectorType = SectorGridType.empty
     var quadrant: KnownQuadrants {

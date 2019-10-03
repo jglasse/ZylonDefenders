@@ -44,13 +44,7 @@ class ShieldExplosion: ShipExplosion {
     }
 }
 
-class StationExplosion: SCNNode {
-    public var age = 0
-
-    func update() {
-        self.age += 1
-    }
-
+class StationExplosion: ShipExplosion {
     override init() {
         super.init()
         let explosionParticles = SCNParticleSystem(named: "StationExplosion", inDirectory: nil)
