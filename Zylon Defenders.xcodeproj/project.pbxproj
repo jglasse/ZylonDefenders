@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6B2755632360223A00E3E76D /* shieldsUp.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 6B2755622360223A00E3E76D /* shieldsUp.m4a */; };
 		6B281EEB22FCA75B00B4C288 /* StationExplosion.scnp in Resources */ = {isa = PBXBuildFile; fileRef = 6B281EEA22FCA75B00B4C288 /* StationExplosion.scnp */; };
 		6B354D4C22AB344B00482384 /* zylonHope.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 6B354D4B22AB344600482384 /* zylonHope.m4a */; };
 		6B356FB922FCC60300869FAA /* badIdea.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 6B356FB522FCC3A600869FAA /* badIdea.m4a */; };
@@ -151,7 +152,6 @@
 		E192623720A79E4600AB93F2 /* Starfield 2048x1024LB.png in Resources */ = {isa = PBXBuildFile; fileRef = E192623520A79E4600AB93F2 /* Starfield 2048x1024LB.png */; };
 		E19BC7B122594F2500A1DA6B /* photon_sound.m4a in Resources */ = {isa = PBXBuildFile; fileRef = E19BC7AD22594F2500A1DA6B /* photon_sound.m4a */; };
 		E19BC7B222594F2500A1DA6B /* hullHit.m4a in Resources */ = {isa = PBXBuildFile; fileRef = E19BC7AE22594F2500A1DA6B /* hullHit.m4a */; };
-		E19BC7BB2259576700A1DA6B /* shieldsUp.m4a in Resources */ = {isa = PBXBuildFile; fileRef = E19BC7B622594FED00A1DA6B /* shieldsUp.m4a */; };
 		E19BC7BC2259576700A1DA6B /* shieldsDown.m4a in Resources */ = {isa = PBXBuildFile; fileRef = E19BC7B022594F2500A1DA6B /* shieldsDown.m4a */; };
 		E19BFF3F1EDFDEED00FCC5EE /* ZylonShip.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19BFF3E1EDFDEED00FCC5EE /* ZylonShip.swift */; };
 		E19F3F311F64647600F612A7 /* UtilityFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19F3F301F64647600F612A7 /* UtilityFunctions.swift */; };
@@ -218,6 +218,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6B2755622360223A00E3E76D /* shieldsUp.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = shieldsUp.m4a; sourceTree = "<group>"; };
 		6B281EEA22FCA75B00B4C288 /* StationExplosion.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = StationExplosion.scnp; sourceTree = "<group>"; };
 		6B354D4B22AB344600482384 /* zylonHope.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = zylonHope.m4a; sourceTree = "<group>"; };
 		6B356FB422FCC3A600869FAA /* betaStationDestroyed.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = betaStationDestroyed.m4a; sourceTree = "<group>"; };
@@ -328,8 +329,7 @@
 		E19BC7AD22594F2500A1DA6B /* photon_sound.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = photon_sound.m4a; sourceTree = "<group>"; };
 		E19BC7AE22594F2500A1DA6B /* hullHit.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = hullHit.m4a; sourceTree = "<group>"; };
 		E19BC7B022594F2500A1DA6B /* shieldsDown.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = shieldsDown.m4a; sourceTree = "<group>"; };
-		E19BC7B522594FCB00A1DA6B /* photon_sound.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = photon_sound.m4a; path = ../../../Desktop/DT/shields/photon_sound.m4a; sourceTree = "<group>"; };
-		E19BC7B622594FED00A1DA6B /* shieldsUp.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = shieldsUp.m4a; path = ../../../Desktop/DT/shields/shieldsUp.m4a; sourceTree = "<group>"; };
+		E19BC7B522594FCB00A1DA6B /* photon_sound.m4a */ = {isa = PBXFileReference; lastKnownFileType = text; name = photon_sound.m4a; path = ../../../Desktop/DT/shields/photon_sound.m4a; sourceTree = "<group>"; };
 		E19BFF3E1EDFDEED00FCC5EE /* ZylonShip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZylonShip.swift; sourceTree = "<group>"; };
 		E19F3F301F64647600F612A7 /* UtilityFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilityFunctions.swift; sourceTree = "<group>"; };
 		E19F3F321F6494AB00F612A7 /* JoyStickView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoyStickView.swift; sourceTree = "<group>"; };
@@ -782,11 +782,11 @@
 		E1F8BB071E3FD56C00460FC9 /* event_sounds */ = {
 			isa = PBXGroup;
 			children = (
+				6B2755622360223A00E3E76D /* shieldsUp.m4a */,
 				6BE194B422E4E229002C670C /* death.mp3 */,
 				E16E289C20564A3F002362C1 /* warpEnd.aif */,
 				E16E28A020564A3F002362C1 /* warpStart.aif */,
 				E16E28A520564A40002362C1 /* warpStartStop.aif */,
-				E19BC7B622594FED00A1DA6B /* shieldsUp.m4a */,
 				E19BC7B522594FCB00A1DA6B /* photon_sound.m4a */,
 				E19BC7AE22594F2500A1DA6B /* hullHit.m4a */,
 				E19BC7B022594F2500A1DA6B /* shieldsDown.m4a */,
@@ -946,7 +946,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E19BC7BB2259576700A1DA6B /* shieldsUp.m4a in Resources */,
 				E19BC7BC2259576700A1DA6B /* shieldsDown.m4a in Resources */,
 				6B281EEB22FCA75B00B4C288 /* StationExplosion.scnp in Resources */,
 				6B6C2678231655E600F51088 /* Atari 1_Atari 1_Height.png in Resources */,
@@ -1048,6 +1047,7 @@
 				6B356FBD22FCC60A00869FAA /* gammaStationDestroyed.m4a in Resources */,
 				E192623620A79E4600AB93F2 /* Starfield 2048x1024LB.png in Resources */,
 				E1503383226680D30083C300 /* galacticmap.scn in Resources */,
+				6B2755632360223A00E3E76D /* shieldsUp.m4a in Resources */,
 				6BE194B522E4E229002C670C /* death.mp3 in Resources */,
 				E1E381E01EC4B79A000CC31C /* button_dir_down_0.png in Resources */,
 				E16E28D720564A41002362C1 /* babelfishCircuitFailure.aiff in Resources */,
@@ -1377,7 +1377,7 @@
 				DEVELOPMENT_TEAM = WPGAGSXUST;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = zylons/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jeffglasse.StarRaiders;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1396,7 +1396,7 @@
 				DEVELOPMENT_TEAM = WPGAGSXUST;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = zylons/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jeffglasse.StarRaiders;
 				PRODUCT_NAME = "$(TARGET_NAME)";

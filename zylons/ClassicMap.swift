@@ -13,16 +13,18 @@ import UIKit
 class ClassicMap: SKScene {
     var mapGrid: Grid!
     var targetSector: SKSpriteNode!
+
     var currentSector: SKSpriteNode!
 
     override init(size: CGSize) {
         super.init(size: size)
         self.backgroundColor = UIColor.clear
-        mapGrid =  Grid(blockSize: 32, rows: 8, cols: 16)
+        let gridSize: Int = Int(size.height) / 8
+        mapGrid =  Grid(blockSize: CGFloat(gridSize), rows: 8, cols: 16)
         mapGrid.position = CGPoint(x: frame.midX, y: frame.midY)
         self.addChild(mapGrid)
-        targetSector = SKSpriteNode(color: .red, size: CGSize(width: 32, height: 32))
-        currentSector = SKSpriteNode(color: .white, size: CGSize(width: 32, height: 32))
+        targetSector = SKSpriteNode(color: .red, size: CGSize(width: gridSize, height: gridSize))
+        currentSector = SKSpriteNode(color: .white, size: CGSize(width: gridSize, height: gridSize))
         targetSector.name = "keepMe"
         currentSector.name = "keepMe"
         targetSector.setScale(1.0)
