@@ -115,7 +115,6 @@ class HumonShip: SectorObject {
             humonshipScene = SCNScene(named: "HumonHunter.scn")
 
         }
-        // let humonshipScene = SCNScene(named: "Humon.scn")
         let humonShip = humonshipScene?.rootNode.childNodes[0]
         let droneShape = SCNBox(width: 10, height: 5, length: 5, chamferRadius: 0)
         let dronePhysicsShape = SCNPhysicsShape(geometry: droneShape, options: nil)

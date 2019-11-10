@@ -17,7 +17,6 @@ enum Difficulty: String, Codable {
     case Warrior = "Warrior"
     case Commander = "Commander"
     case Lord = "Zylon Lord"
-
 }
 
 struct GameSettings: Codable {

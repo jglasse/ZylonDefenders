@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AB2-5A-Arv">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AB2-5A-Arv">
     <device id="retina6_1" orientation="landscape" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -390,45 +390,50 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</stri
                                 </constraints>
                             </view>
                             <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" restorationIdentifier="GalacticStack" spacing="33" translatesAutoresizingMaskIntoConstraints="NO" id="hyH-e8-gbB" userLabel="Galactic Stack">
-                                <rect key="frame" x="485" y="20" width="360" height="36"/>
+                                <rect key="frame" x="425" y="20" width="420" height="36"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2nC-Nm-qWM">
-                                        <rect key="frame" x="0.0" y="0.0" width="30" height="36"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="30" id="VBr-sI-Wi9"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="Y14.5M" family="Y14.5M" pointSize="22"/>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hF0-3Y-bBj" userLabel="3D">
+                                        <rect key="frame" x="0.0" y="0.0" width="27" height="36"/>
+                                        <fontDescription key="fontDescription" name="Y14.5M" family="Y14.5M" pointSize="15"/>
+                                        <state key="normal" title="3D"/>
+                                        <connections>
+                                            <action selector="DToggle:" destination="BV1-FR-VrT" eventType="touchUpInside" id="Jt2-Gw-AyT"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2nC-Nm-qWM">
+                                        <rect key="frame" x="60" y="0.0" width="30" height="36"/>
+                                        <fontDescription key="fontDescription" name="Y14.5M" family="Y14.5M" pointSize="15"/>
                                         <state key="normal" title="∞"/>
                                         <connections>
                                             <action selector="allQuads:" destination="BV1-FR-VrT" eventType="touchUpInside" id="0Kz-8C-c1v"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9FZ-mG-dtS">
-                                        <rect key="frame" x="63" y="0.0" width="52" height="36"/>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9FZ-mG-dtS">
+                                        <rect key="frame" x="123" y="0.0" width="52" height="36"/>
                                         <fontDescription key="fontDescription" name="Y14.5M" family="Y14.5M" pointSize="15"/>
                                         <state key="normal" title="ALPHA"/>
                                         <connections>
                                             <action selector="alpha:" destination="BV1-FR-VrT" eventType="touchUpInside" id="b0i-1B-BKn"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lKn-fM-mS4">
-                                        <rect key="frame" x="148" y="0.0" width="42" height="36"/>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lKn-fM-mS4">
+                                        <rect key="frame" x="208" y="0.0" width="42" height="36"/>
                                         <fontDescription key="fontDescription" name="Y14.5M" family="Y14.5M" pointSize="15"/>
                                         <state key="normal" title="BETA"/>
                                         <connections>
                                             <action selector="beta:" destination="BV1-FR-VrT" eventType="touchUpInside" id="AI1-An-FZw"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fju-Xi-EWA">
-                                        <rect key="frame" x="223" y="0.0" width="52" height="36"/>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fju-Xi-EWA">
+                                        <rect key="frame" x="283" y="0.0" width="52" height="36"/>
                                         <fontDescription key="fontDescription" name="Y14.5M" family="Y14.5M" pointSize="15"/>
                                         <state key="normal" title="GAMMA"/>
                                         <connections>
                                             <action selector="gamma:" destination="BV1-FR-VrT" eventType="touchUpInside" id="EYr-ad-2oz"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Pq-Sp-JAa">
-                                        <rect key="frame" x="308" y="0.0" width="52" height="36"/>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Pq-Sp-JAa">
+                                        <rect key="frame" x="368" y="0.0" width="52" height="36"/>
                                         <fontDescription key="fontDescription" name="Y14.5M" family="Y14.5M" pointSize="15"/>
                                         <state key="normal" title="DELTA"/>
                                         <connections>
@@ -437,7 +442,7 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</stri
                                     </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="360" id="IxL-z9-gsG"/>
+                                    <constraint firstAttribute="width" constant="420" id="IxL-z9-gsG"/>
                                     <constraint firstAttribute="height" constant="36" id="ixb-YF-HfD"/>
                                 </constraints>
                             </stackView>
@@ -519,21 +524,6 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</stri
                                     <constraint firstAttribute="width" constant="193" id="pN0-tE-2Fu"/>
                                 </constraints>
                             </stackView>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="yVD-WN-np4">
-                                <rect key="frame" x="356" y="25" width="121" height="28"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="27" id="QWM-yM-BgV"/>
-                                    <constraint firstAttribute="width" constant="121" id="Uwb-SD-ugy"/>
-                                </constraints>
-                                <segments>
-                                    <segment title="2D"/>
-                                    <segment title="3D"/>
-                                </segments>
-                                <color key="selectedSegmentTintColor" red="0.0" green="0.2904751599" blue="0.55838406090000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <connections>
-                                    <action selector="threeDSwitch:" destination="BV1-FR-VrT" eventType="valueChanged" id="As8-zy-hvJ"/>
-                                </connections>
-                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
@@ -544,7 +534,6 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</stri
                             <constraint firstItem="Eo0-Hl-05V" firstAttribute="bottom" secondItem="PoQ-ji-oep" secondAttribute="bottom" constant="-27" id="2I9-LI-VOv"/>
                             <constraint firstAttribute="trailing" secondItem="hyH-e8-gbB" secondAttribute="trailing" constant="51" id="4Sb-yp-rTG"/>
                             <constraint firstItem="wgh-g3-0pN" firstAttribute="leading" secondItem="TBr-jy-nsA" secondAttribute="leading" constant="64" id="8F6-e8-iuX"/>
-                            <constraint firstItem="yVD-WN-np4" firstAttribute="top" secondItem="hyH-e8-gbB" secondAttribute="bottom" constant="-31" id="91K-7Y-WHc"/>
                             <constraint firstItem="xsg-ZW-l5i" firstAttribute="top" secondItem="cOD-NV-RaV" secondAttribute="bottom" constant="20" id="B76-Pv-haW"/>
                             <constraint firstItem="hyH-e8-gbB" firstAttribute="top" secondItem="cOD-NV-RaV" secondAttribute="bottom" constant="20" id="Dg8-wn-kaV"/>
                             <constraint firstItem="6Sn-Ch-wiN" firstAttribute="leading" secondItem="TBr-jy-nsA" secondAttribute="leadingMargin" id="NGm-pv-gDV"/>
@@ -554,7 +543,6 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</stri
                             <constraint firstItem="z62-zF-Ty3" firstAttribute="top" secondItem="cOD-NV-RaV" secondAttribute="bottom" constant="40" id="Sxk-rX-fr1"/>
                             <constraint firstAttribute="trailing" secondItem="50S-aJ-rH1" secondAttribute="trailing" id="ULq-uf-Wj4"/>
                             <constraint firstItem="z62-zF-Ty3" firstAttribute="leading" secondItem="TBr-jy-nsA" secondAttribute="leading" constant="40" id="Ued-56-Yeb"/>
-                            <constraint firstItem="yVD-WN-np4" firstAttribute="centerX" secondItem="TBr-jy-nsA" secondAttribute="centerX" constant="-31.5" id="Wfh-SF-KsI"/>
                             <constraint firstItem="50S-aJ-rH1" firstAttribute="leading" secondItem="TBr-jy-nsA" secondAttribute="leading" id="adm-3z-SWI"/>
                             <constraint firstItem="Eo0-Hl-05V" firstAttribute="top" secondItem="hyH-e8-gbB" secondAttribute="top" constant="27" id="beI-lt-hQO"/>
                             <constraint firstItem="50S-aJ-rH1" firstAttribute="width" secondItem="TBr-jy-nsA" secondAttribute="width" id="cM3-8m-BBm"/>
@@ -597,10 +585,18 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</stri
                         <outlet property="targetSectorLabel" destination="YQK-T0-L4Q" id="PaY-fh-lBd"/>
                         <outlet property="telemetryView" destination="P5c-OT-ydd" id="IEU-fC-IRf"/>
                         <outlet property="thetaDisplay" destination="MQV-Cf-PFY" id="TZY-Ll-wjW"/>
-                        <outlet property="threeDtoggle" destination="yVD-WN-np4" id="2N8-Qj-nW2"/>
+                        <outlet property="threeDToggle" destination="hF0-3Y-bBj" id="xGk-Ad-7ql"/>
                         <outlet property="viewButton" destination="2sP-pn-M7j" id="JVW-mq-nch"/>
                     </connections>
                 </viewController>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5zI-Z1-4WF" userLabel="3D">
+                    <rect key="frame" x="0.0" y="0.0" width="30" height="36"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="30" id="SIl-mJ-wK9"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Y14.5M" family="Y14.5M" pointSize="22"/>
+                    <state key="normal" title="∞"/>
+                </button>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
                 <swipeGestureRecognizer cancelsTouchesInView="NO" direction="right" id="yq0-gJ-5OF"/>
             </objects>
