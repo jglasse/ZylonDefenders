@@ -11,6 +11,9 @@ import Foundation
 struct GalaxyMapModel {
     var map =  [SectorGrid]()
     var kh = Kohai()
+    var initialNumberofOccupiedSectors = 0
+    var currentNumberOfOccupiedSectors: Int { return map.filter({$0.sectorType == SectorGridType.enemy || $0.sectorType == SectorGridType.enemy2 || $0.sectorType == SectorGridType.enemy3}).count}
+    var occupiedSectorRatio: Int {return currentNumberOfOccupiedSectors/initialNumberofOccupiedSectors }
 
     mutating func decrementEnemyCount(sector: Int) {
         print("decrementing enemy count from \(self.map[sector].numberOfSectorObjects)")
@@ -27,13 +30,13 @@ struct GalaxyMapModel {
         var numberofOccupiedSectors = 0
         var maxShipsPerSector = 0
         var numberofStations = 0
-
         // based on difficulty level, set internal variables
         switch difficulty {
         case 1:
             numberofOccupiedSectors = 12
             maxShipsPerSector = 3
             numberofStations = 4
+            
 
         case 2:
             numberofOccupiedSectors = 15
@@ -61,6 +64,8 @@ struct GalaxyMapModel {
             numberofStations = 4
 
         }
+        initialNumberofOccupiedSectors = numberofOccupiedSectors
+
 
         // first, add an empty map with 128 sectors
         for x in 1...128 {

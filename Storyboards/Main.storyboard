@@ -458,16 +458,6 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</stri
                                     <action selector="fireTorpedo:" destination="BV1-FR-VrT" eventType="touchUpInside" id="sLl-7B-86c"/>
                                 </connections>
                             </button>
-                            <textView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="telemetryTextView" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" delaysContentTouches="NO" canCancelContentTouches="NO" bouncesZoom="NO" editable="NO" text="Game Over" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P5c-OT-ydd" userLabel="TelemetryView" customClass="TelemetryPlayer" customModule="Zylon_Defenders" customModuleProvider="target">
-                                <rect key="frame" x="-24" y="12" width="684" height="256"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <accessibility key="accessibilityConfiguration">
-                                    <accessibilityTraits key="traits" notEnabled="YES"/>
-                                </accessibility>
-                                <color key="textColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <fontDescription key="fontDescription" name="Glass_TTY_VT220" family="Glass TTY VT220" pointSize="16"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3zc-Ha-CFT">
                                 <rect key="frame" x="384" y="240" width="128" height="31"/>
                                 <constraints>
@@ -524,6 +514,16 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</stri
                                     <constraint firstAttribute="width" constant="193" id="pN0-tE-2Fu"/>
                                 </constraints>
                             </stackView>
+                            <textView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="telemetryTextView" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" delaysContentTouches="NO" canCancelContentTouches="NO" bouncesZoom="NO" editable="NO" text="Game Over" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P5c-OT-ydd" userLabel="TelemetryView" customClass="TelemetryPlayer" customModule="Zylon_Defenders" customModuleProvider="target">
+                                <rect key="frame" x="40" y="47" width="805" height="256"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" notEnabled="YES"/>
+                                </accessibility>
+                                <color key="textColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <fontDescription key="fontDescription" name="Glass_TTY_VT220" family="Glass TTY VT220" pointSize="16"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
@@ -600,7 +600,7 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</stri
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
                 <swipeGestureRecognizer cancelsTouchesInView="NO" direction="right" id="yq0-gJ-5OF"/>
             </objects>
-            <point key="canvasLocation" x="-600" y="157.5"/>
+            <point key="canvasLocation" x="-600" y="156.52173913043478"/>
         </scene>
     </scenes>
     <resources>

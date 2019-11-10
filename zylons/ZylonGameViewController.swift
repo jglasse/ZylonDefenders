@@ -46,7 +46,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     override var prefersStatusBarHidden: Bool {
         return true
     }
-    // make gamestate a single codable object
+    // TODO: make gamestate a single codable object
 
     // MARK: - Mfi Game Controller vars
     var mainController: GCController?
@@ -79,10 +79,13 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     var betaQuadrant: SCNNode { return (galacticDisplay.map.rootNode.childNode(withName: "BETA", recursively: true))! }
     var gammaQuadrant: SCNNode { return (galacticDisplay.map.rootNode.childNode(withName: "GAMMA", recursively: true))! }
     var deltaQuadrant: SCNNode { return (galacticDisplay.map.rootNode.childNode(withName: "DELTA", recursively: true))! }
-
     var rotationNode: SCNNode { return  (galacticDisplay.map.rootNode.childNode(withName: "rotateNode", recursively: true))! }
     var internalRotationNode: SCNNode { return  (galacticDisplay.map.rootNode.childNode(withName: "internalRot", recursively: true))! }
     var galacticSlider = UISlider()
+    
+    
+    var currentRankIndex: Int {return 0}
+
 
     var enemiesArray: [ShipType]? { return galaxyModel.map[ship.currentSectorNumber].enemyTypes }
 
@@ -1072,7 +1075,9 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         delayWithSeconds(1, completion: {
             self.telemetryView.text = ""
             self.telemetryView.isHidden = false
-            let rank = self.rankArray[randIntRange(lower: 0, upper: self.rankArray.count-1)]
+            let rankIndex = Int(self.galaxyModel.occupiedSectorRatio*self.rankArray.count)
+            print("rankIndex: \(rankIndex)")
+            let rank:String =  self.rankArray[rankIndex]
             let message = """
             Zylon Command to all sectors. \(cause)
 
