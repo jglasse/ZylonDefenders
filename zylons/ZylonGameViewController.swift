@@ -15,9 +15,8 @@ import AVFoundation
 import GameController
 //import CoreMotion
 
-
 class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNSceneRendererDelegate {
-    let rankArray = ["GALACTIC COOK","GARBAGE SCOW CAPTAIN","ROOKIE","NOVICE","ENSIGN","PILOT", "SPACE ACE","LIEUTENANT","WARRIOR","CAPTAIN","COMMANDER","STAR COMMANDER","ZYLON HERO" ]
+    let rankArray = ["GALACTIC COOK", "GARBAGE SCOW CAPTAIN", "ROOKIE", "NOVICE", "ENSIGN", "PILOT", "SPACE ACE", "LIEUTENANT", "WARRIOR", "CAPTAIN", "COMMANDER", "STAR COMMANDER", "ZYLON HERO" ]
 
     // MARK: - Multipeer
    // var myMCController = MCController.sharedInstance
@@ -62,7 +61,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     var scnView: SCNView!
     let sectorObjectsNode = SCNNode()
     let galacticDisplay = GalacticMapDisplay()
-    let scountTemplate = HumonShip(shipType: .scout)
+    let scoutTemplate = HumonShip(shipType: .scout)
     let fighterTemplate = HumonShip(shipType: .fighter)
     let destroyerTemplate = HumonShip(shipType: .destroyer)
 
@@ -82,10 +81,8 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     var rotationNode: SCNNode { return  (galacticDisplay.map.rootNode.childNode(withName: "rotateNode", recursively: true))! }
     var internalRotationNode: SCNNode { return  (galacticDisplay.map.rootNode.childNode(withName: "internalRot", recursively: true))! }
     var galacticSlider = UISlider()
-    
-    
-    var currentRankIndex: Int {return 0}
 
+    var currentRankIndex: Int {return 0}
 
     var enemiesArray: [ShipType]? { return galaxyModel.map[ship.currentSectorNumber].enemyTypes }
 
@@ -155,7 +152,6 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 
     // MARK: - IBOutlets
 
- 
     @IBOutlet weak var threeDToggle: UIButton!
     @IBOutlet weak var sectorStack: UIStackView!
     @IBOutlet weak var speedStack: UIStackView!
@@ -205,8 +201,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 
         }
     }
-    
-    
+
     @IBAction func galacticSlide(_ sender: UISlider) {
         self.ship.targetSectorNumber = Int(sender.value)
 //        let sectorString = "\(self.ship.targetSectorNumber+1)"
@@ -215,7 +210,6 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         galacticDisplay.setNewTargetGrid(number: ship.targetSectorNumber, color: UIColor.red)
         galacticDisplay.setNewShipCurrentGrid(number: ship.currentSectorNumber, color: UIColor.white)
         classicMap.setNewTargetGrid(number: ship.targetSectorNumber, color: UIColor.red)
-
 
         self.shipSectorLabel.text = "Ship Sector: \(self.shipCurrrentSectorGrid.quadrant) \(self.shipCurrrentSectorGrid.quadrantNumber)"
         self.targetSectorLabel.text = "Target Sector: \(self.targetSectorGrid.quadrant) \(self.targetSectorGrid.quadrantNumber)"
@@ -444,7 +438,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         var enemyDrone: SectorObject
         switch type {
         case .scout:
-            enemyDrone = scountTemplate.copy() as! SectorObject
+            enemyDrone = scoutTemplate.copy() as! SectorObject
         case .fighter:
             enemyDrone = fighterTemplate.copy() as! SectorObject
         case .destroyer:
@@ -674,6 +668,9 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         scnView.scene = mainGameScene
         createStars()
         generateWarpGrid()
+        self.scnView.prepare(fighterTemplate, shouldAbortBlock: nil)
+        self.scnView.prepare(scoutTemplate, shouldAbortBlock: nil)
+        self.scnView.prepare(destroyerTemplate, shouldAbortBlock: nil)
 
         // setup HUD
         shipHud = HUD(size: self.view.bounds.size)
@@ -1077,7 +1074,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
             self.telemetryView.isHidden = false
             let rankIndex = Int(self.galaxyModel.occupiedSectorRatio*self.rankArray.count)
             print("rankIndex: \(rankIndex)")
-            let rank:String =  self.rankArray[rankIndex]
+            let rank: String =  self.rankArray[rankIndex]
             let message = """
             Zylon Command to all sectors. \(cause)
 

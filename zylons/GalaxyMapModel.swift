@@ -36,7 +36,6 @@ struct GalaxyMapModel {
             numberofOccupiedSectors = 12
             maxShipsPerSector = 3
             numberofStations = 4
-            
 
         case 2:
             numberofOccupiedSectors = 15
@@ -65,7 +64,6 @@ struct GalaxyMapModel {
 
         }
         initialNumberofOccupiedSectors = numberofOccupiedSectors
-
 
         // first, add an empty map with 128 sectors
         for x in 1...128 {
