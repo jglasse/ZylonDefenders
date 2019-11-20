@@ -1072,7 +1072,9 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         delayWithSeconds(1, completion: {
             self.telemetryView.text = ""
             self.telemetryView.isHidden = false
-            let rankIndex = Int(self.galaxyModel.occupiedSectorRatio*self.rankArray.count)
+            let newrank: Float = self.galaxyModel.occupiedSectorRatio*Float(self.rankArray.count)
+            let rankIndex = Int(newrank)
+            print("occupiedSectorRatio: \(self.galaxyModel.occupiedSectorRatio)")
             print("rankIndex: \(rankIndex)")
             let rank: String =  self.rankArray[rankIndex]
             let message = """

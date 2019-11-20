@@ -3,7 +3,7 @@
     <device id="retina6_1" orientation="landscape" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -393,7 +393,7 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</stri
                                 <rect key="frame" x="425" y="20" width="420" height="36"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hF0-3Y-bBj" userLabel="3D">
-                                        <rect key="frame" x="0.0" y="0.0" width="27" height="36"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="25" height="36"/>
                                         <fontDescription key="fontDescription" name="Y14.5M" family="Y14.5M" pointSize="15"/>
                                         <state key="normal" title="3D"/>
                                         <connections>
@@ -401,9 +401,9 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</stri
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2nC-Nm-qWM">
-                                        <rect key="frame" x="60" y="0.0" width="30" height="36"/>
+                                        <rect key="frame" x="58" y="0.0" width="32" height="36"/>
                                         <fontDescription key="fontDescription" name="Y14.5M" family="Y14.5M" pointSize="15"/>
-                                        <state key="normal" title="∞"/>
+                                        <state key="normal" title="ALL"/>
                                         <connections>
                                             <action selector="allQuads:" destination="BV1-FR-VrT" eventType="touchUpInside" id="0Kz-8C-c1v"/>
                                         </connections>

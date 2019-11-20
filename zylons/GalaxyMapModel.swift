@@ -12,8 +12,15 @@ struct GalaxyMapModel {
     var map =  [SectorGrid]()
     var kh = Kohai()
     var initialNumberofOccupiedSectors = 0
-    var currentNumberOfOccupiedSectors: Int { return map.filter({$0.sectorType == SectorGridType.enemy || $0.sectorType == SectorGridType.enemy2 || $0.sectorType == SectorGridType.enemy3}).count}
-    var occupiedSectorRatio: Int {return currentNumberOfOccupiedSectors/initialNumberofOccupiedSectors }
+    var currentNumberOfOccupiedSectors: Int { let numberOfOccupiedSectors = map.filter({$0.sectorType == SectorGridType.enemy || $0.sectorType == SectorGridType.enemy2 || $0.sectorType == SectorGridType.enemy3}).count
+        print("numberOfOccupiedSectors: \(numberOfOccupiedSectors)")
+        return numberOfOccupiedSectors}
+    var occupiedSectorRatio: Float {
+        print("initialNumberofOccupiedSectors: \(initialNumberofOccupiedSectors)")
+        print("currentNumberOfOccupiedSectors: \(currentNumberOfOccupiedSectors)")
+        print("ratio:", Float(Float(currentNumberOfOccupiedSectors)/Float(initialNumberofOccupiedSectors)))
+
+        return Float(Float(currentNumberOfOccupiedSectors)/Float(initialNumberofOccupiedSectors))}
 
     mutating func decrementEnemyCount(sector: Int) {
         print("decrementing enemy count from \(self.map[sector].numberOfSectorObjects)")
