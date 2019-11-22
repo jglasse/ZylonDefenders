@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6B16A8EA23870A1B006D37C7 /* SoundEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B16A8E923870A1B006D37C7 /* SoundEngine.swift */; };
 		6B2755632360223A00E3E76D /* shieldsUp.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 6B2755622360223A00E3E76D /* shieldsUp.m4a */; };
 		6B281EEB22FCA75B00B4C288 /* StationExplosion.scnp in Resources */ = {isa = PBXBuildFile; fileRef = 6B281EEA22FCA75B00B4C288 /* StationExplosion.scnp */; };
 		6B354D4C22AB344B00482384 /* zylonHope.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 6B354D4B22AB344600482384 /* zylonHope.m4a */; };
@@ -218,6 +219,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6B16A8E923870A1B006D37C7 /* SoundEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundEngine.swift; sourceTree = "<group>"; };
 		6B2755622360223A00E3E76D /* shieldsUp.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = shieldsUp.m4a; sourceTree = "<group>"; };
 		6B281EEA22FCA75B00B4C288 /* StationExplosion.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = StationExplosion.scnp; sourceTree = "<group>"; };
 		6B354D4B22AB344600482384 /* zylonHope.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = zylonHope.m4a; sourceTree = "<group>"; };
@@ -551,6 +553,7 @@
 		E16E290D20574844002362C1 /* Utility&Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				6B16A8E923870A1B006D37C7 /* SoundEngine.swift */,
 				6B600D6522D2A87E003D3504 /* AVTonePlayerUnit.swift */,
 				E11978EE2031A358002214DB /* Constants.swift */,
 				E19F3F301F64647600F612A7 /* UtilityFunctions.swift */,
@@ -1189,6 +1192,7 @@
 				E1B12C2A20267EC70071F9A1 /* Scanner.swift in Sources */,
 				6BC17C0822A3674E00583F22 /* MapTargetIndicator.swift in Sources */,
 				E187F56D1FB0275A0036B3FE /* Torpedo.swift in Sources */,
+				6B16A8EA23870A1B006D37C7 /* SoundEngine.swift in Sources */,
 				6B600D6622D2A87F003D3504 /* AVTonePlayerUnit.swift in Sources */,
 				6B6642C622AB087300066491 /* PrologueViewController.swift in Sources */,
 				6BCAA9E6229EDA3500E1A605 /* GalaxyMapDisplay.swift in Sources */,
@@ -1373,7 +1377,9 @@
 			baseConfigurationReference = 7568754695DB123382A3A552 /* Pods-Zylon Defenders.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WPGAGSXUST;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = zylons/Info.plist;
@@ -1392,7 +1398,9 @@
 			baseConfigurationReference = EB9DB5B736D0896488B41CBB /* Pods-Zylon Defenders.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WPGAGSXUST;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = zylons/Info.plist;

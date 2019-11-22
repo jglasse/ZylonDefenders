@@ -261,16 +261,6 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 
     }
 
-    func computerBeepSound(_ soundString: String) {
-        if let soundURL = Bundle.main.url(forResource: soundString, withExtension: "mp3") { do {
-            try beepsound =  AVAudioPlayer(contentsOf: soundURL)
-        } catch {
-            print("beepsound failed")
-            }
-            beepsound.volume = 0.5
-            beepsound.play()
-        }
-    }
     func envSound(_ soundString: String) {
         if let soundURL = Bundle.main.url(forResource: soundString, withExtension: "m4a") { do {
             try beepsound =  AVAudioPlayer(contentsOf: soundURL)
@@ -438,10 +428,13 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         var enemyDrone: SectorObject
         switch type {
         case .scout:
+            print("spawning SCOUT")
             enemyDrone = scoutTemplate.copy() as! SectorObject
         case .fighter:
+            print("spawning FIGHTER")
             enemyDrone = fighterTemplate.copy() as! SectorObject
         case .destroyer:
+            print("spawning DESTROYER")
             enemyDrone = destroyerTemplate.copy() as! SectorObject
         }
 
@@ -462,6 +455,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         }
     }
     func spawnEnemies(ofTypes: [ShipType]) {
+        print("spawnEnemies(ofTypes:")
            for  type in ofTypes {
                spawnEnemy(type: type)
            }
