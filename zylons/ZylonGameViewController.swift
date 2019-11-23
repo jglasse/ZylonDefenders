@@ -16,7 +16,7 @@ import GameController
 //import CoreMotion
 
 class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNSceneRendererDelegate {
-    let rankArray = ["GALACTIC COOK", "GARBAGE SCOW CAPTAIN", "ROOKIE", "NOVICE", "ENSIGN", "PILOT", "SPACE ACE", "LIEUTENANT", "WARRIOR", "CAPTAIN", "COMMANDER", "STAR COMMANDER", "ZYLON HERO" ]
+    let rankArray = ["ZYLON HERO",  "SPACE ACE",  "WARRIOR", "CAPTAIN", "STAR COMMANDER","COMMANDER",  "LIEUTENANT", "PILOT", "ENSIGN","NOVICE", "ROOKIE", "GARBAGE SCOW CAPTAIN", "GALACTIC COOK"]
 
     // MARK: - Multipeer
    // var myMCController = MCController.sharedInstance
@@ -1024,6 +1024,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     }
 
     func boomAndLose(atNode: SCNNode, cause: String) {
+        removeMarkedSectorObjects()
         zylonScanner.isHidden = true
         zylonScanner.scanBeam.removeAllActions()
         viewMode = .foreView
@@ -1062,12 +1063,15 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 
     func endGame(_ cause: String) {
         engineSound.stop()
+        removeAllTorps()
         self.telemetryView.setupTelemetryAudioPlayer()
         delayWithSeconds(1, completion: {
             self.telemetryView.text = ""
             self.telemetryView.isHidden = false
             let newrank: Float = self.galaxyModel.occupiedSectorRatio*Float(self.rankArray.count)
-            let rankIndex = Int(newrank)
+            var rankIndex = Int(newrank)
+            if self.difficultyScalar < 3 && rankIndex < self.rankArray.count-1 { rankIndex += 1 }
+
             print("occupiedSectorRatio: \(self.galaxyModel.occupiedSectorRatio)")
             print("rankIndex: \(rankIndex)")
             let rank: String =  self.rankArray[rankIndex]
@@ -1343,6 +1347,16 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         sectorObjectsToBeRemoved.removeAll()
         checkForGameEnd()
     }
+    
+    func removeAllTorps() {
+        mainGameScene.rootNode.enumerateChildNodes({thisNode, _ in
+            if thisNode.name?.range(of: "torpedo") != nil {
+                thisNode.presentation.opacity = 0
+                print("hiding torps")
+            }
+        
+        })
+    }
     func cleanSceneAndUpdateSectorNodeObjects() {
         var localNumberOfZylonShotsOnscreen = 0
         var localNumberOfHumonShotsOnscreen = 0
@@ -1506,7 +1520,9 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         updateTactical()
         updateStars()
         } else {
+            removeMarkedSectorObjects()
             shipHud.deactivateAlert()
+            ship.tacticalDisplayEngaged = false
         }
     }
     func renderer(_ renderer: SCNSceneRenderer, didRenderScene scene: SCNScene, atTime time: TimeInterval) {
