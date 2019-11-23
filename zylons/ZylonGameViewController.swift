@@ -412,33 +412,20 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         let panim = SCNAction.scale(to: CGFloat(toScale), duration: 1.5)
         node.runAction(panim)
     }
-    func spawnEnemy() {
-        let enemyDrone = HumonShip()
-        enemyDrone.scale = SCNVector3Make(0.1, 0.1, 0.1)
-
-        let constraint = SCNLookAtConstraint(target: mainGameScene.rootNode)
-        constraint.isGimbalLockEnabled = true
-        enemyDrone.constraints = [constraint]
-        enemyDrone.position = self.mainGameScene.rootNode.convertPosition((enemyDrone.worldPosition), to: self.sectorObjectsNode)
-        self.sectorObjectsNode.addChildNode(enemyDrone)
-        flyIn(node: enemyDrone, toScale: 1.0)
-    }
+//    func spawnEnemy() {
+//        let enemyDrone = HumonShip()
+//        enemyDrone.scale = SCNVector3Make(0.1, 0.1, 0.1)
+//
+//        let constraint = SCNLookAtConstraint(target: mainGameScene.rootNode)
+//        constraint.isGimbalLockEnabled = true
+//        enemyDrone.constraints = [constraint]
+//        enemyDrone.position = self.mainGameScene.rootNode.convertPosition((enemyDrone.worldPosition), to: self.sectorObjectsNode)
+//        self.sectorObjectsNode.addChildNode(enemyDrone)
+//        flyIn(node: enemyDrone, toScale: 1.0)
+//    }
 
     func spawnEnemy(type: ShipType ) {
-        var enemyDrone: SectorObject
-        switch type {
-        case .scout:
-            print("spawning SCOUT")
-            enemyDrone = scoutTemplate.copy() as! SectorObject
-        case .fighter:
-            print("spawning FIGHTER")
-            enemyDrone = fighterTemplate.copy() as! SectorObject
-        case .destroyer:
-            print("spawning DESTROYER")
-            enemyDrone = destroyerTemplate.copy() as! SectorObject
-        }
-
-        // let enemyDrone = HumonShip(shipType: type)
+        let enemyDrone = HumonShip(shipType: type.self)
          enemyDrone.scale = SCNVector3Make(0.1, 0.1, 0.1)
 
          let constraint = SCNLookAtConstraint(target: mainGameScene.rootNode)
@@ -449,14 +436,10 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
          flyIn(node: enemyDrone, toScale: 1.0)
      }
 
-    func spawnEnemies(number: Int) {
-        for _ in 1...number {
-            spawnEnemy()
-        }
-    }
     func spawnEnemies(ofTypes: [ShipType]) {
         print("spawnEnemies(ofTypes:")
            for  type in ofTypes {
+                print(type)
                spawnEnemy(type: type)
            }
        }

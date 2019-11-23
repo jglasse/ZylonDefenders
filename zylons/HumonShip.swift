@@ -108,10 +108,13 @@ class HumonShip: SectorObject {
         self.shiptype = shipType
         switch shipType {
         case .scout:
-            humonshipScene = SCNScene(named: "Humon.scn")
+            print("humonshipScene  = HumonScout.scn")
+            humonshipScene = SCNScene(named: "HumonScout.scn")
         case .fighter:
+            print("humonshipScene  = HumonFighter.scn")
             humonshipScene = SCNScene(named: "HumonFighter.scn")
         case .destroyer:
+            print("humonshipScene  = HumonHunter.scn")
             humonshipScene = SCNScene(named: "HumonHunter.scn")
 
         }
@@ -127,33 +130,33 @@ class HumonShip: SectorObject {
         self.name = "humonShip"
         self.worldOrientation = SCNVector4(0, 0, 1, Float.pi)
         self.pivot = SCNMatrix4MakeTranslation(0.5, 0.5, 0.5)
-        self.worldPosition = SCNVector3Make(randRange(lower: -10, upper: 10), randRange(lower: -12, upper: 12), randRange(lower: -80, upper: -60))
+        self.worldPosition = SCNVector3Make(randRange(lower: -10, upper: 10), randRange(lower: -12, upper: 12), randRange(lower: -90, upper: -60))
         self.scale = SCNVector3Make(1, 1, 1)
         self.cyclesUntilFireTorpedo = randRange(lower: 30, upper: 340)
 
     }
-    override init() {
-        super.init()
-        self.sectorObjectType = .humonShip // 
-       // let humonshipScene = SCNScene(named: "Humon.scn")
-        let humonshipScene = SCNScene(named: "HumonFighter.scn")
-        let humonShip = humonshipScene?.rootNode.childNodes[0]
-        let droneShape = SCNBox(width: 10, height: 5, length: 5, chamferRadius: 0)
-        let dronePhysicsShape = SCNPhysicsShape(geometry: droneShape, options: nil)
-        self.addChildNode(humonShip!)
-        self.physicsBody = SCNPhysicsBody(type: .kinematic, shape: dronePhysicsShape)
-        self.physicsBody?.isAffectedByGravity = false
-        self.physicsBody?.friction = 0
-        self.physicsBody?.categoryBitMask = ObjectCategories.enemyShip
-        self.physicsBody?.contactTestBitMask = ObjectCategories.zylonFire
-        self.name = "humonShip"
-        self.worldOrientation = SCNVector4(0, 0, 1, Float.pi)
-        self.pivot = SCNMatrix4MakeTranslation(0.5, 0.5, 0.5)
-        self.worldPosition = SCNVector3Make(randRange(lower: -10, upper: 10), randRange(lower: -12, upper: 12), randRange(lower: -80, upper: -60))
-        self.scale = SCNVector3Make(1, 1, 1)
-        self.cyclesUntilFireTorpedo = randRange(lower: 30, upper: 340)
+    
+   override init() {
+          super.init()
+          self.sectorObjectType = .humonShip //
+          let humonshipScene = SCNScene(named: "HumonScout.scn")
+          let humonShip = humonshipScene?.rootNode.childNodes[0]
+          let droneShape = SCNBox(width: 10, height: 5, length: 5, chamferRadius: 0)
+          let dronePhysicsShape = SCNPhysicsShape(geometry: droneShape, options: nil)
+          self.addChildNode(humonShip!)
+          self.physicsBody = SCNPhysicsBody(type: .kinematic, shape: dronePhysicsShape)
+          self.physicsBody?.isAffectedByGravity = false
+          self.physicsBody?.friction = 0
+          self.physicsBody?.categoryBitMask = ObjectCategories.enemyShip
+          self.physicsBody?.contactTestBitMask = ObjectCategories.zylonFire
+          self.name = "humonShip"
+          self.worldOrientation = SCNVector4(0, 0, 1, Float.pi)
+          self.pivot = SCNMatrix4MakeTranslation(0.5, 0.5, 0.5)
+          self.worldPosition = SCNVector3Make(randRange(lower: -10, upper: 10), randRange(lower: -12, upper: 12), randRange(lower: -80, upper: -60))
+          self.scale = SCNVector3Make(1, 1, 1)
+          self.cyclesUntilFireTorpedo = randRange(lower: 30, upper: 340)
 
-    }
+      }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
