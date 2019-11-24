@@ -195,10 +195,6 @@
 		E1D8BD5B1DCFCD1A00C863DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E1D8BD5A1DCFCD1A00C863DF /* Assets.xcassets */; };
 		E1DFC2272287A89B00F90E69 /* ShieldTorpExplosion.scnp in Resources */ = {isa = PBXBuildFile; fileRef = E1DFC2262287A89B00F90E69 /* ShieldTorpExplosion.scnp */; };
 		E1DFC2282287A89B00F90E69 /* ShieldTorpExplosion.scnp in Resources */ = {isa = PBXBuildFile; fileRef = E1DFC2262287A89B00F90E69 /* ShieldTorpExplosion.scnp */; };
-		E1E381E01EC4B79A000CC31C /* button_dir_down_0.png in Resources */ = {isa = PBXBuildFile; fileRef = E1E381DC1EC4B79A000CC31C /* button_dir_down_0.png */; };
-		E1E381E11EC4B79A000CC31C /* button_dir_right_0.png in Resources */ = {isa = PBXBuildFile; fileRef = E1E381DD1EC4B79A000CC31C /* button_dir_right_0.png */; };
-		E1E381E21EC4B79A000CC31C /* button_dir_up_0.png in Resources */ = {isa = PBXBuildFile; fileRef = E1E381DE1EC4B79A000CC31C /* button_dir_up_0.png */; };
-		E1E381E31EC4B79A000CC31C /* button_dir_left_0.png in Resources */ = {isa = PBXBuildFile; fileRef = E1E381DF1EC4B79A000CC31C /* button_dir_left_0.png */; };
 		E1E41C682068B7D1000A74DE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E1D8BD5A1DCFCD1A00C863DF /* Assets.xcassets */; };
 		E1E41C6A206A0504000A74DE /* ZylonGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D8BD551DCFCD1A00C863DF /* ZylonGameViewController.swift */; };
 		E1E41C6B206A050A000A74DE /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11978EE2031A358002214DB /* Constants.swift */; };
@@ -384,10 +380,6 @@
 		E1D8BD5A1DCFCD1A00C863DF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E1D8BD5F1DCFCD1A00C863DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E1DFC2262287A89B00F90E69 /* ShieldTorpExplosion.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = ShieldTorpExplosion.scnp; sourceTree = "<group>"; };
-		E1E381DC1EC4B79A000CC31C /* button_dir_down_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_dir_down_0.png; sourceTree = "<group>"; };
-		E1E381DD1EC4B79A000CC31C /* button_dir_right_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_dir_right_0.png; sourceTree = "<group>"; };
-		E1E381DE1EC4B79A000CC31C /* button_dir_up_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_dir_up_0.png; sourceTree = "<group>"; };
-		E1E381DF1EC4B79A000CC31C /* button_dir_left_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_dir_left_0.png; sourceTree = "<group>"; };
 		E1EA0D6D1FE9C59A002BFB0F /* Glass_TTY_VT220.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Glass_TTY_VT220.ttf; path = ../zylonprologue/zylonprologue/Glass_TTY_VT220.ttf; sourceTree = "<group>"; };
 		E1F43D631DD115E900CC8988 /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
 		E1F8BB0A1E3FF4E100460FC9 /* explosion.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = explosion.m4a; sourceTree = "<group>"; };
@@ -612,7 +604,6 @@
 		E1A58DC01E1DCF9B00DCA24F /* assets */ = {
 			isa = PBXGroup;
 			children = (
-				E1E381E41EC4B7A3000CC31C /* Buttons */,
 				E1E381E51EC4B7AA000CC31C /* Grids */,
 				E165672A1E3205C100293285 /* Fonts */,
 				E1D8BD5A1DCFCD1A00C863DF /* Assets.xcassets */,
@@ -736,17 +727,6 @@
 				E1D8BD511DCFCD1A00C863DF /* AppDelegate.swift */,
 			);
 			name = "Frameworks&Libraries";
-			sourceTree = "<group>";
-		};
-		E1E381E41EC4B7A3000CC31C /* Buttons */ = {
-			isa = PBXGroup;
-			children = (
-				E1E381DC1EC4B79A000CC31C /* button_dir_down_0.png */,
-				E1E381DD1EC4B79A000CC31C /* button_dir_right_0.png */,
-				E1E381DE1EC4B79A000CC31C /* button_dir_up_0.png */,
-				E1E381DF1EC4B79A000CC31C /* button_dir_left_0.png */,
-			);
-			name = Buttons;
 			sourceTree = "<group>";
 		};
 		E1E381E51EC4B7AA000CC31C /* Grids */ = {
@@ -962,7 +942,6 @@
 				E1A5A78F2283FC7800EC5A71 /* MS5_Diffuse2.jpg in Resources */,
 				E16E28BF20564A41002362C1 /* warpStart.aif in Resources */,
 				E1BD14B91E24280C002E49A5 /* two.m4a in Resources */,
-				E1E381E21EC4B79A000CC31C /* button_dir_up_0.png in Resources */,
 				E187F5721FB04B140036B3FE /* HumonTorpedo.scnp in Resources */,
 				E13A032721B37B1D0049B125 /* gamma.m4a in Resources */,
 				E1A5A78D2283FC7800EC5A71 /* MS5_Diffuse4.jpg in Resources */,
@@ -980,7 +959,6 @@
 				E16E28C120564A41002362C1 /* empathyCircuitDamaged.aiff in Resources */,
 				E16AB62A1E1F120400E3D8C2 /* torpedo_fail.mp3 in Resources */,
 				E11A73831E986DE4001CCAC8 /* Main.storyboard in Resources */,
-				E1E381E31EC4B79A000CC31C /* button_dir_left_0.png in Resources */,
 				6B356FBB22FCC60A00869FAA /* betaStationDestroyed.m4a in Resources */,
 				E10EFCB91EBFBDA500CC872E /* tinyGrid.png in Resources */,
 				E16E28C920564A41002362C1 /* warpStartStop.aif in Resources */,
@@ -1040,7 +1018,6 @@
 				6B356FBC22FCC60A00869FAA /* deltaStationDestroyed.m4a in Resources */,
 				6B356FB922FCC60300869FAA /* badIdea.m4a in Resources */,
 				E1284C50203A58950022AE83 /* forcefieldHit.m4a in Resources */,
-				E1E381E11EC4B79A000CC31C /* button_dir_right_0.png in Resources */,
 				E1A5A78A2283FC7800EC5A71 /* MS5_Normal.jpg in Resources */,
 				E16C7EB3228BCF9300117E92 /* zylonStation.scn in Resources */,
 				E1D36D621FEA5764001F3E25 /* refuelComplete.mp3 in Resources */,
@@ -1052,7 +1029,6 @@
 				E1503383226680D30083C300 /* galacticmap.scn in Resources */,
 				6B2755632360223A00E3E76D /* shieldsUp.m4a in Resources */,
 				6BE194B522E4E229002C670C /* death.mp3 in Resources */,
-				E1E381E01EC4B79A000CC31C /* button_dir_down_0.png in Resources */,
 				E16E28D720564A41002362C1 /* babelfishCircuitFailure.aiff in Resources */,
 				E165672D1E3205EE00293285 /* Texas Instruments2.ttf in Resources */,
 				E16E28E920564A41002362C1 /* percent.aiff in Resources */,
@@ -1380,6 +1356,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 40;
 				DEVELOPMENT_TEAM = WPGAGSXUST;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = zylons/Info.plist;
@@ -1401,6 +1378,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 40;
 				DEVELOPMENT_TEAM = WPGAGSXUST;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = zylons/Info.plist;
