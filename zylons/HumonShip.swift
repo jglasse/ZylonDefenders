@@ -135,7 +135,7 @@ class HumonShip: SectorObject {
         self.cyclesUntilFireTorpedo = randRange(lower: 30, upper: 340)
 
     }
-    
+
    override init() {
           super.init()
           self.sectorObjectType = .humonShip //

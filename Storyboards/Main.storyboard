@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AB2-5A-Arv">
-    <device id="retina6_1" orientation="landscape" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AB2-5A-Arv">
+    <device id="retina6_1" orientation="landscape">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -206,12 +208,12 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</stri
                                 <rect key="frame" x="0.0" y="-10.5" width="896" height="414"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" restorationIdentifier="telemetryTextView" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" delaysContentTouches="NO" canCancelContentTouches="NO" bouncesZoom="NO" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HK1-WJ-VhA">
-                                <rect key="frame" x="64" y="21" width="768" height="351"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" restorationIdentifier="telemetryTextView" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" delaysContentTouches="NO" canCancelContentTouches="NO" bouncesZoom="NO" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HK1-WJ-VhA">
+                                <rect key="frame" x="65" y="21" width="766" height="351"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" notEnabled="YES"/>
                                 </accessibility>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
                                 <color key="textColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <fontDescription key="fontDescription" name="Glass_TTY_VT220" family="Glass TTY VT220" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -243,7 +245,7 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</stri
                             <constraint firstItem="vgS-7K-Dvn" firstAttribute="width" secondItem="pVc-fe-ica" secondAttribute="width" id="TwR-yP-2yg"/>
                             <constraint firstItem="vgS-7K-Dvn" firstAttribute="centerX" secondItem="Ivt-fA-075" secondAttribute="centerX" id="WVx-Go-K8y"/>
                             <constraint firstItem="pff-ol-vqT" firstAttribute="trailing" secondItem="Ivt-fA-075" secondAttribute="trailing" id="bbb-lR-tgn"/>
-                            <constraint firstItem="HK1-WJ-VhA" firstAttribute="leading" secondItem="Ivt-fA-075" secondAttribute="leading" constant="20" id="gCQ-Bi-yrY"/>
+                            <constraint firstItem="HK1-WJ-VhA" firstAttribute="leading" secondItem="Ivt-fA-075" secondAttribute="leading" constant="21" id="gCQ-Bi-yrY"/>
                             <constraint firstItem="vgS-7K-Dvn" firstAttribute="height" secondItem="pVc-fe-ica" secondAttribute="height" id="gbu-8k-u0U"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Ivt-fA-075"/>
@@ -270,6 +272,39 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</stri
                         <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="X1R-2J-A5m" userLabel="PausedView">
+                                <rect key="frame" x="128" y="51" width="704" height="316"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" restorationIdentifier="PausedStack" spacing="99" translatesAutoresizingMaskIntoConstraints="NO" id="d3l-vy-3uS">
+                                        <rect key="frame" x="100" y="143" width="471" height="31"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="Continue" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QMR-e9-ve7" userLabel="Continue">
+                                                <rect key="frame" x="0.0" y="0.0" width="95" height="31"/>
+                                                <fontDescription key="fontDescription" name="Y14.5M" family="Y14.5M" pointSize="17"/>
+                                                <state key="normal" title="CONTINUE"/>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="Continue" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vK1-A4-kqd" userLabel="Restart">
+                                                <rect key="frame" x="194" y="0.0" width="83" height="31"/>
+                                                <fontDescription key="fontDescription" name="Y14.5M" family="Y14.5M" pointSize="17"/>
+                                                <state key="normal" title="RESTART"/>
+                                                <connections>
+                                                    <action selector="restartGame:" destination="BV1-FR-VrT" eventType="touchUpInside" id="Z4c-Bo-h3q"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="Continue" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UPC-oH-C5e" userLabel="Settings">
+                                                <rect key="frame" x="376" y="0.0" width="95" height="31"/>
+                                                <fontDescription key="fontDescription" name="Y14.5M" family="Y14.5M" pointSize="17"/>
+                                                <state key="normal" title="SETTINGS"/>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="d3l-vy-3uS" firstAttribute="centerY" secondItem="X1R-2J-A5m" secondAttribute="centerY" id="9ZT-gK-I2z"/>
+                                    <constraint firstItem="d3l-vy-3uS" firstAttribute="centerX" secondItem="X1R-2J-A5m" secondAttribute="centerX" id="FMJ-QW-vFz"/>
+                                </constraints>
+                            </view>
                             <sceneKitView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7jm-zG-a79" userLabel="SpaceScnView">
                                 <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
                             </sceneKitView>
@@ -335,10 +370,18 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</stri
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="PoQ-ji-oep" userLabel="Command Stack">
-                                <rect key="frame" x="514" y="367" width="258" height="28"/>
+                                <rect key="frame" x="442" y="367" width="330" height="28"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b5j-bO-0M6">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6fe-JQ-Eir">
                                         <rect key="frame" x="0.0" y="0.0" width="42" height="28"/>
+                                        <fontDescription key="fontDescription" name="Y14.5M" family="Y14.5M" pointSize="15"/>
+                                        <state key="normal" title="PAUS"/>
+                                        <connections>
+                                            <action selector="pauseGame:" destination="BV1-FR-VrT" eventType="touchUpInside" id="dJm-XU-n3A"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b5j-bO-0M6">
+                                        <rect key="frame" x="72" y="0.0" width="42" height="28"/>
                                         <fontDescription key="fontDescription" name="Y14.5M" family="Y14.5M" pointSize="15"/>
                                         <state key="normal" title="TACT"/>
                                         <connections>
@@ -346,7 +389,7 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</stri
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZGc-WM-dzj">
-                                        <rect key="frame" x="72" y="0.0" width="42" height="28"/>
+                                        <rect key="frame" x="144" y="0.0" width="42" height="28"/>
                                         <fontDescription key="fontDescription" name="Y14.5M" family="Y14.5M" pointSize="15"/>
                                         <state key="normal" title="SHLD"/>
                                         <connections>
@@ -354,7 +397,7 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</stri
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iII-jG-TtQ">
-                                        <rect key="frame" x="144" y="0.0" width="42" height="28"/>
+                                        <rect key="frame" x="216" y="0.0" width="42" height="28"/>
                                         <fontDescription key="fontDescription" name="Y14.5M" family="Y14.5M" pointSize="15"/>
                                         <state key="normal" title="WARP"/>
                                         <connections>
@@ -362,7 +405,7 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</stri
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2sP-pn-M7j">
-                                        <rect key="frame" x="216" y="0.0" width="42" height="28"/>
+                                        <rect key="frame" x="288" y="0.0" width="42" height="28"/>
                                         <fontDescription key="fontDescription" name="Y14.5M" family="Y14.5M" pointSize="15"/>
                                         <state key="normal" title="FORE"/>
                                         <connections>
@@ -472,7 +515,7 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</stri
                                 </connections>
                             </button>
                             <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="6Sn-Ch-wiN">
-                                <rect key="frame" x="60" y="286" width="193" height="72"/>
+                                <rect key="frame" x="64" y="286" width="193" height="72"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Θ: --" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MQV-Cf-PFY">
                                         <rect key="frame" x="0.0" y="0.0" width="193" height="12"/>
@@ -515,9 +558,8 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</stri
                                     <constraint firstAttribute="width" constant="193" id="pN0-tE-2Fu"/>
                                 </constraints>
                             </stackView>
-                            <textView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="telemetryTextView" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" delaysContentTouches="NO" canCancelContentTouches="NO" bouncesZoom="NO" editable="NO" text="Game Over" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P5c-OT-ydd" userLabel="TelemetryView" customClass="TelemetryPlayer" customModule="Zylon_Defenders" customModuleProvider="target">
-                                <rect key="frame" x="128" y="47" width="644" height="256"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <textView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" misplaced="YES" restorationIdentifier="telemetryTextView" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" delaysContentTouches="NO" canCancelContentTouches="NO" bouncesZoom="NO" editable="NO" text="Game Over" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P5c-OT-ydd" userLabel="TelemetryView" customClass="TelemetryPlayer" customModule="Zylon_Defenders" customModuleProvider="target">
+                                <rect key="frame" x="90" y="47" width="640" height="316"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" notEnabled="YES"/>
                                 </accessibility>
@@ -534,6 +576,7 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</stri
                             <constraint firstItem="xsg-ZW-l5i" firstAttribute="leading" secondItem="TBr-jy-nsA" secondAttribute="leading" constant="64" id="26E-UC-OyX"/>
                             <constraint firstItem="Eo0-Hl-05V" firstAttribute="bottom" secondItem="PoQ-ji-oep" secondAttribute="bottom" constant="-27" id="2I9-LI-VOv"/>
                             <constraint firstAttribute="trailing" secondItem="hyH-e8-gbB" secondAttribute="trailing" constant="51" id="4Sb-yp-rTG"/>
+                            <constraint firstItem="P5c-OT-ydd" firstAttribute="top" secondItem="cOD-NV-RaV" secondAttribute="bottom" constant="47" id="5LJ-L0-9pW"/>
                             <constraint firstItem="wgh-g3-0pN" firstAttribute="leading" secondItem="TBr-jy-nsA" secondAttribute="leading" constant="64" id="8F6-e8-iuX"/>
                             <constraint firstItem="xsg-ZW-l5i" firstAttribute="top" secondItem="cOD-NV-RaV" secondAttribute="bottom" constant="20" id="B76-Pv-haW"/>
                             <constraint firstItem="hyH-e8-gbB" firstAttribute="top" secondItem="cOD-NV-RaV" secondAttribute="bottom" constant="20" id="Dg8-wn-kaV"/>
@@ -541,9 +584,12 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</stri
                             <constraint firstItem="0dF-9a-5mU" firstAttribute="leading" secondItem="TBr-jy-nsA" secondAttribute="leading" constant="22" id="Ove-Dh-qny"/>
                             <constraint firstItem="3zc-Ha-CFT" firstAttribute="top" secondItem="cOD-NV-RaV" secondAttribute="bottom" constant="240" id="PHi-OC-A6H"/>
                             <constraint firstItem="50S-aJ-rH1" firstAttribute="centerY" secondItem="TBr-jy-nsA" secondAttribute="centerY" id="PfF-G3-6Ks"/>
+                            <constraint firstItem="P5c-OT-ydd" firstAttribute="leading" secondItem="TBr-jy-nsA" secondAttribute="leading" constant="128" id="RLE-Tq-o7R"/>
                             <constraint firstItem="z62-zF-Ty3" firstAttribute="top" secondItem="cOD-NV-RaV" secondAttribute="bottom" constant="40" id="Sxk-rX-fr1"/>
+                            <constraint firstAttribute="trailing" secondItem="P5c-OT-ydd" secondAttribute="trailing" constant="128" id="TQV-d0-hru"/>
                             <constraint firstAttribute="trailing" secondItem="50S-aJ-rH1" secondAttribute="trailing" id="ULq-uf-Wj4"/>
                             <constraint firstItem="z62-zF-Ty3" firstAttribute="leading" secondItem="TBr-jy-nsA" secondAttribute="leading" constant="40" id="Ued-56-Yeb"/>
+                            <constraint firstItem="L0B-TD-jaq" firstAttribute="top" secondItem="P5c-OT-ydd" secondAttribute="bottom" constant="30" id="WMW-u7-qTw"/>
                             <constraint firstItem="50S-aJ-rH1" firstAttribute="leading" secondItem="TBr-jy-nsA" secondAttribute="leading" id="adm-3z-SWI"/>
                             <constraint firstItem="Eo0-Hl-05V" firstAttribute="top" secondItem="hyH-e8-gbB" secondAttribute="top" constant="27" id="beI-lt-hQO"/>
                             <constraint firstItem="50S-aJ-rH1" firstAttribute="width" secondItem="TBr-jy-nsA" secondAttribute="width" id="cM3-8m-BBm"/>
@@ -571,6 +617,7 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</stri
                         <outlet property="mainView" destination="TBr-jy-nsA" id="xqd-hI-mDE"/>
                         <outlet property="mapButton" destination="PFE-MW-5wO" id="8xq-5E-pU6"/>
                         <outlet property="mapScnView" destination="50S-aJ-rH1" id="d3z-92-0Vg"/>
+                        <outlet property="pausedView" destination="X1R-2J-A5m" id="eol-5o-tRj"/>
                         <outlet property="phiDisplay" destination="AcU-BV-dAF" id="Aho-Bo-R46"/>
                         <outlet property="restartButton" destination="3zc-Ha-CFT" id="Yzo-P3-xEu"/>
                         <outlet property="sectorStack" destination="xsg-ZW-l5i" id="F51-QP-fQz"/>

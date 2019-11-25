@@ -16,9 +16,9 @@ import GameController
 //import CoreMotion
 
 class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNSceneRendererDelegate {
-    let rankArray = ["ZYLON HERO",  "SPACE ACE",  "WARRIOR", "CAPTAIN", "STAR COMMANDER","COMMANDER",  "LIEUTENANT", "PILOT", "ENSIGN","NOVICE", "ROOKIE", "GARBAGE SCOW CAPTAIN", "GALACTIC COOK"]
+    let rankArray = ["ZYLON HERO", "SPACE ACE", "WARRIOR", "CAPTAIN", "STAR COMMANDER", "COMMANDER", "LIEUTENANT", "PILOT", "ENSIGN", "NOVICE", "ROOKIE", "GARBAGE SCOW CAPTAIN", "GALACTIC COOK"]
 
-    // MARK: - Multipeer
+    //  Multipeer
    // var myMCController = MCController.sharedInstance
 
     // MARK: - Game Settings
@@ -191,41 +191,19 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 
     // MARK: - IBActions
 
-    @IBAction func DToggle(_ sender: UIButton) {
-        if galacticDisplay.threeDMode == true {
-            galacticDisplay.threeDMode = false
-            self.threeDToggle.setTitle("2D", for: .normal)
-        } else {
-            galacticDisplay.threeDMode = true
-            self.threeDToggle.setTitle("3D", for: .normal)
+   
+    // Command Stack
 
+    
+    @IBOutlet weak var pausedView: UIView!
+    
+    @IBAction func pauseGame(_ sender: UIButton) {
+        if let paused = self.scnView.scene?.isPaused  {
+            self.scnView.scene?.isPaused = !paused
+            pausedView.isHidden = !paused
         }
+        
     }
-
-    @IBAction func galacticSlide(_ sender: UISlider) {
-        self.ship.targetSectorNumber = Int(sender.value)
-//        let sectorString = "\(self.ship.targetSectorNumber+1)"
-//        let targetGrid = galacticDisplay.map.rootNode.childNode(withName: sectorString, recursively: true)
-
-        galacticDisplay.setNewTargetGrid(number: ship.targetSectorNumber, color: UIColor.red)
-        galacticDisplay.setNewShipCurrentGrid(number: ship.currentSectorNumber, color: UIColor.white)
-        classicMap.setNewTargetGrid(number: ship.targetSectorNumber, color: UIColor.red)
-
-        self.shipSectorLabel.text = "Ship Sector: \(self.shipCurrrentSectorGrid.quadrant) \(self.shipCurrrentSectorGrid.quadrantNumber)"
-        self.targetSectorLabel.text = "Target Sector: \(self.targetSectorGrid.quadrant) \(self.targetSectorGrid.quadrantNumber)"
-
-    }
-    @IBAction func toggleGalacticMap(_ sender: Any) {
-        computerBeepSound("beep")
-        if self.viewMode == .galacticMap {
-            self.viewMode = .foreView
-        } else {
-            self.updateGalacticMap()
-            self.viewMode = .galacticMap
-
-        }
-    }
-
     @IBAction func toggleTacticalDisplay(_ sender: Any) {
         if ship.isCurrentlyinWarp {
             computerBeepSound("torpedo_fail")
@@ -234,6 +212,20 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         ship.tacticalDisplayEngaged = !ship.tacticalDisplayEngaged
         }
     }
+    
+    @IBAction func toggleShields(_ sender: UIButton) {
+        if ship.shieldsAreUp {
+            ship.shieldsAreUp = false
+            envSound("shieldsDown")
+        } else {
+            if ship.shipSystems.shieldIntegrity != .destroyed {
+                ship.shieldsAreUp = true
+                envSound("shieldsUp")
+            } else {
+                computerBeepSound("torpedo_fail")
+            }
+            
+        }    }
 
     @IBAction func toggleView(_ sender: UIButton) {
         if self.viewMode == .foreView {
@@ -246,6 +238,16 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         }
         computerBeepSound("beep")
 
+    }
+    @IBAction func toggleGalacticMap(_ sender: Any) {
+        computerBeepSound("beep")
+        if self.viewMode == .galacticMap {
+            self.viewMode = .foreView
+        } else {
+            self.updateGalacticMap()
+            self.viewMode = .galacticMap
+            
+        }
     }
 
     @IBAction func restartGame(_ sender: Any) {
@@ -260,6 +262,35 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         }, completion: gotoMain(alwaysTrue:))
 
     }
+    
+    @IBAction func galacticSlide(_ sender: UISlider) {
+        self.ship.targetSectorNumber = Int(sender.value)
+        //        let sectorString = "\(self.ship.targetSectorNumber+1)"
+        //        let targetGrid = galacticDisplay.map.rootNode.childNode(withName: sectorString, recursively: true)
+        
+        galacticDisplay.setNewTargetGrid(number: ship.targetSectorNumber, color: UIColor.red)
+        galacticDisplay.setNewShipCurrentGrid(number: ship.currentSectorNumber, color: UIColor.white)
+        classicMap.setNewTargetGrid(number: ship.targetSectorNumber, color: UIColor.red)
+        
+        self.shipSectorLabel.text = "Ship Sector: \(self.shipCurrrentSectorGrid.quadrant) \(self.shipCurrrentSectorGrid.quadrantNumber)"
+        self.targetSectorLabel.text = "Target Sector: \(self.targetSectorGrid.quadrant) \(self.targetSectorGrid.quadrantNumber)"
+        
+    }
+   
+ // Galactic Stack
+    @IBAction func DToggle(_ sender: UIButton) {
+        if galacticDisplay.threeDMode == true {
+            galacticDisplay.threeDMode = false
+            self.threeDToggle.setTitle("2D", for: .normal)
+        } else {
+            galacticDisplay.threeDMode = true
+            self.threeDToggle.setTitle("3D", for: .normal)
+            
+        }
+    }
+
+    
+    //MARK: - CATEGORIZE THESE
 
     func envSound(_ soundString: String) {
         if let soundURL = Bundle.main.url(forResource: soundString, withExtension: "m4a") { do {
@@ -877,19 +908,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 		}
     }
 
-    @IBAction func toggleShields(_ sender: UIButton) {
-        if ship.shieldsAreUp {
-            ship.shieldsAreUp = false
-            envSound("shieldsDown")
-        } else {
-            if ship.shipSystems.shieldIntegrity != .destroyed {
-            ship.shieldsAreUp = true
-            envSound("shieldsUp")
-            } else {
-                computerBeepSound("torpedo_fail")
-            }
-
-        }    }
+  
 
     // MARK: - Game Event functions
     func humonShipHit(nodeA: SCNNode, nodeB: SCNNode) {
@@ -1330,14 +1349,14 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         sectorObjectsToBeRemoved.removeAll()
         checkForGameEnd()
     }
-    
+
     func removeAllTorps() {
         mainGameScene.rootNode.enumerateChildNodes({thisNode, _ in
             if thisNode.name?.range(of: "torpedo") != nil {
                 thisNode.presentation.opacity = 0
                 print("hiding torps")
             }
-        
+
         })
     }
     func cleanSceneAndUpdateSectorNodeObjects() {

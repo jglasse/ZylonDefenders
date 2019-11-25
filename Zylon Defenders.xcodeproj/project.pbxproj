@@ -172,9 +172,6 @@
 		E1A89EA81E9867F600EA8BC4 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E1A89EA71E9867F600EA8BC4 /* Default-568h@2x.png */; };
 		E1B12C2A20267EC70071F9A1 /* Scanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B12C2920267EC70071F9A1 /* Scanner.swift */; };
 		E1B70C6022864C5D00DBD099 /* ZylonStation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B70C5F22864C5D00DBD099 /* ZylonStation.swift */; };
-		E1BBE5A7205496D000A5C571 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1BBE5A6205496D000A5C571 /* AppDelegate.swift */; };
-		E1BBE5A9205496D000A5C571 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1BBE5A8205496D000A5C571 /* ViewController.swift */; };
-		E1BBE5AC205496D000A5C571 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1BBE5AA205496D000A5C571 /* Main.storyboard */; };
 		E1BD14B01E24280C002E49A5 /* eight.m4a in Resources */ = {isa = PBXBuildFile; fileRef = E1BD14A51E24280C002E49A5 /* eight.m4a */; };
 		E1BD14B11E24280C002E49A5 /* entering_sector.m4a in Resources */ = {isa = PBXBuildFile; fileRef = E1BD14A61E24280C002E49A5 /* entering_sector.m4a */; };
 		E1BD14B21E24280C002E49A5 /* five.m4a in Resources */ = {isa = PBXBuildFile; fileRef = E1BD14A71E24280C002E49A5 /* five.m4a */; };
@@ -354,11 +351,6 @@
 		E1B12C2920267EC70071F9A1 /* Scanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scanner.swift; sourceTree = "<group>"; };
 		E1B70C5F22864C5D00DBD099 /* ZylonStation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZylonStation.swift; sourceTree = "<group>"; };
 		E1BBE5A4205496D000A5C571 /* ZTV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZTV.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		E1BBE5A6205496D000A5C571 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		E1BBE5A8205496D000A5C571 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		E1BBE5AB205496D000A5C571 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		E1BBE5AD205496D000A5C571 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		E1BBE5AF205496D000A5C571 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E1BD14A51E24280C002E49A5 /* eight.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = eight.m4a; sourceTree = "<group>"; };
 		E1BD14A61E24280C002E49A5 /* entering_sector.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = entering_sector.m4a; sourceTree = "<group>"; };
 		E1BD14A71E24280C002E49A5 /* five.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = five.m4a; sourceTree = "<group>"; };
@@ -658,18 +650,6 @@
 			name = PNG;
 			sourceTree = "<group>";
 		};
-		E1BBE5A5205496D000A5C571 /* ZTV */ = {
-			isa = PBXGroup;
-			children = (
-				E1BBE5A6205496D000A5C571 /* AppDelegate.swift */,
-				E1BBE5A8205496D000A5C571 /* ViewController.swift */,
-				E1BBE5AA205496D000A5C571 /* Main.storyboard */,
-				E1BBE5AD205496D000A5C571 /* Assets.xcassets */,
-				E1BBE5AF205496D000A5C571 /* Info.plist */,
-			);
-			path = ZTV;
-			sourceTree = "<group>";
-		};
 		E1D36D5E1FEA53D0001F3E25 /* beeps */ = {
 			isa = PBXGroup;
 			children = (
@@ -690,7 +670,6 @@
 				E1D8BD501DCFCD1A00C863DF /* Code */,
 				E19F3F2D1F6461DC00F612A7 /* Storyboards */,
 				E1A58DC01E1DCF9B00DCA24F /* assets */,
-				E1BBE5A5205496D000A5C571 /* ZTV */,
 				E1D8BD4F1DCFCD1A00C863DF /* Products */,
 				AC7C4F8825E1241744F8A59F /* Frameworks */,
 				0FDFDE2448D2FA71A21F2CF2 /* Pods */,
@@ -906,7 +885,6 @@
 				E16E28CC20564A41002362C1 /* gridwarpGovernorMalfunction.aiff in Resources */,
 				6B6642C922AB088200066491 /* wopr.aiff in Resources */,
 				E16E28D220564A41002362C1 /* Shields20.aiff in Resources */,
-				E1BBE5AC205496D000A5C571 /* Main.storyboard in Resources */,
 				E16E28B820564A41002362C1 /* warpEnd.aif in Resources */,
 				E139A7072276153400534982 /* BetaSector.m4a in Resources */,
 				E16E28D620564A41002362C1 /* genderIdentityEnforcement.aiff in Resources */,
@@ -1115,10 +1093,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E1BBE5A9205496D000A5C571 /* ViewController.swift in Sources */,
 				E1E41C6D206A0513000A74DE /* Extensions.swift in Sources */,
 				6B6C265423161EF600F51088 /* ClassicMap.swift in Sources */,
-				E1BBE5A7205496D000A5C571 /* AppDelegate.swift in Sources */,
 				6B6C26512315FAA800F51088 /* Grid.swift in Sources */,
 				6B6642C522AB087300066491 /* PrologueViewController.swift in Sources */,
 				E1E41C6A206A0504000A74DE /* ZylonGameViewController.swift in Sources */,
@@ -1176,17 +1152,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		E1BBE5AA205496D000A5C571 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E1BBE5AB205496D000A5C571 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		E1BBE5B1205496D000A5C571 /* Debug */ = {
