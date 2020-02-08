@@ -19,7 +19,7 @@ class ClassicMap: SKScene {
     override init(size: CGSize) {
         super.init(size: size)
         self.backgroundColor = UIColor.clear
-        let gridSize: Int = Int(size.height) / 8
+        let gridSize: Int = Int(size.height) / 9
         mapGrid =  Grid(blockSize: CGFloat(gridSize), rows: 8, cols: 16)
         mapGrid.position = CGPoint(x: frame.midX, y: frame.midY)
         self.addChild(mapGrid)
@@ -34,6 +34,7 @@ class ClassicMap: SKScene {
 
         mapGrid.addChild(targetSector)
         mapGrid.addChild(currentSector)
+        self.isHidden = true
 
     }
 

@@ -259,6 +259,8 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         func gotoMain(alwaysTrue: Bool) {
             let sb = UIStoryboard(name: "Main", bundle: nil)
             let vc = sb.instantiateViewController(withIdentifier: "mainMenu")
+            vc.modalPresentationStyle = .fullScreen
+            engineSound.stop()
             self.present(vc, animated: false, completion: nil)
         }
 
@@ -486,8 +488,6 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
             ship.tacticalDisplayEngaged = false
             let targetAtWarp = ship.targetSectorNumber
             performWarp()
-            // preload starbase for starbase sectors
-
             switch galaxyModel.map[ship.targetSectorNumber].sectorType {
             case .starbase:
                 self.scnView.prepare(zylonStation, shouldAbortBlock: nil)
@@ -631,11 +631,14 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 //                                               selector: #selector(self.controllerWasDisconnected),
 //                                               name: NSNotification.Name.GCControllerDidDisconnect,
 //                                               object: nil)
+
+//      myMCController.setup()
+//      myMCController.myCommandDelegate = self
+
         setupView()
         setupScene()
         setupShip()
-       // myMCController.setup()
-       // myMCController.myCommandDelegate = self
+
         shipHud.parentScene = self
 
     }
@@ -685,9 +688,14 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         self.scnView.prepare(destroyerTemplate, shouldAbortBlock: nil)
 
         // setup HUD
-        shipHud = HUD(size: self.view.bounds.size)
+
+        print("screen.widthRatio:\(screen.widthRatio)")
+        print("screen.heightRatio:\(screen.heightRatio)")
+
         classicMap = ClassicMap(size: self.view.bounds.size)
-        classicMap.isHidden = true
+
+        shipHud = HUD(size: self.view.bounds.size)
+
         scnView.overlaySKScene = shipHud
         mapScnView.overlaySKScene = classicMap
         mapScnView.overlaySKScene?.scaleMode = .aspectFit

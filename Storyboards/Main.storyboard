@@ -206,16 +206,6 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</stri
                                 <rect key="frame" x="0.0" y="-10.5" width="896" height="414"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" restorationIdentifier="telemetryTextView" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" delaysContentTouches="NO" canCancelContentTouches="NO" bouncesZoom="NO" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HK1-WJ-VhA">
-                                <rect key="frame" x="65" y="21" width="766" height="351"/>
-                                <accessibility key="accessibilityConfiguration">
-                                    <accessibilityTraits key="traits" notEnabled="YES"/>
-                                </accessibility>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <color key="textColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <fontDescription key="fontDescription" name="Glass_TTY_VT220" family="Glass TTY VT220" pointSize="16"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
                             <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pff-ol-vqT">
                                 <rect key="frame" x="745" y="355" width="107" height="30"/>
                                 <constraints>
@@ -224,26 +214,33 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</stri
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="107" id="DdG-mG-XpK"/>
                                     <constraint firstAttribute="height" constant="30" id="ZZF-vD-chY"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Glass_TTY_VT220" family="Glass TTY VT220" pointSize="20"/>
+                                <fontDescription key="fontDescription" name="Glass_TTY_VT220" family="Glass TTY VT220" pointSize="25"/>
                                 <state key="normal" title="&gt;">
                                     <color key="titleColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </state>
                                 <connections>
-                                    <action selector="skipPrologue:" destination="y0o-Ve-XE6" eventType="touchUpInside" id="vmo-Nz-3Qd"/>
+                                    <action selector="skipPrologue:" destination="y0o-Ve-XE6" eventType="touchUpInside" id="Mqa-Me-8pj"/>
                                 </connections>
                             </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="telemetryTextView" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" delaysContentTouches="NO" canCancelContentTouches="NO" bouncesZoom="NO" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HK1-WJ-VhA">
+                                <rect key="frame" x="65" y="20" width="766" height="365"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" notEnabled="YES"/>
+                                </accessibility>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <color key="textColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <fontDescription key="fontDescription" name="Glass_TTY_VT220" family="Glass TTY VT220" pointSize="16"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="HK1-WJ-VhA" firstAttribute="centerY" secondItem="Ivt-fA-075" secondAttribute="centerY" id="3rx-Jl-77G"/>
-                            <constraint firstItem="HK1-WJ-VhA" firstAttribute="centerX" secondItem="Ivt-fA-075" secondAttribute="centerX" id="Ing-IA-AIh"/>
                             <constraint firstItem="vgS-7K-Dvn" firstAttribute="centerY" secondItem="Ivt-fA-075" secondAttribute="centerY" id="LoJ-nt-pZp"/>
-                            <constraint firstItem="HK1-WJ-VhA" firstAttribute="top" secondItem="Ivt-fA-075" secondAttribute="top" constant="21" id="Ocs-rh-Zf3"/>
                             <constraint firstItem="6yQ-9l-t5p" firstAttribute="top" secondItem="pff-ol-vqT" secondAttribute="bottom" constant="8" id="RIa-8e-z4h"/>
                             <constraint firstItem="vgS-7K-Dvn" firstAttribute="width" secondItem="pVc-fe-ica" secondAttribute="width" id="TwR-yP-2yg"/>
                             <constraint firstItem="vgS-7K-Dvn" firstAttribute="centerX" secondItem="Ivt-fA-075" secondAttribute="centerX" id="WVx-Go-K8y"/>
                             <constraint firstItem="pff-ol-vqT" firstAttribute="trailing" secondItem="Ivt-fA-075" secondAttribute="trailing" id="bbb-lR-tgn"/>
-                            <constraint firstItem="HK1-WJ-VhA" firstAttribute="leading" secondItem="Ivt-fA-075" secondAttribute="leading" constant="21" id="gCQ-Bi-yrY"/>
                             <constraint firstItem="vgS-7K-Dvn" firstAttribute="height" secondItem="pVc-fe-ica" secondAttribute="height" id="gbu-8k-u0U"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Ivt-fA-075"/>
@@ -256,7 +253,7 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</stri
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wmN-Zc-BG2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1281" y="158"/>
+            <point key="canvasLocation" x="-1281.0267857142856" y="157.97101449275362"/>
         </scene>
         <!--Main Game-->
         <scene sceneID="tXr-a1-R10">
@@ -609,7 +606,7 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</stri
                         <outlet property="mainView" destination="TBr-jy-nsA" id="xqd-hI-mDE"/>
                         <outlet property="mapButton" destination="PFE-MW-5wO" id="8xq-5E-pU6"/>
                         <outlet property="mapScnView" destination="50S-aJ-rH1" id="d3z-92-0Vg"/>
-                        <outlet property="pausedStack" destination="d3l-vy-3uS" id="hpd-VL-an6"/>
+                        <outlet property="pausedStack" destination="d3l-vy-3uS" id="STs-1E-pi6"/>
                         <outlet property="phiDisplay" destination="AcU-BV-dAF" id="Aho-Bo-R46"/>
                         <outlet property="restartButton" destination="3zc-Ha-CFT" id="Yzo-P3-xEu"/>
                         <outlet property="sectorStack" destination="xsg-ZW-l5i" id="F51-QP-fQz"/>

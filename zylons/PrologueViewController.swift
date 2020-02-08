@@ -17,12 +17,13 @@ class PrologueViewController: UIViewController, AVAudioPlayerDelegate, UIViewCon
     @IBOutlet weak var progressButton: UIButton!
 
     @IBAction func skipPrologue(_ sender: Any) {
+        print("skipPrologue")
         self.telemetrySoundPlayer?.stop()
         let sb = UIStoryboard(name: "Main", bundle: nil)
         let vc = sb.instantiateViewController(withIdentifier: "gameView")
         vc.modalTransitionStyle = .crossDissolve
         vc.modalPresentationStyle = .fullScreen
-
+        self.telemetryTimer?.invalidate()
         self.present(vc, animated: true, completion: nil)
 
     }
@@ -126,6 +127,8 @@ let message5 = "[TRANSMISSION TERMINATED 40AFFE]"
         self.transmissionView.text = ""
         currentMessageIndex = 0
 
+        self.transmissionView.font = self.transmissionView.font?.withSize(0.019*UIScreen.main.bounds.width)
+
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -215,7 +218,9 @@ let message5 = "[TRANSMISSION TERMINATED 40AFFE]"
     func fadeout() {
         UIView.animate(withDuration: 2, animations: {
             self.transmissionView.alpha = 0.0
+
         })
+        self.telemetryTimer?.invalidate()
         UIView.animate(withDuration: 3, animations: {
             self.starFieldBG.alpha = 0.0
             self.progressButton.alpha = 0
@@ -228,6 +233,7 @@ let message5 = "[TRANSMISSION TERMINATED 40AFFE]"
         delayWithSeconds(3.5, completion: {
             let sb = UIStoryboard(name: "Main", bundle: nil)
             let vc = sb.instantiateViewController(withIdentifier: "gameView")
+            vc.modalPresentationStyle = .fullScreen
             self.present(vc, animated: false, completion: nil)
         })
     }
