@@ -191,19 +191,20 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 
     // MARK: - IBActions
 
-   
     // Command Stack
 
-    
-    @IBOutlet weak var pausedView: UIView!
-    
+    @IBOutlet weak var pausedStack: UIStackView!
+
     @IBAction func pauseGame(_ sender: UIButton) {
-        if let paused = self.scnView.scene?.isPaused  {
+        print("pauseGame")
+        if let paused = self.scnView.scene?.isPaused {
             self.scnView.scene?.isPaused = !paused
-            pausedView.isHidden = !paused
+            pausedStack.isHidden = paused
+            print("paused state: \(!paused)")
         }
-        
+
     }
+
     @IBAction func toggleTacticalDisplay(_ sender: Any) {
         if ship.isCurrentlyinWarp {
             computerBeepSound("torpedo_fail")
@@ -212,7 +213,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         ship.tacticalDisplayEngaged = !ship.tacticalDisplayEngaged
         }
     }
-    
+
     @IBAction func toggleShields(_ sender: UIButton) {
         if ship.shieldsAreUp {
             ship.shieldsAreUp = false
@@ -224,7 +225,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
             } else {
                 computerBeepSound("torpedo_fail")
             }
-            
+
         }    }
 
     @IBAction func toggleView(_ sender: UIButton) {
@@ -246,11 +247,15 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         } else {
             self.updateGalacticMap()
             self.viewMode = .galacticMap
-            
+
         }
     }
 
+    @IBAction func settings(_ sender: Any) {
+        print("settings")
+    }
     @IBAction func restartGame(_ sender: Any) {
+        print("retartGame")
         func gotoMain(alwaysTrue: Bool) {
             let sb = UIStoryboard(name: "Main", bundle: nil)
             let vc = sb.instantiateViewController(withIdentifier: "mainMenu")
@@ -262,21 +267,21 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         }, completion: gotoMain(alwaysTrue:))
 
     }
-    
+
     @IBAction func galacticSlide(_ sender: UISlider) {
         self.ship.targetSectorNumber = Int(sender.value)
         //        let sectorString = "\(self.ship.targetSectorNumber+1)"
         //        let targetGrid = galacticDisplay.map.rootNode.childNode(withName: sectorString, recursively: true)
-        
+
         galacticDisplay.setNewTargetGrid(number: ship.targetSectorNumber, color: UIColor.red)
         galacticDisplay.setNewShipCurrentGrid(number: ship.currentSectorNumber, color: UIColor.white)
         classicMap.setNewTargetGrid(number: ship.targetSectorNumber, color: UIColor.red)
-        
+
         self.shipSectorLabel.text = "Ship Sector: \(self.shipCurrrentSectorGrid.quadrant) \(self.shipCurrrentSectorGrid.quadrantNumber)"
         self.targetSectorLabel.text = "Target Sector: \(self.targetSectorGrid.quadrant) \(self.targetSectorGrid.quadrantNumber)"
-        
+
     }
-   
+
  // Galactic Stack
     @IBAction func DToggle(_ sender: UIButton) {
         if galacticDisplay.threeDMode == true {
@@ -285,12 +290,11 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         } else {
             galacticDisplay.threeDMode = true
             self.threeDToggle.setTitle("3D", for: .normal)
-            
+
         }
     }
 
-    
-    //MARK: - CATEGORIZE THESE
+    // MARK: - CATEGORIZE THESE
 
     func envSound(_ soundString: String) {
         if let soundURL = Bundle.main.url(forResource: soundString, withExtension: "m4a") { do {
@@ -908,8 +912,6 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 		}
     }
 
-  
-
     // MARK: - Game Event functions
     func humonShipHit(nodeA: SCNNode, nodeB: SCNNode) {
         boom(atNode: nodeA)
@@ -1517,7 +1519,9 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 
     }
     func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
-        if !gameOver {
+
+        if let pause = self.scnView.scene?.isPaused {
+        if !gameOver && !pause {
         cleanSceneAndUpdateSectorNodeObjects()
         updateTactical()
         updateStars()
@@ -1526,6 +1530,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
             shipHud.deactivateAlert()
             ship.tacticalDisplayEngaged = false
         }
+    }
     }
     func renderer(_ renderer: SCNSceneRenderer, didRenderScene scene: SCNScene, atTime time: TimeInterval) {
         if !gameOver {

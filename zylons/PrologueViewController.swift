@@ -21,6 +21,8 @@ class PrologueViewController: UIViewController, AVAudioPlayerDelegate, UIViewCon
         let sb = UIStoryboard(name: "Main", bundle: nil)
         let vc = sb.instantiateViewController(withIdentifier: "gameView")
         vc.modalTransitionStyle = .crossDissolve
+        vc.modalPresentationStyle = .fullScreen
+
         self.present(vc, animated: true, completion: nil)
 
     }

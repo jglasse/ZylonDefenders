@@ -13,7 +13,19 @@ import SceneKit
 import GameController
 
 // MARK: - Utility Functions
-// These are globally available, and should be unit tested
+// These are globally available
+
+func devLog(_ item: Any) {
+    #if DEBUG
+    print(item)
+    #endif
+}
+
+func devDump(_ item: Any) {
+    #if DEBUG
+    dump(item)
+    #endif
+}
 
 func distanceFromZylonShip(xLoc: Float, yLoc: Float, zLoc: Float) -> Float {
     let distance = sqrt(xLoc*xLoc + yLoc*yLoc + zLoc*zLoc)
@@ -43,7 +55,7 @@ func getSettings() -> GameSettings {
 func save(settings: GameSettings) {
     let defaults = UserDefaults.standard
     let difficultyString = settings.difficulty.rawValue
-    print("saving following settings : \(settings.prologueEnabled)")
+    print("saving following D : \(settings.prologueEnabled)")
     defaults.set(settings.prologueEnabled, forKey: "prologueViewed")
     defaults.set(difficultyString, forKey: "difficulty")
 }

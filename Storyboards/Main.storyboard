@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AB2-5A-Arv">
-    <device id="retina6_1" orientation="landscape">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AB2-5A-Arv">
+    <device id="retina6_1" orientation="landscape" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -213,7 +211,7 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</stri
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" notEnabled="YES"/>
                                 </accessibility>
-                                <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <color key="textColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <fontDescription key="fontDescription" name="Glass_TTY_VT220" family="Glass TTY VT220" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -272,39 +270,6 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</stri
                         <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="X1R-2J-A5m" userLabel="PausedView">
-                                <rect key="frame" x="128" y="51" width="704" height="316"/>
-                                <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" restorationIdentifier="PausedStack" spacing="99" translatesAutoresizingMaskIntoConstraints="NO" id="d3l-vy-3uS">
-                                        <rect key="frame" x="100" y="143" width="471" height="31"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="Continue" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QMR-e9-ve7" userLabel="Continue">
-                                                <rect key="frame" x="0.0" y="0.0" width="95" height="31"/>
-                                                <fontDescription key="fontDescription" name="Y14.5M" family="Y14.5M" pointSize="17"/>
-                                                <state key="normal" title="CONTINUE"/>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="Continue" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vK1-A4-kqd" userLabel="Restart">
-                                                <rect key="frame" x="194" y="0.0" width="83" height="31"/>
-                                                <fontDescription key="fontDescription" name="Y14.5M" family="Y14.5M" pointSize="17"/>
-                                                <state key="normal" title="RESTART"/>
-                                                <connections>
-                                                    <action selector="restartGame:" destination="BV1-FR-VrT" eventType="touchUpInside" id="Z4c-Bo-h3q"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="Continue" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UPC-oH-C5e" userLabel="Settings">
-                                                <rect key="frame" x="376" y="0.0" width="95" height="31"/>
-                                                <fontDescription key="fontDescription" name="Y14.5M" family="Y14.5M" pointSize="17"/>
-                                                <state key="normal" title="SETTINGS"/>
-                                            </button>
-                                        </subviews>
-                                    </stackView>
-                                </subviews>
-                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstItem="d3l-vy-3uS" firstAttribute="centerY" secondItem="X1R-2J-A5m" secondAttribute="centerY" id="9ZT-gK-I2z"/>
-                                    <constraint firstItem="d3l-vy-3uS" firstAttribute="centerX" secondItem="X1R-2J-A5m" secondAttribute="centerX" id="FMJ-QW-vFz"/>
-                                </constraints>
-                            </view>
                             <sceneKitView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7jm-zG-a79" userLabel="SpaceScnView">
                                 <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
                             </sceneKitView>
@@ -515,7 +480,7 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</stri
                                 </connections>
                             </button>
                             <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="6Sn-Ch-wiN">
-                                <rect key="frame" x="64" y="286" width="193" height="72"/>
+                                <rect key="frame" x="60" y="286" width="193" height="72"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Θ: --" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MQV-Cf-PFY">
                                         <rect key="frame" x="0.0" y="0.0" width="193" height="12"/>
@@ -558,7 +523,7 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</stri
                                     <constraint firstAttribute="width" constant="193" id="pN0-tE-2Fu"/>
                                 </constraints>
                             </stackView>
-                            <textView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" misplaced="YES" restorationIdentifier="telemetryTextView" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" delaysContentTouches="NO" canCancelContentTouches="NO" bouncesZoom="NO" editable="NO" text="Game Over" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P5c-OT-ydd" userLabel="TelemetryView" customClass="TelemetryPlayer" customModule="Zylon_Defenders" customModuleProvider="target">
+                            <textView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" restorationIdentifier="telemetryTextView" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" delaysContentTouches="NO" canCancelContentTouches="NO" bouncesZoom="NO" editable="NO" text="Game Over" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P5c-OT-ydd" userLabel="TelemetryView" customClass="TelemetryPlayer" customModule="Zylon_Defenders" customModuleProvider="target">
                                 <rect key="frame" x="90" y="47" width="640" height="316"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" notEnabled="YES"/>
@@ -567,6 +532,27 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</stri
                                 <fontDescription key="fontDescription" name="Glass_TTY_VT220" family="Glass TTY VT220" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" restorationIdentifier="PausedStack" distribution="fillEqually" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="d3l-vy-3uS" userLabel="PausedStack">
+                                <rect key="frame" x="160" y="193" width="576" height="28"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="Restart" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vK1-A4-kqd" userLabel="Restart">
+                                        <rect key="frame" x="0.0" y="0.0" width="263" height="28"/>
+                                        <fontDescription key="fontDescription" name="Y14.5M" family="Y14.5M" pointSize="17"/>
+                                        <state key="normal" title="RESTART"/>
+                                        <connections>
+                                            <action selector="restartGame:" destination="BV1-FR-VrT" eventType="touchUpInside" id="F1b-8m-ICM"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="Settings" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UPC-oH-C5e" userLabel="Settings">
+                                        <rect key="frame" x="313" y="0.0" width="263" height="28"/>
+                                        <fontDescription key="fontDescription" name="Y14.5M" family="Y14.5M" pointSize="17"/>
+                                        <state key="normal" title="SETTINGS"/>
+                                        <connections>
+                                            <action selector="settings:" destination="BV1-FR-VrT" eventType="touchUpInside" id="67z-eN-dd0"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
@@ -574,29 +560,35 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</stri
                             <constraint firstItem="7jm-zG-a79" firstAttribute="centerY" secondItem="TBr-jy-nsA" secondAttribute="centerY" id="0jj-Nw-OwD"/>
                             <constraint firstItem="PFE-MW-5wO" firstAttribute="leading" secondItem="PoQ-ji-oep" secondAttribute="trailing" constant="23" id="1AH-89-a1E"/>
                             <constraint firstItem="xsg-ZW-l5i" firstAttribute="leading" secondItem="TBr-jy-nsA" secondAttribute="leading" constant="64" id="26E-UC-OyX"/>
+                            <constraint firstItem="d3l-vy-3uS" firstAttribute="top" secondItem="cOD-NV-RaV" secondAttribute="bottom" constant="193" id="2Cn-cZ-f1W"/>
                             <constraint firstItem="Eo0-Hl-05V" firstAttribute="bottom" secondItem="PoQ-ji-oep" secondAttribute="bottom" constant="-27" id="2I9-LI-VOv"/>
+                            <constraint firstItem="d3l-vy-3uS" firstAttribute="leading" secondItem="TBr-jy-nsA" secondAttribute="leading" constant="160" id="3SL-KC-r9R"/>
                             <constraint firstAttribute="trailing" secondItem="hyH-e8-gbB" secondAttribute="trailing" constant="51" id="4Sb-yp-rTG"/>
                             <constraint firstItem="P5c-OT-ydd" firstAttribute="top" secondItem="cOD-NV-RaV" secondAttribute="bottom" constant="47" id="5LJ-L0-9pW"/>
                             <constraint firstItem="wgh-g3-0pN" firstAttribute="leading" secondItem="TBr-jy-nsA" secondAttribute="leading" constant="64" id="8F6-e8-iuX"/>
+                            <constraint firstAttribute="trailing" secondItem="d3l-vy-3uS" secondAttribute="trailing" constant="160" id="9Cp-QO-KQB"/>
                             <constraint firstItem="xsg-ZW-l5i" firstAttribute="top" secondItem="cOD-NV-RaV" secondAttribute="bottom" constant="20" id="B76-Pv-haW"/>
                             <constraint firstItem="hyH-e8-gbB" firstAttribute="top" secondItem="cOD-NV-RaV" secondAttribute="bottom" constant="20" id="Dg8-wn-kaV"/>
+                            <constraint firstItem="d3l-vy-3uS" firstAttribute="centerX" secondItem="TBr-jy-nsA" secondAttribute="centerX" id="Fdc-oI-aTX"/>
                             <constraint firstItem="6Sn-Ch-wiN" firstAttribute="leading" secondItem="TBr-jy-nsA" secondAttribute="leadingMargin" id="NGm-pv-gDV"/>
                             <constraint firstItem="0dF-9a-5mU" firstAttribute="leading" secondItem="TBr-jy-nsA" secondAttribute="leading" constant="22" id="Ove-Dh-qny"/>
                             <constraint firstItem="3zc-Ha-CFT" firstAttribute="top" secondItem="cOD-NV-RaV" secondAttribute="bottom" constant="240" id="PHi-OC-A6H"/>
                             <constraint firstItem="50S-aJ-rH1" firstAttribute="centerY" secondItem="TBr-jy-nsA" secondAttribute="centerY" id="PfF-G3-6Ks"/>
-                            <constraint firstItem="P5c-OT-ydd" firstAttribute="leading" secondItem="TBr-jy-nsA" secondAttribute="leading" constant="128" id="RLE-Tq-o7R"/>
+                            <constraint firstItem="P5c-OT-ydd" firstAttribute="leading" secondItem="TBr-jy-nsA" secondAttribute="leading" constant="90" id="RLE-Tq-o7R"/>
                             <constraint firstItem="z62-zF-Ty3" firstAttribute="top" secondItem="cOD-NV-RaV" secondAttribute="bottom" constant="40" id="Sxk-rX-fr1"/>
-                            <constraint firstAttribute="trailing" secondItem="P5c-OT-ydd" secondAttribute="trailing" constant="128" id="TQV-d0-hru"/>
+                            <constraint firstAttribute="trailing" secondItem="P5c-OT-ydd" secondAttribute="trailing" constant="166" id="TQV-d0-hru"/>
                             <constraint firstAttribute="trailing" secondItem="50S-aJ-rH1" secondAttribute="trailing" id="ULq-uf-Wj4"/>
                             <constraint firstItem="z62-zF-Ty3" firstAttribute="leading" secondItem="TBr-jy-nsA" secondAttribute="leading" constant="40" id="Ued-56-Yeb"/>
                             <constraint firstItem="L0B-TD-jaq" firstAttribute="top" secondItem="P5c-OT-ydd" secondAttribute="bottom" constant="30" id="WMW-u7-qTw"/>
                             <constraint firstItem="50S-aJ-rH1" firstAttribute="leading" secondItem="TBr-jy-nsA" secondAttribute="leading" id="adm-3z-SWI"/>
                             <constraint firstItem="Eo0-Hl-05V" firstAttribute="top" secondItem="hyH-e8-gbB" secondAttribute="top" constant="27" id="beI-lt-hQO"/>
                             <constraint firstItem="50S-aJ-rH1" firstAttribute="width" secondItem="TBr-jy-nsA" secondAttribute="width" id="cM3-8m-BBm"/>
+                            <constraint firstItem="d3l-vy-3uS" firstAttribute="centerY" secondItem="TBr-jy-nsA" secondAttribute="centerY" id="dw8-RJ-Jxd"/>
                             <constraint firstItem="PoQ-ji-oep" firstAttribute="centerY" secondItem="PFE-MW-5wO" secondAttribute="centerY" id="eyM-1L-CJl"/>
                             <constraint firstItem="7jm-zG-a79" firstAttribute="centerX" secondItem="TBr-jy-nsA" secondAttribute="centerX" id="fvD-BU-SD0"/>
                             <constraint firstAttribute="trailing" secondItem="PFE-MW-5wO" secondAttribute="trailing" constant="51" id="i3E-3N-bzg"/>
                             <constraint firstItem="L0B-TD-jaq" firstAttribute="top" secondItem="0dF-9a-5mU" secondAttribute="bottom" constant="25" id="ih6-nN-6Zq"/>
+                            <constraint firstItem="L0B-TD-jaq" firstAttribute="top" secondItem="d3l-vy-3uS" secondAttribute="bottom" constant="172" id="kO6-LU-kVE"/>
                             <constraint firstItem="wgh-g3-0pN" firstAttribute="centerY" secondItem="PoQ-ji-oep" secondAttribute="centerY" id="kup-NC-yBf"/>
                             <constraint firstItem="7jm-zG-a79" firstAttribute="height" secondItem="TBr-jy-nsA" secondAttribute="height" id="ugU-si-2gj"/>
                             <constraint firstItem="3zc-Ha-CFT" firstAttribute="centerX" secondItem="TBr-jy-nsA" secondAttribute="centerX" id="vz8-ED-RvL"/>
@@ -617,7 +609,7 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</stri
                         <outlet property="mainView" destination="TBr-jy-nsA" id="xqd-hI-mDE"/>
                         <outlet property="mapButton" destination="PFE-MW-5wO" id="8xq-5E-pU6"/>
                         <outlet property="mapScnView" destination="50S-aJ-rH1" id="d3z-92-0Vg"/>
-                        <outlet property="pausedView" destination="X1R-2J-A5m" id="eol-5o-tRj"/>
+                        <outlet property="pausedStack" destination="d3l-vy-3uS" id="hpd-VL-an6"/>
                         <outlet property="phiDisplay" destination="AcU-BV-dAF" id="Aho-Bo-R46"/>
                         <outlet property="restartButton" destination="3zc-Ha-CFT" id="Yzo-P3-xEu"/>
                         <outlet property="sectorStack" destination="xsg-ZW-l5i" id="F51-QP-fQz"/>
@@ -637,14 +629,6 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</stri
                         <outlet property="viewButton" destination="2sP-pn-M7j" id="JVW-mq-nch"/>
                     </connections>
                 </viewController>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5zI-Z1-4WF" userLabel="3D">
-                    <rect key="frame" x="0.0" y="0.0" width="30" height="36"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="30" id="SIl-mJ-wK9"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" name="Y14.5M" family="Y14.5M" pointSize="22"/>
-                    <state key="normal" title="∞"/>
-                </button>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
                 <swipeGestureRecognizer cancelsTouchesInView="NO" direction="right" id="yq0-gJ-5OF"/>
             </objects>

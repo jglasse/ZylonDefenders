@@ -92,7 +92,7 @@ class MainMenuViewController: UIViewController, AVAudioPlayerDelegate {
             vc = sb.instantiateViewController(withIdentifier: "gameView")
 
         }
-
+        vc.modalPresentationStyle = .fullScreen
         UIView.animate(withDuration: 1.0, animations: {
             self.view.alpha = 0.0
         }, completion: { _ in

@@ -9,8 +9,6 @@
 import Foundation
 import AVFoundation
 
-let numberstrings = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"]
-
 class Kohai {
     var voice: AVAudioPlayer!
     var beepsound: AVAudioPlayer!
