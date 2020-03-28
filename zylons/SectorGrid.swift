@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum SectorGridType {
+enum SectorGridType: Int, Codable {
     case enemy
     case enemy2
     case enemy3
@@ -16,37 +16,41 @@ enum SectorGridType {
     case empty
 }
 
-struct SectorGrid {
-    var number = 0
-    var numberString: String {
-        return String(number)
-    }
-    var enemyTypes: [ShipType]?
+struct SectorGrid: Codable {
+    var number: Int
+    var enemyTypes = [ShipType]()
     var numberOfSectorObjects =  0
     var sectorType = SectorGridType.empty
-    var quadrant: KnownQuadrants {
-        switch number {
-        case 1...32:
-            return .alpha
-        case 33...64:
-            return .beta
-        case 65...96:
-            return .gamma
-        default:
-            return .delta
-        }
-    }
+}
 
-    var quadrantNumber: Int {
-        switch number {
-        case 97...128:
-            return number - 96
-        case 33...64:
-            return number - 32
-        case 65...96:
-            return number - 64
-        default:
-            return number
-        }
-    }
+extension SectorGrid {
+    var numberString: String {
+         return String(number)
+     }
+     var quadrant: KnownQuadrants {
+         switch number {
+         case 1...32:
+             return .alpha
+         case 33...64:
+             return .beta
+         case 65...96:
+             return .gamma
+         default:
+             return .delta
+         }
+     }
+
+     var quadrantNumber: Int {
+         switch number {
+         case 97...128:
+             return number - 96
+         case 33...64:
+             return number - 32
+         case 65...96:
+             return number - 64
+         default:
+             return number
+         }
+     }
+
 }

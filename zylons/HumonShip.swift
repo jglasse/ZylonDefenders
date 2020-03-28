@@ -9,7 +9,7 @@
 import Foundation
 import SceneKit
 
-enum ShipType: Int {
+enum ShipType: Int, Codable {
     case scout
     case fighter
     case destroyer

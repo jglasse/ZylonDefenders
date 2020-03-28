@@ -74,7 +74,7 @@ struct GalaxyMapModel {
 
         // first, add an empty map with 128 sectors
         for x in 1...128 {
-            let currentSector = SectorGrid(number: x, enemyTypes: nil, numberOfSectorObjects: 0, sectorType: .empty)
+            let currentSector = SectorGrid(number: x, numberOfSectorObjects: 0, sectorType: .empty)
             self.map.append(currentSector)
         }
         //then randomly add Space Stations, evenly distributed acrozss four sectors
@@ -82,7 +82,6 @@ struct GalaxyMapModel {
         for x in 0...numberofStations-1 {
             let lowerrange: Int = x*32
             let currentSectorIndex = randIntRange(lower: lowerrange, upper: lowerrange+31)
-            self.map[currentSectorIndex].numberOfSectorObjects = 1
             self.map[currentSectorIndex].sectorType = .starbase
         }
 
@@ -114,7 +113,7 @@ struct GalaxyMapModel {
                 for x in 1...numberofshipsToAdd {
                     let randType = randIntRange(lower: 0, upper: chanceOfFighters)
                     let shiptype = ShipType(rawValue: Int(randType)) ?? ShipType.scout
-                    self.map[currentSectorIndex].enemyTypes?.append(shiptype)
+                    self.map[currentSectorIndex].enemyTypes.append(shiptype)
                     print("ship #\(x) is type \(shiptype)")
                 }
 

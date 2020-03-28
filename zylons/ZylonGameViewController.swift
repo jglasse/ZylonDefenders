@@ -393,7 +393,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
                 self.beginRepairBeamFrom(starbase: self.zylonStation)
             })
 
-            if !self.gameOver && self.shipCurrrentSectorGrid.numberOfSectorObjects > 0 {
+            if !self.gameOver && self.shipCurrrentSectorGrid.enemyTypes.count ?? 0 > 0 {
             delayWithSeconds(8, completion: {
                 if !self.gameOver {
                 self.ship.repair()
@@ -422,7 +422,6 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
            // self.spawnEnemies(number: self.shipCurrrentSectorGrid.numberOfSectorObjects)
             if let  enemies = enemiesArray { self.spawnEnemies(ofTypes: enemies) }
             print("ENEMY SECTOR \(self.shipCurrrentSectorGrid.quadrant) \(self.shipCurrrentSectorGrid.quadrantNumber) type: \(self.shipCurrrentSectorGrid.sectorType) spawning \(self.shipCurrrentSectorGrid.numberOfSectorObjects) enemies")
-            //self.shipHud.soundSectorAlarm()
         case .empty:
             ship.currentSpeed = 3
             print("Empty Sector")
