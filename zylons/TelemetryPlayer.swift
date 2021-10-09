@@ -19,7 +19,8 @@ class TelemetryPlayer: UITextView, AVAudioPlayerDelegate {
     private var telemetryTimer: Timer?
     private var blinkTimer: Timer?
     private var telemetrySoundPlayer: AVAudioPlayer?
-    var gameover = false
+    private var telemetryStopped = false
+  
 
     private let soundURL = Bundle.main.url(forResource: "wopr", withExtension: "aiff")
 
@@ -45,7 +46,7 @@ class TelemetryPlayer: UITextView, AVAudioPlayerDelegate {
         blinkTimer?.invalidate()
         self.text = ""
         isWriting = false
-        self.gameover = true
+        self.telemetryStopped = true
     }
     func fadeout() {
         UIView.animate(withDuration: 1.0, animations: {self.alpha = 0})
@@ -85,7 +86,7 @@ class TelemetryPlayer: UITextView, AVAudioPlayerDelegate {
     }
 
     @objc func advanceTelemetry() {
-        if !gameover {
+        if !telemetryStopped {
         if currentLetterIndex < currentMessage.count && isWriting {
             let currentIndex = self.currentMessage.index(currentMessage.startIndex, offsetBy: currentLetterIndex)
             let newletter = self.currentMessage[currentIndex]

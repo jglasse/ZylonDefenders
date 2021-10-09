@@ -16,6 +16,7 @@
 		6B356FBB22FCC60A00869FAA /* betaStationDestroyed.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 6B356FB422FCC3A600869FAA /* betaStationDestroyed.m4a */; };
 		6B356FBC22FCC60A00869FAA /* deltaStationDestroyed.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 6B356FB822FCC3A600869FAA /* deltaStationDestroyed.m4a */; };
 		6B356FBD22FCC60A00869FAA /* gammaStationDestroyed.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 6B356FB622FCC3A600869FAA /* gammaStationDestroyed.m4a */; };
+		6B41B78E25DA595000652A51 /* photon_sound.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 6B41B78D25DA595000652A51 /* photon_sound.m4a */; };
 		6B562BF4232B1A1A00BD2412 /* SectorObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B562BF3232B1A1A00BD2412 /* SectorObject.swift */; };
 		6B600D6122D16A58003D3504 /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B600D6022D16A58003D3504 /* MainMenuViewController.swift */; };
 		6B600D6222D16A83003D3504 /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B600D6022D16A58003D3504 /* MainMenuViewController.swift */; };
@@ -151,7 +152,6 @@
 		E192623420A79A8600AB93F2 /* Starfield 2048x1024B.png in Resources */ = {isa = PBXBuildFile; fileRef = E192623220A79A8600AB93F2 /* Starfield 2048x1024B.png */; };
 		E192623620A79E4600AB93F2 /* Starfield 2048x1024LB.png in Resources */ = {isa = PBXBuildFile; fileRef = E192623520A79E4600AB93F2 /* Starfield 2048x1024LB.png */; };
 		E192623720A79E4600AB93F2 /* Starfield 2048x1024LB.png in Resources */ = {isa = PBXBuildFile; fileRef = E192623520A79E4600AB93F2 /* Starfield 2048x1024LB.png */; };
-		E19BC7B122594F2500A1DA6B /* photon_sound.m4a in Resources */ = {isa = PBXBuildFile; fileRef = E19BC7AD22594F2500A1DA6B /* photon_sound.m4a */; };
 		E19BC7B222594F2500A1DA6B /* hullHit.m4a in Resources */ = {isa = PBXBuildFile; fileRef = E19BC7AE22594F2500A1DA6B /* hullHit.m4a */; };
 		E19BC7BC2259576700A1DA6B /* shieldsDown.m4a in Resources */ = {isa = PBXBuildFile; fileRef = E19BC7B022594F2500A1DA6B /* shieldsDown.m4a */; };
 		E19BFF3F1EDFDEED00FCC5EE /* ZylonShip.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19BFF3E1EDFDEED00FCC5EE /* ZylonShip.swift */; };
@@ -221,6 +221,7 @@
 		6B356FB622FCC3A600869FAA /* gammaStationDestroyed.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = gammaStationDestroyed.m4a; sourceTree = "<group>"; };
 		6B356FB722FCC3A600869FAA /* alphaStationDestroyed.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = alphaStationDestroyed.m4a; sourceTree = "<group>"; };
 		6B356FB822FCC3A600869FAA /* deltaStationDestroyed.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = deltaStationDestroyed.m4a; sourceTree = "<group>"; };
+		6B41B78D25DA595000652A51 /* photon_sound.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = photon_sound.m4a; sourceTree = "<group>"; };
 		6B562BF3232B1A1A00BD2412 /* SectorObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectorObject.swift; sourceTree = "<group>"; };
 		6B600D6022D16A58003D3504 /* MainMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainMenuViewController.swift; path = zylons/MainMenuViewController.swift; sourceTree = SOURCE_ROOT; };
 		6B600D6522D2A87E003D3504 /* AVTonePlayerUnit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVTonePlayerUnit.swift; sourceTree = "<group>"; };
@@ -324,7 +325,6 @@
 		E19BC7AD22594F2500A1DA6B /* photon_sound.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = photon_sound.m4a; sourceTree = "<group>"; };
 		E19BC7AE22594F2500A1DA6B /* hullHit.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = hullHit.m4a; sourceTree = "<group>"; };
 		E19BC7B022594F2500A1DA6B /* shieldsDown.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = shieldsDown.m4a; sourceTree = "<group>"; };
-		E19BC7B522594FCB00A1DA6B /* photon_sound.m4a */ = {isa = PBXFileReference; lastKnownFileType = text; name = photon_sound.m4a; path = ../../../Desktop/DT/shields/photon_sound.m4a; sourceTree = "<group>"; };
 		E19BFF3E1EDFDEED00FCC5EE /* ZylonShip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZylonShip.swift; sourceTree = "<group>"; };
 		E19F3F301F64647600F612A7 /* UtilityFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilityFunctions.swift; sourceTree = "<group>"; };
 		E19F3F321F6494AB00F612A7 /* JoyStickView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoyStickView.swift; sourceTree = "<group>"; };
@@ -749,7 +749,7 @@
 				E16E289C20564A3F002362C1 /* warpEnd.aif */,
 				E16E28A020564A3F002362C1 /* warpStart.aif */,
 				E16E28A520564A40002362C1 /* warpStartStop.aif */,
-				E19BC7B522594FCB00A1DA6B /* photon_sound.m4a */,
+				6B41B78D25DA595000652A51 /* photon_sound.m4a */,
 				E19BC7AE22594F2500A1DA6B /* hullHit.m4a */,
 				E19BC7B022594F2500A1DA6B /* shieldsDown.m4a */,
 				E19BC7AD22594F2500A1DA6B /* photon_sound.m4a */,
@@ -825,7 +825,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0920;
-				LastUpgradeCheck = 1020;
+				LastUpgradeCheck = 1300;
 				ORGANIZATIONNAME = "Jeffery Glasse";
 				TargetAttributes = {
 					E1BBE5A3205496D000A5C571 = {
@@ -939,6 +939,7 @@
 				E11A73831E986DE4001CCAC8 /* Main.storyboard in Resources */,
 				6B356FBB22FCC60A00869FAA /* betaStationDestroyed.m4a in Resources */,
 				E10EFCB91EBFBDA500CC872E /* tinyGrid.png in Resources */,
+				6B41B78E25DA595000652A51 /* photon_sound.m4a in Resources */,
 				E16E28C920564A41002362C1 /* warpStartStop.aif in Resources */,
 				E139A70A2276153400534982 /* DeltaSector.m4a in Resources */,
 				E12948751F9D715200DA0E0F /* LaunchScreen.storyboard in Resources */,
@@ -956,7 +957,6 @@
 				E16D68CA226B50F100B27067 /* alert.m4a in Resources */,
 				E16E28BD20564A41002362C1 /* outerHullFailure.aiff in Resources */,
 				E13A032621B37B1D0049B125 /* delta.m4a in Resources */,
-				E19BC7B122594F2500A1DA6B /* photon_sound.m4a in Resources */,
 				E1D1EA0D20267A7D00DB2984 /* Scanner.scn in Resources */,
 				6BB6C38222B1B25C002F59D1 /* galacticMap.m4a in Resources */,
 				6B6C26672316546B00F51088 /* Atari 2_Atari 2_Emissive.png in Resources */,
@@ -1172,7 +1172,7 @@
 				SDKROOT = appletvos;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 11.2;
+				TVOS_DEPLOYMENT_TARGET = 12.0;
 			};
 			name = Debug;
 		};
@@ -1194,7 +1194,7 @@
 				SDKROOT = appletvos;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 11.2;
+				TVOS_DEPLOYMENT_TARGET = 12.0;
 			};
 			name = Release;
 		};
@@ -1223,6 +1223,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -1284,6 +1285,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -1332,6 +1334,7 @@
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -1354,6 +1357,7 @@
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

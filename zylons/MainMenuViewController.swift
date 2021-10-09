@@ -12,7 +12,7 @@ import SpriteKit
 import AVFoundation
 
 enum Difficulty: String, Codable {
-    case Novice = "Novice"
+    case Novice = "Cadet"
     case Pilot = "Pilot"
     case Warrior = "Warrior"
     case Commander = "Commander"
@@ -31,6 +31,8 @@ class MainMenuViewController: UIViewController, AVAudioPlayerDelegate {
     var currentCredit = 0
     let credits = ["based on STAR RAIDERS by Doug Neubauer", "Music by Neon Insect", "Special thanks to Lorenz Wiest", "Programmed and designed by Jeff Glasse", "With many thanks to Aimee for her infinite patience", "Copyright 2019 Nine Industries. All Rights Reserved."]
     var creditTimer: Timer?
+    var beepsound: AVAudioPlayer!
+
 
     override var prefersHomeIndicatorAutoHidden: Bool {
         return true
@@ -47,6 +49,7 @@ class MainMenuViewController: UIViewController, AVAudioPlayerDelegate {
     // MARK: - IBActions
 
     @IBAction func setDifficulty(_ sender: Any) {
+        computerBeepSound("beep")
         creditTimer?.invalidate()
         switch settings.difficulty {
         case .Novice:
@@ -67,6 +70,7 @@ class MainMenuViewController: UIViewController, AVAudioPlayerDelegate {
 
     }
     @IBAction func togglePrologue(_ sender: UIButton) {
+        computerBeepSound("beep")
         switch settings.prologueEnabled {
         case true:
             prologueToggleSwitch.setTitle("PROLOGUE OFF", for: .normal)
@@ -81,6 +85,7 @@ class MainMenuViewController: UIViewController, AVAudioPlayerDelegate {
     }
 
     @IBAction func startGame(_ sender: Any) {
+        computerBeepSound("beep")
         self.musicAudioPlayer?.setVolume(0, fadeDuration: 1.5)
         self.musicAudioPlayer?.stop()
         var vc: UIViewController
