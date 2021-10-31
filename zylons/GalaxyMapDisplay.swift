@@ -119,7 +119,6 @@ class GalacticMapDisplay {
             let sectorObjectNode = GalaxyBlip(sectorType: galaxyModel.map[i-1].sectorType)
             currentGrid?.addChildNode(sectorObjectNode)
         }
-//        let currentSectorString = "\(shipSector+1)"
         setNewShipCurrentGrid(number: shipSector, color: .white)
         setNewTargetGrid(number: targetSector, color: .red)
 

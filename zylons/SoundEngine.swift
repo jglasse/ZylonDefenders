@@ -12,14 +12,14 @@ import UIKit
 
 extension ZylonGameViewController {
   func computerBeepSound(_ soundString: String) {
-    print("computerBeepSound called")
+    devLog("computerBeepSound called")
        if let soundURL = Bundle.main.url(forResource: soundString, withExtension: "mp3") { do {
         print("soundURL defined")
            try beepsound =  AVAudioPlayer(contentsOf: soundURL)
             beepsound.volume = 0.5
             beepsound.play()
        } catch {
-           print("beepsound failed")
+           devLog("beepsound failed")
            }
        }
     }
@@ -28,14 +28,14 @@ extension ZylonGameViewController {
 
 extension MainMenuViewController {
     func computerBeepSound(_ soundString: String) {
-      print("computerBeepSound called")
+        devLog("computerBeepSound called")
          if let soundURL = Bundle.main.url(forResource: soundString, withExtension: "mp3") { do {
-          print("soundURL defined")
+             devLog("soundURL defined")
              try beepsound =  AVAudioPlayer(contentsOf: soundURL)
               beepsound.volume = 0.5
               beepsound.play()
          } catch {
-             print("beepsound failed")
+             devLog("beepsound failed")
              }
          }
       }

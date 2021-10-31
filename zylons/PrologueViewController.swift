@@ -17,13 +17,16 @@ class PrologueViewController: UIViewController, AVAudioPlayerDelegate, UIViewCon
     @IBOutlet weak var progressButton: UIButton!
 
     @IBAction func skipPrologue(_ sender: Any) {
-        print("skipPrologue")
+        devLog("skipPrologue")
+        self.fadeout()
         self.telemetrySoundPlayer?.stop()
+        self.telemetryTimer?.invalidate()
+        self.musicAudioPlayer?.setVolume(0, fadeDuration: 1.5)
+        self.musicAudioPlayer?.stop()
         let sb = UIStoryboard(name: "Main", bundle: nil)
         let vc = sb.instantiateViewController(withIdentifier: "gameView")
         vc.modalTransitionStyle = .crossDissolve
         vc.modalPresentationStyle = .fullScreen
-        self.telemetryTimer?.invalidate()
         self.present(vc, animated: true, completion: nil)
 
     }
@@ -144,8 +147,8 @@ let message5 = "[TRANSMISSION TERMINATED 40AFFE]"
         delayWithSeconds(2.85, completion: {
             self.telemetrySoundPlayer?.play()
             self.setupTimer()
-            UIView.animate(withDuration: 1.25, animations: {
-                self.progressButton.alpha = 0.75
+            UIView.animate(withDuration: 1.0, animations: {
+                self.progressButton.alpha = 0.85
 
             })
         })
@@ -216,7 +219,13 @@ let message5 = "[TRANSMISSION TERMINATED 40AFFE]"
     }
 
     func fadeout() {
-        UIView.animate(withDuration: 2, animations: {
+        
+        devLog("fadeout Entry")
+        DispatchQueue.main.async {
+        
+        self.view.layoutIfNeeded()
+
+        UIView.animate(withDuration: 1, animations: {
             self.transmissionView.alpha = 0.0
 
         })
@@ -236,6 +245,9 @@ let message5 = "[TRANSMISSION TERMINATED 40AFFE]"
             vc.modalPresentationStyle = .fullScreen
             self.present(vc, animated: false, completion: nil)
         })
+        }
+        devLog("fadeout EXIT")
+
     }
 
 }

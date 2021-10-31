@@ -43,9 +43,11 @@ class GalaxyBlip: SCNNode {
                 self.opacity =  1.0
                 self.geometry =  blipIcon(type: "spaceStation")
                 self.rotation = SCNVector4(1, 1, 0, Float.pi/2)
+                self.highlightNodeWithDurarion(0.2, .blue, .white)
+
                 let action = SCNAction.rotateBy(x: 0, y: 0, z: CGFloat(GLKMathDegreesToRadians(360)), duration: 4)
                 let forever = SCNAction.repeatForever(action)
-                self.runAction(forever)
+               // self.runAction(forever)
                 //self.geometry?.firstMaterial?.emission.contents = UIColor.green
 
         default:

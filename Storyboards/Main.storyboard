@@ -106,7 +106,7 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</stri
                                 <rect key="frame" x="104" y="332" width="688" height="31"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JPG-C1-Qzr">
-                                        <rect key="frame" x="0.0" y="0.0" width="142.5" height="31"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="228" height="31"/>
                                         <fontDescription key="fontDescription" name="Y14.5M" family="Y14.5M" pointSize="17"/>
                                         <state key="normal" title="START GAME"/>
                                         <connections>
@@ -114,19 +114,11 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</stri
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LU4-Ve-bX3">
-                                        <rect key="frame" x="252.5" y="0.0" width="148.5" height="31"/>
+                                        <rect key="frame" x="338" y="0.0" width="350" height="31"/>
                                         <fontDescription key="fontDescription" name="Y14.5M" family="Y14.5M" pointSize="17"/>
                                         <state key="normal" title="DIFFICULTY"/>
                                         <connections>
                                             <action selector="setDifficulty:" destination="AB2-5A-Arv" eventType="touchUpInside" id="1jh-VN-m3i"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CQ5-j5-cqs">
-                                        <rect key="frame" x="511" y="0.0" width="177" height="31"/>
-                                        <fontDescription key="fontDescription" name="Y14.5M" family="Y14.5M" pointSize="17"/>
-                                        <state key="normal" title="TUTORIAL"/>
-                                        <connections>
-                                            <action selector="displayTutorial:" destination="AB2-5A-Arv" eventType="touchUpInside" id="bqm-IE-ae6"/>
                                         </connections>
                                     </button>
                                 </subviews>

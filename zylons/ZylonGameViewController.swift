@@ -196,11 +196,11 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     @IBOutlet weak var pausedStack: UIStackView!
 
     @IBAction func pauseGame(_ sender: UIButton) {
-        print("pauseGame")
+        devLog("pauseGame")
         if let paused = self.scnView.scene?.isPaused {
             self.scnView.scene?.isPaused = !paused
             pausedStack.isHidden = paused
-            print("paused state: \(!paused)")
+            devLog("paused state: \(!paused)")
         }
 
     }
@@ -252,10 +252,11 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     }
 
     @IBAction func settings(_ sender: Any) {
-        print("settings")
+        devLog("settings")
     }
     @IBAction func restartGame(_ sender: Any) {
-        print("retartGame")
+        devLog("restartGame")
+        engineSound.stop()
         func gotoMain(alwaysTrue: Bool) {
             let sb = UIStoryboard(name: "Main", bundle: nil)
             let vc = sb.instantiateViewController(withIdentifier: "mainMenu")
@@ -302,7 +303,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         if let soundURL = Bundle.main.url(forResource: soundString, withExtension: "m4a") { do {
             try beepsound =  AVAudioPlayer(contentsOf: soundURL)
         } catch {
-            print("beepsound failed")
+            devLog("beepsound failed")
             }
             beepsound.volume = 0.5
             beepsound.play()
@@ -405,7 +406,9 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
                 self.kohai.computerBeepSound("refuelComplete")
                 self.telemetryView.writeMessage(message: "Repairs completed")
                 }
-                delayWithSeconds(4, completion: {self.telemetryView.fadeout()})
+                delayWithSeconds(4, completion: {self.telemetryView.fadeout()
+                    self.zylonStation.completeRepair()
+                })
                 } else {
                     self.telemetryView.abort()
                     self.shipHud.deactivateAlert()
@@ -421,11 +424,11 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
             ship.currentSpeed = 2
            // self.spawnEnemies(number: self.shipCurrrentSectorGrid.numberOfSectorObjects)
             if let  enemies = enemiesArray { self.spawnEnemies(ofTypes: enemies) }
-            print("ENEMY SECTOR \(self.shipCurrrentSectorGrid.quadrant) \(self.shipCurrrentSectorGrid.quadrantNumber) type: \(self.shipCurrrentSectorGrid.sectorType) spawning \(self.shipCurrrentSectorGrid.numberOfSectorObjects) enemies")
+            devLog("ENEMY SECTOR \(self.shipCurrrentSectorGrid.quadrant) \(self.shipCurrrentSectorGrid.quadrantNumber) type: \(self.shipCurrrentSectorGrid.sectorType) spawning \(self.shipCurrrentSectorGrid.numberOfSectorObjects) enemies")
             //self.shipHud.soundSectorAlarm()
         case .empty:
             ship.currentSpeed = 3
-            print("Empty Sector")
+            devLog("Empty Sector")
         }
     }
 
@@ -440,8 +443,8 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         constraint.isGimbalLockEnabled = true
         zylonStation.constraints = [constraint]
         flyIn(node: zylonStation, toScale: 0.5)
-        print("starbase spawned at position")
-        print(zylonStation.worldPosition)
+        devLog("starbase spawned at position")
+        devLog(zylonStation.worldPosition)
 
     }
 
@@ -474,9 +477,9 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
      }
 
     func spawnEnemies(ofTypes: [ShipType]) {
-        print("spawnEnemies(ofTypes:")
+        devLog("spawnEnemies(ofTypes:")
            for  type in ofTypes {
-                print(type)
+                devLog(type)
                spawnEnemy(type: type)
            }
        }
@@ -494,7 +497,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
             case .enemy:
                 self.scnView.prepare(zylonStation, shouldAbortBlock: nil)
             default:
-                print("Empty Sector")
+                devLog("Empty Sector")
             }
 
             let deadlineTime = DispatchTime.now() + .seconds(6)
@@ -689,8 +692,8 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 
         // setup HUD
 
-        print("screen.widthRatio:\(screen.widthRatio)")
-        print("screen.heightRatio:\(screen.heightRatio)")
+        devLog("screen.widthRatio:\(screen.widthRatio)")
+        devLog("screen.heightRatio:\(screen.heightRatio)")
 
         classicMap = ClassicMap(size: self.view.bounds.size)
 
@@ -724,10 +727,10 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         var soundURL: URL?
         currentPhoton = 0
         soundURL = Bundle.main.url(forResource: "photon_sound", withExtension: "m4a")
-        do { try photonSound1 = AVAudioPlayer(contentsOf: soundURL!)} catch { print("photon player 1 ailed")}
-        do { try photonSound2 = AVAudioPlayer(contentsOf: soundURL!)} catch { print("photon player 2 failed")}
-        do { try photonSound3 = AVAudioPlayer(contentsOf: soundURL!)} catch { print("photon player 3 failed")}
-        do { try photonSound4 = AVAudioPlayer(contentsOf: soundURL!)} catch { print("photon player 4 failed")}
+        do { try photonSound1 = AVAudioPlayer(contentsOf: soundURL!)} catch { devLog("photon player 1 ailed")}
+        do { try photonSound2 = AVAudioPlayer(contentsOf: soundURL!)} catch { devLog("photon player 2 failed")}
+        do { try photonSound3 = AVAudioPlayer(contentsOf: soundURL!)} catch { devLog("photon player 3 failed")}
+        do { try photonSound4 = AVAudioPlayer(contentsOf: soundURL!)} catch { devLog("photon player 4 failed")}
 
     }
 
@@ -847,7 +850,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         if gesture.state == .ended {
         let location = gesture.location(in: mapScnView)
         let hitresults = mapScnView.hitTest(location, options: nil)
-            print("hitResults:\(hitresults)")
+            devLog("hitResults:\(hitresults)")
         if !hitresults.isEmpty {
             var tappedNode: SCNNode?
             // test if it's a grid element
@@ -857,12 +860,12 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
                 let sectorString = "\(x)"
                 if result.node.name == sectorString {
                     tappedNode =  hitresults.first?.node
-                    print("tapped Node:\(String(describing: tappedNode?.name))")
-                    print("galaxyModel.map[\(x)].sectorType:", galaxyModel.map[x].sectorType)
+                    devLog("tapped Node:\(String(describing: tappedNode?.name))")
+                    //print("galaxyModel.map[\(x)].sectorType:", galaxyModel.map[x].sectorType)
                     if galaxyModel.map[x].sectorType != .empty {
                     galacticDisplay.setNewTargetGrid(number: x, color: UIColor.red)
 
-                    print("Node Highlighted")
+                    devLog("Node Highlighted")
                     }
                 }
             }
@@ -928,7 +931,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     }
 
     func zylonShipHitBy(node: SCNNode) {
-        print("Zylon Ship hit by \(node.description)")
+        devLog("Zylon Ship hit by \(node.description)")
 
         // we should animate removal of node which hit ship, but for now just remove it.
         // if no shields, special explosion for zylonShipHit
@@ -973,7 +976,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
             //decrement shield strength, and then determine if shields have held
             ship.shieldStrength = ship.shieldStrength - 5 * self.difficultyScalar
             if ship.shieldStrength>0 {
-            print("SHIELDS HAVE HELD! Current Shield Strenth: \(ship.shieldStrength)")
+            devLog("SHIELDS HAVE HELD! Current Shield Strenth: \(ship.shieldStrength)")
             } else {
                 self.shipHud.activateAlert(message: "SHIELD FAILURE!")
                 ship.takeDamage()
@@ -981,7 +984,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
             }
 
         } else {
-            print("hullHit sound because sheilds are down")
+            devLog("hullHit sound because sheilds are down")
 
             self.environmentSound("Raw Hull Hit")
             ship.takeDamage()
@@ -989,7 +992,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     }
 
     func stationBoom(atNode: SCNNode) {
-        print("stationBoom!")
+        devLog("stationBoom!")
 
         for _ in 1...8 {
             let randomX = randRange(lower: -10, upper: 15)
@@ -1015,7 +1018,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 
     }
     func boom(atNode: SCNNode) {
-        print("BOOM!")
+        devLog("BOOM!")
         DispatchQueue.main.async {
             let explosionNode = ShipExplosion()
             explosionNode.position = atNode.presentation.position
@@ -1025,7 +1028,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 
     }
     func zylonSurvivableBoom(atNode: SCNNode) {
-        print("SHIELDBOOM!")
+        devLog("SHIELDBOOM!")
         DispatchQueue.main.async {
             let explosionNode = ShieldExplosion()
             explosionNode.position = atNode.presentation.position
@@ -1084,8 +1087,8 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
             var rankIndex = Int(newrank)
             if self.difficultyScalar < 3 && rankIndex < self.rankArray.count-1 { rankIndex += 1 }
 
-            print("occupiedSectorRatio: \(self.galaxyModel.occupiedSectorRatio)")
-            print("rankIndex: \(rankIndex)")
+            devLog("occupiedSectorRatio: \(self.galaxyModel.occupiedSectorRatio)")
+            devLog("rankIndex: \(rankIndex)")
             let rank: String =  self.rankArray[rankIndex]
             let message = """
             Zylon Command to all sectors. \(cause)
@@ -1222,8 +1225,8 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 
     func enterSector(sectorNumber: Int) {
 
-        print("Entering sector: \(shipCurrrentSectorGrid.quadrant) \(shipCurrrentSectorGrid.quadrantNumber)")
-        print("actualSector Number: \(sectorNumber)")
+        devLog("Entering sector: \(shipCurrrentSectorGrid.quadrant) \(shipCurrrentSectorGrid.quadrantNumber)")
+        devLog("actualSector Number: \(sectorNumber)")
 
         var audioItems: [AVPlayerItem] = []
         var soundURL = Bundle.main.url(forResource: "entering_sector", withExtension: "m4a")
@@ -1324,7 +1327,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
                // let material = result.node.geometry!.firstMaterial!
                 let newMaterial = SCNMaterial()
                 newMaterial.emission.contents = UIColor.red
-                print("target sector:\(String(describing: selectedNode.name))")
+                devLog("target sector:\(String(describing: selectedNode.name))")
                 // highlight it
                 SCNTransaction.begin()
              //   SCNTransaction.animationDuration = 0.5
@@ -1347,13 +1350,13 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     }
 
     func notYetImplemented(_ command: String) {
-        print("\(command) not yet implemented")
+        devLog("\(command) not yet implemented")
         computerBeepSound("torpedo_fail")
     }
 
     func removeMarkedSectorObjects() {
         for object in sectorObjectsToBeRemoved {
-            print("Removing sector Object: \(object.description) ")
+            devLog("Removing sector Object: \(object.description) ")
             object.removeFromParentNode()
         }
         sectorObjectsToBeRemoved.removeAll()
@@ -1364,7 +1367,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         mainGameScene.rootNode.enumerateChildNodes({thisNode, _ in
             if thisNode.name?.range(of: "torpedo") != nil {
                 thisNode.presentation.opacity = 0
-                print("hiding torps")
+                devLog("hiding torps")
             }
 
         })
@@ -1446,10 +1449,10 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     // MARK: - Collision Code
 
     func physicsWorld(_ world: SCNPhysicsWorld, didBegin contact: SCNPhysicsContact) {
-        print("Contact!")
-        print("nodeA: \(String(describing: contact.nodeA.name!))")
-        print("nodeB: \(String(describing: contact.nodeB.name!))")
-        print("shield status at time of contact: \(ship.shieldsAreUp)")
+        devLog("Contact!")
+        devLog("nodeA: \(String(describing: contact.nodeA.name!))")
+        devLog("nodeB: \(String(describing: contact.nodeB.name!))")
+        devLog("shield status at time of contact: \(ship.shieldsAreUp)")
 
         if contact.nodeA.name == "zylonHull" {
             zylonShipHitBy(node: contact.nodeB)
@@ -1498,7 +1501,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 //                gridElement.removeFromParentNode()
 //            }
 //
-//           // print("targetGrid: \(currentGrid!.name ?? "") is of type \(galaxyModel.map[i-1].sectorType)")
+//           // devLog("targetGrid: \(currentGrid!.name ?? "") is of type \(galaxyModel.map[i-1].sectorType)")
 //            let enemyNode = GalaxyBlip(sectorType: galaxyModel.map[i-1].sectorType)
 //            currentGrid?.addChildNode(enemyNode)
 //        }
@@ -1511,7 +1514,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 ////        }
 //
 //        let currentSectorString = "\(self.ship.currentSectorNumber+1)"
-//        print("currentSectorString:  \(currentSectorString)")
+//        devLog("currentSectorString:  \(currentSectorString)")
 //        let presentGrid = galacticDisplay.map.rootNode.childNode(withName: currentSectorString, recursively: true)
 //
 
