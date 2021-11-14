@@ -25,9 +25,12 @@ class PrologueViewController: UIViewController, AVAudioPlayerDelegate, UIViewCon
         self.musicAudioPlayer?.stop()
         let sb = UIStoryboard(name: "Main", bundle: nil)
         let vc = sb.instantiateViewController(withIdentifier: "gameView")
-        vc.modalTransitionStyle = .crossDissolve
         vc.modalPresentationStyle = .fullScreen
-        self.present(vc, animated: true, completion: nil)
+        UIView.animate(withDuration: 1.0, animations: {
+            self.view.alpha = 0.0
+        }, completion: { _ in
+            self.present(vc, animated: false, completion: nil)
+        })
 
     }
     // MARK: - Vars
@@ -224,6 +227,9 @@ let message5 = "[TRANSMISSION TERMINATED 40AFFE]"
         DispatchQueue.main.async {
         
         self.view.layoutIfNeeded()
+            
+            
+            
 
         UIView.animate(withDuration: 1, animations: {
             self.transmissionView.alpha = 0.0
@@ -243,10 +249,13 @@ let message5 = "[TRANSMISSION TERMINATED 40AFFE]"
             let sb = UIStoryboard(name: "Main", bundle: nil)
             let vc = sb.instantiateViewController(withIdentifier: "gameView")
             vc.modalPresentationStyle = .fullScreen
-            self.present(vc, animated: false, completion: nil)
+            UIView.animate(withDuration: 1.0, animations: {
+                self.view.alpha = 0.0
+            }, completion: { _ in
+                self.present(vc, animated: false, completion: nil)
+            })
         })
         }
-        devLog("fadeout EXIT")
 
     }
 

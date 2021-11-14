@@ -9,7 +9,7 @@
 import Foundation
 import MultipeerConnectivity
 
-protocol CommandDelegate: class {
+protocol CommandDelegate: AnyObject {
     func execute(command: String)
 }
 

@@ -25,7 +25,7 @@ class ZylonStation: SectorObject {
         beamGeometry.materials.first?.blendMode = .add
         beam.geometry = beamGeometry
         beam.worldPosition = SCNVector3(0, -29, beamHeight/2)
-        beam.colorSwap(color1: UIColor.purple, color2: UIColor.blue, duration: 1.5)
+        beam.colorSwap(color1: UIColor.red, color2: UIColor.blue, duration: 1.75)
         self.parent?.addChildNode(beam)
 
     }

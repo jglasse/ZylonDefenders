@@ -29,7 +29,7 @@ class MainMenuViewController: UIViewController, AVAudioPlayerDelegate {
     let musicURL = Bundle.main.url(forResource: "dreadnaught", withExtension: "m4a")
     var musicAudioPlayer: AVAudioPlayer?
     var currentCredit = 0
-    let credits = ["based on STAR RAIDERS by Doug Neubauer", "Music by Neon Insect", "Special thanks to Lorenz Wiest", "Programmed and designed by Jeff Glasse", "With many thanks to Aimee for her infinite patience", "Copyright 2019 Nine Industries. All Rights Reserved."]
+    let credits = ["based on STAR RAIDERS by Doug Neubauer", "Music by Neon Insect", "Special thanks to Lorenz Wiest", "Programmed and designed by Jeff Glasse", "With many thanks to Aimee for her infinite patience", "Copyright 2021 Nine Industries. All Rights Reserved."]
     var creditTimer: Timer?
     var beepsound: AVAudioPlayer!
 
