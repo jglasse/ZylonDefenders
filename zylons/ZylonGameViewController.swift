@@ -39,6 +39,9 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         }
 
     }
+    var maxTorps: Int {
+        Constants.maxTorpedoes - difficultyScalar
+    }
 
     // MARK: - Generic iOS
 
@@ -319,7 +322,11 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     }
 
     func fireAftTorp() {
-        if numberOfZylonShotsOnscreen < Constants.maxTorpedoes-2 && !self.aButtonJustPressed {
+        var maxT = maxTorps - 2
+        if maxT < 1 {
+            maxT = 1
+        }
+        if numberOfZylonShotsOnscreen < maxT && !self.aButtonJustPressed {
             ship.energyStore -= 5 * self.difficultyScalar
             let torpedoNode = Torpedo(designatedTorpType: .zylon)
             let photonSoundArray = [photonSound1, photonSound2, photonSound3, photonSound4]
@@ -339,7 +346,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         }
     }
      func fireTorp() {
-        if numberOfZylonShotsOnscreen < Constants.maxTorpedoes && !self.aButtonJustPressed && !gameOver {
+        if numberOfZylonShotsOnscreen < maxTorps && !self.aButtonJustPressed && !gameOver {
             ship.energyStore -= 5 * self.difficultyScalar
             let torpedoNode = Torpedo(designatedTorpType: .zylon)
             let photonSoundArray = [photonSound1, photonSound2, photonSound3, photonSound4]
@@ -692,8 +699,8 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 
         // setup HUD
 
-        devLog("screen.widthRatio:\(screen.widthRatio)")
-        devLog("screen.heightRatio:\(screen.heightRatio)")
+        devLog("screen.widthRatio:\(Screen.widthRatio)")
+        devLog("screen.heightRatio:\(Screen.heightRatio)")
 
         classicMap = ClassicMap(size: self.view.bounds.size)
 

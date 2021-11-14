@@ -14,9 +14,9 @@ let numberstrings = ["zero", "one", "two", "three", "four", "five", "six", "seve
 struct Constants {
     static let fadedMapTransparency: CGFloat = 0.03
     static let starMoveDivider: Float = 0.4
-    static let maxTorpedoes = 4
+    static let maxTorpedoes = 6
     static let maxEnemyShips = 5
-    static let torpedoLifespan = 150
+    static let torpedoLifespan = 140
     static let torpedoSpeed = 0.6
     static let torpedoCorrectionSpeedDivider: Float = 13
     static let shotDelay = 1

@@ -43,7 +43,10 @@ class HumonShip: SectorObject {
 
     func fireTorpedo() {
         let torpedoNode = Torpedo(designatedTorpType: .humon)
-        let parentNode = self.parent!
+        guard let parentNode = self.parent else {
+            print("attempted to add torpedo to parent but there's no parent!")
+            fatalError()
+        }
         let driftAmount: Float = 2
         let forceAmount: Float = 175
         parentNode.addChildNode(torpedoNode)
@@ -108,13 +111,15 @@ class HumonShip: SectorObject {
         self.shiptype = shipType
         switch shipType {
         case .scout:
-            print("humonshipScene  = HumonScout.scn")
+            print("ship type: Scout")
             humonshipScene = SCNScene(named: "HumonScout.scn")
         case .fighter:
-            print("humonshipScene  = HumonFighter.scn")
-            humonshipScene = SCNScene(named: "HumonFighter.scn")
+            print("ship type: Fighter (but really Scout)")
+            //humonshipScene = SCNScene(named: "HumonFighter.scn")
+            humonshipScene = SCNScene(named: "HumonScout.scn")
+
         case .destroyer:
-            print("humonshipScene  = HumonHunter.scn")
+            print("ship type: Destroyer")
             humonshipScene = SCNScene(named: "HumonHunter.scn")
 
         }

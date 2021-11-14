@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		149C0D2EED74471AFAB0D734 /* Pods_Zylon_Defenders.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D36EA3A38C7FAD7587B9365B /* Pods_Zylon_Defenders.framework */; };
 		6B16A8EA23870A1B006D37C7 /* SoundEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B16A8E923870A1B006D37C7 /* SoundEngine.swift */; };
 		6B2755632360223A00E3E76D /* shieldsUp.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 6B2755622360223A00E3E76D /* shieldsUp.m4a */; };
 		6B281EEB22FCA75B00B4C288 /* StationExplosion.scnp in Resources */ = {isa = PBXBuildFile; fileRef = 6B281EEA22FCA75B00B4C288 /* StationExplosion.scnp */; };
@@ -260,6 +261,7 @@
 		6BE194B422E4E229002C670C /* death.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = death.mp3; sourceTree = "<group>"; };
 		6BF25A36229CA96E002F261C /* SectorGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectorGrid.swift; sourceTree = "<group>"; };
 		7568754695DB123382A3A552 /* Pods-Zylon Defenders.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Zylon Defenders.debug.xcconfig"; path = "Target Support Files/Pods-Zylon Defenders/Pods-Zylon Defenders.debug.xcconfig"; sourceTree = "<group>"; };
+		D36EA3A38C7FAD7587B9365B /* Pods_Zylon_Defenders.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Zylon_Defenders.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E109EB5D1E1B3F7F003DAB0F /* shields.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = shields.mp3; sourceTree = "<group>"; };
 		E109EB5F1E1BB938003DAB0F /* 40069.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = 40069.ttf; sourceTree = "<group>"; };
 		E10EFCB81EBFBDA500CC872E /* tinyGrid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tinyGrid.png; sourceTree = "<group>"; };
@@ -391,6 +393,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				149C0D2EED74471AFAB0D734 /* Pods_Zylon_Defenders.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -478,6 +481,7 @@
 		AC7C4F8825E1241744F8A59F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D36EA3A38C7FAD7587B9365B /* Pods_Zylon_Defenders.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -808,6 +812,7 @@
 				E1D8BD4C1DCFCD1A00C863DF /* Resources */,
 				E13F7FF21F97EFD6006242F1 /* ShellScript */,
 				6D90D082BBBEBB2329EC4DFB /* Upload Bugsnag dSYM */,
+				ABEAA8EE9B1F099B581D735B /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1051,6 +1056,24 @@
 			shellScript = "# First, attempt to get the API key from an environment variable\napi_key = ENV[\"BUGSNAG_API_KEY\"]\n\n# If not present, attempt to lookup the value from the Info.plist\nif !api_key\n  default_info_plist_location = Dir.glob(\"./{ios/,}*/Info.plist\").reject {|path| path =~ /build|test/i }\n  plist_buddy_response = `/usr/libexec/PlistBuddy -c \"print :BugsnagAPIKey\" \"#{default_info_plist_location.first}\"`\n  api_key = plist_buddy_response if $?.success?\nend\n\nfork do\n  Process.setsid\n  STDIN.reopen(\"/dev/null\")\n  STDOUT.reopen(\"/dev/null\", \"a\")\n  STDERR.reopen(\"/dev/null\", \"a\")\n\n  require 'shellwords'\n\n  Dir[\"#{ENV[\"DWARF_DSYM_FOLDER_PATH\"]}/*/Contents/Resources/DWARF/*\"].each do |dsym|\n    curl_command = \"curl -F dsym=@#{Shellwords.escape(dsym)} -F projectRoot=#{Shellwords.escape(ENV[\"PROJECT_DIR\"])} \"\n    curl_command += \"-F apiKey=#{Shellwords.escape(api_key)} \" if api_key\n    curl_command += \"https://upload.bugsnag.com/\"\n    system(curl_command)\n  end\nend\n";
 			showEnvVarsInLog = 0;
 		};
+		ABEAA8EE9B1F099B581D735B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Zylon Defenders/Pods-Zylon Defenders-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NVActivityIndicatorView.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Zylon Defenders/Pods-Zylon Defenders-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		E13F7FF21F97EFD6006242F1 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1062,7 +1085,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\nswiftlint autocorrect\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
 		};
 		F097D258CB4DD43F86610964 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;

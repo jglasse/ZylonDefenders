@@ -1,16 +1,22 @@
 PODS:
-  - SwiftLint (0.35.0)
+  - NVActivityIndicatorView (5.1.1):
+    - NVActivityIndicatorView/Base (= 5.1.1)
+  - NVActivityIndicatorView/Base (5.1.1)
+  - SwiftLint (0.45.0)
 
 DEPENDENCIES:
+  - NVActivityIndicatorView
   - SwiftLint
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  trunk:
+    - NVActivityIndicatorView
     - SwiftLint
 
 SPEC CHECKSUMS:
-  SwiftLint: 5553187048b900c91aa03552807681bb6b027846
+  NVActivityIndicatorView: 1f6c5687f1171810aa27a3296814dc2d7dec3667
+  SwiftLint: e5c7f1fba68eccfc51509d5b2ce1699f5502e0c7
 
-PODFILE CHECKSUM: 8e7606ae5f4e3a7c65ba05b384641ac457a4670b
+PODFILE CHECKSUM: 81250a824e1c4ee7ed82cc7c1b598f9bba389bbd
 
-COCOAPODS: 1.7.5
+COCOAPODS: 1.11.2
