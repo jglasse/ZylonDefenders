@@ -20,7 +20,6 @@ class TelemetryPlayer: UITextView, AVAudioPlayerDelegate {
     private var blinkTimer: Timer?
     private var telemetrySoundPlayer: AVAudioPlayer?
     private var telemetryStopped = false
-  
 
     private let soundURL = Bundle.main.url(forResource: "wopr", withExtension: "aiff")
 

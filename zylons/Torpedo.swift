@@ -24,7 +24,7 @@ class Torpedo: SectorObject {
         self.geometry = SCNSphere(radius: 0.25)
         self.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
         self.physicsBody?.isAffectedByGravity = false
-        if torpType == .humon  //create humon torpedo
+        if torpType == .humon  // Create humon torpedo
         {
         self.name = "Humon torpedo"
             self.physicsBody?.categoryBitMask = ObjectCategories.enemyFire

@@ -35,7 +35,7 @@ class HUD: SKScene {
     var alertTimer: Timer?
     var currentComputerStatusColor = UIColor.red
 
-	//var tacticalDisplay = [SKSpriteNode]()
+	// var tacticalDisplay = [SKSpriteNode]()
     // MARK: - Initialization
 
     override init(size: CGSize) {

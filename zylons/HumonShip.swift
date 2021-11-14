@@ -56,8 +56,8 @@ class HumonShip: SectorObject {
     }
     func maneuver() {
 
-        //MOVE SHIP LOGIC
-        //if not currently maneuvering, begin executing maneuver. When maneuver is complete, create new maneuver with a random duration between minManeuverInterval and maxManeuverInterval
+        // MOVE SHIP LOGIC
+        // if not currently maneuvering, begin executing maneuver. When maneuver is complete, create new maneuver with a random duration between minManeuverInterval and maxManeuverInterval
         if currentManeuverType == .fullstop {
          let maneuverDuration = TimeInterval(randRange(lower: 1, upper: 4))
          var currentManeuver: SCNAction
@@ -93,8 +93,8 @@ class HumonShip: SectorObject {
 
         }
 
-        //FIRE TORPEDO LOGIC
-        //if I'm not currently counting down to fire, start a new counter, with a random value between minShootInterval and maxShootInterval
+        // FIRE TORPEDO LOGIC
+        // if I'm not currently counting down to fire, start a new counter, with a random value between minShootInterval and maxShootInterval
         if cyclesUntilFireTorpedo  == 0 {
             self.fireTorpedo()
             cyclesUntilFireTorpedo = randRange(lower: Constants.minHumanShootInterval, upper: Constants.maxHumanShootInterval)
@@ -115,7 +115,7 @@ class HumonShip: SectorObject {
             humonshipScene = SCNScene(named: "HumonScout.scn")
         case .fighter:
             print("ship type: Fighter (but really Scout)")
-            //humonshipScene = SCNScene(named: "HumonFighter.scn")
+            // humonshipScene = SCNScene(named: "HumonFighter.scn")
             humonshipScene = SCNScene(named: "HumonScout.scn")
 
         case .destroyer:

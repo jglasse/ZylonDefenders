@@ -48,7 +48,7 @@ class GalacticMapDisplay {
         let internalRot = map.rootNode.childNode(withName: "internalRot", recursively: true)
         internalRot?.rotation = SCNVector4Make(0, 0, 1, 3.141)
 
-    //point the camera at the galaxy map
+    // point the camera at the galaxy map
     let camConstraint = SCNLookAtConstraint(target: self.map.rootNode)
     camConstraint.isGimbalLockEnabled = true
     cameraNode.constraints = [camConstraint]
@@ -108,7 +108,7 @@ class GalacticMapDisplay {
 
     // Public functions
     func updateDisplay(galaxyModel: GalaxyMapModel, shipSector: Int, targetSector: Int) {
-        //iterate over grids
+        // iterate over grids
         for i in 1...128 {
 
             let sectorString = "\(i)"

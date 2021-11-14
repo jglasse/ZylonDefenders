@@ -77,7 +77,7 @@ struct GalaxyMapModel {
             let currentSector = SectorGrid(number: x, enemyTypes: nil, numberOfSectorObjects: 0, sectorType: .empty)
             self.map.append(currentSector)
         }
-        //then randomly add Space Stations, evenly distributed acrozss four sectors
+        // then randomly add Space Stations, evenly distributed acrozss four sectors
         // NOTE - current algorithm assumes 4 stations
         for x in 0...numberofStations-1 {
             let lowerrange: Int = x*32

@@ -25,7 +25,6 @@ extension ZylonGameViewController {
     }
 }
 
-
 extension MainMenuViewController {
     func computerBeepSound(_ soundString: String) {
         devLog("computerBeepSound called")

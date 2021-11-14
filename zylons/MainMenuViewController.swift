@@ -33,7 +33,6 @@ class MainMenuViewController: UIViewController, AVAudioPlayerDelegate {
     var creditTimer: Timer?
     var beepsound: AVAudioPlayer!
 
-
     override var prefersHomeIndicatorAutoHidden: Bool {
         return true
     }
@@ -159,14 +158,14 @@ class MainMenuViewController: UIViewController, AVAudioPlayerDelegate {
         cameraNode.name = "gCam"
         galaxyScene.rootNode.addChildNode(cameraNode)
 
-        //point the camera at the galaxy map
+        // point the camera at the galaxy map
         let camConstraint = SCNLookAtConstraint(target: galaxyScene.rootNode)
         camConstraint.isGimbalLockEnabled = true
         cameraNode.constraints = [camConstraint]
 
         // place the camera
         cameraNode.position = SCNVector3(x: -0.5, y: -17, z: 4.2)
-        //cameraNode.rotation = SCNVector4
+        // cameraNode.rotation = SCNVector4
         cameraNode.camera?.focalLength = 28.0
 
         let action = SCNAction.rotateBy(x: 0, y: 0, z: CGFloat(GLKMathDegreesToRadians(360)), duration: 56)

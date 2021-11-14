@@ -86,9 +86,7 @@ extension ZylonGameViewController {
             guard let profile: GCExtendedGamepad = self.mainController?.extendedGamepad else {
                 return
             }
-            profile.valueChangedHandler = ({
-                (gamepad: GCExtendedGamepad, element: GCControllerElement) in
-
+            profile.valueChangedHandler = ({ (gamepad: GCExtendedGamepad, element: GCControllerElement) in
                 var position = CGPoint(x: 0, y: 0)
                 var message: String = ""
 
@@ -246,7 +244,7 @@ extension ZylonGameViewController {
         let v1w =  node.convertPosition(node.boundingBox.min, to: self.scnView.scene?.rootNode)
         let v2w =  node.convertPosition(node.boundingBox.max, to: self.scnView.scene?.rootNode)
 
-        //calc center of BB in world coordinates
+        // calc center of BB in world coordinates
         let center = SCNVector3Make(
             (v1w.x + v2w.x)/2,
             (v1w.y + v2w.y)/2,

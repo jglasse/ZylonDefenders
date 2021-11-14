@@ -113,7 +113,6 @@ let message5 = "[TRANSMISSION TERMINATED 40AFFE]"
 
         if let path = Bundle.main.path(forResource: "Info", ofType: "plist") {
 
-            ////If your plist contain root as Dictionary
             if let dic = NSDictionary(contentsOfFile: path) as? [String: Any] {
                 if let x = dic["PrologueViewed"] as? Bool {
                     self.prologueViewed = x
@@ -212,7 +211,7 @@ let message5 = "[TRANSMISSION TERMINATED 40AFFE]"
                 {
                 self.setupTimer()
                 self.telemetrySoundPlayer?.play()
-                } else //otherwise, finish things up 
+                } else // otherwise, finish things up 
                 {
                     delayWithSeconds(4, completion: {self.fadeout()})
                     // show continue button
@@ -222,14 +221,11 @@ let message5 = "[TRANSMISSION TERMINATED 40AFFE]"
     }
 
     func fadeout() {
-        
+
         devLog("fadeout Entry")
         DispatchQueue.main.async {
-        
+
         self.view.layoutIfNeeded()
-            
-            
-            
 
         UIView.animate(withDuration: 1, animations: {
             self.transmissionView.alpha = 0.0

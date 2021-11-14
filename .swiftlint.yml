@@ -8,3 +8,11 @@ disabled_rules:
    - shorthand_operator
    - type_body_length
    - large_tuple
+   - todo
+
+
+excluded: # paths to ignore during linting. Takes precedence over `included`.
+  - Carthage
+  - Pods
+  - Source/ExcludedFolder
+

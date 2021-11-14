@@ -10,13 +10,13 @@ import UIKit
 import SceneKit
 
 // MARK: - Damage enums
-//enum ImpulseEngineDamage {
+// enum ImpulseEngineDamage {
 //    case noDamage
 //    case plasmaManifoldFailure
 //    case engineFailure
-//}
+// }
 //
-//enum ComputerDamage {
+// enum ComputerDamage {
 //    case viralIntrusion
 //    case targetingInoperative
 //    case autoPilotInoperative
@@ -24,7 +24,7 @@ import SceneKit
 //    case longRangeScannerInoperative
 //    case empathyCircuitFailure
 //
-//}
+// }
 
 enum KnownQuadrants: String {
     case alpha, beta, gamma, delta

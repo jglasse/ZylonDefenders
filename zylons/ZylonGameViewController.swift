@@ -11,9 +11,9 @@ import UIKit
 import SceneKit
 import SpriteKit
 import AVFoundation
-//import MultipeerConnectivity
+// import MultipeerConnectivity
 import GameController
-//import CoreMotion
+// import CoreMotion
 
 class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNSceneRendererDelegate {
     let rankArray = ["ZYLON HERO", "SPACE ACE", "WARRIOR", "CAPTAIN", "STAR COMMANDER", "COMMANDER", "LIEUTENANT", "PILOT", "ENSIGN", "NOVICE", "ROOKIE", "GARBAGE SCOW CAPTAIN", "GALACTIC COOK"]
@@ -141,7 +141,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 	var explosionDuration = 0
     let kohai = Kohai()
 
-    //var motionManager: CMMotionManager!
+    // var motionManager: CMMotionManager!
 
     // Misc Variables
     var currentPhoton = 0
@@ -181,16 +181,6 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     @IBOutlet weak var sliderContainerView: UIView!
 
     @IBOutlet weak var telemetryView: TelemetryPlayer!
-
-//    func NewOverlayPos(node: SCNNode) -> CGPoint {
-//        
-//        let worldposition = node.worldPosition
-//        
-////        let projectedOrigin = scnView.projectPoint(SCNVector3Zero)
-////        let vp = gestureRecognizer.locationInView(scnView)
-////        let vpWithZ = SCNVector3(x: vp.x, y: vp.y, z: projectedOrigin.z)
-////        let worldPoint = gameView.unprojectPoint(vpWithZ)
-//    }
 
     // MARK: - IBActions
 
@@ -318,7 +308,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
       //  let driftAmount: Float = 2
       //  let forceAmount: Float = 195
             torpedoNode.worldPosition = fromShip.worldPosition
-            //torpedoNode.physicsBody?.applyForce(SCNVector3Make(-driftAmount, 1.7, forceAmount), asImpulse: true)
+            // torpedoNode.physicsBody?.applyForce(SCNVector3Make(-driftAmount, 1.7, forceAmount), asImpulse: true)
     }
 
     func fireAftTorp() {
@@ -340,7 +330,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
             currentplayer?.play()
             currentPhoton = currentPhoton+1
             if currentPhoton>(photonSoundArray.count - 1) {currentPhoton = 0}
-            //countNodes()
+            // countNodes()
         } else {
             computerBeepSound("torpedo_fail")
         }
@@ -432,7 +422,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
            // self.spawnEnemies(number: self.shipCurrrentSectorGrid.numberOfSectorObjects)
             if let  enemies = enemiesArray { self.spawnEnemies(ofTypes: enemies) }
             devLog("ENEMY SECTOR \(self.shipCurrrentSectorGrid.quadrant) \(self.shipCurrrentSectorGrid.quadrantNumber) type: \(self.shipCurrrentSectorGrid.sectorType) spawning \(self.shipCurrrentSectorGrid.numberOfSectorObjects) enemies")
-            //self.shipHud.soundSectorAlarm()
+            // self.shipHud.soundSectorAlarm()
         case .empty:
             ship.currentSpeed = 3
             devLog("Empty Sector")
@@ -688,7 +678,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 
     func setupScene() {
 
-        //prepare game elements for later display
+        // prepare game elements for later display
 
         scnView.scene = mainGameScene
         createStars()
@@ -868,7 +858,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
                 if result.node.name == sectorString {
                     tappedNode =  hitresults.first?.node
                     devLog("tapped Node:\(String(describing: tappedNode?.name))")
-                    //print("galaxyModel.map[\(x)].sectorType:", galaxyModel.map[x].sectorType)
+                    // print("galaxyModel.map[\(x)].sectorType:", galaxyModel.map[x].sectorType)
                     if galaxyModel.map[x].sectorType != .empty {
                     galacticDisplay.setNewTargetGrid(number: x, color: UIColor.red)
 
@@ -960,7 +950,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
             self.environmentSound("forcefieldHit")
             shipHud.shieldFlash()
 
-            //let overlayPos = self.overlayPos(node: node) // screen coordinates of hit in UIVIew
+            // let overlayPos = self.overlayPos(node: node) // screen coordinates of hit in UIVIew
 
 //            DispatchQueue.main.async {
 //                let hitplane = SCNPlane(width: 1, height: 1)
@@ -978,9 +968,9 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 //            }
 
            // let overlaySpritePOS = shipHud.convertPoint(fromView: overlayPos) //
-           //shipHud.shieldHit(location: overlaySpritePOS)
+           // shipHud.shieldHit(location: overlaySpritePOS)
 
-            //decrement shield strength, and then determine if shields have held
+            // decrement shield strength, and then determine if shields have held
             ship.shieldStrength = ship.shieldStrength - 5 * self.difficultyScalar
             if ship.shieldStrength>0 {
             devLog("SHIELDS HAVE HELD! Current Shield Strenth: \(ship.shieldStrength)")
@@ -1119,7 +1109,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 
     func updateStars() {
         for star in self.starSprites {
-            //if star distance is greater than 400 total
+            // if star distance is greater than 400 total
             var starScenePosition: SCNVector3
             starScenePosition = mainGameScene.rootNode.convertPosition(star.position, from: sectorObjectsNode)
             starScenePosition.z += Float(ship.currentSpeed) * Constants.starMoveDivider
@@ -1138,7 +1128,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 
         let warpGridEntryShape = SCNTube(innerRadius: 2, outerRadius: 2, height: 260)
         warpGrid.geometry  = warpGridEntryShape
-        //warpGrid.geometry?.firstMaterial = SCNMaterial()
+        // warpGrid.geometry?.firstMaterial = SCNMaterial()
         let innerTube = SCNMaterial()
         innerTube.diffuse.contents =  UIColor.black
         innerTube.emission.contents =  UIImage(named: "smallestGrid.png")
@@ -1201,7 +1191,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
             }
 
         sectorObjectsNode.enumerateChildNodes({thisNode, _ in
-            //remove all ships and torpedoes, and hide the space station
+            // remove all ships and torpedoes, and hide the space station
             if thisNode.name == "humonShip" || thisNode.name == "torpedo" {
             markSectorObjectToBeRemoved(object: thisNode)
             }
@@ -1261,7 +1251,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
             audioItems.append(item)
 
         } else {
-            let tensString = numberstrings[quadrantNumber / 10] //tens digit
+            let tensString = numberstrings[quadrantNumber / 10] // tens digit
             soundURL = Bundle.main.url(forResource: tensString, withExtension: "m4a")
             item = AVPlayerItem(url: soundURL!)
             audioItems.append(item)
@@ -1349,7 +1339,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
                     SCNTransaction.commit()
                 }
 
-                //material.emission.contents = UIColor.red
+                // material.emission.contents = UIColor.red
                 selectedNode.geometry!.firstMaterial = newMaterial
                 SCNTransaction.commit()
             }
@@ -1499,32 +1489,6 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         self.shipSectorLabel.text = "Ship Sector: \(self.shipCurrrentSectorGrid.quadrant) \(self.shipCurrrentSectorGrid.quadrantNumber)"
         self.targetSectorLabel.text = "Target Sector: \(self.targetSectorGrid.quadrant) \(self.targetSectorGrid.quadrantNumber)"
 
-//
-//        for i in 1...128 {
-//            let sectorString = "\(i)"
-//            let currentGrid = galacticDisplay.map.rootNode.childNode(withName: sectorString, recursively: true)
-//
-//            for gridElement in currentGrid!.childNodes {
-//                gridElement.removeFromParentNode()
-//            }
-//
-//           // devLog("targetGrid: \(currentGrid!.name ?? "") is of type \(galaxyModel.map[i-1].sectorType)")
-//            let enemyNode = GalaxyBlip(sectorType: galaxyModel.map[i-1].sectorType)
-//            currentGrid?.addChildNode(enemyNode)
-//        }
-//
-////        let sectorString = "\(self.ship.targetSectorNumber)"
-////        let targetGrid = galacticDisplay.map.rootNode.childNode(withName: sectorString, recursively: true)
-////        if let tg = targetGrid {
-////            galacticDisplay.oldTargetIndicator.worldPosition = tg.worldPosition
-////
-////        }
-//
-//        let currentSectorString = "\(self.ship.currentSectorNumber+1)"
-//        devLog("currentSectorString:  \(currentSectorString)")
-//        let presentGrid = galacticDisplay.map.rootNode.childNode(withName: currentSectorString, recursively: true)
-//
-
     }
 
     // MARK: - Game Loop
@@ -1563,7 +1527,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         } else {
             zylonScanner.updateScanner(with: self.enemyShipsInSector, sceneView: self.spaceScnView)
         }
-        //self.shipHud.updateHUD()
+        // self.shipHud.updateHUD()
 
          DispatchQueue.main.async {
             self.shipHud.shields.isHidden = !self.ship.shieldsAreUp
@@ -1586,7 +1550,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
                 self.commandStack.isHidden = false
                 self.scnView.pointOfView = self.rearCameraNode
 
-                //self.shipHud.aftView()
+                // self.shipHud.aftView()
 
             }
         case .foreView:

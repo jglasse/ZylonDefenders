@@ -19,8 +19,8 @@ class Starbase: SectorObject {
         self.sectorObjectType = .zylonStation //
         let stationScene = SCNScene(named: "zylonStation.scn")
         let station = stationScene?.rootNode.childNode(withName: "station", recursively: true)
-        //let droneShape = SCNBox(width: 10, height: 5, length: 5, chamferRadius: 0)
-        //let dronePhysicsShape = SCNPhysicsShape(geometry: droneShape, options: nil)
+        // let droneShape = SCNBox(width: 10, height: 5, length: 5, chamferRadius: 0)
+        // let dronePhysicsShape = SCNPhysicsShape(geometry: droneShape, options: nil)
         self.addChildNode(station!)
 //        self.physicsBody = SCNPhysicsBody(type: .kinematic, shape: dronePhysicsShape)
 //        self.physicsBody?.isAffectedByGravity = false

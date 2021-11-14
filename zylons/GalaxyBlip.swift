@@ -48,7 +48,7 @@ class GalaxyBlip: SCNNode {
                 let action = SCNAction.rotateBy(x: 0, y: 0, z: CGFloat(GLKMathDegreesToRadians(360)), duration: 4)
                 let forever = SCNAction.repeatForever(action)
                 self.runAction(forever)
-                //self.geometry?.firstMaterial?.emission.contents = UIColor.green
+                // self.geometry?.firstMaterial?.emission.contents = UIColor.green
 
         default:
                 break
@@ -76,26 +76,26 @@ extension SCNNode {
     /// - Parameter duration: TimeInterval
     func highlightNodeWithDurarion(_ duration: TimeInterval, _ color: UIColor, _ originalColor: UIColor) {
 
-        //1. Create An SCNAction Which Emmits A Red Colour Over The Passed Duration Parameter
+        // 1. Create An SCNAction Which Emmits A Red Colour Over The Passed Duration Parameter
         let highlightAction = SCNAction.customAction(duration: duration) { (_, _) in
             let currentMaterial = self.geometry?.firstMaterial
             currentMaterial?.emission.contents = color
         }
 
-        //2. Create An SCNAction Which Removes The Red Emissio Colour Over The Passed Duration Parameter
+        // 2. Create An SCNAction Which Removes The Red Emissio Colour Over The Passed Duration Parameter
         let unHighlightAction = SCNAction.customAction(duration: duration) { (_, _) in
             let currentMaterial = self.geometry?.firstMaterial
             currentMaterial?.emission.contents = originalColor
 
         }
 
-        //3. Create An SCNAction Sequence Which Runs The Actions
+        // 3. Create An SCNAction Sequence Which Runs The Actions
         let pulseSequence = SCNAction.sequence([highlightAction, unHighlightAction])
 
-        //4. Set The Loop As Infinitie
+        // 4. Set The Loop As Infinitie
         let infiniteLoop = SCNAction.repeatForever(pulseSequence)
 
-        //5. Run The Action
+        // 5. Run The Action
         self.runAction(infiniteLoop)
     }
 
