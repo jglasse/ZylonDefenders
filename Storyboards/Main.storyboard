@@ -103,10 +103,10 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</stri
                                 <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
                             </sceneKitView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="110" translatesAutoresizingMaskIntoConstraints="NO" id="PYg-9h-NF8" userLabel="ButtonStack">
-                                <rect key="frame" x="104" y="332" width="688" height="31"/>
+                                <rect key="frame" x="74" y="332" width="748" height="31"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JPG-C1-Qzr">
-                                        <rect key="frame" x="0.0" y="0.0" width="228" height="31"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="248" height="31"/>
                                         <fontDescription key="fontDescription" name="Y14.5M" family="Y14.5M" pointSize="17"/>
                                         <state key="normal" title="START GAME"/>
                                         <connections>
@@ -114,7 +114,7 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</stri
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LU4-Ve-bX3">
-                                        <rect key="frame" x="338" y="0.0" width="350" height="31"/>
+                                        <rect key="frame" x="358" y="0.0" width="390" height="31"/>
                                         <fontDescription key="fontDescription" name="Y14.5M" family="Y14.5M" pointSize="17"/>
                                         <state key="normal" title="DIFFICULTY"/>
                                         <connections>
@@ -161,11 +161,11 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</stri
                             <constraint firstItem="X5n-VY-IB9" firstAttribute="top" secondItem="Vwn-De-txE" secondAttribute="top" id="9YC-1W-Tg1"/>
                             <constraint firstItem="ggg-fA-fxP" firstAttribute="top" secondItem="X5n-VY-IB9" secondAttribute="top" constant="115" id="AlT-Ft-p0A"/>
                             <constraint firstItem="Pyg-dV-Xih" firstAttribute="height" secondItem="Vwn-De-txE" secondAttribute="height" id="KAP-R0-hFn"/>
-                            <constraint firstItem="PYg-9h-NF8" firstAttribute="leading" secondItem="Vwn-De-txE" secondAttribute="leadingMargin" constant="40" id="P5M-KC-zyy"/>
+                            <constraint firstItem="PYg-9h-NF8" firstAttribute="leading" secondItem="Vwn-De-txE" secondAttribute="leadingMargin" constant="10" id="P5M-KC-zyy"/>
                             <constraint firstItem="Pyg-dV-Xih" firstAttribute="width" secondItem="Vwn-De-txE" secondAttribute="width" id="bsY-Ln-7Tu"/>
                             <constraint firstAttribute="trailing" secondItem="ggg-fA-fxP" secondAttribute="trailing" constant="64" id="dUV-B8-Iun"/>
                             <constraint firstItem="Pyg-dV-Xih" firstAttribute="centerY" secondItem="Vwn-De-txE" secondAttribute="centerY" id="hdN-xo-0gA"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="PYg-9h-NF8" secondAttribute="trailing" constant="40" id="qgY-Uy-NDA"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="PYg-9h-NF8" secondAttribute="trailing" constant="10" id="qgY-Uy-NDA"/>
                             <constraint firstItem="Pyg-dV-Xih" firstAttribute="centerX" secondItem="Vwn-De-txE" secondAttribute="centerX" id="tYR-bH-pbA"/>
                             <constraint firstItem="ggg-fA-fxP" firstAttribute="centerX" secondItem="Vwn-De-txE" secondAttribute="centerX" constant="-2" id="unV-Im-EOw"/>
                             <constraint firstItem="X5n-VY-IB9" firstAttribute="centerX" secondItem="Vwn-De-txE" secondAttribute="centerX" id="x7i-eD-a1V"/>

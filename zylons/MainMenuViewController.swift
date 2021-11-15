@@ -138,7 +138,7 @@ class MainMenuViewController: UIViewController, AVAudioPlayerDelegate {
         self.creditsView.fadeInandOut()
         currentCredit+=1
         } else {
-            creditTimer?.invalidate()
+            currentCredit = 0
         }
     }
 
