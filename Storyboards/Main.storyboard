@@ -523,19 +523,11 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</stri
                                 <rect key="frame" x="160" y="193" width="576" height="28"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="Restart" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vK1-A4-kqd" userLabel="Restart">
-                                        <rect key="frame" x="0.0" y="0.0" width="263" height="28"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="576" height="28"/>
                                         <fontDescription key="fontDescription" name="Y14.5M" family="Y14.5M" pointSize="17"/>
                                         <state key="normal" title="RESTART"/>
                                         <connections>
                                             <action selector="restartGame:" destination="BV1-FR-VrT" eventType="touchUpInside" id="F1b-8m-ICM"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="Settings" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UPC-oH-C5e" userLabel="Settings">
-                                        <rect key="frame" x="313" y="0.0" width="263" height="28"/>
-                                        <fontDescription key="fontDescription" name="Y14.5M" family="Y14.5M" pointSize="17"/>
-                                        <state key="normal" title="SETTINGS"/>
-                                        <connections>
-                                            <action selector="settings:" destination="BV1-FR-VrT" eventType="touchUpInside" id="67z-eN-dd0"/>
                                         </connections>
                                     </button>
                                 </subviews>

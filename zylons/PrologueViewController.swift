@@ -156,10 +156,12 @@ let message5 = "[TRANSMISSION TERMINATED 40AFFE]"
         })
     }
     override func viewWillDisappear(_ animated: Bool) {
-        super .viewWillDisappear(animated)
-        self.musicAudioPlayer?.setVolume(0, fadeDuration: 1.5)
+        super.viewWillDisappear(animated)
+        self.telemetrySoundPlayer?.setVolume(0, fadeDuration: 1.0)
+        self.musicAudioPlayer?.setVolume(0, fadeDuration: 1.0)
         self.musicAudioPlayer?.stop()
         self.onPrologue = false
+        self.telemetryTimer?.invalidate()
 
     }
 
@@ -231,6 +233,8 @@ let message5 = "[TRANSMISSION TERMINATED 40AFFE]"
             self.transmissionView.alpha = 0.0
 
         })
+        self.telemetrySoundPlayer?.setVolume(0, fadeDuration: 1.0)
+
         self.telemetryTimer?.invalidate()
         UIView.animate(withDuration: 3, animations: {
             self.starFieldBG.alpha = 0.0

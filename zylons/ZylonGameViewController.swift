@@ -192,8 +192,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         devLog("pauseGame")
         if let paused = self.scnView.scene?.isPaused {
             self.scnView.scene?.isPaused = !paused
-            pausedStack.isHidden = paused
-            devLog("paused state: \(!paused)")
+            restartButton.isHidden = paused
         }
 
     }
@@ -683,9 +682,9 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         scnView.scene = mainGameScene
         createStars()
         generateWarpGrid()
-        self.scnView.prepare(fighterTemplate, shouldAbortBlock: nil)
+      //  self.scnView.prepare(fighterTemplate, shouldAbortBlock: nil)
         self.scnView.prepare(scoutTemplate, shouldAbortBlock: nil)
-        self.scnView.prepare(destroyerTemplate, shouldAbortBlock: nil)
+       // self.scnView.prepare(destroyerTemplate, shouldAbortBlock: nil)
 
         // setup HUD
 

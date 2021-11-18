@@ -31,7 +31,6 @@
 		6B6C26532315FCD100F51088 /* ClassicMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6C26522315FCD100F51088 /* ClassicMap.swift */; };
 		6B6C265423161EF600F51088 /* ClassicMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6C26522315FCD100F51088 /* ClassicMap.swift */; };
 		6B6C265A2316540D00F51088 /* HumonHunter.scn in Resources */ = {isa = PBXBuildFile; fileRef = 6B6C26592316540D00F51088 /* HumonHunter.scn */; };
-		6B6C265C2316541B00F51088 /* HumonFighter.scn in Resources */ = {isa = PBXBuildFile; fileRef = 6B6C265B2316541B00F51088 /* HumonFighter.scn */; };
 		6B6C26662316546B00F51088 /* Atari 2_Atari 2_Normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B6C265E2316546600F51088 /* Atari 2_Atari 2_Normal.png */; };
 		6B6C26672316546B00F51088 /* Atari 2_Atari 2_Emissive.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B6C265F2316546600F51088 /* Atari 2_Atari 2_Emissive.png */; };
 		6B6C26682316546B00F51088 /* Atari 2_Atari 2_BaseColor.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B6C26602316546700F51088 /* Atari 2_Atari 2_BaseColor.png */; };
@@ -231,7 +230,6 @@
 		6B6C264F2315FAA000F51088 /* Grid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Grid.swift; sourceTree = "<group>"; };
 		6B6C26522315FCD100F51088 /* ClassicMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassicMap.swift; sourceTree = "<group>"; };
 		6B6C26592316540D00F51088 /* HumonHunter.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = HumonHunter.scn; sourceTree = "<group>"; };
-		6B6C265B2316541B00F51088 /* HumonFighter.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = HumonFighter.scn; sourceTree = "<group>"; };
 		6B6C265E2316546600F51088 /* Atari 2_Atari 2_Normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Atari 2_Atari 2_Normal.png"; sourceTree = "<group>"; };
 		6B6C265F2316546600F51088 /* Atari 2_Atari 2_Emissive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Atari 2_Atari 2_Emissive.png"; sourceTree = "<group>"; };
 		6B6C26602316546700F51088 /* Atari 2_Atari 2_BaseColor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Atari 2_Atari 2_BaseColor.png"; sourceTree = "<group>"; };
@@ -617,7 +615,6 @@
 			isa = PBXGroup;
 			children = (
 				E1272AB51F64EE4800A66358 /* HumonScout.scn */,
-				6B6C265B2316541B00F51088 /* HumonFighter.scn */,
 				6B6C26592316540D00F51088 /* HumonHunter.scn */,
 				6B6C265D2316544500F51088 /* BaseStarTextures */,
 				6B6C266E231655B400F51088 /* HUMON Textures */,
@@ -993,7 +990,6 @@
 				E16E28C520564A41002362C1 /* viralIntrusionDetected.aiff in Resources */,
 				6B6C2677231655E600F51088 /* Atari 1_Atari 1_Normal.png in Resources */,
 				6B356FBA22FCC60A00869FAA /* alphaStationDestroyed.m4a in Resources */,
-				6B6C265C2316541B00F51088 /* HumonFighter.scn in Resources */,
 				E17282A51EBEA144003C1955 /* grid.png in Resources */,
 				E1A5A7902283FC7800EC5A71 /* MS5_Metal.jpg in Resources */,
 				E13A032821B37B1D0049B125 /* alpha.m4a in Resources */,
