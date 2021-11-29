@@ -13,9 +13,9 @@ import UIKit
 class ClassicMap: SKScene {
     var mapGrid: Grid!
     var targetSector: SKSpriteNode!
-
     var currentSector: SKSpriteNode!
-
+    var sectorHighlights = [SKSpriteNode]()
+    var maxMin =  (0, 127)
     override init(size: CGSize) {
         super.init(size: size)
         self.backgroundColor = UIColor.clear
@@ -25,6 +25,15 @@ class ClassicMap: SKScene {
         self.addChild(mapGrid)
         targetSector = SKSpriteNode(color: .red, size: CGSize(width: gridSize, height: gridSize))
         currentSector = SKSpriteNode(color: .white, size: CGSize(width: gridSize, height: gridSize))
+        for i in 0...127 {
+            let blankSector = SKSpriteNode(color: .green, size: CGSize(width: gridSize, height: gridSize))
+            blankSector.name = "keepMe"
+            blankSector.position = mapGridFromSector(number: i)
+            //blankSector.size = CGSize(width: 24, height: 24)
+            blankSector.setScale(1.0)
+            self.sectorHighlights.append(blankSector)
+            mapGrid.addChild(sectorHighlights[i])
+        }
         targetSector.name = "keepMe"
         currentSector.name = "keepMe"
         targetSector.setScale(1.0)
@@ -42,12 +51,30 @@ class ClassicMap: SKScene {
         fatalError("init(coder:) has not been implemented")
     }
 
+    func setAvailable(min: Int, max: Int) {
+        self.maxMin = (min, max)
+    }
     func highlightAlpha() {
-    print("classic Alpha")
+        devLog("classic Alpha")
+//        galacticSlider.minimumValue = 0
+//        galacticSlider.maximumValue = 31
+//
     }
     func highlightBeta() {
+        devLog("classic Beta")
+//        galacticSlider.minimumValue = 32
+//        galacticSlider.maximumValue = 63
 
-        print("classic Beta")
+    }
+    func highlightGamma() {
+        devLog("classic Gamma")
+//        galacticSlider.minimumValue = 64
+//        galacticSlider.maximumValue = 95
+    }
+    func highlightDelta() {
+        devLog("classic Delta")
+        //        galacticSlider.minimumValue = 96
+        //        galacticSlider.maximumValue = 127
 
     }
 
@@ -64,13 +91,19 @@ class ClassicMap: SKScene {
     }
 
     func updateDisplay(galaxyModel: GalaxyMapModel, shipSector: Int, targetSector: Int) {
-
         // first, clear all non-indicators from the map
         for child in mapGrid.children where child.name != "keepMe" {child.removeFromParent()}
 
         // then iterate over each empty square, putting appropriate icons where they should appear
 
         for iLoop in 0...127 {
+            if iLoop >= self.maxMin.0 && iLoop <= self.maxMin.1 {
+                sectorHighlights[iLoop].alpha = 0.0
+            }
+            else {
+                sectorHighlights[iLoop].alpha = 0.25
+
+            }
             var sectorIcon: SKSpriteNode?
             let currentSectorType = galaxyModel.map[iLoop].sectorType
             switch currentSectorType {

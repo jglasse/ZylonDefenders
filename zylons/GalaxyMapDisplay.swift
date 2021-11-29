@@ -56,7 +56,6 @@ class GalacticMapDisplay {
     // place the camera
     cameraNode.position = SCNVector3(x: 0, y: -8, z: 5.2)
 
-
         // and make all node geometries independent entities, so they can be highlighted
 
         for nodeNumber in 1...128 {

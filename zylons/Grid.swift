@@ -26,23 +26,23 @@ class Grid: SKSpriteNode {
 
     }
 
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        print("touchesBegan")
-        for touch in touches {
-            let position = touch.location(in: self)
-            let node = atPoint(position)
-            if node != self {
-                let action = SKAction.rotate(byAngle: CGFloat.pi*2, duration: 1)
-                node.run(action)
-            } else {
-                let x = size.width / 2 + position.x
-                let y = size.height / 2 - position.y
-                let row = Int(floor(x / blockSize))
-                let col = Int(floor(y / blockSize))
-                print("\(row) \(col)")
-            }
-        }
-    }
+//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+//        print("touchesBegan")
+//        for touch in touches {
+//            let position = touch.location(in: self)
+//            let node = atPoint(position)
+//            if node != self {
+//                let action = SKAction.rotate(byAngle: CGFloat.pi*2, duration: 1)
+//                node.run(action)
+//            } else {
+//                let x = size.width / 2 + position.x
+//                let y = size.height / 2 - position.y
+//                let row = Int(floor(x / blockSize))
+//                let col = Int(floor(y / blockSize))
+//                print("\(row) \(col)")
+//            }
+//        }
+//    }
 
     class func gridTexture(blockSize: CGFloat, rows: Int, cols: Int) -> SKTexture? {
         // Add 1 to the height and width to ensure the borders are within the sprite

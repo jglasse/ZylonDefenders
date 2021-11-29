@@ -265,9 +265,6 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 
     @IBAction func galacticSlide(_ sender: UISlider) {
         self.ship.targetSectorNumber = Int(sender.value)
-        //        let sectorString = "\(self.ship.targetSectorNumber+1)"
-        //        let targetGrid = galacticDisplay.map.rootNode.childNode(withName: sectorString, recursively: true)
-
         galacticDisplay.setNewTargetGrid(number: ship.targetSectorNumber, color: UIColor.red)
         galacticDisplay.setNewShipCurrentGrid(number: ship.currentSectorNumber, color: UIColor.white)
         classicMap.setNewTargetGrid(number: ship.targetSectorNumber, color: UIColor.red)
@@ -532,7 +529,6 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         computerBeepSound("beep")
 //        let action = SCNAction.rotateTo(x: 0.1, y: 0, z: 3.1, duration: rotateSpeed, usesShortestUnitArc: true)
 //            rotationNode.runAction(action)
-            classicMap.highlightAlpha()
             alphaQuadrant.opacity = 1.0
             betaQuadrant.opacity = Constants.fadedMapTransparency
             gammaQuadrant.opacity = Constants.fadedMapTransparency
@@ -540,6 +536,8 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
             kohai.speak("AlphaSector")
             galacticSlider.minimumValue = 0
             galacticSlider.maximumValue = 31
+            classicMap.setAvailable(min: 0, max: 31)
+
             ship.targetSectorNumber = 16
         self.targetSectorLabel.text = "Target Sector: \(self.targetSectorGrid.quadrant) \(self.targetSectorGrid.quadrantNumber)"
         classicMap.updateDisplay(galaxyModel: galaxyModel, shipSector: ship.currentSectorNumber, targetSector: ship.targetSectorNumber)
@@ -557,6 +555,8 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         kohai.speak(("BetaSector"))
         galacticSlider.minimumValue = 32
         galacticSlider.maximumValue = 63
+        classicMap.setAvailable(min: 32, max: 63)
+
         ship.targetSectorNumber = 48
         self.targetSectorLabel.text = "Target Sector: \(self.targetSectorGrid.quadrant) \(self.targetSectorGrid.quadrantNumber)"
         classicMap.updateDisplay(galaxyModel: galaxyModel, shipSector: ship.currentSectorNumber, targetSector: ship.targetSectorNumber)
@@ -564,6 +564,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     }
     @IBAction func gamma(_ sender: Any) {
         computerBeepSound("beep")
+        classicMap.highlightGamma()
 
 //        let action = SCNAction.rotateTo(x: -0.1, y: 0, z: 3.1, duration: rotateSpeed, usesShortestUnitArc: true)
 //        rotationNode.runAction(action)
@@ -574,12 +575,15 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         kohai.speak("GammaSector")
         galacticSlider.minimumValue = 64
         galacticSlider.maximumValue = 95
+        classicMap.setAvailable(min: 64, max: 95)
+
         ship.targetSectorNumber = 80
         classicMap.updateDisplay(galaxyModel: galaxyModel, shipSector: ship.currentSectorNumber, targetSector: ship.targetSectorNumber)
 
     }
     @IBAction func delta(_ sender: Any) {
         computerBeepSound("beep")
+        classicMap.highlightDelta()
 
 //        let action = SCNAction.rotateTo(x: -0.16, y: 0, z: 3.1, duration: rotateSpeed, usesShortestUnitArc: true)
 //        rotationNode.runAction(action)
@@ -590,6 +594,8 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         kohai.speak("DeltaSector")
         galacticSlider.minimumValue = 96
         galacticSlider.maximumValue = 127
+        classicMap.setAvailable(min: 96, max: 127)
+
         ship.targetSectorNumber = 112
         self.targetSectorLabel.text = "Target Sector: \(self.targetSectorGrid.quadrant) \(self.targetSectorGrid.quadrantNumber)"
         classicMap.updateDisplay(galaxyModel: galaxyModel, shipSector: ship.currentSectorNumber, targetSector: ship.targetSectorNumber)
@@ -606,6 +612,8 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         deltaQuadrant.opacity = 1.0
         galacticSlider.minimumValue = 0
         galacticSlider.maximumValue = 127
+        classicMap.setAvailable(min: 0, max: 127)
+        classicMap.updateDisplay(galaxyModel: galaxyModel, shipSector: ship.currentSectorNumber, targetSector: ship.targetSectorNumber)
 
     }
 

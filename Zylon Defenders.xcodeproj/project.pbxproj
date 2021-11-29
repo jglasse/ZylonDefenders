@@ -48,7 +48,6 @@
 		6B6C267C231655E600F51088 /* Atari 1_Atari 1_AO.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B6C2675231655E600F51088 /* Atari 1_Atari 1_AO.png */; };
 		6B72B76522F6259400564D52 /* TelemetryPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BAF88C222E59DCD0022400E /* TelemetryPlayer.swift */; };
 		6B72B76622F6259400564D52 /* AVTonePlayerUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B600D6522D2A87E003D3504 /* AVTonePlayerUnit.swift */; };
-		6B8515D12308B5AF000FEA53 /* rock.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6B8515D02308B5AF000FEA53 /* rock.jpg */; };
 		6B8E68EB22DBC081000D3DFF /* FadeToBlackSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B8E68EA22DBC081000D3DFF /* FadeToBlackSegue.swift */; };
 		6BAF88C322E59DCD0022400E /* TelemetryPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BAF88C222E59DCD0022400E /* TelemetryPlayer.swift */; };
 		6BB6C38222B1B25C002F59D1 /* galacticMap.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 6BB6C38122B1B25C002F59D1 /* galacticMap.m4a */; };
@@ -245,7 +244,6 @@
 		6B6C2673231655E500F51088 /* Atari 1_Atari 1_Roughness.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Atari 1_Atari 1_Roughness.png"; sourceTree = "<group>"; };
 		6B6C2674231655E500F51088 /* Atari 1_Atari 1_Metallic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Atari 1_Atari 1_Metallic.png"; sourceTree = "<group>"; };
 		6B6C2675231655E600F51088 /* Atari 1_Atari 1_AO.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Atari 1_Atari 1_AO.png"; sourceTree = "<group>"; };
-		6B8515D02308B5AF000FEA53 /* rock.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = rock.jpg; sourceTree = "<group>"; };
 		6B8515D22308B6C8000FEA53 /* meteor_NM_7366.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = meteor_NM_7366.scn; sourceTree = "<group>"; };
 		6B8E68EA22DBC081000D3DFF /* FadeToBlackSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FadeToBlackSegue.swift; sourceTree = "<group>"; };
 		6BAF88C222E59DCD0022400E /* TelemetryPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelemetryPlayer.swift; sourceTree = "<group>"; };
@@ -618,7 +616,6 @@
 				6B6C26592316540D00F51088 /* HumonHunter.scn */,
 				6B6C265D2316544500F51088 /* BaseStarTextures */,
 				6B6C266E231655B400F51088 /* HUMON Textures */,
-				6B8515D02308B5AF000FEA53 /* rock.jpg */,
 				6B8515D22308B6C8000FEA53 /* meteor_NM_7366.scn */,
 				E1A5A7832283FC7700EC5A71 /* MS5_Diffuse1.jpg */,
 				E1A5A7872283FC7800EC5A71 /* MS5_Diffuse2.jpg */,
@@ -935,7 +932,6 @@
 				6B6C266D2316546B00F51088 /* Atari 2_Atari 2_Metallic.png in Resources */,
 				E1A58DC31E1DD07E00DCA24F /* Explosion.scnp in Resources */,
 				6B6C26662316546B00F51088 /* Atari 2_Atari 2_Normal.png in Resources */,
-				6B8515D12308B5AF000FEA53 /* rock.jpg in Resources */,
 				E16E28C120564A41002362C1 /* empathyCircuitDamaged.aiff in Resources */,
 				E16AB62A1E1F120400E3D8C2 /* torpedo_fail.mp3 in Resources */,
 				E11A73831E986DE4001CCAC8 /* Main.storyboard in Resources */,
@@ -1346,13 +1342,13 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 40;
+				CURRENT_PROJECT_VERSION = 42;
 				DEVELOPMENT_TEAM = WPGAGSXUST;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = zylons/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.jeffglasse.starraiders;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jeffglasse.StarRaiders;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1369,13 +1365,13 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 40;
+				CURRENT_PROJECT_VERSION = 42;
 				DEVELOPMENT_TEAM = WPGAGSXUST;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = zylons/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.jeffglasse.starraiders;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jeffglasse.StarRaiders;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
