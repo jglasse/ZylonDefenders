@@ -29,7 +29,6 @@ class ClassicMap: SKScene {
             let blankSector = SKSpriteNode(color: .green, size: CGSize(width: gridSize, height: gridSize))
             blankSector.name = "keepMe"
             blankSector.position = mapGridFromSector(number: i)
-            //blankSector.size = CGSize(width: 24, height: 24)
             blankSector.setScale(1.0)
             self.sectorHighlights.append(blankSector)
             mapGrid.addChild(sectorHighlights[i])
@@ -99,8 +98,7 @@ class ClassicMap: SKScene {
         for iLoop in 0...127 {
             if iLoop >= self.maxMin.0 && iLoop <= self.maxMin.1 {
                 sectorHighlights[iLoop].alpha = 0.0
-            }
-            else {
+            } else {
                 sectorHighlights[iLoop].alpha = 0.25
 
             }

@@ -657,7 +657,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         scnView.autoenablesDefaultLighting = true
         scnView.isPlaying = true
         scnView.backgroundColor = UIColor.black
-        joystickControl.movable = true
+        joystickControl.movable = false
         joystickControl.baseAlpha = 0.3
         joystickControl.alpha = 0.2
 
@@ -1043,13 +1043,14 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     }
 
     func boomAndLose(atNode: SCNNode, cause: String) {
+        devLog("boomAndLose")
         removeMarkedSectorObjects()
         zylonScanner.isHidden = true
         zylonScanner.scanBeam.removeAllActions()
         viewMode = .foreView
         finalExplosionSound()
-        gameOver = true
         shipHud.finalFlash()
+        gameOver = true
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             self.endGame(cause)
         }
@@ -1514,6 +1515,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         cleanSceneAndUpdateSectorNodeObjects()
         updateTactical()
         updateStars()
+        galaxyModel.updateHumonTroopMovements()
         } else {
             removeMarkedSectorObjects()
             shipHud.deactivateAlert()

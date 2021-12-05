@@ -34,27 +34,23 @@
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" notEnabled="YES"/>
                                 </accessibility>
-                                <string key="text">WELCOME TO THE ZYLON DEFENDERS ALPHA - Build 32
+                                <mutableString key="text">WELCOME TO THE ZYLON DEFENDERS ALPHA - Build 43
 
-Apologies for the long delay. New things to check out: 
-
-1) Navigable galactic map. Warp to APLHA, BETA, GAMMA and DELTA sectors to eradicate the HUMON MENACE.
-2) Space Stations! 
-3) Game action now continues while you are on galactic map, just as in
-   the original game.
+The Fixes Continue! Some highlights of this build:
+1) Joystick is no longer movable, until I run a bug to the ground about the position being reset (thanks, !)
+2) Strategic movement of HUMON forces on galactic map - Humon ships now surround and destroy zylon stations
+3) Ending logic fixed, so game over should now display message from Zylon Command with rating
+4) General bug fixing. Let me know if you run into any weirdness!
 
 STILL TO DO: 
-  * Difficulty Levels &amp; Tutorial
-  * Strategic movement of HUMON forces on galactic map
-  * Scoring &amp; Ship Energy Drain logic
-  * Game pause/resume; restart controls after game over
-  * Play balancing and other niceties like,say, Map rotation with swipe
-  * Lots of animation tweaks, especially in local combat and arrival from warp
-  * Screen sizing adjustments - especially on prologue. Only tested on iPhone X
+  * Play balancing
+  * Testing/optimization across different devices
 
-Hoping to be in beta in a week or two. Thanks again for your feedback!
 
-As always, email notes, thoughts, comments or threats to jglasse@gmail.com</string>
+
+
+
+As always, email notes, thoughts, comments or threats to jglasse@gmail.com</mutableString>
                                 <color key="textColor" red="0.0018759364314704374" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <fontDescription key="fontDescription" name="Glass_TTY_VT220" family="Glass TTY VT220" pointSize="13"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -455,7 +451,7 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</stri
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3zc-Ha-CFT">
-                                <rect key="frame" x="384" y="240" width="128" height="31"/>
+                                <rect key="frame" x="384" y="290" width="128" height="31"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="31" id="NcM-Yb-iTx"/>
                                     <constraint firstAttribute="width" constant="128.33000000000001" id="yGt-ZW-Wf6"/>
@@ -511,7 +507,7 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</stri
                                 </constraints>
                             </stackView>
                             <textView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" restorationIdentifier="telemetryTextView" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" delaysContentTouches="NO" canCancelContentTouches="NO" bouncesZoom="NO" editable="NO" text="Game Over" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P5c-OT-ydd" userLabel="TelemetryView" customClass="TelemetryPlayer" customModule="Zylon_Defenders" customModuleProvider="target">
-                                <rect key="frame" x="90" y="47" width="640" height="316"/>
+                                <rect key="frame" x="90" y="47" width="716" height="316"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" notEnabled="YES"/>
                                 </accessibility>
@@ -551,11 +547,11 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</stri
                             <constraint firstItem="d3l-vy-3uS" firstAttribute="centerX" secondItem="TBr-jy-nsA" secondAttribute="centerX" id="Fdc-oI-aTX"/>
                             <constraint firstItem="6Sn-Ch-wiN" firstAttribute="leading" secondItem="TBr-jy-nsA" secondAttribute="leadingMargin" id="NGm-pv-gDV"/>
                             <constraint firstItem="0dF-9a-5mU" firstAttribute="leading" secondItem="TBr-jy-nsA" secondAttribute="leading" constant="22" id="Ove-Dh-qny"/>
-                            <constraint firstItem="3zc-Ha-CFT" firstAttribute="top" secondItem="cOD-NV-RaV" secondAttribute="bottom" constant="240" id="PHi-OC-A6H"/>
+                            <constraint firstItem="3zc-Ha-CFT" firstAttribute="top" secondItem="cOD-NV-RaV" secondAttribute="bottom" constant="290" id="PHi-OC-A6H"/>
                             <constraint firstItem="50S-aJ-rH1" firstAttribute="centerY" secondItem="TBr-jy-nsA" secondAttribute="centerY" id="PfF-G3-6Ks"/>
                             <constraint firstItem="P5c-OT-ydd" firstAttribute="leading" secondItem="TBr-jy-nsA" secondAttribute="leading" constant="90" id="RLE-Tq-o7R"/>
                             <constraint firstItem="z62-zF-Ty3" firstAttribute="top" secondItem="cOD-NV-RaV" secondAttribute="bottom" constant="40" id="Sxk-rX-fr1"/>
-                            <constraint firstAttribute="trailing" secondItem="P5c-OT-ydd" secondAttribute="trailing" constant="166" id="TQV-d0-hru"/>
+                            <constraint firstAttribute="trailing" secondItem="P5c-OT-ydd" secondAttribute="trailing" constant="90" id="TQV-d0-hru"/>
                             <constraint firstAttribute="trailing" secondItem="50S-aJ-rH1" secondAttribute="trailing" id="ULq-uf-Wj4"/>
                             <constraint firstItem="z62-zF-Ty3" firstAttribute="leading" secondItem="TBr-jy-nsA" secondAttribute="leading" constant="40" id="Ued-56-Yeb"/>
                             <constraint firstItem="L0B-TD-jaq" firstAttribute="top" secondItem="P5c-OT-ydd" secondAttribute="bottom" constant="30" id="WMW-u7-qTw"/>

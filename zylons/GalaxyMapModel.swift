@@ -10,7 +10,10 @@ import Foundation
 
 struct GalaxyMapModel {
     var map =  [SectorGrid]()
+    var surroundedStationIndexes = [Int]()
     var kh = Kohai()
+    var updateInterval: Int
+    var timeSinceLastUpdate: Int
     var initialNumberofOccupiedSectors = 0
     var currentNumberOfOccupiedSectors: Int { let numberOfOccupiedSectors = map.filter({$0.sectorType == SectorGridType.enemy || $0.sectorType == SectorGridType.enemy2 || $0.sectorType == SectorGridType.enemy3}).count
         devLog("numberOfOccupiedSectors: \(numberOfOccupiedSectors)")
@@ -18,7 +21,7 @@ struct GalaxyMapModel {
     var occupiedSectorRatio: Float {
         devLog("initialNumberofOccupiedSectors: \(initialNumberofOccupiedSectors)")
         devLog("currentNumberOfOccupiedSectors: \(currentNumberOfOccupiedSectors)")
-        print("ratio:", Float(Float(currentNumberOfOccupiedSectors)/Float(initialNumberofOccupiedSectors)))
+        print("occupiedSectorRatio:", Float(Float(currentNumberOfOccupiedSectors)/Float(initialNumberofOccupiedSectors)))
 
         return Float(Float(currentNumberOfOccupiedSectors)/Float(initialNumberofOccupiedSectors))}
 
@@ -32,11 +35,22 @@ struct GalaxyMapModel {
         }
 
     }
+    mutating func updateHumonTroopMovements() {
+        timeSinceLastUpdate+=1
+        if timeSinceLastUpdate >= updateInterval {
+            devLog("Updating Humon Troop Movements")
+            // find each space station, check if it is surrounded
+            // if it is, begin a timer (
+            timeSinceLastUpdate = 0
+        }
+     }
      init(difficulty: Int) {
          devLog("creating map with difficulty \(difficulty)")
         var numberofOccupiedSectors = 0
         var maxShipsPerSector = 0
         var numberofStations = 0
+         self.timeSinceLastUpdate = 0
+         self.updateInterval = 4800 / difficulty
         // based on difficulty level, set internal variables
         switch difficulty {
         case 1:

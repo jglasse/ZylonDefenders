@@ -26,9 +26,6 @@ import SceneKit
 //
 // }
 
-enum KnownQuadrants: String {
-    case alpha, beta, gamma, delta
-}
 
 class ZylonShip: SectorObject {
     var shipClock = 0
@@ -114,12 +111,6 @@ class ZylonShip: SectorObject {
         }
     }
 
-    func drainEnergyStore() {
-        print("depleteEnergyStore")
-        if self.energyStore>1 {
-            self.energyStore -= 1
-        }
-    }
 
      func repair() {
         self.shipSystems.outerHull = .functional

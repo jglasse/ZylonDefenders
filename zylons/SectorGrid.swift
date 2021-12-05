@@ -9,12 +9,13 @@
 import Foundation
 
 enum SectorGridType {
-    case enemy
-    case enemy2
-    case enemy3
-    case starbase
-    case empty
+    case enemy,enemy2,enemy3,starbase,empty
 }
+
+enum KnownQuadrants: String {
+    case alpha, beta, gamma, delta
+}
+
 
 struct SectorGrid {
     var number = 0
@@ -41,10 +42,10 @@ struct SectorGrid {
         switch number {
         case 97...128:
             return number - 96
-        case 33...64:
-            return number - 32
         case 65...96:
             return number - 64
+        case 33...64:
+            return number - 32
         default:
             return number
         }

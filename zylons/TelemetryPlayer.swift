@@ -26,6 +26,7 @@ class TelemetryPlayer: UITextView, AVAudioPlayerDelegate {
     func writeMessage(message: String, speed: Double = 0.097 ) {
         blinkTimer?.invalidate()
         telemetryTimer?.invalidate()
+        telemetryStopped = false
         isWriting = true
         self.telemetrySoundPlayer?.play()
         self.text = ""

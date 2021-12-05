@@ -244,7 +244,6 @@
 		6B6C2673231655E500F51088 /* Atari 1_Atari 1_Roughness.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Atari 1_Atari 1_Roughness.png"; sourceTree = "<group>"; };
 		6B6C2674231655E500F51088 /* Atari 1_Atari 1_Metallic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Atari 1_Atari 1_Metallic.png"; sourceTree = "<group>"; };
 		6B6C2675231655E600F51088 /* Atari 1_Atari 1_AO.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Atari 1_Atari 1_AO.png"; sourceTree = "<group>"; };
-		6B8515D22308B6C8000FEA53 /* meteor_NM_7366.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = meteor_NM_7366.scn; sourceTree = "<group>"; };
 		6B8E68EA22DBC081000D3DFF /* FadeToBlackSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FadeToBlackSegue.swift; sourceTree = "<group>"; };
 		6BAF88C222E59DCD0022400E /* TelemetryPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelemetryPlayer.swift; sourceTree = "<group>"; };
 		6BB6C38122B1B25C002F59D1 /* galacticMap.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = galacticMap.m4a; sourceTree = "<group>"; };
@@ -616,7 +615,6 @@
 				6B6C26592316540D00F51088 /* HumonHunter.scn */,
 				6B6C265D2316544500F51088 /* BaseStarTextures */,
 				6B6C266E231655B400F51088 /* HUMON Textures */,
-				6B8515D22308B6C8000FEA53 /* meteor_NM_7366.scn */,
 				E1A5A7832283FC7700EC5A71 /* MS5_Diffuse1.jpg */,
 				E1A5A7872283FC7800EC5A71 /* MS5_Diffuse2.jpg */,
 				E1A5A7892283FC7800EC5A71 /* MS5_Diffuse3.jpg */,
@@ -1342,7 +1340,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 42;
+				CURRENT_PROJECT_VERSION = 43;
 				DEVELOPMENT_TEAM = WPGAGSXUST;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = zylons/Info.plist;
@@ -1365,7 +1363,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 42;
+				CURRENT_PROJECT_VERSION = 43;
 				DEVELOPMENT_TEAM = WPGAGSXUST;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = zylons/Info.plist;

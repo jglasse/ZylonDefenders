@@ -20,8 +20,6 @@ class GalacticMapDisplay {
     let cameraNode = SCNNode()
 
     // create target indicator
-//    var oldTargetIndicator = SCNNode(geometry: SCNSphere(radius: Constants.galacticMapBlipRadius*3))
-
     var currentAngleY: Float = 0.0
 
     @objc func rotateObject(_ gesture: UIPanGestureRecognizer) {
