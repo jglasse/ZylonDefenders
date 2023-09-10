@@ -2,7 +2,7 @@ PODS:
   - NVActivityIndicatorView (5.1.1):
     - NVActivityIndicatorView/Base (= 5.1.1)
   - NVActivityIndicatorView/Base (5.1.1)
-  - SwiftLint (0.45.0)
+  - SwiftLint (0.52.4)
 
 DEPENDENCIES:
   - NVActivityIndicatorView
@@ -15,8 +15,8 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   NVActivityIndicatorView: 1f6c5687f1171810aa27a3296814dc2d7dec3667
-  SwiftLint: e5c7f1fba68eccfc51509d5b2ce1699f5502e0c7
+  SwiftLint: 1cc5cd61ba9bacb2194e340aeb47a2a37fda00b3
 
 PODFILE CHECKSUM: 81250a824e1c4ee7ed82cc7c1b598f9bba389bbd
 
-COCOAPODS: 1.11.2
+COCOAPODS: 1.12.1

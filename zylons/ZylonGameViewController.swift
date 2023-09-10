@@ -990,7 +990,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         } else {
             devLog("hullHit sound because sheilds are down")
 
-            self.environmentSound("Raw Hull Hit")
+            self.environmentSound("hullHit")
             ship.takeDamage()
         }
     }
@@ -1028,6 +1028,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
             explosionNode.position = atNode.presentation.position
             self.sectorObjectsNode.addChildNode(explosionNode)
             self.explosionSound()
+            Vibration.error.vibrate()
         }
 
     }
@@ -1037,6 +1038,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
             let explosionNode = ShieldExplosion()
             explosionNode.position = atNode.presentation.position
             self.sectorObjectsNode.addChildNode(explosionNode)
+            Vibration.heavy.vibrate()
             self.explosionSound()
         }
 
@@ -1048,6 +1050,8 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         zylonScanner.isHidden = true
         zylonScanner.scanBeam.removeAllActions()
         viewMode = .foreView
+        Vibration.oldSchool.vibrate()
+
         finalExplosionSound()
         shipHud.finalFlash()
         gameOver = true
@@ -1460,11 +1464,13 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
         devLog("shield status at time of contact: \(ship.shieldsAreUp)")
 
         if contact.nodeA.name == "zylonHull" {
+            Vibration.medium.vibrate()
             zylonShipHitBy(node: contact.nodeB)
             self.markSectorObjectToBeRemoved(object: contact.nodeB)
             return
             } else {
             if contact.nodeB.name == "zylonHull" {
+                Vibration.medium.vibrate()
                     zylonShipHitBy(node: contact.nodeA)
                     self.markSectorObjectToBeRemoved(object: contact.nodeA)
                     return

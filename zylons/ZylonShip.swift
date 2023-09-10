@@ -26,7 +26,6 @@ import SceneKit
 //
 // }
 
-
 class ZylonShip: SectorObject {
     var shipClock = 0
     var currentSectorNumber = 64
@@ -110,7 +109,6 @@ class ZylonShip: SectorObject {
             }
         }
     }
-
 
      func repair() {
         self.shipSystems.outerHull = .functional

@@ -9,13 +9,12 @@
 import Foundation
 
 enum SectorGridType {
-    case enemy,enemy2,enemy3,starbase,empty
+    case enemy, enemy2, enemy3, starbase, empty
 }
 
 enum KnownQuadrants: String {
     case alpha, beta, gamma, delta
 }
-
 
 struct SectorGrid {
     var number = 0
