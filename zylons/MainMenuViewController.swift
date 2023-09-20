@@ -3,7 +3,7 @@
 //  Zylon Defenders
 //
 //  Created by Jeff Glasse on 7/6/19.
-//  Copyright © 2019 Jeffery Glasse. All rights reserved.
+//  Copyright © 2023 Jeffery Glasse. All rights reserved.
 //
 
 import UIKit
@@ -21,6 +21,7 @@ enum Difficulty: String, Codable {
 
 struct GameSettings: Codable {
     var prologueEnabled: Bool
+    var invertedAxis:Bool
     var difficulty: Difficulty
 }
 
@@ -29,7 +30,7 @@ class MainMenuViewController: UIViewController, AVAudioPlayerDelegate {
     let musicURL = Bundle.main.url(forResource: "dreadnaught", withExtension: "m4a")
     var musicAudioPlayer: AVAudioPlayer?
     var currentCredit = 0
-    let credits = ["based on STAR RAIDERS by Doug Neubauer", "Music by Neon Insect", "Special thanks to Lorenz Wiest", "Programmed and designed by Jeff Glasse", "With many thanks to Aimee for her infinite patience", "Copyright 2021 Nine Industries. All Rights Reserved."]
+    let credits = ["based on STAR RAIDERS by Doug Neubauer", "Music by Neon Insect", "Special thanks to Lorenz Wiest", "Programmed and designed by Jeff Glasse", "With many thanks to Aimee for her infinite patience", "Copyright 2023 Nine Industries. All Rights Reserved."]
     var creditTimer: Timer?
     var beepsound: AVAudioPlayer!
 
@@ -41,7 +42,8 @@ class MainMenuViewController: UIViewController, AVAudioPlayerDelegate {
     @IBOutlet weak var prologueToggleSwitch: UIButton!
     @IBOutlet weak var mapScnView: SCNView!
     @IBOutlet weak var creditsView: TelemetryPlayer!
-
+    @IBOutlet weak var invertedAxisSwitch: UIButton!
+    
     let galaxyScene = SCNScene(named: "galacticmap.scn")!
     var settings = getSettings()
 
@@ -66,6 +68,21 @@ class MainMenuViewController: UIViewController, AVAudioPlayerDelegate {
         creditsView.quickFadeInandOut()
         save(settings: settings)
         print("saved settings: \(settings)")
+
+    }
+    
+    @IBAction func toggleInverted(_ sender: Any) {
+        computerBeepSound("beep")
+        switch settings.invertedAxis {
+        case true:
+            invertedAxisSwitch.setTitle("INVERT AXIS OFF", for: .normal)
+            settings.invertedAxis = false
+        case false:
+            invertedAxisSwitch.setTitle("INVERT AXIS ON", for: .normal)
+            settings.invertedAxis = true
+        }
+
+        save(settings: settings)
 
     }
     @IBAction func togglePrologue(_ sender: UIButton) {
@@ -150,6 +167,15 @@ class MainMenuViewController: UIViewController, AVAudioPlayerDelegate {
             prologueToggleSwitch.setTitle("PROLOGUE ON", for: .normal)
         case false: // handles false and nil
             prologueToggleSwitch.setTitle("PROLOGUE OFF", for: .normal)
+        }
+        
+        switch self.settings.invertedAxis {
+        case true:
+            invertedAxisSwitch.setTitle("INVERT AXIS ON", for: .normal)
+        case false: // handles false and nil
+            invertedAxisSwitch.setTitle("INVERT AXIS OFF", for: .normal)
+    
+
         }
 
         let rotationNode = galaxyScene.rootNode.childNode(withName: "rotateNode", recursively: true)!

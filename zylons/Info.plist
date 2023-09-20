@@ -26,6 +26,8 @@
 	<true/>
 	<key>PrologueViewed</key>
 	<false/>
+	<key>invertAxis</key>
+	<false/>
 	<key>SCNDisableWideGamut</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>

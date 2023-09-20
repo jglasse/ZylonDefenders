@@ -4,7 +4,7 @@
 //  SCNNode which 
 
 //  Created by jglasse on 2/3/18.
-//  Copyright © 2018 Jeffery Glasse. All rights reserved.
+//  Copyright © 2023 Jeffery Glasse. All rights reserved.
 //
 
 import Foundation

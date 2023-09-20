@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="ipad9_7" orientation="landscape">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="ipad9_7" orientation="landscape" layout="fullscreen" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -19,14 +16,14 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC" userLabel="SpeedView">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="698"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="helm_5200.png" translatesAutoresizingMaskIntoConstraints="NO" id="4m9-A4-fjZ">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N8c-ET-GcT" userLabel="9">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N8c-ET-GcT" userLabel="9">
                                 <rect key="frame" x="249" y="171" width="67" height="39"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Speed 9" image="5200_button_white"/>
@@ -35,7 +32,7 @@
                                     <action selector="sendCommand:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8jZ-aB-4Lc"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jh7-OB-90P" userLabel="8">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jh7-OB-90P" userLabel="8">
                                 <rect key="frame" x="153" y="171" width="67" height="39"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Speed 8" image="5200_button_white"/>
@@ -44,7 +41,7 @@
                                     <action selector="sendCommand:" destination="BYZ-38-t0r" eventType="touchUpInside" id="RVa-Vn-sfT"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A72-KD-lvU" userLabel="7">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A72-KD-lvU" userLabel="7">
                                 <rect key="frame" x="57" y="171" width="67" height="39"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="5200_button_white"/>
@@ -53,7 +50,7 @@
                                     <action selector="sendCommand:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3fw-uw-udD"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BXv-Qu-nzc" userLabel="6">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BXv-Qu-nzc" userLabel="6">
                                 <rect key="frame" x="249" y="264" width="67" height="39"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Speed 6" image="5200_button_white"/>
@@ -62,7 +59,7 @@
                                     <action selector="sendCommand:" destination="BYZ-38-t0r" eventType="touchUpInside" id="G0L-cs-vit"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ISh-xh-8l6" userLabel="5">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ISh-xh-8l6" userLabel="5">
                                 <rect key="frame" x="153" y="264" width="67" height="39"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Speed 5" image="5200_button_white"/>
@@ -71,7 +68,7 @@
                                     <action selector="sendCommand:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0cb-4M-1Wl"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jB1-iU-6d9" userLabel="4">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jB1-iU-6d9" userLabel="4">
                                 <rect key="frame" x="57" y="264" width="67" height="39"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Speed 4" image="5200_button_white"/>
@@ -80,7 +77,7 @@
                                     <action selector="sendCommand:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Fvl-V0-zp7"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8E3-pP-77i" userLabel="3">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8E3-pP-77i" userLabel="3">
                                 <rect key="frame" x="249" y="356" width="67" height="39"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Speed 3" image="5200_button_white"/>
@@ -89,7 +86,7 @@
                                     <action selector="sendCommand:" destination="BYZ-38-t0r" eventType="touchUpInside" id="22b-rQ-ck1"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uem-b1-hgd" userLabel="2">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uem-b1-hgd" userLabel="2">
                                 <rect key="frame" x="153" y="356" width="67" height="39"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Speed 2" image="5200_button_white"/>
@@ -98,7 +95,7 @@
                                     <action selector="sendCommand:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gnH-2y-h3N"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZXl-nn-WLO" userLabel="1">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZXl-nn-WLO" userLabel="1">
                                 <rect key="frame" x="57" y="356" width="67" height="39"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Speed 1" image="5200_button_white"/>
@@ -107,7 +104,7 @@
                                     <action selector="sendCommand:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dYT-gu-LzB"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JH1-mb-Rn8" userLabel="FIRE">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JH1-mb-Rn8" userLabel="FIRE">
                                 <rect key="frame" x="249" y="449" width="67" height="39"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="FIRE" image="5200_button_white"/>
@@ -116,7 +113,7 @@
                                     <action selector="sendCommand:" destination="BYZ-38-t0r" eventType="touchUpInside" id="aPA-nA-mRM"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sAR-F6-H6u" userLabel="0">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sAR-F6-H6u" userLabel="0">
                                 <rect key="frame" x="153" y="449" width="67" height="39"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Speed 0" image="5200_button_white"/>
@@ -125,7 +122,7 @@
                                     <action selector="sendCommand:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4uy-CL-igg"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Lr-p0-XzN" userLabel="MODE">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Lr-p0-XzN" userLabel="MODE">
                                 <rect key="frame" x="57" y="449" width="67" height="39"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="SPEED" image="5200_button_white"/>
@@ -278,34 +275,11 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tbf-KA-So9">
-                                <rect key="frame" x="0.0" y="0.0" width="1020" height="64"/>
-                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="64" id="kmL-un-gAX"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="64" id="u1H-Ja-fA7"/>
-                                </constraints>
-                                <attributedString key="attributedText">
-                                    <fragment content="ZYLON HELM">
-                                        <attributes>
-                                            <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            <font key="NSFont" metaFont="system" size="24"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                </attributedString>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstItem="Tbf-KA-So9" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="31r-q7-UBG"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Tbf-KA-So9" secondAttribute="trailing" constant="-16" id="9V7-zf-eJy"/>
-                            <constraint firstItem="Tbf-KA-So9" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="aZc-tE-ohB"/>
-                            <constraint firstAttribute="leadingMargin" secondItem="Tbf-KA-So9" secondAttribute="leading" constant="16" id="hkc-Dl-a0W"/>
-                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="MCTest" id="zXX-TN-vtt"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
                         <outlet property="comView" destination="8wK-kU-Zfu" id="Yxe-we-Ejc"/>
                     </connections>
@@ -317,8 +291,8 @@
     </scenes>
     <resources>
         <image name="5200_button_white" width="387" height="239"/>
-        <image name="Zylon Helm SCREEN2.png" width="750" height="1334"/>
-        <image name="button_red.png" width="400" height="243"/>
-        <image name="helm_5200.png" width="750" height="1334"/>
+        <image name="Zylon Helm SCREEN2.png" width="270" height="480.239990234375"/>
+        <image name="button_red.png" width="200" height="121.5"/>
+        <image name="helm_5200.png" width="270" height="480.239990234375"/>
     </resources>
 </document>

@@ -3,7 +3,7 @@
 //  Zylon Defenders
 //
 //  Created by Jeff Glasse on 5/29/19.
-//  Copyright © 2019 Jeffery Glasse. All rights reserved.
+//  Copyright © 2023 Jeffery Glasse. All rights reserved.
 //  Container class for galacic map scene, because subnclassing SCNScene is not reccommended.
 
 import Foundation

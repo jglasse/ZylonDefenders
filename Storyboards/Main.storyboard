@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AB2-5A-Arv">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AB2-5A-Arv">
     <device id="retina6_1" orientation="landscape" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -34,7 +34,7 @@
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" notEnabled="YES"/>
                                 </accessibility>
-                                <mutableString key="text">WELCOME TO THE ZYLON DEFENDERS ALPHA - Build 43
+                                <string key="text">WELCOME TO THE ZYLON DEFENDERS ALPHA - Build 43
 
 The Fixes Continue! Some highlights of this build:
 1) Joystick is no longer movable, until I run a bug to the ground about the position being reset (thanks, !)
@@ -50,7 +50,7 @@ STILL TO DO:
 
 
 
-As always, email notes, thoughts, comments or threats to jglasse@gmail.com</mutableString>
+As always, email notes, thoughts, comments or threats to jglasse@gmail.com</string>
                                 <color key="textColor" red="0.0018759364314704374" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <fontDescription key="fontDescription" name="Glass_TTY_VT220" family="Glass TTY VT220" pointSize="13"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -99,10 +99,10 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</muta
                                 <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
                             </sceneKitView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="110" translatesAutoresizingMaskIntoConstraints="NO" id="PYg-9h-NF8" userLabel="ButtonStack">
-                                <rect key="frame" x="74" y="332" width="748" height="31"/>
+                                <rect key="frame" x="30" y="353" width="836" height="31"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JPG-C1-Qzr">
-                                        <rect key="frame" x="0.0" y="0.0" width="248" height="31"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="277" height="31"/>
                                         <fontDescription key="fontDescription" name="Y14.5M" family="Y14.5M" pointSize="17"/>
                                         <state key="normal" title="START GAME"/>
                                         <connections>
@@ -110,7 +110,7 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</muta
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LU4-Ve-bX3">
-                                        <rect key="frame" x="358" y="0.0" width="390" height="31"/>
+                                        <rect key="frame" x="387" y="0.0" width="449" height="31"/>
                                         <fontDescription key="fontDescription" name="Y14.5M" family="Y14.5M" pointSize="17"/>
                                         <state key="normal" title="DIFFICULTY"/>
                                         <connections>
@@ -129,6 +129,15 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</muta
                                 <state key="normal" title="PROLOGUE ON"/>
                                 <connections>
                                     <action selector="togglePrologue:" destination="AB2-5A-Arv" eventType="touchUpInside" id="ot2-gl-uby"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="h3x-q6-GTm">
+                                <rect key="frame" x="702" y="20" width="130" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Y14.5M" family="Y14.5M" pointSize="10"/>
+                                <state key="normal" title="INVERT AXIS ON"/>
+                                <connections>
+                                    <action selector="toggleInverted:" destination="AB2-5A-Arv" eventType="touchUpInside" id="sd0-10-NPJ"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ZylonDefenderTitleALPHA" translatesAutoresizingMaskIntoConstraints="NO" id="X5n-VY-IB9">
@@ -170,13 +179,14 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</muta
                     </view>
                     <connections>
                         <outlet property="creditsView" destination="ggg-fA-fxP" id="h2V-CR-z7P"/>
+                        <outlet property="invertedAxisSwitch" destination="h3x-q6-GTm" id="nQc-Zu-PXa"/>
                         <outlet property="mapScnView" destination="Pyg-dV-Xih" id="KPK-OY-0dn"/>
                         <outlet property="prologueToggleSwitch" destination="e1U-fH-LnA" id="1gY-SC-Hbj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kJH-SS-Ils" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1963.3004926108374" y="157.59999999999999"/>
+            <point key="canvasLocation" x="-1963.3928571428571" y="156.52173913043478"/>
         </scene>
         <!--Prologue View Controller-->
         <scene sceneID="ZVM-HL-ZSE">
@@ -206,7 +216,7 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</muta
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pff-ol-vqT">
-                                <rect key="frame" x="745" y="355" width="107" height="30"/>
+                                <rect key="frame" x="741" y="355" width="107" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="107" id="3V9-mm-zUQ"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="7fi-z9-sPc"/>
@@ -463,7 +473,7 @@ As always, email notes, thoughts, comments or threats to jglasse@gmail.com</muta
                                 </connections>
                             </button>
                             <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="6Sn-Ch-wiN">
-                                <rect key="frame" x="60" y="286" width="193" height="72"/>
+                                <rect key="frame" x="68" y="286" width="193" height="72"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Θ: --" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MQV-Cf-PFY">
                                         <rect key="frame" x="0.0" y="0.0" width="193" height="12"/>

@@ -3,7 +3,7 @@
 //  zylonprologue
 //
 //  Created by Jeffrey Glasse on 11/10/17.
-//  Copyright © 2017 GlasseHouseGames. All rights reserved.
+//  Copyright © 2023 GlasseHouseGames. All rights reserved.
 //
 
 import UIKit

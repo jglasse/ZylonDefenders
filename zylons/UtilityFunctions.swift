@@ -3,7 +3,7 @@
 //  Zylon Defenders
 //
 //  Created by Jeffrey Glasse on 9/9/17.
-//  Copyright © 2017 Jeffery Glasse. All rights reserved.
+//  Copyright © 2023 Jeffery Glasse. All rights reserved.
 //
 
 import Foundation
@@ -54,18 +54,23 @@ func getSettings() -> GameSettings {
     let defaults = UserDefaults.standard
     var gameSettings: GameSettings
     let prologueBool = defaults.bool(forKey: "prologueViewed")
+    let invetedBool = defaults.bool(forKey: "invertedAxis")
     let difficultyLevelString = defaults.string(forKey: "difficulty") ?? "Novice"
     print("getSettings difficultyLevelString = \(difficultyLevelString)")
+    print("getSettings prologueBool = \(prologueBool)")
+    print("getSettings invetedBool = \(invetedBool)")
+
     let difficultyLevel = Difficulty(rawValue: difficultyLevelString) ?? .Novice
-    gameSettings = GameSettings(prologueEnabled: prologueBool, difficulty: difficultyLevel)
+    gameSettings = GameSettings(prologueEnabled: prologueBool, invertedAxis: invetedBool, difficulty:  difficultyLevel)
     return gameSettings
 }
 
 func save(settings: GameSettings) {
     let defaults = UserDefaults.standard
     let difficultyString = settings.difficulty.rawValue
-    print("saving following D : \(settings.prologueEnabled)")
+    print("saving settings inverted Axis : \(settings.invertedAxis)")
     defaults.set(settings.prologueEnabled, forKey: "prologueViewed")
+    defaults.set(settings.invertedAxis, forKey: "invertedAxis")
     defaults.set(difficultyString, forKey: "difficulty")
 }
 
@@ -83,7 +88,7 @@ extension ZylonGameViewController {
         // MARK: - MFI GAME CONTROLLER CODE
 
         private func processGameControllerInput() {
-            guard let profile: GCExtendedGamepad = self.mainController?.extendedGamepad else {
+            guard let profile: GCExtendedGamepad = self.mainController else {
                 return
             }
             profile.valueChangedHandler = ({ (gamepad: GCExtendedGamepad, element: GCControllerElement) in
@@ -219,9 +224,9 @@ extension ZylonGameViewController {
             }) as GCExtendedGamepadValueChangedHandler
         }
 
-        @objc private func controllerWasConnected(_ notification: Notification) {
-            if let controller: GCController = notification.object as? GCController {
-            let status = "MFi Controller: \(String(describing: controller.vendorName)) is connected"
+        @objc func controllerWasConnected(_ notification: Notification) {
+            if let controller: GCExtendedGamepad = notification.object as? GCExtendedGamepad {
+                let status = "Controller: \(String(describing: controller.description)) is connected"
             print(status)
             self.joystickControl.isHidden = true
 
@@ -230,7 +235,7 @@ extension ZylonGameViewController {
             }
         }
 
-        @objc private func controllerWasDisconnected(_ notification: Notification) {
+        @objc func controllerWasDisconnected(_ notification: Notification) {
             if let controller: GCController = notification.object as? GCController {
             let status = "MFi Controller: \(String(describing: controller.vendorName)) is disconnected"
             print(status)

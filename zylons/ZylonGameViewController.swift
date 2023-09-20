@@ -3,7 +3,7 @@
 //  Zylon Defenders
 //
 //  Created by Jeffery Glasse on 11/6/16.
-//  Copyright © 2018 Jeffery Glasse. All rights reserved.
+//  Copyright © 2023 Jeffery Glasse. All rights reserved.
 //
 
 import Foundation
@@ -19,7 +19,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     let rankArray = ["ZYLON HERO", "SPACE ACE", "WARRIOR", "CAPTAIN", "STAR COMMANDER", "COMMANDER", "LIEUTENANT", "PILOT", "ENSIGN", "NOVICE", "ROOKIE", "GARBAGE SCOW CAPTAIN", "GALACTIC COOK"]
 
     //  Multipeer
-   // var myMCController = MCController.sharedInstance
+    var myMCController = MCController.sharedInstance
 
     // MARK: - Game Settings
     var gameSettings = getSettings()
@@ -51,7 +51,7 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     // TODO: make gamestate a single codable object
 
     // MARK: - Mfi Game Controller vars
-    var mainController: GCController?
+    var mainController: GCExtendedGamepad?
     var aButtonJustPressed = false
     var bButtonJustPressed = false
     var leftTriggerJustPressed = false
@@ -276,6 +276,8 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
 
  // Galactic Stack
     @IBAction func DToggle(_ sender: UIButton) {
+        computerBeepSound("beep")
+
         if galacticDisplay.threeDMode == true {
             galacticDisplay.threeDMode = false
             self.threeDToggle.setTitle("2D", for: .normal)
@@ -630,17 +632,17 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-//        NotificationCenter.default.addObserver(self,
-//                                               selector: #selector(self.controllerWasConnected),
-//                                               name: NSNotification.Name.GCControllerDidConnect,
-//                                               object: nil)
-//        NotificationCenter.default.addObserver(self,
-//                                               selector: #selector(self.controllerWasDisconnected),
-//                                               name: NSNotification.Name.GCControllerDidDisconnect,
-//                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(self.controllerWasConnected),
+                                               name: NSNotification.Name.GCControllerDidConnect,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(self.controllerWasDisconnected),
+                                               name: NSNotification.Name.GCControllerDidDisconnect,
+                                               object: nil)
 
-//      myMCController.setup()
-//      myMCController.myCommandDelegate = self
+      myMCController.setup()
+      myMCController.myCommandDelegate = self
 
         setupView()
         setupScene()
@@ -1215,20 +1217,28 @@ class ZylonGameViewController: UIViewController, SCNPhysicsContactDelegate, SCNS
     }
 
     func turnShip() {
-        if let controllerHardware = mainController?.extendedGamepad {
+        if let controllerHardware = mainController {
             let yT = controllerHardware.leftThumbstick.xAxis.value/40
             let xT = controllerHardware.leftThumbstick.yAxis.value/40
             self.rotate(self.sectorObjectsNode, around: Constants.xAxis, by: CGFloat(xT))
             self.rotate(self.sectorObjectsNode, around: Constants.yAxis, by: CGFloat(yT))
 
         } else {
-            self.rotate(self.sectorObjectsNode, around: Constants.xAxis, by: CGFloat(self.xThrust))
-            self.rotate(self.sectorObjectsNode, around: Constants.yAxis, by: CGFloat(self.yThrust))
+            if self.gameSettings.invertedAxis {
+                var invertedXThrust: Float =  Float(cos(self.joystickControl.angle.degreesToRadians + 3.1415) * self.joystickControl.displacement)/divider
+
+                self.rotate(self.sectorObjectsNode, around: Constants.xAxis, by: CGFloat(invertedXThrust))
+                self.rotate(self.sectorObjectsNode, around: Constants.yAxis, by: CGFloat(self.yThrust))
+            }
+            else {
+                self.rotate(self.sectorObjectsNode, around: Constants.xAxis, by: CGFloat(self.xThrust))
+                self.rotate(self.sectorObjectsNode, around: Constants.yAxis, by: CGFloat(self.yThrust))
+            }
 
         }
 
-        self.rotate(self.sectorObjectsNode, around: Constants.yAxis, by: CGFloat(self.xThrust))
-        self.rotate(self.sectorObjectsNode, around: Constants.yAxis, by: CGFloat(self.yThrust))
+//        self.rotate(self.sectorObjectsNode, around: Constants.xAxis, by: CGFloat(self.xThrust))
+//        self.rotate(self.sectorObjectsNode, around: Constants.yAxis, by: CGFloat(self.yThrust))
 
     }
 
